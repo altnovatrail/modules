@@ -50,7 +50,7 @@
 - с этапа 2 релиз `modules` по точному тегу берёт и CI `canvas`, проверив подпись рецептом `release-verify` (architecture 3.2 spec; R77 spec; Д54 в таблице 4 RUN.md `spec`). Открытые виды задач для сборки страницы образцов CLI `module-kit` строит из части пакета для сервера, медиафайлы берёт из части для устройства, а отметки о снятии CI читает в индексе новейшего релиза `modules` и из снятой версии страницу не собирает. До первого содержания `modules` задачи замера сборка берёт из релиза `tutor` (R25 spec, поправки 2026-10-21 и 2026-10-28; R63 spec; architecture 3.2 spec);
 - образцы добровольцев приходят со страницы образцов `canvas` через pull request, который вносит организатор eval-набора (раздел 3.4); на сервер платформы при этом ничего не уходит (architecture 3.2 spec). К первому замеру страница — без хостинга: её сборка скачивается из релиза `canvas` и открывается на устройстве, а во время работы по сети не ходит: задачи и медиафайлы в неё кладутся при сборке. Образцы детей делаются той же страницей, но без pull request, и в репозиторий не попадают (R25 spec);
 - лицензия — Apache-2.0, и у содержания, и у кода, и у образцов добровольцев в eval-наборах (R20 spec). Паспорт модуля называет её идентификатором SPDX `Apache-2.0`, а папка модуля несёт её текст файлом `LICENSE` (concepts 3 spec; R46 spec). Уведомления, которых требуют лицензии содержания, — например MIT у задач standalone, — стоят только в `NOTICE` папки: комментарии файлов модуля в пакет не попадают (поправка 2026-10-28 к R46 spec; R62 spec; раздел 2.3). `LICENSE` и `NOTICE` — UTF-8, строки кончаются LF, и git их концов строк не переводит: пакет несёт их байт в байт ([текст формата](../spec/format/README.md), раздел 10);
-- порядок работы задаёт сквозной план `spec` — строки 3.4–3.7 [COORDINATION.md](../spec/COORDINATION.md) (R76 spec). Первое содержание — первая пачка олимпиадной математики для первого приложения, на котором автор локально решает задачи в браузере: 20–30 задач standalone на три полосы, без шаблонов и решателей, уроками, а паспорт называет в аудитории и `adult`. Небольшие наборы школьной математики 3 класса и сочинений `modules` пишет для проверки формата (T38 `spec`). Остальной порт — после первой пачки;
+- порядок работы задаёт сквозной план `spec` — строки 3.4–3.7 [COORDINATION.md](../spec/COORDINATION.md) (R76 spec). Первое содержание — первая пачка олимпиадной математики для первого приложения, на котором автор локально решает задачи в браузере: 20–30 задач standalone на три полосы, без шаблонов и решателей, уроками, а паспорт называет в аудитории и `adult`. Небольшие наборы школьной математики 3 класса и сочинений `modules` пишет для проверки формата (T38 `spec`). Список пачки — раздел 3.6 (R07). Остальной порт — после первой пачки;
 - этап 1, вместе с `module-kit`: формат модуля v0 сразу проверяется на трёх модулях двух предметов (repositories 6 spec; R08, R41 spec).
 
 ## 2. Решить при детализации
@@ -61,7 +61,7 @@
 
 Многое из того, что подразделы ждали от формата, формат 0.2 уже решил (R02): каждый подраздел называет, что решено, и что формат оставил `modules`.
 
-Подразделы 2.1 и 2.2 решены 2026-11-02 — R03 и R04. Подраздел 2.3 решён в тот же день — R05, кроме первой пачки: её решает T07. Их устройство — разделы 3.1–3.3, 3.4 и 3.5, а подразделы остаются здесь записью того, что было известно и из чего выбирали. «Что известно» в них записано до решения, так что «решает `modules`» там говорит о дне записи, а ответ — в «Решено».
+Подразделы 2.1 и 2.2 решены 2026-11-02 — R03 и R04. Подраздел 2.3 решён в тот же день — R05, а первая пачка — R07. Их устройство — разделы 3.1–3.3, 3.4, 3.5 и 3.6, а подразделы остаются здесь записью того, что было известно и из чего выбирали. «Что известно» в них записано до решения, так что «решает `modules`» там говорит о дне записи, а ответ — в «Решено».
 
 ### 2.1. Раскладка модулей в репозитории
 
@@ -157,12 +157,12 @@
   - чего формат не выражает: судьба каждого пункта в таблице, а строкой «в реестр spec» — только то, что нужно первой пачке или порту; строка на каждый пункт;
   - делить ли задачу: T03 — что во что и лицензия, а первая пачка — новая T07; одна задача;
   - тег `spec`: T03 на v0.6.3, а переход на v0.6.5 — новая T08 перед первой пачкой; переход до T03; переход в эпике содержания.
-- **Решено:** R05 — раздел 3.5, а первая пачка — T07 в [RUN.md](../RUN.md). Что выходит за `modules`, ушло «в реестр spec», строками В10 и В11 таблицы 3 [RUN.md](../RUN.md).
+- **Решено:** R05 — раздел 3.5, а первая пачка — R07, раздел 3.6. Что выходит за `modules`, ушло «в реестр spec», строками В10 и В11 таблицы 3 [RUN.md](../RUN.md), а от первой пачки — строками В13 и В14.
 - **Задача:** T03, первая пачка — T07.
 
 ## 3. Устройство
 
-Сюда переезжает то, что решено по разделу 2: из каких частей компонент состоит, его данные и как он связан с другими репозиториями. Почему решено так, а не иначе, — в журнале. Пока здесь решённое по подразделам 2.1 (R03), 2.2 (R04) и 2.3 (R05). Код всего этого — CI, `release.yml` и рецепт `release-files` — приходит с эпиком содержания (строка 3.6 [COORDINATION.md](../spec/COORDINATION.md)), а проверки образцов — с протоколом eval. `.gitattributes` уже лежит в корне.
+Сюда переезжает то, что решено по разделу 2: из каких частей компонент состоит, его данные и как он связан с другими репозиториями. Почему решено так, а не иначе, — в журнале. Здесь решённое по подразделам 2.1 (R03), 2.2 (R04) и 2.3 (R05 и R07). Код всего этого — CI, `release.yml` и рецепт `release-files` — приходит с эпиком содержания (строка 3.6 [COORDINATION.md](../spec/COORDINATION.md)), а проверки образцов — с протоколом eval. `.gitattributes` уже лежит в корне.
 
 ### 3.1. Дерево репозитория
 
@@ -352,7 +352,7 @@ Eval-набор модуля лежит в `eval/` его папки и в па�
 ### 3.5. Порт standalone
 
 Олимпиадная математика `novatrail/olympiad-math` приходит из standalone на коммите 89986bc, 2026-11-01 (раздел 4). Почему так — R05.
-- первая пачка — T07 в [RUN.md](../RUN.md);
+- первая пачка — раздел 3.6 (R07);
 - остальной порт — строка 3.7 [COORDINATION.md](../spec/COORDINATION.md);
 - код порта — конвертер задач и рисование картинок — приходит с эпиком содержания.
 
@@ -395,9 +395,9 @@ Eval-набор модуля лежит в `eval/` его папки и в па�
   | `topic`, `grade_level`, `difficulty` | `skills.primary` — навык темы; `band` — полоса; `difficulty` — та же, 1–5 внутри полосы. В `supporting` — навык-опора, если задача на дроби или делимость |
   | `question` | `statement` — текст как есть. Формул в нём нет, а знаки × и ÷ и дроби `a/b` формат пропускает |
   | верный вариант — целое число, число с единицей или дробь | один пункт с ячейкой `anywhere` и проверкой `number`, у числа с единицей — с `units`, а у дроби — проверкой `fraction`. Ответ пишется от руки. Исключение — вопрос, который указывает на варианты: без них он не задан, и задача получает `choice` |
-  | верный вариант — что-то другое: слово, время на часах, дата, процент, «да» или «нет», другой текст с цифрами | ячейка `choice` с пятью вариантами: величины из нескольких частей, дат и времени проверки формата v0 не судят ([текст формата](../spec/format/README.md), раздел 15). Касанием или от руки — решает T07 для первой пачки, а для остального — порт |
+  | верный вариант — что-то другое: слово, время на часах, дата, процент, «да» или «нет», другой текст с цифрами | ячейка `choice` с пятью вариантами: величины из нескольких частей, дат и времени проверки формата v0 не судят ([текст формата](../spec/format/README.md), раздел 15). Первая пачка таких задач не берёт (R07), а касанием или от руки — решает порт |
   | неверный вариант с ловушкой и пояснением | значение ловушки `trap_values`, где ловушка — с `-` вместо `_`, а текст — пояснение варианта. Значение пишется, как ключ: у `number` и `fraction` — число варианта в записи вида, без единицы, не длиннее 16 знаков, а у `choice` — текст варианта как есть. Нечисловой неверный вариант у задачи с числовым ответом значением ловушки стать не может, и его ловушка идёт в `traps` задачи — её предложит ИИ |
-  | пояснение, которое называет верный ответ | переписывается: иначе его найдёт `task.no-leaks`. Ключ, который стоит и в условии, проверка не ищет. С целым ключом таких пояснений 159, в 119 задачах, а с дробью или числом с единицей — ещё 5. У выбора от руки проверка ищет и слова верного варианта — их сосчитает T07, если выберет его |
+  | пояснение, которое называет верный ответ | переписывается: иначе его найдёт `task.no-leaks`. Ключ, который стоит и в условии, проверка не ищет. С целым ключом таких пояснений 159, в 119 задачах, а с дробью или числом с единицей — ещё 5. У выбора от руки проверка ищет и слова верного варианта — их сосчитает порт, если выберет его: первая пачка выбора не берёт (R07) |
   | `solution`, `solution_total` | `solution`, а итог — его последней строкой |
   | `picture`, `solution_picture` | PNG в `media/`, нарисованный по описанию: с `alt`, шириной и высотой, на непрозрачном светлом фоне (R51 spec). Картинка решения — в `solution` |
   | решатель задачи | в модуль не идёт: ключ фиксированной задачи — от автора (concepts 9.4 spec). Порт гоняет решатель один раз и сверяет с ним ключ и значения ловушек |
@@ -408,7 +408,7 @@ Eval-набор модуля лежит в `eval/` его папки и в па�
 
   | В standalone | Судьба |
   |---|---|
-  | подсказка задачи, `hint` | поля у формата нет: лестница строится из ловушек, `givens`, приёмов и `simpler_case` ([текст формата](../spec/format/README.md), раздел 19). У задач 1–4 классов подсказок почти нет, а у полосы 5–6 они есть у каждой. Берёт ли первая пачка задачи 5–6 без подсказки или просит поле раньше, решит T07; иначе просьбу к 0.y соберёт T38 `spec` (Д60 в таблице 4 RUN.md `spec`) |
+  | подсказка задачи, `hint` | поля у формата нет: лестница строится из ловушек, `givens`, приёмов и `simpler_case` ([текст формата](../spec/format/README.md), раздел 19). У задач 1–4 классов подсказок почти нет, а у полосы 5–6 они есть у каждой. Первая пачка берёт задачи 5–6 без подсказки: подсказки standalone — путь к ответу, а `givens` пути не говорят (R07). Просьбу к 0.y, если она понадобится, соберёт T38 `spec` (Д60 в таблице 4 RUN.md `spec`) |
   | номера и группы приёмов | у формата их нет; группа видна из описания приёма |
   | виды картинок, 13 | картинка — файл (R51 spec), так что виды не нужны |
   | идеи, 552 | генерации на лету нет (R60 spec) |
@@ -425,6 +425,112 @@ Eval-набор модуля лежит в `eval/` его папки и в па�
   - 442 задачи 1–4 классов standalone взял дословно из своего прототипа. Прототип — под Apache-2.0, без `NOTICE` и без заполненной строки copyright;
   - формулировки остальных задач — свои. Идеи для 5–6 классов взяты из MathNet под CC BY 4.0 и из книг и сборников, а формулировки — нет. Поля «источник» у задач standalone нет;
   - поля происхождения нет и у задачи модуля (concepts 9.4 spec). Что это значит для О-10, — В11 в таблице 3 [RUN.md](../RUN.md).
+
+### 3.6. Первая пачка
+
+Первая пачка `novatrail/olympiad-math` — 27 задач standalone на три полосы и 9 уроков, для первого приложения, где автор локально решает задачи в браузере (R76 spec). Почему так — R07. Задачи и уроки — по таблице раздела 3.5 и по этому разделу. Файлы модуля пишет эпик содержания, строка 3.6 [COORDINATION.md](../spec/COORDINATION.md). Список посчитан по standalone 89986bc и тексту формата 0.2 (раздел 4).
+
+- **Навыки** — `counting-gaps`, `combinatorics-enumeration` и `pigeonhole-basic`. Эти три темы standalone идут на всех трёх полосах, ответы у них почти везде целые числа, а у страницы темы сайта — по примеру на каждый уровень. Задач с ответом-числом, без «Which of these…» и без картинки у них 52, 64 и 63 из 65.
+- **Правило выбора:**
+  1. годная задача — у неё верный вариант целое число, с единицей или без, как «50 m», а вопрос не указывает на варианты. Картинки у неё нет, кроме картинки `row` по пункту 5. Ответ с единицей пишется так же, как без неё: ключ — число, а единица — в `units` (раздел 3.5);
+  2. на каждый навык и полосу берутся три задачи — сложности 1, 3 и 5;
+  3. на каждой сложности берётся первая годная задача по ID, если её пояснения неверных вариантов ключа не называют, а если такой нет — первая годная. Задача не берётся, если её ключ:
+     - стоит в тексте её урока — `lesson.no-leaks`;
+     - стоит в условии более ранней задачи урока;
+     - равен ключу более ранней задачи урока: её решение кончается её ключом, а урок не должен называть задач, тексты одной из которых дают ответ другой ([текст формата](../spec/format/README.md), раздел 20).
+
+     Если годной задачи на этой сложности нет, берётся ближайшая сложность, сначала выше;
+  4. ключ в тексте ищется правилом поиска чисел формата ([текст формата](../spec/format/README.md), раздел 20): по значению, так что `7` есть в «7 rungs», но не в «17»;
+  5. у `counting-gaps` на полосах 1–2 и 3–4 одна задача из трёх — с картинкой `row`: на первой сложности, где такая годна, она берётся вместо задачи без картинки. Годных задач с `row` — 10, все на этих двух полосах.
+
+  Сложность сдвинулась у одной задачи: у `counting-gaps` 1–2 ключи годных задач сложности 1 стоят в тексте урока, и взята `gaps-12-d2-1`.
+
+  В трёх уроках число из решения или из пояснения варианта более ранней задачи равно ключу более поздней:
+  - `enum-56-d1-1` → `enum-56-d3-2`, 16 — в решении и в пояснениях вариантов 36 и 576;
+  - `pig-12-d3-1` → `pig-12-d5-1`, 10 — в решении и в пояснении варианта 10;
+  - `pig-56-d1-1` → `pig-56-d3-2`, 19 — в решении и в пояснении варианта 19;
+  - `pig-56-d3-2` → `pig-56-d5-1`, 11 — в пояснении варианта 11.
+
+  Это совпадение чисел, а не ответ, и правило этих текстов не смотрит: иначе у `combinatorics-enumeration` 5–6 обе задачи ушли бы на сложность 4. Эпик содержания перечитывает эти пары, когда пишет решения и пояснения, и меняет число в пояснении, если оно читается как ответ следующей задачи.
+- **Граф** — три навыка с оцениваемостью `verdict`, как в примере формата `olympiad-math`:
+
+  | Навык | Пререквизиты | Ярус |
+  |---|---|---|
+  | `counting-gaps` | — | 1, Foundations |
+  | `combinatorics-enumeration` | — | 1, Foundations |
+  | `pigeonhole-basic` | `combinatorics-enumeration` | 2, Rules |
+
+  Имена ярусов — `[Foundations, Rules, Hard problems]`, как в примере: третье ничего не называет, пока порт не добавит ярус 3 ([текст формата](../spec/format/README.md), раздел 12). Граф — не цепочка, и модуль не последовательный (поправка 2026-11-02 к R58 spec). Навыков-опор нет. Остальные 14 навыков вносит порт.
+- **Паспорт** — как пример формата `olympiad-math.yaml`, кроме трёх полей: `audience.age_categories` — `[under_13, adult]` (R76 spec), `dependencies` нет, а версию пишет эпик содержания. Классы — 1–6, полосы — `grades-1-2`, `grades-3-4` и `grades-5-6`, язык объяснений — `en`, `rung_templates` — из примера, и чисел в них нет.
+- **Каталоги** — из примеров формата:
+  - `traps.yaml` — 10 ловушек, которые называют задачи пачки: `answered-other-question`, `best-case-not-worst`, `double-count`, `ignored-condition`, `ignored-not`, `missed-case`, `number-from-text`, `off-by-one`, `stopped-early`, `wrong-operation`. Навыков ни одна не называет, и чисел в их советах нет;
+  - `techniques.yaml` — 4 приёма: `draw`, `small-numbers`, `systematic`, `pigeonhole`;
+  - `solving-steps.yaml` — все четыре шага примера.
+- **Задача пачки** — фиксированная, с тем же ID и файлом `tasks/<id>.yaml` (R05):
+  - один пункт: ячейка `anywhere`, проверка `number`, ключ строкой и `units`. Вопрос каждой задачи пачки считает предметы или меру, поэтому `units` есть у каждой: слово, которое считает вопрос, в единственном и множественном числе, а у меры — ещё сокращение. Без них «14 metres» от руки не было бы в записи числа ([текст формата](../spec/format/README.md), раздел 15);
+  - неверные варианты — все числа и все становятся значениями ловушек `trap_values`: значение — число варианта без единицы, а текст — пояснение варианта. `traps` из порта пуст;
+  - приёмы — по навыку: те, что сайт standalone связывает с темой (`site/data.json`, член `techniques`), а у `counting-gaps` ещё `draw` — метод его страницы «Draw a small case and count on it» и приёмы задачи `gaps-ladder-1` примера формата. Итого: `counting-gaps` — `draw` и `small-numbers`, `combinatorics-enumeration` — `systematic`, `pigeonhole-basic` — `pigeonhole`;
+  - `givens`, `unknown` и `simpler_case` пункта есть у каждой задачи. Без них подсказка до первого неверного ответа и ступень 3 остаются без слов (R82 spec; [текст формата](../spec/format/README.md), раздел 19). Пишет их эпик содержания;
+  - подсказка standalone полосы 5–6 не переносится. Все девять — вопросы, которые разбивают задачу, то есть путь к ответу, а `givens` пути не говорят ([текст формата](../spec/format/README.md), раздел 14);
+  - `solution` — решение standalone, итог — последней строкой (R05). Ключ и значения ловушек порт сверяет с решателем задачи;
+  - ключ не стоит ни в одном условии, так что `task.no-leaks` ищет его во всех текстах задачи.
+
+- **Список задач** — по навыкам и полосам, в порядке уроков. Значение ловушки — неверный вариант и его ловушка:
+
+  | ID | Навык | Полоса | Сложность | Ключ | `units` | Значения ловушек | Особое |
+  |---|---|---|---|---|---|---|---|
+  | `gaps-12-d2-1` | `counting-gaps` | `grades-1-2` | 2 | 14 | metre, metres, m | 7 `stopped-early`, 8 `number-from-text`, 10 `wrong-operation`, 16 `off-by-one` | картинка `row`; сложность 2 вместо 1 |
+  | `gaps-12-d3-1` | `counting-gaps` | `grades-1-2` | 3 | 10 | gap, gaps | 5 `stopped-early`, 6 `number-from-text`, 11 `ignored-condition`, 12 `off-by-one` | — |
+  | `gaps-12-d5-5` | `counting-gaps` | `grades-1-2` | 5 | 50 | step, steps | 26 `wrong-operation`, 30 `stopped-early`, 40 `wrong-operation`, 60 `off-by-one` | — |
+  | `gaps-34-d1-1` | `counting-gaps` | `grades-3-4` | 1 | 100 | metre, metres, m | 21 `number-from-text`, 26 `wrong-operation`, 95 `off-by-one`, 105 `off-by-one` | картинка `row` |
+  | `gaps-34-d3-1` | `counting-gaps` | `grades-3-4` | 3 | 90 | second, seconds, s | 40 `wrong-operation`, 75 `off-by-one`, 100 `off-by-one`, 300 `wrong-operation` | — |
+  | `gaps-34-d5-1` | `counting-gaps` | `grades-3-4` | 5 | 33 | minute, minutes, min | 25 `ignored-condition`, 35 `off-by-one`, 37 `off-by-one`, 42 `off-by-one` | — |
+  | `gaps-56-d1-2` | `counting-gaps` | `grades-5-6` | 1 | 50 | metre, metres, m | 55 `off-by-one`, 105 `ignored-condition`, 45 `off-by-one`, 10 `stopped-early` | ответ standalone «50 m» |
+  | `gaps-56-d3-1` | `counting-gaps` | `grades-5-6` | 3 | 39 | tear, tears | 40 `off-by-one`, 28 `wrong-operation`, 13 `wrong-operation`, 11 `ignored-condition` | — |
+  | `gaps-56-d5-1` | `counting-gaps` | `grades-5-6` | 5 | 120 | part, parts | 130 `off-by-one`, 108 `off-by-one`, 21 `wrong-operation`, 240 `ignored-condition` | — |
+  | `enum-12-d1-3` | `combinatorics-enumeration` | `grades-1-2` | 1 | 4 | number, numbers | 2 `ignored-condition`, 3 `missed-case`, 5 `off-by-one`, 6 `double-count` | пояснение варианта 5 переписывается |
+  | `enum-12-d3-1` | `combinatorics-enumeration` | `grades-1-2` | 3 | 10 | call, calls | 5 `number-from-text`, 9 `missed-case`, 20 `double-count`, 25 `wrong-operation` | — |
+  | `enum-12-d5-2` | `combinatorics-enumeration` | `grades-1-2` | 5 | 8 | outfit, outfits | 5 `wrong-operation`, 6 `wrong-operation`, 7 `off-by-one`, 9 `ignored-not` | — |
+  | `enum-34-d1-1` | `combinatorics-enumeration` | `grades-3-4` | 1 | 15 | handshake, handshakes | 6 `number-from-text`, 12 `wrong-operation`, 30 `double-count`, 36 `wrong-operation` | — |
+  | `enum-34-d3-1` | `combinatorics-enumeration` | `grades-3-4` | 3 | 45 | number, numbers | 36 `missed-case`, 44 `missed-case`, 54 `ignored-condition`, 90 `answered-other-question` | — |
+  | `enum-34-d5-2` | `combinatorics-enumeration` | `grades-3-4` | 5 | 105 | way, ways | 21 `stopped-early`, 35 `stopped-early`, 70 `wrong-operation`, 210 `double-count` | — |
+  | `enum-56-d1-1` | `combinatorics-enumeration` | `grades-5-6` | 1 | 52 | swap, swaps | 36 `missed-case`, 100 `ignored-condition`, 576 `wrong-operation`, 20 `wrong-operation` | — |
+  | `enum-56-d3-2` | `combinatorics-enumeration` | `grades-5-6` | 3 | 16 | way, ways | 24 `ignored-condition`, 54 `ignored-condition`, 8 `wrong-operation`, 81 `ignored-condition` | — |
+  | `enum-56-d5-2` | `combinatorics-enumeration` | `grades-5-6` | 5 | 30 | triangle, triangles | 18 `missed-case`, 35 `ignored-condition`, 60 `double-count`, 31 `missed-case` | — |
+  | `pig-12-d1-2` | `pigeonhole-basic` | `grades-1-2` | 1 | 4 | apple, apples | 1 `best-case-not-worst`, 2 `best-case-not-worst`, 3 `stopped-early`, 6 `wrong-operation` | — |
+  | `pig-12-d3-1` | `pigeonhole-basic` | `grades-1-2` | 3 | 11 | ball, balls | 3 `best-case-not-worst`, 6 `wrong-operation`, 10 `stopped-early`, 15 `ignored-condition` | — |
+  | `pig-12-d5-1` | `pigeonhole-basic` | `grades-1-2` | 5 | 10 | ball, balls | 3 `best-case-not-worst`, 6 `wrong-operation`, 9 `stopped-early`, 12 `ignored-condition` | — |
+  | `pig-34-d1-2` | `pigeonhole-basic` | `grades-3-4` | 1 | 3 | pupil, pupils | 2 `best-case-not-worst`, 12 `number-from-text`, 13 `wrong-operation`, 25 `number-from-text` | — |
+  | `pig-34-d3-1` | `pigeonhole-basic` | `grades-3-4` | 3 | 7 | ball, balls | 3 `best-case-not-worst`, 6 `stopped-early`, 9 `wrong-operation`, 13 `answered-other-question` | — |
+  | `pig-34-d5-1` | `pigeonhole-basic` | `grades-3-4` | 5 | 17 | ball, balls | 5 `best-case-not-worst`, 16 `stopped-early`, 20 `wrong-operation`, 21 `ignored-condition` | — |
+  | `pig-56-d1-1` | `pigeonhole-basic` | `grades-5-6` | 1 | 20 | person, people | 19 `off-by-one`, 21 `ignored-condition`, 1 `best-case-not-worst`, 610 `answered-other-question` | — |
+  | `pig-56-d3-2` | `pigeonhole-basic` | `grades-5-6` | 3 | 19 | pupil, pupils | 18 `off-by-one`, 11 `answered-other-question`, 2 `best-case-not-worst`, 20 `ignored-condition` | — |
+  | `pig-56-d5-1` | `pigeonhole-basic` | `grades-5-6` | 5 | 11 | girl, girls | 10 `missed-case`, 21 `number-from-text`, 20 `ignored-condition`, 12 `ignored-condition` | пояснение варианта 10 переписывается |
+
+- **Уроки** — урок на навык и полосу, ID `<навык>-grades-<полоса>`, навык урока — его навык. Название — название страницы темы и слова полосы, без чисел ([текст формата](../spec/format/README.md), раздел 21): «Gaps and boundaries: first steps» на полосе 1–2, «…: going further» на 3–4 и «…: olympiad level» на 5–6. Название полосы паспорта, «Grades 1–2», в название урока не идёт: числа в нём `lesson.no-leaks` сверяет с ключами задач урока. Звенья по порядку:
+  1. объяснение: `hero.lead` и карточки `basis` страницы — суть темы и её правила;
+  2. пример с разбором своего уровня: условие — `question`, лист для рукописи с клетками, показ — `steps` и `answer`;
+  3. объяснение: заметка примера, `note`, если она есть;
+  4. три задачи урока по возрастанию сложности;
+  5. объяснение: шаги метода страницы, `method.steps`.
+
+  Картинок в уроках нет. Ни один пример не решает задачу standalone: ближайшие по словам задачи спрашивают другое и с другим ответом. Уроки `pigeonhole-basic` идут после уроков `combinatorics-enumeration` по графу. Формат ставит каждый урок `pigeonhole-basic` после каждого урока `combinatorics-enumeration`, и после урока 5–6 тоже: полосы у урока нет ([текст формата](../spec/format/README.md), раздел 21). Ученику полосы 1–2 урок `pigeonhole-basic` нужен после урока `combinatorics-enumeration` своей полосы, а не после урока 5–6. Какой из трёх уроков навыка дать ученику, как читать порядок уроков разных полос и как уроки `counting-gaps` встают рядом с уроками `combinatorics-enumeration`, решает правило движка (R58 spec) — В14 в таблице 3 [RUN.md](../RUN.md).
+
+  | Урок | Навык | Пример страницы | Заметка примера | Задачи по порядку |
+  |---|---|---|---|---|
+  | `counting-gaps-grades-1-2` | `counting-gaps` | `gaps-and-boundaries`: «The bus route», `bus-stops` — 15 minutes | «Why not 18?» | `gaps-12-d2-1`, `gaps-12-d3-1`, `gaps-12-d5-5` |
+  | `counting-gaps-grades-3-4` | `counting-gaps` | `gaps-and-boundaries`: «Floor 9 and floor 3», `floor-nine` — 4 times as many | «Why not 3 times?» | `gaps-34-d1-1`, `gaps-34-d3-1`, `gaps-34-d5-1` |
+  | `counting-gaps-grades-5-6` | `counting-gaps` | `gaps-and-boundaries`: «How many logs?», `woodcutters` — 5 logs | «Does it matter how the cuts were shared?» | `gaps-56-d1-2`, `gaps-56-d3-1`, `gaps-56-d5-1` |
+  | `combinatorics-enumeration-grades-1-2` | `combinatorics-enumeration` | `enumeration`: «Flags of two stripes», `two-stripes` — 6 flags | — | `enum-12-d1-3`, `enum-12-d3-1`, `enum-12-d5-2` |
+  | `combinatorics-enumeration-grades-3-4` | `combinatorics-enumeration` | `enumeration`: «Digits three apart», `three-apart` — 13 numbers | «The case most often lost» | `enum-34-d1-1`, `enum-34-d3-1`, `enum-34-d5-2` |
+  | `combinatorics-enumeration-grades-5-6` | `combinatorics-enumeration` | `enumeration`: «No two 2s side by side», `no-two-twos` — 8 numbers | «A count that grows» | `enum-56-d1-1`, `enum-56-d3-2`, `enum-56-d5-2` |
+  | `pigeonhole-basic-grades-1-2` | `pigeonhole-basic` | `pigeonhole-principle`: «Sweets in a jar», `lemon-sweets` — 9 sweets | — | `pig-12-d1-2`, `pig-12-d3-1`, `pig-12-d5-1` |
+  | `pigeonhole-basic-grades-3-4` | `pigeonhole-basic` | `pigeonhole-principle`: «Two black socks», `two-black-socks` — 10 socks | «Why not 9?» | `pig-34-d1-2`, `pig-34-d3-1`, `pig-34-d5-1` |
+  | `pigeonhole-basic-grades-5-6` | `pigeonhole-basic` | `pigeonhole-principle`: «Sums in a grid», `grid-sums` — Yes, always | «The holes are not always boxes» | `pig-56-d1-1`, `pig-56-d3-2`, `pig-56-d5-1` |
+
+- **Картинки** — `row` у `gaps-12-d2-1` и `gaps-34-d1-1`: ряд столбов с пропуском и подписью промежутка, 2 и 5 метров. Это PNG в `media/`, нарисованный кодом эпика содержания по описанию standalone, — с `alt`, шириной и высотой, на светлом непрозрачном фоне (R51 spec). Картинок решения у них нет.
+- **Язык** — английский, `languages.explanation: en`. Таков язык задач standalone, страниц `en` и примеров формата. Тот же модуль на русском станет другим модулем, со своим именем (раздел 3.1) — В13 в таблице 3 [RUN.md](../RUN.md).
+- **Что пишет эпик содержания:** файлы модуля, конвертер задач, картинку `row`, `givens`, `unknown`, `simpler_case`, уроки и переписанные пояснения. Он же один раз прогоняет решатели задач пачки (R05).
 
 ## 4. Источники
 
@@ -471,3 +577,8 @@ Eval-набор модуля лежит в `eval/` его папки и в па�
   - каталоги в примерах формата — с тех пор те же: `git diff c6cbeb2 89986bc` пуст для `content/catalogs/topics.json` и `content/catalogs/traps.json`, а `git diff abf3b61 89986bc` — для `site/content/en/techniques.yaml`;
   - авторы: `gh api repos/mathtrail/mathtrail-standalone/contributors`, 2026-11-02 — RyazanovAlexander, 153 коммита, и dependabot[bot], 12.
 - **Прототип standalone** (разделы 2.3 и 3.5) — [MathTrail/llm-taskgen-prototype](https://github.com/MathTrail/llm-taskgen-prototype), коммит 0263835, который называет `CLAUDE.md` standalone, прочитано 2026-11-02 (`gh api`). Лицензия — Apache-2.0, `LICENSE` — её текст без заполненной строки copyright. Файла `NOTICE` в корне нет. Автор — RyazanovAlexander, 59 коммитов, других нет.
+- **Первая пачка по standalone** (раздел 3.6; R07) — [mathtrail/mathtrail-standalone](https://github.com/mathtrail/mathtrail-standalone/tree/89986bc/site/content/en/topics), коммит 89986bc. Репозиторий клонирован во временную папку сессии и прочитан 2026-11-02:
+  - `site/content/en/topics/gaps-and-boundaries.yaml`, `enumeration.yaml` и `pigeonhole-principle.yaml` — `hero.lead`, карточки `basis`, `method.steps` и по три примера `examples` с `question`, `steps`, `answer` и `note`. В начале каждой страницы: «an example here is worked through to that answer»;
+  - `site/data.json`, член `examples` — уровень и решатель каждого примера. У трёх тем — по примеру на `1-2`, `3-4` и `5-6`;
+  - `content/examples/counting.gaps.json`, `combinatorics.enumeration.json` и `pigeonhole.basic.json` — задачи, их пояснения, картинки и подсказки;
+  - отбор и счёт — скриптом Node с js-yaml 4.1.0 в той же папке. Вид ответа определяется по тексту верного варианта, вопрос «Which of these…» — по словам, ключ в тексте — по правилу поиска чисел ([текст формата](../spec/format/README.md), раздел 20). Правило скрипт сверил со всеми примерами этого раздела формата.
