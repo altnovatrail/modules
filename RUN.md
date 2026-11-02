@@ -578,7 +578,8 @@
     - цена «с каждой» в поправке к R03 была завышена: архивы скачивает только pull request, который поднимает версию модуля;
     - «прошлая версия» у гейта `sim` в разделе 3.2 стала двусмысленной рядом с «каждой» — теперь «новейшая опубликованная версия», как в R03;
     - Д2 начинался с «образ v0.6.3», хотя Dockerfile уже v0.6.5, — теперь называет оба тега сразу;
-  - проверки: `just -f spec/justfile docs-check-repo` — ok; `grep -rn 'v0\.6\.3' --exclude-dir=spec --exclude-dir=.git .` — только история и сам переход: статус и подраздел 2.3 [docs/architecture.md](docs/architecture.md), начало журнала, R02, R05 и R06, начало таблицы 3, Д2, T03, T06, T08 и её строка в «Почему такой порядок».
+  - проверки: `just -f spec/justfile docs-check-repo` — ok; `grep -rn 'v0\.6\.3' --exclude-dir=spec --exclude-dir=.git .` — только история и сам переход: статус и подраздел 2.3 [docs/architecture.md](docs/architecture.md), начало журнала, R02, R05 и R06, начало таблицы 3, Д2, T03, T06, T08 и её строка в «Почему такой порядок»;
+  - pull request [#14](https://github.com/altnovatrail/modules/pull/14). Обязательные проверки ruleset `main` на первом коммите, 7e6e515, зелёные: «Secrets / gitleaks», «DCO / sign-off», «Documents / docs-check-repo», «CodeQL / analyze (actions)» и «SonarCloud Code Analysis». Мерж — merge-коммитом, когда проверки зелёные и на этом, втором коммите.
 - **Открыто:**
   - Д2 — образ здесь не собирался: Rebuild Container — мой шаг;
   - В12 «в реестр spec» — имя файла пакета и два решённых пункта карточки 3.10 spec. Её и В2, В3, В5–В11 сессия `spec` найдёт сама, на `main` (R81 spec);
