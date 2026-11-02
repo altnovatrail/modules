@@ -363,7 +363,9 @@
     - гейт `sim` смотрит только граф, а `sim` и `engine` читают и задачи — В5 «в реестр spec»;
     - `justfile` в `paths` давал бы релиз с тем же индексом, как и Dockerfile. Цена названа, а почему Dockerfile вне перечня — Dependabot меняет его еженедельно;
     - вид архива: файлы в корне, без верхней папки, и ничего, кроме них;
-    - «всё в `modules/` выходит релизом» спорило с `eval/` — теперь выходит пакет модуля, без `eval/`.
+    - «всё в `modules/` выходит релизом» спорило с `eval/` — теперь выходит пакет модуля, без `eval/`;
+  - работа — в ветке `t01-repository-layout` от `main` (a0db6e9). Коммит, push, pull request и мерж — исполнитель, по поручению автора;
+  - pull request [#11](https://github.com/altnovatrail/modules/pull/11). Обязательные проверки ruleset `main` на первом коммите, 8bb4104, зелёные: «Secrets / gitleaks», «DCO / sign-off», «Documents / docs-check-repo», «CodeQL / analyze (actions)» и «SonarCloud Code Analysis». Мерж — merge-коммитом, когда проверки зелёные и на этом, втором коммите.
 - **Открыто:**
   - В2, В3, В4 и В5 «в реестр spec»;
   - Д3 — до первого релиза;
