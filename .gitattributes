@@ -1,0 +1,4 @@
+# A module's package carries its LICENSE, NOTICE and media files byte for byte, and its digest is
+# taken of them as they are (format/README.md in spec, sections 10 and 25): no checkout converts the
+# line ends of any file of a module (R03).
+modules/** -text
