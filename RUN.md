@@ -103,7 +103,7 @@
 
 | Статус | ID | Задача | Кто | План | Зависит от |
 |---|---|---|---|---|---|
-| [ ] | T09 | CLI `module-kit` в контейнере и проверка модулей в CI | Claude, проверяю я | да | — |
+| [x] | T09 | CLI `module-kit` в контейнере и проверка модулей в CI | Claude, проверяю я | да | — |
 | [ ] | T10 | Сравнение с опубликованными версиями в CI | Claude, проверяю я | — | T09 |
 | [ ] | T11 | Конвертер задач standalone и картинка `row` | Claude, проверяю я | да | T09 |
 | [ ] | T12 | Первая пачка: паспорт, граф, каталоги и 27 задач | Claude, проверяю я | да | T11 |
@@ -160,6 +160,7 @@
 #### T09. CLI `module-kit` в контейнере и проверка модулей в CI
 
 - **Цель:** в стадии `toolchain` `.devcontainer/Dockerfile` стоит бинарник `module-kit` релиза линии 0.2 по точному тегу и сумме sha256 на amd64 и arm64. CI на каждом pull request и push в `main` проверяет дерево `modules/` и каждую папку модуля командами `check` и `build`. Подпись бинарника проверяет `release-verify` в CI. Отличие контейнера от контейнера `spec` записано решением.
+- **Почему:** без CLI в контейнере и без job в CI ни один файл модуля T12–T15 не проверить, а правило «в `modules/` только папки модулей» должно стоять раньше первой папки. Что проверять, уже решили R03 и раздел 3.2 [docs/architecture.md](docs/architecture.md); задача решает, как.
 - **Сделать:**
   - Dockerfile, стадия `toolchain`: `ARG` с тегом и суммами на обе архитектуры. Суммы — из `SHA256SUMS` релиза, который сам прошёл `release-verify`. `module-kit --version` останавливает сборку на неверном бинарнике (R34 spec; раздел 3.2 [docs/architecture.md](docs/architecture.md));
   - `justfile` в корне — рецепты CI:
@@ -185,7 +186,50 @@
   - Rebuild Container, и `module-kit --version` отвечает тегом;
   - обязательные проверки pull request зелёные;
   - `/code-review high`, один круг.
+- **Решено автором (2026-11-06)** — пять ответов при планировании, все по рекомендациям:
+  1. **язык** — рецепты на bash в корневом `justfile`, тесты на `node --test` без зависимостей и без lock-файла, как `spec` тестирует свои рецепты на bash. Node меряет покрытие только у JavaScript, а проверяемый код — bash, поэтому Codecov не подключается: `codecov/patch` держит мерж там, где покрытие уходит в Codecov (R48 spec). У CodeQL появляется язык `javascript-typescript` — для файлов тестов;
+  2. **стадия `toolchain` в CI** — свои job `ci.yml` зовут `spec/tools/toolchain/toolchain.sh` из подмодуля, на закреплённом теге `spec`. Общего workflow, который запускает рецепты вызывающего на выбор, у `.github` v0.1.15 нет;
+  3. **подпись** — на каждом pull request и push в `main`, а не только на том, что меняет тег и суммы. Это шире R03, и R03 получает поправку;
+  4. **без `modules/`** — job зелёный и печатает `modules/: no modules yet`;
+  5. **тег** — новейший на день задачи; на 2026-11-06 это `v0.2.3`.
+
+  Коммит, push, pull request и мерж в этой задаче делает исполнитель — по поручению автора 2026-11-06, данному после выполнения задачи, и только в ней. Это разовое отступление от правила 7 и от того же правила в RULES.md, How we work, как у T05, T06 и T01; следующие задачи снова идут по правилу 7. Коммит — с подписью, `git commit -s`. Мерж — только merge-коммитом и только когда обязательные проверки ruleset `main` зелёные; прямой push в `main` — никогда. Проверки «module-kit signature», «Modules» и «CodeQL / analyze (javascript-typescript)» ставит в ruleset `main` тоже исполнитель, после их первого зелёного прогона, — подтверждение автора по правилу 4 дано тем же поручением.
+- **Выяснилось при планировании** (2026-11-06; `module-kit` — релиз v0.2.3, `.github` — релиз v0.1.15, по GitHub):
+  - **`module-kit` v0.2.3** — неизменяемый релиз от 2026-11-06. Бинарник linux лежит в нём как есть, без архива: `module-kit_v0.2.3_linux_amd64` и `…_linux_arm64`. Суммы всех файлов — в `SHA256SUMS`, у каждого файла — bundle `<файл>.sigstore.json`. `--version` печатает `module-kit <версия>`, а второй строкой — `Unicode <версия>`;
+  - **форма вызова** — architecture 3.6 module-kit, «Команды `check` и `build`»: `module-kit check <модуль>` и `module-kit build <модуль> <папка>`, где папки нет или она пуста. Код 0 — принято, 1 — отказ по правилам с ID правила, 2 — команда не смогла сделать своё;
+  - **ID модуля** рецепт читает из `inventory.json` собранного пакета, поле `id` ([текст формата](spec/format/README.md), раздел 25), через `jq` базового образа: читатель YAML не нужен;
+  - **примеры формата** в `spec/format/examples/module/valid/` носят ID `example/<имя>`, поэтому тесты кладут их в `modules/<имя>/` временного дерева с ID `novatrail/<имя>`;
+  - **`release-verify`** зовётся как `release-verify <репозиторий> <тег> <файл> [<bundle>]`, а репозиторий — `module-kit`;
+  - **docker** в devcontainer нет: стадию `toolchain` собирают только CI и Rebuild Container;
+  - **ruleset `main`** (25506537) держит пять проверок: Secrets, DCO, Documents, CodeQL по actions и SonarCloud. Новые проверки ставлю я (правило 4);
+  - **первый запуск** бинарника — `module-kit --version` при сборке образа, до job подписи. Доверие идёт так: исполнитель проверяет `SHA256SUMS` рецептом `release-verify`, прежде чем записать суммы в `ARG`; сборка сверяет бинарник с суммой, прежде чем его запустить; job «Modules» ждёт job подписи. Это записывает R10.
+- **Мой шаг:** Rebuild Container и `module-kit --version`. Проверки в ruleset `main` по моему поручению ставит исполнитель («Решено автором»).
 - **Разделы:** R03, R09; R34 spec, R48 spec, R77 spec, R102 spec; architecture 3.7 spec; architecture 3.6 module-kit; architecture 3.3 .github; [docs/architecture.md](docs/architecture.md), разделы 3.1 и 3.2.
+- **Сделано (2026-11-06):**
+  - правило 12 — до начала: у SonarCloud замечаний нет (API SonarCloud, 2026-11-06), у CodeQL открытых находок нет, у Scorecard открыты 6 находок тех же видов, что и раньше, и их причины записаны в R33 spec. Правок нет;
+  - `release-verify` принял `SHA256SUMS` релиза `module-kit` v0.2.3 — «signed by the shared release.yml of .github v0.1.15», — и суммы обоих бинарников linux взяты из него;
+  - `.devcontainer/Dockerfile`, стадия `toolchain`: `MODULE_KIT_VERSION`, `MODULE_KIT_SHA256_AMD64` и `MODULE_KIT_SHA256_ARM64`; установка через `fetch`, а `module-kit --version` останавливает сборку на чужом бинарнике;
+  - `justfile` в корне: `modules-check`, `module-kit-verify`, `_module-kit-sums`, `_dockerfile-arg` и `test`. Форма вызова — architecture 3.6 module-kit на v0.2.3;
+  - `test/` — 26 тестов на `node --test`: дерево, примеры формата и вектор `module.license/no-license` настоящим `module-kit`, форма вызова и порядок — заглушкой, сверка сумм и тегов — без сети;
+  - `.github/workflows/ci.yml` — job «module-kit signature» и «Modules», через `spec/tools/toolchain/toolchain.sh`; `codeql.yml` — язык `javascript-typescript`;
+  - R10 и вторая поправка 2026-11-06 к R03; [docs/architecture.md](docs/architecture.md), разделы 3, 3.1, 3.2, 3.7 и 4; CLAUDE.md, Environment; README.md, статус;
+  - проверено: `just test` — 26 из 26 с бинарником v0.2.3, сверенным по проверенному `SHA256SUMS`, в `PATH`; `just module-kit-verify` по сети — подпись и обе суммы; `just modules-check` — `modules/: no modules yet`; `just -f spec/justfile docs-check-repo` — ok. Стадию `toolchain` здесь не собрать — в devcontainer нет docker, — так что сборку образа с `module-kit` впервые пройдёт CI pull request;
+  - `/code-review high`, один круг, — 8 находок. Исправлены 7:
+    - `head -n 1` в Dockerfile при `pipefail` → `sed -n 1p`;
+    - `modules-check` сверяет версию CLI на `PATH` с `MODULE_KIT_VERSION`;
+    - поправка к R03 заменяет и «до первого запуска», а R10 называет цепочку;
+    - цена проверки подписи в R10 — сборка образа, а не полминуты;
+    - тесты на `modules` — ссылку, на отказ `build` после `check`, на опись без ID, на тег не вида vX.Y.Z и на Dockerfile, которого нет;
+    - отказ `_dockerfile-arg` на файле, которого не прочесть;
+    - один подсчёт строк в `_module-kit-sums`.
+
+    Не исправлена одна: код 2 `module-kit` рецепт не отделяет от отказа — CI красный в обоих случаях, а что случилось, говорит stderr самого `module-kit`. Это записано в комментарии рецепта.
+  - по поручению автора — pull request #19. Пока задача шла, на `main` легли pull request Dependabot #5–#9, которые подняли ссылки на общие workflow `.github`: `main` слит в ветку, конфликты в `ci.yml` и `codeql.yml` — новые SHA вместе с job задачи. Вход `languages` есть и у общего `codeql.yml` v0.1.10;
+  - первый прогон CI на #19 — всё зелёное: образ стадии `toolchain` собрался с `module-kit v0.2.3`; «module-kit signature» — подпись `SHA256SUMS` и обе суммы; «Modules» — 26 тестов из 26 и `modules/: no modules yet`; «CodeQL / analyze (javascript-typescript)» — без находок;
+  - после него, по подтверждению автора (правило 4), ruleset `main`, 25506537, получил проверки «module-kit signature», «Modules» и «CodeQL / analyze (javascript-typescript)» — `PUT repos/altnovatrail/modules/rulesets/25506537`, `integration_id` 15368, как у других проверок Actions; остальные правила не тронуты.
+- **Открыто:**
+  - мой шаг — Rebuild Container и `module-kit --version`;
+  - [docs/architecture.md](docs/architecture.md), раздел 4, «Проверка DCO», называет `dco.yml` на v0.1.0, а Dependabot поднял его до v0.1.15 (#8): правило на v0.1.15 сверит задача, которая следующей тронет раздел 4.
 
 #### T10. Сравнение с опубликованными версиями в CI
 

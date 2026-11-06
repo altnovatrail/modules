@@ -17,7 +17,7 @@ A component of [NovaTrail](https://github.com/altnovatrail/spec/tree/v0.9.3), a 
 
 ## Status
 
-Detailing is done: the first epic of [RUN.md](RUN.md) decided what the component's card left open, and the content and code follow in the order RUN.md sets. There are no modules here yet. The module format v0 is in spec, at version 0.3, and module-kit's CLI can now check it; the first content — a first batch of olympiad maths for the first application, where the author solves tasks in a browser — comes with the next epic.
+Detailing is done: the first epic of [RUN.md](RUN.md) decided what the component's card left open, and the content and code follow in the order RUN.md sets. There are no modules here yet. The module format v0 is in spec, at version 0.3, and CI checks every module in `modules/` with module-kit's CLI, a binary of its release whose signature CI verifies; the first content — a first batch of olympiad maths for the first application, where the author solves tasks in a browser — comes with the current epic, E2.
 
 ## Documents
 

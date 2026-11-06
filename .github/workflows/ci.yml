@@ -29,3 +29,48 @@ jobs:
   documents:
     name: Documents
     uses: altnovatrail/.github/.github/workflows/documents.yml@f3addb7403d084c560c61481e217b93f8e7ee1f3 # v0.1.10
+
+  # The repository's own jobs run in the toolchain stage of .devcontainer/Dockerfile, as the shared
+  # checks do, by spec's toolchain.sh from the submodule at the tag it pins: the stage, and the
+  # recipes of the justfile in it (R10). What to run each job decides itself, with no paths filter
+  # on the workflow: a required check of a skipped workflow stays "Pending" (R03).
+
+  # The signature of the module-kit release whose binary the stage installs, by spec's
+  # release-verify, and the Dockerfile's sums against that release's SHA256SUMS (R77 spec), on
+  # every run (R10).
+  module-kit:
+    name: module-kit signature
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: true
+          persist-credentials: false
+      - name: Toolchain image
+        run: sh spec/tools/toolchain/toolchain.sh build
+      - name: module-kit-verify
+        run: sh spec/tools/toolchain/toolchain.sh run just module-kit-verify
+
+  # The tree of modules/ and every module in it, by module-kit check and build, once the binary's
+  # signature has passed; the tests of the recipes first.
+  modules:
+    name: Modules
+    needs: module-kit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: true
+          persist-credentials: false
+      - name: Toolchain image
+        run: sh spec/tools/toolchain/toolchain.sh build
+      - name: Tests of the recipes
+        run: sh spec/tools/toolchain/toolchain.sh run just test
+      - name: modules-check
+        run: sh spec/tools/toolchain/toolchain.sh run just modules-check
