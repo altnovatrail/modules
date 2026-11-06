@@ -138,10 +138,11 @@ func (e Example) valid() error {
 
 // atCommit holds a clone of standalone to the commit a batch names: its HEAD is that commit, and
 // git sees no change in its working tree, so that the tasks, their headers and the bench all come
-// from it. git runs with none of the caller's settings.
-func atCommit(clone, commit string) error {
+// from it. git runs with none of the caller's settings, as the command named, as the go command
+// of the bench is.
+func atCommit(gitCommand, clone, commit string) error {
 	git := func(args ...string) (string, error) {
-		command := exec.Command("git", append([]string{"-C", clone}, args...)...)
+		command := exec.Command(gitCommand, append([]string{"-C", clone}, args...)...)
 		command.Env = append(os.Environ(), "GIT_CONFIG_GLOBAL=/dev/null", "GIT_CONFIG_NOSYSTEM=1")
 		out, err := command.Output()
 		return strings.TrimSpace(string(out)), err

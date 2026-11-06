@@ -22,7 +22,7 @@ const (
 	statusCannotRun = 2
 )
 
-const usage = `usage: port --standalone <clone> --batch <file> --overlay <folder> --module <folder> [--prove] [--check] [--go <command>]
+const usage = `usage: port --standalone <clone> --batch <file> --overlay <folder> --module <folder> [--prove] [--check] [--go <command>] [--git <command>]
 
 Writes tasks/<id>.yaml and the pictures of media/pictures/ of the module for every task of the
 batch, from a clone of mathtrail-standalone at the batch's commit and the overlays. --prove first
@@ -44,13 +44,14 @@ func run(args []string, stdout, stderr io.Writer) int {
 	check := flags.Bool("check", false, "")
 	proveFirst := flags.Bool("prove", false, "")
 	goCommand := flags.String("go", "go", "")
+	gitCommand := flags.String("git", "git", "")
 	if err := flags.Parse(args); err != nil || flags.NArg() != 0 ||
 		*standalone == "" || *batchFile == "" || *overlayDir == "" || *module == "" {
 		fmt.Fprintln(stderr, usage)
 		return statusCannotRun
 	}
 
-	converted, err := portAll(*standalone, *batchFile, *overlayDir)
+	converted, err := portAll(*gitCommand, *standalone, *batchFile, *overlayDir)
 	if err != nil {
 		fmt.Fprintf(stderr, "port: %v\n", err)
 		return statusCannotRun
@@ -96,12 +97,12 @@ func run(args []string, stdout, stderr io.Writer) int {
 
 // portAll converts every task of a batch, in the order of their IDs, or fails on the first that
 // cannot be.
-func portAll(standalone, batchFile, overlayDir string) ([]Converted, error) {
+func portAll(gitCommand, standalone, batchFile, overlayDir string) ([]Converted, error) {
 	batch, err := readBatch(batchFile)
 	if err != nil {
 		return nil, err
 	}
-	if err := atCommit(standalone, batch.Standalone); err != nil {
+	if err := atCommit(gitCommand, standalone, batch.Standalone); err != nil {
 		return nil, err
 	}
 	examples, err := readExamples(standalone)
