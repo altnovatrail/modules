@@ -4,10 +4,10 @@
 # detected at RUN time via dpkg instead. A host that has Docker can build this, and that is the
 # whole requirement.
 #
-# Two stages. `toolchain` holds what it takes to check the repository — its documents, and its
-# code where it has any — and is the stage the automated checks run inside. `devcontainer` adds
-# what a person needs on top of that and is the default stage, so building this file with no
-# target gives the full environment.
+# Two stages. `toolchain` holds what it takes to check the repository — its documents, its
+# modules, and its code where it has any — and is the stage the automated checks run inside.
+# `devcontainer` adds what a person needs on top of that and is the default stage, so building
+# this file with no target gives the full environment.
 
 # -- toolchain: checks the repository ----------------------------------------
 
@@ -32,11 +32,21 @@ ARG GO_VERSION=1.27.3
 # with this file into the copy of every NovaTrail repository, as Go does, and stays unused in one
 # without contracts: the other repositories take the generated code from a release of spec.
 ARG BUF_VERSION=1.75.0
+# module-kit's CLI: CI checks and builds every module with it, and the release recipe builds the
+# packages and the index with the same binary, so that CI never passes a module the release would
+# refuse (R03). It is the binary of a release of module-kit at an exact tag, never `go install`:
+# a file of a NovaTrail release enters only once `just -f spec/justfile release-verify` has
+# accepted it (R77 spec). Its sums below are those of the release's SHA256SUMS, a file that
+# release-verify accepted before they were written here, and CI checks that signature again on
+# every run, `just module-kit-verify` (R10). This is how this container differs from spec's
+# (R10). Dependabot does not see it: the tag and both sums are raised by hand, together. The
+# Dockerfile is not among the release's paths, so raising them gives no release (R03).
+ARG MODULE_KIT_VERSION=v0.2.3
 # The sha256 of every archive, per architecture, as its publisher lists it: SHASUMS256.txt of
 # the Node release, SHA256SUMS of the just release, the sha256 go.dev/dl lists for Go,
-# sha256.txt of the buf release, whose binary comes as it is, with no archive. A sum written here
-# keeps a download from being swapped once it has been read (R34 spec), and is raised together with
-# its version.
+# sha256.txt of the buf release, whose binary comes as it is, with no archive, and SHA256SUMS of
+# the module-kit release, whose binary comes the same way. A sum written here keeps a download
+# from being swapped once it has been read (R34 spec), and is raised together with its version.
 ARG NODE_SHA256_AMD64=6e1db87ef58b8819e5d5402eff1536491b18edd8eb7bee5ef7897876e88dc5ff
 ARG NODE_SHA256_ARM64=724282c3b43aec998aa9527380465b45d229e021b58035f5f4f63095eabfe5d5
 ARG JUST_SHA256_AMD64=4a5cc2f53e6f0f8c59092a6cc38291eb729d46a7dd95d3ae582008881b84931d
@@ -45,6 +55,8 @@ ARG GO_SHA256_AMD64=65efbc80fdc1fa2cd2631cad5b481777a68e8725f34e89f50fc6ac714e37
 ARG GO_SHA256_ARM64=a06e99309dbcbdca1a8ccd2282c3ee146e55930886e26b4f1193269587165f49
 ARG BUF_SHA256_AMD64=fad1e38d6909bbb583a4da81d8c02a01046e2cd663bde7e337dd24277393764b
 ARG BUF_SHA256_ARM64=00eb190aa82df17f393e05b04889cc60a0b13b3259d336e21a87d5f23ab4fd26
+ARG MODULE_KIT_SHA256_AMD64=12ff9aa5173cdb0ca5d22fb362f63349cf6e0bec06e5b3e735f54c24188ebc45
+ARG MODULE_KIT_SHA256_ARM64=3cbf68bf17af63840224d4fa00d434d9b5305aa70cf1b9b196c35a3a477f1dde
 
 # Every archive comes through one helper, so that every download is retried the same way and
 # checked against its sum before anything unpacks it. --retry-all-errors is the point of it: a
@@ -54,10 +66,10 @@ RUN arch="$(dpkg --print-architecture)"; \
     case "$arch" in \
         amd64) node_arch=x64; gnu_arch=x86_64; \
             node_sha256="$NODE_SHA256_AMD64"; just_sha256="$JUST_SHA256_AMD64"; go_sha256="$GO_SHA256_AMD64"; \
-            buf_sha256="$BUF_SHA256_AMD64" ;; \
+            buf_sha256="$BUF_SHA256_AMD64"; module_kit_sha256="$MODULE_KIT_SHA256_AMD64" ;; \
         arm64) node_arch=arm64; gnu_arch=aarch64; \
             node_sha256="$NODE_SHA256_ARM64"; just_sha256="$JUST_SHA256_ARM64"; go_sha256="$GO_SHA256_ARM64"; \
-            buf_sha256="$BUF_SHA256_ARM64" ;; \
+            buf_sha256="$BUF_SHA256_ARM64"; module_kit_sha256="$MODULE_KIT_SHA256_ARM64" ;; \
         *) echo "unsupported architecture: $arch" >&2; exit 1 ;; \
     esac; \
     workdir="$(mktemp -d)"; \
@@ -91,6 +103,15 @@ RUN arch="$(dpkg --print-architecture)"; \
         "$workdir/buf-${BUF_VERSION}-${gnu_arch}" "$buf_sha256"; \
     install -m 0755 "$workdir/buf-${BUF_VERSION}-${gnu_arch}" /usr/local/bin/buf; \
     buf --version; \
+    \
+    echo "module-kit ${MODULE_KIT_VERSION}"; \
+    fetch "https://github.com/altnovatrail/module-kit/releases/download/${MODULE_KIT_VERSION}/module-kit_${MODULE_KIT_VERSION}_linux_${arch}" \
+        "$workdir/module-kit-${MODULE_KIT_VERSION}-${arch}" "$module_kit_sha256"; \
+    install -m 0755 "$workdir/module-kit-${MODULE_KIT_VERSION}-${arch}" /usr/local/bin/module-kit; \
+    module_kit_version="$(module-kit --version | sed -n 1p)"; \
+    if [ "$module_kit_version" != "module-kit ${MODULE_KIT_VERSION}" ]; then \
+        echo "module-kit says \"${module_kit_version}\", not module-kit ${MODULE_KIT_VERSION}" >&2; exit 1; \
+    fi; \
     \
     rm -rf "$workdir"
 
