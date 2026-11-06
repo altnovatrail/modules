@@ -1,0 +1,43 @@
+# The first batch of novatrail/olympiad-math: 27 tasks of standalone, three skills by three bands by
+# three difficulties (R07; docs/architecture.md, section 3.6). The units are the word each question
+# counts, in the singular and the plural, and for a measure its abbreviation too; the techniques are
+# those standalone's site links to each topic, and draw for counting-gaps beside them.
+standalone: 89986bc01a12ff3188cf08194677bfae0464568a
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+skills:
+  counting-gaps:
+    techniques: [draw, small-numbers]
+  combinatorics-enumeration:
+    techniques: [systematic]
+  pigeonhole-basic:
+    techniques: [pigeonhole]
+tasks:
+  gaps-12-d2-1: {units: [metre, metres, m]}
+  gaps-12-d3-1: {units: [gap, gaps]}
+  gaps-12-d5-5: {units: [step, steps]}
+  gaps-34-d1-1: {units: [metre, metres, m]}
+  gaps-34-d3-1: {units: [second, seconds, s]}
+  gaps-34-d5-1: {units: [minute, minutes, min]}
+  gaps-56-d1-2: {units: [metre, metres, m]}
+  gaps-56-d3-1: {units: [tear, tears]}
+  gaps-56-d5-1: {units: [part, parts]}
+  enum-12-d1-3: {units: [number, numbers]}
+  enum-12-d3-1: {units: [call, calls]}
+  enum-12-d5-2: {units: [outfit, outfits]}
+  enum-34-d1-1: {units: [handshake, handshakes]}
+  enum-34-d3-1: {units: [number, numbers]}
+  enum-34-d5-2: {units: [way, ways]}
+  enum-56-d1-1: {units: [swap, swaps]}
+  enum-56-d3-2: {units: [way, ways]}
+  enum-56-d5-2: {units: [triangle, triangles]}
+  pig-12-d1-2: {units: [apple, apples]}
+  pig-12-d3-1: {units: [ball, balls]}
+  pig-12-d5-1: {units: [ball, balls]}
+  pig-34-d1-2: {units: [pupil, pupils]}
+  pig-34-d3-1: {units: [ball, balls]}
+  pig-34-d5-1: {units: [ball, balls]}
+  pig-56-d1-1: {units: [person, people]}
+  pig-56-d3-2: {units: [pupil, pupils]}
+  pig-56-d5-1: {units: [girl, girls]}
