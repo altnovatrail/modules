@@ -357,9 +357,11 @@
     - длина ключа не проверялась;
     - отброшенный вариант не попадал в отчёт;
     - растеризатор и шрифт создавались на каждую фигуру.
+  - по поручению автора — pull request #21, merge-коммит 5d2efc3:
+    - SonarCloud на первом прогоне отметил `exec.Command("git")` — поиск по `PATH`, `go:S4036`, — и quality gate был красным. Теперь git, как и go, приходит флагом `--git` с тем же умолчанием, и находка ушла;
+    - после первого зелёного прогона, по подтверждению автора (правило 4), в ruleset `main` (25506537) встали «Go / lint», «Go / test», «Go / vuln», «Go / licenses» и «CodeQL / analyze (go)» — `integration_id` 15368 — и `codecov/patch` — 254, приложение Codecov, как в ruleset `module-kit`. Остальные правила не тронуты;
+  - после мержа Codecov принял загрузку `main` — 97,43 % — и в README встал значок покрытия (repositories 2.3 spec), отдельным pull request.
 - **Открыто:**
-  - мой шаг — «Go / lint», «Go / test», «Go / vuln», «Go / licenses» и «CodeQL / analyze (go)» в ruleset `main` после первого зелёного прогона, а `codecov/patch` — с первой загрузкой (правило 4);
-  - значок покрытия в README — с первой загрузкой в Codecov на `main` (repositories 2.3 spec);
   - T12 пишет файлы правок 27 задач и запускает `just port modules/olympiad-math`.
 
 #### T12. Первая пачка: паспорт, граф, каталоги и 27 задач
