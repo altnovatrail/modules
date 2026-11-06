@@ -203,9 +203,7 @@
   - **docker** в devcontainer нет: стадию `toolchain` собирают только CI и Rebuild Container;
   - **ruleset `main`** (25506537) держит пять проверок: Secrets, DCO, Documents, CodeQL по actions и SonarCloud. Новые проверки ставлю я (правило 4);
   - **первый запуск** бинарника — `module-kit --version` при сборке образа, до job подписи. Доверие идёт так: исполнитель проверяет `SHA256SUMS` рецептом `release-verify`, прежде чем записать суммы в `ARG`; сборка сверяет бинарник с суммой, прежде чем его запустить; job «Modules» ждёт job подписи. Это записывает R10.
-- **Мой шаг:**
-  - после первого зелёного прогона pull request — проверки «module-kit signature», «Modules» и «CodeQL / analyze (javascript-typescript)» в ruleset `main` (правило 4);
-  - Rebuild Container и `module-kit --version`.
+- **Мой шаг:** Rebuild Container и `module-kit --version`. Проверки в ruleset `main` по моему поручению ставит исполнитель («Решено автором»).
 - **Разделы:** R03, R09; R34 spec, R48 spec, R77 spec, R102 spec; architecture 3.7 spec; architecture 3.6 module-kit; architecture 3.3 .github; [docs/architecture.md](docs/architecture.md), разделы 3.1 и 3.2.
 - **Сделано (2026-11-06):**
   - правило 12 — до начала: у SonarCloud замечаний нет (API SonarCloud, 2026-11-06), у CodeQL открытых находок нет, у Scorecard открыты 6 находок тех же видов, что и раньше, и их причины записаны в R33 spec. Правок нет;
@@ -226,9 +224,12 @@
     - один подсчёт строк в `_module-kit-sums`.
 
     Не исправлена одна: код 2 `module-kit` рецепт не отделяет от отказа — CI красный в обоих случаях, а что случилось, говорит stderr самого `module-kit`. Это записано в комментарии рецепта.
+  - по поручению автора — pull request #19. Пока задача шла, на `main` легли pull request Dependabot #5–#9, которые подняли ссылки на общие workflow `.github`: `main` слит в ветку, конфликты в `ci.yml` и `codeql.yml` — новые SHA вместе с job задачи. Вход `languages` есть и у общего `codeql.yml` v0.1.10;
+  - первый прогон CI на #19 — всё зелёное: образ стадии `toolchain` собрался с `module-kit v0.2.3`; «module-kit signature» — подпись `SHA256SUMS` и обе суммы; «Modules» — 26 тестов из 26 и `modules/: no modules yet`; «CodeQL / analyze (javascript-typescript)» — без находок;
+  - после него, по подтверждению автора (правило 4), ruleset `main`, 25506537, получил проверки «module-kit signature», «Modules» и «CodeQL / analyze (javascript-typescript)» — `PUT repos/altnovatrail/modules/rulesets/25506537`, `integration_id` 15368, как у других проверок Actions; остальные правила не тронуты.
 - **Открыто:**
-  - мой шаг — проверки «module-kit signature», «Modules» и «CodeQL / analyze (javascript-typescript)» в ruleset `main` после первого зелёного прогона и Rebuild Container;
-  - первый прогон CI pull request: сборка образа с `module-kit` и job на раннере здесь не шли.
+  - мой шаг — Rebuild Container и `module-kit --version`;
+  - [docs/architecture.md](docs/architecture.md), раздел 4, «Проверка DCO», называет `dco.yml` на v0.1.0, а Dependabot поднял его до v0.1.15 (#8): правило на v0.1.15 сверит задача, которая следующей тронет раздел 4.
 
 #### T10. Сравнение с опубликованными версиями в CI
 

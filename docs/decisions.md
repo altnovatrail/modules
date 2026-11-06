@@ -539,6 +539,6 @@
 - [architecture.md](architecture.md), разделы 3.1, 3.2, 3.7 и 4;
 - CLAUDE.md, Environment — отличие контейнера;
 - README.md — статус. Значка языка нет: repositories 2.3 spec задаёт его версией Go из `go.mod` или TypeScript из `package.json`, а здесь нет ни того, ни другого. Рецепты CI и их тесты — не код платформы, как и инструменты проверок `spec`, у которого значка языка тоже нет;
-- после первого зелёного прогона автор ставит проверки «module-kit signature», «Modules» и «CodeQL / analyze (javascript-typescript)» в ruleset `main` (правило 4 RUN.md).
+- проверки «module-kit signature», «Modules» и «CodeQL / analyze (javascript-typescript)» стоят в ruleset `main`, 25506537, с 2026-11-06, после их первого зелёного прогона на pull request #19 (правило 4 RUN.md; RUN.md, T09).
 
 — RUN.md, T09; `.devcontainer/Dockerfile`; `justfile`; `test/`; `.github/workflows/ci.yml`, `codeql.yml`; R03.
