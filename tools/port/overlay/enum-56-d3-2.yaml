@@ -1,0 +1,8 @@
+# What a person adds to enum-56-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Four boards stand in a row."
+  - "Each board is painted red, white or blue."
+  - "Boards next to each other have different colours."
+  - "The first board is not red."
+unknown: "In how many ways the fence can be painted."
+simpler_case: "Try a fence of 2 boards first. In how many ways can it be painted?"

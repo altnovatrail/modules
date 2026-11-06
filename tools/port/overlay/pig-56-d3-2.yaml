@@ -1,0 +1,6 @@
+# What a person adds to pig-56-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Every pupil writes a two-digit number."
+  - "Every pupil adds up the two digits of that number."
+unknown: "How many pupils the group must have to be sure that two of them get the same sum."
+simpler_case: "Try the numbers from 10 to 15 first. Which sums of their digits come up?"

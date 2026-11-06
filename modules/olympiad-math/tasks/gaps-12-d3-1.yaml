@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/gaps-12-d3-1.yaml, and the port writes this file again (R12).
+id: "gaps-12-d3-1"
+statement:
+  - text: "Trees grow on both sides of a path. On each side there are 6 trees in a row. How many gaps between neighbouring trees are there in all?"
+givens: ["Trees grow on both sides of a path.", "Each side has 6 trees in a row."]
+unknown: "How many gaps between neighbouring trees there are on both sides together."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "10"
+          units: ["gap", "gaps"]
+          trap_values:
+            - value: "5"
+              trap: "stopped-early"
+              text: "5 is the number of gaps on one side. There are two sides."
+            - value: "6"
+              trap: "number-from-text"
+              text: "6 is the number of trees on one side."
+            - value: "11"
+              trap: "ignored-condition"
+              text: "The trees are in two separate rows, not in one row of 12."
+            - value: "12"
+              trap: "off-by-one"
+              text: "Each row of 6 trees has 5 gaps, not 6."
+    simpler_case: "Try one side with 3 trees in a row first. How many gaps are there between them?"
+solution:
+  - text: "Each side has 6 trees and 5 gaps. Two sides have 5 + 5 = 10 gaps."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 3

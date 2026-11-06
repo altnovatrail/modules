@@ -1,0 +1,6 @@
+# What a person adds to gaps-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The sheet has 5 rows of 8 stamps."
+  - "Each tear splits one piece into two."
+unknown: "How many tears it takes to get every stamp on its own."
+simpler_case: "Try a strip of 3 stamps in one row first. How many tears does it take?"

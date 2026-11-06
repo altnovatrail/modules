@@ -1,0 +1,6 @@
+# What a person adds to gaps-12-d5-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Anna walks up 20 steps from floor 1 to floor 3."
+  - "Bob lives on floor 6 of the same house."
+unknown: "How many steps Bob walks up from floor 1."
+simpler_case: "Try a house where you walk up 6 steps from floor 1 to floor 2. How many steps take you from floor 1 to floor 3?"

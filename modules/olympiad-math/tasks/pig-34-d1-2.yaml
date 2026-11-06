@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pig-34-d1-2.yaml, and the port writes this file again (R12).
+id: "pig-34-d1-2"
+statement:
+  - text: "A class has 25 pupils. At least how many of them must have their birthday in the same month?"
+givens: ["The class has 25 pupils.", "The question is about the month of each pupil's birthday."]
+unknown: "At least how many pupils must have their birthday in the same month."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["pupil", "pupils"]
+          trap_values:
+            - value: "2"
+              trap: "best-case-not-worst"
+              text: "12 months with 2 birthdays each hold only 24 pupils."
+            - value: "12"
+              trap: "number-from-text"
+              text: "12 is the number of months."
+            - value: "13"
+              trap: "wrong-operation"
+              text: "You took 12 from 25."
+            - value: "25"
+              trap: "number-from-text"
+              text: "25 is the number of pupils."
+    simpler_case: "Try 13 pupils first. Must two of them have their birthday in the same month?"
+solution:
+  - text: "If every month had at most 2 birthdays, only 24 pupils would fit. There are 25, so some month has at least 3."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-3-4"
+difficulty: 1

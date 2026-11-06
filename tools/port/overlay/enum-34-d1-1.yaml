@@ -1,0 +1,6 @@
+# What a person adds to enum-34-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Six friends meet."
+  - "Each of them shakes hands with each of the others once."
+unknown: "How many handshakes there are."
+simpler_case: "Try three friends first. How many handshakes are there?"

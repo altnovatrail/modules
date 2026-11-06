@@ -1,0 +1,8 @@
+# What a person adds to pig-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The town has 7,310 people."
+  - "A birthday is a day of the year, and 29 February counts as one too."
+unknown: "At least how many people of the town are sure to share one birthday."
+simpler_case: "Try a town of 367 people first. Must two of them share a birthday?"
+trap_texts:
+  "19": "19 is one short: 19 people on each of the 366 birthdays make only 6,954, fewer than the town has. Where do the other people go?"

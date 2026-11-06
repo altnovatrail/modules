@@ -1,0 +1,8 @@
+# What a person adds to pig-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The class has 21 pupils, boys and girls."
+  - "No two girls have the same number of friends among the boys."
+unknown: "At most how many girls the class can have."
+simpler_case: "Try a class of 3 pupils first. At most how many girls can it have?"
+trap_texts:
+  "10": "10 leaves out a girl with no friend among the boys. Count again how many different numbers of friends a girl can have, from 0 up to the number of boys."

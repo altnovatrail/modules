@@ -1,0 +1,6 @@
+# What a person adds to gaps-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Nine parallels are drawn on the globe, each a circle all the way round it from west to east."
+  - "Twelve meridians are drawn, each a line from the North Pole to the South Pole."
+unknown: "Into how many parts the lines cut the surface of the globe."
+simpler_case: "Try 1 parallel and 2 meridians first. Into how many parts do they cut the globe?"

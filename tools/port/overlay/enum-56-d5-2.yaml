@@ -1,0 +1,6 @@
+# What a person adds to enum-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Four points are marked on one straight line."
+  - "Three points are marked on another straight line parallel to it."
+unknown: "How many triangles have all three corners at marked points."
+simpler_case: "Try 2 points on one line and 1 point on the other first. How many triangles are there?"

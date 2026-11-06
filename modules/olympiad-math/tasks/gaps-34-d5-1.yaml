@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/gaps-34-d5-1.yaml, and the port writes this file again (R12).
+id: "gaps-34-d5-1"
+statement:
+  - text: "A worker saws a log into 6 pieces. Each cut takes 5 minutes. After every cut except the last one, he rests for 2 minutes. How many minutes does the whole job take?"
+givens: ["The log is sawn into 6 pieces.", "Each cut takes 5 minutes.", "After every cut except the last, he rests for 2 minutes."]
+unknown: "How many minutes the whole job takes."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "33"
+          units: ["minute", "minutes", "min"]
+          trap_values:
+            - value: "25"
+              trap: "ignored-condition"
+              text: "You forgot the rests between the cuts."
+            - value: "35"
+              trap: "off-by-one"
+              text: "There is no rest after the last cut: 4 rests, not 5."
+            - value: "37"
+              trap: "off-by-one"
+              text: "You gave a rest to every piece. Rests come only between cuts: 4 rests."
+            - value: "42"
+              trap: "off-by-one"
+              text: "6 pieces need 5 cuts, not 6."
+    simpler_case: "Try a log sawn into 3 pieces first. How many cuts and how many rests are there?"
+solution:
+  - text: "6 pieces need 5 cuts: 5 × 5 = 25 minutes. There are 4 rests, one after each cut except the last: 4 × 2 = 8 minutes. 25 + 8 = 33."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-3-4"
+difficulty: 5

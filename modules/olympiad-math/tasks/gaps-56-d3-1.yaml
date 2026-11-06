@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/gaps-56-d3-1.yaml, and the port writes this file again (R12).
+id: "gaps-56-d3-1"
+statement:
+  - text: "A sheet of stamps has 5 rows of 8 stamps. You tear it along the lines of holes into single stamps. Each tear splits one piece into two. How many tears are needed?"
+givens: ["The sheet has 5 rows of 8 stamps.", "Each tear splits one piece into two."]
+unknown: "How many tears it takes to get every stamp on its own."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "39"
+          units: ["tear", "tears"]
+          trap_values:
+            - value: "40"
+              trap: "off-by-one"
+              text: "40 is the number of stamps; the sheet starts as one piece, so it takes one tear fewer."
+            - value: "28"
+              trap: "wrong-operation"
+              text: "28 multiplies the lines of holes, 4 × 7, as if each place where two lines cross were a tear."
+            - value: "13"
+              trap: "wrong-operation"
+              text: "13 adds the rows and the stamps in a row, 5 + 8."
+            - value: "11"
+              trap: "ignored-condition"
+              text: "11 tears along each line once, which would need several pieces torn at one go, but each tear splits one piece into two."
+    simpler_case: "Try a strip of 3 stamps in one row first. How many tears does it take?"
+solution:
+  - text: "At the start there is 1 piece, and at the end there are 5 × 8 = 40 stamps. Each tear adds exactly one piece, so it takes 40 − 1 = 39 tears, in whatever order they are made."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-5-6"
+difficulty: 3

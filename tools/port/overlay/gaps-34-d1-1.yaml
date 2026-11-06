@@ -1,2 +1,7 @@
 # What a person adds to gaps-34-d1-1 of standalone; the port writes the task from it (R12).
-picture_alt: Trees in a row along a road, with a stretch of the row left out in the middle, and every gap drawn between two trees marked 5.
+givens:
+  - "The trees are 5 metres apart."
+  - "There are 21 trees from the first to the last."
+unknown: "How many metres it is from the first tree to the last."
+simpler_case: "Try 3 trees, 5 metres apart. How far is it from the first tree to the last?"
+picture_alt: "Trees in a row along a road, with a stretch of the row left out in the middle, and every gap drawn between two trees marked 5."

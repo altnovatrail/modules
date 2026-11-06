@@ -1,0 +1,6 @@
+# What a person adds to enum-12-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Dima has 3 shirts and 3 pairs of trousers."
+  - "The red shirt must not be worn with the green trousers."
+unknown: "How many different outfits of one shirt and one pair of trousers he can wear."
+simpler_case: "Try 2 shirts and 2 pairs of trousers first, with no rule. How many outfits are there?"

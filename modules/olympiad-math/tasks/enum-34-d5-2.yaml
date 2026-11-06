@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/enum-34-d5-2.yaml, and the port writes this file again (R12).
+id: "enum-34-d5-2"
+statement:
+  - text: "Seven children want to make a team of 3, and one of the three will be the captain. In how many different ways can the team with its captain be chosen?"
+givens: ["There are seven children.", "The team has 3 of them, and one of the three is its captain."]
+unknown: "In how many ways the team with its captain can be chosen."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "105"
+          units: ["way", "ways"]
+          trap_values:
+            - value: "21"
+              trap: "stopped-early"
+              text: "21 counts pairs of children. The team has 3 children and a captain."
+            - value: "35"
+              trap: "stopped-early"
+              text: "35 counts the teams. Each team can choose any of its 3 members as captain."
+            - value: "70"
+              trap: "wrong-operation"
+              text: "You doubled 35. Each team has 3 possible captains."
+            - value: "210"
+              trap: "double-count"
+              text: "The two ordinary team members are not in any order."
+    simpler_case: "Try four children and a team of 2 with a captain first. In how many ways can it be chosen?"
+solution:
+  - text: "First choose the captain: 7 ways. Then choose 2 more children from the other 6: 15 ways. 7 × 15 = 105."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 5

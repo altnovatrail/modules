@@ -1,0 +1,6 @@
+# What a person adds to enum-34-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers have two digits."
+  - "The tens digit is greater than the units digit, as in 52 or 90."
+unknown: "How many such numbers there are."
+simpler_case: "Try the numbers whose tens digit is 3 first. How many of them have a smaller units digit?"

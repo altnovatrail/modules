@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/gaps-12-d2-1.yaml, and the port writes this file again (R12).
+id: "gaps-12-d2-1"
+statement:
+  - text: "A fence has 8 posts in a straight line. Each post is 2 metres from the next one. How many metres is it from the first post to the last?"
+  - picture: "pictures/gaps-12-d2-1.png"
+    alt: "Posts in a straight line, with a stretch of the line left out in the middle, and every gap drawn between two posts marked 2."
+    width: 272
+    height: 74
+givens: ["The fence has 8 posts in a straight line.", "Each post is 2 metres from the next one."]
+unknown: "How many metres it is from the first post to the last."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "14"
+          units: ["metre", "metres", "m"]
+          trap_values:
+            - value: "7"
+              trap: "stopped-early"
+              text: "There are 7 gaps, but each gap is 2 metres long."
+            - value: "8"
+              trap: "number-from-text"
+              text: "8 is the number of posts, not metres."
+            - value: "10"
+              trap: "wrong-operation"
+              text: "You added 2 only once. There are 2 metres in every gap."
+            - value: "16"
+              trap: "off-by-one"
+              text: "8 posts have 7 gaps, not 8."
+    simpler_case: "Try a fence of 3 posts, 2 metres apart. How many gaps does it have, and how long is it?"
+solution:
+  - text: "8 posts in a row have 7 gaps. Each gap is 2 metres, so the fence is 2 × 7 = 14 metres long."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 2

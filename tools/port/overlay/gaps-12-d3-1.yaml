@@ -1,0 +1,6 @@
+# What a person adds to gaps-12-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Trees grow on both sides of a path."
+  - "Each side has 6 trees in a row."
+unknown: "How many gaps between neighbouring trees there are on both sides together."
+simpler_case: "Try one side with 3 trees in a row first. How many gaps are there between them?"
