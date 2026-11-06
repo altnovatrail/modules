@@ -116,6 +116,8 @@ modules/                     корень репозитория
 ├── withdrawals.yaml         снятия с публикации, с первого снятия — вход сборки индекса (раздел 3.3)
 ├── justfile                 рецепты CI и рецепт release-files
 ├── test/                    тесты рецептов justfile, node --test
+├── go.mod, go.sum           модуль Go github.com/altnovatrail/modules: код инструментов (R12)
+├── tools/port/              конвертер задач standalone: код, пачки batches/ и файлы правок overlay/
 ├── .gitattributes           modules/** -text
 ├── docs/                    документы компонента, на русском
 ├── spec/                    подмодуль spec на теге
@@ -125,7 +127,7 @@ modules/                     корень репозитория
 └── CLAUDE.md, AGENTS.md, RUN.md
 ```
 
-С T09 в дереве есть `justfile` с рецептами CI, его тесты в `test/` и CLI в стадии `toolchain` (R10). Нет пока `modules/`, `withdrawals.yaml`, рецепта `release-files` и `release.yml`: они приходят с задачами эпика E2 — T12–T16.
+С T09 в дереве есть `justfile` с рецептами CI, его тесты в `test/` и CLI в стадии `toolchain` (R10), а с T11 — конвертер задач standalone `tools/port` и `go.mod` (R12). Нет пока `modules/`, `withdrawals.yaml`, рецепта `release-files` и `release.yml`: они приходят с задачами эпика E2 — T12–T16.
 
 - **Папка модуля** — `modules/<имя>/`, а `<имя>` — вторая половина ID модуля: ID модуля в папке `modules/<имя>/` — `novatrail/<имя>`. Что лежит внутри, задаёт раскладка модуля ([текст формата](../spec/format/README.md), раздел 10; R46 spec):
 
@@ -381,7 +383,7 @@ Eval-набор модуля лежит в `eval/` его папки и в па�
 Олимпиадная математика `novatrail/olympiad-math` приходит из standalone на коммите 89986bc, 2026-11-01 (раздел 4). Почему так — R05.
 - первая пачка — раздел 3.6 (R07);
 - остальной порт — строка 3.7 [COORDINATION.md](../spec/COORDINATION.md);
-- код порта — конвертер задач и рисование картинок — приходит с эпиком содержания.
+- код порта — конвертер `tools/port`, с T11 (R12): задачи пачки по этой таблице, сверка ключа и значений ловушек стендом standalone, картинки `row` PNG и файлы правок, в которых лежит то, что пишет человек. Рецепт `just port <модуль>` клонирует standalone на коммите пачки во временную папку и пишет её задачи; другие виды картинок и ответы, которые не числа, — E3.
 
 - **Что в standalone** (подсчёт jq 2026-11-02):
 
@@ -592,7 +594,8 @@ Eval-набор модуля лежит в `eval/` его папки и в па�
 | CLI `module-kit` в стадии `toolchain` `.devcontainer/Dockerfile`: бинарник релиза по точному тегу и сумме, подпись — рецептом `release-verify` в CI | 3.2 | E2 | сделано в T09: `v0.2.3` (R10) |
 | CI: схемы и правила формата, дерево `modules/` и пакет | 3.2 | E2 | сделано в T09 (R10) |
 | CI: сравнение с опубликованным | 3.2 | E2 | сделано в T10 (R11); путь с настоящим индексом CI пройдёт впервые после первого релиза, T16 |
-| модуль олимпиадной математики — первая пачка в формате 0.3: паспорт, граф, каталоги, 27 задач, 9 уроков, `LICENSE`, `NOTICE` и картинка `row`; конвертер задач standalone | 3.5, 3.6 | E2 | — |
+| конвертер задач standalone и картинка `row` | 3.5 | E2 | сделано в T11 (R12) |
+| модуль олимпиадной математики — первая пачка в формате 0.3: паспорт, граф, каталоги, 27 задач, 9 уроков, `LICENSE`, `NOTICE` и картинка `row` | 3.5, 3.6 | E2 | — |
 | небольшие наборы школьной математики 3 класса и сочинений | 3.1 | E2 | состав решает сам эпик (T38 `spec`) |
 | `release.yml`, рецепт `release-files` и первый релиз — пакеты и индекс | 3.3 | E2 | Д3 в таблице 4 [RUN.md](../RUN.md): общий `release.yml` не ниже v0.1.14. Неизменяемые релизы и ruleset тегов `v*` стоят с 2026-11-06 |
 | остальной порт: 678 задач, шаблоны и решатели, 14 навыков, картинки остальных видов | 3.5 | E3 | E2 — строка 3.7 [COORDINATION.md](../spec/COORDINATION.md) |
@@ -621,6 +624,13 @@ Eval-набор модуля лежит в `eval/` его папки и в па�
   - `docs/architecture.md` `module-kit`, раздел 3.6, «Команды `check` и `build`»: «вызов — `module-kit check <модуль>` и `module-kit build <модуль> <папка>`», а для `build` — «папка не существует или пуста, иначе код 2 и ничего не тронуто».
 - **Команда `diff`** (раздел 3.2; R11) — `docs/architecture.md` `module-kit`, раздел 3.5, релиз v0.2.3, прочитано 2026-11-06: «module-kit diff [--json] (--index <module-index.json> | --first) [--published <папка пакета>]... <модуль>»; `<модуль>` — «папка модуля или папка пакета»; `--published` — «папки пакетов файлами …, без `device/`», и «пакет каждой версии, которую называет индекс, нужен: без него сравнить нельзя»; код 2 — «нет пакета версии, которую называет индекс». Проба на v0.2.3 в тот же день: та же версия с тем же дайджестом — код 0, «the newest published version as it was»; с другим — код 1, `module-version.above`; новая версия — 0; без пакета — 2; `--first` — 0.
 - **Общие workflow `.github` v0.1.15** (раздел 3.2; R10) — `.github/workflows/`, релиз v0.1.15, прочитано 2026-11-06 (`gh api`): `documents.yml` запускает `docs-check-repo`, `go.yml` и `typescript.yml` — рецепты `ci-lint`, `ci-test`, `ci-vuln` и `ci-licenses` вызывающего. Workflow, который запускает рецепты вызывающего на выбор, среди них нет. Общий `codeql.yml` принимает вход `languages` со значением `javascript-typescript` и на v0.1.0, ff2a359, и на v0.1.10, f3addb7, — на неё `codeql.yml` `modules` поднял Dependabot 2026-11-06.
+- **Стенд standalone** (раздел 3.5; R12) — [mathtrail/mathtrail-standalone](https://github.com/mathtrail/mathtrail-standalone/tree/89986bc01a12ff3188cf08194677bfae0464568a), коммит 89986bc, прочитано 2026-11-06 (`gh api`; клон во временной папке):
+  - `content/solver_test.go`, `TestEveryReferenceTaskProvesItsOwnAnswer`: «It runs each solver the way a submitted one is run — the same sandbox, the same dialect and helpers, the same two runs under rotated labels», подтест на ID задачи, а `prove` — «the solver proves %s, the task claims %s»;
+  - `internal/domain/solver/verdict.go`: «The second run happens only when the first reached exactly one option»;
+  - `go.mod`: `go 1.27.3` и `go.starlark.net v0.0.0-20260908191801-89a6a09411d5`;
+  - `content/schemas/task.json`, `$defs/row` и `row_item`: «Objects in a row … 2 to 12 items», `line`, `gaps`, `span`, `copies` 1–2, у предмета `label`, `below` и `mark` — `dot`, `ring` или `square`, а пропуск «is never first or last, and is never next to another skip»;
+  - прогон 2026-11-06: стенд доказал ответы всех 27 задач первой пачки, а задачи и две картинки `row` конвертера прошли `module-kit check` v0.2.3 в модуле из примеров формата без предупреждений, кроме двух пояснений, которые называют ключ и которые переписывает T12 (раздел 3.6).
+- **Шрифт и рисование** (раздел 3.5; R12) — `golang.org/x/image` v0.47.0: `font/gofont/goregular`, `font/opentype` и `vector`, лицензия BSD-3-Clause (`LICENSE` модуля), прочитано 2026-11-06; `image/png` стандартной библиотеки Go пишет непрозрачное изображение без вспомогательных чанков — тест `TestRowDraws` держит, что их нет.
 - **Просьба `api` к раскладке релиза** (раздел 3.3) — В6 в таблице 3 RUN.md `api`, «в реестр spec», к T01 `modules`; `main` `api`, коммит d409351, прочитано 2026-11-02: файлы пакета находят «по записи — ID модуля, версии и тегу, — без перебора файлов релиза: по публичному адресу, без токена и REST API». Рекомендация `api` — «один архив на пакет, названный по дайджесту пакета», и исправлять снятую мажорную версию новой версией той же мажорной в том же релизе, который её снимает.
 - **`module-kit` о прошлой версии** (раздел 3.3) — architecture 2.4 module-kit, `main` `module-kit`, тег v0.1.1, коммит 3f5a4c4, прочитано 2026-11-02: «Откуда CI `modules` берёт прошлую версию модуля для сравнения, решает T01 modules». CLI на этом коммите знает только `--version` (`cmd/module-kit/main.go`).
 - **`sim` о гейте графа** (раздел 3.3) — T03 в RUN.md `sim`, `main` `sim`, коммит 067f624, прочитано 2026-11-02: «CI `modules`: как он узнаёт, что граф изменился, и на каком пакете идёт стенд».

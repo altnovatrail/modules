@@ -431,3 +431,86 @@ _dockerfile-arg dockerfile name:
 # Run the tests of the recipes.
 test:
     JUST={{quote(just_executable())}} node --test 'test/*.test.mjs'
+
+# The Go code of this repository is tools/port, the port of standalone's tasks (R12), one module
+# with its go.mod at the root; spec/ is a module of its own, which ./... does not reach. The ci-
+# recipes are what .github's shared go.yml runs, one job each, in the toolchain stage, with no spec
+# submodule: "Go / lint", "Go / test", "Go / vuln" and "Go / licenses" (R16 .github; R48 spec). The
+# tools only these checks need run straight from their modules at exact versions, as spec's and
+# module-kit's justfiles run them; Dependabot does not see them, so they are raised by hand.
+GOVULNCHECK := "golang.org/x/vuln/cmd/govulncheck@v1.9.0"
+GO_LICENSES := "github.com/google/go-licenses/v2@v2.0.1"
+
+# Fail on Go code gofmt would rewrite, and on what go vet reports.
+ci-lint:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    unformatted="$(git ls-files -z --cached --others --exclude-standard -- '*.go' | xargs -0 -r gofmt -l)"
+    if [ -n "$unformatted" ]; then
+        echo "ci-lint: gofmt would rewrite these files; run gofmt -w on them:" >&2
+        echo "$unformatted" >&2
+        exit 1
+    fi
+    go vet ./...
+
+# The profile goes into coverage/go.out, which the job coverage of go.yml sends to Codecov, and
+# codecov/patch holds the changed lines to 90 % (.github/codecov.yml; R48 spec).
+# Run the Go tests, with the race detector, and write their coverage.
+ci-test:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    mkdir -p coverage
+    go test -race -count=1 -covermode=atomic -coverprofile=coverage/go.out ./...
+
+# Fail on a known vulnerability in code the module reaches, in the standard library of its Go too.
+ci-vuln:
+    go run {{GOVULNCHECK}} ./...
+
+# The list is ALLOWED_LICENSES, SPDX identifiers separated by commas, which go.yml sets; without it,
+# the recipe takes spec's list, as `just -f spec/justfile licenses-allowed` prints it (R12 spec).
+# Fail if a package the module is built from carries a license outside that list.
+ci-licenses:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [ -n "${ALLOWED_LICENSES:-}" ]; then
+        allowed=$ALLOWED_LICENSES
+    else
+        allowed=$({{quote(just_executable())}} -f spec/justfile licenses-allowed | paste -sd , -)
+    fi
+    go run {{GO_LICENSES}} check ./... --allowed_licenses="$allowed"
+
+# The tasks of a batch of tools/port/batches/ come from standalone at the commit the batch names: a
+# clone of it in a temporary folder, never in this repository (RULES.md, Citations), read with no
+# token and none of the caller's git settings. Standalone's bench proves the answer of each task
+# first, and the port writes nothing unless each passes (R05; R12). It is a step of the batch's
+# task, run by a person in the devcontainer, not of CI: the bench fetches standalone's Go modules.
+# After the module come the options: --batch <file> and --overlay <folder> in place of the first
+# batch and its overlays, and --check to compare the module with what the port writes.
+# Write the tasks of a batch of standalone into a module, or with --check compare them.
+[positional-arguments]
+port module *options:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    module=$1
+    shift
+    batch=tools/port/batches/first.yaml
+    overlay=tools/port/overlay
+    rest=()
+    while [ "$#" -gt 0 ]; do
+        case "$1" in
+            --batch) batch=$2; shift 2 ;;
+            --overlay) overlay=$2; shift 2 ;;
+            *) rest+=("$1"); shift ;;
+        esac
+    done
+    commit=$(sed -n 's/^standalone: \([0-9a-f]\{40\}\)$/\1/p' "$batch")
+    if [ -z "$commit" ]; then
+        echo "port: ${batch} has no line standalone: with the full SHA of a commit" >&2
+        exit 2
+    fi
+    clone=$(mktemp -d)
+    trap 'rm -rf "$clone"' EXIT
+    export GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_TERMINAL_PROMPT=0
+    git clone --quiet --filter=blob:none --no-checkout https://github.com/mathtrail/mathtrail-standalone "$clone"
+    git -C "$clone" checkout --quiet --detach "$commit"
+    go run ./tools/port --standalone "$clone" --batch "$batch" --overlay "$overlay" --module "$module" --prove "${rest[@]}"

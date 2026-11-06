@@ -9,6 +9,14 @@ updates:
     cooldown:
       default-days: 3
 
+  # The Go modules tools/port is built from (R12).
+  - package-ecosystem: gomod
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 3
+
   - package-ecosystem: docker
     directory: /.devcontainer
     schedule:
