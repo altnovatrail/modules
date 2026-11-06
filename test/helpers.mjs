@@ -1,6 +1,7 @@
 // What the tests of the recipes share: the just that runs them, made-up repositories in temporary
-// folders that hold a copy of the justfile and the Dockerfile, the modules of spec's format to fill them with, and a
-// stand-in for module-kit that writes down how it was called.
+// folders that hold a copy of the justfile and the Dockerfile, the modules of spec's format to fill
+// them with, published versions as _published writes them, and a stand-in for module-kit that writes
+// down how it was called.
 
 import { spawnSync } from "node:child_process";
 import { chmodSync, cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
@@ -53,19 +54,67 @@ export function addModule(repo, source, name, id = `novatrail/${name}`) {
 }
 
 // A recipe of the justfile in folder, run from there, with the environment given on top of this
-// process's.
-export function run(folder, recipe, args = [], env = {}) {
+// process's, and input on its stdin.
+export function run(folder, recipe, args = [], env = {}, input = "") {
   return spawnSync(JUST, ["-f", join(folder, "justfile"), recipe, ...args], {
     cwd: folder,
     encoding: "utf8",
     env: { ...process.env, ...env },
+    input,
   });
+}
+
+// What _modules-check compares with before the first release of modules: a folder with the file
+// first, as _published writes it.
+export function firstRelease(t) {
+  const folder = temporaryFolder(t);
+  writeFileSync(join(folder, "first"), "modules has no release yet, so every version is a first one\n");
+  return folder;
+}
+
+// _modules-check of the repository, against the published versions given, or none yet.
+export function check(t, repo, env = {}, published = firstRelease(t)) {
+  return run(repo, "_modules-check", [published], env);
+}
+
+// The published versions of a made-up release, as _published writes them: the packages that
+// module-kit build makes of the modules given, the index that module-kit index builds of them for
+// the tag, and packages/sha256-<hex>/ with the three files of each package. A real index, but not a
+// signed one: release-verify is no part of these tests.
+export function published(t, modules, tag = "v0.1.0") {
+  const folder = temporaryFolder(t);
+  const built = [];
+  mkdirSync(join(folder, "built"));
+  for (const [i, module] of modules.entries()) {
+    const out = join(folder, "built", String(i));
+    mustRun("module-kit", ["build", module, out]);
+    built.push(out);
+  }
+  mustRun("module-kit", ["index", "--first", "--tag", tag, "--no-withdrawals", "--out", join(folder, "module-index.json"), ...built]);
+  const index = JSON.parse(readFileSync(join(folder, "module-index.json"), "utf8"));
+  for (const out of built) {
+    const inventory = JSON.parse(readFileSync(join(out, "inventory.json"), "utf8"));
+    const entry = index.modules[inventory.id][inventory.version];
+    const target = join(folder, "packages", entry.package_digest.replace(":", "-"));
+    mkdirSync(target, { recursive: true });
+    for (const file of ["inventory.json", "server.json", "device.json"]) cpSync(join(out, file), join(target, file));
+  }
+  rmSync(join(folder, "built"), { recursive: true });
+  return folder;
+}
+
+// A command that must succeed, for the making of fixtures.
+export function mustRun(command, args, options = {}) {
+  const result = spawnSync(command, args, { encoding: "utf8", ...options });
+  if (result.status !== 0) throw new Error(`${command} ${args.join(" ")}: ${result.stdout}${result.stderr}`);
+  return result;
 }
 
 // A stand-in for module-kit, first on the PATH it returns. Each call but --version goes into the log
 // as a line of JSON: its arguments, and for build whether the folder was there already. --version
-// says the tag STUB_VERSION names, the pinned one unless given. check and build exit with the status
-// that STUB_CHECK_STATUS and STUB_BUILD_STATUS name for the module's folder name, 0 otherwise; build
+// says the tag STUB_VERSION names, the pinned one unless given. check, build and diff exit with the
+// status that STUB_CHECK_STATUS, STUB_BUILD_STATUS and STUB_DIFF_STATUS name for the module's folder
+// name — the last argument's for diff —, 0 otherwise; build
 // writes an inventory.json that names novatrail/<folder name>, as a package of that module would,
 // and no ID for a folder name STUB_NO_ID lists.
 export function stubModuleKit(t) {
@@ -87,7 +136,8 @@ if (args.length === 1 && args[0] === "--version") {
 const call = { args };
 if (args[0] === "build") call.existed = existsSync(args[2]);
 appendFileSync(process.env.STUB_LOG, JSON.stringify(call) + "\\n");
-const statuses = (name) => JSON.parse(process.env[name] || "{}")[basename(args[1])] ?? 0;
+const statuses = (name, of = args[1]) => JSON.parse(process.env[name] || "{}")[basename(of)] ?? 0;
+if (args[0] === "diff") process.exit(statuses("STUB_DIFF_STATUS", args[args.length - 1]));
 if (args[0] === "check") process.exit(statuses("STUB_CHECK_STATUS"));
 if (args[0] === "build") {
   const status = statuses("STUB_BUILD_STATUS");
