@@ -1,0 +1,34 @@
+# A lesson of the first batch (R07, R14; docs/architecture.md, section 3.6 of modules): the skill
+# counting-gaps on the band of grades 3–4. Its texts are those of the page gaps-and-boundaries of
+# mathtrail-standalone's site at 89986bc, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: counting-gaps-grades-3-4
+title: "Gaps and boundaries: going further"
+skills: [counting-gaps]
+segments:
+  - explanation:
+      - text: "Six trees in a row: how many gaps between them? A log in five pieces: how many cuts? In these tasks, known as the fence post problem, you count either the things or the gaps between them, and the two numbers differ by one. That one is where most wrong answers come from, and a quick drawing of a small case is what puts it right."
+      - text: "In a row, one fewer. Gaps sit between things, so a row always has one gap fewer than things: six trees, five gaps; five pieces of a log, four cuts."
+      - text: "In a ring, as many. When the row closes into a ring, as bushes round a flowerbed do, the last one has a gap to the first: there are as many gaps as things."
+      - text: "Both ends count. From page 3 to page 7 is 7 − 3 = 4 steps, but 5 pages, because the first page is read too. Counting “from … to …” with both ends adds one."
+  - worked_example:
+      statement:
+        - text: "Lena lives on floor 9 and Masha on floor 3 of the same house, and both walk up from floor 1. All the flights of stairs are the same. How many times as many steps does Lena climb as Masha?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Masha climbs from floor 1 to floor 3: 2 flights of stairs, from 1 to 2 and from 2 to 3."
+        - text: "Lena climbs from floor 1 to floor 9, which is 8 flights, one fewer than the number of her floor."
+        - text: "The flights are all the same, so 8 : 2 = 4. Lena climbs 4 times as many steps."
+        - text: "Answer: 4 times as many."
+  - explanation:
+      - text: "Why not 3 times? 9 : 3 = 3 divides the floors, but the steps are on the flights between floors, and nobody climbs up to floor 1."
+  - task: gaps-34-d1-1
+  - task: gaps-34-d3-1
+  - task: gaps-34-d5-1
+  - explanation:
+      - text: "How to solve: draw a small case."
+      - text: "Draw the things and the gaps."
+      - text: "Find which of them the question counts."
+      - text: "Work it out, and check the rule on a small case."

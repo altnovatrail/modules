@@ -1,0 +1,35 @@
+# A lesson of the first batch (R07, R14; docs/architecture.md, section 3.6 of modules):
+# the skill pigeonhole-basic on the band of grades 5–6. Its texts are those of the page
+# pigeonhole-principle of mathtrail-standalone's site at 89986bc, put to the learner, and
+# its worked example is the page's example of this level. standalone's content in this module
+# carries the MIT notice of NOTICE.
+id: pigeonhole-basic-grades-5-6
+title: "Pigeonhole principle: olympiad level"
+skills: [pigeonhole-basic]
+segments:
+  - explanation:
+      - text: "Five pigeons fly into four holes: some hole is bound to hold two of them. In these tasks you prove that something must happen however unlucky the draw: two socks of one colour from a dark drawer, two birthdays in one month. It is reasoning about the worst case rather than the lucky one."
+      - text: "More pigeons than holes. If there are more pigeons than holes, some hole holds at least two. Spread them as evenly as you like: one is always left over."
+      - text: "To be sure. “To be sure” means whatever comes out of the bag. So imagine everything going as badly as it can, and see how far bad luck can go."
+      - text: "One more settles it. When bad luck has run out, every colour drawn once and every hole filled once, the next one is bound to give what you want."
+  - worked_example:
+      statement:
+        - text: "Each cell of a 2 by 2 grid holds 1, 2 or 3. Add up the two numbers of each row, each column and each diagonal. Is it true that two of these six sums are always equal?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Count the holes: a sum of two numbers from 1, 2 and 3 is one of 2, 3, 4, 5 and 6, five values in all."
+        - text: "Count the pigeons: 2 rows, 2 columns and 2 diagonals give 6 sums."
+        - text: "Six sums and only five values: two of the sums must be equal, whatever the numbers in the grid."
+        - text: "Answer: Yes, always."
+  - explanation:
+      - text: "The holes are not always boxes. Here the holes are the values a sum can take, and the pigeons are the lines of the grid. The art of these tasks is seeing what plays the holes."
+  - task: pig-56-d1-1
+  - task: pig-56-d3-2
+  - task: pig-56-d5-1
+  - explanation:
+      - text: "How to solve: the worst luck, then one more."
+      - text: "Find the holes and the pigeons."
+      - text: "Play the worst luck to the end."
+      - text: "Add one, and check that it settles it."

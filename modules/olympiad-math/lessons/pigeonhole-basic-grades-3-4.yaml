@@ -1,0 +1,35 @@
+# A lesson of the first batch (R07, R14; docs/architecture.md, section 3.6 of modules):
+# the skill pigeonhole-basic on the band of grades 3–4. Its texts are those of the page
+# pigeonhole-principle of mathtrail-standalone's site at 89986bc, put to the learner, and
+# its worked example is the page's example of this level. standalone's content in this module
+# carries the MIT notice of NOTICE.
+id: pigeonhole-basic-grades-3-4
+title: "Pigeonhole principle: going further"
+skills: [pigeonhole-basic]
+segments:
+  - explanation:
+      - text: "Five pigeons fly into four holes: some hole is bound to hold two of them. In these tasks you prove that something must happen however unlucky the draw: two socks of one colour from a dark drawer, two birthdays in one month. It is reasoning about the worst case rather than the lucky one."
+      - text: "More pigeons than holes. If there are more pigeons than holes, some hole holds at least two. Spread them as evenly as you like: one is always left over."
+      - text: "To be sure. “To be sure” means whatever comes out of the bag. So imagine everything going as badly as it can, and see how far bad luck can go."
+      - text: "One more settles it. When bad luck has run out, every colour drawn once and every hole filled once, the next one is bound to give what you want."
+  - worked_example:
+      statement:
+        - text: "A drawer holds 8 black socks, 6 white ones and 2 striped ones, all mixed up. In the dark, how many socks must Gleb take to be sure of two black ones?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "The worst luck: the socks that are not black come first. There are 6 white and 2 striped ones, 8 socks with no black one among them."
+        - text: "Bad luck can still go on: the next sock is black, but just one. That is 9 socks and only one black sock among them."
+        - text: "The 10th sock is bound to be black too, since only black socks are left. So 10 socks."
+        - text: "Answer: 10 socks."
+  - explanation:
+      - text: "Why not 9? After all 6 white and 2 striped socks, bad luck has one more turn: a single black sock. Two black ones are only sure with the 10th."
+  - task: pig-34-d1-2
+  - task: pig-34-d3-1
+  - task: pig-34-d5-1
+  - explanation:
+      - text: "How to solve: the worst luck, then one more."
+      - text: "Find the holes and the pigeons."
+      - text: "Play the worst luck to the end."
+      - text: "Add one, and check that it settles it."
