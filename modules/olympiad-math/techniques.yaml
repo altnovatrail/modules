@@ -1,0 +1,16 @@
+# The techniques of the first batch's tasks: 4 of the 11 of mathtrail-standalone's site, as the
+# format's example of this module has them, each with its title and its description. standalone's
+# content in this module carries the MIT notice of NOTICE.
+techniques:
+  draw:
+    title: Draw the problem
+    description: A picture or a diagram turns words into something you can look at. Lines, dots and arrows are enough; it does not have to be pretty.
+  small-numbers:
+    title: Start with small numbers
+    description: When the numbers are big and you cannot see where to start, solve the same problem with small numbers. Spot the rule, then apply it to the big ones.
+  systematic:
+    title: List systematically
+    description: "Listing at random is bound to miss something or count it twice. Listing systematically goes in order: first by one feature, then by the next. A tree is handy for it."
+  pigeonhole:
+    title: Pigeons and pigeonholes
+    description: If there are more pigeons than holes, some hole holds at least two pigeons. It sounds obvious, yet it proves things that seem impossible to check.

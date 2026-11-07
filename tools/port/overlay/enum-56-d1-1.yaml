@@ -1,0 +1,6 @@
+# What a person adds to enum-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann and Ben each have 6 stickers and 4 badges, and no two of the things are alike."
+  - "In a fair swap each gives the other one thing of the same kind."
+unknown: "How many different fair swaps they can make."
+simpler_case: "Try each having 2 stickers and 1 badge first. How many fair swaps are there?"

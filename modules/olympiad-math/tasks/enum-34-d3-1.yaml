@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/enum-34-d3-1.yaml, and the port writes this file again (R12).
+id: "enum-34-d3-1"
+statement:
+  - text: "How many two-digit numbers have a tens digit that is greater than the units digit, like 52 or 90?"
+givens: ["The numbers have two digits.", "The tens digit is greater than the units digit, as in 52 or 90."]
+unknown: "How many such numbers there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "45"
+          units: ["number", "numbers"]
+          trap_values:
+            - value: "36"
+              trap: "missed-case"
+              text: "You forgot the numbers ending in 0, like 10 and 90."
+            - value: "44"
+              trap: "missed-case"
+              text: "You missed one number. Add 1 + 2 + ... + 9."
+            - value: "54"
+              trap: "ignored-condition"
+              text: "Equal digits like 55 do not count: the tens digit must be greater."
+            - value: "90"
+              trap: "answered-other-question"
+              text: "90 is the number of all two-digit numbers."
+    simpler_case: "Try the numbers whose tens digit is 3 first. How many of them have a smaller units digit?"
+solution:
+  - text: "With tens digit 1 there is 1 number (10), with 2 there are 2 (20, 21), and so on up to 9 with 9 numbers. 1 + 2 + ... + 9 = 45."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 3

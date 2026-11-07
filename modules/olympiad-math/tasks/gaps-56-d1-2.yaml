@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/gaps-56-d1-2.yaml, and the port writes this file again (R12).
+id: "gaps-56-d1-2"
+statement:
+  - text: "Trees grow on both sides of a straight road, one every 5 metres along each side, with a tree at each end of both rows. There are 22 trees in all. How long is the road?"
+givens: ["Trees grow on both sides of a straight road.", "Along each side there is a tree every 5 metres, with a tree at each end.", "There are 22 trees in all."]
+unknown: "How long the road is."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "50"
+          units: ["metre", "metres", "m"]
+          trap_values:
+            - value: "55"
+              trap: "off-by-one"
+              text: "55 m counts a gap for each of the 11 trees on a side, but 11 trees in a row have only 10 gaps between them."
+            - value: "105"
+              trap: "ignored-condition"
+              text: "105 m lines up all 22 trees in one row, but they stand on both sides of the road, 11 on each."
+            - value: "45"
+              trap: "off-by-one"
+              text: "45 m counts 9 gaps on a side, but 11 trees in a row have 10 gaps between them."
+            - value: "10"
+              trap: "stopped-early"
+              text: "10 is the number of gaps on each side, not metres. How long is each gap?"
+    simpler_case: "Try 6 trees in all, 3 on each side, one every 5 metres. How long is the road?"
+solution:
+  - text: "The 22 trees stand in two rows of 11, one on each side. Between 11 trees in a row there are 10 gaps of 5 metres, so the road is 10 × 5 = 50 metres long."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-5-6"
+difficulty: 1

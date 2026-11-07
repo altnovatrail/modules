@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/enum-56-d5-2.yaml, and the port writes this file again (R12).
+id: "enum-56-d5-2"
+statement:
+  - text: "Four points are marked on one straight line, and three points on another straight line parallel to it. How many triangles have all three corners at marked points?"
+givens: ["Four points are marked on one straight line.", "Three points are marked on another straight line parallel to it."]
+unknown: "How many triangles have all three corners at marked points."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "30"
+          units: ["triangle", "triangles"]
+          trap_values:
+            - value: "18"
+              trap: "missed-case"
+              text: "18 counts only the triangles with two corners on the line of 4 points. The 12 with two corners on the line of 3 points are left out."
+            - value: "35"
+              trap: "ignored-condition"
+              text: "35 counts every choice of 3 of the 7 points, but 3 points on one line make no triangle."
+            - value: "60"
+              trap: "double-count"
+              text: "60 counts each pair of corners on one line twice, as A then B and as B then A."
+            - value: "31"
+              trap: "missed-case"
+              text: "31 takes away the 4 choices of 3 points on the first line, but the 3 points on the second line make no triangle either."
+    simpler_case: "Try 2 points on one line and 1 point on the other first. How many triangles are there?"
+solution:
+  - text: "Three points on one line do not make a triangle, so every triangle has two corners on one line and one on the other. Two of the 4 points can be chosen in 6 ways, and the third corner is one of the 3 points: 6 × 3 = 18 triangles. Two of the 3 points can be chosen in 3 ways, with one of the 4 points: 3 × 4 = 12 triangles. That makes 18 + 12 = 30."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 5

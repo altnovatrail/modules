@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pig-12-d1-2.yaml, and the port writes this file again (R12).
+id: "pig-12-d1-2"
+statement:
+  - text: "A bag has 3 red apples and 3 green apples. Without looking, Tim takes apples out of the bag. How many apples must he take to be sure that he has a red one?"
+givens: ["The bag has 3 red apples and 3 green apples.", "Tim takes apples out without looking."]
+unknown: "How many apples he must take to be sure that he has a red one."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["apple", "apples"]
+          trap_values:
+            - value: "1"
+              trap: "best-case-not-worst"
+              text: "The first apple could be green."
+            - value: "2"
+              trap: "best-case-not-worst"
+              text: "Both apples could be green."
+            - value: "3"
+              trap: "stopped-early"
+              text: "All 3 apples could be green."
+            - value: "6"
+              trap: "wrong-operation"
+              text: "You added 3 and 3. After 3 green apples the next one is always red."
+    simpler_case: "Try a bag with 1 red apple and 1 green apple first. How many apples must he take?"
+solution:
+  - text: "Tim may be unlucky and take the 3 green apples first. The next apple must be red. So he needs 4 apples."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-1-2"
+difficulty: 1

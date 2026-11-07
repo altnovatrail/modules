@@ -1,0 +1,6 @@
+# What a person adds to gaps-34-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Pete walks up from floor 1 to floor 4 in 30 seconds."
+  - "He always walks at the same speed."
+unknown: "How many seconds it takes him to walk up from floor 1 to floor 10."
+simpler_case: "Try someone who walks up from floor 1 to floor 2 in 10 seconds. How long does it take from floor 1 to floor 3?"

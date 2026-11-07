@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pig-56-d5-1.yaml, and the port writes this file again (R12).
+id: "pig-56-d5-1"
+statement:
+  - text: "A class has 21 pupils, boys and girls. No two girls of the class have the same number of friends among the boys of the class. At most how many girls can the class have?"
+givens: ["The class has 21 pupils, boys and girls.", "No two girls have the same number of friends among the boys."]
+unknown: "At most how many girls the class can have."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "11"
+          units: ["girl", "girls"]
+          trap_values:
+            - value: "10"
+              trap: "missed-case"
+              text: "10 leaves out a girl with no friend among the boys. Count again how many different numbers of friends a girl can have, from 0 up to the number of boys."
+            - value: "21"
+              trap: "number-from-text"
+              text: "21 is the number of pupils. If all of them were girls, none would have a friend among the boys, and all would have the same number, 0."
+            - value: "20"
+              trap: "ignored-condition"
+              text: "20 girls leave 1 boy, so each girl has 0 or 1 friends among the boys: only two different numbers for 20 girls."
+            - value: "12"
+              trap: "ignored-condition"
+              text: "12 girls leave 9 boys, and a girl can then have only 0 to 9 friends among them: 10 different numbers for 12 girls."
+    simpler_case: "Try a class of 3 pupils first. At most how many girls can it have?"
+solution:
+  - text: "If the class has g girls, it has 21 − g boys, and a girl can have 0, 1, 2 and so on up to 21 − g friends among them: 22 − g different numbers. The g girls need g different numbers, so g is at most 22 − g, which makes g at most 11. And 11 girls work: with 10 boys, the girls can have 0, 1, 2 and so on up to 10 friends among them."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-5-6"
+difficulty: 5

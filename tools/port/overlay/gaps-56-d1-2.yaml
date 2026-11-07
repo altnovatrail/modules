@@ -1,0 +1,9 @@
+# What a person adds to gaps-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Trees grow on both sides of a straight road."
+  - "Along each side there is a tree every 5 metres, with a tree at each end."
+  - "There are 22 trees in all."
+unknown: "How long the road is."
+simpler_case: "Try 6 trees in all, 3 on each side, one every 5 metres. How long is the road?"
+trap_texts:
+  "10": "10 is the number of gaps on each side, not metres. How long is each gap?"

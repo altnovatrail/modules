@@ -1,0 +1,6 @@
+# What a person adds to pig-34-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The box has 10 red, 8 blue, 6 green and 4 yellow balls."
+  - "You take balls out without looking."
+unknown: "How many balls you must take to be sure of 5 balls of the same colour."
+simpler_case: "Try to be sure of 2 balls of the same colour first. How many must you take?"

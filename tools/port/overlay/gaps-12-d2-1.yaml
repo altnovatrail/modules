@@ -1,2 +1,7 @@
 # What a person adds to gaps-12-d2-1 of standalone; the port writes the task from it (R12).
-picture_alt: Posts in a straight line, with a stretch of the line left out in the middle, and every gap drawn between two posts marked 2.
+givens:
+  - "The fence has 8 posts in a straight line."
+  - "Each post is 2 metres from the next one."
+unknown: "How many metres it is from the first post to the last."
+simpler_case: "Try a fence of 3 posts, 2 metres apart. How many gaps does it have, and how long is it?"
+picture_alt: "Posts in a straight line, with a stretch of the line left out in the middle, and every gap drawn between two posts marked 2."

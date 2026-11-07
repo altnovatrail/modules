@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/enum-56-d3-2.yaml, and the port writes this file again (R12).
+id: "enum-56-d3-2"
+statement:
+  - text: "Four boards of a fence stand in a row. Each board is painted red, white or blue. Boards next to each other must have different colours, and the first board may not be red. In how many ways can the fence be painted?"
+givens: ["Four boards stand in a row.", "Each board is painted red, white or blue.", "Boards next to each other have different colours.", "The first board is not red."]
+unknown: "In how many ways the fence can be painted."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "16"
+          units: ["way", "ways"]
+          trap_values:
+            - value: "24"
+              trap: "ignored-condition"
+              text: "24 lets the first board be red too: 3 × 2 × 2 × 2."
+            - value: "54"
+              trap: "ignored-condition"
+              text: "54 lets boards next to each other have the same colour: 2 × 3 × 3 × 3."
+            - value: "8"
+              trap: "wrong-operation"
+              text: "8 adds the choices, 2 + 2 + 2 + 2, but every board's choice goes with every choice of the others."
+            - value: "81"
+              trap: "ignored-condition"
+              text: "81 ignores both rules: 3 × 3 × 3 × 3."
+    simpler_case: "Try a fence of 2 boards first. In how many ways can it be painted?"
+solution:
+  - text: "The first board is white or blue: 2 ways. Each next board may be any colour except the colour of the board before it: 2 ways each. So there are 2 × 2 × 2 × 2 = 16 ways."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 3

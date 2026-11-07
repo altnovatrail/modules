@@ -1,0 +1,6 @@
+# What a person adds to pig-12-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The bag has 3 red apples and 3 green apples."
+  - "Tim takes apples out without looking."
+unknown: "How many apples he must take to be sure that he has a red one."
+simpler_case: "Try a bag with 1 red apple and 1 green apple first. How many apples must he take?"

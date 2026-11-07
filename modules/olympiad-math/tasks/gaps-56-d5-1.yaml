@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 89986bc, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/gaps-56-d5-1.yaml, and the port writes this file again (R12).
+id: "gaps-56-d5-1"
+statement:
+  - text: "Nine parallels and twelve meridians are drawn on a globe. A parallel is a circle that goes all the way round the globe from west to east. A meridian is a line from the North Pole to the South Pole. Into how many parts do these lines cut the surface of the globe?"
+givens: ["Nine parallels are drawn on the globe, each a circle all the way round it from west to east.", "Twelve meridians are drawn, each a line from the North Pole to the South Pole."]
+unknown: "Into how many parts the lines cut the surface of the globe."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "120"
+          units: ["part", "parts"]
+          trap_values:
+            - value: "130"
+              trap: "off-by-one"
+              text: "130 cuts each band into 13 pieces, as if it were a strip with two ends. A band goes all the way round, so 12 meridians cut it into 12."
+            - value: "108"
+              trap: "off-by-one"
+              text: "108 counts 9 bands, one for each parallel, but 9 parallels cut the globe into 10 bands."
+            - value: "21"
+              trap: "wrong-operation"
+              text: "21 adds the lines, 9 + 12, but every meridian cuts every band, so the counts are multiplied."
+            - value: "240"
+              trap: "ignored-condition"
+              text: "240 takes each meridian as a whole circle through both poles, but a meridian runs only from one pole to the other, half a circle."
+    simpler_case: "Try 1 parallel and 2 meridians first. Into how many parts do they cut the globe?"
+solution:
+  - text: "The 9 parallels cut the globe into 10 bands, the caps round the two poles among them. The meridians cut every band, and a band goes all the way round, like a ring: 12 cuts across a ring make 12 pieces, not 13. The meridians meet at each pole, so they cut each cap into 12 pieces too. So there are 10 × 12 = 120 parts."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-5-6"
+difficulty: 5

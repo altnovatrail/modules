@@ -1,0 +1,9 @@
+# What a person adds to enum-12-d1-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The digits are 1 and 2."
+  - "A digit may be used twice, as in 11."
+unknown: "How many two-digit numbers can be written."
+simpler_case: "Try one-digit numbers first: how many can you write with the digits 1 and 2?"
+trap_texts:
+  "5": "Write the numbers down in order, starting with 11, and count them again: none is left over."
+  "3": "You missed a number. List them in order, starting with 11, so that none is left out."

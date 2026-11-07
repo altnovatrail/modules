@@ -1,0 +1,17 @@
+# The skill graph of the first batch of olympiad mathematics (R07; docs/architecture.md, section
+# 3.6 of modules): three topics of mathtrail-standalone and their link, builds_on, as the format's
+# example of this module has them. Their tiers come out 1, 1 and 2, and the names of the tiers
+# are those standalone gives the layers of its map; the third names nothing until the rest of the
+# port adds tier 3. standalone's content in this module carries the MIT notice of NOTICE.
+tiers: [Foundations, Rules, Hard problems]
+skills:
+  counting-gaps:
+    title: Gaps and boundaries
+    assessability: verdict
+  combinatorics-enumeration:
+    title: Enumeration
+    assessability: verdict
+  pigeonhole-basic:
+    title: Pigeonhole principle
+    prerequisites: [combinatorics-enumeration]
+    assessability: verdict
