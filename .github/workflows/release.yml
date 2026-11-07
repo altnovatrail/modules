@@ -1,0 +1,54 @@
+# NovaTrail's shared release (R18 .github), pinned to a release of .github by SHA with its version
+# beside it. RELEASE_LINE is the line the releases are numbered in; paths, what they are built from:
+# the module folders without their eval sets, withdrawals.yaml, the justfile that holds release-files,
+# the root's LICENSE and this file, so that a change of the line gives a release. The list is
+# docs/architecture.md's, section 3.3, until .github's template lists the kind modules, and
+# .devcontainer/Dockerfile is not in it: a package and the index hang on a module's files and its
+# format version alone, not on the version of module-kit (R03). The glob magic keeps * from matching
+# /, so that the media/eval/ of a module stays in. With previous-file the release builds on the index
+# of the newest release, which the shared release downloads and checks before release-files gets it
+# (R63 spec). A run after CI on main, and the button, publish the release; a pull request from a
+# branch of this repository tries it, publishing nothing: it builds the files from git archive in the
+# toolchain stage, signs them and checks them (R17). A pull request from a fork gets no id-token to
+# sign with, so the job below skips its trial.
+
+name: Release
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+  # Every pull request, with no paths of its own: a filter would copy the list below in another
+  # syntax, and a run of a change outside the list ends once the version is worked out.
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  RELEASE_LINE: "0.1"
+
+jobs:
+  release:
+    name: Release
+    # A run after CI publishes only when CI passed on a push to main of this repository, which the
+    # shared release asks itself; this skips the trial of a pull request from a fork, which could
+    # not sign.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: write
+      id-token: write
+      actions: read
+    uses: altnovatrail/.github/.github/workflows/release.yml@89d3ceee0b9977b3334488a4133d084d76474e0d # v0.1.15
+    with:
+      paths: |
+        :(glob)modules/**
+        :(exclude,glob)modules/*/eval/**
+        withdrawals.yaml
+        justfile
+        LICENSE
+        .github/workflows/release.yml
+      previous-file: module-index.json
+      publish: ${{ github.event_name != 'pull_request' }}
