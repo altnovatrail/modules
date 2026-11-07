@@ -1,0 +1,11 @@
+# A lesson of the module of short essays on endings (R16): an explanation and an essay, which gets
+# feedback by a rubric. The skill graph puts it after the lesson of paragraphs, and the engine's
+# rule chooses between it and the lesson of improving an essay.
+id: endings
+title: Endings
+skills: [endings]
+segments:
+  - explanation:
+      - text: The ending closes what the beginning opened. If the first sentence left a question, the last one answers it, or says why it stays open.
+      - text: An ending does not tell the story again. It gives the reader one last thought to take away.
+  - task: undiscovered-island-1

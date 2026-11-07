@@ -1,0 +1,34 @@
+# A task of the module of short essays with a key (R16): out of three first sentences on one
+# invented topic, the learner chooses the one that makes a reader want to go on. One wrong option
+# announces the topic and the other tells the whole story at once. The key is an option that the
+# learner sees, so a leak phrase keeps it.
+id: best-first-sentence-2
+statement:
+  - text: An essay tells of a lighthouse on a rock in the sea. Which first sentence makes a reader want to go on?
+canvas:
+  kind: handwriting_sheet
+  grid: lines
+items:
+  - answer_slots:
+      - binding: choice
+        options:
+          - This essay is about a lighthouse on a rock.
+          - At midnight the lighthouse went dark, and a ship was still coming.
+          - The lighthouse went out one night, the keeper climbed up and lit it again, and the ship got home safely.
+        check:
+          kind: choice
+          key: At midnight the lighthouse went dark, and a ship was still coming.
+          trap_values:
+            - value: This essay is about a lighthouse on a rock.
+              trap: announcing-the-topic
+              text: This sentence tells what the essay is about, but nothing has happened yet. Look for one where the story has already begun.
+            - value: The lighthouse went out one night, the keeper climbed up and lit it again, and the ship got home safely.
+              trap: giving-it-all-away
+              text: After this sentence, is there anything left for the reader to find out? Look for one that keeps the end back.
+solution:
+  - text: "\"At midnight the lighthouse went dark, and a ship was still coming\" starts where something is happening and leaves a question: will the ship be safe? The first sentence only names the topic, and the third tells the whole story, so the reader has nothing to wait for."
+leak_phrases: [went dark]
+skills:
+  primary: [choosing-a-first-sentence]
+band: first-steps
+difficulty: 3

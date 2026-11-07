@@ -1,0 +1,26 @@
+# A task of the module of short essays (R16): the statement holds a short draft that repeats its
+# words, and the learner writes it again on the sheet, clearer. The rubric judges the new text as
+# one work. Its statement ends with the module's reminder to write no names (П-20).
+id: dragon-draft-1
+statement:
+  - text: Here is the draft of a short essay. Write it again on the sheet, so that it is clearer and repeats fewer words.
+  - text: "\"The dragon was very big. The dragon lived in a very big cave. Every day the dragon went out of the cave and the dragon flew over the hills. The dragon was very happy when the dragon flew over the hills.\""
+  - text: Do not write your name or the real name of anyone you know.
+canvas:
+  kind: handwriting_sheet
+  grid: lines
+items:
+  - answer_slots:
+      - binding: sheet
+        check:
+          kind: rubric
+          criteria:
+            - text: It tells what the draft tells, in the same order.
+            - text: The words that the draft repeats most, such as "dragon" and "very", come less often.
+            - text: Sentences that say one thing about the same moment are joined into one.
+techniques: [read-it-aloud]
+skills:
+  primary: [improving-an-essay]
+  supporting: [paragraphs]
+band: whole-essays
+difficulty: 2

@@ -1,0 +1,16 @@
+# A lesson of the module of short essays on two skills (R16): choosing a first sentence, which gets
+# a verdict, and writing one, which gets feedback by a rubric. Its explanations are the format's
+# example's. Since not all its skills get a verdict, the engine adds no segment to it and skips
+# none. Its texts hold none of the leak phrases of its three tasks with a key.
+id: first-sentences
+title: First sentences
+skills: [choosing-a-first-sentence, writing-a-first-sentence]
+segments:
+  - explanation:
+      - text: The first sentence of an essay makes a reader want to go on. It says what the essay is about, and it leaves a question that only the essay can answer.
+  - task: best-first-sentence-1
+  - task: best-first-sentence-2
+  - task: best-first-sentence-3
+  - explanation:
+      - text: Before your next essay, write three first sentences, and keep the one that leaves a question.
+  - task: talking-umbrella-1

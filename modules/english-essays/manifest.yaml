@@ -1,0 +1,25 @@
+# The manifest of the official module of short essays in English (R41 spec; R16): the format's
+# example of this module, but for its ID, which modules names (R03). It teaches writing, not a
+# language, so it has no target language. It is for learners of any age and names no grades, so
+# its bands name none either. Its one task with a key, the choice of a first sentence, has a
+# verdict, so it has the rung templates of a hint ladder.
+module_format_version: "0.3"
+id: novatrail/english-essays
+version: "0.1.0"
+title: Short essays in English
+subject: writing
+audience:
+  age_categories: [under_13, from_13_to_consent, from_consent_to_18, adult]
+bands:
+  - id: first-steps
+    title: First steps
+  - id: whole-essays
+    title: Whole essays
+languages:
+  explanation: en
+authors:
+  - name: The NovaTrail authors
+license: Apache-2.0
+rung_templates:
+  - Which step of your work gave you this answer?
+  - Read the task again slowly. Is there anything it says that your work does not use yet?
