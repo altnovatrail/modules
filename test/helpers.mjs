@@ -114,7 +114,8 @@ export function mustRun(command, args, options = {}) {
 // as a line of JSON: its arguments, and for build whether the folder was there already. --version
 // says the tag STUB_VERSION names, the pinned one unless given. check, build and diff exit with the
 // status that STUB_CHECK_STATUS, STUB_BUILD_STATUS and STUB_DIFF_STATUS name for the module's folder
-// name — the last argument's for diff —, 0 otherwise; build
+// name — the last argument's for diff —, 0 otherwise; index writes nothing and exits with
+// STUB_INDEX_STATUS, 2 unless given; build
 // writes an inventory.json that names novatrail/<folder name>, as a package of that module would,
 // and no ID for a folder name STUB_NO_ID lists.
 export function stubModuleKit(t) {
@@ -138,6 +139,7 @@ if (args[0] === "build") call.existed = existsSync(args[2]);
 appendFileSync(process.env.STUB_LOG, JSON.stringify(call) + "\\n");
 const statuses = (name, of = args[1]) => JSON.parse(process.env[name] || "{}")[basename(of)] ?? 0;
 if (args[0] === "diff") process.exit(statuses("STUB_DIFF_STATUS", args[args.length - 1]));
+if (args[0] === "index") process.exit(Number(process.env.STUB_INDEX_STATUS || 2));
 if (args[0] === "check") process.exit(statuses("STUB_CHECK_STATUS"));
 if (args[0] === "build") {
   const status = statuses("STUB_BUILD_STATUS");

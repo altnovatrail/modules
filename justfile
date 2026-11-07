@@ -5,18 +5,23 @@
 # `just test`.
 #
 # The calls of module-kit follow the forms that module-kit's docs/architecture.md gives at v0.2.3
-# (R102 spec) — check and build in section 3.6, diff in section 3.5:
+# (R102 spec) — check, build and index in section 3.6, diff in section 3.5:
 #
 #   module-kit check <module>
 #   module-kit build <module> <folder>
+#   module-kit index (--previous <module-index.json> | --first) --tag vX.Y.Z
+#       (--withdrawals <withdrawals.yaml> | --no-withdrawals) --out <file> <package folder>...
 #   module-kit diff [--json] (--index <module-index.json> | --first) [--published <package folder>]... <module>
 #
-# where build's folder does not exist or is empty; diff's <module> is a module's folder or a package
-# that build wrote, its --index an index that release-verify has accepted, and each --published a
-# package as files, without device/, which diff finds by the digest of its inventory.json and checks
-# by the chain of digests. Any other call is a usage error with the status 2. Every command exits
-# with 0 when it accepts, 1 when the format refuses its input, with the ID of each rule broken, and 2
-# when it could not do its work. test/modules-check.test.mjs holds the calls to those forms.
+# where build's folder does not exist or is empty; index's --out does not exist yet, its flags come
+# before its packages, folders that build wrote, with device/, and of each pair exactly one is given;
+# diff's <module> is a module's folder or a package that build wrote, its --index an index that
+# release-verify has accepted, and each --published a package as files, without device/, which diff
+# finds by the digest of its inventory.json and checks by the chain of digests. Any other call is a
+# usage error with the status 2. Every command exits with 0 when it accepts, 1 when the format
+# refuses its input, with the ID of each rule broken, and 2 when it could not do its work.
+# test/modules-check.test.mjs and test/published.test.mjs hold the calls of check, build and diff to
+# those forms, and test/release-files.test.mjs the call of index.
 
 # The published versions are those of the index of the newest release of modules, whose signature
 # release-verify checks, and the package of each version of every module in modules/, withdrawn
@@ -351,6 +356,114 @@ _modules-check published:
         module-kit diff "${args[@]}" "${packages}/${name}" || fail $?
     done
     exit "$worst"
+
+# What .github's shared release.yml runs to build a release's files, in the toolchain stage of the
+# commit it releases, on that commit's tree from git archive: no git, no submodule — spec/ is an
+# empty folder —, no token and no network (architecture 3.3 .github; R03; R17). version is the
+# release's tag, vX.Y.Z; previous the path of module-index.json of the newest release, which the
+# shared release downloaded and release-verify accepted before the build, read-only, or an empty
+# string for the first release, which the recipe tells module-kit index by --first; and no
+# withdrawals.yaml is told by --no-withdrawals: nothing is left unsaid (R63 spec). A relative
+# previous is from where the recipe is called. Every module is checked by _modules-check — the
+# tree, the pinned CLI, check and its ID — and built — the recipe cannot tell which changed, with
+# no git —, and index keeps each entry of the
+# previous index as it was: a package of a version it names keeps its release, and another digest
+# for it is refused by module-index.one-package. So an archive goes out only for a package whose
+# entry names this release: sha256-<hex>.tar.gz, named by its package_digest, which is the sha256 of
+# the bytes of its inventory.json, the package's files at the archive's root, with no top folder, no
+# ./ and nothing else. The archive is the same bytes on every runner: names sorted, no owner, the
+# same mode and time for every entry, and no name or time in the gzip header. dist/ is made afresh
+# and holds module-index.json, LICENSE, the root's Apache-2.0, and the archives; a failed run leaves
+# no dist/. The release then signs each file.
+# Build a release's files into dist/, for a version such as v0.1.0 and the previous index or "".
+release-files version previous:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    rm -rf dist
+    version={{quote(version)}}
+    previous={{quote(previous)}}
+    if ! [[ "$version" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+        echo "release-files: the version is a tag vX.Y.Z, as v0.1.0, not ${version}" >&2
+        exit 2
+    fi
+    if [ -n "$previous" ] && [[ "$previous" != /* ]]; then
+        previous={{quote(invocation_directory())}}/$previous
+    fi
+    if [ -z "$previous" ]; then
+        against=(--first)
+    elif [ -f "$previous" ] && [ -r "$previous" ]; then
+        against=(--previous "$previous")
+    else
+        echo "release-files: ${previous} is no file that can be read, and the first release says so by an empty string" >&2
+        exit 2
+    fi
+    if [ -L withdrawals.yaml ] || { [ -e withdrawals.yaml ] && [ ! -f withdrawals.yaml ]; }; then
+        echo "release-files: withdrawals.yaml is no regular file" >&2
+        exit 2
+    elif [ -f withdrawals.yaml ]; then
+        withdrawals=(--withdrawals withdrawals.yaml)
+    else
+        withdrawals=(--no-withdrawals)
+    fi
+    shopt -s nullglob dotglob
+    entries=(modules/*)
+    if [ -L modules ] || [ ! -d modules ] || [ "${#entries[@]}" -eq 0 ]; then
+        echo "release-files: modules/ holds no module, and a release has nothing to index" >&2
+        exit 2
+    fi
+    work=$(mktemp -d)
+    trap 'rm -rf "$work"' EXIT
+    # The tree, the pinned CLI, check and the ID of each module, by the one copy of those rules:
+    # _modules-check, against no published version. The comparison with them is CI's, on this same
+    # commit; what a release needs of it, index holds: one-package and version-above.
+    mkdir "${work}/published"
+    echo "release-files checks the modules; the published versions are CI's to compare with" > "${work}/published/first"
+    {{quote(just_executable())}} _modules-check "${work}/published"
+    mkdir "${work}/packages" "${work}/dist"
+    packages=()
+    for path in "${entries[@]}"; do
+        package="${work}/packages/${path#modules/}"
+        module-kit build "$path" "$package"
+        packages+=("$package")
+    done
+    index="${work}/dist/module-index.json"
+    module-kit index "${against[@]}" --tag "$version" "${withdrawals[@]}" --out "$index" "${packages[@]}"
+    for package in "${packages[@]}"; do
+        id=$(jq -er '.id | strings' "${package}/inventory.json")
+        module=$(jq -er '.version | strings' "${package}/inventory.json")
+        if ! entry=$(jq -ec --arg id "$id" --arg v "$module" '.modules[$id][$v] | objects' "$index"); then
+            echo "release-files: the index module-kit built names no entry of ${id} ${module}" >&2
+            exit 2
+        fi
+        named=$(jq -er '.release | strings' <<< "$entry")
+        digest=$(jq -er '.package_digest | strings' <<< "$entry")
+        if [ "$named" != "$version" ]; then
+            echo "release-files: ${id} ${module} stays in ${named}, which published it"
+            continue
+        fi
+        own="sha256:$(sha256sum < "${package}/inventory.json" | cut -d ' ' -f 1)"
+        if [ "$own" != "$digest" ]; then
+            echo "release-files: ${id} ${module}: the index names the package ${digest}, and its inventory.json is ${own}" >&2
+            exit 2
+        fi
+        found=()
+        for member in "$package"/*; do
+            found+=("${member##*/}")
+        done
+        if [ "${found[*]}" != "device device.json inventory.json server.json" ] || [ -L "${package}/device" ] || [ ! -d "${package}/device" ]; then
+            echo "release-files: ${id} ${module}: the package holds ${found[*]}, not inventory.json, server.json, device.json and the folder device/ alone (architecture 3.3)" >&2
+            exit 2
+        fi
+        archive="${work}/dist/${digest/:/-}.tar.gz"
+        tar --create --format=gnu --sort=name --owner=0 --group=0 --numeric-owner \
+            --mode=u=rwX,go=rX --mtime=@0 --directory="$package" --file=- \
+            -- inventory.json server.json device.json device \
+            | gzip -n -9 > "$archive"
+        echo "release-files: ${id} ${module}, ${digest}, in ${archive##*/}"
+    done
+    cp LICENSE "${work}/dist/LICENSE"
+    mv "${work}/dist" dist
+    echo "release-files: the files of ${version} are in dist/"
 
 # The binary of module-kit that the toolchain stage installs is held by its sums in
 # .devcontainer/Dockerfile. Here the release's SHA256SUMS and its bundle are read from the release's
