@@ -1,0 +1,35 @@
+# A lesson of the first batch (R07, R14; docs/architecture.md, section 3.6 of modules): the
+# skill combinatorics-enumeration on the band of grades 5–6. Its texts are those of the page
+# enumeration of mathtrail-standalone's site at 89986bc, put to the learner, and its worked
+# example is the page's example of this level. standalone's content in this module carries the
+# MIT notice of NOTICE.
+id: combinatorics-enumeration-grades-5-6
+title: "Enumeration: olympiad level"
+skills: [combinatorics-enumeration]
+segments:
+  - explanation:
+      - text: "How many numbers can be written with these digits? How many handshakes, outfits or ways to stand in a line? In these counting problems every case is listed in an order that makes sure none is lost and none is counted twice. A list kept by a rule is the first tool for questions too big to guess."
+      - text: "In order. Sort the cases before writing them down: by the first letter, then by the second. In a list kept in order, a missing case leaves a gap you can see."
+      - text: "Each case once. Before counting, decide what makes two cases different. Lea and Tom shaking hands is one handshake, but Lea before Tom and Tom before Lea are two different queues."
+      - text: "Choices multiply. When a case is made of choices one after another, a cup and then a saucer, count by multiplying: 3 cups and 2 saucers make 3 × 2 = 6 sets."
+  - worked_example:
+      statement:
+        - text: "How many four-digit numbers can be written with the digits 1 and 2 alone, so that no two 2s stand next to each other?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "There are too many to guess, so build them up digit by digit. One digit: 1 and 2, two numbers. Two digits: three numbers, since two 2s may not stand side by side."
+        - text: "An allowed number ends in 1 or in 2. Ending in 1, it is any allowed number one digit shorter with a 1 added. Ending in 2, the digit before must be 1: it is any allowed number two digits shorter with 12 added. So each count is the sum of the two before it: three digits make 3 + 2 = 5, and four digits 5 + 3 = 8."
+        - text: "Check by listing them: 1111, 1112, 1121, 1211, 2111, 1212, 2112, 2121, eight."
+        - text: "Answer: 8 numbers."
+  - explanation:
+      - text: "A count that grows. The counts 2, 3, 5, 8 go on 13, 21, 34, each the sum of the two before it. Olympiad tasks love a count that can be built from smaller ones."
+  - task: enum-56-d1-1
+  - task: enum-56-d3-2
+  - task: enum-56-d5-2
+  - explanation:
+      - text: "How to solve: a list by a rule."
+      - text: "Decide what makes two cases different."
+      - text: "List the cases by a rule."
+      - text: "Count them, or multiply when choices are made one after another."

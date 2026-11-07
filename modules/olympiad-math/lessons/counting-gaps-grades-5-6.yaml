@@ -1,0 +1,34 @@
+# A lesson of the first batch (R07, R14; docs/architecture.md, section 3.6 of modules): the skill
+# counting-gaps on the band of grades 5–6. Its texts are those of the page gaps-and-boundaries of
+# mathtrail-standalone's site at 89986bc, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: counting-gaps-grades-5-6
+title: "Gaps and boundaries: olympiad level"
+skills: [counting-gaps]
+segments:
+  - explanation:
+      - text: "Six trees in a row: how many gaps between them? A log in five pieces: how many cuts? In these tasks, known as the fence post problem, you count either the things or the gaps between them, and the two numbers differ by one. That one is where most wrong answers come from, and a quick drawing of a small case is what puts it right."
+      - text: "In a row, one fewer. Gaps sit between things, so a row always has one gap fewer than things: six trees, five gaps; five pieces of a log, four cuts."
+      - text: "In a ring, as many. When the row closes into a ring, as bushes round a flowerbed do, the last one has a gap to the first: there are as many gaps as things."
+      - text: "Both ends count. From page 3 to page 7 is 7 − 3 = 4 steps, but 5 pages, because the first page is read too. Counting “from … to …” with both ends adds one."
+  - worked_example:
+      statement:
+        - text: "Woodcutters sawed some logs, and every log was cut at least once. They made 9 cuts in all and got 14 pieces. How many logs did they saw?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Saw one log: 1 cut makes 2 pieces, 2 cuts make 3. Each log ends up with one piece more than it has cuts."
+        - text: "Add that up over all the logs. The pieces are the cuts, and one more for each log."
+        - text: "14 − 9 = 5. There were 5 logs."
+        - text: "Answer: 5 logs."
+  - explanation:
+      - text: "Does it matter how the cuts were shared? No. Five logs with 9 cuts give 14 pieces whether one log took most of the cuts or they were shared nearly evenly: each cut turns one piece into two."
+  - task: gaps-56-d1-2
+  - task: gaps-56-d3-1
+  - task: gaps-56-d5-1
+  - explanation:
+      - text: "How to solve: draw a small case."
+      - text: "Draw the things and the gaps."
+      - text: "Find which of them the question counts."
+      - text: "Work it out, and check the rule on a small case."

@@ -1,0 +1,35 @@
+# A lesson of the first batch (R07, R14; docs/architecture.md, section 3.6 of modules): the
+# skill combinatorics-enumeration on the band of grades 3–4. Its texts are those of the page
+# enumeration of mathtrail-standalone's site at 89986bc, put to the learner, and its worked
+# example is the page's example of this level. standalone's content in this module carries the
+# MIT notice of NOTICE.
+id: combinatorics-enumeration-grades-3-4
+title: "Enumeration: going further"
+skills: [combinatorics-enumeration]
+segments:
+  - explanation:
+      - text: "How many numbers can be written with these digits? How many handshakes, outfits or ways to stand in a line? In these counting problems every case is listed in an order that makes sure none is lost and none is counted twice. A list kept by a rule is the first tool for questions too big to guess."
+      - text: "In order. Sort the cases before writing them down: by the first letter, then by the second. In a list kept in order, a missing case leaves a gap you can see."
+      - text: "Each case once. Before counting, decide what makes two cases different. Lea and Tom shaking hands is one handshake, but Lea before Tom and Tom before Lea are two different queues."
+      - text: "Choices multiply. When a case is made of choices one after another, a cup and then a saucer, count by multiplying: 3 cups and 2 saucers make 3 × 2 = 6 sets."
+  - worked_example:
+      statement:
+        - text: "How many two-digit numbers have digits that differ by 3, like 14 or 30?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Go through the tens digit from 1 to 9, and write next to it every units digit 3 away from it: 1 → 4; 2 → 5; 3 → 0 and 6; 4 → 1 and 7; and so on."
+        - text: "With 3, 4, 5 or 6 in the tens, there are two numbers each, 3 below and 3 above. With 1, 2, 7, 8 or 9, just one: the other would not be a digit."
+        - text: "4 × 2 + 5 × 1 = 13 numbers: 14, 25, 30, 36, 41, 47, 52, 58, 63, 69, 74, 85, 96."
+        - text: "Answer: 13 numbers."
+  - explanation:
+      - text: "The case most often lost. 30 is the number children forget: a number may end in 0, though it may not begin with it. A list by a rule finds it, and a list from memory does not."
+  - task: enum-34-d1-1
+  - task: enum-34-d3-1
+  - task: enum-34-d5-2
+  - explanation:
+      - text: "How to solve: a list by a rule."
+      - text: "Decide what makes two cases different."
+      - text: "List the cases by a rule."
+      - text: "Count them, or multiply when choices are made one after another."
