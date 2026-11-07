@@ -1,0 +1,134 @@
+# A page of the workbook of school mathematics for grade 3 (R15): ten facts of the times tables,
+# the box in any place of the line — a missing factor, a missing number shared, a product and a
+# quotient. A division undoes a multiplication, and the trap of a box is a neighbouring fact or
+# the wrong operation.
+id: times-tables-d3
+statement:
+  - text: Write the missing numbers.
+canvas:
+  kind: workbook
+items:
+  - line:
+      - text: "6 ×"
+      - binding: box
+        check:
+          kind: number
+          key: "7"
+          trap_values:
+            - value: "36"
+              trap: took-away
+              text: That takes away instead of finding the missing factor. How many sixes make the product?
+            - value: "8"
+              trap: times-table-slip
+              text: That is one six too many. Count up in sixes and stop at the product the line gives.
+      - text: "= 42"
+  - line:
+      - binding: box
+        check:
+          kind: number
+          key: "4"
+          trap_values:
+            - value: "5"
+              trap: times-table-slip
+              text: That is one eight too many. Count up in eights and stop at the product the line gives.
+      - text: "× 8 = 32"
+  - line:
+      - text: "7 × 8 ="
+      - binding: box
+        check:
+          kind: number
+          key: "56"
+          trap_values:
+            - value: "15"
+              trap: wrong-operation
+              text: That adds the two numbers. Multiplying counts equal groups. How many are there in all the groups?
+            - value: "63"
+              trap: times-table-slip
+              text: That is one step too far. Count up in steps again, and stop at the fact the line asks for.
+  - line:
+      - text: "9 × 6 ="
+      - binding: box
+        check:
+          kind: number
+          key: "54"
+          trap_values:
+            - value: "45"
+              trap: times-table-slip
+              text: That is one step short. Count up in steps again, and stop at the fact the line asks for.
+  - line:
+      - binding: box
+        check:
+          kind: number
+          key: "28"
+          trap_values:
+            - value: "11"
+              trap: wrong-operation
+              text: Adding does not undo a division. What do you multiply to get back the number shared?
+      - text: "÷ 4 = 7"
+  - line:
+      - text: "36 ÷ 4 ="
+      - binding: box
+        check:
+          kind: number
+          key: "9"
+          trap_values:
+            - value: "8"
+              trap: times-table-slip
+              text: Multiply your answer back by the number you share by. Does it give the number shared?
+  - line:
+      - text: "8 ×"
+      - binding: box
+        check:
+          kind: number
+          key: "9"
+          trap_values:
+            - value: "8"
+              trap: times-table-slip
+              text: That is one eight too few. Count up in eights and stop at the product the line gives.
+      - text: "= 72"
+  - line:
+      - text: "63 ÷ 9 ="
+      - binding: box
+        check:
+          kind: number
+          key: "7"
+          trap_values:
+            - value: "6"
+              trap: times-table-slip
+              text: Multiply your answer back by the number you share by. Does it give the number shared?
+  - line:
+      - text: "7 × 7 ="
+      - binding: box
+        check:
+          kind: number
+          key: "49"
+          trap_values:
+            - value: "14"
+              trap: wrong-operation
+              text: That adds the two numbers. Multiplying counts equal groups. How many are there in all the groups?
+  - line:
+      - binding: box
+        check:
+          kind: number
+          key: "8"
+          trap_values:
+            - value: "42"
+              trap: took-away
+              text: That takes away instead of finding the missing factor. How many sixes make the product?
+      - text: "× 6 = 48"
+solution:
+  - text: "6 × 7 = 42, so the missing factor is 7."
+  - text: "4 × 8 = 32, so the missing factor is 4."
+  - text: "7 × 8 = 56."
+  - text: "9 × 6 = 54."
+  - text: "4 × 7 = 28, so 28 ÷ 4 = 7 and the missing number is 28."
+  - text: "4 × 9 = 36, so 36 ÷ 4 = 9."
+  - text: "8 × 9 = 72, so the missing factor is 9."
+  - text: "9 × 7 = 63, so 63 ÷ 9 = 7."
+  - text: "7 × 7 = 49."
+  - text: "8 × 6 = 48, so the missing factor is 8."
+techniques: [count-up, undo-it]
+skills:
+  primary: [times-tables]
+band: grade-3
+difficulty: 3

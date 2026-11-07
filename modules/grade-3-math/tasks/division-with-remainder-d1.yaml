@@ -1,0 +1,145 @@
+# A page of the workbook of school mathematics for grade 3 (R15): eight divisions of small numbers,
+# each line with a box for the quotient and one for the remainder. A quotient one too small, which
+# leaves a remainder too big, is the trap each line knows, and only its first box names it, so
+# that one mistake counts once.
+id: division-with-remainder-d1
+statement:
+  - text: Divide, and write the quotient and the remainder.
+canvas:
+  kind: workbook
+items:
+  - line:
+      - text: "7 ÷ 2 ="
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+          trap_values:
+            - value: "2"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "1"
+  - line:
+      - text: "9 ÷ 4 ="
+      - binding: box
+        check:
+          kind: number
+          key: "2"
+          trap_values:
+            - value: "1"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "1"
+  - line:
+      - text: "11 ÷ 3 ="
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+          trap_values:
+            - value: "2"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "2"
+  - line:
+      - text: "13 ÷ 5 ="
+      - binding: box
+        check:
+          kind: number
+          key: "2"
+          trap_values:
+            - value: "1"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+  - line:
+      - text: "17 ÷ 5 ="
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+          trap_values:
+            - value: "2"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "2"
+  - line:
+      - text: "10 ÷ 3 ="
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+          trap_values:
+            - value: "2"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "1"
+  - line:
+      - text: "15 ÷ 4 ="
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+          trap_values:
+            - value: "2"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+  - line:
+      - text: "19 ÷ 6 ="
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+          trap_values:
+            - value: "2"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "1"
+solution:
+  - text: "3 × 2 = 6, and 7 − 6 = 1, so 7 ÷ 2 = 3 r 1."
+  - text: "2 × 4 = 8, and 9 − 8 = 1, so 9 ÷ 4 = 2 r 1."
+  - text: "3 × 3 = 9, and 11 − 9 = 2, so 11 ÷ 3 = 3 r 2."
+  - text: "2 × 5 = 10, and 13 − 10 = 3, so 13 ÷ 5 = 2 r 3."
+  - text: "3 × 5 = 15, and 17 − 15 = 2, so 17 ÷ 5 = 3 r 2."
+  - text: "3 × 3 = 9, and 10 − 9 = 1, so 10 ÷ 3 = 3 r 1."
+  - text: "3 × 4 = 12, and 15 − 12 = 3, so 15 ÷ 4 = 3 r 3."
+  - text: "3 × 6 = 18, and 19 − 18 = 1, so 19 ÷ 6 = 3 r 1."
+techniques: [undo-it]
+skills:
+  primary: [division-with-remainder]
+  supporting: [times-tables]
+band: grade-3
+difficulty: 1

@@ -18,7 +18,7 @@ A component of [NovaTrail](https://github.com/altnovatrail/spec/tree/v0.9.3), a 
 
 ## Status
 
-Detailing is done: the first epic of [RUN.md](RUN.md) decided what the component's card left open, and the content and code follow in the order RUN.md sets. The first module is here: the first batch of olympiad maths, `novatrail/olympiad-math` 0.1.0, 27 tasks of three skills on three bands and their nine lessons. The module format v0 is in spec, at version 0.3, and CI checks every module in `modules/` with module-kit's CLI, a binary of its release whose signature CI verifies; the rest of the first content — small sets of school maths for grade 3 and of short essays — comes with the current epic, E2.
+Detailing is done: the first epic of [RUN.md](RUN.md) decided what the component's card left open, and the content and code follow in the order RUN.md sets. The first module is here: the first batch of olympiad maths, `novatrail/olympiad-math` 0.1.0, 27 tasks of three skills on three bands and their nine lessons. Beside it is a small set of school maths for grade 3 on a workbook, `novatrail/grade-3-math` 0.1.0: twelve pages of four skills and their four lessons. The module format v0 is in spec, at version 0.3, and CI checks every module in `modules/` with module-kit's CLI, a binary of its release whose signature CI verifies; the rest of the first content — a small set of short essays — comes with the current epic, E2.
 
 ## Documents
 

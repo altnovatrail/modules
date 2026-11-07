@@ -1,0 +1,51 @@
+# The trap catalog of the set of school mathematics for grade 3 (R15): the mistakes that its
+# workbook pages catch by a wrong value in a box, each with the skill it belongs to. Three are the
+# format's example's as it has them. wrong-operation is the example's reworded, for it is caught on
+# bare lines of the tables as well as in stories, and reversed-comparison is the example's but
+# belongs here to comparing-fractions, the skill that writes the signs. The rest are this set's
+# own. The texts hold no number and no sign: the keys of every line are searched in them.
+traps:
+  times-table-slip:
+    description: Took the product of a neighbouring fact of the times table, one step too far or too short.
+    skills: [times-tables]
+    trap_advice: Count up in the number you multiply by, out loud, until you reach the fact you need.
+  wrong-operation:
+    description: Added where the line multiplies or divides, or multiplied where it adds.
+    skills: [times-tables]
+    trap_advice: Say the line in words, as groups of the same size, then count what the groups make.
+  took-away:
+    description: Took one number from the other where the line multiplies or divides.
+    skills: [times-tables]
+    trap_advice: Taking away does not find a factor or a share. Ask how many groups of the same size make the number.
+  remainder-too-big:
+    description: Left a remainder as large as the number divided by, or larger.
+    skills: [division-with-remainder]
+    trap_advice: Check that the remainder is smaller than the number you share by; if it is not, one more fits.
+  remainder-left-out:
+    description: Left out what was left over where the story still needs a place for it.
+    skills: [division-with-remainder]
+    trap_advice: Ask what happens to what is left over. If it still needs a place of its own, count that place too.
+  remainder-not-added:
+    description: Built the number shared again from the groups alone, without adding what was left over.
+    skills: [division-with-remainder]
+    trap_advice: The number shared is the groups times their size, and then what was left over added to it.
+  not-in-lowest-terms:
+    description: Wrote a fraction of the right value that can still be reduced.
+    skills: [fractions-of-a-whole]
+    trap_advice: Look for a number that divides both the top and the bottom, and divide them both by it.
+  top-and-bottom-swapped:
+    description: Wrote the number of all the equal parts on top and the parts taken below.
+    skills: [fractions-of-a-whole]
+    trap_advice: The bottom number says how many equal parts the whole has, and the top says how many of them you take.
+  one-part-only:
+    description: Found one equal part of the number where the fraction takes several of them.
+    skills: [fractions-of-a-whole]
+    trap_advice: Find one equal part first, then take as many of them as the top of the fraction says.
+  reversed-comparison:
+    description: "Wrote the sign for the other way round: greater for less, or less for greater."
+    skills: [comparing-fractions]
+    trap_advice: Say the comparison in words first, then write the sign whose open side faces the greater number.
+  greater-bottom-greater-fraction:
+    description: Took the fraction with the greater bottom number for the greater one, as if the bottom numbers were whole numbers to compare.
+    skills: [comparing-fractions]
+    trap_advice: A whole cut into more equal parts has smaller parts. Picture the two wholes cut up before you compare.

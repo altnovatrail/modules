@@ -1,0 +1,23 @@
+# The manifest of the official module of school mathematics for grade 3, on a workbook (R41 spec;
+# R15): the format's example of this module, but for its ID, which modules names (R03). Its skills
+# teach anchor skills of the shared taxonomy and need none, so it has no dependencies.
+module_format_version: "0.3"
+id: novatrail/grade-3-math
+version: "0.1.0"
+title: School mathematics, grade 3
+subject: mathematics
+audience:
+  age_categories: [under_13]
+  grades: [3]
+bands:
+  - id: grade-3
+    title: Grade 3
+    grades: [3]
+languages:
+  explanation: en
+authors:
+  - name: The NovaTrail authors
+license: Apache-2.0
+rung_templates:
+  - Which step of your work gave you this answer?
+  - Read the task again slowly. Is there anything it says that your work does not use yet?

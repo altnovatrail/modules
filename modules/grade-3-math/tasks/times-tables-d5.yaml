@@ -1,0 +1,105 @@
+# A page of the workbook of school mathematics for grade 3 (R15): four short stories and three
+# facts of the times tables, none of them a fact that the solutions of the lesson's earlier pages
+# already give. A story's box takes the number with its unit, and a story has a simpler case on
+# smaller numbers, none of which is a key of the page.
+id: times-tables-d5
+statement:
+  - text: Write the missing numbers.
+canvas:
+  kind: workbook
+items:
+  - line:
+      - text: There are 6 boxes of 6 crayons. There are
+      - binding: box
+        check:
+          kind: number
+          key: "36"
+          units: [crayon, crayons]
+          trap_values:
+            - value: "12"
+              trap: wrong-operation
+              text: That adds the boxes to the crayons in one box. How many crayons are there in all the boxes?
+      - text: crayons.
+    simpler_case: Try 2 boxes of 3 crayons first. How many crayons are there in all?
+  - line:
+      - text: A stool has 3 legs. 8 stools have
+      - binding: box
+        check:
+          kind: number
+          key: "24"
+          units: [leg, legs]
+          trap_values:
+            - value: "11"
+              trap: wrong-operation
+              text: That adds the stools to the legs of one stool. How many legs do all the stools have?
+      - text: legs.
+    simpler_case: Try 2 stools first. How many legs do they have?
+  - line:
+      - text: "35 stickers are shared equally by 5 children. Each gets"
+      - binding: box
+        check:
+          kind: number
+          key: "7"
+          units: [sticker, stickers]
+          trap_values:
+            - value: "8"
+              trap: times-table-slip
+              text: Multiply your answer back by the number of children. Does it give all the stickers?
+      - text: stickers.
+    simpler_case: Try 6 stickers shared equally by 2 children first. How many does each get?
+  - line:
+      - text: Pens come in packs of 5. For 45 pens you buy
+      - binding: box
+        check:
+          kind: number
+          key: "9"
+          units: [pack, packs]
+          trap_values:
+            - value: "40"
+              trap: took-away
+              text: Taking away does not count the packs. How many packs of this size make all the pens?
+      - text: packs.
+    simpler_case: Try 15 pens in packs of 5 first. How many packs is that?
+  - line:
+      - text: "8 × 8 ="
+      - binding: box
+        check:
+          kind: number
+          key: "64"
+          trap_values:
+            - value: "56"
+              trap: times-table-slip
+              text: That is one step short. Count up in steps again, and stop at the fact the line asks for.
+  - line:
+      - text: "3 × 9 ="
+      - binding: box
+        check:
+          kind: number
+          key: "27"
+          trap_values:
+            - value: "12"
+              trap: wrong-operation
+              text: That adds the two numbers. Multiplying counts equal groups. How many are there in all the groups?
+  - line:
+      - text: "81 ÷ 9 ="
+      - binding: box
+        check:
+          kind: number
+          key: "9"
+          trap_values:
+            - value: "8"
+              trap: times-table-slip
+              text: Multiply your answer back by the number you share by. Does it give the number shared?
+solution:
+  - text: "6 boxes of 6 crayons are 6 × 6 = 36 crayons."
+  - text: "8 stools of 3 legs are 8 × 3 = 24 legs."
+  - text: "35 ÷ 5 = 7, since 7 × 5 = 35: each child gets 7 stickers."
+  - text: "45 ÷ 5 = 9, since 9 × 5 = 45: you buy 9 packs."
+  - text: "8 × 8 = 64."
+  - text: "3 × 9 = 27."
+  - text: "9 × 9 = 81, so 81 ÷ 9 = 9."
+techniques: [say-it-in-words, count-up]
+skills:
+  primary: [times-tables]
+band: grade-3
+difficulty: 5

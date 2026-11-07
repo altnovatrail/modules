@@ -1,0 +1,116 @@
+# A page of the workbook of school mathematics for grade 3 (R15): two fractions with the same top
+# number on each line, where the greater bottom number makes the smaller fraction. Taking the
+# greater bottom number for the greater fraction is the trap a box knows.
+id: comparing-fractions-d3
+statement:
+  - text: Write <, > or = between the two fractions.
+canvas:
+  kind: workbook
+items:
+  - line:
+      - text: "1/2"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: ">"
+          trap_values:
+            - value: "<"
+              trap: greater-bottom-greater-fraction
+              text: A whole cut into more equal parts has smaller parts. Which of the two takes the bigger parts?
+      - text: "1/3"
+  - line:
+      - text: "1/5"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: "<"
+          trap_values:
+            - value: ">"
+              trap: greater-bottom-greater-fraction
+              text: A whole cut into more equal parts has smaller parts. Which of the two takes the bigger parts?
+      - text: "1/4"
+  - line:
+      - text: "1/8"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: "<"
+          trap_values:
+            - value: ">"
+              trap: greater-bottom-greater-fraction
+              text: A whole cut into more equal parts has smaller parts. Which of the two takes the bigger parts?
+      - text: "1/6"
+  - line:
+      - text: "2/3"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: ">"
+          trap_values:
+            - value: "<"
+              trap: greater-bottom-greater-fraction
+              text: A whole cut into more equal parts has smaller parts. Which of the two takes the bigger parts?
+      - text: "2/5"
+  - line:
+      - text: "3/10"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: "<"
+          trap_values:
+            - value: ">"
+              trap: greater-bottom-greater-fraction
+              text: A whole cut into more equal parts has smaller parts. Which of the two takes the bigger parts?
+      - text: "3/4"
+  - line:
+      - text: "1/9"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: "="
+      - text: "1/9"
+  - line:
+      - text: "4/5"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: ">"
+          trap_values:
+            - value: "<"
+              trap: greater-bottom-greater-fraction
+              text: A whole cut into more equal parts has smaller parts. Which of the two takes the bigger parts?
+      - text: "4/7"
+  - line:
+      - text: "1/6"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: ">"
+          trap_values:
+            - value: "<"
+              trap: greater-bottom-greater-fraction
+              text: A whole cut into more equal parts has smaller parts. Which of the two takes the bigger parts?
+      - text: "1/10"
+solution:
+  - text: "A half is bigger than a third, since a whole cut into 2 parts has bigger parts: 1/2 > 1/3."
+  - text: "A fifth is smaller than a quarter: 1/5 < 1/4."
+  - text: "An eighth is smaller than a sixth: 1/8 < 1/6."
+  - text: "Two thirds and two fifths take 2 parts each, and thirds are bigger: 2/3 > 2/5."
+  - text: "Both take 3 parts, and tenths are smaller than quarters: 3/10 < 3/4."
+  - text: "The two fractions are the same: 1/9 = 1/9."
+  - text: "Both take 4 parts, and fifths are bigger than sevenths: 4/5 > 4/7."
+  - text: "A sixth is bigger than a tenth: 1/6 > 1/10."
+techniques: [draw-the-parts, say-it-in-words]
+skills:
+  primary: [comparing-fractions]
+  supporting: [fractions-of-a-whole]
+band: grade-3
+difficulty: 3

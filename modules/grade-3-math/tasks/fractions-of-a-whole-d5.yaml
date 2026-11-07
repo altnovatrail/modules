@@ -1,0 +1,112 @@
+# A page of the workbook of school mathematics for grade 3 (R15): fractions in lowest terms, where
+# a fraction of the right value that can be reduced is not yet right (form reduced), and two
+# stories that take a fraction of a number. The statement says that the fractions are in lowest
+# terms. Neither story is a line of the lesson's earlier pages. A story has a simpler case on
+# smaller numbers, and neither a story nor a simpler case names, in digits or in words, a fraction
+# that is a key of the page.
+id: fractions-of-a-whole-d5
+statement:
+  - text: Write each fraction in lowest terms, and the missing numbers.
+canvas:
+  kind: workbook
+items:
+  - line:
+      - text: "2 of 8 slices of the pizza are left. That is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "1/4"
+          form: reduced
+          trap_values:
+            - value: "2/8"
+              trap: not-in-lowest-terms
+              text: Your fraction is right in value. Can its top and its bottom both be divided by the same number?
+      - text: "of the pizza."
+  - line:
+      - text: "6 of 12 eggs are brown. That is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "1/2"
+          form: reduced
+          trap_values:
+            - value: "6/12"
+              trap: not-in-lowest-terms
+              text: Your fraction is right in value. Can its top and its bottom both be divided by the same number?
+      - text: "of the eggs."
+  - line:
+      - text: "4 of 10 marbles are red. That is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "2/5"
+          form: reduced
+          trap_values:
+            - value: "4/10"
+              trap: not-in-lowest-terms
+              text: Your fraction is right in value. Can its top and its bottom both be divided by the same number?
+      - text: "of the marbles."
+  - line:
+      - text: "3 of 9 cards are blue. That is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "1/3"
+          form: reduced
+          trap_values:
+            - value: "3/9"
+              trap: not-in-lowest-terms
+              text: Your fraction is right in value. Can its top and its bottom both be divided by the same number?
+      - text: "of the cards."
+  - line:
+      - text: "6 of 8 cups are full. That is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "3/4"
+          form: reduced
+          trap_values:
+            - value: "6/8"
+              trap: not-in-lowest-terms
+              text: Your fraction is right in value. Can its top and its bottom both be divided by the same number?
+      - text: "of the cups."
+  - line:
+      - text: Sam reads 3/5 of a book of 40 pages. He reads
+      - binding: box
+        check:
+          kind: number
+          key: "24"
+          units: [page, pages]
+          trap_values:
+            - value: "8"
+              trap: one-part-only
+              text: That is one equal part of the book. How many of the parts does the fraction take?
+      - text: pages.
+    simpler_case: Try a book of 20 pages first. How many pages make one fifth of it, and how many make three fifths?
+  - line:
+      - text: Mia eats 2/3 of 15 grapes. She eats
+      - binding: box
+        check:
+          kind: number
+          key: "10"
+          units: [grape, grapes]
+          trap_values:
+            - value: "5"
+              trap: one-part-only
+              text: That is one equal part of the grapes. How many of the parts does the fraction take?
+      - text: grapes.
+    simpler_case: Try 2/3 of 6 grapes first. Share them into equal parts, and take as many parts as the top number says.
+solution:
+  - text: "2 of 8 is 2/8, and dividing both 2 and 8 by 2 gives 1/4."
+  - text: "6 of 12 is 6/12, and dividing both 6 and 12 by 6 gives 1/2."
+  - text: "4 of 10 is 4/10, and dividing both 4 and 10 by 2 gives 2/5."
+  - text: "3 of 9 is 3/9, and dividing both 3 and 9 by 3 gives 1/3."
+  - text: "6 of 8 is 6/8, and dividing both 6 and 8 by 2 gives 3/4."
+  - text: "40 ÷ 5 = 8 pages is one fifth, and three fifths are 3 × 8 = 24 pages."
+  - text: "15 ÷ 3 = 5 grapes is one third, and two thirds are 2 × 5 = 10 grapes."
+techniques: [draw-the-parts, say-it-in-words]
+skills:
+  primary: [fractions-of-a-whole]
+  supporting: [times-tables]
+band: grade-3
+difficulty: 5

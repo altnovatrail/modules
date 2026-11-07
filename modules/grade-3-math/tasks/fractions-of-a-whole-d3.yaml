@@ -1,0 +1,83 @@
+# A page of the workbook of school mathematics for grade 3 (R15): a fraction of a number, the box
+# for the number. One equal part, where the fraction takes several, is the trap a box knows.
+id: fractions-of-a-whole-d3
+statement:
+  - text: Write the missing numbers.
+canvas:
+  kind: workbook
+items:
+  - line:
+      - text: "1/2 of 10 ="
+      - binding: box
+        check:
+          kind: number
+          key: "5"
+  - line:
+      - text: "1/3 of 12 ="
+      - binding: box
+        check:
+          kind: number
+          key: "4"
+  - line:
+      - text: "1/4 of 20 ="
+      - binding: box
+        check:
+          kind: number
+          key: "5"
+  - line:
+      - text: "1/5 of 30 ="
+      - binding: box
+        check:
+          kind: number
+          key: "6"
+  - line:
+      - text: "2/3 of 12 ="
+      - binding: box
+        check:
+          kind: number
+          key: "8"
+          trap_values:
+            - value: "4"
+              trap: one-part-only
+              text: That is one equal part. How many of the parts does the fraction take?
+  - line:
+      - text: "3/4 of 8 ="
+      - binding: box
+        check:
+          kind: number
+          key: "6"
+          trap_values:
+            - value: "2"
+              trap: one-part-only
+              text: That is one equal part. How many of the parts does the fraction take?
+  - line:
+      - text: "1/6 of 18 ="
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+  - line:
+      - text: "2/5 of 10 ="
+      - binding: box
+        check:
+          kind: number
+          key: "4"
+          trap_values:
+            - value: "2"
+              trap: one-part-only
+              text: That is one equal part. How many of the parts does the fraction take?
+solution:
+  - text: "10 ÷ 2 = 5, so 1/2 of 10 is 5."
+  - text: "12 ÷ 3 = 4, so 1/3 of 12 is 4."
+  - text: "20 ÷ 4 = 5, so 1/4 of 20 is 5."
+  - text: "30 ÷ 5 = 6, so 1/5 of 30 is 6."
+  - text: "12 ÷ 3 = 4 is one third, and two thirds are 2 × 4 = 8."
+  - text: "8 ÷ 4 = 2 is one quarter, and three quarters are 3 × 2 = 6."
+  - text: "18 ÷ 6 = 3, so 1/6 of 18 is 3."
+  - text: "10 ÷ 5 = 2 is one fifth, and two fifths are 2 × 2 = 4."
+techniques: [draw-the-parts]
+skills:
+  primary: [fractions-of-a-whole]
+  supporting: [times-tables]
+band: grade-3
+difficulty: 3
