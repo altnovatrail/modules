@@ -1,0 +1,15 @@
+# A lesson of the set of school mathematics for grade 3 (R15): an explanation and the three pages
+# of the skill, in the order of their difficulty. It names no digit and no sign, since the keys of
+# its pages are fractions and signs, and has no worked example: in the format 0.3 one stands only
+# on a sheet. The skill graph puts it after the lesson of fractions of a whole.
+id: comparing-fractions
+title: Comparing fractions
+skills: [comparing-fractions]
+segments:
+  - explanation:
+      - text: When two fractions have the same bottom number, their parts are the same size. The fraction that takes more of them is the greater.
+      - text: When two fractions have the same top number, they take as many parts each. A whole cut into fewer parts has bigger parts, so the fraction with the smaller bottom number is the greater.
+      - text: Say the comparison in words first. Then write the sign with its open side towards the greater fraction, or the sign of two equal fractions when they are the same.
+  - task: comparing-fractions-d1
+  - task: comparing-fractions-d3
+  - task: comparing-fractions-d5

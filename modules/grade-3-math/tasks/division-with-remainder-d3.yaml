@@ -1,0 +1,136 @@
+# A page of the workbook of school mathematics for grade 3 (R15): eight divisions within the times
+# tables up to ten, one of them exact, so that its remainder is 0. A quotient one too small, with
+# the remainder that it leaves, is the trap of a line, and only its first box names it.
+id: division-with-remainder-d3
+statement:
+  - text: Divide, and write the quotient and the remainder.
+canvas:
+  kind: workbook
+items:
+  - line:
+      - text: "47 ÷ 6 ="
+      - binding: box
+        check:
+          kind: number
+          key: "7"
+          trap_values:
+            - value: "6"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "5"
+  - line:
+      - text: "38 ÷ 5 ="
+      - binding: box
+        check:
+          kind: number
+          key: "7"
+          trap_values:
+            - value: "6"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+  - line:
+      - text: "29 ÷ 4 ="
+      - binding: box
+        check:
+          kind: number
+          key: "7"
+          trap_values:
+            - value: "6"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "1"
+  - line:
+      - text: "52 ÷ 8 ="
+      - binding: box
+        check:
+          kind: number
+          key: "6"
+          trap_values:
+            - value: "5"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "4"
+  - line:
+      - text: "24 ÷ 6 ="
+      - binding: box
+        check:
+          kind: number
+          key: "4"
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "0"
+  - line:
+      - text: "61 ÷ 7 ="
+      - binding: box
+        check:
+          kind: number
+          key: "8"
+          trap_values:
+            - value: "7"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "5"
+  - line:
+      - text: "44 ÷ 9 ="
+      - binding: box
+        check:
+          kind: number
+          key: "4"
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "8"
+  - line:
+      - text: "33 ÷ 10 ="
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+          trap_values:
+            - value: "2"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+solution:
+  - text: "7 × 6 = 42, and 47 − 42 = 5, so 47 ÷ 6 = 7 r 5."
+  - text: "7 × 5 = 35, and 38 − 35 = 3, so 38 ÷ 5 = 7 r 3."
+  - text: "7 × 4 = 28, and 29 − 28 = 1, so 29 ÷ 4 = 7 r 1."
+  - text: "6 × 8 = 48, and 52 − 48 = 4, so 52 ÷ 8 = 6 r 4."
+  - text: "4 × 6 = 24, and nothing is left, so 24 ÷ 6 = 4 r 0."
+  - text: "8 × 7 = 56, and 61 − 56 = 5, so 61 ÷ 7 = 8 r 5."
+  - text: "4 × 9 = 36, and 44 − 36 = 8, so 44 ÷ 9 = 4 r 8."
+  - text: "3 × 10 = 30, and 33 − 30 = 3, so 33 ÷ 10 = 3 r 3."
+techniques: [undo-it]
+skills:
+  primary: [division-with-remainder]
+  supporting: [times-tables]
+band: grade-3
+difficulty: 3

@@ -1,0 +1,101 @@
+# A page of the workbook of school mathematics for grade 3 (R15): fractions named from equal parts,
+# in words, with no picture. Every fraction of the right value is right (form any), and the top and
+# the bottom swapped is the trap a box knows.
+id: fractions-of-a-whole-d1
+statement:
+  - text: Write each fraction.
+canvas:
+  kind: workbook
+items:
+  - line:
+      - text: "1 of 2 equal parts is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "1/2"
+          trap_values:
+            - value: "2/1"
+              trap: top-and-bottom-swapped
+              text: The bottom number says how many equal parts there are, and the top how many of them are taken.
+  - line:
+      - text: "1 of 3 equal parts is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "1/3"
+          trap_values:
+            - value: "3/1"
+              trap: top-and-bottom-swapped
+              text: The bottom number says how many equal parts there are, and the top how many of them are taken.
+  - line:
+      - text: "3 of 4 equal parts are"
+      - binding: box
+        check:
+          kind: fraction
+          key: "3/4"
+          trap_values:
+            - value: "4/3"
+              trap: top-and-bottom-swapped
+              text: The bottom number says how many equal parts there are, and the top how many of them are taken.
+  - line:
+      - text: "2 of 5 equal parts are"
+      - binding: box
+        check:
+          kind: fraction
+          key: "2/5"
+          trap_values:
+            - value: "5/2"
+              trap: top-and-bottom-swapped
+              text: The bottom number says how many equal parts there are, and the top how many of them are taken.
+  - line:
+      - text: "1 of 8 equal parts is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "1/8"
+  - line:
+      - text: "5 of 6 equal parts are"
+      - binding: box
+        check:
+          kind: fraction
+          key: "5/6"
+          trap_values:
+            - value: "6/5"
+              trap: top-and-bottom-swapped
+              text: The bottom number says how many equal parts there are, and the top how many of them are taken.
+  - line:
+      - text: "A cake is cut into 4 equal pieces, and 1 is eaten. That is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "1/4"
+          trap_values:
+            - value: "4/1"
+              trap: top-and-bottom-swapped
+              text: The bottom number says how many equal parts there are, and the top how many of them are taken.
+      - text: "of the cake."
+  - line:
+      - text: "A bar has 10 equal squares, and 3 are left. That is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "3/10"
+          trap_values:
+            - value: "10/3"
+              trap: top-and-bottom-swapped
+              text: The bottom number says how many equal parts there are, and the top how many of them are taken.
+      - text: "of the bar."
+solution:
+  - text: "The whole has 2 equal parts, and 1 is taken: 1/2."
+  - text: "The whole has 3 equal parts, and 1 is taken: 1/3."
+  - text: "The whole has 4 equal parts, and 3 are taken: 3/4."
+  - text: "The whole has 5 equal parts, and 2 are taken: 2/5."
+  - text: "The whole has 8 equal parts, and 1 is taken: 1/8."
+  - text: "The whole has 6 equal parts, and 5 are taken: 5/6."
+  - text: "The cake has 4 equal pieces, and 1 is eaten: 1/4 of the cake."
+  - text: "The bar has 10 equal squares, and 3 are left: 3/10 of the bar."
+techniques: [draw-the-parts]
+skills:
+  primary: [fractions-of-a-whole]
+band: grade-3
+difficulty: 1

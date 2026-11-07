@@ -1,0 +1,15 @@
+# A lesson of the set of school mathematics for grade 3 (R15): an explanation and the three pages
+# of the skill, in the order of their difficulty. It names no digit and no fraction, since the
+# keys of its pages are small numbers and fractions, and has no worked example: in the format 0.3
+# one stands only on a sheet.
+id: fractions-of-a-whole
+title: Fractions of a whole
+skills: [fractions-of-a-whole]
+segments:
+  - explanation:
+      - text: A fraction names equal parts of a whole. The bottom number says how many equal parts the whole is cut into, and the top number says how many of them you take.
+      - text: To find a fraction of a number, share the number into as many equal parts as the bottom says. That is one part. Then take as many parts as the top says.
+      - text: The same part of a whole can be written as more than one fraction. A fraction is in lowest terms when no number but one divides both its top and its bottom. To get there, divide them both by the same number.
+  - task: fractions-of-a-whole-d1
+  - task: fractions-of-a-whole-d3
+  - task: fractions-of-a-whole-d5

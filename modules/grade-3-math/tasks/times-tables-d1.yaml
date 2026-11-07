@@ -1,0 +1,101 @@
+# A page of the workbook of school mathematics for grade 3 (R15): eight facts of the times tables,
+# the box for the product. A neighbouring fact is the slip each box knows.
+id: times-tables-d1
+statement:
+  - text: Write the missing numbers.
+canvas:
+  kind: workbook
+items:
+  - line:
+      - text: "3 × 4 ="
+      - binding: box
+        check:
+          kind: number
+          key: "12"
+          trap_values:
+            - value: "7"
+              trap: wrong-operation
+              text: That adds the two numbers. Multiplying counts equal groups. How many are there in all the groups?
+            - value: "15"
+              trap: times-table-slip
+              text: That is one step too far. Count up in steps again, and stop at the fact the line asks for.
+  - line:
+      - text: "5 × 2 ="
+      - binding: box
+        check:
+          kind: number
+          key: "10"
+          trap_values:
+            - value: "7"
+              trap: wrong-operation
+              text: That adds the two numbers. Multiplying counts equal groups. How many are there in all the groups?
+  - line:
+      - text: "2 × 7 ="
+      - binding: box
+        check:
+          kind: number
+          key: "14"
+          trap_values:
+            - value: "12"
+              trap: times-table-slip
+              text: That is one step short. Count up in steps again, and stop at the fact the line asks for.
+  - line:
+      - text: "4 × 5 ="
+      - binding: box
+        check:
+          kind: number
+          key: "20"
+          trap_values:
+            - value: "9"
+              trap: wrong-operation
+              text: That adds the two numbers. Multiplying counts equal groups. How many are there in all the groups?
+  - line:
+      - text: "10 × 3 ="
+      - binding: box
+        check:
+          kind: number
+          key: "30"
+  - line:
+      - text: "3 × 3 ="
+      - binding: box
+        check:
+          kind: number
+          key: "9"
+          trap_values:
+            - value: "6"
+              trap: wrong-operation
+              text: That adds the two numbers. Multiplying counts equal groups. How many are there in all the groups?
+  - line:
+      - text: "5 × 5 ="
+      - binding: box
+        check:
+          kind: number
+          key: "25"
+          trap_values:
+            - value: "10"
+              trap: wrong-operation
+              text: That adds the two numbers. Multiplying counts equal groups. How many are there in all the groups?
+  - line:
+      - text: "4 × 2 ="
+      - binding: box
+        check:
+          kind: number
+          key: "8"
+          trap_values:
+            - value: "6"
+              trap: wrong-operation
+              text: That adds the two numbers. Multiplying counts equal groups. How many are there in all the groups?
+solution:
+  - text: "3 × 4 = 12: three groups of four."
+  - text: "5 × 2 = 10: five groups of two."
+  - text: "2 × 7 = 14: two groups of seven."
+  - text: "4 × 5 = 20: four groups of five."
+  - text: "10 × 3 = 30: ten groups of three."
+  - text: "3 × 3 = 9: three groups of three."
+  - text: "5 × 5 = 25: five groups of five."
+  - text: "4 × 2 = 8: four groups of two."
+techniques: [count-up]
+skills:
+  primary: [times-tables]
+band: grade-3
+difficulty: 1

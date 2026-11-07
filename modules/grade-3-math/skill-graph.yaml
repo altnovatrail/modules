@@ -1,0 +1,27 @@
+# The skill graph of the set of school mathematics for grade 3 (R15): four skills of the format's
+# example of this module, as it has them, and closed under their prerequisites. They teach the
+# three anchor skills of the first slice. Their tiers come out 1, 2, 2 and 3, and have no names,
+# so the skill map shows them by number.
+skills:
+  times-tables:
+    title: Times tables
+    description: Knows the products of the whole numbers from 1 to 10 and the quotients they give.
+    teaches: [core.multiplication-table]
+    assessability: verdict
+  division-with-remainder:
+    title: Division with a remainder
+    description: Divides a whole number by a number from 1 to 10 and gives the quotient and the remainder.
+    prerequisites: [times-tables]
+    teaches: [core.division-with-remainder]
+    assessability: verdict
+  fractions-of-a-whole:
+    title: Fractions of a whole
+    description: Names the fraction of a shape split into equal parts, and finds a fraction of a number, such as 2/3 of 12.
+    prerequisites: [times-tables]
+    teaches: [core.fractions-of-a-whole]
+    assessability: verdict
+  comparing-fractions:
+    title: Comparing fractions
+    description: Compares two fractions with the same denominator or with the same numerator.
+    prerequisites: [fractions-of-a-whole]
+    assessability: verdict

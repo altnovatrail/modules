@@ -1,0 +1,91 @@
+# A page of the workbook of school mathematics for grade 3 (R15): two fractions with the same
+# bottom number on each line, and the sign between them a choice written by hand. The statement
+# names the signs that the box takes, since the check's options are closed. The sign the other way
+# round is the trap a box knows.
+id: comparing-fractions-d1
+statement:
+  - text: Write <, > or = between the two fractions.
+canvas:
+  kind: workbook
+items:
+  - line:
+      - text: "1/4"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: "<"
+          trap_values:
+            - value: ">"
+              trap: reversed-comparison
+              text: The sign is the other way round. Which fraction is the greater? Its open side faces it.
+      - text: "3/4"
+  - line:
+      - text: "5/6"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: ">"
+          trap_values:
+            - value: "<"
+              trap: reversed-comparison
+              text: The sign is the other way round. Which fraction is the greater? Its open side faces it.
+      - text: "2/6"
+  - line:
+      - text: "2/5"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: "<"
+          trap_values:
+            - value: ">"
+              trap: reversed-comparison
+              text: The sign is the other way round. Which fraction is the greater? Its open side faces it.
+      - text: "4/5"
+  - line:
+      - text: "3/8"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: "="
+      - text: "3/8"
+  - line:
+      - text: "7/10"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: "<"
+          trap_values:
+            - value: ">"
+              trap: reversed-comparison
+              text: The sign is the other way round. Which fraction is the greater? Its open side faces it.
+      - text: "9/10"
+  - line:
+      - text: "4/7"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: ">"
+          trap_values:
+            - value: "<"
+              trap: reversed-comparison
+              text: The sign is the other way round. Which fraction is the greater? Its open side faces it.
+      - text: "1/7"
+solution:
+  - text: "Both are quarters, and 1 quarter is fewer than 3: 1/4 < 3/4."
+  - text: "Both are sixths, and 5 sixths are more than 2: 5/6 > 2/6."
+  - text: "Both are fifths, and 2 fifths are fewer than 4: 2/5 < 4/5."
+  - text: "The two fractions are the same: 3/8 = 3/8."
+  - text: "Both are tenths, and 7 tenths are fewer than 9: 7/10 < 9/10."
+  - text: "Both are sevenths, and 4 sevenths are more than 1: 4/7 > 1/7."
+techniques: [say-it-in-words, draw-the-parts]
+skills:
+  primary: [comparing-fractions]
+  supporting: [fractions-of-a-whole]
+band: grade-3
+difficulty: 1

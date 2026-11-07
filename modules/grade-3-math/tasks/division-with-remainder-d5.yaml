@@ -1,0 +1,115 @@
+# A page of the workbook of school mathematics for grade 3 (R15): stories in which the remainder
+# is what is left over, a story in which what is left over still needs a boat, two lines whose
+# number shared is missing, and two divisions. A story has a simpler case on smaller numbers, none
+# of which is a key of the page.
+id: division-with-remainder-d5
+statement:
+  - text: Divide, and write the missing numbers.
+canvas:
+  kind: workbook
+items:
+  - line:
+      - text: "23 apples go into bags of 4. Full bags:"
+      - binding: box
+        check:
+          kind: number
+          key: "5"
+          trap_values:
+            - value: "4"
+              trap: remainder-too-big
+              text: One more bag can still be filled. Multiply back and see what is left.
+      - text: "Apples left:"
+      - binding: box
+        check:
+          kind: number
+          key: "3"
+    simpler_case: Try 10 apples in bags of 6 first. How many bags are full, and how many apples are left?
+  - line:
+      - text: "30 children sit at tables of 4. Full tables:"
+      - binding: box
+        check:
+          kind: number
+          key: "7"
+          trap_values:
+            - value: "6"
+              trap: remainder-too-big
+              text: One more table can still be filled. Multiply back and see who is left.
+      - text: "Children left:"
+      - binding: box
+        check:
+          kind: number
+          key: "2"
+    simpler_case: Try 9 children at tables of 6 first. How many tables are full, and how many children are left?
+  - line:
+      - text: A boat takes 6 people. For 40 people you need
+      - binding: box
+        check:
+          kind: number
+          key: "7"
+          units: [boat, boats]
+          trap_values:
+            - value: "6"
+              trap: remainder-left-out
+              text: The people who are left over need a boat too. How many boats carry everyone?
+      - text: boats.
+    simpler_case: Try a boat that takes 6 people, for 8 people, first. How many boats carry everyone?
+  - line:
+      - binding: box
+        check:
+          kind: number
+          key: "32"
+          trap_values:
+            - value: "30"
+              trap: remainder-not-added
+              text: That is the groups without what is left. Add the remainder to the product.
+      - text: "÷ 5 = 6 r 2"
+  - line:
+      - binding: box
+        check:
+          kind: number
+          key: "22"
+          trap_values:
+            - value: "21"
+              trap: remainder-not-added
+              text: That is the groups without what is left. Add the remainder to the product.
+      - text: "÷ 3 = 7 r 1"
+  - line:
+      - text: "50 ÷ 7 ="
+      - binding: box
+        check:
+          kind: number
+          key: "7"
+          trap_values:
+            - value: "6"
+              trap: remainder-too-big
+              text: One more group still fits into the number shared. Multiply back and see what is left.
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "1"
+  - line:
+      - text: "39 ÷ 8 ="
+      - binding: box
+        check:
+          kind: number
+          key: "4"
+      - text: r
+      - binding: box
+        check:
+          kind: number
+          key: "7"
+solution:
+  - text: "5 × 4 = 20, and 23 − 20 = 3: 5 full bags and 3 apples left."
+  - text: "7 × 4 = 28, and 30 − 28 = 2: 7 full tables and 2 children left."
+  - text: "6 × 6 = 36, and 40 − 36 = 4: 6 boats are full, and the 4 people left need one more, so 7 boats."
+  - text: "6 × 5 = 30, and 30 + 2 = 32, so 32 ÷ 5 = 6 r 2."
+  - text: "7 × 3 = 21, and 21 + 1 = 22, so 22 ÷ 3 = 7 r 1."
+  - text: "7 × 7 = 49, and 50 − 49 = 1, so 50 ÷ 7 = 7 r 1."
+  - text: "4 × 8 = 32, and 39 − 32 = 7, so 39 ÷ 8 = 4 r 7."
+techniques: [undo-it, say-it-in-words]
+skills:
+  primary: [division-with-remainder]
+  supporting: [times-tables]
+band: grade-3
+difficulty: 5

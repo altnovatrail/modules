@@ -1,0 +1,97 @@
+# A page of the workbook of school mathematics for grade 3 (R15): signs between fractions with the
+# same bottom or the same top number, and lines whose box takes the greater or the smaller of two
+# fractions, a fraction of any form. Taking the greater bottom number for the greater fraction is
+# the trap that most boxes know, and the sign the other way round that of the first line.
+id: comparing-fractions-d5
+statement:
+  - text: Write <, > or = between the two fractions, and the fractions that the lines ask for.
+canvas:
+  kind: workbook
+items:
+  - line:
+      - text: "3/8"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: "<"
+          trap_values:
+            - value: ">"
+              trap: reversed-comparison
+              text: The sign is the other way round. Which fraction is the greater? Its open side faces it.
+      - text: "5/8"
+  - line:
+      - text: "1/3"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: ">"
+          trap_values:
+            - value: "<"
+              trap: greater-bottom-greater-fraction
+              text: A whole cut into more equal parts has smaller parts. Which of the two takes the bigger parts?
+      - text: "1/7"
+  - line:
+      - text: "5/9"
+      - binding: box
+        check:
+          kind: choice
+          options: ["<", ">", "="]
+          key: "<"
+          trap_values:
+            - value: ">"
+              trap: greater-bottom-greater-fraction
+              text: A whole cut into more equal parts has smaller parts. Which of the two takes the bigger parts?
+      - text: "5/6"
+  - line:
+      - text: "Of 2/7 and 5/7, the greater is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "5/7"
+  - line:
+      - text: "Of 1/3 and 1/5, the smaller is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "1/5"
+          trap_values:
+            - value: "1/3"
+              trap: greater-bottom-greater-fraction
+              text: A whole cut into more equal parts has smaller parts. Which of the two takes the smaller parts?
+  - line:
+      - text: "Jo eats 1/4 of a cake, and Kim eats 1/3 of it. The bigger share is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "1/3"
+          trap_values:
+            - value: "1/4"
+              trap: greater-bottom-greater-fraction
+              text: A cake cut into more equal pieces has smaller pieces. Whose pieces are bigger?
+    simpler_case: Picture a cake cut in half and one cut into ten pieces. Which piece is bigger?
+  - line:
+      - text: "Of 3/10 and 3/5, the greater is"
+      - binding: box
+        check:
+          kind: fraction
+          key: "3/5"
+          trap_values:
+            - value: "3/10"
+              trap: greater-bottom-greater-fraction
+              text: A whole cut into more equal parts has smaller parts. Which of the two takes the bigger parts?
+solution:
+  - text: "Both are eighths, and 3 eighths are fewer than 5: 3/8 < 5/8."
+  - text: "A third is bigger than a seventh: 1/3 > 1/7."
+  - text: "Both take 5 parts, and ninths are smaller than sixths: 5/9 < 5/6."
+  - text: "Both are sevenths, and 5 sevenths are more than 2, so 5/7 is the greater."
+  - text: "A fifth is smaller than a third, so 1/5 is the smaller."
+  - text: "A third of the cake is bigger than a quarter of it, so Kim's share, 1/3, is the bigger."
+  - text: "Both take 3 parts, and fifths are bigger than tenths, so 3/5 is the greater."
+techniques: [draw-the-parts, say-it-in-words]
+skills:
+  primary: [comparing-fractions]
+  supporting: [fractions-of-a-whole]
+band: grade-3
+difficulty: 5

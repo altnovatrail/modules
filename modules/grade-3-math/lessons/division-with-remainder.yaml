@@ -1,0 +1,16 @@
+# A lesson of the set of school mathematics for grade 3 (R15): an explanation and the three pages
+# of the skill, in the order of their difficulty. It names no digit, since the keys of its pages
+# are small numbers, and has no worked example: in the format 0.3 one stands only on a sheet.
+id: division-with-remainder
+title: Division with a remainder
+skills: [division-with-remainder]
+segments:
+  - explanation:
+      - text: Not every number shares out exactly. When it does not, some is left over, and that is the remainder.
+      - text: To divide, find the greatest product of the times table of the number you divide by that is not more than the number shared. How many times it goes is the quotient, and what is left is the remainder.
+      - text: The remainder is always smaller than the number you divide by. If it is not, one more group still fits.
+      - text: Check by multiplying back. The quotient times the number you divide by, and then the remainder added, give the number you began with.
+      - text: In a story, ask what the remainder is. Sometimes it is what is left over, and sometimes it still needs a place of its own.
+  - task: division-with-remainder-d1
+  - task: division-with-remainder-d3
+  - task: division-with-remainder-d5
