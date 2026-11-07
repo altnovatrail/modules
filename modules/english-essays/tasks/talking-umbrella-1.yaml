@@ -1,0 +1,25 @@
+# A task of the module of short essays on an invented topic (R16): the learner writes first
+# sentences, not a whole essay, and the sheet gets feedback by the rubric as one work. Like every
+# essay of the module, its statement ends with a reminder to write no names (П-20).
+id: talking-umbrella-1
+statement:
+  - text: In a small shop there is an umbrella that can talk, but only when it rains. Write three different first sentences for an essay about it. Then put a ring round the one you would keep.
+  - text: Do not write your name or the real name of anyone you know.
+canvas:
+  kind: handwriting_sheet
+  grid: lines
+items:
+  - answer_slots:
+      - binding: sheet
+        check:
+          kind: rubric
+          criteria:
+            - text: There are three different first sentences, and each could begin an essay about the talking umbrella.
+            - text: At least one of them leaves a question that only the essay could answer.
+            - text: The sentence with the ring round it is one that makes a reader want to go on.
+techniques: [start-in-the-middle]
+skills:
+  primary: [writing-a-first-sentence]
+  supporting: [choosing-a-first-sentence]
+band: first-steps
+difficulty: 2

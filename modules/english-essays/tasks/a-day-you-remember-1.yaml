@@ -1,0 +1,25 @@
+# An essay on the learner's own life (R16), which the module gives to adults alone, as
+# П-20 recommends for learners under 18: the format's example of this task, with the module's
+# reminder to write no names at the end of its statement, and its third criterion asking for a
+# person or a place of that day rather than for one by name.
+id: a-day-you-remember-1
+statement:
+  - text: Write a short essay about a day of your life that you remember well.
+  - text: Do not write your name or the real name of anyone you know.
+canvas:
+  kind: handwriting_sheet
+  grid: lines
+items:
+  - answer_slots:
+      - binding: sheet
+        check:
+          kind: rubric
+          criteria:
+            - text: It tells of one day, in paragraphs, in the order things happened.
+            - text: Its ending says why the day is remembered.
+            - text: It tells of at least one person or place of that day.
+skills:
+  primary: [paragraphs, endings]
+band: whole-essays
+difficulty: 3
+age_categories: [adult]

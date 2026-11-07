@@ -1,0 +1,24 @@
+# A task of the module of short essays on an invented topic (R16): a short essay in parts, one
+# paragraph for each part of a day, which gets feedback by the rubric as one work. Its statement
+# ends with the module's reminder to write no names (П-20).
+id: weather-shop-1
+statement:
+  - text: "Imagine a shop that sells the weather: a jar of sunshine, a box of fog, a bag of wind. Write a short essay about one day in that shop. Give the morning, the middle of the day and the evening a paragraph each."
+  - text: Do not write your name or the real name of anyone you know.
+canvas:
+  kind: handwriting_sheet
+  grid: lines
+items:
+  - answer_slots:
+      - binding: sheet
+        check:
+          kind: rubric
+          criteria:
+            - text: Each paragraph is about one part of the day.
+            - text: A new paragraph begins when the essay moves on to the next part of the day.
+            - text: It tells of at least one kind of weather that the shop sells.
+skills:
+  primary: [paragraphs]
+  supporting: [writing-a-first-sentence]
+band: whole-essays
+difficulty: 1

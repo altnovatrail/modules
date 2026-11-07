@@ -1,0 +1,10 @@
+# A lesson of the module of short essays on paragraphs (R16): an explanation and an essay, which
+# gets feedback by a rubric. The skill graph puts it after the lesson of first sentences.
+id: paragraphs
+title: Paragraphs
+skills: [paragraphs]
+segments:
+  - explanation:
+      - text: A paragraph holds the sentences about one idea. When the essay moves on, to a new place, a new time or a new idea, a new paragraph begins.
+      - text: Start each paragraph on a new line, a little way in from the edge, so that the reader sees where it begins.
+  - task: weather-shop-1

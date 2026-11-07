@@ -1,0 +1,13 @@
+# A lesson of the module of short essays for adults alone (R16): the format's example, but for its
+# skills. Its task is about the learner's own life (П-20), so the lesson names the age category,
+# and the platform gives it only to a learner whom the lesson and its task suit. Its skill is
+# endings alone, so that the skill graph puts it after the lesson of paragraphs: with paragraphs
+# among its own skills it would come after the lesson of first sentences only.
+id: writing-about-a-day
+title: Writing about a day you remember
+skills: [endings]
+age_categories: [adult]
+segments:
+  - explanation:
+      - text: Tell a day in the order things happened, a paragraph for each part of it. End with why the day stays with you.
+  - task: a-day-you-remember-1

@@ -1,0 +1,22 @@
+# A lesson of the module of short essays on improving an essay (R16): an explanation, a worked
+# example on a sheet of lines and an essay to write again, which gets feedback by a rubric. The
+# worked example improves a draft of its own, not the draft of the lesson's task.
+id: improving-an-essay
+title: Improving an essay
+skills: [improving-an-essay]
+segments:
+  - explanation:
+      - text: A first draft is never the last. Read it again, aloud if you can, and listen for the words that come again and again.
+      - text: Then change one thing at a time. Say what a repeated word means each time, and use that. Join short sentences that say one thing about the same moment.
+  - worked_example:
+      statement:
+        - text: "Make this draft clearer, with fewer repeated words: \"The robot was nice. The robot made a nice cake. The cake was nice.\""
+      canvas:
+        kind: handwriting_sheet
+        grid: lines
+      demo:
+        - text: "Read the draft aloud. \"Nice\" comes three times, and \"the robot\" begins two sentences."
+        - text: "Say what \"nice\" means each time. The robot was kind, and the cake was sweet."
+        - text: "Join the sentences that tell one moment: \"The kind robot made a sweet cake.\""
+        - text: Read it aloud again. Each word now says something new, and nothing is lost from the draft.
+  - task: dragon-draft-1
