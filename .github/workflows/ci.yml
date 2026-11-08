@@ -83,7 +83,7 @@ jobs:
           persist-credentials: false
       - name: Toolchain image
         run: sh spec/tools/toolchain/toolchain.sh build
-      - name: Tests of the recipes
+      - name: Tests of the recipes and of the templates
         run: sh spec/tools/toolchain/toolchain.sh run just test
       - name: modules-check
         run: sh spec/tools/toolchain/toolchain.sh run just modules-check
