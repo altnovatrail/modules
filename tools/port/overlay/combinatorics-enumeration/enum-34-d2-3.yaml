@@ -1,0 +1,9 @@
+# What a person adds to enum-34-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers have three digits."
+  - "Every digit is 1, 2 or 3."
+  - "A digit may be used more than once, like in 313."
+unknown: "How many such numbers there are."
+simpler_case: "Try two-digit numbers with the digits 1, 2 or 3 first. How many are there?"
+trap_texts:
+  "18": "You added 9 and 9. Each place has its own choices: multiply them."

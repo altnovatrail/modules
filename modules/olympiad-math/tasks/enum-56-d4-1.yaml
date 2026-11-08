@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-56-d4-1.yaml, and the port writes this file again (R12).
+id: "enum-56-d4-1"
+statement:
+  - text: "Tom writes three-digit numbers using only the digits 0, 1, 2, 3 and 4. In each number the three digits are all different. How many of the numbers he can write are even?"
+givens: ["The digits are 0, 1, 2, 3 and 4.", "The three digits of a number are all different.", "The number must be even."]
+unknown: "How many even three-digit numbers Tom can write."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "30"
+          units: ["number", "numbers"]
+          trap_values:
+            - value: "36"
+              trap: "ignored-condition"
+              text: "36 lets a number start with 0, but then it has only two digits."
+            - value: "48"
+              trap: "ignored-condition"
+              text: "48 counts all three-digit numbers with different digits, the odd ones too."
+            - value: "18"
+              trap: "missed-case"
+              text: "18 leaves out the 12 numbers that end in 0."
+            - value: "12"
+              trap: "missed-case"
+              text: "12 counts only the numbers that end in 0; those ending in 2 or 4 are even too."
+    simpler_case: "Which digits can an even number end in? Count the numbers that end in 0 first."
+solution:
+  - text: "An even number ends in 0, 2 or 4. Ending in 0: the first digit is 1, 2, 3 or 4 and the middle digit any of the 3 left, so 4 × 3 = 12 numbers. Ending in 2: the first digit cannot be 0 or 2, so it is 1, 3 or 4, and the middle digit is any of the 3 left, so 3 × 3 = 9. Ending in 4 also gives 9. In all 12 + 9 + 9 = 30."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 4

@@ -1,0 +1,8 @@
+# What a person adds to enum-12-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers go from 1 to 30."
+  - "A number counts if it has the digit 3 in it."
+unknown: "How many of these numbers have the digit 3."
+simpler_case: "Try the numbers from 1 to 10 first. Which of them have a 3?"
+trap_texts:
+  "2": "You missed some. Look at the tens digit and at the ones digit of each number."

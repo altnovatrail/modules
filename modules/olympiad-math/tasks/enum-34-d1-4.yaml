@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-34-d1-4.yaml, and the port writes this file again (R12).
+id: "enum-34-d1-4"
+statement:
+  - text: "Five teams play a tournament. Every team plays every other team twice: once at home and once away. How many games are played?"
+givens: ["Five teams play.", "Every team plays every other team twice: once at home and once away."]
+unknown: "How many games are played."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "20"
+          units: ["game", "games"]
+          trap_values:
+            - value: "10"
+              trap: "ignored-condition"
+              text: "Every pair of teams plays twice, at home and away."
+            - value: "25"
+              trap: "wrong-operation"
+              text: "You multiplied 5 by 5. A team does not play itself."
+            - value: "40"
+              trap: "double-count"
+              text: "You counted each home-and-away pair of games twice."
+            - value: "50"
+              trap: "wrong-operation"
+              text: "You multiplied 5 by 10. Count the pairs of teams first."
+    simpler_case: "Try 3 teams first. List every pair of teams, then count their games."
+solution:
+  - text: "There are 10 pairs of teams: 4 + 3 + 2 + 1. Each pair plays twice: 10 × 2 = 20 games."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 1

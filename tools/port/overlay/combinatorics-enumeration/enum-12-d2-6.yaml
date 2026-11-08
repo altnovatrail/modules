@@ -1,0 +1,9 @@
+# What a person adds to enum-12-d2-6 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each round mark in the picture is a flavour."
+  - "Each square mark is a topping."
+  - "A cone has one flavour and one topping."
+unknown: "How many different cones can be made."
+simpler_case: "Take one flavour first. How many cones can it make?"
+picture_alt: "Two piles of marks: 3 round marks in the first and 2 square marks in the second."
+solution_picture_alt: "Three piles of 2 marks each, one pile for each flavour with its cones."

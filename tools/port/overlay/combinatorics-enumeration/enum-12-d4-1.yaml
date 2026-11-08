@@ -1,0 +1,6 @@
+# What a person adds to enum-12-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The digits are 1, 2 and 3."
+  - "Each digit is used exactly once."
+unknown: "How many different three-digit numbers can be made."
+simpler_case: "Start with the numbers whose first digit is 1. How many are there?"

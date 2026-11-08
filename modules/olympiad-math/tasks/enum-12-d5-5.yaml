@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-12-d5-5.yaml, and the port writes this file again (R12).
+id: "enum-12-d5-5"
+statement:
+  - text: "How many two-digit numbers can you write with the digits 0, 1 and 2, if a digit may be used twice?"
+givens: ["The digits are 0, 1 and 2.", "A digit may be used twice."]
+unknown: "How many two-digit numbers can be written."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["number", "numbers"]
+          trap_values:
+            - value: "3"
+              trap: "number-from-text"
+              text: "3 is the number of digits."
+            - value: "4"
+              trap: "missed-case"
+              text: "A digit may be used twice, so 11 and 22 count too."
+            - value: "9"
+              trap: "ignored-condition"
+              text: "A two-digit number cannot start with 0."
+            - value: "12"
+              trap: "double-count"
+              text: "Each number is counted only once."
+    simpler_case: "Which digits can a two-digit number start with? Start with those."
+solution:
+  - text: "The first digit can be 1 or 2, because a two-digit number cannot start with 0. The second digit can be 0, 1 or 2. So there are 3 + 3 = 6 numbers: 10, 11, 12, 20, 21, 22."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-1-2"
+difficulty: 5

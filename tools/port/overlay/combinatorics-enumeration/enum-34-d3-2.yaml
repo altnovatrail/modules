@@ -1,0 +1,7 @@
+# What a person adds to enum-34-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Six teams play."
+  - "First every team plays every other team once."
+  - "Then the two best teams play one final game."
+unknown: "How many games are played in all."
+simpler_case: "Try 4 teams first. How many games does the first round take?"

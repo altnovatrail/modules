@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-12-d4-5.yaml, and the port writes this file again (R12).
+id: "enum-12-d4-5"
+statement:
+  - text: "Three children each toss a coin. Each coin shows heads or tails. How many different results can the three coins show together?"
+givens: ["Three children each toss a coin.", "Each coin shows heads or tails."]
+unknown: "How many different results the three coins can show together."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "8"
+          units: ["result", "results"]
+          trap_values:
+            - value: "3"
+              trap: "number-from-text"
+              text: "3 is the number of children."
+            - value: "4"
+              trap: "answered-other-question"
+              text: "4 counts only how many heads there are (0, 1, 2 or 3), not which child got them."
+            - value: "6"
+              trap: "wrong-operation"
+              text: "You multiplied 3 by 2. List the results coin by coin: what the first coin shows, then the second, then the third."
+            - value: "9"
+              trap: "wrong-operation"
+              text: "You multiplied 3 by 3. Each coin has only 2 sides."
+    simpler_case: "Try two coins first. List what they can show together."
+solution:
+  - text: "The first coin has 2 results, and each of them goes with 2 results of the second coin: 4. Each of those goes with 2 results of the third coin: 8."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-1-2"
+difficulty: 4

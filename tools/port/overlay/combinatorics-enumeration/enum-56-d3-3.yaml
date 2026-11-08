@@ -1,0 +1,9 @@
+# What a person adds to enum-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The board is 4 by 4 squares, rows A to D from the top and columns 1 to 4 from the left."
+  - "The robot goes from A1 to D4, one square right or down at a time."
+  - "Square B2 is blocked."
+unknown: "How many different routes the robot can take."
+simpler_case: "Write in each square how many routes reach it, starting from A1."
+picture_alt: "A board of 4 rows, A to D from the top, and 4 columns, 1 to 4 from the left, with square B2 shaded."
+solution_picture_alt: "The same board with the number of routes to each square written in it, and B2 shaded."

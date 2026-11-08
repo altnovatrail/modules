@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-56-d3-1.yaml, and the port writes this file again (R12).
+id: "enum-56-d3-1"
+statement:
+  - text: "Three roads lead from a village to a town, and two roads lead from the town to a city. Lena travels from the village to the city and back to the village, through the town both ways. She never uses the same road twice. How many different trips can she make?"
+givens: ["Three roads lead from the village to the town.", "Two roads lead from the town to the city.", "Lena goes there and back through the town, and never uses the same road twice."]
+unknown: "How many different trips she can make."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "12"
+          units: ["trip", "trips"]
+          trap_values:
+            - value: "36"
+              trap: "ignored-condition"
+              text: "36 lets her use a road twice: 6 ways there and 6 ways back."
+            - value: "30"
+              trap: "ignored-condition"
+              text: "30 only stops her coming back along exactly the same two roads, but she may not use either of them again."
+            - value: "6"
+              trap: "stopped-early"
+              text: "6 counts the ways there; each of them has 2 ways back."
+            - value: "8"
+              trap: "wrong-operation"
+              text: "8 adds the 6 ways there and the 2 ways back, but every way there goes with every way back."
+    simpler_case: "Count the ways there first. How many roads are still unused for the way back?"
+solution:
+  - text: "Going there, she takes one of 3 roads and one of 2 roads: 3 × 2 = 6 ways. Coming back, 1 of the 2 roads between the city and the town and 2 of the 3 roads between the town and the village are still unused: 1 × 2 = 2 ways. So there are 6 × 2 = 12 trips."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 3

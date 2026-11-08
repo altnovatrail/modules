@@ -1,0 +1,7 @@
+# What a person adds to enum-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The digits are 0, 1, 2, 3 and 4."
+  - "The three digits of a number are all different."
+  - "The number must be even."
+unknown: "How many even three-digit numbers Tom can write."
+simpler_case: "Which digits can an even number end in? Count the numbers that end in 0 first."

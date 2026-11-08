@@ -1,0 +1,11 @@
+# What a person adds to enum-12-d2-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Tom has many 1-cent and 2-cent coins."
+  - "He pays exactly 5 cents."
+  - "The order of the coins does not matter."
+unknown: "In how many different ways he can pay."
+simpler_case: "Try paying 2 cents first. List the ways."
+solution_picture_alt: "A table of the ways, one row each: five 1-cent coins; a 2-cent coin and three 1-cent coins; two 2-cent coins and a 1-cent coin."
+trap_texts:
+  "2": "You missed a way. Sort the ways by how many 2-cent coins they use."
+  "4": "Three 2-cent coins make 6 cents, too much. Count only the ways that make exactly 5 cents."
