@@ -1,0 +1,96 @@
+# A template of percent-basic (T37; R22): the solver of mathtrail-standalone
+# content/solvers/percent.basic/changes.star at 42b4408, made a solver of the template. It came from
+# reference task pct-56-d3-1, whose numbers are one of its instances.
+# The numbers of reference task pct-56-d3-1: pct 20, end 60.
+# Its capitals CHANGES, one fall of a whole number of per cent, and END are the numbers that the
+# statement shows: a discount of 20 or 25 per cent and a price from 30 to 90 coins. The
+# constraint keeps every price in the story a whole number of coins and the trap values, the mistakes
+# of the reference task, apart from the key.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: changes
+template:
+  parameters:
+    pct: {from: 20, to: 25}
+    end: {from: 30, to: 90}
+  derived:
+    rest: "100 - pct"
+    pct_of_new: end * pct // 100
+    plus_new: end + end * pct // 100
+    plus_pct: end + pct
+    minus_again: end - end * pct // 100
+    discount: end * pct // (100 - pct)
+  constraint: (pct == 20 or pct == 25) and end * 100 % (100 - pct) == 0 and end * pct % 100 == 0 and end + pct != end * 100 // (100 - pct)
+  solver:
+    program: |
+      # For prices or amounts that change by a percentage: try every starting value
+      # and keep the one the changes, in order, turn into the end value. A change
+      # that is not a whole number of coins rules a start out.
+
+      def after(price, change):
+          if price * change % 100 != 0:
+              return None
+          return price + price * change // 100
+
+      def solve(numbers):
+          starts = [price for price in range(1, 1001) if after(price, -numbers["pct"]) == numbers["end"]]
+          if len(starts) != 1:
+              fail("%d starting prices end at %d, and the question has one" % (len(starts), numbers["end"]))
+          return {"price": starts[0]}
+    results: [price]
+statement:
+  - text: After a {pct}% discount, a jacket costs {end} coins. What was its price before the discount?
+givens:
+  - After a {pct}% discount the jacket costs {end} coins.
+unknown: Its price before the discount.
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{price}"
+          units: [coin, coins]
+          trap_values:
+            - value: "{plus_new}"
+              trap: percent-wrong-base
+              text: That adds {pct}% of the new price, {pct_of_new} coins, but the discount was {pct}% of the old price.
+            - value: "{plus_pct}"
+              trap: wrong-operation
+              text: That adds {pct} coins for the {pct}%, but {pct}% of the old price is not {pct} coins.
+            - value: "{minus_again}"
+              trap: reversed-relation
+              text: That takes a second {pct}% off, but the question goes back to the price before the discount.
+            - value: "{discount}"
+              trap: answered-other-question
+              text: That is the discount, not the old price.
+    simpler_case: Try a half-price sale that leaves a price of 12 coins. What was the price before?
+solution:
+  - text: After the discount the jacket costs {rest}% of its old price, and that is {end} coins. So {pct}% of the old price is {discount} coins, and the old price is {end} + {discount} = {price} coins.
+leak_phrases: ["{price} coins before"]
+skills:
+  primary: [percent-basic]
+band: grades-5-6
+difficulty: 3
