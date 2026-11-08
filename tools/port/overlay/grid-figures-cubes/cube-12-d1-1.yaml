@@ -1,0 +1,10 @@
+# What a person adds to cube-12-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The die stands on the cell with the number in it on top."
+  - "Opposite faces of a die add up to 7."
+unknown: "The number on its bottom."
+simpler_case: "Try a die with 6 on top. Which number is on its bottom?"
+picture_alt: "One cell with the number 2 in it."
+solution_picture_alt: "The cell with the number on the bottom."
+trap_texts:
+  "6": "6 is not on the bottom."

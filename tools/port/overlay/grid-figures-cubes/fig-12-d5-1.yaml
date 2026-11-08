@@ -1,0 +1,10 @@
+# What a person adds to fig-12-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Lines go from the top of the big triangle to its base."
+unknown: "How many triangles there are, small and big."
+simpler_case: "Try a triangle with one line from the top to the base. How many triangles are there?"
+picture_alt: "A right triangle with its top corner at the top left and its base along the bottom. Two lines run from the top corner to points on the base."
+solution_picture_alt: "The small triangles between the lines numbered from the left."
+trap_texts:
+  "5": "Some triangles were missed."
+  "7": "Some triangles were counted twice."

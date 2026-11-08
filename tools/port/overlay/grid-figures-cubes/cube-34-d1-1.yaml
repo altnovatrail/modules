@@ -1,0 +1,8 @@
+# What a person adds to cube-34-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The five cells fold up into a box with no lid."
+unknown: "The number on the bottom of the box."
+simpler_case: "Try three cells in a row folded into a U. Which cell is at the bottom?"
+picture_alt: "Five cells: a row of three numbered 1, 2 and 3, and below the middle one a column of two, 4 and then 5."
+solution_picture_alt: "The cells with only the bottom one numbered."
+leak_phrases: ["4 is the bottom", "bottom is 4"]

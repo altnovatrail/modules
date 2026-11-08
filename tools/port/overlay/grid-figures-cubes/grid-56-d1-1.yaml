@@ -1,0 +1,10 @@
+# What a person adds to grid-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The board has 5 by 5 cells, rows A to E from the top and columns 1 to 5 from the left."
+  - "A bishop on C3 moves any number of cells along a diagonal."
+unknown: "How many cells the bishop can move to in one move."
+simpler_case: "Try a 3 by 3 board with the bishop on A1. How many cells can it move to?"
+picture_alt: "A 5 by 5 board with rows A to E from the top and columns 1 to 5 from the left; cell C3 is shaded."
+trap_texts:
+  "9": "Count only the cells the bishop can move to."
+  "10": "10 counts both diagonals whole, so C3 is counted twice."

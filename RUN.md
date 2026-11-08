@@ -127,7 +127,7 @@
 | [x] | T31 | `algorithms-weighing-pouring`: 40 задач | Claude, проверяю я | — | T20, T23, T24 |
 | [x] | T32 | `fractions-parts`, `percent-basic` и `ratio-sharing`: 45 задач | Claude, проверяю я | — | T19, T25 |
 | [x] | T33 | `number-divisibility`, `logic-sets` и `games-strategy`: 45 задач | Claude, проверяю я | — | T20, T23, T24, T26, T29 |
-| [ ] | T34 | `geometry-grid`, `counting-figures` и `geometry-cubes-paper`: 49 задач | Claude, проверяю я | — | T20, T21, T23 |
+| [x] | T34 | `geometry-grid`, `counting-figures` и `geometry-cubes-paper`: 49 задач | Claude, проверяю я | — | T20, T21, T23 |
 | [ ] | T35 | Шаблоны: как шаблон standalone становится шаблоном формата, и 7 шаблонов навыков первой пачки | Claude, проверяю я | да | T22–T24 |
 | [ ] | T36 | Шаблоны семи навыков: 14 | Claude, проверяю я | — | T25–T31, T35 |
 | [ ] | T37 | Шаблоны девяти малых навыков: 18 | Claude, проверяю я | — | T32–T35 |
@@ -602,6 +602,20 @@
 - **Сделать:** по общему для задач содержания.
   - Пререквизиты `geometry-grid` — `combinatorics-enumeration` и `counting-gaps`. У двух новых навыков пререквизитов нет.
   - Записей двух новых навыков нет в примере формата, и они пишутся по `content/catalogs/topics.json` standalone на 42b4408 тем же видом: название, описание и оцениваемость `verdict`. Приёмы — с их страниц сайта.
+- **Решено при планировании (2026-11-08) — исполнителем, по поручению автора:** одна пачка на три навыка, `grid-figures-cubes`. Страницы тем сайта standalone не ссылаются на приёмы по ID, а называют свой способ словами: «Count by size, from the smallest up» у `counting-figures` — это `systematic`; «Fold, roll or unfold one step at a time» у `cubes-and-paper` и «Draw the figure on squared paper» у `figures-on-a-grid` — это `draw`. Приём стоит у навыка в пачке: способ страницы подходит каждой задаче темы.
+- **Сделано (2026-11-08):**
+  - правило 12 — до начала: у SonarCloud на `e3` и у CodeQL находок нет, у Scorecard те же 6, их причины — в R33 spec. Правок нет;
+  - `tools/port/batches/grid-figures-cubes.yaml` — 49 задач на 42b4408; `units` у задач, чей вопрос считает клетки, фигуры, спички, дырки, грани или меру, — у квадратных сантиметров и `cm²`;
+  - `tools/port/overlay/grid-figures-cubes/` — 49 файлов правок: `givens`, `unknown` и `simpler_case` каждой задачи, `alt` 44 картинок задач и 35 картинок решения, 59 переписанных пояснений в 36 задачах, `leak_phrases` восьми задач, чей ключ стоит в условии или на картинке;
+  - 34 задачи решаются по картинке — 4 `geometry-grid` и все 30 двух новых навыков, `lattice`: `alt` каждой называет каждую клетку, линию, точку и метку, которые читает решатель, — «the cell in the middle of the left column is marked X», «a dashed line marked 1 runs down the middle», — и не называет ни ключа, ни шага решения (R21). Числа вида «4 by 4» `alt` пишет словами, «four by four», если 4 — ключ задачи. Конвертер проверил, что каждая метка картинки названа;
+  - `modules/olympiad-math/` — 49 новых задач и 79 картинок; в графе — `geometry-grid`, запись примера формата дословно, и два новых навыка, `counting-figures` и `geometry-cubes-paper`, по `topics.json`: название, описание и `verdict`, без пререквизитов, — и шапка графа говорит, откуда эти две записи; в каталоге ловушек — `area-perimeter-swap`, и теперь в нём все 20 ловушек standalone; версия по-прежнему `0.1.1`, `diff` с `v0.1.0` видит минорную правку;
+  - виды ответа, как их дал R20: 48 чисел и один выбор касанием, «3 and 6»;
+  - пояснения — по мерке T22–T33: переписаны те, что называли ключ — «The bishop can move to the 8 other cells», «The four corners are enough», — и те, что давали точный разрыв до него, — «One triangle was missed», «The big square counts too» — теперь «Some triangles were missed», «Squares of other sizes count too»;
+  - `/code-review high`, один круг, нашёл 10 пунктов, исправлены 9: `alt` `grid-56-d3-1` называл пустой только B2, а пусты A2 и B2; `cm²` у квадратных сантиметров; `leak_phrases` у `grid-56-d4-2`, чей ключ стоит в условии, и у выбора касанием «3 and 6»; новые пояснения в единственном числе — «Some match was missed» — снова давали разрыв в единицу, теперь во множественном; пояснения standalone и правки, которые давали точный разрыв или зажимали ключ с двух сторон, — «One cut does not make a new piece», «The block of two by three cannot fold», «Three pieces leave cells uncovered» рядом с «5 pieces would cover more cells»; шапка графа. Десятый — в «Открыто»;
+  - проверено 2026-11-08: `just port modules/olympiad-math --batch tools/port/batches/grid-figures-cubes.yaml --check` — стенд 42b4408 доказывает все 49, файлы совпадают; `module-kit check modules/olympiad-math` — без нарушений и предупреждений; `just modules-check`; `just test`; `just -f spec/justfile docs-check-repo`.
+- **Открыто:**
+  - тексты 49 задач и `alt` 34 задач, которые решаются по картинке, вычитываешь ты: `modules/olympiad-math/tasks/grid-*.yaml`, `fig-*.yaml` и `cube-*.yaml`;
+  - решение `fig-34-d4-1` из standalone говорит, что недостающая спичка середины верхней стороны «breaks two small squares at the top», а это внешняя сторона, и ломает она один верхний средний квадрат — картинка решения сама показывает два верхних квадрата целыми. Поля правки для решения нет (R12), как в `ord-34-d5-2` и `kl-34-d2-5`: три таких решения ждут твоего решения о поле `solution` у правки.
 
 #### T35. Шаблоны: как шаблон standalone становится шаблоном формата, и 7 шаблонов навыков первой пачки
 

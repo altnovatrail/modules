@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/cube-56-d3-1.yaml, and the port writes this file again (R12).
+id: "cube-56-d3-1"
+statement:
+  - text: "The seven filled cells in the picture are one cell too many for a cube. How many of the cells could be cut away so that the other six fold into a cube?"
+  - picture: "pictures/cube-56-d3-1.png"
+    alt: "Seven filled cells: a column of four, with a cell on each side of the second one and one more cell to the right of the third."
+    width: 168
+    height: 208
+givens: ["The seven filled cells are one cell too many for a cube."]
+unknown: "How many of the cells could be cut away so that the other six fold into a cube."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["cell", "cells"]
+          trap_values:
+            - value: "1"
+              trap: "missed-case"
+              text: "Look again at each cell."
+            - value: "3"
+              trap: "double-count"
+              text: "Some of those cells leave no cube."
+            - value: "7"
+              trap: "answered-other-question"
+              text: "That is all the cells."
+            - value: "0"
+              trap: "stopped-early"
+              text: "Some cells can be cut away."
+    simpler_case: "Try the cross of six cells. Does it fold into a cube?"
+solution:
+  - text: "Without the cell just below the right end of the middle row, the six cells are a cross, which folds into a cube. Without that right end itself, the six left fold into a cube too. Cutting away any other cell leaves six that cannot fold. So 2 of the cells could go."
+  - picture: "pictures/cube-56-d3-1-solution.png"
+    alt: "The cells that could be cut away, numbered."
+    width: 168
+    height: 208
+techniques: ["draw"]
+skills:
+  primary: ["geometry-cubes-paper"]
+band: "grades-5-6"
+difficulty: 3

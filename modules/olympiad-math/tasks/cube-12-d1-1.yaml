@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/cube-12-d1-1.yaml, and the port writes this file again (R12).
+id: "cube-12-d1-1"
+statement:
+  - text: "A die stands on the cell in the picture, with the number in the cell on top. Opposite faces of a die add up to 7. Which number is on its bottom?"
+  - picture: "pictures/cube-12-d1-1.png"
+    alt: "One cell with the number 2 in it."
+    width: 88
+    height: 88
+givens: ["The die stands on the cell with the number in it on top.", "Opposite faces of a die add up to 7."]
+unknown: "The number on its bottom."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          trap_values:
+            - value: "9"
+              trap: "wrong-operation"
+              text: "The numbers were added."
+            - value: "2"
+              trap: "answered-other-question"
+              text: "That is the top, not the bottom."
+            - value: "7"
+              trap: "number-from-text"
+              text: "7 is the sum of the two."
+            - value: "6"
+              trap: "off-by-one"
+              text: "6 is not on the bottom."
+    simpler_case: "Try a die with 6 on top. Which number is on its bottom?"
+solution:
+  - text: "The top and the bottom are opposite faces, so they add up to 7. The top is 2, and 7 − 2 = 5, so 5 is on the bottom."
+  - text: "7 − 2 = 5"
+  - picture: "pictures/cube-12-d1-1-solution.png"
+    alt: "The cell with the number on the bottom."
+    width: 88
+    height: 88
+techniques: ["draw"]
+skills:
+  primary: ["geometry-cubes-paper"]
+band: "grades-1-2"
+difficulty: 1

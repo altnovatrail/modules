@@ -1,0 +1,9 @@
+# What a person adds to fig-34-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The filled cells make a figure."
+unknown: "How many squares of any size are made only of filled cells."
+simpler_case: "Try a square of 2 by 2 filled cells. How many squares of any size are there?"
+picture_alt: "A square of three by three cells, all filled but the top right corner."
+solution_picture_alt: "Cells marked 1 to 3 at the top left corners of the squares of four cells."
+trap_texts:
+  "12": "Some squares were counted twice."

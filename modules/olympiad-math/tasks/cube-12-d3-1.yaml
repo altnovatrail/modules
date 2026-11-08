@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/cube-12-d3-1.yaml, and the port writes this file again (R12).
+id: "cube-12-d3-1"
+statement:
+  - text: "The net in the picture is folded into a cube. Which number is on the face opposite 2?"
+  - picture: "pictures/cube-12-d3-1.png"
+    alt: "A net of six squares: a column of four, numbered 1, 3, 5 and 6 from the top, with a square on each side of the second one: 2 on its left and 4 on its right."
+    width: 168
+    height: 208
+givens: ["The net is folded into a cube."]
+unknown: "The number on the face opposite 2."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          trap_values:
+            - value: "3"
+              trap: "ignored-condition"
+              text: "3 touches 2 along an edge."
+            - value: "1"
+              trap: "missed-case"
+              text: "1 folds down beside 2."
+            - value: "5"
+              trap: "reversed-relation"
+              text: "5 folds up beside 2."
+            - value: "6"
+              trap: "stopped-early"
+              text: "6 touches 2 once folded."
+    simpler_case: "Try a row of four squares folded into a ring. Which square is opposite the first one?"
+solution:
+  - text: "When the net is folded, 1, 3, 5 and 6 all fold up next to 2. Only 4 is left, on the far side of 3, so 4 is opposite 2."
+  - picture: "pictures/cube-12-d3-1-solution.png"
+    alt: "The net with only 2 and 4 written."
+    width: 168
+    height: 208
+techniques: ["draw"]
+leak_phrases: ["4 is opposite", "opposite face is 4"]
+skills:
+  primary: ["geometry-cubes-paper"]
+band: "grades-1-2"
+difficulty: 3

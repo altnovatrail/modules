@@ -1,0 +1,48 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/cube-12-d2-1.yaml, and the port writes this file again (R12).
+id: "cube-12-d2-1"
+statement:
+  - text: "The sheet in the picture is folded along the dashed line. Its left part is laid over its right part. Then a hole is punched at cell O. How many holes are there when the sheet is opened?"
+  - picture: "pictures/cube-12-d2-1.png"
+    alt: "A sheet of two rows of six cells. A dashed line marked 1 runs from top to bottom between the second and third columns. The top cell of the third column is marked O."
+    width: 288
+    height: 128
+givens: ["The sheet is folded along the dashed line, its left part over its right part.", "A hole is punched at cell O."]
+unknown: "How many holes there are in the opened sheet."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["hole", "holes"]
+          trap_values:
+            - value: "6"
+              trap: "answered-other-question"
+              text: "That is the columns of the sheet."
+            - value: "1"
+              trap: "stopped-early"
+              text: "The fold puts more than one layer at O."
+            - value: "3"
+              trap: "off-by-one"
+              text: "Count the layers at O again."
+            - value: "4"
+              trap: "double-count"
+              text: "Only one fold was made."
+    simpler_case: "Try a strip folded like a fan into 5 layers, with one hole punched through all of them. How many holes are there when it is opened?"
+solution:
+  - text: "The fold lays the 2 columns on the left over the next 2 columns. Cell O then has 2 layers: its own cell and the cell just left of the fold. So the opened sheet has 2 holes."
+  - text: "1 + 1 = 2"
+  - picture: "pictures/cube-12-d2-1-solution.png"
+    alt: "The opened sheet with O in the top cells of the second and third columns."
+    width: 288
+    height: 128
+techniques: ["draw"]
+skills:
+  primary: ["geometry-cubes-paper"]
+band: "grades-1-2"
+difficulty: 2

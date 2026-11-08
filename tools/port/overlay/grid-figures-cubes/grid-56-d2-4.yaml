@@ -1,0 +1,11 @@
+# What a person adds to grid-56-d2-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The filled cells are a sheet of paper."
+  - "The lines drawn on it are cuts."
+unknown: "Into how many pieces the cuts split the sheet."
+simpler_case: "Try a sheet with one cut that runs from an edge only halfway in. Into how many pieces does it split?"
+picture_alt: "A square sheet of four by four filled cells. One cut runs from top to bottom down the middle. Another cut runs from the left edge to the middle cut, halfway down."
+solution_picture_alt: "The sheet with its pieces numbered: 1 in the top left quarter, 2 in the bottom left quarter, and 3 in the whole right half."
+trap_texts:
+  "2": "Look again for small pieces."
+  "4": "Check which cuts make new pieces."

@@ -1,0 +1,11 @@
+# What a person adds to cube-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The sheet is folded along the dashed lines in the order of their numbers: left over right, or top over bottom."
+  - "A hole is punched through every layer at cell O."
+unknown: "How many holes there are in the opened sheet."
+simpler_case: "Try a sheet folded in half once, with a hole punched through both layers. How many holes are there?"
+picture_alt: "A square sheet of four by four cells. Dashed line 1 runs down the middle, dashed line 2 runs across the middle, and dashed line 3 runs down between the third and fourth columns. The bottom right cell is marked O."
+solution_picture_alt: "The opened sheet with O in every cell that gets a hole."
+trap_texts:
+  "4": "The third fold adds layers too."
+  "6": "Count the layers at O after each fold."

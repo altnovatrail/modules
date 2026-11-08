@@ -1,0 +1,9 @@
+# What a person adds to fig-12-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each line is a match, and the dashed matches are taken away."
+unknown: "How many squares, small or big, are still whole."
+simpler_case: "Try one square of 4 matches with one match taken away. How many squares are whole?"
+picture_alt: "A square of matches split into two by two small squares. Two matches are dashed: the upper half of the middle upright line and the left half of the middle crosswise line."
+solution_picture_alt: "The bottom right small square marked 1."
+trap_texts:
+  "1": "Squares of other sizes may still be whole."

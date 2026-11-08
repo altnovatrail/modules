@@ -1,0 +1,10 @@
+# What a person adds to fig-12-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The picture shows small squares and one big one."
+unknown: "How many squares there are."
+simpler_case: "Try a rectangle split into 2 small squares side by side. How many squares are there?"
+picture_alt: "A square split by lines into two by two small squares."
+solution_picture_alt: "The four small squares numbered 1 to 4."
+trap_texts:
+  "4": "Squares of other sizes count too."
+  "6": "Some squares were counted twice."

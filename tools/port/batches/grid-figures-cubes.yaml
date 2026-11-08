@@ -1,0 +1,67 @@
+# The tasks of geometry-grid, counting-figures and geometry-cubes-paper of standalone at 42b4408: all
+# 49 of them (E3; T34). The units are the word a question counts, in the singular and the plural,
+# and a measure with its abbreviation; a task whose answer is no number, or a number by itself, has
+# none. standalone's site links no technique to the three topics by its ID, and the page of each says
+# its method in words: counting figures size by size, which is systematic, and folding, rolling or
+# drawing on squared paper, which is draw.
+standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+skills:
+  geometry-grid:
+    techniques: [draw]
+  counting-figures:
+    techniques: [systematic]
+  geometry-cubes-paper:
+    techniques: [draw]
+tasks:
+  grid-56-d1-1: {units: [cell, cells]}
+  grid-56-d1-2: {units: [cell, cells]}
+  grid-56-d1-3: {units: [cell, cells]}
+  grid-56-d2-1: {units: [cm, centimetre, centimetres]}
+  grid-56-d2-2: {units: [cm², sq cm, "square centimetre", "square centimetres"]}
+  grid-56-d2-3: {units: [bed, beds]}
+  grid-56-d2-4: {units: [piece, pieces]}
+  grid-56-d3-1: {units: [m, metre, metres]}
+  grid-56-d3-2: {units: [way, ways]}
+  grid-56-d3-3: {units: [cm, centimetre, centimetres]}
+  grid-56-d3-4: {units: [piece, pieces]}
+  grid-56-d3-5: {units: [cell, cells]}
+  grid-56-d4-1: {units: [way, ways]}
+  grid-56-d4-2: {units: [split, splits]}
+  grid-56-d4-3: {units: [cm, centimetre, centimetres]}
+  grid-56-d4-4: {units: [square, squares]}
+  grid-56-d5-1: {}
+  grid-56-d5-2: {units: [fold, folds]}
+  grid-56-d5-3: {units: [shape, shapes]}
+  fig-12-d1-1: {units: [square, squares]}
+  fig-12-d2-1: {units: [triangle, triangles]}
+  fig-12-d3-1: {units: [match, matches]}
+  fig-12-d4-1: {units: [square, squares]}
+  fig-12-d5-1: {units: [triangle, triangles]}
+  fig-34-d1-1: {units: [square, squares]}
+  fig-34-d2-1: {units: [square, squares]}
+  fig-34-d3-1: {units: [triangle, triangles]}
+  fig-34-d4-1: {units: [square, squares]}
+  fig-34-d5-1: {units: [match, matches]}
+  fig-56-d1-1: {units: [square, squares]}
+  fig-56-d2-1: {units: [square, squares]}
+  fig-56-d3-1: {units: [triangle, triangles]}
+  fig-56-d4-1: {units: [match, matches]}
+  fig-56-d5-1: {units: [match, matches]}
+  cube-12-d1-1: {}
+  cube-12-d2-1: {units: [hole, holes]}
+  cube-12-d3-1: {}
+  cube-12-d4-1: {}
+  cube-12-d5-1: {units: [hole, holes]}
+  cube-34-d1-1: {}
+  cube-34-d2-1: {}
+  cube-34-d3-1: {units: [shape, shapes]}
+  cube-34-d4-1: {units: [face, faces]}
+  cube-34-d5-1: {}
+  cube-56-d1-1: {}
+  cube-56-d2-1: {}
+  cube-56-d3-1: {units: [cell, cells]}
+  cube-56-d4-1: {units: [hole, holes]}
+  cube-56-d5-1: {units: [cell, cells]}

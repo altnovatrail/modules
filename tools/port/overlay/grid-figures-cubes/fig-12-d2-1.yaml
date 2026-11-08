@@ -1,0 +1,9 @@
+# What a person adds to fig-12-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The square has two lines from corner to corner."
+unknown: "How many triangles there are."
+simpler_case: "Try a square with one line from corner to corner. How many triangles are there?"
+picture_alt: "A square with both of its diagonals drawn, from corner to corner."
+solution_picture_alt: "The same square with both diagonals."
+trap_texts:
+  "7": "Some triangles were missed."

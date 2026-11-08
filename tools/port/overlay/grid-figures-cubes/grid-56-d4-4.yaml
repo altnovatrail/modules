@@ -1,0 +1,11 @@
+# What a person adds to grid-56-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The grid is a field, and the shaded squares are a shed."
+  - "A step goes across one side into the next square, never into the shed."
+  - "A square is in reach when the goat gets there in at most as many steps as the number in the peg's square."
+unknown: "How many squares are in reach, the peg's own square too."
+simpler_case: "Try a peg in an open field with the number 1. How many squares are in reach, the peg's own square too?"
+picture_alt: "A field of 4 rows of 5 squares. In the second row from the top, the second, third and fourth squares are shaded: the shed. The square in the top row, second from the left, holds the number 5: the peg."
+solution_picture_alt: "The field with the number of steps the goat needs written in each square, from 0 at the peg up to 7."
+trap_texts:
+  "4": "4 is not the squares in reach."

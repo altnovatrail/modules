@@ -1,0 +1,10 @@
+# What a person adds to grid-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Cell A1 of a 4 by 4 square is painted."
+  - "A fold along a line of the grid paints every cell that lands on a painted one."
+unknown: "The fewest folds that paint the whole square."
+simpler_case: "Try a row of 2 cells with the first painted. What is the fewest folds that paint the row?"
+picture_alt: "A 4 by 4 square with rows A to D from the top and columns 1 to 4 from the left; cell A1 is shaded."
+trap_texts:
+  "3": "3 folds paint at most half the square."
+leak_phrases: ["4 folds", "four folds"]

@@ -1,0 +1,48 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.figures.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/fig-12-d4-1.yaml, and the port writes this file again (R12).
+id: "fig-12-d4-1"
+statement:
+  - text: "Each line in the picture is a match. The dashed matches are taken away. How many squares, small or big, are still whole?"
+  - picture: "pictures/fig-12-d4-1.png"
+    alt: "A square of matches split into two by two small squares. Two matches are dashed: the upper half of the middle upright line and the left half of the middle crosswise line."
+    width: 128
+    height: 128
+givens: ["Each line is a match, and the dashed matches are taken away."]
+unknown: "How many squares, small or big, are still whole."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["square", "squares"]
+          trap_values:
+            - value: "5"
+              trap: "ignored-condition"
+              text: "The dashed matches are taken away."
+            - value: "1"
+              trap: "missed-case"
+              text: "Squares of other sizes may still be whole."
+            - value: "3"
+              trap: "double-count"
+              text: "A broken square was counted."
+            - value: "4"
+              trap: "stopped-early"
+              text: "Some squares lost a side."
+    simpler_case: "Try one square of 4 matches with one match taken away. How many squares are whole?"
+solution:
+  - text: "Taking the dashed matches away breaks the three small squares that use them. The small square at the bottom right is still whole, and so is the big square round all four. So 2 squares are whole."
+  - text: "1 + 1 = 2"
+  - picture: "pictures/fig-12-d4-1-solution.png"
+    alt: "The bottom right small square marked 1."
+    width: 128
+    height: 128
+techniques: ["systematic"]
+skills:
+  primary: ["counting-figures"]
+band: "grades-1-2"
+difficulty: 4

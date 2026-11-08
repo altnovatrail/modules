@@ -1,0 +1,11 @@
+# What a person adds to cube-12-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The sheet is folded along line 1, then along line 2: left over right, or top over bottom."
+  - "A hole is punched at cell O."
+unknown: "How many holes there are in the open sheet."
+simpler_case: "Try a strip folded like a fan into three layers, with one hole punched through all of them. How many holes are there?"
+picture_alt: "A square sheet of four by four cells. A dashed line marked 1 runs down the middle from top to bottom, and a dashed line marked 2 runs across the middle from left to right. The bottom right cell is marked O."
+solution_picture_alt: "The opened sheet with O in its four corner cells."
+trap_texts:
+  "2": "The second fold adds layers too."
+  "8": "Two folds do not give eight layers."

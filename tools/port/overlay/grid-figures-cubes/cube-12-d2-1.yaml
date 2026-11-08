@@ -1,0 +1,11 @@
+# What a person adds to cube-12-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The sheet is folded along the dashed line, its left part over its right part."
+  - "A hole is punched at cell O."
+unknown: "How many holes there are in the opened sheet."
+simpler_case: "Try a strip folded like a fan into 5 layers, with one hole punched through all of them. How many holes are there when it is opened?"
+picture_alt: "A sheet of two rows of six cells. A dashed line marked 1 runs from top to bottom between the second and third columns. The top cell of the third column is marked O."
+solution_picture_alt: "The opened sheet with O in the top cells of the second and third columns."
+trap_texts:
+  "1": "The fold puts more than one layer at O."
+  "3": "Count the layers at O again."

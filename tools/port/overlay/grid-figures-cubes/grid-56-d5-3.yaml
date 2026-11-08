@@ -1,0 +1,10 @@
+# What a person adds to grid-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "A tile is 4 square cells joined along whole sides."
+  - "Shapes are the same when one can be turned or flipped onto the other."
+unknown: "How many different shapes such a tile can have."
+simpler_case: "Try tiles of 3 cells. How many different shapes can they have?"
+trap_texts:
+  "3": "3 counts only the line, the square and the L."
+  "4": "4 misses a shape."
+  "7": "7 counts a shape and its flipped copy as two."

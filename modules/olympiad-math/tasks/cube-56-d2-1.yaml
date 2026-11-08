@@ -1,0 +1,45 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/cube-56-d2-1.yaml, and the port writes this file again (R12).
+id: "cube-56-d2-1"
+statement:
+  - text: "A die rolls straight along the row of cells in the picture, from cell S to the last cell, tipping over one edge for each cell. In the last cell it shows the number drawn there on top. Opposite faces of a die add up to 7. Which number was on top at S?"
+  - picture: "pictures/cube-56-d2-1.png"
+    alt: "A row of seven cells; the first is marked S and the last holds the number 4."
+    width: 328
+    height: 88
+givens: ["The die rolls straight along the row from S to the last cell, tipping over one edge for each cell.", "In the last cell it shows the number drawn there on top.", "Opposite faces of a die add up to 7."]
+unknown: "The number on top at S."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          trap_values:
+            - value: "4"
+              trap: "stopped-early"
+              text: "Six rolls do not bring 4 back."
+            - value: "7"
+              trap: "number-from-text"
+              text: "7 is the sum of the two."
+            - value: "11"
+              trap: "wrong-operation"
+              text: "4 and 7 were added."
+    simpler_case: "Try a die that rolls 4 times straight on and shows 5 on top at the end. Which number was on top at the start?"
+solution:
+  - text: "From S to the last cell the die rolls 6 times. Four rolls straight on bring the top face back on top, and two more bring the bottom up. So the 4 on top at the end was at the bottom at S, and the top at S was 7 − 4 = 3."
+  - text: "7 − 4 = 3"
+  - picture: "pictures/cube-56-d2-1-solution.png"
+    alt: "The row with the number on top at the start and after four rolls written in."
+    width: 328
+    height: 88
+techniques: ["draw"]
+traps: ["missed-case"]
+skills:
+  primary: ["geometry-cubes-paper"]
+band: "grades-5-6"
+difficulty: 2

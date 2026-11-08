@@ -1,4 +1,4 @@
-# The traps of this module's tasks: 19 of the 20 traps of mathtrail-standalone, as the format's
+# The traps of this module's tasks: 20 of the 20 traps of mathtrail-standalone, as the format's
 # example of this module has them, each with its description and its advice, but the advice of
 # wrong-parity and of time-unit-mixup, which hold no number or parity word here (R13). Each ID is
 # the trap's, with _ made -. standalone's content in this module carries the MIT notice of NOTICE.
@@ -61,6 +61,10 @@ traps:
     description: Gave the quotient where the remainder was asked for, or the other way round.
     skills: [number-divisibility]
     trap_advice: Share real objects into groups, then say aloud which number is the groups and which is what is left over.
+  area-perimeter-swap:
+    description: Counted the perimeter where the area was asked for, or the other way round.
+    skills: [geometry-grid]
+    trap_advice: Trace the edge with a finger for the perimeter and colour the inside for the area, then reread which one is asked for.
   first-move-assumed:
     description: Assumed that whoever moves first always wins, without checking the position.
     skills: [games-strategy]

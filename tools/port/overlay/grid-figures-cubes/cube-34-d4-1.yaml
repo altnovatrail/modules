@@ -1,0 +1,10 @@
+# What a person adds to cube-34-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The net is folded into a cube."
+unknown: "How many faces marked S touch face M along an edge."
+simpler_case: "Try a cube. How many faces are opposite one face?"
+picture_alt: "A net of six squares: a column of four with a square on each side of the second. The second square of the column is marked M; the top square, the bottom square and the square to the right of M are marked S; the other two are empty."
+solution_picture_alt: "The net with M and the faces marked S that touch it."
+trap_texts:
+  "1": "Look again at each S."
+  "3": "Check each S against M."
