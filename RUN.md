@@ -129,7 +129,7 @@
 | [x] | T33 | `number-divisibility`, `logic-sets` и `games-strategy`: 45 задач | Claude, проверяю я | — | T20, T23, T24, T26, T29 |
 | [x] | T34 | `geometry-grid`, `counting-figures` и `geometry-cubes-paper`: 49 задач | Claude, проверяю я | — | T20, T21, T23 |
 | [x] | T35 | Шаблоны: как шаблон standalone становится шаблоном формата, и 7 шаблонов навыков первой пачки | Claude, проверяю я | да | T22–T24 |
-| [ ] | T36 | Шаблоны семи навыков: 14 | Claude, проверяю я | — | T25–T31, T35 |
+| [x] | T36 | Шаблоны семи навыков: 14 | Claude, проверяю я | — | T25–T31, T35 |
 | [ ] | T37 | Шаблоны девяти малых навыков: 18 | Claude, проверяю я | — | T32–T35 |
 | [ ] | T38 | Уроки `arithmetic-tricks`, `parity-alternation` и `logic-ordering`: 9 | Claude, проверяю я | да | T25–T27 |
 | [ ] | T39 | Уроки `time-clocks`, `time-calendar`, `logic-knights-liars` и `algorithms-weighing-pouring`: 10 | Claude, проверяю я | — | T28–T31 |
@@ -650,6 +650,15 @@
 
 - **Цель:** шаблоны `arithmetic-tricks` (`long-way`, `number-thought-of`, `shapes-rows`), `parity-alternation` (`fewest-moves`, `reachable`), `logic-ordering` (`orders`), `time-clocks` (`minutes`, `whole-day`), `time-calendar` (`ages`, `weekdays`), `logic-knights-liars` (`round-table`, `speakers`) и `algorithms-weighing-pouring` (`pouring`, `weighing`) — по решению T35.
 - **Сделать:** по общему для задач шаблонов и по решению T35.
+- **Сделано (2026-11-08):**
+  - правило 12 — до начала: у SonarCloud на `e3` и у CodeQL находок нет, у Scorecard те же 6, их причины — в R33 spec. Правок нет;
+  - шесть шаблонов в `modules/olympiad-math/tasks/`, по R22: `long-way` (41 экземпляр) и `number-thought-of` (41) навыка `arithmetic-tricks`, `fewest-moves` (5) навыка `parity-alternation`, `ages` (42) навыка `time-calendar`, `pouring` (6) и `weighing` (18) навыка `algorithms-weighing-pouring`. `number-thought-of` повторяет пример формата, но с числами и трудностью эталонной задачи `tri-12-d5-4`; у `fewest-moves` формулы ключа нет — 4 монеты по 3 за ход требуют 4 хода, а не 2, — поэтому ограничение оставляет нечётное число монет, которые переворачивают по нечётному числу за ход и не целое число раз подряд, — задачу о чётности, как эталонная, и 3 хода в каждом экземпляре; у `pouring` и `weighing` ключ во всех экземплярах один — их числа меняют условие, а не трудность;
+  - решатели без помощников песочницы: `combinations` — маской, `sum` — циклом;
+  - не переносятся восемь: `shapes-rows` читает картинку (R22); ответ `reachable`, `orders`, `minutes` и `weekdays` — выбор, у `whole-day` и `speakers` нет чисел условия, а `round-table` решает число рыцарей только за тремя размерами стола (поправка 2026-11-08 к R22);
+  - `test/templates.test.mjs` доказывает ключ эталонной задачи у всех 11 шаблонов модуля;
+  - `/code-review high`, один круг, нашёл 10 пунктов, исправлены все: «1 litres» в `pouring`; значения ловушек, равные числам условия, — в `pouring`, `ages` и `number-thought-of`; экземпляры `fewest-moves` с 6 монетами, где задача — деление, а не чётность, — теперь только нечётные; `traps` эталонных задач, которые шаблоны `pouring` и `fewest-moves` потеряли; шапка `pouring`, где не было `CAPACITIES`; текст ловушки `fewest-moves` — снова «{coins} moves would work too»; поправка к R22 — кто решил, что ещё отвергнуто и что в точности говорит [текст формата](spec/format/README.md), раздел 24;
+  - проверено 2026-11-08: `module-kit check modules/olympiad-math` — каждый экземпляр без нарушений и предупреждений; `just test`; `just modules-check`; `just -f spec/justfile docs-check-repo`.
+- **Открыто:** тексты шести шаблонов вычитываешь ты: `modules/olympiad-math/tasks/long-way.yaml`, `number-thought-of.yaml`, `fewest-moves.yaml`, `ages.yaml`, `pouring.yaml` и `weighing.yaml`.
 
 #### T37. Шаблоны девяти малых навыков: 18
 

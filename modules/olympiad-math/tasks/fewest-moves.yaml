@@ -1,0 +1,110 @@
+# A template of parity-alternation (T36; R22): the solver of mathtrail-standalone
+# content/solvers/parity.alternation/fewest-moves.star at 42b4408, made a solver of the template.
+# It came from reference task par-34-d4-2, whose numbers are one of its instances.
+# The numbers of reference task par-34-d4-2: coins 5, per_move 3.
+# Its capitals COINS and PER_MOVE are the numbers that the statement shows. The fewest moves have no
+# formula of their own: 4 coins turned 3 at a time take 4 moves, not 2. So the constraint keeps an
+# odd number of coins turned an odd number at a time, and not a whole number of times over, which is
+# the parity problem of the reference task and takes 3 moves in every instance; the trap values
+# stay apart from the key. standalone's sandbox gives the solver combinations, which the dialect of the format
+# has not (format/README.md, section 24), so a mask goes through the sets of coins instead.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: fewest-moves
+template:
+  parameters:
+    coins: {from: 5, to: 9}
+    per_move: {from: 3, to: 7}
+  constraint: coins % 2 == 1 and per_move % 2 == 1 and per_move < coins and coins % per_move != 0
+  solver:
+    program: |
+      # For "the fewest moves" that turn, swap or flip things to reach a goal: a
+      # breadth-first search over the states, nearest first, so the first time the
+      # goal comes up is the fewest moves.
+
+      def combinations_of(count, size):
+          # The sets of size places among count, through every mask of the places.
+          found = []
+          for mask in range(1 << count):
+              places = [place for place in range(count) if mask & (1 << place)]
+              if len(places) == size:
+                  found.append(places)
+          return found
+
+      def solve(numbers):
+          coins, per_move = numbers["coins"], numbers["per_move"]
+          start = tuple([1] * coins)  # 1 is heads, 0 is tails
+          goal = tuple([0] * coins)
+          choices = combinations_of(coins, per_move)
+          moves = {start: 0}
+          queue = [start]
+          head = 0
+          while head < len(queue):
+              state = queue[head]
+              head += 1
+              if state == goal:
+                  return {"moves": moves[state]}
+              for chosen in choices:
+                  turned = tuple([1 - side if place in chosen else side for place, side in enumerate(state)])
+                  if turned not in moves:
+                      moves[turned] = moves[state] + 1
+                      queue.append(turned)
+          fail("it can never be done")
+    results: [moves]
+statement:
+  - text: "{coins} coins lie heads up. In one move you turn over exactly {per_move} coins. What is the smallest number of moves needed to make all {coins} coins tails up?"
+givens:
+  - "{coins} coins lie heads up."
+  - In one move exactly {per_move} coins are turned over.
+unknown: The smallest number of moves that makes all {coins} coins tails up.
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{moves}"
+          units: [move, moves]
+          trap_values:
+            - value: "1"
+              trap: ignored-condition
+              text: One move turns only {per_move} of the {coins} coins.
+            - value: "2"
+              trap: wrong-parity
+              text: After 2 moves some coin is turned an even number of times and is heads up again.
+            - value: "{coins}"
+              trap: stopped-early
+              text: "{coins} moves would work too, but fewer moves are already enough."
+    simpler_case: Try 4 coins heads up, with 1 coin turned in a move. How many moves does it take?
+solution:
+  - text: Every coin must be turned an odd number of times. Count the turns that the moves give, and see how few moves can give each coin an odd number.
+  - text: The fewest moves are {moves}.
+techniques: [parity]
+traps: [wrong-parity]
+leak_phrases: ["{moves} moves", "three moves"]
+skills:
+  primary: [parity-alternation]
+band: grades-3-4
+difficulty: 4
