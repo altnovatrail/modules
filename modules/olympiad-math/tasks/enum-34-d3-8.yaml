@@ -30,7 +30,7 @@ items:
             - value: "11"
               trap: "off-by-one"
               text: "One move of the way was missed."
-    simpler_case: "Find which walls you must go round first. Draw the way with your finger."
+    simpler_case: "Try a maze of 2 by 2 cells with one wall between the two top cells. What is the least number of moves from the top left cell to the top right one?"
 solution:
   - text: "Going round the walls, the shortest way from S to E takes 12 moves. Every other way is longer."
   - picture: "pictures/enum-34-d3-8-solution.png"

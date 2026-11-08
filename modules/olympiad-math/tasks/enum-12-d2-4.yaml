@@ -29,7 +29,7 @@ items:
             - value: "9"
               trap: "ignored-condition"
               text: "There is only one bead of each colour, so a colour cannot be used twice."
-    simpler_case: "Put the red bead first. In how many ways can the other two follow it?"
+    simpler_case: "Try two beads, a red one and a blue one. How many rows can she make?"
 solution:
   - text: "Any of the 3 beads can be first, then either of the other 2 can be second, and the last one is fixed: 2 + 2 + 2 = 6 rows."
 techniques: ["systematic"]

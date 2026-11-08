@@ -29,7 +29,7 @@ items:
             - value: "24"
               trap: "double-count"
               text: "You counted every outfit twice."
-    simpler_case: "Take one shirt first. How many outfits can it make?"
+    simpler_case: "Try 2 shirts and 2 pairs of trousers. How many outfits are there?"
 solution:
   - text: "Each of the 4 shirts goes with each of the 3 pairs of trousers: 4 × 3 = 12."
 techniques: ["systematic"]

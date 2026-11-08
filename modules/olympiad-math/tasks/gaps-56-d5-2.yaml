@@ -29,7 +29,7 @@ items:
             - value: "It cannot be told without the length of the film"
               trap: "stopped-early"
               text: "It can be told: take a film of any length cut into whole parts, and compare how many minutes of adverts each channel shows."
-    simpler_case: "Take a film of 30 minutes first. How many adverts does each channel show?"
+    simpler_case: "Try one channel that shows a 20-minute film in parts of 10 minutes, with a 2-minute advert between them. How long does it take to show?"
 solution:
   - text: "Take a film of 60 minutes. The first channel shows 2 parts with 1 advert between them, 6 minutes of adverts, and the second shows 4 parts with 3 adverts, 9 minutes. Each further 30 minutes of film adds 1 part and 1 advert, 6 minutes, on the first channel, and 2 parts and 2 adverts, 6 minutes, on the second. So whatever the length of the film, the second channel shows 3 minutes more of adverts, and the first ends 3 minutes sooner."
 techniques: ["draw", "small-numbers"]

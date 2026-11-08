@@ -1,0 +1,8 @@
+# What a person adds to pig-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are 50 pupils."
+  - "Each got a mark from 1 to 5 in maths and a mark from 1 to 5 in reading."
+unknown: "At least how many pupils got exactly the same pair of marks."
+simpler_case: "Try 10 pupils with a mark of 4 or 5 in each of two subjects. At least how many got the same pair of marks?"
+trap_texts:
+  "1": "1 hopes every pupil got a different pair of marks. Count the different pairs of marks first."

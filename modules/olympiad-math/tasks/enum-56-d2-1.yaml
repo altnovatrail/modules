@@ -29,7 +29,7 @@ items:
             - value: "6"
               trap: "stopped-early"
               text: "6 counts the bread and the filling only; each of those sandwiches still gets one of 3 choices for the sauce."
-    simpler_case: "Leave the sauce out first. How many ways are there to choose the bread and the filling?"
+    simpler_case: "Try white or brown bread with cheese, and a sauce or none. How many sandwiches are there?"
 solution:
   - text: "There are 2 breads and 3 fillings, so 2 × 3 = 6 ways to choose them. Each of those gets one of 3 choices for the sauce: the first sauce, the second or none. That makes 6 × 3 = 18 sandwiches."
 techniques: ["systematic"]

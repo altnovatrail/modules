@@ -1,0 +1,8 @@
+# What a person adds to pig-12-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The box has 4 red balls and 3 blue balls."
+  - "You take balls out without looking."
+unknown: "How many balls you must take to be sure to get 2 red balls."
+simpler_case: "Try a box of 4 red balls and 1 blue ball first. What is the unluckiest you can take?"
+trap_texts:
+  "6": "You took one ball too many. Count again: first the blue balls, then the red ones you need."

@@ -4,4 +4,4 @@ givens:
   - "Nora sits next to Owen."
   - "Sam does not sit at either end."
 unknown: "In how many ways the five can sit."
-simpler_case: "Put Sam in the second seat first. Where can Nora and Owen sit then?"
+simpler_case: "Try Nora, Owen and Pia on a bench, with Nora next to Owen. In how many ways can they sit?"

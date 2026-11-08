@@ -4,4 +4,4 @@ givens:
   - "Gia must be in the team."
   - "Ella and Finn are not in it together."
 unknown: "How many different teams the teacher can pick."
-simpler_case: "Gia is in. List the pairs of the other pupils who can join her."
+simpler_case: "Try picking 2 of 4 pupils, Ella, Finn, Gia and Hugo, with Ella and Finn not together. How many pairs are there?"

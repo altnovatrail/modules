@@ -1,0 +1,9 @@
+# What a person adds to pig-34-d5-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The socks are of 4 colours, many of each."
+  - "A pair is 2 socks of the same colour."
+  - "The two pairs may be of the same colour or of different colours."
+unknown: "How many socks you must take in the dark to be sure of 2 pairs."
+simpler_case: "Try socks of 2 colours, many of each, first. How many socks make you sure of 2 pairs?"
+trap_texts:
+  "8": "You multiplied 4 by 2. Fewer socks are already enough."

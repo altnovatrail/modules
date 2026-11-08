@@ -1,0 +1,8 @@
+# What a person adds to pig-12-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The box has 4 red, 5 blue and 6 green balls."
+  - "You take balls out without looking."
+unknown: "How many balls you must take to be sure to have 3 balls of the same colour."
+simpler_case: "Try a box of red and blue balls, many of each, first. How many balls make you sure of 3 of the same colour?"
+trap_texts:
+  "9": "You multiplied 3 by 3. Think of the unluckiest balls: how many can you take with no 3 alike?"

@@ -1,0 +1,9 @@
+# What a person adds to pig-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The die has the numbers 1 to 6."
+  - "Some number must come up three times."
+unknown: "How many times you must roll it to be sure of it."
+simpler_case: "Try a coin, heads or tails, first. How many tosses make you sure that one side comes up three times?"
+solution_picture_alt: "Six piles, one for each number of the die: 3 counters for the number 1 and 2 for each of the others."
+trap_texts:
+  "18": "18 multiplies 3 by 6, but you do not need every number three times: one number three times is enough."

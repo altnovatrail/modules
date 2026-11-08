@@ -1,0 +1,6 @@
+# What a person adds to pig-34-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "You choose whole numbers."
+  - "Two of them must end in the same digit."
+unknown: "How many numbers you must choose to be sure of it."
+simpler_case: "Try numbers that end in 1 or in 2 only. How many must you choose to be sure that two end in the same digit?"

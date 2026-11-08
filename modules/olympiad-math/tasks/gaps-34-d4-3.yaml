@@ -33,7 +33,7 @@ items:
             - value: "22"
               trap: "off-by-one"
               text: "Each side has 10 posts, not 11."
-    simpler_case: "Take one side first, and try a side 30 metres long. Draw it and count its posts."
+    simpler_case: "Try one side of a path 30 metres long, with a post every 10 metres and posts at both ends. How many posts does it have?"
 solution:
   - text: "One side has 90 ÷ 10 = 9 gaps and 9 + 1 = 10 posts. Two sides have 10 + 10 = 20 posts."
   - text: "10 + 10 = 20"

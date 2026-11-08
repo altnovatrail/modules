@@ -3,6 +3,6 @@ givens:
   - "The pages are numbered 1, 2, 3 and so on."
   - "Exactly 39 digits were printed."
 unknown: "How many pages the book has."
-simpler_case: "How many digits do pages 1 to 9 use? See how many digits are left for the other pages."
+simpler_case: "Try a book whose page numbers use 15 digits in all. How many pages does it have?"
 trap_texts:
   "25": "Count the two-digit pages again: they start at page 10, so find the page they end on."

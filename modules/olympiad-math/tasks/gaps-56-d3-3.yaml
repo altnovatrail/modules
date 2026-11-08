@@ -29,7 +29,7 @@ items:
             - value: "10"
               trap: "number-from-text"
               text: "10 is the distance between flags, copied from the question."
-    simpler_case: "Take the small track alone first. On a closed track, how many flags are there for how many gaps?"
+    simpler_case: "Try two closed tracks of 20 and 30 metres that touch at one point, with a flag every 10 metres and one where they touch. How many flags are there?"
 solution:
   - text: "On a closed track there are as many flags as gaps: 60 ÷ 10 = 6 on the small track and 100 ÷ 10 = 10 on the big one. The flag where the tracks touch is on both, so it is counted once: 6 + 10 − 1 = 15."
 techniques: ["draw", "small-numbers"]

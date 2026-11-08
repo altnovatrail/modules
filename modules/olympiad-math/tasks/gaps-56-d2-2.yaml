@@ -29,7 +29,7 @@ items:
             - value: "12"
               trap: "wrong-operation"
               text: "12 adds the 5 and the 7, but the trees fill 5 rows of 7."
-    simpler_case: "Count the trees along one 20-metre edge first: they stand every 5 metres from one end to the other."
+    simpler_case: "Try an orchard 10 metres by 10 metres, with trees every 5 metres both ways and one in each corner. How many trees are there?"
 solution:
   - text: "Along the 20-metre side the trees stand at 0, 5, 10, 15 and 20 metres: 5 trees. Along the 30-metre side there are 7. The trees fill 5 rows of 7, so there are 5 × 7 = 35."
 techniques: ["draw", "small-numbers"]

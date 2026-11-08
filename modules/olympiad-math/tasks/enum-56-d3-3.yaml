@@ -33,7 +33,7 @@ items:
             - value: "6"
               trap: "missed-case"
               text: "6 leaves out the two routes along the edges: along row A and down column 4, or down column 1 and along row D."
-    simpler_case: "Write in each square how many routes reach it, starting from A1."
+    simpler_case: "Try a board of 2 by 2 squares, from the top left to the bottom right. How many routes are there?"
 solution:
   - text: "Count the routes to each square. Every square in row A and in column 1 is reached in 1 way, and B2 in none, as it is blocked. Every other square gets the routes of the square above it plus those of the square to its left: B3 gets 1, B4 2, C2 1, C3 2, C4 4, D2 2, D3 4 and D4 8."
   - text: "4 + 4 = 8"

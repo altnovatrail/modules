@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-12-d1-3.yaml, and the port writes this file again (R12).
+id: "pig-12-d1-3"
+statement:
+  - text: "4 rabbits sit in 3 cages. At least how many rabbits must be in the cage with the most rabbits?"
+givens: ["4 rabbits sit in 3 cages."]
+unknown: "At least how many rabbits are in the cage with the most rabbits."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["rabbit", "rabbits"]
+          trap_values:
+            - value: "0"
+              trap: "ignored-condition"
+              text: "All 4 rabbits sit somewhere."
+            - value: "1"
+              trap: "best-case-not-worst"
+              text: "If each cage has one rabbit, how many rabbits fit? Some rabbit is still left over."
+            - value: "3"
+              trap: "ignored-condition"
+              text: "The rabbits can spread out more evenly. Try to put as few rabbits as you can in the fullest cage."
+            - value: "4"
+              trap: "number-from-text"
+              text: "4 is the number of rabbits."
+    simpler_case: "Try 3 rabbits in 3 cages first. How few can the fullest cage have?"
+solution:
+  - text: "If every cage had at most 1 rabbit, only 3 rabbits would fit. There are 4, so some cage has at least 2."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-1-2"
+difficulty: 1

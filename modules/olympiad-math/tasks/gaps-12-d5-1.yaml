@@ -29,7 +29,7 @@ items:
             - value: "24"
               trap: "off-by-one"
               text: "Each log needs 3 cuts, not 4."
-    simpler_case: "Take one log first. How many cuts make 4 pieces?"
+    simpler_case: "Try two logs, each sawn into 3 pieces, with each cut taking 1 minute. How long does all the sawing take?"
 solution:
   - text: "One log in 4 pieces needs 3 cuts. Three logs need 3 + 3 + 3 = 9 cuts. 9 cuts take 9 × 2 = 18 minutes."
 techniques: ["draw", "small-numbers"]

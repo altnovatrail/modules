@@ -4,4 +4,4 @@ givens:
   - "The three digits of a number are all different."
   - "The number must be even."
 unknown: "How many even three-digit numbers Tom can write."
-simpler_case: "Which digits can an even number end in? Count the numbers that end in 0 first."
+simpler_case: "Try two-digit numbers with the digits 0, 1 and 2, all different. How many are even?"

@@ -29,7 +29,7 @@ items:
             - value: "9"
               trap: "wrong-operation"
               text: "You multiplied 3 by 3. List the amounts instead."
-    simpler_case: "List the amounts with one coin first, then with two coins, then with all three."
+    simpler_case: "Try two coins, 1 cent and 2 cents. How many amounts can he pay?"
 solution:
   - text: "With one coin: 1, 2, 5. With two coins: 3, 6, 7. With all three: 8. That is 7 amounts."
 techniques: ["systematic"]

@@ -29,7 +29,7 @@ items:
             - value: "45"
               trap: "ignored-condition"
               text: "45 counts the bags as different, but the bags are alike, so swapping the contents of two bags gives the same way."
-    simpler_case: "Sort the ways by where the green balls go: both in one bag, or in two bags."
+    simpler_case: "Try 2 red and 2 blue balls in two bags of 2 balls each, the bags alike. In how many ways can it be done?"
 solution:
   - text: "If both green balls share a bag, its third ball is red or blue. With a red one, the other 3 red and 3 blue balls fill the other two bags in 2 ways: red-red-red with blue-blue-blue, or red-red-blue with red-blue-blue. With a blue one, the 4 red and 2 blue balls left fill them in 2 ways too. If the green balls are in two bags, the bag without green holds red-red-red, red-red-blue, red-blue-blue or blue-blue-blue, and the other balls go with the green ones in 1, 2, 1 and 1 ways. So there are 2 + 2 + 5 = 9 ways."
 techniques: ["systematic"]

@@ -3,4 +3,4 @@ givens:
   - "The numbers have two digits."
   - "Both digits are the same, like 44."
 unknown: "How many such numbers there are."
-simpler_case: "Write the numbers whose two digits are both 1, then both 2, and go on."
+simpler_case: "Try the numbers from 10 to 40 only. How many have both digits the same?"

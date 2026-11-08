@@ -4,7 +4,7 @@ givens:
   - "Each digit is used exactly once."
   - "The numbers have four digits."
 unknown: "How many such numbers can be written."
-simpler_case: "Which digit cannot come first? Count the numbers that start with 1 first."
+simpler_case: "Try three-digit numbers with the digits 0, 1 and 2, each used once. How many are there?"
 trap_texts:
   "12": "You missed some numbers. Try each digit that can come first, and list the orders of the others."
   "27": "You multiplied 3 by 3 by 3, but each digit is used exactly once, and a number cannot start with 0."

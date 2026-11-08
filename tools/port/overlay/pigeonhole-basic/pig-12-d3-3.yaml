@@ -1,0 +1,8 @@
+# What a person adds to pig-12-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "9 children sit on 4 benches."
+unknown: "At least how many children sit on the bench with the most children."
+simpler_case: "Try 5 children on 4 benches first. How few can the fullest bench have?"
+solution_picture_alt: "Four piles of counters, one for each bench: 3 on the first bench and 2 on each of the others."
+trap_texts:
+  "5": "The children can spread out more evenly over the benches. Try to fill the fullest bench as little as you can."

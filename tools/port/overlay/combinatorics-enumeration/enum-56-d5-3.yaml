@@ -4,5 +4,5 @@ givens:
   - "She puts them into three bags, 3 balls in each."
   - "The bags are alike too."
 unknown: "In how many different ways she can do it."
-simpler_case: "Sort the ways by where the green balls go: both in one bag, or in two bags."
+simpler_case: "Try 2 red and 2 blue balls in two bags of 2 balls each, the bags alike. In how many ways can it be done?"
 leak_phrases: ["9 ways", "nine ways"]

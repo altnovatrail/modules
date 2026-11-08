@@ -33,7 +33,7 @@ items:
             - value: "2"
               trap: "missed-case"
               text: "That is only from S to M."
-    simpler_case: "Count the routes from S to M first, then from M to F."
+    simpler_case: "Try squared paper of 2 by 2 cells, from the top left cell to the bottom right one, only right or down. How many routes are there?"
 solution:
   - text: "From S to M the robot goes one cell right and one cell down, in either order: 2 routes. From M to F it goes two cells right and one down, and the step down can come first, second or last: 3 routes. Each route to M can go on by each route from M, so there are 2 × 3 = 6 routes."
   - text: "2 × 3 = 6"

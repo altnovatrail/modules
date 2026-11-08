@@ -3,6 +3,6 @@ givens:
   - "The digits are 3, 5 and 7."
   - "The two digits of a number must be different."
 unknown: "How many two-digit numbers can be written."
-simpler_case: "Start with the numbers whose first digit is 3. Write them all down."
+simpler_case: "Try the digits 1 and 2 only, the two digits of a number different. How many two-digit numbers can you write?"
 trap_texts:
   "5": "You missed a number. Write them by their first digit: 3, then 5, then 7."

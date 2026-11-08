@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-34-d3-4.yaml, and the port writes this file again (R12).
+id: "pig-34-d3-4"
+statement:
+  - text: "35 pupils each read between 0 and 9 books during the summer. At least how many pupils read the same number of books?"
+givens: ["There are 35 pupils.", "Each read between 0 and 9 books during the summer."]
+unknown: "At least how many pupils read the same number of books."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["pupil", "pupils"]
+          trap_values:
+            - value: "3"
+              trap: "best-case-not-worst"
+              text: "10 numbers with 3 pupils each cover only 30 pupils."
+            - value: "5"
+              trap: "ignored-condition"
+              text: "The pupils can spread out so that no number has 5 of them."
+            - value: "10"
+              trap: "answered-other-question"
+              text: "10 is how many different numbers of books there can be."
+            - value: "35"
+              trap: "number-from-text"
+              text: "35 is the number of pupils."
+    simpler_case: "Try 7 pupils who each read 0, 1 or 2 books first. At least how many read the same number?"
+solution:
+  - text: "There are 10 possible numbers of books: 0, 1, ..., 9. If each number belonged to at most 3 pupils, only 30 pupils would fit. There are 35, so some number belongs to at least 4 pupils."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-3-4"
+difficulty: 3

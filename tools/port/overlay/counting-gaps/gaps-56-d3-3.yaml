@@ -5,4 +5,4 @@ givens:
   - "Flags stand every 10 metres along both tracks."
   - "One flag stands at the point where the tracks touch."
 unknown: "How many flags there are."
-simpler_case: "Take the small track alone first. On a closed track, how many flags are there for how many gaps?"
+simpler_case: "Try two closed tracks of 20 and 30 metres that touch at one point, with a flag every 10 metres and one where they touch. How many flags are there?"

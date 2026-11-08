@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-56-d1-3.yaml, and the port writes this file again (R12).
+id: "pig-56-d1-3"
+statement:
+  - text: "The scent of a lily-of-the-valley bush reaches 25 metres all round it. Bushes are planted along a straight path 300 metres long, so that the scent reaches every point of the path. At least how many bushes are needed?"
+givens: ["The scent of a bush reaches 25 metres all round it.", "The path is straight and 300 metres long.", "The scent must reach every point of the path."]
+unknown: "At least how many bushes are needed."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["bush", "bushes"]
+          trap_values:
+            - value: "3"
+              trap: "wrong-operation"
+              text: "3 lets each bush cover 100 metres, doubling the 50 metres that its scent covers."
+            - value: "12"
+              trap: "ignored-condition"
+              text: "12 lets each bush cover only 25 metres of the path, but its scent reaches 25 metres to each side of it, 50 metres in all."
+            - value: "7"
+              trap: "off-by-one"
+              text: "7 plants a bush at each end of the path and every 50 metres, like posts. But a bush's scent covers 25 metres on both sides of it, so no bush is needed at the very ends."
+            - value: "13"
+              trap: "ignored-condition"
+              text: "13 plants the bushes 25 metres apart like posts, one at each end, as if each covered only 25 metres, but each bush's scent covers 50 metres of the path."
+    simpler_case: "Try a path of 100 metres first. How many bushes does it need?"
+solution:
+  - text: "The scent of one bush covers 25 metres on each side of it, 50 metres of the path at most. Five bushes cover at most 250 metres, less than 300, so at least 6 are needed. Six are enough: planted at 25, 75, 125, 175, 225 and 275 metres, they cover the whole path."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-5-6"
+difficulty: 1

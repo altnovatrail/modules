@@ -4,4 +4,4 @@ givens:
   - "There is a lamp in each corner."
   - "Each short side has 6 lamps, counting its corners."
 unknown: "How many lamps each long side has, counting its corners."
-simpler_case: "Add up the lamps of all four sides: which lamps are counted twice?"
+simpler_case: "Try 10 lamps round a rectangle, one in each corner, with 3 lamps on each short side counting its corners. How many lamps does each long side have?"

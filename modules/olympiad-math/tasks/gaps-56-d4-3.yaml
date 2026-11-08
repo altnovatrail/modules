@@ -29,7 +29,7 @@ items:
             - value: "22"
               trap: "answered-other-question"
               text: "22 is the number of lamps on both long sides together, counting their corners."
-    simpler_case: "Add up the lamps of all four sides: which lamps are counted twice?"
+    simpler_case: "Try 10 lamps round a rectangle, one in each corner, with 3 lamps on each short side counting its corners. How many lamps does each long side have?"
 solution:
   - text: "Adding up the lamps of the four sides counts each of the 4 corner lamps twice, so the four sides together hold 30 + 4 = 34. The two short sides hold 6 + 6 = 12 of these, which leaves 34 − 12 = 22 for the two long sides: 11 each."
 techniques: ["draw", "small-numbers"]

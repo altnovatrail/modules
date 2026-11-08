@@ -29,7 +29,7 @@ items:
             - value: "21"
               trap: "off-by-one"
               text: "7 rings have 6 gaps, not 7."
-    simpler_case: "How many gaps are there between 3 rings? Find how long one gap lasts."
+    simpler_case: "Try a bell that rings 2 times in 4 seconds. How long do 4 rings take, from the first to the last?"
 solution:
   - text: "3 rings have 2 gaps, so one gap lasts 6 ÷ 2 = 3 seconds. 7 rings have 6 gaps: 6 × 3 = 18 seconds."
 techniques: ["draw", "small-numbers"]

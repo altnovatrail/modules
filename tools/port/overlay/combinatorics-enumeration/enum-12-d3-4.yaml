@@ -3,6 +3,6 @@ givens:
   - "Mark has three coins: 1 cent, 2 cents and 5 cents."
   - "He pays with one or more of them."
 unknown: "How many different amounts he can pay exactly."
-simpler_case: "List the amounts with one coin first, then with two coins, then with all three."
+simpler_case: "Try two coins, 1 cent and 2 cents. How many amounts can he pay?"
 trap_texts:
   "8": "Paying nothing is not an amount. Count only the amounts of one or more coins."

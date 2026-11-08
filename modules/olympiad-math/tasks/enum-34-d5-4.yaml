@@ -29,7 +29,7 @@ items:
             - value: "56"
               trap: "wrong-operation"
               text: "You doubled 28. That is not the number of players."
-    simpler_case: "Count the games for 3 players, then for 4, and go on."
+    simpler_case: "Try a tournament of 3 games in all, every two players playing once. How many players took part?"
 solution:
   - text: "With 8 players, the first plays 7 games, the second 6 new ones, and so on: 7 + 6 + 5 + 4 + 3 + 2 + 1 = 28. So there were 8 players."
 techniques: ["systematic"]

@@ -29,7 +29,7 @@ items:
             - value: "20"
               trap: "double-count"
               text: "77 is in both groups. Count it only once."
-    simpler_case: "Count the numbers that end in 7 first. Then those from 70 to 79. Is any number in both lists?"
+    simpler_case: "Try the numbers from 1 to 30. How many contain the digit 2?"
 solution:
   - text: "Numbers ending in 7: 7, 17, ..., 97, that is 10 numbers. Numbers from 70 to 79: 10 numbers. 77 is in both groups. 10 + 10 - 1 = 19."
 techniques: ["systematic"]

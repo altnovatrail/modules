@@ -1,0 +1,8 @@
+# What a person adds to pig-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Every pupil was born in one of the four seasons."
+  - "Every pupil is a boy or a girl."
+unknown: "How many pupils a group must have to be sure that 3 of them were born in the same season and are all boys or all girls."
+simpler_case: "Try pupils born in one of 2 seasons, all of them girls. How many make you sure that 2 were born in the same season?"
+trap_texts:
+  "24": "24 multiplies 3 by the kinds of pupil, but you do not need three of every kind: three of one kind are enough."

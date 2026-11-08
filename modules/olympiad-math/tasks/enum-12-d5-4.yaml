@@ -29,7 +29,7 @@ items:
             - value: "24"
               trap: "ignored-condition"
               text: "Tom must stand at an end, so he cannot be in the middle."
-    simpler_case: "Put Tom at the left end first. In how many orders can the other children stand?"
+    simpler_case: "Try three children in a line, with Tom at one of the two ends. How many lines can they make?"
 solution:
   - text: "If Tom is at the left end, the other 3 children can stand in 6 orders. If he is at the right end, again 6 orders. 6 + 6 = 12."
 techniques: ["systematic"]

@@ -29,7 +29,7 @@ items:
             - value: "3"
               trap: "answered-other-question"
               text: "3 is the number of old holes that are used again."
-    simpler_case: "Write the places of the new lamps, measured round the path from the first one. Which of them are places of old lamps too?"
+    simpler_case: "Try a circular path 60 metres round, old lamps every 10 metres and new ones every 15 metres, the first where an old one stood. How many new holes are dug?"
 solution:
   - text: "Measured round the path from the first new lamp, the old lamps stood at every multiple of 15 metres. The new lamps stand at 0, 40, 80 and so on up to 320 metres: 360 ÷ 40 = 9 lamps, as many as gaps on a closed path. A new lamp is at an old lamp's place when its distance is a multiple of 15 as well: at 0, 120 and 240 metres. The other 9 − 3 = 6 new lamps need new holes."
 techniques: ["draw", "small-numbers"]

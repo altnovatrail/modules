@@ -32,7 +32,7 @@ items:
             - value: "10"
               trap: "number-from-text"
               text: "That is the top, where B starts."
-    simpler_case: "Write where each kitten is after one move, then after the next."
+    simpler_case: "Try a staircase of 6 steps, A starting on the floor and B on the top step, each going 1 step a move. On which step do they meet?"
 solution:
   - text: "After one move A is on step 2 and B on step 7. After two moves A is on step 4 and B on step 4, so they meet on step 4."
   - text: "2 + 2 = 4"

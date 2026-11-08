@@ -117,7 +117,7 @@
 | [x] | T21 | Задачи по картинке: `lattice`, `tiles`, `shapes`, `stairs` и их `alt` | Claude, проверяю я | да | T18 |
 | [x] | T22 | `counting-gaps`: 60 задач | Claude, проверяю я | да | T20, T21 |
 | [x] | T23 | `combinatorics-enumeration`: 62 задачи | Claude, проверяю я | — | T19–T22 |
-| [ ] | T24 | `pigeonhole-basic`: 56 задач | Claude, проверяю я | — | T19, T20, T22 |
+| [x] | T24 | `pigeonhole-basic`: 56 задач | Claude, проверяю я | — | T19, T20, T22 |
 | [ ] | T25 | `arithmetic-tricks`: 67 задач | Claude, проверяю я | — | T19, T21, T22 |
 | [ ] | T26 | `parity-alternation`: 67 задач | Claude, проверяю я | — | T19, T21, T22 |
 | [ ] | T27 | `logic-ordering`: 65 задач | Claude, проверяю я | — | T22 |
@@ -424,6 +424,15 @@
 
 - **Цель:** 56 задач: 22 на 1–2, 22 на 3–4 и 12 на 5–6. Ответы — 54 целых числа и 2 слова. Картинок у задач нет, а у картинок решения — `piles` и `table`.
 - **Сделать:** по общему для задач содержания.
+- **Сделано (2026-11-08):**
+  - правило 12 — до начала: у SonarCloud на `e3` и у CodeQL находок нет, у Scorecard те же 6, их причины — в R33 spec. Правок нет;
+  - `tools/port/batches/pigeonhole-basic.yaml` — 56 задач на 42b4408 с единицами и приёмом `pigeonhole`; `tools/port/overlay/pigeonhole-basic/` — 56 файлов правок: `givens`, `unknown` и `simpler_case` каждой задачи, `alt` трёх картинок решения, 31 переписанное пояснение в 24 задачах, `leak_phrases` трёх задач;
+  - `modules/olympiad-math/` — 56 новых задач и 3 картинки, версия по-прежнему `0.1.1`; каталоги те же;
+  - два ответа «Yes, always», у `pig-34-d1-5` и `pig-34-d5-5`, — выборы касанием (R20). Пояснения, которые говорили вывод — «two must share a month», «It is true in every case», — переписаны, а у задач есть `leak_phrases`. Ключ 6 у `pig-56-d5-2` совпадает с 6 малиновками условия, и у неё тоже есть `leak_phrases`;
+  - пояснения — по мерке T22 и T23, с первого прочтения: переписаны те, что давали ключ готовым разбиением — «2, 1 and 1», «3, 2, 2 and 2», — готовым счётом — «12 × 3 + 1 = 37 is enough», «the 13th already makes three» — или правилом из чисел условия — «After the 3 blue balls, 2 more are enough». Два случайных совпадения нашёл `module-kit check`: `simpler_case` у `pig-12-d3-5` и пояснение у `pig-56-d4-3`;
+  - проверено 2026-11-08: `just port modules/olympiad-math --batch tools/port/batches/pigeonhole-basic.yaml --check` — стенд 42b4408 доказывает все 56, файлы совпадают; `module-kit check modules/olympiad-math` — без нарушений и предупреждений; `just modules-check`; `just -f spec/justfile docs-check-repo`. `/code-review high`, один круг, нашёл 10 пунктов. Исправлены: пояснения, которые говорили вывод задачи — «the 4th must join another rabbit», — или правило счёта вместо ошибки, и среди них четыре моих же; неверное «10 balls could be of different colours»; `simpler_case` с тем же ответом, что у задачи, и 25 `simpler_case`, которые были подсказкой на самой задаче, — теперь каждый из них похожая задача проще, со своим ответом ([текст формата](spec/format/README.md), раздел 14). Не исправлено, по мерке T22: пояснения, которые называют ошибку относительно ответа самого ученика — «After 6 red marbles you need 2 blue ones, not 1», «14 is how many birds must stay», — и промежуточное число — «a bush covers 50 metres».
+  - то же ревью показало, что и в T22 и T23 часть `simpler_case` — первый шаг решения той же задачи, «Count the ways through Birch first», хотя R13 требует задачу проще, а не первый шаг. Переписаны все такие: 25 у `counting-gaps` и 39 у `combinatorics-enumeration`. Каждый теперь похожая задача проще, со своим ответом, отличным от ключа;
+- **Открыто:** тексты 56 задач вычитываешь ты: `modules/olympiad-math/tasks/pig-*.yaml`.
 
 #### T25. `arithmetic-tricks`: 67 задач
 

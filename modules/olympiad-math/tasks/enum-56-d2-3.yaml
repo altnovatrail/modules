@@ -29,7 +29,7 @@ items:
             - value: "4"
               trap: "missed-case"
               text: "4 leaves out red 4 with blue 4."
-    simpler_case: "Go through the red die: 1, 2, 3 and so on. Which blue number makes 8 with it?"
+    simpler_case: "Try a total of 4 with a red die and a blue die. In how many ways can it come?"
 solution:
   - text: "Red 1 would need blue 7, which cannot be. Red 2, 3, 4, 5 and 6 need blue 6, 5, 4, 3 and 2. That is 5 ways."
 techniques: ["systematic"]

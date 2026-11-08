@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-34-d4-4.yaml, and the port writes this file again (R12).
+id: "pig-34-d4-4"
+statement:
+  - text: "A school has 400 pupils. A year has at most 366 days. At least how many pupils must have their birthday on the same day of the year?"
+givens: ["The school has 400 pupils.", "A year has at most 366 days."]
+unknown: "At least how many pupils have their birthday on the same day of the year."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["pupil", "pupils"]
+          trap_values:
+            - value: "1"
+              trap: "best-case-not-worst"
+              text: "Only 366 pupils can have different birthdays."
+            - value: "3"
+              trap: "ignored-condition"
+              text: "The pupils can spread out so that no day has 3 birthdays."
+            - value: "34"
+              trap: "answered-other-question"
+              text: "34 is how many more pupils than days there are."
+            - value: "400"
+              trap: "number-from-text"
+              text: "400 is the number of pupils."
+    simpler_case: "Try 9 pupils and a year of 4 days first. How few can share the fullest day?"
+solution:
+  - text: "If every day had at most one birthday, only 366 pupils would fit. There are 400, so some day has at least 2 birthdays."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-3-4"
+difficulty: 4

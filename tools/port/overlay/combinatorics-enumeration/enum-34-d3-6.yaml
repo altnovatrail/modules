@@ -4,6 +4,6 @@ givens:
   - "They make one square."
   - "The side of a cell is 1."
 unknown: "How long each side of the square is."
-simpler_case: "Find how long all the sticks are together first."
+simpler_case: "Try four sticks 2 long and four sticks 1 long, laid into one square. How long is each side?"
 picture_alt: "Eight sticks on squared paper of 8 cells by 5: four sticks three cells long and four sticks one cell long."
 solution_picture_alt: "A square on squared paper made of the eight sticks, each side a long stick and a short one."

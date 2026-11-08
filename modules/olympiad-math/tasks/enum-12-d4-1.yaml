@@ -29,7 +29,7 @@ items:
             - value: "27"
               trap: "ignored-condition"
               text: "Each digit is used exactly once, so 111 or 122 do not count."
-    simpler_case: "Start with the numbers whose first digit is 1. How many are there?"
+    simpler_case: "Try the digits 1 and 2, each used once. How many two-digit numbers can you make?"
 solution:
   - text: "The numbers are 123, 132, 213, 231, 312 and 321. That is 6 numbers."
 techniques: ["systematic"]

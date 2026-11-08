@@ -5,4 +5,4 @@ givens:
   - "Masha is in front of Dasha."
   - "3 people stand between them."
 unknown: "How many people are in the queue."
-simpler_case: "Draw the queue: Masha with the people in front of her, then the people between, then Dasha with those behind her."
+simpler_case: "Try a queue where Masha is 2nd from the front, Dasha is 2nd from the back, and 1 person stands between them. How many people are in it?"

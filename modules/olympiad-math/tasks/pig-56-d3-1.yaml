@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-56-d3-1.yaml, and the port writes this file again (R12).
+id: "pig-56-d3-1"
+statement:
+  - text: "A purse holds 1 coin of 50 cents, 2 coins of 20 cents and 9 coins of 10 cents. Without looking, how many coins must you take out to be sure of 3 coins of the same value?"
+givens: ["The purse has 1 coin of 50 cents, 2 coins of 20 cents and 9 coins of 10 cents.", "You take coins out without looking."]
+unknown: "How many coins you must take to be sure of 3 coins of the same value."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["coin", "coins"]
+          trap_values:
+            - value: "9"
+              trap: "number-from-text"
+              text: "9 is the number of 10-cent coins, copied from the question."
+            - value: "7"
+              trap: "ignored-condition"
+              text: "7 counts on taking two coins of each value first, but there is only one 50-cent coin to take."
+            - value: "5"
+              trap: "off-by-one"
+              text: "5 coins could be the 50-cent coin, both 20-cent coins and two 10-cent coins, with no three alike."
+            - value: "3"
+              trap: "best-case-not-worst"
+              text: "Three coins could all be 10-cent coins by luck, but they need not."
+    simpler_case: "Try a purse of 1 coin of 20 cents and 5 coins of 10 cents first. How many coins make you sure of 2 of the same value?"
+solution:
+  - text: "The unluckiest way is to take the only 50-cent coin, both 20-cent coins and two 10-cent coins: 5 coins with no three of the same value. The next coin can only be a 10-cent coin, and it makes three of them. So 6 coins are enough."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-5-6"
+difficulty: 3

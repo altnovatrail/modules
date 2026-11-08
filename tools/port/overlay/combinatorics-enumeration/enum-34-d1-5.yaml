@@ -3,4 +3,4 @@ givens:
   - "The numbers have two digits."
   - "A number counts if at least one of its digits is 5."
 unknown: "How many such numbers there are."
-simpler_case: "Count the numbers that start with 5 first. Then those that end in 5. Is any number in both lists?"
+simpler_case: "Try the numbers from 10 to 30. How many have at least one digit 2?"

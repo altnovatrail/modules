@@ -4,4 +4,4 @@ givens:
   - "Each log is sawn into 4 pieces."
   - "Each cut takes 2 minutes."
 unknown: "How many minutes all the sawing takes."
-simpler_case: "Take one log first. How many cuts make 4 pieces?"
+simpler_case: "Try two logs, each sawn into 3 pieces, with each cut taking 1 minute. How long does all the sawing take?"

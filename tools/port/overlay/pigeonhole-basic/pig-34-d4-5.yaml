@@ -1,0 +1,6 @@
+# What a person adds to pig-34-d4-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The box has 4 white, 3 black and 2 red balls."
+  - "You take balls out without looking."
+unknown: "How many balls you must take to be sure to have a ball of each colour."
+simpler_case: "Try a box of 2 white balls and 1 red ball first. How many must you take to be sure of both colours?"

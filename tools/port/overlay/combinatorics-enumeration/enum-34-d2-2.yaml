@@ -4,6 +4,6 @@ givens:
   - "He pays exactly 7 cents."
   - "The order of the coins does not matter."
 unknown: "In how many different ways he can pay."
-simpler_case: "Count the ways with a 5-cent coin first, and then the ways without one."
+simpler_case: "Try paying 4 cents with 1-cent and 2-cent coins. In how many ways can it be done?"
 trap_texts:
   "8": "Check that each way adds up to exactly 7 cents, and that no way is counted twice."

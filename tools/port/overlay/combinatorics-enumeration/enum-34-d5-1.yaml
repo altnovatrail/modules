@@ -3,4 +3,4 @@ givens:
   - "The numbers have three digits."
   - "Their digits add up to 5."
 unknown: "How many such numbers there are."
-simpler_case: "Go through the first digit: 5, then 4, and so on. How many numbers start with 5?"
+simpler_case: "Try three-digit numbers whose digits add up to 2. How many are there?"

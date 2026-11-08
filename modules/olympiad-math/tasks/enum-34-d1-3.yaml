@@ -29,7 +29,7 @@ items:
             - value: "64"
               trap: "ignored-condition"
               text: "The digits must be different, so 444 or 455 do not count."
-    simpler_case: "How many choices are there for the first digit? And then for the second?"
+    simpler_case: "Try the digits 4, 5 and 6 in two-digit numbers with different digits. How many are there?"
 solution:
   - text: "The first digit has 4 choices, the second 3, the third 2: 4 × 3 × 2 = 24."
 techniques: ["systematic"]

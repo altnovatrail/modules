@@ -3,4 +3,4 @@ givens:
   - "The digits are 1, 2 and 3."
   - "Each digit is used exactly once."
 unknown: "How many different three-digit numbers can be made."
-simpler_case: "Start with the numbers whose first digit is 1. How many are there?"
+simpler_case: "Try the digits 1 and 2, each used once. How many two-digit numbers can you make?"

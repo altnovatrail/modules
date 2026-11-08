@@ -1,0 +1,6 @@
+# What a person adds to pig-34-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The school has 400 pupils."
+  - "A year has at most 366 days."
+unknown: "At least how many pupils have their birthday on the same day of the year."
+simpler_case: "Try 9 pupils and a year of 4 days first. How few can share the fullest day?"

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-56-d4-3.yaml, and the port writes this file again (R12).
+id: "pig-56-d4-3"
+statement:
+  - text: "You choose different numbers from 1 to 10. How many must you choose to be sure that one of them divides another?"
+givens: ["You choose different numbers from 1 to 10.", "One of them must divide another."]
+unknown: "How many numbers you must choose to be sure of it."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["number", "numbers"]
+          trap_values:
+            - value: "10"
+              trap: "answered-other-question"
+              text: "10 is how many numbers there are to choose from; far fewer are already enough."
+            - value: "5"
+              trap: "off-by-one"
+              text: "5 is not enough: five numbers can be found with no one dividing another. Try the biggest numbers."
+            - value: "7"
+              trap: "missed-case"
+              text: "7 misses that 1 divides every number: with 1 in a group of its own there are six groups, but 1 belongs with 2, 4 and 8."
+            - value: "2"
+              trap: "best-case-not-worst"
+              text: "Two numbers such as 2 and 4 work by luck, but 2 and 3 do not."
+    simpler_case: "Try the numbers from 1 to 4 first. How many must you choose to be sure that one divides another?"
+solution:
+  - text: "The five numbers 6, 7, 8, 9 and 10 have no one dividing another, so 5 are not enough. Now sort the numbers into five groups: 1, 2, 4 and 8; 3 and 6; 5 and 10; 7; 9. In each group every number divides the bigger ones, so two chosen numbers from one group always work. Six numbers must put two into one group, so 6 are enough."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-5-6"
+difficulty: 4
