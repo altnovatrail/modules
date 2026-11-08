@@ -1,0 +1,38 @@
+# A lesson of E3 (T41; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# geometry-cubes-paper on the band of grades 3–4. Its texts are those of the page cubes-and-paper of
+# mathtrail-standalone's site at 42b4408, put to the learner, with its cards and its worked example
+# rewritten so as to solve no task of the module (amendment T41 to R14), and its pictures are drawn
+# by the port from tools/port/pictures/olympiad-math/ (amendment T41 to R12). standalone's content
+# in this module carries the MIT notice of NOTICE.
+id: geometry-cubes-paper-grades-3-4
+title: "Cubes and paper: going further"
+skills: [geometry-cubes-paper]
+segments:
+  - explanation:
+      - text: "A flat net of six squares folds into a cube; a folded sheet, punched once, opens with several holes; a die rolled along a row shows a number on top that can be worked out. These tasks are solved by picturing the folding, the rolling or the unfolding, one step at a time."
+      - text: "Opposite faces never touch. In a net, two squares in a row with one square between them become opposite faces of the cube."
+      - text: "A fold doubles the layers. Each fold doubles the layers where it lays the sheet, and a punch makes a hole in every layer it goes through."
+      - text: "A die makes 7. On a die the numbers on opposite faces add up to 7, so the top tells the bottom."
+  - worked_example:
+      statement:
+        - text: "A die stands with 1 on top. It rolls over its edge straight ahead twice. Opposite faces of a die add up to 7. Which number is on top now?"
+        - picture: "lessons/geometry-cubes-paper-grades-3-4.png"
+          alt: "A row of three cells; the first holds the number 1."
+          width: 168
+          height: 88
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "The first roll brings the face from the back up to the top."
+        - text: "The second roll brings up the face that was at the bottom at the start."
+        - text: "The bottom was opposite the 1, so it is 7 − 1 = 6."
+        - text: "Answer: The number 6."
+  - task: cube-34-d1-1
+  - task: cube-34-d3-1
+  - task: cube-34-d5-1
+  - explanation:
+      - text: "How to solve: one fold at a time."
+      - text: "Pick the first square, fold or roll."
+      - text: "Say what it does to the faces or the layers."
+      - text: "Go on step by step, then check with paper or a die."

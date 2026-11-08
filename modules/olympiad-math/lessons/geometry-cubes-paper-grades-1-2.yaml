@@ -1,0 +1,40 @@
+# A lesson of E3 (T41; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# geometry-cubes-paper on the band of grades 1–2. Its texts are those of the page cubes-and-paper of
+# mathtrail-standalone's site at 42b4408, put to the learner, with its cards and its worked example
+# rewritten so as to solve no task of the module (amendment T41 to R14), and its pictures are drawn
+# by the port from tools/port/pictures/olympiad-math/ (amendment T41 to R12). standalone's content
+# in this module carries the MIT notice of NOTICE.
+id: geometry-cubes-paper-grades-1-2
+title: "Cubes and paper: first steps"
+skills: [geometry-cubes-paper]
+segments:
+  - explanation:
+      - text: "A flat net of six squares folds into a cube; a folded sheet, punched once, opens with several holes; a die rolled along a row shows a number on top that can be worked out. These tasks are solved by picturing the folding, the rolling or the unfolding, one step at a time."
+      - text: "Opposite faces never touch. In a net, two squares in a row with one square between them become opposite faces of the cube."
+      - text: "A fold doubles the layers. Each fold doubles the layers where it lays the sheet, and a punch makes a hole in every layer it goes through."
+      - text: "A die makes 7. On a die the numbers on opposite faces add up to 7, so the top tells the bottom."
+  - worked_example:
+      statement:
+        - text: "A net of a cube is a cross: a column of squares lettered A, B, C and D from the top, and squares E and F on either side of square B. Which letter is opposite A when it is folded?"
+        - picture: "lessons/geometry-cubes-paper-grades-1-2.png"
+          alt: "A net of six squares: a column lettered A, B, C and D from the top, with E to the left of B and F to its right."
+          width: 168
+          height: 208
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Square B is next to A in the column, so it touches A."
+        - text: "E and F fold up beside B and meet A at its sides, and D folds over to meet A along its top edge: they touch A too."
+        - text: "Only C is left, with B between it and A in the column: it lands opposite A."
+        - text: "Answer: The letter C."
+  - explanation:
+      - text: "Check with paper. Draw the cross on squared paper, cut it out and fold it: A and C face each other."
+  - task: cube-12-d1-1
+  - task: cube-12-d2-1
+  - task: cube-12-d4-1
+  - explanation:
+      - text: "How to solve: one fold at a time."
+      - text: "Pick the first square, fold or roll."
+      - text: "Say what it does to the faces or the layers."
+      - text: "Go on step by step, then check with paper or a die."
