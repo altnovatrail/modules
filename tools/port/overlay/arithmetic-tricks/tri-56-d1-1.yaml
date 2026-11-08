@@ -1,0 +1,7 @@
+# What a person adds to tri-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "All the whole numbers from 1 to 41 are added."
+unknown: "The sum."
+simpler_case: "Try the numbers from 1 to 7 first. Pair the first with the last; which number has no pair?"
+trap_texts:
+  "1722": "1722 is 41 × 42, the sum taken twice over, once from each end. It still has to be halved."

@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-12-d5-3.yaml, and the port writes this file again (R12).
+id: "tri-12-d5-3"
+statement:
+  - text: "What is 11 + 22 + 33 + 44 + 55 + 66 + 77 + 88 + 99?"
+givens: ["The numbers 11, 22, 33 and so on up to 99 are added."]
+unknown: "The sum."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "495"
+          trap_values:
+            - value: "45"
+              trap: "stopped-early"
+              text: "45 is 1 + 2 + ... + 9; each number here is 11 times bigger."
+            - value: "440"
+              trap: "stopped-early"
+              text: "440 is the four pairs; you forgot the 55 in the middle."
+            - value: "450"
+              trap: "wrong-operation"
+              text: "You multiplied 45 by 10, but each number is 11 times bigger."
+            - value: "550"
+              trap: "double-count"
+              text: "55 is only one number, not a pair that makes 110."
+    simpler_case: "Try 11 + 22 + 33 first. Which two numbers make the same sum as the middle one twice?"
+solution:
+  - text: "The pairs 11 + 99, 22 + 88, 33 + 77 and 44 + 66 each make 110: 440 in all. With 55 in the middle the sum is 495."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-1-2"
+difficulty: 5

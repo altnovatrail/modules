@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-56-d1-2.yaml, and the port writes this file again (R12).
+id: "tri-56-d1-2"
+statement:
+  - text: "In a shooting contest, the first shooter scores 40 points and the second scores 70. Each later shooter scores the average of all the scores before theirs. So the third scores the average of the first two, and the fourth the average of the first three. How many points does the tenth shooter score?"
+givens: ["The first shooter scores 40 and the second 70.", "Each later shooter scores the average of all the scores before theirs."]
+unknown: "How many points the tenth shooter scores."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "55"
+          units: ["point", "points"]
+          trap_values:
+            - value: "550"
+              trap: "answered-other-question"
+              text: "550 is what all ten shooters score together, not what the tenth one scores."
+            - value: "70"
+              trap: "number-from-text"
+              text: "70 is the second shooter's score, copied from the question."
+            - value: "110"
+              trap: "stopped-early"
+              text: "110 is 40 + 70, the two scores added up but not yet shared out into their average."
+            - value: "30"
+              trap: "wrong-operation"
+              text: "30 takes 40 away from 70, but an average adds the scores up and shares the total out."
+    simpler_case: "Try a first score of 2 and a second of 4. What do the third and the fourth score?"
+solution:
+  - text: "The third scores (40 + 70) ÷ 2 = 55. Then the first three scores add up to 165, and 165 ÷ 3 = 55, so the fourth scores 55 as well. A score equal to the average leaves the average as it was, so every later shooter, the tenth among them, scores 55."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-5-6"
+difficulty: 1

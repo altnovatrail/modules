@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-56-d4-2.yaml, and the port writes this file again (R12).
+id: "tri-56-d4-2"
+statement:
+  - text: "In XYZ + XYZ + XYZ = ZZZ, each letter stands for a digit, and different letters stand for different digits. What number is XYZ?"
+givens: ["XYZ + XYZ + XYZ = ZZZ.", "Each letter is a digit, and different letters are different digits."]
+unknown: "The number XYZ."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "185"
+          trap_values:
+            - value: "259"
+              trap: "ignored-condition"
+              text: "259 is 777 ÷ 3, but it ends in 9, not in 7, so it cannot be XYZ."
+            - value: "555"
+              trap: "answered-other-question"
+              text: "555 is ZZZ, the sum, not XYZ."
+            - value: "5"
+              trap: "answered-other-question"
+              text: "5 is the digit Z, not the number XYZ."
+            - value: "37"
+              trap: "stopped-early"
+              text: "37 is what XYZ is a multiple of; it still has to be multiplied by the right digit Z."
+    simpler_case: "Try X + X = Y, with different digits X and Y. Which digits work?"
+solution:
+  - text: "XYZ + XYZ + XYZ is 3 × XYZ, and ZZZ is Z × 111 = Z × 3 × 37. So XYZ = 37 × Z, and it must end in the digit Z. Of 37, 74, 111, 148, 185, 222, 259, 296 and 333, only 185 ends in its own Z, 5. Check: 185 × 3 = 555."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-5-6"
+difficulty: 4

@@ -1,0 +1,32 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-56-d3-1.yaml, and the port writes this file again (R12).
+id: "tri-56-d3-1"
+statement:
+  - text: "Think of any number. Add 5. Double the result. Take 4 away. Halve the result. Finally, take away the number you thought of. What do you get?"
+givens: ["Think of any number, add 5, double it, take 4 away, halve it.", "Then take away the number you thought of."]
+unknown: "What you get."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          trap_values:
+            - value: "5"
+              trap: "ignored-condition"
+              text: "5 leaves out the step 'take 4 away'."
+            - value: "7"
+              trap: "wrong-operation"
+              text: "7 adds 4 instead of taking it away."
+    simpler_case: "Try a shorter game: think of a number, add 2, then take away the number you thought of. What do you get?"
+solution:
+  - text: "Let a box stand for the number. Adding 5 gives the box and 5, doubling gives two boxes and 10, taking 4 away leaves two boxes and 6, halving gives one box and 3, and taking away the box leaves 3, whatever the number was."
+traps: ["stopped-early"]
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-5-6"
+difficulty: 3

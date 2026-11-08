@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-56-d5-1.yaml, and the port writes this file again (R12).
+id: "tri-56-d5-1"
+statement:
+  - text: "Lily writes down every four-digit number that uses each of the digits 1, 3, 5 and 7 exactly once. What do all these numbers add up to?"
+givens: ["Each number uses each of the digits 1, 3, 5 and 7 exactly once.", "Lily writes down all such four-digit numbers."]
+unknown: "What all the numbers add up to."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "106656"
+          trap_values:
+            - value: "24"
+              trap: "stopped-early"
+              text: "24 counts the numbers, a first step: they still have to be added up."
+            - value: "17776"
+              trap: "missed-case"
+              text: "17776 is 16 × 1111, each digit counted once in each place, but each digit stands in each place in 6 of the 24 numbers."
+            - value: "384"
+              trap: "answered-other-question"
+              text: "384 adds up all the digits of the 24 numbers, 24 × 16, but a digit in the thousands place counts as a thousand times itself."
+            - value: "71104"
+              trap: "missed-case"
+              text: "71104 counts each digit in each place only 4 times, but the other three digits can follow it in 3 × 2 × 1 = 6 ways."
+    simpler_case: "Try two-digit numbers with the digits 1 and 3 first."
+solution:
+  - text: "There are 4 × 3 × 2 × 1 = 24 numbers. Each digit stands in each place in 6 of them, since the other three digits fill the other places in 3 × 2 × 1 = 6 ways. So each place adds up to 6 × (1 + 3 + 5 + 7) = 96, and the total is 96 × 1000 + 96 × 100 + 96 × 10 + 96 = 96 × 1111 = 106656."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-5-6"
+difficulty: 5

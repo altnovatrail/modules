@@ -1,0 +1,7 @@
+# What a person adds to tri-12-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The sum is 25 + 36 + 75."
+unknown: "The sum."
+simpler_case: "Try 25 + 4 + 75 first. Which two numbers make a round number?"
+trap_texts:
+  "175": "175 adds 75 twice and leaves 36 out."

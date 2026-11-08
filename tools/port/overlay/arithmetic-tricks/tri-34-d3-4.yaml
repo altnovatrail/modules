@@ -1,0 +1,6 @@
+# What a person adds to tri-34-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Adding 12 to Gleb's number gives three times the number."
+unknown: "The number Gleb thought of."
+simpler_case: "Try a number that gives twice the number when you add 4 to it."
+solution_picture_alt: "Two bars of the same length: the first is cut into 6 and 12, the second into three parts of 6."

@@ -1,0 +1,8 @@
+# What a person adds to tri-12-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The sum is 99 + 98 + 2 + 1."
+unknown: "The sum."
+simpler_case: "Try 9 + 8 + 2 + 1 first. Which numbers make 10 together?"
+trap_texts:
+  "199": "Check the pairs again: 99 + 1 and 98 + 2 are round numbers."
+  "201": "The two pairs make round numbers: add them again."

@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-34-d3-1.yaml, and the port writes this file again (R12).
+id: "tri-34-d3-1"
+statement:
+  - text: "Fay thought of a number. She multiplied it by 5 and then took 7 away. She got 23. What number did Fay think of?"
+givens: ["Fay multiplied her number by 5 and then took 7 away.", "She got 23."]
+unknown: "The number Fay thought of."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          trap_values:
+            - value: "7"
+              trap: "number-from-text"
+              text: "7 is the number Fay took away."
+            - value: "16"
+              trap: "wrong-operation"
+              text: "To undo taking 7 away, add 7; do not take it away again."
+            - value: "30"
+              trap: "stopped-early"
+              text: "30 undoes only taking 7 away; you still have to divide by 5."
+            - value: "150"
+              trap: "wrong-operation"
+              text: "You multiplied 30 by 5 instead of dividing."
+    simpler_case: "Try a number that gives 5 when you double it and take 1 away."
+solution:
+  - text: "Undo the last step first: 23 + 7 = 30. Then 30 ÷ 5 = 6. Check: 6 × 5 = 30, 30 - 7 = 23."
+techniques: ["backwards"]
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-3-4"
+difficulty: 3

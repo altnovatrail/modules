@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-34-d1-1.yaml, and the port writes this file again (R12).
+id: "tri-34-d1-1"
+statement:
+  - text: "What is 25 × 7 × 4?"
+givens: ["The product is 25 × 7 × 4."]
+unknown: "The product."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "700"
+          trap_values:
+            - value: "36"
+              trap: "wrong-operation"
+              text: "36 is 25 + 7 + 4: you added instead of multiplying."
+            - value: "100"
+              trap: "ignored-condition"
+              text: "100 is 25 × 4: you forgot to multiply by 7."
+            - value: "175"
+              trap: "stopped-early"
+              text: "175 is only 25 × 7; you still have to multiply by 4."
+            - value: "2800"
+              trap: "double-count"
+              text: "You multiplied by 4 twice."
+    simpler_case: "Try 25 × 3 × 4 first. Which two numbers make a round number?"
+solution:
+  - text: "Multiply 25 × 4 first: 100. Then 100 × 7 = 700."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-3-4"
+difficulty: 1

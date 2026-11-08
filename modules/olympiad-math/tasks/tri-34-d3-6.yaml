@@ -1,0 +1,46 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-34-d3-6.yaml, and the port writes this file again (R12).
+id: "tri-34-d3-6"
+statement:
+  - text: "In the picture, each shape stands for a number, the same number every time. The number beside a row is the sum of its shapes. What number is the question mark?"
+  - picture: "pictures/tri-34-d3-6.png"
+    alt: "Four rows of shapes. The first row has a triangle and a square, with 9 beside it. The second row has a square and a circle, with 7 beside it. The third row has a triangle and a circle, with 8 beside it. The fourth row has a triangle, a square and a circle, with a question mark beside it."
+    width: 199
+    height: 184
+givens: ["Each shape stands for a number, the same number every time.", "The number beside a row is the sum of its shapes."]
+unknown: "The number that the question mark stands for."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "12"
+          trap_values:
+            - value: "15"
+              trap: "missed-case"
+              text: "That adds two rows and leaves one out."
+            - value: "24"
+              trap: "stopped-early"
+              text: "The three rows count each shape twice."
+            - value: "8"
+              trap: "number-from-text"
+              text: "That is one of the sums."
+            - value: "9"
+              trap: "answered-other-question"
+              text: "That is the first row only."
+    simpler_case: "Try a triangle and a square that make 5, and two triangles that make 4. What is the square?"
+solution:
+  - text: "The first three rows together hold each shape twice, and they add up to 9 plus 7 plus 8, which is 24. So one of each shape is half of 24, which is 12."
+  - text: "24 ÷ 2 = 12"
+  - picture: "pictures/tri-34-d3-6-solution.png"
+    alt: "One triangle with 5 beside it, one square with 4 and one circle with 3."
+    width: 119
+    height: 144
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-3-4"
+difficulty: 3

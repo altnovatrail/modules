@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-34-d2-1.yaml, and the port writes this file again (R12).
+id: "tri-34-d2-1"
+statement:
+  - text: "What is 1 + 3 + 5 + 7 + 9 + 11 + 13 + 15 + 17 + 19?"
+givens: ["The odd numbers from 1 to 19 are added."]
+unknown: "The sum."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "100"
+          trap_values:
+            - value: "10"
+              trap: "answered-other-question"
+              text: "10 is how many numbers there are."
+            - value: "81"
+              trap: "stopped-early"
+              text: "81 is the sum up to 17: you forgot 19."
+            - value: "190"
+              trap: "ignored-condition"
+              text: "190 is 1 + 2 + ... + 19, with the even numbers too."
+            - value: "200"
+              trap: "double-count"
+              text: "There are 5 pairs of 20, not 10."
+    simpler_case: "Try 1 + 3 + 5 + 7 first. Pair the first with the last."
+solution:
+  - text: "Make pairs: 1 + 19, 3 + 17, 5 + 15, 7 + 13 and 9 + 11. Each pair is 20, and there are 5 pairs: 100."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-3-4"
+difficulty: 2

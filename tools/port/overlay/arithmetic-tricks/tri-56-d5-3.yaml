@@ -1,0 +1,9 @@
+# What a person adds to tri-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The digit cards are 1, 3, 7 and 8, all four used each time."
+  - "The numbers are listed from the smallest to the largest."
+unknown: "The largest difference between two numbers next to each other."
+simpler_case: "Try the cards 1, 2 and 3 first. List the numbers and their differences."
+trap_texts:
+  "1305": "1305 is the step from 1873 to 3178, but another change of the first digit makes a bigger step."
+  "3960": "3960 is 7138 − 3178, but 3178 and 7138 are not next to each other in the list."

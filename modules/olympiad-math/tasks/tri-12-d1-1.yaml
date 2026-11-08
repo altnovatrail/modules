@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-12-d1-1.yaml, and the port writes this file again (R12).
+id: "tri-12-d1-1"
+statement:
+  - text: "What is 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9?"
+givens: ["The numbers 1 to 9 are added."]
+unknown: "The sum."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "45"
+          trap_values:
+            - value: "9"
+              trap: "answered-other-question"
+              text: "9 is how many numbers you add, not their sum."
+            - value: "10"
+              trap: "stopped-early"
+              text: "10 is only one pair, 1 + 9. Find the other pairs that make 10, and the number that has no pair."
+            - value: "36"
+              trap: "stopped-early"
+              text: "36 is 1 + 2 + ... + 8: you forgot the 9."
+            - value: "55"
+              trap: "off-by-one"
+              text: "55 is 1 + 2 + ... + 10: you added one number too many."
+    simpler_case: "Try 1 + 2 + 3 + 4 first. Which two numbers make the same sum as another two?"
+solution:
+  - text: "Make pairs that give 10: 1 + 9, 2 + 8, 3 + 7 and 4 + 6. Four tens are 40, and the 5 in the middle makes 45."
+  - text: "4 × 10 + 5 = 45"
+  - picture: "pictures/tri-12-d1-1-solution.png"
+    alt: "A table of the pairs that make 10: 1 and 9, 2 and 8, 3 and 7, 4 and 6, with 5 left on its own."
+    width: 204
+    height: 80
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-1-2"
+difficulty: 1

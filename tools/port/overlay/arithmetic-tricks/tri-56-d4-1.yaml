@@ -1,0 +1,6 @@
+# What a person adds to tri-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers go from 1 to 100."
+  - "All the digits of all the numbers are added."
+unknown: "The sum of all the digits."
+simpler_case: "Try the numbers from 1 to 20 first. Add the units digits and the tens digits apart."

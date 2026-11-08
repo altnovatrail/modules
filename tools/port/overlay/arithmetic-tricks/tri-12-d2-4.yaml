@@ -1,0 +1,5 @@
+# What a person adds to tri-12-d2-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ten fives are added, and then one 5 is taken away."
+unknown: "The value of the expression."
+simpler_case: "Try 5 + 5 + 5 - 5 first."

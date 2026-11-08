@@ -1,0 +1,8 @@
+# What a person adds to tri-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The product is 2 × 4 × 8 × 125 × 25 × 5."
+unknown: "The product."
+simpler_case: "Try 2 × 4 × 25 × 5 first. Which pairs make round numbers?"
+trap_texts:
+  "100000": "100000 has one zero too few: count the zeros of each pair again."
+  "10000000": "10000000 has one zero too many: count the zeros of each pair again."

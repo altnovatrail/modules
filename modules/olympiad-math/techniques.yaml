@@ -1,4 +1,4 @@
-# The techniques of this module's tasks: 4 of the 11 of mathtrail-standalone's site, as the
+# The techniques of this module's tasks: 5 of the 11 of mathtrail-standalone's site, as the
 # format's example of this module has them, each with its title and its description. standalone's
 # content in this module carries the MIT notice of NOTICE.
 techniques:
@@ -11,6 +11,9 @@ techniques:
   systematic:
     title: List systematically
     description: "Listing at random is bound to miss something or count it twice. Listing systematically goes in order: first by one feature, then by the next. A tree is handy for it."
+  backwards:
+    title: Work from the end
+    description: "When you know how the story ends and are asked how it began, go backwards. Turn every action into its opposite: “ate” into “gave back”, “multiplied” into “divided”."
   pigeonhole:
     title: Pigeons and pigeonholes
     description: If there are more pigeons than holes, some hole holds at least two pigeons. It sounds obvious, yet it proves things that seem impossible to check.

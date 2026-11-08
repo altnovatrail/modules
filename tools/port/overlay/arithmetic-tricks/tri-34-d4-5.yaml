@@ -1,0 +1,5 @@
+# What a person adds to tri-34-d4-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Taking Yana's number away from 50 gives the same as adding 14 to it."
+unknown: "The number Yana thought of."
+simpler_case: "Try a number that, taken away from 10, gives the same as adding 2 to it."

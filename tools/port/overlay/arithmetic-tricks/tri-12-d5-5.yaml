@@ -1,0 +1,7 @@
+# What a person adds to tri-12-d5-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The signs go minus, plus, minus and so on, from 100 down to 1."
+unknown: "The value of the expression."
+simpler_case: "Try 6 - 5 + 4 - 3 + 2 - 1 first. Group the numbers in pairs."
+trap_texts:
+  "49": "Count the pairs again: 100 numbers, two in each pair."

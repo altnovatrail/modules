@@ -1,8 +1,8 @@
-# The skill graph of olympiad mathematics, as the first batch made it (R07; docs/architecture.md,
-# section 3.6 of modules): three topics of mathtrail-standalone and their link, builds_on, as the
-# format's example of this module has them. Their tiers come out 1, 1 and 2, and the names of the
-# tiers are those standalone gives the layers of its map; the third names nothing until the rest of
-# the port adds tier 3. standalone's content in this module carries the MIT notice of NOTICE.
+# The skill graph of olympiad mathematics (R07; E3; docs/architecture.md, section 3.5 of modules):
+# the topics of mathtrail-standalone that the module's tasks train and their links, builds_on, each
+# entry verbatim as the format's example of this module has it. Their tiers come from the graph, and
+# the names of the tiers are those standalone gives the layers of its map. standalone's content in
+# this module carries the MIT notice of NOTICE.
 tiers: [Foundations, Rules, Hard problems]
 skills:
   counting-gaps:
@@ -14,4 +14,7 @@ skills:
   pigeonhole-basic:
     title: Pigeonhole principle
     prerequisites: [combinatorics-enumeration]
+    assessability: verdict
+  arithmetic-tricks:
+    title: Arithmetic with a trick
     assessability: verdict

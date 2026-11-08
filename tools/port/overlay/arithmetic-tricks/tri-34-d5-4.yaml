@@ -1,0 +1,8 @@
+# What a person adds to tri-34-d5-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Kolya multiplies the numbers from 1 to 15."
+unknown: "How many zeros are at the end of the answer."
+simpler_case: "Try the numbers from 1 to 6 first. Where does a zero at the end come from?"
+trap_texts:
+  "1": "Not only 10 gives a zero: look for every number with a 5 inside it."
+leak_phrases: ["3 zeros", "three zeros"]
