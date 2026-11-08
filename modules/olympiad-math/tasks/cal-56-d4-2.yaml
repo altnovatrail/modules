@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-56-d4-2.yaml, and the port writes this file again (R12).
+id: "cal-56-d4-2"
+statement:
+  - text: "5 June 2026 is a Friday. In which year after 2026 will 5 June next be a Friday?"
+givens: ["5 June 2026 is a Friday."]
+unknown: "The next year after 2026 in which 5 June is a Friday."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2037"
+          trap_values:
+            - value: "2033"
+              trap: "ignored-condition"
+              text: "2033 moves the day by 1 every year, but in 2028 and 2032 it moves by 2."
+            - value: "2032"
+              trap: "off-by-one"
+              text: "2032 adds each extra day one year late: 29 February 2028 lies between 5 June 2027 and 5 June 2028, not after them."
+            - value: "2054"
+              trap: "answered-other-question"
+              text: "5 June 2054 is a Friday too, when the whole calendar comes round again after 28 years, but an earlier year comes first."
+            - value: "2020"
+              trap: "reversed-relation"
+              text: "2020 is the last year before 2026 with 5 June on a Friday; the question asks for the next one."
+    simpler_case: "Try 5 June 2021, a Saturday. On which day of the week is 5 June 2022?"
+solution:
+  - text: "5 June moves 1 day on from one year to the next, or 2 days when the February in between has 29 days, as in 2028, 2032 and 2036. Friday in 2026 becomes Saturday in 2027, Monday in 2028, then Tuesday, Wednesday and Thursday in 2031, Saturday in 2032, then Sunday, Monday and Tuesday in 2035, Thursday in 2036 and Friday in 2037."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-5-6"
+difficulty: 4

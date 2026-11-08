@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-56-d1-3.yaml, and the port writes this file again (R12).
+id: "ord-56-d1-3"
+statement:
+  - text: "Four shapes lie in a row: a circle, a square, a star and a heart. Each is a different colour: red, blue, green or yellow. The circle is at the left end and the heart at the right end. The red shape lies right after the circle. The star is yellow, and the green shape lies next to the star. What colour is the circle?"
+givens: ["A circle, a square, a star and a heart lie in a row, each red, blue, green or yellow.", "The circle is at the left end and the heart at the right end.", "The red shape lies right after the circle.", "The star is yellow, and the green shape lies next to the star."]
+unknown: "The colour of the circle."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Blue"
+          options: ["Blue", "Green", "Red", "Yellow", "It cannot be told"]
+          trap_values:
+            - value: "Green"
+              trap: "ignored-condition"
+              text: "Green fits the circle only if the green shape need not lie next to the star. The heart lies next to the star, and it is green."
+            - value: "Red"
+              trap: "answered-other-question"
+              text: "Red is the colour of the square, the shape right after the circle, not of the circle itself."
+            - value: "Yellow"
+              trap: "answered-other-question"
+              text: "Yellow is the colour of the star. The question asks about the circle."
+            - value: "It cannot be told"
+              trap: "stopped-early"
+              text: "It can be told: find the colour of the heart first, and one colour is left for the circle."
+    simpler_case: "Try three shapes, a circle, a square and a star, each red, green or yellow: the circle is at the left end, the red shape right after it, and the star is yellow. What colour is the circle?"
+solution:
+  - text: "The circle is first and the heart last, so the square and the star are second and third. The second shape is red and the star is yellow, so the square is second and red, and the star is third. The green shape lies next to the star, so it is the heart, and blue is the colour left for the circle."
+techniques: ["table"]
+skills:
+  primary: ["logic-ordering"]
+band: "grades-5-6"
+difficulty: 1

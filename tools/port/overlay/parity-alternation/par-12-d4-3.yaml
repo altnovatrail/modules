@@ -1,0 +1,7 @@
+# What a person adds to par-12-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The children stand in a circle holding hands."
+  - "Boys and girls take turns all the way round."
+unknown: "How many children there can be."
+simpler_case: "Try 3 children in a circle. Can boys and girls take turns all the way round?"
+techniques: [parity]

@@ -1,0 +1,13 @@
+# What a person adds to clk-34-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "A bus leaves every 12 minutes."
+  - "The first bus leaves at 6:00."
+unknown: "The time when the sixth bus leaves."
+simpler_case: "Try a bus every 10 minutes, the first at 6:00. At what time does the third bus leave?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 6 o'clock."
+trap_texts:
+  "6:48": "6:48 is when an earlier bus leaves. Count the buses from 6:00 again."
+  "6:60": "60 minutes make a whole hour, so there is no 6:60."
+  "7:12": "Count the gaps between six buses again."
+  "7:24": "7:24 is when a later bus leaves. Count the buses from 6:00 again."

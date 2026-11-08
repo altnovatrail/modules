@@ -1,0 +1,7 @@
+# What a person adds to sets-56-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Every child likes apples, pears or both."
+  - "18 like apples, 14 like pears, and 7 like both."
+unknown: "How many children are in the group."
+simpler_case: "Try 5 children who like apples, 4 who like pears and 2 who like both, each liking at least one. How many children are there?"
+picture_alt: "Two overlapping circles, A of 18 and P of 14, with 7 in the overlap, 0 outside both and the total marked ?."

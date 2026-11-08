@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/percent.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/pct-56-d3-3.yaml, and the port writes this file again (R12).
+id: "pct-56-d3-3"
+statement:
+  - text: "Lena has 15 more stickers than Max, and that is 25% more than Max has. By what percentage does Max have fewer stickers than Lena?"
+givens: ["Lena has 15 more stickers than Max.", "That is 25% more than Max has."]
+unknown: "By what percentage Max has fewer stickers than Lena."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "20"
+          units: ["%"]
+          trap_values:
+            - value: "25"
+              trap: "percent-wrong-base"
+              text: "25% compares with Max's stickers, but here the comparison is with Lena's."
+            - value: "15"
+              trap: "number-from-text"
+              text: "15 is the number of extra stickers, not a percentage."
+            - value: "80"
+              trap: "answered-other-question"
+              text: "80% is not how much less Max has."
+            - value: "125"
+              trap: "reversed-relation"
+              text: "125% compares Lena's stickers with Max's, the other way round."
+    simpler_case: "Try: Lena has 10 stickers and Max 9. By what percentage does Max have fewer than Lena?"
+solution:
+  - text: "15 stickers are 25% of Max's stickers, so Max has 4 × 15 = 60 and Lena has 75. Max has 15 fewer, and 15 out of 75 is 20%."
+skills:
+  primary: ["percent-basic"]
+band: "grades-5-6"
+difficulty: 3

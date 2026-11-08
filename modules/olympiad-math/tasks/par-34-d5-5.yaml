@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d5-5.yaml, and the port writes this file again (R12).
+id: "par-34-d5-5"
+statement:
+  - text: "Anya and Borya have a chocolate bar of 4 rows with 6 squares in each row. They take turns: in each turn a player breaks one piece into two smaller pieces along a line between the squares. The player who cannot make a move loses. Anya goes first. Who wins?"
+givens: ["The bar has 4 rows of 6 squares.", "Each turn breaks one piece into two along a line.", "The player who cannot move loses, and Anya goes first."]
+unknown: "Who wins."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Borya always wins", "Anya always wins", "It depends on how they play", "Nobody wins", "It is impossible to tell"]
+        check:
+          kind: "choice"
+          key: "Anya always wins"
+          trap_values:
+            - value: "Borya always wins"
+              trap: "wrong-parity"
+              text: "Count the breaks the game always has, and see who makes the last one."
+            - value: "It depends on how they play"
+              trap: "stopped-early"
+              text: "The number of breaks does not depend on how they play. Count them."
+            - value: "Nobody wins"
+              trap: "ignored-condition"
+              text: "The game always ends: each break makes one more piece, and a piece of one square cannot be broken."
+            - value: "It is impossible to tell"
+              trap: "ignored-condition"
+              text: "Count the breaks: their number is the same however they play."
+    simpler_case: "Try a bar of 1 row of 3 squares first. How many breaks are there, and who wins?"
+solution:
+  - text: "Every break makes one more piece. The game starts with 1 piece and ends with 24 single squares, so there are always exactly 23 breaks, however they play. 23 is odd, so Anya makes the 1st, 3rd, ..., 23rd breaks: she makes the last move, and then Borya cannot move."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 5

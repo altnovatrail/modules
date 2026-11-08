@@ -1,0 +1,9 @@
+# What a person adds to gaps-12-d5-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The fence is straight and 20 metres long."
+  - "There is a post every 2 metres."
+  - "There are posts at both ends."
+unknown: "How many posts there are."
+simpler_case: "Try a fence 4 metres long with a post every 2 metres. Draw it and count the posts."
+picture_alt: "Posts in a row with a stretch left out in the middle; every gap drawn is marked 2 and the whole row is marked 20."
+solution_picture_alt: "The same row with its posts numbered: 1, 2 and 3, then a stretch left out, and post 11 at the end; every gap is 2 and the whole row is 20."

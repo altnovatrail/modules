@@ -1,0 +1,8 @@
+# What a person adds to wp-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Nine machines make bolts of 10 g, and one faulty machine bolts of 11 g."
+  - "You may take any number of bolts from each machine and weigh them all together, once."
+unknown: "The smallest number of bolts that is sure to show the faulty machine."
+simpler_case: "Try three machines. What is the smallest number of bolts?"
+trap_texts:
+  "55": "55 takes 1 to 10 bolts, but one machine may give fewer."

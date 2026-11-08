@@ -1,0 +1,7 @@
+# What a person adds to ord-34-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five pencils have different lengths."
+  - "The yellow pencil is longer than the red one, and the red longer than the green one."
+  - "The blue pencil is shorter than the green one, and the white longer than the yellow one."
+unknown: "Which pencil is the third longest."
+simpler_case: "Try three pencils: the yellow one is longer than the green one, and the white one longer than the yellow one. Which pencil is the third longest?"

@@ -1,0 +1,9 @@
+# What a person adds to grid-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The cake is 3 by 3 pieces with sides of 2 cm."
+  - "One corner piece is eaten."
+unknown: "The perimeter of the cake left, in centimetres."
+simpler_case: "Try a cake of 2 by 2 pieces with sides of 2 cm, one corner piece eaten. What is the perimeter of the rest?"
+picture_alt: "A 3 by 3 grid with rows A to C from the top and columns 1 to 3 from the left; every piece but the corner A1 is shaded."
+trap_texts:
+  "22": "22 takes one side of the piece away from the whole cake's perimeter."

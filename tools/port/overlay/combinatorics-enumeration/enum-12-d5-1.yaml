@@ -1,0 +1,8 @@
+# What a person adds to enum-12-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers have two digits."
+  - "Their digits add up to 10."
+unknown: "How many such numbers there are."
+simpler_case: "Try two-digit numbers whose digits add up to 3. How many are there?"
+trap_texts:
+  "11": "List them from 19 to 91 and count again."

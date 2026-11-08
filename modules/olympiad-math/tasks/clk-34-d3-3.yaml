@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-34-d3-3.yaml, and the port writes this file again (R12).
+id: "clk-34-d3-3"
+statement:
+  - text: "A film is 1 hour 50 minutes long. It must end by 21:30. What is the latest time it can start?"
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["The film is 1 hour 50 minutes long.", "It must end by 21:30."]
+unknown: "The latest time it can start."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "19:40"
+          options: ["19:20", "19:80", "19:40", "20:40", "23:20"]
+          trap_values:
+            - value: "19:20"
+              trap: "wrong-operation"
+              text: "19:20 is 2 hours 10 minutes before 21:30."
+            - value: "19:80"
+              trap: "time-unit-mixup"
+              text: "An hour has 60 minutes, so there is no 19:80."
+            - value: "20:40"
+              trap: "stopped-early"
+              text: "You went back only 50 minutes. Go back the hour too."
+            - value: "23:20"
+              trap: "reversed-relation"
+              text: "The film starts before it ends, so count back."
+    simpler_case: "Try a film of 30 minutes that must end by 21:30. What is the latest time it can start?"
+solution:
+  - text: "Going back 1 hour from 21:30 gives 20:30. Going back 50 more minutes: 30 minutes to 20:00 and 20 more to 19:40."
+skills:
+  primary: ["time-clocks"]
+band: "grades-3-4"
+difficulty: 3

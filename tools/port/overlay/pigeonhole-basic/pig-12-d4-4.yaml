@@ -1,0 +1,6 @@
+# What a person adds to pig-12-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The box has 10 cards with the numbers 1 to 10."
+  - "You take cards out without looking."
+unknown: "How many cards you must take to be sure that one of them has an even number."
+simpler_case: "Try cards with the numbers 1 to 4 first. How many must you take to be sure of an even number?"

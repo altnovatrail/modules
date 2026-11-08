@@ -1,0 +1,10 @@
+# What a person adds to sets-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The year has 50 pupils."
+  - "32 read comics and 25 read magazines."
+  - "Twice as many read both as read neither."
+unknown: "How many read neither."
+simpler_case: "Try 10 pupils, 6 reading comics and 6 magazines, with twice as many reading both as reading neither. How many read neither?"
+picture_alt: "Two overlapping circles, C of 32 and M of 25, inside a box of 50, with the space outside both marked ?."
+trap_texts:
+  "14": "14 is not the number who read neither."

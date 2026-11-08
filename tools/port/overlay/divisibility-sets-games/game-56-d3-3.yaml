@@ -1,0 +1,11 @@
+# What a person adds to game-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The bowl holds 12 sweets, and Eva eats first."
+  - "Each eats 1 or 2 sweets in turn, and the one who eats the last sweet loses."
+  - "Dan never makes a mistake."
+unknown: "How many sweets Eva must eat first to win whatever he does."
+simpler_case: "Try a bowl of 5 sweets with the same rules. How many must Eva eat first?"
+techniques: [backwards]
+trap_texts:
+  "1": "Eating 1 leaves 11, and Dan has a good reply."
+leak_phrases: ["eat 2 first", "eats 2 first"]

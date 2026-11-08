@@ -1,0 +1,8 @@
+# What a person adds to cal-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "A date such as 6.8.2026 is even when all its digits are even, 0 counting as even."
+  - "February 2026 has 28 days."
+unknown: "How many even dates the year 2026 has."
+simpler_case: "Try only the first ten days of April 2026. How many of them are even dates?"
+trap_texts:
+  "9": "9 is the count for one month only."

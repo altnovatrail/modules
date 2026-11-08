@@ -1,0 +1,9 @@
+# What a person adds to clk-56-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The ship leaves P at 8:00 local time on Monday."
+  - "It reaches Q at 20:00 local time on Tuesday."
+  - "The clocks in Q show 5 hours more than in P."
+unknown: "How many hours the voyage lasts."
+simpler_case: "Try a voyage from 8:00 to 20:00 on Monday, both times on the same clocks. How many hours is it?"
+trap_texts:
+  "15": "15:00 is a time on the clocks of P, not the length of the voyage."

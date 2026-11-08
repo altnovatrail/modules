@@ -1,0 +1,94 @@
+# A template of number-divisibility (T37; R22): the solver of mathtrail-standalone
+# content/solvers/number.divisibility/groups.star at 42b4408, made a solver of the template. It came from
+# reference task div-56-d3-1, whose numbers are one of its instances.
+# The numbers of reference task div-56-d3-1: seat 97, size 18.
+# Its capitals NUMBER and SIZE are the numbers that the statement shows: a seat from 60 to 120 and
+# rows of 12 to 20 seats. The constraint keeps the seat off the end of a row, at least third in its
+# row, and the row from 4 to 10, so that no trap value nor the row equals a number of the statement. The reference task's
+# picture is left out: one picture for every instance would show its seat 97.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: groups
+template:
+  parameters:
+    seat: {from: 60, to: 120}
+    size: {from: 12, to: 20}
+  derived:
+    full: seat // size
+    place: seat % size
+    last_full: seat // size * size
+    second_row: size + 1
+    second_end: "2 * size"
+  constraint: seat % size >= 3 and seat // size + 1 >= 4 and seat // size + 1 <= 10 and seat % size != seat // size and seat % size != seat // size + 1
+  solver:
+    program: |
+      # For things counted in groups of the same size, such as seats in rows: split
+      # the number into full groups and its place in the next one, places counting
+      # from 1, so that the last thing of a group is never place 0 of the next.
+
+      def solve(numbers):
+          number, size = numbers["seat"], numbers["size"]
+          splits = [(full, place) for full in range(0, number + 1) for place in range(1, size + 1)
+                    if full * size + place == number]
+          if len(splits) != 1:
+              fail("%d ways of placing %d" % (len(splits), number))
+          full, place = splits[0]
+          return {"row": full + 1}
+    results: [row]
+statement:
+  - text: The seats in a hall are numbered row by row, with {size} seats in each row. Row 1 has seats 1 to {size}, row 2 has seats {second_row} to {second_end}, and so on. In which row is seat {seat}?
+givens:
+  - Each row has {size} seats, numbered row by row.
+  - Row 1 has seats 1 to {size}, row 2 seats {second_row} to {second_end}, and so on.
+unknown: The row of seat {seat}.
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{row}"
+          trap_values:
+            - value: "{full}"
+              trap: off-by-one
+              text: That counts only the full rows before seat {seat}.
+            - value: "{place}"
+              trap: remainder-vs-quotient
+              text: That is where seat {seat} is within its row, what is left over after the full rows.
+            - value: "{size}"
+              trap: number-from-text
+              text: That is the number of seats in a row, copied from the question.
+            - value: "{last_full}"
+              trap: answered-other-question
+              text: That is the number of a seat, not of a row.
+    simpler_case: Try rows of three seats. In which row is the seventh seat?
+solution:
+  - text: "{seat} = {full} × {size} + {place}, so {full} full rows end at seat {last_full}, and seat {seat} is in the next row, row {row}."
+leak_phrases: ["row {row}"]
+skills:
+  primary: [number-divisibility]
+  supporting: [core.division-with-remainder]
+band: grades-5-6
+difficulty: 3

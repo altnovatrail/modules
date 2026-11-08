@@ -1,0 +1,6 @@
+# What a person adds to enum-12-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers have two digits."
+  - "Both digits are the same, like 44."
+unknown: "How many such numbers there are."
+simpler_case: "Try the numbers from 10 to 40 only. How many have both digits the same?"

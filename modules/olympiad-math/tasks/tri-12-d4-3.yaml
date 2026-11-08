@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-12-d4-3.yaml, and the port writes this file again (R12).
+id: "tri-12-d4-3"
+statement:
+  - text: "What is 2 × 7 × 5?"
+givens: ["The product is 2 × 7 × 5."]
+unknown: "The product."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "70"
+          trap_values:
+            - value: "7"
+              trap: "number-from-text"
+              text: "7 is one of the numbers."
+            - value: "14"
+              trap: "wrong-operation"
+              text: "14 is 2 + 7 + 5: you added instead of multiplying."
+            - value: "35"
+              trap: "stopped-early"
+              text: "35 is only 7 × 5; you still have to multiply by 2."
+            - value: "140"
+              trap: "double-count"
+              text: "You multiplied by 2 twice."
+    simpler_case: "Try 2 × 3 × 5 first. Which two numbers make 10?"
+solution:
+  - text: "Multiply 2 × 5 first: 10. Then 10 × 7 = 70."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-1-2"
+difficulty: 4

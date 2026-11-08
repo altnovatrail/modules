@@ -1,0 +1,7 @@
+# What a person adds to gaps-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The cake is cut 3 times along its length."
+  - "The cake is cut 4 times across."
+  - "Each cut goes straight from edge to edge."
+unknown: "How many pieces there are."
+simpler_case: "Try 1 cut along and 1 cut across first. Draw it and count the pieces."

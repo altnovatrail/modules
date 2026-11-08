@@ -1,0 +1,9 @@
+# What a person adds to clk-12-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The clock shows 5:45."
+unknown: "The time in 15 minutes."
+simpler_case: "Try a clock that shows 5:30. What time will it be in 15 minutes?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 5:45."
+trap_texts:
+  "5:60": "After 59 minutes a new hour begins, so 5:60 is no time on a clock."

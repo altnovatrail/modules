@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-12-d1-3.yaml, and the port writes this file again (R12).
+id: "clk-12-d1-3"
+statement:
+  - text: "A film starts at 3 o'clock and ends at 5 o'clock. How many hours long is the film?"
+  - picture: "pictures/clk-12-d1-3.png"
+    alt: "A clock showing 3 o'clock."
+    width: 200
+    height: 200
+givens: ["The film starts at 3 o'clock.", "It ends at 5 o'clock."]
+unknown: "How many hours long the film is."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["hour", "hours"]
+          trap_values:
+            - value: "1"
+              trap: "off-by-one"
+              text: "Count each hour from 3 o'clock on, until 5 o'clock."
+            - value: "3"
+              trap: "number-from-text"
+              text: "3 o'clock is when the film starts."
+            - value: "5"
+              trap: "number-from-text"
+              text: "5 o'clock is when the film ends."
+            - value: "8"
+              trap: "wrong-operation"
+              text: "You added 3 and 5. Count the hours from 3 to 5."
+    simpler_case: "Try a film from 3 o'clock to 6 o'clock. How many hours long is it?"
+solution:
+  - text: "From 3 o'clock to 4 o'clock is 1 hour, and from 4 o'clock to 5 o'clock is 1 more hour. That is 2 hours."
+skills:
+  primary: ["time-clocks"]
+band: "grades-1-2"
+difficulty: 1

@@ -1,0 +1,8 @@
+# What a person adds to wp-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Of nine rings, one is a lighter fake, and the others weigh the same."
+  - "Kim puts 4 rings on each pan for the first weighing."
+unknown: "The smallest number of weighings, the first one counted, that is now sure to find the fake."
+simpler_case: "Try 4 rings with one lighter fake, 2 on each pan first. How many weighings in all are sure to find it?"
+trap_texts:
+  "2": "2 weighings would do with a different first weighing, but Kim started with 4 rings on each pan."

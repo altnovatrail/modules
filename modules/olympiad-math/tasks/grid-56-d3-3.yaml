@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/grid-56-d3-3.yaml, and the port writes this file again (R12).
+id: "grid-56-d3-3"
+statement:
+  - text: "A square cake is cut into 3 by 3 equal square pieces with sides of 2 cm. Rows are A to C from the top, columns 1 to 3 from the left. Oleg eats one corner piece. What is the perimeter of the cake that is left, in centimetres?"
+  - picture: "pictures/grid-56-d3-3.png"
+    alt: "A 3 by 3 grid with rows A to C from the top and columns 1 to 3 from the left; every piece but the corner A1 is shaded."
+    width: 149
+    height: 154
+givens: ["The cake is 3 by 3 pieces with sides of 2 cm.", "One corner piece is eaten."]
+unknown: "The perimeter of the cake left, in centimetres."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "24"
+          units: ["cm", "centimetre", "centimetres"]
+          trap_values:
+            - value: "22"
+              trap: "wrong-operation"
+              text: "22 takes one side of the piece away from the whole cake's perimeter."
+            - value: "20"
+              trap: "stopped-early"
+              text: "20 takes away the two lost sides but forgets the two new ones."
+            - value: "28"
+              trap: "missed-case"
+              text: "28 adds the two new sides but keeps the two lost ones."
+            - value: "32"
+              trap: "area-perimeter-swap"
+              text: "32 square centimetres is the area of the cake left."
+    simpler_case: "Try a cake of 2 by 2 pieces with sides of 2 cm, one corner piece eaten. What is the perimeter of the rest?"
+solution:
+  - text: "The whole cake is 6 cm long on each side, so its perimeter is 4 × 6 = 24 cm. The eaten piece takes away two outer sides of 2 cm, and two of its inner sides of 2 cm become outer instead. The perimeter stays 24 cm."
+techniques: ["draw"]
+skills:
+  primary: ["geometry-grid"]
+band: "grades-5-6"
+difficulty: 3

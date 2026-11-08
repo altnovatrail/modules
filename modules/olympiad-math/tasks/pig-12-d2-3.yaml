@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-12-d2-3.yaml, and the port writes this file again (R12).
+id: "pig-12-d2-3"
+statement:
+  - text: "There are 13 children in a class. A year has 12 months. At least how many of the children must have their birthday in the same month?"
+givens: ["There are 13 children in the class.", "A year has 12 months."]
+unknown: "At least how many children have their birthday in the same month."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["child", "children"]
+          trap_values:
+            - value: "1"
+              trap: "best-case-not-worst"
+              text: "There are more children than months. Think what happens when every month already has a birthday."
+            - value: "3"
+              trap: "ignored-condition"
+              text: "The children can spread out over the months so that no month has 3 birthdays."
+            - value: "12"
+              trap: "number-from-text"
+              text: "12 is the number of months."
+            - value: "13"
+              trap: "number-from-text"
+              text: "13 is the number of children."
+    simpler_case: "Try 13 children and a year of only 6 months first. How few can share the fullest month?"
+solution:
+  - text: "12 children could all have birthdays in different months. The 13th child shares a month with one of them. So at least 2 children have the same birthday month."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-1-2"
+difficulty: 2

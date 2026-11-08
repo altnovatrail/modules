@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-56-d2-3.yaml, and the port writes this file again (R12).
+id: "clk-56-d2-3"
+statement:
+  - text: "A plane takes off at 10:00 local time and flies for 3 hours. In the city where it lands, the clocks show 4 hours less than where it took off. What is the local time when it lands?"
+  - picture: "pictures/clk-56-d2-3.png"
+    alt: "A clock showing 10 o'clock."
+    width: 200
+    height: 200
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["The plane takes off at 10:00 local time and flies for 3 hours.", "Where it lands, the clocks show 4 hours less."]
+unknown: "The local time when it lands."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "9:00"
+          options: ["13:00", "9:00", "17:00", "6:00", "3:00"]
+          trap_values:
+            - value: "13:00"
+              trap: "stopped-early"
+              text: "13:00 is the time in the city it left, not where it lands."
+            - value: "17:00"
+              trap: "reversed-relation"
+              text: "17:00 adds the 4 hours, but the clocks where it lands show less, not more."
+            - value: "6:00"
+              trap: "ignored-condition"
+              text: "6:00 turns 10:00 into the other city's time but leaves out the 3 hours of flying."
+            - value: "3:00"
+              trap: "wrong-operation"
+              text: "3:00 takes the 3 hours of flying away instead of adding them."
+    simpler_case: "Try a flight of 2 hours to a city whose clocks show 1 hour less. When does it land?"
+solution:
+  - text: "The plane lands 3 hours after take-off, at 13:00 by the clocks of the city it left. The clocks where it lands show 4 hours less: 9:00. So it lands at a local time earlier than the time it took off."
+skills:
+  primary: ["time-clocks"]
+band: "grades-5-6"
+difficulty: 2

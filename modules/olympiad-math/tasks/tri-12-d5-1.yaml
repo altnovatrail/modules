@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-12-d5-1.yaml, and the port writes this file again (R12).
+id: "tri-12-d5-1"
+statement:
+  - text: "What is the sum of all the numbers from 1 to 20, that is 1 + 2 + 3 + ... + 19 + 20?"
+givens: ["All the numbers from 1 to 20 are added."]
+unknown: "The sum."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "210"
+          trap_values:
+            - value: "20"
+              trap: "number-from-text"
+              text: "20 is the last number."
+            - value: "190"
+              trap: "stopped-early"
+              text: "190 is 1 + 2 + ... + 19: you forgot 20."
+            - value: "200"
+              trap: "off-by-one"
+              text: "Each pair, like 1 + 20 or 2 + 19, makes 21, not 20."
+            - value: "420"
+              trap: "double-count"
+              text: "There are 10 pairs of 21, not 20."
+    simpler_case: "Try the numbers from 1 to 6 first. Pair the first with the last."
+solution:
+  - text: "Make pairs: 1 + 20, 2 + 19, ..., 10 + 11. Each pair is 21, and there are 10 pairs: 210."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-1-2"
+difficulty: 5

@@ -1,0 +1,7 @@
+# What a person adds to enum-34-d4-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Vova writes all the numbers from 1 to 30."
+unknown: "How many times he writes the digit 1."
+simpler_case: "Try the numbers from 1 to 12 first. Count every digit 1."
+trap_texts:
+  "14": "Count again: the digit 1 in the tens and in the ones of each number, and 11 has two of them."

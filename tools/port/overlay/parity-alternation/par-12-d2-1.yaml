@@ -1,0 +1,10 @@
+# What a person adds to par-12-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann writes the even numbers from 2 to 20."
+  - "2 and 20 are written too."
+unknown: "How many numbers she writes."
+simpler_case: "Try the even numbers from 2 to 8 first. How many are there?"
+techniques: [parity]
+trap_texts:
+  "9": "Count them again, from 2 up to 20."
+  "11": "Only even numbers count. Count them again."

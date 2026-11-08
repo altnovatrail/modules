@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d1-3.yaml, and the port writes this file again (R12).
+id: "wp-56-d1-3"
+statement:
+  - text: "Sam has a balance, one 1 kg weight and a bag of 11 kg of rice. He wants to split the rice into a part of 3 kg and a part of 8 kg. At least how many weighings does he need?"
+givens: ["Sam has a balance, one 1 kg weight and 11 kg of rice.", "He wants a part of 3 kg and a part of 8 kg."]
+unknown: "The smallest number of weighings he needs."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["weighing", "weighings"]
+          trap_values:
+            - value: "8"
+              trap: "number-from-text"
+              text: "8 is the weight of the bigger part in kilograms, not a number of weighings."
+            - value: "1"
+              trap: "stopped-early"
+              text: "1 weighing splits the rice into 5.5 and 5.5 kg, 5 and 6 kg, or 1 and 10 kg, and none of these parts is 3 kg."
+            - value: "3"
+              trap: "missed-case"
+              text: "3 weighings work, weighing out 1 kg three times, but a weighing can split the rice in other ways too."
+    simpler_case: "Try splitting 7 kg of rice into 3 kg and 4 kg with the 1 kg weight. How many weighings does it take?"
+solution:
+  - text: "With the weight on one pan, Sam shares all the rice between the pans until they balance: 6 kg against 5 kg and the weight. Then he does the same with the 5 kg: 3 kg against 2 kg and the weight. The 3 kg is one part, and the 6 kg and the 2 kg poured together make the 8 kg. One weighing is not enough: it gives 5.5 and 5.5 kg, 5 and 6 kg, or 1 and 10 kg, and none of these is 3 kg."
+techniques: ["backwards"]
+traps: ["ignored-condition"]
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-5-6"
+difficulty: 1

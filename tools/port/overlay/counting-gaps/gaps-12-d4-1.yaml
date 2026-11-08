@@ -1,0 +1,6 @@
+# What a person adds to gaps-12-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Sawing a log into 3 pieces takes 6 minutes."
+  - "The new log is of the same kind."
+unknown: "How many minutes it takes to saw it into 6 pieces."
+simpler_case: "Try a log that takes 4 minutes to saw into 2 pieces. How long does it take to saw it into 4 pieces?"

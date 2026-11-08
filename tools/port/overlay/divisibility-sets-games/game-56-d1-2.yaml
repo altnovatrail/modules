@@ -1,0 +1,9 @@
+# What a person adds to game-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann cuts a strip of 12 squares into two pieces."
+  - "Ben takes the piece he likes better, and Ann gets the other."
+unknown: "The largest number of squares Ann can be sure to get."
+simpler_case: "Try a strip of 8 squares. What is the largest number Ann can be sure to get?"
+trap_texts:
+  "5": "5 is what Ann is sure of after cutting the strip into 7 and 5, but another cut gives her more."
+  "11": "11 is what Ann gets only if Ben chooses badly."

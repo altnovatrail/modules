@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-34-d1-2.yaml, and the port writes this file again (R12).
+id: "cal-34-d1-2"
+statement:
+  - text: "Dad is 36 years old and his son is 9. How many times as old as his son is Dad?"
+givens: ["Dad is 36 years old.", "His son is 9."]
+unknown: "How many times as old as his son Dad is."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          trap_values:
+            - value: "3"
+              trap: "off-by-one"
+              text: "3 × 9 = 27, not 36."
+            - value: "5"
+              trap: "off-by-one"
+              text: "5 × 9 = 45, not 36."
+            - value: "27"
+              trap: "answered-other-question"
+              text: "27 is how many years older Dad is."
+            - value: "45"
+              trap: "wrong-operation"
+              text: "You added the ages."
+    simpler_case: "Try Dad at 30 and his son at 5. How many times as old is Dad?"
+solution:
+  - text: "36 ÷ 9 = 4. Dad is 4 times as old as his son."
+techniques: ["draw"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-3-4"
+difficulty: 1

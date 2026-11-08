@@ -1,0 +1,48 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-12-d2-6.yaml, and the port writes this file again (R12).
+id: "gaps-12-d2-6"
+statement:
+  - text: "Frog F jumps up the stairs in the picture. Each jump is as long as the one drawn. How many jumps take it from the floor to the top step?"
+  - picture: "pictures/gaps-12-d2-6.png"
+    alt: "A staircase of 9 steps going up from the floor. Frog F sits on the floor, and an arrow shows one jump from the floor up three steps."
+    width: 348
+    height: 230
+givens: ["Frog F starts on the floor.", "Every jump is as long as the jump drawn in the picture."]
+unknown: "How many jumps take the frog from the floor to the top step."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["jump", "jumps"]
+          trap_values:
+            - value: "6"
+              trap: "wrong-operation"
+              text: "Count how many steps one jump goes up, and see how many such jumps fit into the staircase."
+            - value: "9"
+              trap: "number-from-text"
+              text: "That is the steps, not the jumps."
+            - value: "4"
+              trap: "off-by-one"
+              text: "The floor is not a jump."
+            - value: "2"
+              trap: "stopped-early"
+              text: "Two jumps reach only step 6."
+    simpler_case: "Try a staircase of 4 steps where each jump goes up 2 steps. How many jumps reach the top?"
+solution:
+  - text: "One jump takes 3 steps, and there are 9 steps. 3, 6, 9: the frog needs 3 jumps."
+  - text: "9 ÷ 3 = 3"
+  - picture: "pictures/gaps-12-d2-6-solution.png"
+    alt: "The same staircase with frog F on the top step, and three jumps drawn: from the floor to step 3, from step 3 to step 6 and from step 6 to step 9."
+    width: 348
+    height: 230
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 2

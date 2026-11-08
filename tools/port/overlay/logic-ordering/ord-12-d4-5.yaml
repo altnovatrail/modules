@@ -1,0 +1,10 @@
+# What a person adds to ord-12-d4-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann has 2 more stamps than Ben."
+  - "Ben has 3 fewer stamps than Kim."
+unknown: "Who has the most stamps."
+simpler_case: "Try two children: Ann has 2 more stamps than Ben. Who has more?"
+trap_texts:
+  "Ann": "Ann has 2 more than Ben, but someone has more than that."
+  "Ann and Kim have the same": "Compare each of them with Ben: they are not equal."
+  "It is impossible to tell": "Compare each child with Ben: that is enough."

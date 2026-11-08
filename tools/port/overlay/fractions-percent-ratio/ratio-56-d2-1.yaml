@@ -1,0 +1,8 @@
+# What a person adds to ratio-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The recipe for 6 people uses 9 eggs."
+unknown: "How many eggs it needs for 20 people."
+simpler_case: "Try a recipe for 4 people with 6 eggs. How many eggs does it need for 10 people?"
+trap_texts:
+  "3": "3 eggs feed only a few people, not 20."
+  "27": "27 feeds only 18 people."

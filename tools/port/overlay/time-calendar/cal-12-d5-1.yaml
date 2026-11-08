@@ -1,0 +1,9 @@
+# What a person adds to cal-12-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Today is Friday."
+unknown: "The day of the week 100 days ago."
+simpler_case: "Try 11 days ago. What day was it?"
+techniques: [pattern]
+trap_texts:
+  "Tuesday": "Count the days left over after whole weeks again."
+  "Thursday": "Count the days left over after whole weeks again."

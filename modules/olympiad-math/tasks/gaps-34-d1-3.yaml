@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-34-d1-3.yaml, and the port writes this file again (R12).
+id: "gaps-34-d1-3"
+statement:
+  - text: "How many whole numbers are there from 25 to 60, including 25 and 60?"
+givens: ["The numbers go from 25 to 60.", "25 and 60 are counted too."]
+unknown: "How many whole numbers there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "36"
+          units: ["number", "numbers", "whole number", "whole numbers"]
+          trap_values:
+            - value: "34"
+              trap: "ignored-condition"
+              text: "Both 25 and 60 must be counted."
+            - value: "35"
+              trap: "off-by-one"
+              text: "35 is the number of steps between 25 and 60. There is one more number."
+            - value: "60"
+              trap: "number-from-text"
+              text: "60 is the last number, not how many numbers there are."
+            - value: "85"
+              trap: "wrong-operation"
+              text: "You added 25 and 60."
+    simpler_case: "Try the numbers from 25 to 27 first. How many is that?"
+solution:
+  - text: "60 - 25 = 35 counts the steps from 25 to 60. There is one more number than steps: 36."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-3-4"
+difficulty: 1

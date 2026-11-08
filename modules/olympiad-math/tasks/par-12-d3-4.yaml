@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-12-d3-4.yaml, and the port writes this file again (R12).
+id: "par-12-d3-4"
+statement:
+  - text: "Sasha has only 2-cent coins. Which of these amounts can he pay exactly?"
+givens: ["Sasha has only 2-cent coins."]
+unknown: "Which of the amounts he can pay exactly."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["7 cents", "16 cents", "11 cents", "15 cents", "19 cents"]
+        check:
+          kind: "choice"
+          key: "16 cents"
+          trap_values:
+            - value: "7 cents"
+              trap: "wrong-parity"
+              text: "2-cent coins always make an even amount, and 7 is odd."
+            - value: "11 cents"
+              trap: "wrong-parity"
+              text: "2-cent coins always make an even amount, and 11 is odd."
+            - value: "15 cents"
+              trap: "wrong-parity"
+              text: "2-cent coins always make an even amount, and 15 is odd."
+            - value: "19 cents"
+              trap: "wrong-parity"
+              text: "2-cent coins always make an even amount, and 19 is odd."
+    simpler_case: "Try amounts up to 7 cents. Which can be paid with 2-cent coins?"
+solution:
+  - text: "Any number of 2-cent coins makes an even amount: 2, 4, 6, and so on. Only 16 is even."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-1-2"
+difficulty: 3

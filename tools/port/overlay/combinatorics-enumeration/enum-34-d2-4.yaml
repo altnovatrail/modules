@@ -1,0 +1,8 @@
+# What a person adds to enum-34-d2-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are seven friends."
+  - "Each sends a card to every other friend in the group."
+unknown: "How many cards are sent."
+simpler_case: "Try 3 friends first. How many cards does each of them send?"
+trap_texts:
+  "14": "You doubled 7, but each friend sends a card to every other friend, not just to two of them."

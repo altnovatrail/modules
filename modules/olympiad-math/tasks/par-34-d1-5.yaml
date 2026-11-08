@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d1-5.yaml, and the port writes this file again (R12).
+id: "par-34-d1-5"
+statement:
+  - text: "A traffic light shows green, yellow, red, yellow, green, yellow, red, yellow, and so on. What colour does it show the 30th time?"
+givens: ["The light shows green, yellow, red, yellow, green, yellow, red, yellow, and so on."]
+unknown: "The colour it shows the 30th time."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "yellow"
+          options: ["green", "red", "yellow", "green or red", "It is impossible to tell"]
+          trap_values:
+            - value: "green"
+              trap: "wrong-parity"
+              text: "Green is shown the 1st, 5th, 9th, ... times: always an odd time."
+            - value: "red"
+              trap: "wrong-parity"
+              text: "Red is shown the 3rd, 7th, 11th, ... times: always an odd time."
+            - value: "green or red"
+              trap: "stopped-early"
+              text: "The colours follow a fixed order, so each time has one colour. Write them in groups of four."
+            - value: "It is impossible to tell"
+              trap: "ignored-condition"
+              text: "The colours follow a fixed order, so the 30th one can be worked out."
+    simpler_case: "Try the 6th time first. Write the colours in order."
+solution:
+  - text: "The colours repeat every 4 times: green, yellow, red, yellow. Every even-numbered time is yellow, and 30 is even."
+techniques: ["pattern"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 1

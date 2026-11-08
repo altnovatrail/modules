@@ -1,0 +1,6 @@
+# What a person adds to enum-34-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The robot makes 3 steps to the right and 2 steps up."
+  - "The steps come in any order."
+unknown: "How many different orders of steps it can make."
+simpler_case: "Try 2 steps right and 1 step up first. Where can the step up stand?"

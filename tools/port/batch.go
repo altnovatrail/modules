@@ -22,6 +22,13 @@ type Batch struct {
 	Canvas     Canvas                   `yaml:"canvas"`
 	Skills     map[string]SkillDefaults `yaml:"skills"`
 	Tasks      map[string]BatchTask     `yaml:"tasks"`
+	// overlays is the folder of the batch's overlays, as the command was given it, which the header of
+	// every task it writes names.
+	overlays string
+	// survey marks the batch that a survey makes, of every task no batch names: it is never read
+	// from a file, its pictures get surveyAlt, and an explanation that names the key of a choice is
+	// counted, not refused.
+	survey bool
 }
 
 // Canvas is the canvas of a task (format/README.md, section 14).
@@ -39,12 +46,14 @@ type SkillDefaults struct {
 
 // BatchTask is what a task of a batch needs beside standalone: the units of its answer, the word
 // its question counts in the singular and the plural and, for a measure, its abbreviation
-// (format/README.md, section 15).
+// (format/README.md, section 15); and whether its choice is tapped though its key is a word of the
+// question, because its wrong options are reasons a learner would not write by hand (R20).
 type BatchTask struct {
-	Units []string `yaml:"units,omitempty"`
+	Units  []string `yaml:"units,omitempty"`
+	Tapped bool     `yaml:"tapped,omitempty"`
 }
 
-// Overlay is what a person writes for a task, tools/port/overlay/<id>.yaml: none of it comes from
+// Overlay is what a person writes for a task, tools/port/overlay/<batch>/<id>.yaml: none of it comes from
 // standalone, and the port puts it into the task as it is (R12).
 type Overlay struct {
 	Givens      []string `yaml:"givens,omitempty"`
@@ -59,6 +68,10 @@ type Overlay struct {
 	// solution: what the picture shows, in words, with no answer in them.
 	PictureAlt         string `yaml:"picture_alt,omitempty"`
 	SolutionPictureAlt string `yaml:"solution_picture_alt,omitempty"`
+	// AnswerForm is a paragraph of the statement after the question and its picture, which says what
+	// form the answer takes, such as "Write the time as on the clock, like 7:30.": a choice written
+	// by hand keeps its options closed (format/README.md, section 15).
+	AnswerForm string `yaml:"answer_form,omitempty"`
 	// TrapTexts are explanations written anew, by the trap value they explain, as the module
 	// writes it: "5", not "5 m".
 	TrapTexts map[string]string `yaml:"trap_texts,omitempty"`
@@ -94,9 +107,10 @@ func readBatch(file string) (Batch, error) {
 	return batch, nil
 }
 
-// readOverlays reads the overlay of every task of a batch that has one. The folder must be there:
-// a mistyped path would drop every overlay unsaid. An overlay of a task the batch does not name is
-// an error too, since it would be left out.
+// readOverlays reads the overlay of every task of a batch that has one, from the batch's own
+// folder, tools/port/overlay/<batch>/ (T22). The folder must be there: a mistyped path would drop
+// every overlay unsaid. An overlay of a task the batch does not name is an error too, since it would
+// be left out, and so is a folder in it.
 func readOverlays(dir string, batch Batch) (map[string]Overlay, error) {
 	overlays := map[string]Overlay{}
 	entries, err := os.ReadDir(dir)

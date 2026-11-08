@@ -1,0 +1,9 @@
+# What a person adds to clk-34-d3-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "From 9:15 to 11:45 there are 3 lessons of the same length."
+  - "A 15-minute break comes between every two lessons."
+unknown: "How many minutes long one lesson is."
+simpler_case: "Try 2 lessons from 9:00 to 10:00 with one 10-minute break. How many minutes long is one lesson?"
+picture_alt: "A clock showing 9:15."
+trap_texts:
+  "35": "Count the breaks between 3 lessons again."

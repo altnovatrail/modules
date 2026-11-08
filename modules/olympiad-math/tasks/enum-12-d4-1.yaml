@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-12-d4-1.yaml, and the port writes this file again (R12).
+id: "enum-12-d4-1"
+statement:
+  - text: "How many different three-digit numbers can you make with the digits 1, 2 and 3, using each digit exactly once?"
+givens: ["The digits are 1, 2 and 3.", "Each digit is used exactly once."]
+unknown: "How many different three-digit numbers can be made."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["number", "numbers"]
+          trap_values:
+            - value: "3"
+              trap: "missed-case"
+              text: "For each first digit the other two digits can swap places."
+            - value: "9"
+              trap: "wrong-operation"
+              text: "You multiplied 3 by 3. List the numbers instead."
+            - value: "12"
+              trap: "double-count"
+              text: "You counted every number twice."
+            - value: "27"
+              trap: "ignored-condition"
+              text: "Each digit is used exactly once, so 111 or 122 do not count."
+    simpler_case: "Try the digits 1 and 2, each used once. How many two-digit numbers can you make?"
+solution:
+  - text: "The numbers are 123, 132, 213, 231, 312 and 321. That is 6 numbers."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-1-2"
+difficulty: 4

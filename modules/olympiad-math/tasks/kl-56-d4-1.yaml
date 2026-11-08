@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-56-d4-1.yaml, and the port writes this file again (R12).
+id: "kl-56-d4-1"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. A traveller asked four islanders: 'How many knights are there among you four?' The first answered 1, the second 2, and the third and the fourth both answered 3. At least one of the four is a knight. How many knights are there among them?"
+  - picture: "pictures/kl-56-d4-1.png"
+    alt: "Four islanders in a row, marked with their answers: 1, 2, 3 and 3."
+    width: 216
+    height: 74
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Four islanders were asked how many knights are among them.", "The answers were 1, 2, 3 and 3.", "At least one of the four is a knight."]
+unknown: "How many knights there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "1"
+          units: ["knight", "knights"]
+          trap_values:
+            - value: "3"
+              trap: "trusted-statement"
+              text: "Believing the two who agree gives 3 knights, but then three islanders would have answered 3."
+            - value: "4"
+              trap: "trusted-statement"
+              text: "Four knights would all give the same answer, 4, and the answers differ."
+            - value: "0"
+              trap: "ignored-condition"
+              text: "0 fits the answers, but at least one of the four is a knight."
+    simpler_case: "Try two islanders asked how many knights are among them: both answer 2, and at least one is a knight. How many knights are there?"
+solution:
+  - text: "Every knight gives the true number and no liar does, so the number of knights equals the number of islanders who gave it. One islander answered 1, one answered 2 and two answered 3. Only 1 fits: one knight (K), who answered 1, and three liars (L). Nobody answered 0, which would fit too, but at least one of the four is a knight."
+  - text: "4 − 3 = 1"
+  - picture: "pictures/kl-56-d4-1-solution.png"
+    alt: "The four islanders with K under the one who answered 1, which is ringed, and L under the others."
+    width: 216
+    height: 96
+techniques: ["opposite"]
+traps: ["stopped-early"]
+leak_phrases: ["1 knight", "one knight"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-5-6"
+difficulty: 4

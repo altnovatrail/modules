@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-34-d4-5.yaml, and the port writes this file again (R12).
+id: "gaps-34-d4-5"
+statement:
+  - text: "11 lamps stand in a row along a road, 30 metres apart. A new lamp is put exactly in the middle between every two neighbouring lamps. How many lamps are there now?"
+  - picture: "pictures/gaps-34-d4-5.png"
+    alt: "Lamps in a row with a stretch left out in the middle, and every gap drawn between two lamps marked 30."
+    width: 272
+    height: 74
+givens: ["11 lamps stand in a row, 30 metres apart.", "A new lamp is put in the middle between every two neighbouring lamps."]
+unknown: "How many lamps there are now."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "21"
+          units: ["lamp", "lamps"]
+          trap_values:
+            - value: "10"
+              trap: "answered-other-question"
+              text: "10 is the number of new lamps. The question asks about all lamps."
+            - value: "20"
+              trap: "wrong-operation"
+              text: "You doubled the gaps and forgot the old lamps."
+            - value: "22"
+              trap: "off-by-one"
+              text: "11 lamps have 10 gaps, not 11, so only 10 new lamps are added."
+            - value: "30"
+              trap: "number-from-text"
+              text: "30 is the distance in metres."
+    simpler_case: "Try 3 lamps in a row first. How many new lamps go between them?"
+solution:
+  - text: "11 lamps have 10 gaps, so 10 new lamps are added. 11 + 10 = 21."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-3-4"
+difficulty: 4

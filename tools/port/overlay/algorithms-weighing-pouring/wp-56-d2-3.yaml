@@ -1,0 +1,8 @@
+# What a person adds to wp-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The balance holds at most two marbles on each pan."
+  - "One of 12 marbles is a lighter fake, and the others all weigh the same."
+unknown: "The smallest number of weighings that is sure to find the fake."
+simpler_case: "Try 6 marbles with the same balance. How many weighings are sure to find the fake?"
+trap_texts:
+  "2": "After 2 weighings that balance, some marbles are still suspect."

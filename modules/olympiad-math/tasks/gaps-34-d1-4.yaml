@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-34-d1-4.yaml, and the port writes this file again (R12).
+id: "gaps-34-d1-4"
+statement:
+  - text: "A block of flats has 9 floors. Each flight of stairs between two floors has 18 steps. How many steps are there from floor 1 to floor 9?"
+  - picture: "pictures/gaps-34-d1-4.png"
+    alt: "Floors 1, 2 and 3 in a row, then a stretch left out, and floor 9 at the end; every gap between two floors drawn is marked 18."
+    width: 272
+    height: 96
+givens: ["The block has 9 floors.", "Each flight between two floors has 18 steps."]
+unknown: "How many steps there are from floor 1 to floor 9."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "144"
+          units: ["step", "steps"]
+          trap_values:
+            - value: "18"
+              trap: "stopped-early"
+              text: "18 steps take you only to floor 2."
+            - value: "27"
+              trap: "wrong-operation"
+              text: "You added 18 and 9. Multiply the number of flights by 18."
+            - value: "126"
+              trap: "off-by-one"
+              text: "From floor 1 to floor 9 there are 8 flights, not 7."
+            - value: "162"
+              trap: "off-by-one"
+              text: "9 floors have 8 flights between them, not 9."
+    simpler_case: "Try a block of 3 floors with 10 steps in each flight. How many steps are there from floor 1 to floor 3?"
+solution:
+  - text: "From floor 1 to floor 9 there are 8 flights. 8 × 18 = 144 steps."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-3-4"
+difficulty: 1

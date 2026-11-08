@@ -1,0 +1,34 @@
+# A lesson of E3 (T40; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# geometry-grid on the band of grades 5–6. Its texts are those of the page figures-on-a-grid of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: geometry-grid-grades-5-6
+title: "Figures on a square grid: olympiad level"
+skills: [geometry-grid]
+segments:
+  - explanation:
+      - text: "Draw a figure on squared paper: how many cells does it cover, and how long is its border? In these tasks area is counted in cells and perimeter in cell sides, and the two are easy to mix up. Counting with nothing missed and nothing counted twice is the whole skill."
+      - text: "Area is cells. The area of a figure on squared paper is the number of cells it covers. Two half cells make one whole one."
+      - text: "Perimeter is sides. The perimeter is the number of cell sides on the border. A side that two cells of the figure share is inside, and does not count."
+      - text: "Different things. Two figures of the same area can have different perimeters: cells laid out in a long row have a longer border than the same cells packed into a square."
+  - worked_example:
+      statement:
+        - text: "A cross is made of 5 cells: one in the middle and one on each of its four sides. What is the perimeter of the cross, in cell sides?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Each of the 4 arms has 3 sides facing outside, so the arms give 4 × 3 = 12 sides."
+        - text: "The middle cell has no side outside, since each of its sides touches an arm."
+        - text: "So the perimeter is 12 cell sides."
+        - text: "Answer: 12 cell sides."
+  - explanation:
+      - text: "Another way to count. 5 cells have 5 × 4 = 20 sides. The 4 sides between the middle and the arms are each counted twice, once from each cell, and they are inside: 20 − 2 × 4 = 12."
+  - task: grid-56-d1-1
+  - task: grid-56-d3-1
+  - task: grid-56-d5-1
+  - explanation:
+      - text: "How to solve: walk round the border."
+      - text: "Draw the figure on squared paper."
+      - text: "Count cells for the area, outside sides for the perimeter."
+      - text: "Check with a second way of counting."

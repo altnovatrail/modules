@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-34-d2-1.yaml, and the port writes this file again (R12).
+id: "clk-34-d2-1"
+statement:
+  - text: "A watch loses 3 minutes every hour. It was set right at 9:00. What does it show when the real time is 13:00?"
+  - picture: "pictures/clk-34-d2-1.png"
+    alt: "A clock showing 9 o'clock."
+    width: 200
+    height: 200
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["The watch loses 3 minutes every hour.", "It was set right at 9:00."]
+unknown: "What it shows when the real time is 13:00."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "12:48"
+          options: ["12:45", "12:57", "13:03", "13:12", "12:48"]
+          trap_values:
+            - value: "12:45"
+              trap: "off-by-one"
+              text: "Count the hours from 9:00 to 13:00 again."
+            - value: "12:57"
+              trap: "stopped-early"
+              text: "3 minutes is the loss for one hour. Count the hours from 9:00 to 13:00."
+            - value: "13:03"
+              trap: "reversed-relation"
+              text: "A watch that loses time is behind, so it shows less than 13:00."
+            - value: "13:12"
+              trap: "reversed-relation"
+              text: "Losing time means the watch is behind, not ahead."
+    simpler_case: "Try the real time 11:00. What does the watch show?"
+solution:
+  - text: "From 9:00 to 13:00 there are 4 hours. The watch loses 3 minutes each hour: 12 minutes. It shows 13:00 minus 12 minutes = 12:48."
+skills:
+  primary: ["time-clocks"]
+band: "grades-3-4"
+difficulty: 2

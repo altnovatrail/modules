@@ -1,0 +1,13 @@
+# What a person adds to kl-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Knights always tell the truth, and liars always lie."
+  - "Every islander is a knight or a liar."
+  - "Ann says Ben and Kim both ate some of the cake."
+  - "Ben says neither Ann nor Kim ate any."
+  - "Kim says: 'Ann and Ben are both liars.'"
+  - "Dan says: 'Exactly two of Ann, Ben and Kim are knights.'"
+unknown: "How many of the four are knights."
+simpler_case: "Try two: Ann says 'Ben ate some cake', and Ben says 'Ann is a liar.' Can both be knights?"
+techniques: [opposite]
+trap_texts:
+  "3": "3 takes Dan at his word. Check his words against the others first."

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-56-d1-1.yaml, and the port writes this file again (R12).
+id: "par-56-d1-1"
+statement:
+  - text: "Nine children each have two balloons, a red one and a yellow one. They swap balloons with each other so that as many children as possible end up holding two balloons of the same colour. At most how many children can do so?"
+givens: ["Nine children each have a red balloon and a yellow balloon.", "They swap so that as many as possible hold two of the same colour."]
+unknown: "At most how many children can do so."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "8"
+          units: ["child", "children"]
+          trap_values:
+            - value: "18"
+              trap: "answered-other-question"
+              text: "18 is the number of balloons, not of children."
+            - value: "9"
+              trap: "wrong-parity"
+              text: "9 would need the 9 red balloons to go two to a child, but 9 is an odd number, so one red balloon is always left over."
+            - value: "4"
+              trap: "stopped-early"
+              text: "4 counts only the children with two red balloons. Count the children who can hold two yellow ones too."
+            - value: "7"
+              trap: "off-by-one"
+              text: "7 leaves two children with a red and a yellow balloon each, but those two can swap so that one of them holds two of one colour."
+    simpler_case: "Try 3 children with a red and a yellow balloon each. At most how many can hold two of one colour?"
+solution:
+  - text: "The 9 red balloons make 4 pairs with one left over, and so do the 9 yellow ones. So 4 children can hold two red balloons and 4 others two yellow ones, and the last child holds the red and the yellow balloon left over. No more is possible, since 9 red balloons cannot all go in pairs. So at most 8 children can."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-5-6"
+difficulty: 1

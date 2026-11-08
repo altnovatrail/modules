@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-12-d3-3.yaml, and the port writes this file again (R12).
+id: "clk-12-d3-3"
+statement:
+  - text: "Now it is 11:40. What time was it 50 minutes ago?"
+  - picture: "pictures/clk-12-d3-3.png"
+    alt: "A clock showing 11:40."
+    width: 200
+    height: 200
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["It is 11:40 now."]
+unknown: "The time 50 minutes ago."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "10:50"
+          options: ["10:50", "10:10", "10:90", "11:10", "12:30"]
+          trap_values:
+            - value: "10:10"
+              trap: "wrong-operation"
+              text: "10:10 is 90 minutes before 11:40."
+            - value: "10:90"
+              trap: "time-unit-mixup"
+              text: "An hour has 60 minutes, not 100, so there is no 10:90."
+            - value: "11:10"
+              trap: "wrong-operation"
+              text: "You went back only 30 minutes."
+            - value: "12:30"
+              trap: "reversed-relation"
+              text: "50 minutes ago means earlier, not later."
+    simpler_case: "Try 20 minutes first: it is 11:40 now. What time was it 20 minutes ago?"
+solution:
+  - text: "Going back 40 minutes from 11:40 gives 11:00. Going back 10 more minutes gives 10:50."
+  - picture: "pictures/clk-12-d3-3-solution.png"
+    alt: "A clock showing 10:50."
+    width: 200
+    height: 200
+skills:
+  primary: ["time-clocks"]
+band: "grades-1-2"
+difficulty: 3

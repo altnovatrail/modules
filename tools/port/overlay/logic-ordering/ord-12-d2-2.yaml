@@ -1,0 +1,8 @@
+# What a person adds to ord-12-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are 5 friends."
+  - "Leo is the 3rd tallest."
+unknown: "How many friends are shorter than Leo."
+simpler_case: "Try a group of 4 friends with Leo the 3rd tallest. How many are shorter?"
+trap_texts:
+  "1": "1 is too few. Count the friends in front of Leo, then Leo, then those behind him."

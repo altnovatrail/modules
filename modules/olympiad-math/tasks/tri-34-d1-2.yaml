@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-34-d1-2.yaml, and the port writes this file again (R12).
+id: "tri-34-d1-2"
+statement:
+  - text: "Dan thought of a number and multiplied it by 3. He got 27. What number did Dan think of?"
+givens: ["Dan multiplied his number by 3.", "He got 27."]
+unknown: "The number Dan thought of."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "9"
+          trap_values:
+            - value: "3"
+              trap: "number-from-text"
+              text: "3 is the number Dan multiplied by."
+            - value: "24"
+              trap: "wrong-operation"
+              text: "To undo multiplying by 3, divide by 3; do not take 3 away."
+            - value: "30"
+              trap: "wrong-operation"
+              text: "To undo multiplying by 3, divide by 3; do not add 3."
+            - value: "81"
+              trap: "wrong-operation"
+              text: "You multiplied 27 by 3 instead of dividing."
+    simpler_case: "Try a number that gives 8 when you multiply it by 2."
+solution:
+  - text: "To undo multiplying by 3, divide by 3: 27 ÷ 3 = 9. Check: 9 × 3 = 27."
+techniques: ["backwards"]
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-3-4"
+difficulty: 1

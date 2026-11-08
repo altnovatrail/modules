@@ -1,0 +1,9 @@
+# What a person adds to fig-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Triangles of any size whose sides are lines of the figure are counted."
+unknown: "How many triangles there are."
+simpler_case: "Try a triangle with one line from a corner to the middle of the opposite side. How many triangles are there?"
+picture_alt: "A right triangle with its right angle at the top left. From the middle of its left side a line runs across to the long side, and from the middle of its top side a line runs down to the long side, where the two meet. A line also runs from the right-angle corner to the middle of the long side."
+solution_picture_alt: "The small triangles numbered."
+trap_texts:
+  "6": "Triangles of other sizes count too."

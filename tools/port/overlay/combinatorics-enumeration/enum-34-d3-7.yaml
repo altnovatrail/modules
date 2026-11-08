@@ -1,0 +1,9 @@
+# What a person adds to enum-34-d3-7 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each round mark in the picture is a flavour."
+  - "Each square mark is a topping."
+  - "A cone has one flavour, with one topping or with no topping."
+unknown: "How many different cones there are."
+simpler_case: "Try 2 flavours and 1 topping, a cone with the topping or without it. How many cones are there?"
+picture_alt: "Two piles of marks: 3 round marks in the first and 3 square marks in the second."
+solution_picture_alt: "Three piles of 4 marks each, one pile for each flavour with its cones."

@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-56-d5-2.yaml, and the port writes this file again (R12).
+id: "tri-56-d5-2"
+statement:
+  - text: "The number 96 is written as a sum of two or more whole numbers, and the same numbers multiplied together also make 96. What is the fewest numbers such a sum can have?"
+givens: ["The numbers of the sum, multiplied together, make 96 too.", "The sum has two or more whole numbers and makes 96."]
+unknown: "The fewest numbers such a sum can have."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "48"
+          units: ["number", "numbers"]
+          trap_values:
+            - value: "46"
+              trap: "stopped-early"
+              text: "46 is how many ones are needed, but the two other numbers are in the sum too."
+            - value: "2"
+              trap: "ignored-condition"
+              text: "2 takes just two numbers that multiply to 96, but they add up to less than 96."
+            - value: "63"
+              trap: "missed-case"
+              text: "63 uses 3 and 32 with 61 ones, but another pair adds up to more and needs fewer ones."
+            - value: "1"
+              trap: "ignored-condition"
+              text: "1 takes 96 alone, but the sum must have two or more numbers."
+    simpler_case: "Try 6 first: a sum of whole numbers that also multiply to 6."
+solution:
+  - text: "Ones add to the sum but leave the product as it is. So take numbers above 1 that multiply to 96, and fill the sum up to 96 with ones. 96 by itself is one number, and the sum needs two or more. Of the other ways, 2 × 48 has the fewest numbers and the biggest sum, 50, so it needs the fewest ones: 96 − 50 = 46. That makes 2 + 46 = 48 numbers."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-5-6"
+difficulty: 5

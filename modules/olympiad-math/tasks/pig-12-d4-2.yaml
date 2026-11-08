@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-12-d4-2.yaml, and the port writes this file again (R12).
+id: "pig-12-d4-2"
+statement:
+  - text: "A drawer has 5 pairs of socks, each pair a different colour, all mixed up. In the dark, how many socks must you take to be sure of 2 socks of the same colour?"
+givens: ["The drawer has 5 pairs of socks, each pair a different colour.", "The socks are mixed up, and you take them in the dark."]
+unknown: "How many socks you must take to be sure of 2 socks of the same colour."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["sock", "socks"]
+          trap_values:
+            - value: "2"
+              trap: "best-case-not-worst"
+              text: "2 socks can be different colours."
+            - value: "5"
+              trap: "off-by-one"
+              text: "5 socks can be one of each colour."
+            - value: "10"
+              trap: "number-from-text"
+              text: "10 is the number of socks in the drawer."
+            - value: "11"
+              trap: "off-by-one"
+              text: "There are only 10 socks, and far fewer are enough."
+    simpler_case: "Try a drawer of 2 pairs of different colours first. How many socks make you sure of two alike?"
+solution:
+  - text: "5 socks can all be different colours. The 6th sock matches one of them."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-1-2"
+difficulty: 4

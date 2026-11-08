@@ -1,0 +1,9 @@
+# What a person adds to frac-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "5/8 of the cars are red, and the rest are blue."
+  - "There are 6 more red cars than blue cars."
+unknown: "How many cars are in the car park."
+simpler_case: "Try a car park where 3/4 of the cars are red and there are 4 more red cars than blue. How many cars are there?"
+trap_texts:
+  "9": "9 is only part of the car park."
+  "15": "15 is only part of the car park."

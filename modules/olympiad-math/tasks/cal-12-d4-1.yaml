@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-12-d4-1.yaml, and the port writes this file again (R12).
+id: "cal-12-d4-1"
+statement:
+  - text: "Today is Sunday. What day of the week will it be in 20 days?"
+givens: ["Today is Sunday."]
+unknown: "The day of the week in 20 days."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Friday", "Sunday", "Monday", "Tuesday", "Saturday"]
+        check:
+          kind: "choice"
+          key: "Saturday"
+          trap_values:
+            - value: "Friday"
+              trap: "off-by-one"
+              text: "20 days is not 2 weeks and 5 days."
+            - value: "Sunday"
+              trap: "off-by-one"
+              text: "Sunday comes again only after whole weeks, and 20 days are not whole weeks."
+            - value: "Monday"
+              trap: "off-by-one"
+              text: "Monday is 22 days after Sunday."
+            - value: "Tuesday"
+              trap: "wrong-operation"
+              text: "Count the days left over after the whole weeks again, from Sunday."
+    simpler_case: "Try 10 days from Sunday. What day is it?"
+solution:
+  - text: "In 14 days, two weeks, it is Sunday again. 6 more days: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-1-2"
+difficulty: 4

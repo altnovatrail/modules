@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/grid-56-d3-1.yaml, and the port writes this file again (R12).
+id: "grid-56-d3-1"
+statement:
+  - text: "A playground is marked on a grid of squares with sides of 1 m. It takes up seven squares: A1, B1, C1, C2, C3, B3 and A3, where A to C are the rows from the top. How many metres of fence go all the way round it?"
+  - picture: "pictures/grid-56-d3-1.png"
+    alt: "A 3 by 3 grid with rows A to C from the top and columns 1 to 3 from the left; every square is shaded but A2 and B2, which make a gap in the middle from the top."
+    width: 149
+    height: 154
+givens: ["The squares have sides of 1 m.", "The playground takes up A1, B1, C1, C2, C3, B3 and A3."]
+unknown: "How many metres of fence go round it."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "16"
+          units: ["m", "metre", "metres"]
+          trap_values:
+            - value: "12"
+              trap: "answered-other-question"
+              text: "12 fences the whole 3 by 3 square, not this shape."
+            - value: "15"
+              trap: "missed-case"
+              text: "15 misses the piece of fence along the bottom of the gap."
+            - value: "7"
+              trap: "area-perimeter-swap"
+              text: "7 is how many squares it takes up, its area."
+            - value: "28"
+              trap: "double-count"
+              text: "28 counts the sides where squares touch each other."
+    simpler_case: "Try an L of three squares. How many metres of fence go round it?"
+solution:
+  - text: "Seven squares have 28 sides. Six pairs of squares touch, and each pair hides 2 sides. 28 - 12 = 16 metres of fence."
+techniques: ["draw"]
+skills:
+  primary: ["geometry-grid"]
+band: "grades-5-6"
+difficulty: 3

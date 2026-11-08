@@ -1,0 +1,53 @@
+# The tasks of algorithms-weighing-pouring of standalone at 42b4408: all 40 of them (E3; T31). The
+# units are the word a question counts, in the singular and the plural, and a measure with its
+# abbreviation; a task whose answer is no number has none. standalone's site links the topic to the
+# technique backwards, which goes in the overlay of each task that counts steps to reach an amount,
+# by pouring or by splitting, where working back from the amount wanted helps.
+standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+skills:
+  algorithms-weighing-pouring:
+    techniques: []
+tasks:
+  wp-34-d1-1: {units: [step, steps]}
+  wp-34-d1-2: {}
+  wp-34-d1-3: {units: [weighing, weighings]}
+  wp-34-d1-4: {units: [l, litre, litres]}
+  wp-34-d1-5: {}
+  wp-34-d2-1: {units: [step, steps]}
+  wp-34-d2-2: {units: [weighing, weighings]}
+  wp-34-d2-3: {}
+  wp-34-d2-4: {units: [weighing, weighings]}
+  wp-34-d2-5: {units: [step, steps]}
+  wp-34-d3-1: {units: [step, steps]}
+  wp-34-d3-2: {units: [weighing, weighings]}
+  wp-34-d3-3: {}
+  wp-34-d3-4: {units: [step, steps]}
+  wp-34-d3-5: {}
+  wp-34-d4-1: {units: [weighing, weighings]}
+  wp-34-d4-2: {units: [step, steps]}
+  wp-34-d4-3: {units: [weight, weights]}
+  wp-34-d4-4: {units: [weighing, weighings]}
+  wp-34-d4-5: {}
+  wp-34-d5-1: {units: [weighing, weighings]}
+  wp-34-d5-2: {units: [step, steps]}
+  wp-34-d5-3: {units: [weight, weights]}
+  wp-34-d5-4: {units: [weighing, weighings]}
+  wp-34-d5-5: {units: [weighing, weighings]}
+  wp-56-d1-1: {units: [weighing, weighings]}
+  wp-56-d1-2: {}
+  wp-56-d1-3: {units: [weighing, weighings]}
+  wp-56-d2-1: {units: [step, steps]}
+  wp-56-d2-2: {units: [weighing, weighings]}
+  wp-56-d2-3: {units: [weighing, weighings]}
+  wp-56-d3-1: {}
+  wp-56-d3-2: {units: [weighing, weighings]}
+  wp-56-d3-3: {units: [weighing, weighings]}
+  wp-56-d4-1: {units: [weighing, weighings]}
+  wp-56-d4-2: {units: [step, steps]}
+  wp-56-d4-3: {units: [bolt, bolts]}
+  wp-56-d5-1: {}
+  wp-56-d5-2: {}
+  wp-56-d5-3: {}

@@ -1,0 +1,8 @@
+# What a person adds to gaps-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The small track is 60 metres round."
+  - "The big track is 100 metres round."
+  - "Flags stand every 10 metres along both tracks."
+  - "One flag stands at the point where the tracks touch."
+unknown: "How many flags there are."
+simpler_case: "Try two closed tracks of 20 and 30 metres that touch at one point, with a flag every 10 metres and one where they touch. How many flags are there?"

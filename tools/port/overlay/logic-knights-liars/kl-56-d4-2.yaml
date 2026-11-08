@@ -1,0 +1,13 @@
+# What a person adds to kl-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Knights always tell the truth, and liars always lie."
+  - "Every islander is a knight or a liar."
+  - "Tom says: 'Uma is lying.'"
+  - "Uma says: 'Val is lying.'"
+  - "Val says: 'Tom and Uma are both lying.'"
+  - "Wes says: 'Exactly one of Tom, Uma and Val is telling the truth.'"
+unknown: "Who the knights are."
+simpler_case: "Try two: Tom says 'Uma is lying', and Uma says '2 + 2 = 5.' Who are the knights?"
+techniques: [opposite]
+trap_texts:
+  "Only Uma": "Check Wes's words too."

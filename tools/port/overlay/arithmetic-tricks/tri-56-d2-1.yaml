@@ -1,0 +1,5 @@
+# What a person adds to tri-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The sum is 1 + 11 + 111 + 1111 + 11111."
+unknown: "The sum."
+simpler_case: "Try 1 + 11 + 111 first. Add the columns one by one."

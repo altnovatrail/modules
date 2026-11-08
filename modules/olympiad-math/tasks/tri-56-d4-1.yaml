@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-56-d4-1.yaml, and the port writes this file again (R12).
+id: "tri-56-d4-1"
+statement:
+  - text: "What is the sum of all the digits of all the numbers from 1 to 100?"
+givens: ["The numbers go from 1 to 100.", "All the digits of all the numbers are added."]
+unknown: "The sum of all the digits."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "901"
+          trap_values:
+            - value: "900"
+              trap: "missed-case"
+              text: "900 leaves out the number 100, whose digits add up to 1."
+            - value: "451"
+              trap: "missed-case"
+              text: "451 counts the units digits and the 1 of 100 but leaves out the tens digits."
+            - value: "1000"
+              trap: "wrong-operation"
+              text: "1000 adds 100 itself instead of its digits, 1 + 0 + 0."
+            - value: "5050"
+              trap: "answered-other-question"
+              text: "5050 is the sum of the numbers from 1 to 100, not of their digits."
+    simpler_case: "Try the numbers from 1 to 20 first. Add the units digits and the tens digits apart."
+solution:
+  - text: "From 1 to 99 each digit from 1 to 9 is a units digit 10 times and a tens digit 10 times, which gives 45 × 10 = 450 twice: 900. The number 100 adds 1 + 0 + 0 = 1, so the sum is 901."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-5-6"
+difficulty: 4

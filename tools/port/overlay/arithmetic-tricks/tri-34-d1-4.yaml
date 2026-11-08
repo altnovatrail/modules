@@ -1,0 +1,5 @@
+# What a person adds to tri-34-d1-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The sum is 999 + 99 + 9 + 3."
+unknown: "The sum."
+simpler_case: "Try 99 + 9 + 2 first. Split the 2 to make round numbers."

@@ -1,0 +1,8 @@
+# What a person adds to clk-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The shift starts at 22:40 and ends at 7:10."
+  - "He takes two breaks of 25 minutes each."
+unknown: "How long he works."
+simpler_case: "Try a shift from 22:40 to 1:10 with one break of 25 minutes. How long does he work?"
+trap_texts:
+  "8 hours 30 minutes": "8 hours 30 minutes is the whole shift; the breaks still come off it."

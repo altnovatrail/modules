@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-34-d2-3.yaml, and the port writes this file again (R12).
+id: "tri-34-d2-3"
+statement:
+  - text: "What is 4 × 13 × 25?"
+givens: ["The product is 4 × 13 × 25."]
+unknown: "The product."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "1300"
+          trap_values:
+            - value: "42"
+              trap: "wrong-operation"
+              text: "42 is 4 + 13 + 25: you added instead of multiplying."
+            - value: "52"
+              trap: "stopped-early"
+              text: "52 is only 4 × 13; you still have to multiply by 25."
+            - value: "100"
+              trap: "ignored-condition"
+              text: "100 is 4 × 25: you forgot to multiply by 13."
+            - value: "325"
+              trap: "ignored-condition"
+              text: "325 is 13 × 25: you forgot to multiply by 4."
+    simpler_case: "Try 4 × 3 × 25 first. Which two numbers make a round number?"
+solution:
+  - text: "4 × 25 = 100, and 100 × 13 = 1300."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-3-4"
+difficulty: 2

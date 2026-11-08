@@ -1,0 +1,6 @@
+# What a person adds to gaps-34-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Olga is 12th from the left."
+  - "Olga is 15th from the right."
+unknown: "How many pupils are in the row."
+simpler_case: "Try a row where Olga is 2nd from the left and 3rd from the right. Draw it and count."

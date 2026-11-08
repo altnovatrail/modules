@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-56-d4-2.yaml, and the port writes this file again (R12).
+id: "gaps-56-d4-2"
+statement:
+  - text: "A square garden is 12 metres on each side. Its fence has a post every 3 metres, one in each corner. Two straight fences cross the garden through its middle, one parallel to each side, and split it into four square beds. They have a post every 3 metres too. Where fences meet, one post serves both. How many posts are there?"
+givens: ["The garden is a square, 12 metres on each side.", "Its fence has a post every 3 metres, one in each corner.", "Two straight fences cross the garden through its middle, with a post every 3 metres.", "Where fences meet, one post serves both."]
+unknown: "How many posts there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "21"
+          units: ["post", "posts"]
+          trap_values:
+            - value: "16"
+              trap: "ignored-condition"
+              text: "16 counts the outer fence only; the two fences inside have posts too."
+            - value: "25"
+              trap: "ignored-condition"
+              text: "25 puts a post at every point 3 metres apart, inside the beds too, but posts stand only on fences."
+            - value: "26"
+              trap: "double-count"
+              text: "26 adds all 5 posts of each inner fence, but their end posts are on the outer fence already, and the middle post is one post for both."
+            - value: "22"
+              trap: "double-count"
+              text: "22 counts the post in the middle twice, once for each inner fence."
+    simpler_case: "Try a square garden 6 metres on each side with a post every 3 metres, and one straight fence across its middle with a post every 3 metres. How many posts are there?"
+solution:
+  - text: "The outer fence is 48 metres round, so it has 48 ÷ 3 = 16 posts. Each inner fence is 12 metres long with 5 posts, and its two end posts are on the outer fence. The first inner fence adds 3 posts. The second adds 2, because its middle post is where the two inner fences cross, and that post is already there. In all 16 + 3 + 2 = 21 posts."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-5-6"
+difficulty: 4

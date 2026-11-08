@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d1-5.yaml, and the port writes this file again (R12).
+id: "wp-34-d1-5"
+statement:
+  - text: "Sasha has a balance and two weights: 1 kg and 2 kg. He wants to weigh out exactly 3 kg of sugar in one weighing. Where should the weights go?"
+givens: ["Sasha has a balance and weights of 1 kg and 2 kg.", "He wants exactly 3 kg of sugar in one weighing."]
+unknown: "Where the weights should go."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Both weights on the pan with the sugar", "The 1 kg weight with the sugar, the 2 kg weight opposite", "Both weights on the pan opposite the sugar", "The 2 kg weight with the sugar, the 1 kg weight opposite", "It cannot be done in one weighing"]
+        check:
+          kind: "choice"
+          key: "Both weights on the pan opposite the sugar"
+          trap_values:
+            - value: "Both weights on the pan with the sugar"
+              trap: "reversed-relation"
+              text: "Weights next to the sugar make its pan heavier, not lighter."
+            - value: "The 1 kg weight with the sugar, the 2 kg weight opposite"
+              trap: "wrong-operation"
+              text: "This balances only 2 - 1 = 1 kg of sugar."
+            - value: "The 2 kg weight with the sugar, the 1 kg weight opposite"
+              trap: "wrong-operation"
+              text: "With 2 kg next to the sugar and only 1 kg opposite, the sugar's pan is heavier even with no sugar."
+            - value: "It cannot be done in one weighing"
+              trap: "ignored-condition"
+              text: "It can be done in one weighing."
+    simpler_case: "Try weighing out 2 kg of sugar with weights of 1 kg and 3 kg. Where do they go?"
+solution:
+  - text: "The sugar must balance 3 kg, and 1 + 2 = 3. So both weights go on the other pan."
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-3-4"
+difficulty: 1

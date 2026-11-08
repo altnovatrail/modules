@@ -1,0 +1,10 @@
+# What a person adds to ratio-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "One shepherd has 5 loaves and the other 3."
+  - "The two shepherds and a hunter eat all 8 loaves in equal shares."
+  - "The hunter pays 8 coins, shared for the bread each shepherd gave him."
+unknown: "How many coins the shepherd with 5 loaves gets."
+simpler_case: "Try two shepherds with 2 loaves and 1 loaf, who share all 3 loaves equally with a hunter. How much bread does the first shepherd give the hunter?"
+trap_texts:
+  "1": "1 coin is not what the shepherd with 5 loaves gets."
+  "5": "5 shares the coins like the loaves, but he also ate some of his own bread."

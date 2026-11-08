@@ -1,0 +1,9 @@
+# What a person adds to pig-34-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "A year has 12 months."
+  - "At least 4 pupils must have their birthday in the same month."
+unknown: "The smallest number of pupils in the class that makes you sure of it."
+simpler_case: "Try to be sure of 2 pupils in the same month first. How many pupils does that take?"
+trap_texts:
+  "48": "You multiplied 12 by 4. Think of the unluckiest class: how many pupils can have birthdays with no 4 in one month?"
+  "49": "12 × 4 + 1 is more than you need. Think again how many pupils can have birthdays with no 4 in one month."

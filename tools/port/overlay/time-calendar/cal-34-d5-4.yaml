@@ -1,0 +1,11 @@
+# What a person adds to cal-34-d5-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Four children were born exactly one year apart."
+  - "Their ages add up to 42."
+unknown: "The age of the oldest."
+simpler_case: "Try three children born one year apart, with ages adding up to 15. How old is the oldest?"
+techniques: [draw]
+trap_texts:
+  "9": "9 is not the oldest child's age."
+  "11": "11 is not the oldest child's age."
+  "13": "If the oldest were 13, the four ages would add up to more than 42."

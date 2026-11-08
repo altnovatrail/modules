@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/percent.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/pct-56-d4-1.yaml, and the port writes this file again (R12).
+id: "pct-56-d4-1"
+statement:
+  - text: "In a basket, 25% of the apples are red. After 6 red apples are eaten, 10% of the apples left are red. How many apples were in the basket at first?"
+givens: ["25% of the apples are red.", "After 6 red apples are eaten, 10% of the apples left are red."]
+unknown: "How many apples were in the basket at first."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "36"
+          units: ["apple", "apples"]
+          trap_values:
+            - value: "40"
+              trap: "percent-wrong-base"
+              text: "40 takes the drop from 25% to 10% as 15% of the first basket, but the 10% is of a smaller basket."
+            - value: "9"
+              trap: "part-whole-swap"
+              text: "9 is only part of the basket."
+            - value: "27"
+              trap: "part-whole-swap"
+              text: "27 is only part of the basket."
+            - value: "24"
+              trap: "ignored-condition"
+              text: "24 takes the 6 eaten apples as all the red apples, but not all of them were eaten."
+    simpler_case: "Try a basket where 50% of the apples are red, and after 2 red apples are eaten a third of the apples left are red. How many apples were there?"
+solution:
+  - text: "The apples that are not red stay. At first there are 3 of them for every red apple, and later 9 for every red apple. So the red apples go from a third of the others to a ninth of them, and the 6 eaten apples are 2/9 of the others. That makes 27 other apples and 9 red ones: 36 apples at first."
+skills:
+  primary: ["percent-basic"]
+band: "grades-5-6"
+difficulty: 4

@@ -1,0 +1,11 @@
+# What a person adds to clk-56-d1-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "A tale takes 7 minutes and a song 4 minutes."
+  - "The cat tells a tale, sings a song, tells a tale again, and so on, with no breaks."
+  - "It starts its first tale at 9:00."
+unknown: "How many minutes after 10:00 it starts its next song."
+simpler_case: "Try 9:30. How many minutes after 9:30 does the cat start its next song?"
+picture_alt: "A clock showing 9 o'clock."
+trap_texts:
+  "5": "5 minutes is how long the cat has been telling its tale at 10:00, not when the song starts."
+  "7": "7 is the length of a whole tale, but the tale under way at 10:00 began before 10:00."

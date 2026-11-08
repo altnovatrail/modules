@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-12-d4-2.yaml, and the port writes this file again (R12).
+id: "gaps-12-d4-2"
+statement:
+  - text: "It takes 20 steps to go up from floor 1 to floor 3. All flights of stairs are the same. How many steps is it from floor 1 to floor 5?"
+givens: ["From floor 1 to floor 3 there are 20 steps.", "All the flights of stairs are the same."]
+unknown: "How many steps it is from floor 1 to floor 5."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "40"
+          units: ["step", "steps"]
+          trap_values:
+            - value: "25"
+              trap: "wrong-operation"
+              text: "You added 5 to 20. Find the steps in one flight first."
+            - value: "30"
+              trap: "off-by-one"
+              text: "From floor 1 to floor 5 there are 4 flights, not 3."
+            - value: "33"
+              trap: "off-by-one"
+              text: "20 steps are for 2 flights, not 3."
+            - value: "50"
+              trap: "off-by-one"
+              text: "From floor 1 to floor 5 there are 4 flights, not 5."
+    simpler_case: "Try 6 steps from floor 1 to floor 2. How many steps is it from floor 1 to floor 4?"
+solution:
+  - text: "From floor 1 to floor 3 there are 2 flights, so one flight has 10 steps. From floor 1 to floor 5 there are 4 flights: 4 × 10 = 40 steps."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 4

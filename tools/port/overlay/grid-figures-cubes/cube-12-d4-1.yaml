@@ -1,0 +1,10 @@
+# What a person adds to cube-12-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The net is folded into a die."
+  - "Opposite faces of a die add up to 7."
+unknown: "The number for the empty face."
+simpler_case: "Try a die with 5 on top. Which number is on its bottom?"
+picture_alt: "A net of six squares: a column of four, with 1, 3 and 6 in the top three and the bottom one empty, and a square on each side of the second one: 2 on its left and 5 on its right."
+solution_picture_alt: "The net with the number for the empty face written in."
+trap_texts:
+  "3": "3 is on the net already."

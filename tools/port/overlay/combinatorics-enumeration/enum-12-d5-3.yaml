@@ -1,0 +1,7 @@
+# What a person adds to enum-12-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are 3 roads from Ash to Birch."
+  - "There are 2 roads from Birch to Cedar."
+  - "1 road goes straight from Ash to Cedar."
+unknown: "How many different ways there are from Ash to Cedar."
+simpler_case: "Try 2 roads from Ash to Birch, 1 road from Birch to Cedar and 1 straight road. How many ways are there?"

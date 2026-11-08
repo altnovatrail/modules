@@ -1,0 +1,40 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-12-d3-2.yaml, and the port writes this file again (R12).
+id: "gaps-12-d3-2"
+statement:
+  - text: "8 rose bushes grow around a round flowerbed, all at the same distance from each other. How many gaps are there between neighbouring bushes?"
+givens: ["8 rose bushes grow around a round flowerbed.", "The bushes are all the same distance apart."]
+unknown: "How many gaps there are between neighbouring bushes."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "8"
+          units: ["gap", "gaps"]
+          trap_values:
+            - value: "4"
+              trap: "wrong-operation"
+              text: "You halved the number of bushes. Count the gaps round the circle one by one."
+            - value: "7"
+              trap: "off-by-one"
+              text: "In a row there would be 7 gaps, but in a circle the last bush meets the first one."
+            - value: "9"
+              trap: "off-by-one"
+              text: "In a circle the last bush meets the first one, and no gap is left over. Count the gaps round the circle again."
+            - value: "16"
+              trap: "double-count"
+              text: "Each gap lies between two bushes, but you must count it only once."
+    simpler_case: "Draw 3 bushes on a circle. How many gaps are there, counting the one from the last bush back to the first?"
+solution:
+  - text: "In a circle, the last bush is next to the first one. So every bush has one gap after it: 8 gaps."
+techniques: ["draw", "small-numbers"]
+leak_phrases: ["as many gaps as bushes", "8 gaps"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 3

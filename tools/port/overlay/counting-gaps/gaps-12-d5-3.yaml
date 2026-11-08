@@ -1,0 +1,6 @@
+# What a person adds to gaps-12-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The frog sits on the first of 9 stones in a row."
+  - "With each jump it skips one stone and lands on the next."
+unknown: "How many jumps it needs to reach the last stone."
+simpler_case: "Try 5 stones with the same jumps, skipping one stone each time. How many jumps reach the last stone?"

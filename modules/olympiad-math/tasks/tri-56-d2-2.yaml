@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-56-d2-2.yaml, and the port writes this file again (R12).
+id: "tri-56-d2-2"
+statement:
+  - text: "Tom thought of a number. He multiplied it by 3, added 7, divided the result by 2 and took 4 away. He got 10. What number did Tom think of?"
+givens: ["Tom multiplied by 3, added 7, halved the result and took 4 away.", "He got 10."]
+unknown: "The number Tom thought of."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "7"
+          trap_values:
+            - value: "21"
+              trap: "stopped-early"
+              text: "21 is 3 times the number; the multiplication still has to be undone."
+            - value: "28"
+              trap: "stopped-early"
+              text: "28 is the number before it was halved; two more steps are still to be undone."
+            - value: "0"
+              trap: "wrong-operation"
+              text: "0 undoes the halving by halving again, but halving is undone by doubling."
+            - value: "37"
+              trap: "wrong-operation"
+              text: "37 does Tom's first two steps, × 3 and + 7, to his result instead of undoing his steps from the last one."
+    simpler_case: "Try a number that gives 3 when you double it and take 1 away."
+solution:
+  - text: "Undo the steps from the last one: 10 + 4 = 14, 14 × 2 = 28, 28 − 7 = 21 and 21 ÷ 3 = 7. Check: 7 × 3 = 21, 21 + 7 = 28, 28 ÷ 2 = 14 and 14 − 4 = 10."
+techniques: ["backwards"]
+leak_phrases: ["the number is 7", "thought of 7"]
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-5-6"
+difficulty: 2

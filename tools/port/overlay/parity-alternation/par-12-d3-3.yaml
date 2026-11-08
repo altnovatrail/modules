@@ -1,0 +1,11 @@
+# What a person adds to par-12-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "20 lockers are numbered from 1 to 20, all closed."
+  - "Anna opens every locker with an even number."
+unknown: "How many lockers stay closed."
+simpler_case: "Try 6 lockers first. Which stay closed?"
+techniques: [parity]
+picture_alt: "Lockers 1 to 5 in a row, then a stretch left out, and locker 20 at the end, all drawn as empty rings."
+trap_texts:
+  "9": "Count the odd lockers again, from 1 to 19."
+  "11": "Count the odd lockers again: half of them, and not one more."

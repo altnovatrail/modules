@@ -1,0 +1,9 @@
+# What a person adds to pig-12-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are 13 children in the class."
+  - "A year has 12 months."
+unknown: "At least how many children have their birthday in the same month."
+simpler_case: "Try 13 children and a year of only 6 months first. How few can share the fullest month?"
+trap_texts:
+  "1": "There are more children than months. Think what happens when every month already has a birthday."
+  "3": "The children can spread out over the months so that no month has 3 birthdays."

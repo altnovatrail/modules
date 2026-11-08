@@ -1,0 +1,10 @@
+# What a person adds to par-34-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "5 coins lie heads up."
+  - "In one move exactly 3 coins are turned over."
+unknown: "The smallest number of moves that makes all 5 coins tails up."
+simpler_case: "Try 3 coins heads up first. How many moves does it take?"
+techniques: [parity]
+trap_texts:
+  "5": "5 moves would work too, but fewer moves are already enough."
+leak_phrases: ["3 moves", "three moves"]

@@ -1,0 +1,7 @@
+# What a person adds to ord-12-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five friends stand in a line."
+  - "Ann is first, Kim right behind Ann, and Ben right behind Kim."
+  - "Dan is last."
+unknown: "In which place Eva stands."
+simpler_case: "Try four friends: Ann is first, Kim right behind her, and Dan last. In which place is Eva?"

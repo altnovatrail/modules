@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-12-d5-3.yaml, and the port writes this file again (R12).
+id: "ord-12-d5-3"
+statement:
+  - text: "Five houses stand in a row: red, blue, green, yellow and white. The yellow house is at the left end. The white house is next to the yellow one. The red house is next to the white one. The green house is between the red and the blue houses, next to both. Which house is at the right end?"
+givens: ["Five houses stand in a row: red, blue, green, yellow and white.", "The yellow house is at the left end, the white house next to it, and the red house next to the white one.", "The green house is between the red and the blue houses, next to both."]
+unknown: "Which house is at the right end."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["the red house", "the green house", "the blue house", "the yellow house", "the white house"]
+        check:
+          kind: "choice"
+          key: "the blue house"
+          trap_values:
+            - value: "the red house"
+              trap: "ignored-condition"
+              text: "The red house is 3rd, next to the white one."
+            - value: "the green house"
+              trap: "stopped-early"
+              text: "The green house is between two houses, so it is not at an end."
+            - value: "the yellow house"
+              trap: "reversed-relation"
+              text: "The yellow house is at the left end."
+            - value: "the white house"
+              trap: "ignored-condition"
+              text: "The white house is 2nd, next to the yellow one."
+    simpler_case: "Try four houses, yellow, white, red and green: the yellow house is at the left end, the white house next to it, and the red house next to the white one. Which house is at the right end?"
+solution:
+  - text: "From the left: yellow, then white, then red. Green is next to red and to blue, so green is 4th and blue is 5th, at the right end."
+techniques: ["table"]
+skills:
+  primary: ["logic-ordering"]
+band: "grades-1-2"
+difficulty: 5

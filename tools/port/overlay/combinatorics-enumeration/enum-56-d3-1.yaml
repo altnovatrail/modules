@@ -1,0 +1,7 @@
+# What a person adds to enum-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Three roads lead from the village to the town."
+  - "Two roads lead from the town to the city."
+  - "Lena goes there and back through the town, and never uses the same road twice."
+unknown: "How many different trips she can make."
+simpler_case: "Try 2 roads from the village to the town and 2 from the town to the city, never a road twice. How many trips are there?"

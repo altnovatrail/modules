@@ -1,0 +1,12 @@
+# What a person adds to cal-34-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Olya is now 3 times as old as her brother."
+  - "In 4 years she will be twice as old as him."
+unknown: "Olya's age now."
+simpler_case: "Try: Olya is 2 times as old as her brother, who is 5. How old will she be in 3 years?"
+techniques: [draw]
+trap_texts:
+  "4": "4 is the age of the younger child."
+  "8": "8 is an age in 4 years, not Olya's now."
+  "16": "16 is an age in 4 years, not now."
+  "24": "If Olya were 24, in 4 years she would not be twice as old as her brother."

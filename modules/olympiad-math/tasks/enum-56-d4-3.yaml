@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-56-d4-3.yaml, and the port writes this file again (R12).
+id: "enum-56-d4-3"
+statement:
+  - text: "A teacher picks 3 of 6 pupils for a quiz team: Ella, Finn, Gia, Hugo, Ivy and Jack. Gia must be in the team, and Ella and Finn refuse to be in it together. How many different teams can the teacher pick?"
+givens: ["The teacher picks 3 of 6 pupils: Ella, Finn, Gia, Hugo, Ivy and Jack.", "Gia must be in the team.", "Ella and Finn are not in it together."]
+unknown: "How many different teams the teacher can pick."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "9"
+          units: ["team", "teams"]
+          trap_values:
+            - value: "10"
+              trap: "ignored-condition"
+              text: "10 still counts the team with Ella and Finn together."
+            - value: "16"
+              trap: "ignored-condition"
+              text: "16 counts the teams without Gia too, but she must be in every team."
+            - value: "18"
+              trap: "double-count"
+              text: "18 counts every pair twice, as if Hugo then Ivy were a different team from Ivy then Hugo."
+            - value: "8"
+              trap: "double-count"
+              text: "8 takes away the team with Ella and Finn twice, but it is one team."
+    simpler_case: "Try picking 2 of 4 pupils, Ella, Finn, Gia and Hugo, with Ella and Finn not together. How many pairs are there?"
+solution:
+  - text: "Gia is in, so the teacher picks 2 of the other 5 pupils. There are 10 such pairs: Ella with Finn, Hugo, Ivy or Jack; Finn with Hugo, Ivy or Jack; Hugo with Ivy or Jack; and Ivy with Jack. Only Ella with Finn is not allowed, so 9 teams are left."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 4

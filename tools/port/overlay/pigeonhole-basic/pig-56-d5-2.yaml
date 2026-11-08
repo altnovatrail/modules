@@ -1,0 +1,8 @@
+# What a person adds to pig-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "20 birds fly in: 9 sparrows, 6 robins and 5 finches."
+  - "With each picture, one bird flies away for good."
+  - "At least 4 birds of one kind and 3 of another must stay."
+unknown: "At most how many pictures can be taken to be sure of it."
+simpler_case: "Try 6 birds, 3 sparrows and 3 robins, where 2 of one kind must stay. At most how many can fly away?"
+leak_phrases: ["6 pictures", "six pictures"]

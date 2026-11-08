@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-34-d5-2.yaml, and the port writes this file again (R12).
+id: "gaps-34-d5-2"
+statement:
+  - text: "The cells of a strip are numbered from 1 to 50. Tanya colours every third cell: 3, 6, 9 and so on. How many uncoloured cells are there between the first coloured cell and the last one?"
+  - picture: "pictures/gaps-34-d5-2.png"
+    alt: "Cells numbered 1 to 6 in a row, then a stretch left out, and cell 50 at the end. Cells 3 and 6 are drawn filled, and cells 1, 2, 4, 5 and 50 are drawn as empty rings."
+    width: 440
+    height: 74
+givens: ["The cells of the strip are numbered from 1 to 50.", "Tanya colours every third cell: 3, 6, 9 and so on."]
+unknown: "How many uncoloured cells there are between the first coloured cell and the last one."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "30"
+          units: ["cell", "cells", "uncoloured cell", "uncoloured cells"]
+          trap_values:
+            - value: "15"
+              trap: "stopped-early"
+              text: "15 is the number of gaps. Each gap holds 2 uncoloured cells."
+            - value: "28"
+              trap: "off-by-one"
+              text: "16 coloured cells have 15 gaps, not 14."
+            - value: "32"
+              trap: "off-by-one"
+              text: "16 coloured cells have 15 gaps between them, not 16."
+            - value: "34"
+              trap: "answered-other-question"
+              text: "34 counts all uncoloured cells of the strip, not only those between the first and the last coloured cell."
+    simpler_case: "Try a strip of 12 cells first. Mark the coloured cells and count the others between them."
+solution:
+  - text: "The coloured cells are 3, 6, ..., 48: 16 cells with 15 gaps between them. Each gap holds 2 uncoloured cells: 15 × 2 = 30."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-3-4"
+difficulty: 5

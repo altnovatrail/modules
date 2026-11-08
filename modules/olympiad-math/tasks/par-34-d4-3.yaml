@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d4-3.yaml, and the port writes this file again (R12).
+id: "par-34-d4-3"
+statement:
+  - text: "The numbers 1 to 20 are written on the board. In one step you rub out two numbers and write their difference, the bigger minus the smaller. After 19 steps one number is left. Which of these can it be?"
+givens: ["The numbers 1 to 20 are on the board.", "In one step two numbers are rubbed out and their difference is written instead.", "After 19 steps one number is left."]
+unknown: "Which of the numbers it can be."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["1", "3", "5", "2", "7"]
+        check:
+          kind: "choice"
+          key: "2"
+          trap_values:
+            - value: "1"
+              trap: "wrong-parity"
+              text: "The last number is always even, and 1 is odd."
+            - value: "3"
+              trap: "wrong-parity"
+              text: "The last number is always even, and 3 is odd."
+            - value: "5"
+              trap: "wrong-parity"
+              text: "The last number is always even, and 5 is odd."
+            - value: "7"
+              trap: "wrong-parity"
+              text: "The last number is always even, and 7 is odd."
+    simpler_case: "Try the numbers 1, 3 and 4 first. Which numbers can be left?"
+solution:
+  - text: "When two numbers are replaced by their difference, the total of all numbers on the board goes down by twice the smaller number, which is an even amount. So an even total stays even. At the start the total is 210, which is even, so the last number is even. Only 2 is even."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 4

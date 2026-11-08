@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-12-d2-4.yaml, and the port writes this file again (R12).
+id: "ord-12-d2-4"
+statement:
+  - text: "In a race, Eva finished before Tom, and Tom finished before Max. Leo finished after Max. Who finished third?"
+givens: ["Eva finished before Tom, and Tom before Max.", "Leo finished after Max."]
+unknown: "Who finished third."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Max"
+          options: ["Max", "Eva", "Tom", "Leo", "It is impossible to tell"]
+          trap_values:
+            - value: "Eva"
+              trap: "answered-other-question"
+              text: "Eva finished first."
+            - value: "Tom"
+              trap: "off-by-one"
+              text: "Tom finished second."
+            - value: "Leo"
+              trap: "reversed-relation"
+              text: "Leo finished after everyone else, so he was last, not third."
+            - value: "It is impossible to tell"
+              trap: "ignored-condition"
+              text: "The facts give the whole order. Write the runners from the first."
+    simpler_case: "Try three runners: Eva finished before Tom, and Tom before Leo. Who finished third?"
+solution:
+  - text: "The order is Eva, Tom, Max, Leo. Max finished third."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-1-2"
+difficulty: 2

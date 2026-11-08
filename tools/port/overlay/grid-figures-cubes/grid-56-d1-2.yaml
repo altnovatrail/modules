@@ -1,0 +1,10 @@
+# What a person adds to grid-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "A square sheet of 4 by 4 cells is folded in half, and then in half again at right angles."
+  - "One cell of the folded square is cut out through all four sheets."
+unknown: "How many cells are missing when the sheet is opened."
+simpler_case: "Try a strip of 3 cells folded like a fan so that it is 3 sheets thick, with one cell cut out through all of them. How many cells are missing?"
+trap_texts:
+  "2": "2 counts the layers after the first fold only."
+  "8": "8 counts every missing cell twice, once for each fold."
+leak_phrases: ["4 cells are missing", "four cells are missing"]

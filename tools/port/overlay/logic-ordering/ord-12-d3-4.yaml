@@ -1,0 +1,10 @@
+# What a person adds to ord-12-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Four books stand on a shelf."
+  - "The red book is to the left of the blue book, and the yellow book to the left of the red book."
+  - "The green book is to the right of the blue book."
+unknown: "Which book is at the right end."
+simpler_case: "Try three books: the red book is to the left of the blue book, and the yellow book to the left of the red book. Which book is at the right end?"
+trap_texts:
+  "the blue book": "Another book is to the right of the blue book."
+  "It is impossible to tell": "The three facts give the whole order. Line the books up from the left."

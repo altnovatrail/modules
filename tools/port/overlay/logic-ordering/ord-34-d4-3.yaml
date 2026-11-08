@@ -1,0 +1,12 @@
+# What a person adds to ord-34-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five books stand on a shelf: maths, history, music, English and art."
+  - "The art book is at the right end, and the English book next to it."
+  - "The history book stands just to the right of the maths book."
+  - "The music book is not next to the maths book."
+unknown: "Which book is in the middle."
+simpler_case: "Try four books, maths, history, English and art: the art book is at the right end, the English book next to it, and the history book just to the right of the maths book. Which book is second from the left?"
+techniques: [table]
+trap_texts:
+  "the maths book": "Try the maths book in the middle and check the last fact."
+  "the history book": "The history book stands just to the right of the maths book. Try each place for the pair."

@@ -1,0 +1,10 @@
+# What a person adds to par-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The number repeats 1234567 nine times: 63 digits."
+  - "Again and again the digits in odd places are crossed out."
+unknown: "Which digit is crossed out last."
+simpler_case: "Try the number 1234 first. Which digit is crossed out last?"
+techniques: [pattern]
+trap_texts:
+  "2": "2 stands in place 16, and place 16 goes in a later round. Follow the places that are left round by round."
+  "6": "6 stands in place 48, and place 48 goes in a later round. Follow the places that are left round by round."

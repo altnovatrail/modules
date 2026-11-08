@@ -1,0 +1,8 @@
+# What a person adds to gaps-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The circular path is 360 metres round."
+  - "The old lamps stood every 15 metres."
+  - "The new lamps stand every 40 metres, the first one where an old one stood."
+  - "A new lamp at an old lamp's place uses the old hole."
+unknown: "How many new holes are dug."
+simpler_case: "Try a circular path 60 metres round, old lamps every 10 metres and new ones every 15 metres, the first where an old one stood. How many new holes are dug?"

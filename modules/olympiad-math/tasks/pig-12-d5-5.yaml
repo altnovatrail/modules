@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-12-d5-5.yaml, and the port writes this file again (R12).
+id: "pig-12-d5-5"
+statement:
+  - text: "A box has 4 apples. Some are red and the others are green. Whichever 3 apples you take, there is at least one red and at least one green apple among them. How many red apples are in the box?"
+givens: ["The box has 4 apples, some red and the others green.", "Any 3 apples taken have at least one red and at least one green apple."]
+unknown: "How many red apples are in the box."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["apple", "apples"]
+          trap_values:
+            - value: "0"
+              trap: "ignored-condition"
+              text: "Every 3 apples have a red one, so there are red apples."
+            - value: "1"
+              trap: "ignored-condition"
+              text: "With only 1 red apple, the other 3 would be green, and you could take them."
+            - value: "3"
+              trap: "ignored-condition"
+              text: "With 3 red apples, you could take 3 red ones and no green."
+            - value: "4"
+              trap: "ignored-condition"
+              text: "Some apples are green."
+    simpler_case: "Try a box of 3 apples, some red and some green, where any two apples taken have a red one among them. How many green apples can there be?"
+solution:
+  - text: "If there were 3 red apples, you could take 3 red ones with no green. So there are at most 2 red apples, and in the same way at most 2 green ones. There are 4 apples in all, so 2 of them are red."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-1-2"
+difficulty: 5

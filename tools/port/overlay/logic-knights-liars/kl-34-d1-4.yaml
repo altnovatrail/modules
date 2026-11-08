@@ -1,0 +1,13 @@
+# What a person adds to kl-34-d1-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Knights always tell the truth, and liars always lie."
+  - "Every islander is a knight or a liar."
+  - "Ann says: 'Ben is a liar.'"
+  - "Ben says: '10 is more than 7.'"
+unknown: "Who Ann and Ben are."
+simpler_case: "Try Ben alone: he says '10 is less than 7.' Is he a knight or a liar?"
+techniques: [opposite]
+trap_texts:
+  "Both are knights": "Check Ann's words about Ben too."
+  "Ann is a knight, Ben is a liar": "You believed Ann. Check Ben's words first."
+  "It is impossible to tell": "Ben's words can be checked, and they tell you about Ann too."

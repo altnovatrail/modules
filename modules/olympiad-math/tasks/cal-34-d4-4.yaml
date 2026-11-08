@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-34-d4-4.yaml, and the port writes this file again (R12).
+id: "cal-34-d4-4"
+statement:
+  - text: "Masha's grandma is 7 times as old as Masha. In 5 years she will be 5 times as old as Masha. How old is Masha now?"
+givens: ["Grandma is 7 times as old as Masha.", "In 5 years she will be 5 times as old as Masha."]
+unknown: "Masha's age now."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "10"
+          units: ["year", "years"]
+          trap_values:
+            - value: "5"
+              trap: "number-from-text"
+              text: "5 is the number of years."
+            - value: "15"
+              trap: "answered-other-question"
+              text: "15 is an age in 5 years, not now."
+            - value: "60"
+              trap: "answered-other-question"
+              text: "60 is how many years older Grandma is."
+            - value: "70"
+              trap: "answered-other-question"
+              text: "70 is not Masha's age: she is the younger one."
+    simpler_case: "Try: Grandma is 6 times as old as Masha, who is 9. How old is Grandma?"
+solution:
+  - text: "Try Masha's age. If she is 10, Grandma is 70. In 5 years Masha is 15 and Grandma is 75, and 75 = 5 × 15. So Masha is 10."
+techniques: ["draw"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-3-4"
+difficulty: 4

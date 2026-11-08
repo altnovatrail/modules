@@ -1,0 +1,9 @@
+# What a person adds to par-34-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "12 children stand in a circle, numbered 1 to 12."
+  - "The ball starts with child 1 and is passed 4 places on each time."
+unknown: "How many different children hold the ball before it comes back to child 1, counting child 1."
+simpler_case: "Try 6 children with the ball passed 2 places on. How many hold it?"
+techniques: [pattern]
+trap_texts:
+  "6": "You halved 12. Follow the ball from child 1 until it comes back."

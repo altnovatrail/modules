@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/gaps-56-d1-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/gaps-56-d1-2.yaml, and the port writes this file again (R12).
 id: "gaps-56-d1-2"
 statement:
   - text: "Trees grow on both sides of a straight road, one every 5 metres along each side, with a tree at each end of both rows. There are 22 trees in all. How long is the road?"

@@ -1,0 +1,6 @@
+# What a person adds to par-34-d4-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The cards are to be split into two piles with equal sums."
+unknown: "Which of the sets can be split."
+simpler_case: "Try the cards 1 to 3 first. Can they be split into two equal piles?"
+techniques: [parity]

@@ -1,0 +1,9 @@
+# What a person adds to fig-34-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each line in the picture is a match."
+unknown: "How many squares of any size the matches make."
+simpler_case: "Try a row of 2 squares of matches with the shared match missing. How many squares are there?"
+picture_alt: "Matches laid as a grid of three by two small squares, with two matches missing: the middle match of the top side, and the lower match of the third upright line from the left."
+solution_picture_alt: "The whole squares marked with numbers."
+trap_texts:
+  "2": "Look again for whole squares."

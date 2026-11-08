@@ -1,0 +1,12 @@
+# What a person adds to clk-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Train A leaves at 22:35 and arrives at 6:10."
+  - "Train B leaves at 23:50 and arrives at 7:05."
+unknown: "Which trip is longer, and by how many minutes."
+simpler_case: "Try train C from 22:00 to 6:00 and train D from 23:00 to 6:00. Which trip is longer, and by how many hours?"
+picture_alt: "A table: train A leaves at 22:35 and arrives at 6:10; train B leaves at 23:50 and arrives at 7:05."
+solution_picture_alt: "The same table with the length of each trip: 7:35 for train A and 7:15 for train B."
+trap_texts:
+  "Train B, by 20 minutes": "Work out each trip through midnight, then compare them."
+  "Train B, by 55 minutes": "55 minutes is the gap between the arrival times only; the departure times differ too."
+  "Train A, by 75 minutes": "75 minutes is the gap between the departure times only; the arrival times differ too."

@@ -1,0 +1,14 @@
+# What a person adds to ord-34-d2-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Kim, Lea and Mo sit on chairs 1, 2 and 3."
+  - "Mo is not on chair 2, and Kim is not on chair 1."
+  - "Lea's chair number is one more than Mo's."
+unknown: "Who sits on chair 2."
+simpler_case: "Try two chairs, 1 and 2, for Kim and Mo: Mo is not on chair 2. Who sits on chair 2?"
+techniques: [table]
+picture_alt: "Three chairs in a row, numbered 1, 2 and 3."
+solution_picture_alt: "The chairs 1, 2 and 3 with M under chair 1, L under chair 2, which is ringed, and K under chair 3."
+trap_texts:
+  "Kim": "Kim is not on chair 1, but that does not put Kim on chair 2. Find Mo's chair first."
+  "Kim or Lea": "The facts leave only one child for chair 2. Find Mo's chair first."
+  "It is impossible to tell": "The facts leave one seating. Start with Mo's chair."

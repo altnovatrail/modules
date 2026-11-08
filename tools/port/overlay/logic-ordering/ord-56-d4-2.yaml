@@ -1,0 +1,10 @@
+# What a person adds to ord-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Tess, Ugo, Vera and Walt took the first four places in a quiz."
+  - "Tess said she was first and Ugo second; Ugo said he was first and Tess third; Vera said she was second and Walt first."
+  - "Each of the three said one true thing and one false thing."
+unknown: "Who won the quiz."
+simpler_case: "Try a quiz of three, Tess, Ugo and Vera. Tess said: 'I was first, and Ugo was second.' Ugo said: 'I was first, and Vera was second.' Each said one true thing and one false thing. Who won?"
+techniques: [table]
+trap_texts:
+  "Vera": "If Vera won, both halves of what she said would be false."

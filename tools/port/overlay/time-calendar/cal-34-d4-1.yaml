@@ -1,0 +1,12 @@
+# What a person adds to cal-34-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The year is not a leap year."
+  - "1 January is a Friday."
+unknown: "The day of the week of 31 December."
+simpler_case: "Try another year, where 1 January is a Sunday. What day is 31 January?"
+techniques: [pattern]
+trap_texts:
+  "Thursday": "Count the days from 1 January to 31 December, and see how many whole weeks they make."
+  "Saturday": "31 December is not 365 days after 1 January."
+  "Sunday": "Count the days left over after whole weeks again."
+  "Monday": "Count the days from 1 January to 31 December again."

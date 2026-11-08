@@ -1,0 +1,78 @@
+# The tasks of time-calendar of standalone at 42b4408: all 65 of them (E3; T29). The units are the
+# word a question counts, in the singular and the plural, and the endings of an ordinal; a task
+# whose answer is no number, or a number by itself, has none.
+# standalone's site links the topic to the techniques draw and pattern: pattern goes to the tasks
+# where the week or another cycle repeats, draw to those of ages, of nights and of spans of days.
+standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+skills:
+  time-calendar:
+    techniques: []
+tasks:
+  cal-12-d1-1: {}
+  cal-12-d1-3: {}
+  cal-12-d1-4: {units: [day, days]}
+  cal-12-d1-5: {units: [year, years]}
+  cal-12-d1-6: {}
+  cal-12-d2-1: {}
+  cal-12-d2-3: {units: [day, days]}
+  cal-12-d2-4: {units: [day, days]}
+  cal-12-d2-6: {units: [day, days]}
+  cal-12-d2-7: {units: [day, days]}
+  cal-12-d3-1: {}
+  cal-12-d3-2: {units: [year, years]}
+  cal-12-d3-3: {}
+  cal-12-d3-4: {units: [time, times]}
+  cal-12-d3-6: {}
+  cal-12-d4-1: {}
+  cal-12-d4-3: {units: [Sunday, Sundays]}
+  cal-12-d4-5: {}
+  cal-12-d4-6: {units: [day, days]}
+  cal-12-d4-7: {units: [day, days]}
+  cal-12-d5-1: {}
+  cal-12-d5-3: {}
+  cal-12-d5-5: {}
+  cal-12-d5-6: {}
+  cal-12-d5-7: {}
+  cal-34-d1-1: {}
+  cal-34-d1-2: {}
+  cal-34-d1-3: {units: [day, days]}
+  cal-34-d1-4: {units: [week, weeks]}
+  cal-34-d1-5: {units: [year, years]}
+  cal-34-d2-1: {}
+  cal-34-d2-2: {units: [year, years]}
+  cal-34-d2-3: {units: [day, days]}
+  cal-34-d2-4: {units: [year, years]}
+  cal-34-d2-5: {units: [st, nd, rd, th]}
+  cal-34-d3-1: {}
+  cal-34-d3-2: {units: [year, years]}
+  cal-34-d3-3: {units: [Saturday, Saturdays]}
+  cal-34-d3-4: {units: [birthday, birthdays]}
+  cal-34-d3-5: {}
+  cal-34-d4-1: {}
+  cal-34-d4-2: {units: [year, years]}
+  cal-34-d4-3: {}
+  cal-34-d4-4: {units: [year, years]}
+  cal-34-d4-5: {}
+  cal-34-d5-1: {}
+  cal-34-d5-2: {units: [year, years]}
+  cal-34-d5-3: {}
+  cal-34-d5-4: {units: [year, years]}
+  cal-34-d5-5: {units: [Saturday, Saturdays]}
+  cal-56-d1-1: {}
+  cal-56-d1-2: {}
+  cal-56-d1-3: {}
+  cal-56-d2-1: {}
+  cal-56-d2-2: {}
+  cal-56-d2-3: {units: [year, years]}
+  cal-56-d3-1: {units: [year, years]}
+  cal-56-d3-2: {units: [leap year, leap years]}
+  cal-56-d3-3: {units: [year, years]}
+  cal-56-d4-1: {units: [year, years]}
+  cal-56-d4-2: {}
+  cal-56-d4-3: {}
+  cal-56-d5-1: {units: [date, dates]}
+  cal-56-d5-2: {units: [date, dates]}
+  cal-56-d5-3: {units: [month, months]}

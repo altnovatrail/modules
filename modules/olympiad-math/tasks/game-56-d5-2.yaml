@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/games.strategy.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/game-56-d5-2.yaml, and the port writes this file again (R12).
+id: "game-56-d5-2"
+statement:
+  - text: "Two dragons sit on the corner squares A1 and D4 of a 4 by 4 board, with rows A to D and columns 1 to 4. They move in turn, the dragon on A1 first. A move takes a dragon one square up, down, left or right, and a dragon must move when it is its turn. A dragon that moves onto the other one's square wins. Which dragon wins if both play as well as they can?"
+givens: ["Two dragons sit on the corners A1 and D4 of a 4 by 4 board.", "In turn, the dragon on A1 first, each must move one square up, down, left or right.", "A dragon that moves onto the other one's square wins."]
+unknown: "Which dragon wins."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["The dragon from D4", "The dragon from A1, since it moves first", "Neither: they can run round the board for ever", "The dragon from A1, if it heads straight for the other", "The dragon from A1, since the two are 6 squares apart, an even number"]
+        check:
+          kind: "choice"
+          key: "The dragon from D4"
+          trap_values:
+            - value: "The dragon from A1, since it moves first"
+              trap: "first-move-assumed"
+              text: "Moving first does not decide it here."
+            - value: "Neither: they can run round the board for ever"
+              trap: "ignored-condition"
+              text: "A dragon must move every turn, and the board has only 16 squares."
+            - value: "The dragon from A1, if it heads straight for the other"
+              trap: "best-case-not-worst"
+              text: "Heading straight for the other dragon does not help."
+            - value: "The dragon from A1, since the two are 6 squares apart, an even number"
+              trap: "wrong-parity"
+              text: "Think about the colours of the squares the dragons stand on."
+    simpler_case: "Try a board of 2 by 2 squares with dragons on opposite corners. Can the dragon that moves first ever land on the other?"
+solution:
+  - text: "A1 and D4 are the same colour on a chessboard, and every move changes the colour of a dragon's square. So each time the dragon from A1 has to move, both dragons stand on squares of the same colour and are never side by side: it can never win. The dragon from D4 can: it keeps closing in, and the dragon from A1, which must move every turn on a board of only 16 squares, is driven into a corner and caught within 10 moves of the game."
+skills:
+  primary: ["games-strategy"]
+band: "grades-5-6"
+difficulty: 5

@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-12-d3-3.yaml, and the port writes this file again (R12).
+id: "par-12-d3-3"
+statement:
+  - text: "20 lockers are numbered from 1 to 20, and all of them are closed. Anna opens every locker with an even number. How many lockers stay closed?"
+  - picture: "pictures/par-12-d3-3.png"
+    alt: "Lockers 1 to 5 in a row, then a stretch left out, and locker 20 at the end, all drawn as empty rings."
+    width: 384
+    height: 74
+givens: ["20 lockers are numbered from 1 to 20, all closed.", "Anna opens every locker with an even number."]
+unknown: "How many lockers stay closed."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "10"
+          units: ["locker", "lockers"]
+          trap_values:
+            - value: "9"
+              trap: "off-by-one"
+              text: "Count the odd lockers again, from 1 to 19."
+            - value: "11"
+              trap: "off-by-one"
+              text: "Count the odd lockers again: half of them, and not one more."
+            - value: "19"
+              trap: "number-from-text"
+              text: "19 is the number of the last odd locker, not how many lockers stay closed."
+            - value: "20"
+              trap: "number-from-text"
+              text: "20 is the number of all lockers."
+    simpler_case: "Try 6 lockers first. Which stay closed?"
+solution:
+  - text: "The even numbers from 1 to 20 are 2, 4, ..., 20: 10 lockers. The other 10 lockers stay closed."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-1-2"
+difficulty: 3

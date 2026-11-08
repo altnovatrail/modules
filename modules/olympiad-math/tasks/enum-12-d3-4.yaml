@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-12-d3-4.yaml, and the port writes this file again (R12).
+id: "enum-12-d3-4"
+statement:
+  - text: "Mark has three coins: 1 cent, 2 cents and 5 cents. He pays with one or more of these coins. How many different amounts can he pay exactly?"
+givens: ["Mark has three coins: 1 cent, 2 cents and 5 cents.", "He pays with one or more of them."]
+unknown: "How many different amounts he can pay exactly."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "7"
+          units: ["amount", "amounts"]
+          trap_values:
+            - value: "3"
+              trap: "stopped-early"
+              text: "You counted only single coins. Coins can be put together."
+            - value: "6"
+              trap: "missed-case"
+              text: "You forgot to use all three coins: 1 + 2 + 5 = 8."
+            - value: "8"
+              trap: "off-by-one"
+              text: "Paying nothing is not an amount. Count only the amounts of one or more coins."
+            - value: "9"
+              trap: "wrong-operation"
+              text: "You multiplied 3 by 3. List the amounts instead."
+    simpler_case: "Try two coins, 1 cent and 2 cents. How many amounts can he pay?"
+solution:
+  - text: "With one coin: 1, 2, 5. With two coins: 3, 6, 7. With all three: 8. That is 7 amounts."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-1-2"
+difficulty: 3

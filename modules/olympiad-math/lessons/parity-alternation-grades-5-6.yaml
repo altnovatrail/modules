@@ -1,0 +1,34 @@
+# A lesson of E3 (T38; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# parity-alternation on the band of grades 5–6. Its texts are those of the page parity-and-alternation of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: parity-alternation-grades-5-6
+title: "Parity and alternation: olympiad level"
+skills: [parity-alternation]
+segments:
+  - explanation:
+      - text: "Can children stand in a ring, boy, girl, boy, girl, all the way round? In these tasks even and odd answer the question without counting everything or trying every way: which bank a ferry is at, whether a score is possible, who makes the last move. Parity is often the first thing you meet that stays the same however the moves go."
+      - text: "Even splits into pairs. An even number of things splits into pairs with none left over. An odd number always leaves one without a pair."
+      - text: "Only the odd ones matter. Even plus even is even, odd plus odd is even, and even plus odd is odd. So whether a sum is even depends only on how many odd numbers are in it."
+      - text: "Taking turns. When two things take turns, one stands in the odd places and the other in the even ones. A ring can take turns all the way round only when it has an even number of places."
+  - worked_example:
+      statement:
+        - text: "A spider sits at a corner of a cube made of wire. Every minute it crawls along one edge to the next corner. Can it be back at the corner it started from after exactly 7 minutes?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Colour the corners: the start white, its neighbours black, their neighbours white, and so on. Every edge joins a black corner and a white one."
+        - text: "So the colour changes every minute: after 1 minute the spider is on black, after 2 on white, and after any odd number of minutes on black."
+        - text: "7 is odd, and the start is white. The spider cannot be back."
+        - text: "Answer: No."
+  - explanation:
+      - text: "And after 8 minutes? Yes: crawling along one edge and back four times brings it home. The colours say when it cannot be done; that an even number of minutes is enough still has to be shown."
+  - task: par-56-d1-3
+  - task: par-56-d3-1
+  - task: par-56-d5-1
+  - explanation:
+      - text: "How to solve: follow even and odd."
+      - text: "Find what is even or odd."
+      - text: "See what each step does to it."
+      - text: "Compare the start with the goal."

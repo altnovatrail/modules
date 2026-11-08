@@ -1,0 +1,13 @@
+# What a person adds to game-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The number 12 is on the board, and Ivy goes first."
+  - "A move takes away a divisor smaller than the number, 1 included."
+  - "A player who cannot move loses, and Paul plays as well as he can."
+unknown: "How many of Ivy's first moves let her be sure to win."
+simpler_case: "Try the number 4 on the board. How many of Ivy's first moves let her be sure to win?"
+techniques: [backwards]
+trap_texts:
+  "0": "12 is a winning number, not a losing one."
+  "1": "One of the winning moves was missed."
+  "3": "3 counts the moves that leave an even number."
+  "5": "Not every move works: after some moves Paul has a good reply."

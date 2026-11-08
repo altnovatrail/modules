@@ -1,0 +1,8 @@
+# What a person adds to tri-34-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five whole numbers follow each other."
+  - "They add up to 100."
+unknown: "The biggest of them."
+simpler_case: "Try three whole numbers that follow each other and add up to 12. What is the middle one?"
+trap_texts:
+  "24": "Five numbers from 20 upwards add up to 110, not 100."

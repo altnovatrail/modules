@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-56-d1-3.yaml, and the port writes this file again (R12).
+id: "enum-56-d1-3"
+statement:
+  - text: "A football card lists 5 matches. For each match you tick one of three boxes: the home team wins, the away team wins, or a draw. In how many different ways can the card be filled in?"
+givens: ["The card lists 5 matches.", "For each match one of three boxes is ticked: home win, away win or draw."]
+unknown: "In how many different ways the card can be filled in."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "243"
+          units: ["way", "ways"]
+          trap_values:
+            - value: "81"
+              trap: "stopped-early"
+              text: "81 is the count for four matches. The fifth match triples it again."
+            - value: "32"
+              trap: "missed-case"
+              text: "32 = 2 × 2 × 2 × 2 × 2 leaves out the draw. Each match has three boxes, not two."
+            - value: "15"
+              trap: "wrong-operation"
+              text: "15 = 3 × 5 adds 3 ways for each match. But every way for one match goes with every way for the others, so the ways are multiplied."
+            - value: "125"
+              trap: "wrong-operation"
+              text: "125 = 5 × 5 × 5 swaps the two numbers: it gives each match five choices, but a match has only three boxes."
+    simpler_case: "Try a card of 2 matches first. List the ways."
+solution:
+  - text: "One match can be ticked in 3 ways, and each of them goes with every way of ticking the others. So two matches give 3 × 3 = 9 ways, and each new match triples the count: 3 × 3 × 3 × 3 × 3 = 243."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 1

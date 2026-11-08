@@ -1,0 +1,11 @@
+# What a person adds to ord-34-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five friends ran a race."
+  - "Eva was neither first nor last, and Fedor finished right after Eva."
+  - "Gosha finished before Eva, and Ivan right after Gosha."
+  - "Hanna finished after Fedor."
+unknown: "Who finished fourth."
+simpler_case: "Try four friends: Gosha finished first, Ivan right after Gosha, and Eva before Hanna. Who finished fourth?"
+trap_texts:
+  "Eva": "Eva cannot be 4th: someone finished right after her, and Hanna later still."
+  "Hanna": "Hanna is 5th, not 4th."

@@ -1,0 +1,10 @@
+# What a person adds to par-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Nine children each have a red balloon and a yellow balloon."
+  - "They swap so that as many as possible hold two of the same colour."
+unknown: "At most how many children can do so."
+simpler_case: "Try 3 children with a red and a yellow balloon each. At most how many can hold two of one colour?"
+techniques: [parity]
+trap_texts:
+  "4": "4 counts only the children with two red balloons. Count the children who can hold two yellow ones too."
+  "7": "7 leaves two children with a red and a yellow balloon each, but those two can swap so that one of them holds two of one colour."

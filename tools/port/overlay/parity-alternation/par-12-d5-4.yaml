@@ -1,0 +1,7 @@
+# What a person adds to par-12-d5-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann, Ben, Kim, Dan, Eva and Fay stand in a circle in this order."
+  - "Starting with Ben, every second child steps out, until one is left."
+unknown: "Who is left."
+simpler_case: "Try four children, Ann, Ben, Kim and Dan, starting with Ben. Who is left?"
+techniques: [pattern]

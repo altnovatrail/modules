@@ -1,0 +1,40 @@
+# A lesson of E3 (T41; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# counting-figures on the band of grades 3–4. Its texts are those of the page counting-figures of
+# mathtrail-standalone's site at 42b4408, put to the learner, with its cards and its worked example
+# rewritten so as to solve no task of the module (amendment T41 to R14), and its pictures are drawn
+# by the port from tools/port/pictures/olympiad-math/ (amendment T41 to R12). standalone's content
+# in this module carries the MIT notice of NOTICE.
+id: counting-figures-grades-3-4
+title: "Counting figures: going further"
+skills: [counting-figures]
+segments:
+  - explanation:
+      - text: "A drawing of a few lines holds more triangles and squares than first meet the eye: small ones, and big ones made of several pieces. These tasks ask for all of them, or for the matches to take away to change a figure. Counting by size, smallest first, is the whole skill."
+      - text: "Big ones count too. A square split into small squares holds bigger squares made of several small ones, and they count as well."
+      - text: "Sides on the lines. A triangle counts only when each of its sides lies on a line of the drawing. Two small triangles side by side make a bigger one only when together they form a triangle again, with no bend in its sides."
+      - text: "A match is one side. Where two squares of matches touch, they share one match: count it once, not once for each square."
+  - worked_example:
+      statement:
+        - text: "A rectangle of 2 by 5 cells is drawn with all its lines. How many squares of any size are there?"
+        - picture: "lessons/counting-figures-grades-3-4.png"
+          alt: "A rectangle of squared paper five cells wide and two cells high, with all its lines."
+          width: 248
+          height: 128
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Squares of one cell: 2 rows of 5, that is 10."
+        - text: "Squares of 2 by 2 fit in 1 row of 4 places, that is 4."
+        - text: "No bigger square fits, as the rectangle is only 2 cells high. In all, 10 + 4 = 14."
+        - text: "Answer: 14 squares."
+  - explanation:
+      - text: "Not 10. 10 counts only the small squares. A square made of several cells is a square too."
+  - task: fig-34-d1-1
+  - task: fig-34-d4-1
+  - task: fig-34-d5-1
+  - explanation:
+      - text: "How to solve: from the smallest up."
+      - text: "Find the smallest figures and count them."
+      - text: "Count the figures of each bigger size in turn."
+      - text: "Add the counts, and check that no size was left out."

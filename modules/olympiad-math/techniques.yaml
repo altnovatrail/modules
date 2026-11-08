@@ -1,16 +1,34 @@
-# The techniques of the first batch's tasks: 4 of the 11 of mathtrail-standalone's site, as the
+# The techniques of this module's tasks: 10 of the 11 of mathtrail-standalone's site, as the
 # format's example of this module has them, each with its title and its description. standalone's
 # content in this module carries the MIT notice of NOTICE.
 techniques:
   draw:
     title: Draw the problem
     description: A picture or a diagram turns words into something you can look at. Lines, dots and arrows are enough; it does not have to be pretty.
+  table:
+    title: Make a table
+    description: "When there are many clues, they are hard to keep in your head. A table keeps them for you: every clue is a cross, and where a row has one free cell left, that is the answer."
   small-numbers:
     title: Start with small numbers
     description: When the numbers are big and you cannot see where to start, solve the same problem with small numbers. Spot the rule, then apply it to the big ones.
   systematic:
     title: List systematically
     description: "Listing at random is bound to miss something or count it twice. Listing systematically goes in order: first by one feature, then by the next. A tree is handy for it."
+  backwards:
+    title: Work from the end
+    description: "When you know how the story ends and are asked how it began, go backwards. Turn every action into its opposite: “ate” into “gave back”, “multiplied” into “divided”."
+  pattern:
+    title: Look for a pattern
+    description: Look at the first few steps and find what repeats. The repeating piece lets you jump far ahead without drawing everything in between.
+  opposite:
+    title: Suppose the opposite
+    description: To prove that something cannot be, suppose it can, and follow the reasoning until you run into a contradiction. Almost every knights-and-liars problem is solved this way.
+  parity:
+    title: Watch the parity
+    description: "Sometimes you need not know everything: it is enough to know whether a number is even or odd. If something switches between even and odd at every step, the number of steps tells you at once where you can end up and where you cannot."
   pigeonhole:
     title: Pigeons and pigeonholes
     description: If there are more pigeons than holes, some hole holds at least two pigeons. It sounds obvious, yet it proves things that seem impossible to check.
+  mirror:
+    title: Mirror the moves
+    description: In two-player games the winner is often the one who can mirror the other's moves. Then you always have a reply, as long as your opponent has a move.

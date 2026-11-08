@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-12-d4-2.yaml, and the port writes this file again (R12).
+id: "clk-12-d4-2"
+statement:
+  - text: "A film starts at 6:40 and lasts 1 hour 30 minutes. At what time does it end?"
+  - picture: "pictures/clk-12-d4-2.png"
+    alt: "A clock showing 6:40."
+    width: 200
+    height: 200
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["The film starts at 6:40.", "It lasts 1 hour 30 minutes."]
+unknown: "The time when it ends."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "8:10"
+          options: ["8:10", "5:10", "7:10", "7:70", "8:40"]
+          trap_values:
+            - value: "5:10"
+              trap: "reversed-relation"
+              text: "The film ends after it starts, so count forward."
+            - value: "7:10"
+              trap: "stopped-early"
+              text: "You added only the 30 minutes. Add the hour too."
+            - value: "7:70"
+              trap: "time-unit-mixup"
+              text: "An hour has 60 minutes, so there is no 7:70."
+            - value: "8:40"
+              trap: "wrong-operation"
+              text: "You added 2 hours, not 1 hour 30 minutes."
+    simpler_case: "Try a film that starts at 6:40 and lasts 20 minutes. At what time does it end?"
+solution:
+  - text: "1 hour after 6:40 it is 7:40. 30 minutes later it is 8:10."
+skills:
+  primary: ["time-clocks"]
+band: "grades-1-2"
+difficulty: 4

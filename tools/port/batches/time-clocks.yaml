@@ -1,0 +1,77 @@
+# The tasks of time-clocks of standalone at 42b4408: all 65 of them (E3; T28). The units are the
+# word a question counts, in the singular and the plural, and o'clock after an hour; a task whose
+# answer is no number, or a number by itself, has none. standalone's site links no technique to the
+# topic.
+standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+skills:
+  time-clocks:
+    techniques: []
+tasks:
+  clk-12-d1-1: {units: ["o'clock"]}
+  clk-12-d1-2: {units: ["o'clock"]}
+  clk-12-d1-3: {units: [hour, hours]}
+  clk-12-d1-4: {}
+  clk-12-d1-5: {}
+  clk-12-d2-1: {units: [minute, minutes]}
+  clk-12-d2-2: {units: [hour, hours]}
+  clk-12-d2-3: {}
+  clk-12-d2-4: {units: [time, times]}
+  clk-12-d2-5: {}
+  clk-12-d3-1: {}
+  clk-12-d3-2: {}
+  clk-12-d3-3: {}
+  clk-12-d3-4: {units: [minute, minutes]}
+  clk-12-d3-5: {}
+  clk-12-d4-1: {}
+  clk-12-d4-2: {}
+  clk-12-d4-3: {units: [time, times]}
+  clk-12-d4-4: {}
+  clk-12-d4-5: {}
+  clk-12-d5-1: {units: [time, times]}
+  clk-12-d5-2: {}
+  clk-12-d5-3: {}
+  clk-12-d5-4: {units: [minute, minutes]}
+  clk-12-d5-5: {}
+  clk-34-d1-1: {}
+  clk-34-d1-2: {}
+  clk-34-d1-3: {units: [minute, minutes]}
+  clk-34-d1-4: {}
+  clk-34-d1-5: {units: [time, times]}
+  clk-34-d2-1: {}
+  clk-34-d2-2: {}
+  clk-34-d2-3: {}
+  clk-34-d2-4: {units: [lesson, lessons]}
+  clk-34-d2-5: {}
+  clk-34-d3-1: {units: [time, times]}
+  clk-34-d3-2: {}
+  clk-34-d3-3: {}
+  clk-34-d3-4: {}
+  clk-34-d3-5: {units: [minute, minutes]}
+  clk-34-d4-1: {}
+  clk-34-d4-2: {units: [train, trains]}
+  clk-34-d4-3: {}
+  clk-34-d4-4: {units: [minute, minutes]}
+  clk-34-d4-5: {units: [time, times]}
+  clk-34-d5-1: {units: [day, days]}
+  clk-34-d5-2: {units: [time, times]}
+  clk-34-d5-3: {}
+  clk-34-d5-4: {units: [time, times]}
+  clk-34-d5-5: {}
+  clk-56-d1-1: {}
+  clk-56-d1-2: {units: [time, times]}
+  clk-56-d1-3: {units: [minute, minutes]}
+  clk-56-d2-1: {}
+  clk-56-d2-2: {}
+  clk-56-d2-3: {}
+  clk-56-d3-1: {}
+  clk-56-d3-2: {units: [hour, hours]}
+  clk-56-d3-3: {}
+  clk-56-d4-1: {}
+  clk-56-d4-2: {}
+  clk-56-d4-3: {units: [day, days]}
+  clk-56-d5-1: {}
+  clk-56-d5-2: {}
+  clk-56-d5-3: {}

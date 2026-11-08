@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-12-d5-1.yaml, and the port writes this file again (R12).
+id: "gaps-12-d5-1"
+statement:
+  - text: "Three logs are each sawn into 4 pieces. Each cut takes 2 minutes. How many minutes does all the sawing take?"
+givens: ["There are three logs.", "Each log is sawn into 4 pieces.", "Each cut takes 2 minutes."]
+unknown: "How many minutes all the sawing takes."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "18"
+          units: ["minute", "minutes", "min"]
+          trap_values:
+            - value: "6"
+              trap: "stopped-early"
+              text: "6 minutes is only for one log. There are three logs."
+            - value: "9"
+              trap: "stopped-early"
+              text: "9 is the number of cuts. Each cut takes 2 minutes."
+            - value: "12"
+              trap: "answered-other-question"
+              text: "12 is the number of pieces, not minutes."
+            - value: "24"
+              trap: "off-by-one"
+              text: "Each log needs 3 cuts, not 4."
+    simpler_case: "Try two logs, each sawn into 3 pieces, with each cut taking 1 minute. How long does all the sawing take?"
+solution:
+  - text: "One log in 4 pieces needs 3 cuts. Three logs need 3 + 3 + 3 = 9 cuts. 9 cuts take 9 × 2 = 18 minutes."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 5

@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-34-d3-4.yaml, and the port writes this file again (R12).
+id: "tri-34-d3-4"
+statement:
+  - text: "Gleb thought of a number. If he adds 12 to it, he gets three times the number. What number did Gleb think of?"
+givens: ["Adding 12 to Gleb's number gives three times the number."]
+unknown: "The number Gleb thought of."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          trap_values:
+            - value: "4"
+              trap: "wrong-operation"
+              text: "4 + 12 = 16, but 3 × 4 = 12."
+            - value: "12"
+              trap: "number-from-text"
+              text: "12 + 12 = 24, but 3 × 12 = 36."
+            - value: "18"
+              trap: "answered-other-question"
+              text: "18 is what Gleb gets, not the number he thought of."
+            - value: "36"
+              trap: "wrong-operation"
+              text: "You multiplied 12 by 3."
+    simpler_case: "Try a number that gives twice the number when you add 4 to it."
+solution:
+  - text: "Three times the number is the number plus two more of it. So two of the number make 12, and the number is 6. Check: 6 + 12 = 18, and 3 × 6 = 18."
+  - text: "12 ÷ 2 = 6"
+  - picture: "pictures/tri-34-d3-4-solution.png"
+    alt: "Two bars of the same length: the first is cut into 6 and 12, the second into three parts of 6."
+    width: 432
+    height: 94
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-3-4"
+difficulty: 3

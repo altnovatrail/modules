@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-12-d5-2.yaml, and the port writes this file again (R12).
+id: "clk-12-d5-2"
+statement:
+  - text: "A merry-go-round ride lasts 5 minutes, and there is a 2-minute break before every next ride. The first ride starts at 3:00. At what time does the fourth ride end?"
+  - picture: "pictures/clk-12-d5-2.png"
+    alt: "A clock showing 3 o'clock."
+    width: 200
+    height: 200
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["A ride lasts 5 minutes.", "A 2-minute break comes before every next ride.", "The first ride starts at 3:00."]
+unknown: "The time when the fourth ride ends."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "3:26"
+          options: ["3:05", "3:26", "3:20", "3:21", "3:28"]
+          trap_values:
+            - value: "3:05"
+              trap: "stopped-early"
+              text: "3:05 is when the first ride ends."
+            - value: "3:20"
+              trap: "ignored-condition"
+              text: "You forgot the breaks between rides."
+            - value: "3:21"
+              trap: "answered-other-question"
+              text: "You stopped at the start of the fourth ride. The question asks when it ends."
+            - value: "3:28"
+              trap: "off-by-one"
+              text: "Count the breaks between 4 rides again."
+    simpler_case: "Try rides of 5 minutes with 1-minute breaks, the first at 3:00. At what time does the second ride end?"
+solution:
+  - text: "Four rides take 4 × 5 = 20 minutes, and there are 3 breaks between them: 6 minutes. 3:00 + 26 minutes = 3:26."
+skills:
+  primary: ["time-clocks"]
+band: "grades-1-2"
+difficulty: 5

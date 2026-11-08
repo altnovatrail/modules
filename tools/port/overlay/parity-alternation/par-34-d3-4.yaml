@@ -1,0 +1,8 @@
+# What a person adds to par-34-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The grasshopper starts at 0."
+  - "It makes 9 jumps, each 1 step to the left or to the right."
+unknown: "Where it can end up."
+simpler_case: "Try 3 jumps first. Where can it end up?"
+techniques: [parity]
+picture_alt: "A number line from minus 3 to 3 with the grasshopper's mark on 0."

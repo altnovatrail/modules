@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-12-d2-3.yaml, and the port writes this file again (R12).
+id: "par-12-d2-3"
+statement:
+  - text: "A frog starts on stone 0 and always jumps 2 stones forward: 0, 2, 4, and so on. On which of these stones can it land?"
+  - picture: "pictures/par-12-d2-3.png"
+    alt: "A number line from 0 to 6 with the frog's mark on 0."
+    width: 264
+    height: 70
+givens: ["The frog starts on stone 0.", "It always jumps 2 stones forward: 0, 2, 4, and so on."]
+unknown: "On which of the stones it can land."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["7", "9", "15", "17", "12"]
+        check:
+          kind: "choice"
+          key: "12"
+          trap_values:
+            - value: "7"
+              trap: "wrong-parity"
+              text: "7 is odd, and the frog lands only on even stones."
+            - value: "9"
+              trap: "wrong-parity"
+              text: "9 is odd, and the frog lands only on even stones."
+            - value: "15"
+              trap: "wrong-parity"
+              text: "15 is odd, and the frog lands only on even stones."
+            - value: "17"
+              trap: "wrong-parity"
+              text: "17 is odd, and the frog lands only on even stones."
+    simpler_case: "Try jumps of 2 from stone 0 up to stone 8. Which stones does it land on?"
+solution:
+  - text: "The frog lands only on even stones: 0, 2, 4, 6, 8, 10, 12, ... Only 12 is even."
+  - picture: "pictures/par-12-d2-3-solution.png"
+    alt: "A number line from 0 to 12 with the stones the frog lands on marked: every even number."
+    width: 480
+    height: 70
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-1-2"
+difficulty: 2

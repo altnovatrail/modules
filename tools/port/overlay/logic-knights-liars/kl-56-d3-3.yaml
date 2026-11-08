@@ -1,0 +1,15 @@
+# What a person adds to kl-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Knights always tell the truth, and liars always lie."
+  - "Every islander is a knight or a liar."
+  - "Olly says: 'Rex and I are both knights or both liars.'"
+  - "Pam says: 'One of Olly and Sue is a knight and the other is a liar.'"
+  - "Rex says: 'At least one of Pam and Sue is a knight.'"
+  - "Sue says: 'Exactly three of us four are knights.'"
+unknown: "Who is certainly a knight."
+simpler_case: "Try two: Pam says 'Sue is a liar', and Sue says '2 + 2 = 4.' Who is certainly a knight?"
+techniques: [opposite]
+trap_texts:
+  "Olly, Rex and Sue": "That is one mix that fits, but another fits too, so not all three are certain."
+  "It is impossible to tell": "Not everyone can be told, but some are knights in every mix that fits."
+  "Only Rex": "Check every islander, not only Rex."

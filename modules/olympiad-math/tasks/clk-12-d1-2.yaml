@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-12-d1-2.yaml, and the port writes this file again (R12).
+id: "clk-12-d1-2"
+statement:
+  - text: "Lunch is at 12 o'clock. Tom's walk starts 2 hours before lunch. At what time does the walk start?"
+  - picture: "pictures/clk-12-d1-2.png"
+    alt: "A clock showing 12 o'clock."
+    width: 200
+    height: 200
+  - text: "Write the hour, like 7 o'clock."
+givens: ["Lunch is at 12 o'clock.", "The walk starts 2 hours before lunch."]
+unknown: "The time when the walk starts."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "10"
+          units: ["o'clock"]
+          trap_values:
+            - value: "9"
+              trap: "off-by-one"
+              text: "9 o'clock is 3 hours before lunch."
+            - value: "11"
+              trap: "off-by-one"
+              text: "11 o'clock is only 1 hour before lunch."
+            - value: "12"
+              trap: "number-from-text"
+              text: "12 o'clock is lunch time."
+            - value: "2"
+              trap: "reversed-relation"
+              text: "2 o'clock is 2 hours after lunch. The walk is before lunch."
+    simpler_case: "Try a walk that starts 1 hour before lunch at 12 o'clock. At what time does it start?"
+solution:
+  - text: "11 o'clock is one hour before 12 o'clock, and 10 o'clock is two hours before it."
+skills:
+  primary: ["time-clocks"]
+band: "grades-1-2"
+difficulty: 1

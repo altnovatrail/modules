@@ -1,0 +1,10 @@
+# What a person adds to pig-34-d1-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are 13 children at the party."
+  - "A year has 12 months."
+unknown: "Whether you can be sure that at least 2 of them have their birthday in the same month."
+simpler_case: "Try 2 children and a year of 2 months first. Must they share a month?"
+trap_texts:
+  "Only if two of them are twins": "Twins are not the reason. Think of how many months there are for 13 children."
+  "It is impossible to tell": "It can be told. Think of the luckiest case: how many children can have different months?"
+leak_phrases: ["yes, always", "must share a month"]

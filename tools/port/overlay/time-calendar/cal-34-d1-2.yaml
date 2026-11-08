@@ -1,0 +1,7 @@
+# What a person adds to cal-34-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Dad is 36 years old."
+  - "His son is 9."
+unknown: "How many times as old as his son Dad is."
+simpler_case: "Try Dad at 30 and his son at 5. How many times as old is Dad?"
+techniques: [draw]

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d1-4.yaml, and the port writes this file again (R12).
+id: "par-34-d1-4"
+statement:
+  - text: "Two whole numbers are multiplied, and the answer is odd. What can you say about the two numbers?"
+givens: ["Two whole numbers are multiplied.", "The product is odd."]
+unknown: "What can be said about the two numbers."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Both are even", "Both are odd", "One is even and one is odd", "At least one is even", "It is impossible to tell"]
+        check:
+          kind: "choice"
+          key: "Both are odd"
+          trap_values:
+            - value: "Both are even"
+              trap: "wrong-parity"
+              text: "Two even numbers give an even product, like 2 × 4 = 8."
+            - value: "One is even and one is odd"
+              trap: "wrong-parity"
+              text: "An even number times any number is even, like 2 × 3 = 6."
+            - value: "At least one is even"
+              trap: "wrong-parity"
+              text: "If one number is even, the product is even."
+            - value: "It is impossible to tell"
+              trap: "ignored-condition"
+              text: "The odd product tells you about both numbers. Try some pairs and see."
+    simpler_case: "Try 2 × 3 and 3 × 5. Which product is odd?"
+solution:
+  - text: "If one of the numbers is even, the product is even: for example 2 × 7 = 14. So both numbers must be odd, like 3 × 5 = 15."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 1

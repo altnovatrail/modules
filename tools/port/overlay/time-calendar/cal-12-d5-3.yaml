@@ -1,0 +1,12 @@
+# What a person adds to cal-12-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "1 January was a Monday."
+  - "January has 31 days."
+unknown: "The day of the week of 1 February."
+simpler_case: "Try a month of 30 days that starts on a Friday. What day is the 1st of the next month?"
+techniques: [pattern]
+trap_texts:
+  "Monday": "31 days is not a whole number of weeks."
+  "Tuesday": "You added only 1 day after the whole weeks."
+  "Wednesday": "Count the days left over after 4 weeks again."
+  "Friday": "Count the days left over after 4 weeks again."

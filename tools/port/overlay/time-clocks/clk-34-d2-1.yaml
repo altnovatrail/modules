@@ -1,0 +1,11 @@
+# What a person adds to clk-34-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The watch loses 3 minutes every hour."
+  - "It was set right at 9:00."
+unknown: "What it shows when the real time is 13:00."
+simpler_case: "Try the real time 11:00. What does the watch show?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 9 o'clock."
+trap_texts:
+  "12:45": "Count the hours from 9:00 to 13:00 again."
+  "12:57": "3 minutes is the loss for one hour. Count the hours from 9:00 to 13:00."

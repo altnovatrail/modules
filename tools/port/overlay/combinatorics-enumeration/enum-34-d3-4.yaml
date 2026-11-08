@@ -1,0 +1,9 @@
+# What a person adds to enum-34-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers have three digits."
+  - "Their digits add up to 3."
+unknown: "How many numbers Katya writes."
+simpler_case: "Try three-digit numbers whose digits add up to 2 first. Start with the first digit 1."
+solution_picture_alt: "A table of the numbers: those starting with 1 in the first row, with 2 in the second and with 3 in the third."
+trap_texts:
+  "3": "You missed several. Sort the numbers by their first digit: 1, 2 and 3."

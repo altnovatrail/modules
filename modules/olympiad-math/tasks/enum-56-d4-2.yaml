@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-56-d4-2.yaml, and the port writes this file again (R12).
+id: "enum-56-d4-2"
+statement:
+  - text: "Five friends sit on a bench in a row: Nora, Owen, Pia, Raj and Sam. Nora wants to sit next to Owen, and Sam does not want to sit at either end. In how many ways can the five sit?"
+givens: ["Nora, Owen, Pia, Raj and Sam sit on a bench in a row.", "Nora sits next to Owen.", "Sam does not sit at either end."]
+unknown: "In how many ways the five can sit."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "24"
+          units: ["way", "ways"]
+          trap_values:
+            - value: "48"
+              trap: "ignored-condition"
+              text: "48 lets Sam sit at an end."
+            - value: "72"
+              trap: "ignored-condition"
+              text: "72 does not keep Nora next to Owen."
+            - value: "12"
+              trap: "missed-case"
+              text: "12 seats Nora and Owen in one order only; Owen can sit on Nora's left or on her right."
+            - value: "8"
+              trap: "stopped-early"
+              text: "8 is the number of ways with Sam in one seat; he has three seats to choose from."
+    simpler_case: "Try Nora, Owen and Pia on a bench, with Nora next to Owen. In how many ways can they sit?"
+solution:
+  - text: "Sam sits in seat 2, 3 or 4. With Sam in seat 2, Nora and Owen take seats 3 and 4 or 4 and 5; with Sam in seat 3, seats 1 and 2 or 4 and 5; with Sam in seat 4, seats 1 and 2 or 2 and 3. So the pair has 2 places, it can sit in 2 orders, and Pia and Raj take the last two seats in 2 orders: 2 × 2 × 2 = 8 ways for each of Sam's seats, and 3 × 8 = 24 in all."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 4

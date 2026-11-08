@@ -1,0 +1,34 @@
+# A lesson of E3 (T38; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# parity-alternation on the band of grades 1–2. Its texts are those of the page parity-and-alternation of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: parity-alternation-grades-1-2
+title: "Parity and alternation: first steps"
+skills: [parity-alternation]
+segments:
+  - explanation:
+      - text: "Can children stand in a ring, boy, girl, boy, girl, all the way round? In these tasks even and odd answer the question without counting everything or trying every way: which bank a ferry is at, whether a score is possible, who makes the last move. Parity is often the first thing you meet that stays the same however the moves go."
+      - text: "Even splits into pairs. An even number of things splits into pairs with none left over. An odd number always leaves one without a pair."
+      - text: "Only the odd ones matter. Even plus even is even, odd plus odd is even, and even plus odd is odd. So whether a sum is even depends only on how many odd numbers are in it."
+      - text: "Taking turns. When two things take turns, one stands in the odd places and the other in the even ones. A ring can take turns all the way round only when it has an even number of places."
+  - worked_example:
+      statement:
+        - text: "A ferry carries cars across a river and back, again and again. It starts at the left bank. At which bank is it after crossing the river 7 times?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "After 1 crossing the ferry is at the right bank, and after 2 back at the left."
+        - text: "Every two crossings bring it back to where it started. So after an even number of crossings it is at the left bank, and after an odd number at the right."
+        - text: "7 is odd, so the ferry is at the right bank."
+        - text: "Answer: At the right bank."
+  - explanation:
+      - text: "Why not just count? For 7 crossings counting is quick. The rule answers for 100 crossings just as fast, and it is the rule that the harder tasks need."
+  - task: par-12-d1-1
+  - task: par-12-d3-1
+  - task: par-12-d5-2
+  - explanation:
+      - text: "How to solve: follow even and odd."
+      - text: "Find what is even or odd."
+      - text: "See what each step does to it."
+      - text: "Compare the start with the goal."

@@ -1,0 +1,44 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/grid-56-d5-2.yaml, and the port writes this file again (R12).
+id: "grid-56-d5-2"
+statement:
+  - text: "Cell A1 of a 4 by 4 square of cells is painted. Rows are A to D from the top, columns 1 to 4 from the left. You may fold the square along any line of its grid and open it again, and every cell that lands on a painted cell is painted too. What is the fewest folds that paint the whole square?"
+  - picture: "pictures/grid-56-d5-2.png"
+    alt: "A 4 by 4 square with rows A to D from the top and columns 1 to 4 from the left; cell A1 is shaded."
+    width: 185
+    height: 190
+givens: ["Cell A1 of a 4 by 4 square is painted.", "A fold along a line of the grid paints every cell that lands on a painted one."]
+unknown: "The fewest folds that paint the whole square."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["fold", "folds"]
+          trap_values:
+            - value: "2"
+              trap: "stopped-early"
+              text: "2 folds paint at most 4 cells, a corner of 2 by 2. The square has 16."
+            - value: "3"
+              trap: "stopped-early"
+              text: "3 folds paint at most half the square."
+            - value: "15"
+              trap: "wrong-operation"
+              text: "15 paints one new cell with each fold. A fold can paint as many new cells as are painted already."
+            - value: "16"
+              trap: "answered-other-question"
+              text: "16 is the number of cells of the square, not of folds."
+    simpler_case: "Try a row of 2 cells with the first painted. What is the fewest folds that paint the row?"
+solution:
+  - text: "A fold paints a cell only where it lands on a painted one, so each fold at most doubles the painted cells: 1, 2, 4, 8 and 16 take four folds. Four are enough: fold between columns 1 and 2, then between columns 2 and 3, which paints row A, then between rows A and B, and last between rows B and C."
+techniques: ["draw"]
+leak_phrases: ["4 folds", "four folds"]
+skills:
+  primary: ["geometry-grid"]
+band: "grades-5-6"
+difficulty: 5

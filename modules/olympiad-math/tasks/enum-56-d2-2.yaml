@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-56-d2-2.yaml, and the port writes this file again (R12).
+id: "enum-56-d2-2"
+statement:
+  - text: "A set of dominoes uses the numbers 0 to 4. Each tile shows two numbers, such as 1–3 or 4–4, and no two tiles show the same two numbers. The set has every possible tile. How many tiles are there?"
+givens: ["The numbers go from 0 to 4.", "Each tile shows two numbers, such as 1–3 or 4–4.", "No two tiles show the same two numbers, and every possible tile is there."]
+unknown: "How many tiles there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "15"
+          units: ["tile", "tiles"]
+          trap_values:
+            - value: "25"
+              trap: "double-count"
+              text: "25 counts 1–3 and 3–1 as two tiles, but they are the same tile."
+            - value: "10"
+              trap: "missed-case"
+              text: "10 leaves out the five doubles, from 0–0 to 4–4."
+            - value: "20"
+              trap: "double-count"
+              text: "20 counts every tile with two different numbers twice, once in each order, and leaves out the doubles."
+            - value: "5"
+              trap: "stopped-early"
+              text: "5 counts only the tiles that have a 0."
+    simpler_case: "Try the numbers 0 to 2 first. List every tile once."
+solution:
+  - text: "The tiles with a 0 are 0–0 to 0–4: 5 tiles. The new tiles with a 1 are 1–1 to 1–4: 4 more, as 0–1 is already there. Then come 3 new tiles with a 2, 2 with a 3 and 1 with a 4: 5 + 4 + 3 + 2 + 1 = 15."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 2

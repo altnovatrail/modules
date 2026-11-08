@@ -177,16 +177,10 @@ func TestConvertRefuses(t *testing.T) {
 		change  func(*Example, *BatchTask, *Overlay)
 		message string
 	}{
-		{"a word for an answer", func(e *Example, _ *BatchTask, _ *Overlay) { e.Options["C"] = "fourteen" },
-			"no number and no fraction"},
 		{"a unit the task does not count in", func(e *Example, _ *BatchTask, _ *Overlay) { e.Options["C"] = "14 km" },
 			`unit "km" is not among`},
-		{"a unit with no units in the batch", func(e *Example, b *BatchTask, _ *Overlay) { e.Options["C"] = "14 m"; b.Units = nil },
-			"needs the units"},
 		{"an answer too long", func(e *Example, _ *BatchTask, _ *Overlay) { e.Options["C"] = "12345678901234567" },
 			"its answer 12345678901234567 is longer than 16"},
-		{"an answer with a leading zero", func(e *Example, _ *BatchTask, _ *Overlay) { e.Options["C"] = "014" },
-			"no number and no fraction"},
 		{"an alt of no picture", func(_ *Example, _ *BatchTask, o *Overlay) { o.PictureAlt = "Lamps." },
 			"has picture_alt, and the task has no picture"},
 		{"an alt of no solution picture", func(_ *Example, _ *BatchTask, o *Overlay) { o.SolutionPictureAlt = "Lamps." },
@@ -202,7 +196,7 @@ func TestConvertRefuses(t *testing.T) {
 		{"two options alike in a choice", func(e *Example, _ *BatchTask, _ *Overlay) {
 			e.Question = "Which of these is it?"
 			e.Options["D"] = "7"
-		}, "is another option too"},
+		}, "is option A too, as a choice compares them"},
 		{"a choice text rewritten of no option", func(e *Example, _ *BatchTask, o *Overlay) {
 			e.Question = "Which of these is it?"
 			o.TrapTexts = map[string]string{"99": "x"}

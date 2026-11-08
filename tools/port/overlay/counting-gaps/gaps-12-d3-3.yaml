@@ -1,0 +1,6 @@
+# What a person adds to gaps-12-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Kate is 4th from the front."
+  - "There are 3 children behind her."
+unknown: "How many children are in the line."
+simpler_case: "Try a line where Kate is 2nd from the front with 1 child behind her. How many children is that?"

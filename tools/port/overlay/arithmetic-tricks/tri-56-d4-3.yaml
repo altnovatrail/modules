@@ -1,0 +1,8 @@
+# What a person adds to tri-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "In each of three shops the traveller spent half of his coins and then 2 coins more."
+  - "After the third shop he had no coins left."
+unknown: "How many coins he had at first."
+simpler_case: "Try one shop: he spent half of his coins and then 1 coin more, and had none left."
+techniques: [backwards]
+solution_picture_alt: "A row of four numbers from left to right: 28 before the first shop, 12 before the second, 4 before the third, and 0 at the end."

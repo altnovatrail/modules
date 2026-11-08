@@ -1,0 +1,9 @@
+# What a person adds to par-34-d4-6 of standalone; the port writes the task from it (R12).
+givens:
+  - "The tiles are all alike: each has the same four numbers in the same order round it."
+  - "Where two tiles touch, the numbers next to the shared side are equal."
+unknown: "The number in the triangle marked ?."
+simpler_case: "Try two tiles of two triangles each, the numbers 1 and 2 on the first. Which number touches the second tile?"
+techniques: [pattern]
+picture_alt: "A row of five square tiles, each cut into four triangles. The first tile shows 1 in its left triangle and 2 in its top one. The second tile shows 6 in its top triangle. The third tile shows 7 in its right triangle. The fourth tile has a question mark in its left triangle. The other triangles are empty."
+solution_picture_alt: "The same row with every triangle filled: each tile reads 1, 2, 7 and 6 round it."

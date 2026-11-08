@@ -1,0 +1,7 @@
+# What a person adds to fig-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each line in the picture is a match."
+unknown: "The least number of matches to take away so that no square of any size is left."
+simpler_case: "Try a row of 2 squares of matches. What is the least number of matches to take away so that no square is left?"
+picture_alt: "Matches laid as a square of two by two small squares."
+solution_picture_alt: "The same matches with the ones to take away dashed."

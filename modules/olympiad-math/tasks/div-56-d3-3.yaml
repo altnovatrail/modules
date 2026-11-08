@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/number.divisibility.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/div-56-d3-3.yaml, and the port writes this file again (R12).
+id: "div-56-d3-3"
+statement:
+  - text: "What is the remainder when 5 555 555 is divided by 9?"
+givens: ["The number is 5 555 555."]
+unknown: "Its remainder when divided by 9."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "8"
+          trap_values:
+            - value: "617283"
+              trap: "remainder-vs-quotient"
+              text: "617283 is how many times 9 goes into the number, but the question asks what is left over."
+            - value: "3"
+              trap: "remainder-vs-quotient"
+              text: "3 is a number of nines, not what is left over."
+            - value: "35"
+              trap: "stopped-early"
+              text: "35 is the sum of the digits, not a remainder."
+            - value: "5"
+              trap: "number-from-text"
+              text: "5 is the last digit, which tells the remainder for 10, not for 9."
+    simpler_case: "Try 222 divided by 9. What is the remainder?"
+solution:
+  - text: "A number leaves the same remainder when divided by 9 as the sum of its digits does. Here that sum is 7 × 5 = 35, and 35 = 3 × 9 + 8, so the remainder is 8."
+skills:
+  primary: ["number-divisibility"]
+  supporting: ["core.division-with-remainder"]
+band: "grades-5-6"
+difficulty: 3

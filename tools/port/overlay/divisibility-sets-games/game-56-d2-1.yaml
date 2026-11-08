@@ -1,0 +1,11 @@
+# What a person adds to game-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are 10 stones, and Ann goes first."
+  - "A turn takes 1 or 2 stones, and taking the last stone wins."
+  - "Ben plays as well as he can."
+unknown: "How many stones Ann should take first to be sure to win."
+simpler_case: "Try 5 stones with the same rules. How many should Ann take first?"
+techniques: [backwards]
+picture_alt: "A pile of 10 stones."
+solution_picture_alt: "A pile of 1 stone taken and a pile of 9 left, in groups of 3."
+leak_phrases: ["take 1 first", "takes 1 first"]

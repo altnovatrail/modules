@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-12-d1-4.yaml, and the port writes this file again (R12).
+id: "clk-12-d1-4"
+statement:
+  - text: "It is 7 o'clock. What time will it be in half an hour?"
+  - picture: "pictures/clk-12-d1-4.png"
+    alt: "A clock showing 7 o'clock."
+    width: 200
+    height: 200
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["It is 7 o'clock now."]
+unknown: "The time in half an hour."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "7:30"
+          options: ["6:30", "7:15", "7:50", "8:00", "7:30"]
+          trap_values:
+            - value: "6:30"
+              trap: "reversed-relation"
+              text: "In half an hour means later, not earlier."
+            - value: "7:15"
+              trap: "time-unit-mixup"
+              text: "15 minutes is a quarter of an hour, not half an hour."
+            - value: "7:50"
+              trap: "time-unit-mixup"
+              text: "An hour has 60 minutes, not 100."
+            - value: "8:00"
+              trap: "time-unit-mixup"
+              text: "8:00 is a whole hour later, not half an hour."
+    simpler_case: "Try a whole hour first: it is 7 o'clock. What time will it be in 1 hour?"
+solution:
+  - text: "Half an hour is 30 minutes. 30 minutes after 7:00 it is 7:30."
+skills:
+  primary: ["time-clocks"]
+band: "grades-1-2"
+difficulty: 1

@@ -1,0 +1,5 @@
+# What a person adds to tri-12-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "A number and the same number again make 18."
+unknown: "The number."
+simpler_case: "Try a number that gives 10 when you add it to itself."

@@ -1,0 +1,11 @@
+# What a person adds to fig-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The points are drawn in the picture."
+  - "Tilted squares count too."
+unknown: "How many squares have all four corners at the points."
+simpler_case: "Try four points at the corners of one cell. How many squares have all four corners at them?"
+picture_alt: "Nine points in a square of three rows of three, equally spaced."
+solution_picture_alt: "The nine points with a tilted square drawn through the middles of the outer sides."
+trap_texts:
+  "4": "Squares of other sizes count too."
+  "5": "Tilted squares count too."

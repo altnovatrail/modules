@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/cube-56-d1-1.yaml, and the port writes this file again (R12).
+id: "cube-56-d1-1"
+statement:
+  - text: "Lena cuts out the net in the picture and folds it into a paper cube. Each square has a number on it. What is the largest sum of the numbers on two opposite faces of the cube?"
+  - picture: "pictures/cube-56-d1-1.png"
+    alt: "A net of six squares: a row of four, 9, 3, 1 and 6 from the left, with 8 above the 9 and 4 below the 1."
+    width: 208
+    height: 168
+givens: ["The net is folded into a paper cube, with a number on each square."]
+unknown: "The largest sum of the numbers on two opposite faces."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "12"
+          trap_values:
+            - value: "17"
+              trap: "ignored-condition"
+              text: "The faces with 9 and 8 touch."
+            - value: "10"
+              trap: "missed-case"
+              text: "10 is not the largest sum."
+            - value: "15"
+              trap: "off-by-one"
+              text: "With two squares between them, 9 and 6 touch."
+            - value: "9"
+              trap: "reversed-relation"
+              text: "9 is the smallest sum, not the largest."
+    simpler_case: "Try a row of four squares, numbered 1, 2, 3 and 4, folded into a ring. What is the largest sum of two opposite squares?"
+solution:
+  - text: "Imagine the long row wrapping round the cube. In a straight row, two squares with one square between them become opposite faces. So the faces with 9 and 1 are opposite, and so are the faces with 3 and 6. A cube has three pairs of opposite faces, so the two squares left over, 8 and 4, are opposite too. The sums are 9 + 1 = 10, 3 + 6 = 9 and 8 + 4 = 12. The largest is 12."
+  - text: "8 + 4 = 12"
+  - picture: "pictures/cube-56-d1-1-solution.png"
+    alt: "The net with the outline of its folds."
+    width: 208
+    height: 168
+techniques: ["draw"]
+skills:
+  primary: ["geometry-cubes-paper"]
+band: "grades-5-6"
+difficulty: 1

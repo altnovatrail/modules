@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-56-d2-1.yaml, and the port writes this file again (R12).
+id: "cal-56-d2-1"
+statement:
+  - text: "1 March 2027 is a Monday. The year 2028 is a leap year, with 29 days in February. What day of the week is 1 March 2028?"
+givens: ["1 March 2027 is a Monday.", "2028 is a leap year, with 29 days in February."]
+unknown: "The day of the week of 1 March 2028."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Tuesday", "Wednesday", "Monday", "Thursday", "Saturday"]
+        check:
+          kind: "choice"
+          key: "Wednesday"
+          trap_values:
+            - value: "Tuesday"
+              trap: "ignored-condition"
+              text: "Tuesday moves the day on by 1, as 365 days would, but the February in between, February 2028, has 29 days."
+            - value: "Monday"
+              trap: "ignored-condition"
+              text: "Monday takes a year to be whole weeks, but it is not."
+            - value: "Thursday"
+              trap: "off-by-one"
+              text: "Thursday moves the day on by 3, which is too many."
+            - value: "Saturday"
+              trap: "reversed-relation"
+              text: "Saturday moves the day back instead of on."
+    simpler_case: "Try 1 March 2026: 1 March 2025 is a Saturday, and February 2026 has 28 days. What day is 1 March 2026?"
+solution:
+  - text: "From 1 March 2027 to 1 March 2028 the calendar passes February 2028, which has 29 days, so the year in between has 366 days. 366 days are 52 weeks and 2 days, so the weekday moves 2 days on: from Monday to Wednesday."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-5-6"
+difficulty: 2

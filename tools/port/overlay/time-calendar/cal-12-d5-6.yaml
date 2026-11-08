@@ -1,0 +1,11 @@
+# What a person adds to cal-12-d5-6 of standalone; the port writes the task from it (R12).
+givens:
+  - "It is August now."
+  - "The library opens in 20 months."
+unknown: "The month it opens."
+simpler_case: "Try 14 months from August. Which month is it?"
+techniques: [pattern]
+trap_texts:
+  "August": "August comes again after 12 months, but more months are still to go."
+  "March": "March is too early."
+  "May": "May is too late."

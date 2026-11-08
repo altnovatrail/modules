@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/enum-12-d1-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/enum-12-d1-3.yaml, and the port writes this file again (R12).
 id: "enum-12-d1-3"
 statement:
   - text: "How many two-digit numbers can you write with the digits 1 and 2, if a digit may be used twice, like in 11?"

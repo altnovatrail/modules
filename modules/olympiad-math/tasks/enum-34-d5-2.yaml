@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/enum-34-d5-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/enum-34-d5-2.yaml, and the port writes this file again (R12).
 id: "enum-34-d5-2"
 statement:
   - text: "Seven children want to make a team of 3, and one of the three will be the captain. In how many different ways can the team with its captain be chosen?"

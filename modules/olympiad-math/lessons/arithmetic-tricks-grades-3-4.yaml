@@ -1,0 +1,34 @@
+# A lesson of E3 (T38; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# arithmetic-tricks on the band of grades 3–4. Its texts are those of the page arithmetic-with-a-trick of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: arithmetic-tricks-grades-3-4
+title: "Arithmetic with a trick: going further"
+skills: [arithmetic-tricks]
+segments:
+  - explanation:
+      - text: "What is 19 + 23 + 81 + 77? Added in order, it is three sums with carrying; paired as 19 + 81 and 23 + 77, it is 100 + 100. In these mental maths tasks the arithmetic is easy once the right order is found, and “I thought of a number” puzzles are solved by undoing the steps from the end. The skill is to look before counting."
+      - text: "Any order. Numbers can be added or multiplied in any order and grouped any way: 25 × 9 × 4 is 25 × 4 × 9, which is 100 × 9."
+      - text: "Round numbers. Look for pairs that make 10, 100 or 1000: 36 + 64, 25 × 4, 125 × 8. A round number is easy to carry on with."
+      - text: "Undo from the end. In “I thought of a number”, go back from the result and undo each step: what was added is taken away, and what was doubled is halved."
+  - worked_example:
+      statement:
+        - text: "Masha thought of a number. She doubled it, added 7 and divided the result by 3. She got 9. What number did Masha think of?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Go from the end and undo each step, the last one first."
+        - text: "She divided by 3 and got 9, so before that she had 9 × 3 = 27. She added 7, so before that she had 27 − 7 = 20."
+        - text: "She doubled the number, so it was 20 : 2 = 10. Check: 10 × 2 + 7 = 27, and 27 : 3 = 9."
+        - text: "Answer: 10."
+  - explanation:
+      - text: "Undo in reverse order. The last step done is the first one undone, as shoes come off before socks. Undoing the steps in the order they were done gives a wrong number."
+  - task: tri-34-d1-1
+  - task: tri-34-d3-1
+  - task: tri-34-d5-1
+  - explanation:
+      - text: "How to solve: look for round numbers."
+      - text: "Look at the whole task first."
+      - text: "Regroup into round numbers, or undo from the end."
+      - text: "Check the answer another way."

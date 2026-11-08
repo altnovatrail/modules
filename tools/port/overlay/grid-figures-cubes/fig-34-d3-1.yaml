@@ -1,0 +1,10 @@
+# What a person adds to fig-34-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Triangles of any size whose sides are lines of the figure are counted."
+unknown: "How many triangles there are."
+simpler_case: "Try a rectangle with one line from corner to corner. How many triangles are there?"
+picture_alt: "A rectangle twice as wide as it is high, with a line from its top left corner to its bottom right corner and an upright line down its middle."
+solution_picture_alt: "The same rectangle with its two lines."
+trap_texts:
+  "3": "Some triangles were missed."
+  "5": "Some triangles were counted twice."

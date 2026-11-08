@@ -1,0 +1,9 @@
+# What a person adds to par-12-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Tom writes the numbers from 1 to 15."
+unknown: "How many odd numbers he writes."
+simpler_case: "Try the numbers from 1 to 5 first. How many are odd?"
+techniques: [parity]
+trap_texts:
+  "7": "Both the first number and the last are odd. Count them again."
+  "9": "List the odd numbers from 1 to 15 and count them again."

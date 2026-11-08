@@ -1,0 +1,13 @@
+# What a person adds to ord-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Alice, Ben, Dev, Ella and Kira stand in a row, and Alice first on the left."
+  - "Kira and Dev do not stand next to each other, nor Dev and Ella."
+  - "Kira stands somewhere to the left of Dev."
+unknown: "Who stands last on the right."
+simpler_case: "Try four friends, Alice, Ben, Gil and Kira: Alice stands first on the left, Kira and Gil do not stand next to each other, and Kira stands to the left of Gil. Who stands second?"
+picture_alt: "Five places in a row, the first on the left marked A."
+trap_texts:
+  "Kira": "Kira stands to the left of another friend, so she cannot be last."
+  "Ella": "With Ella last, two friends who do not stand together would end up side by side."
+  "Ben": "With Ben last, the friends who do not stand together cannot all be kept apart."
+  "It is impossible to tell": "Without Alice at the left end, several friends could be last; with her there, only one can."

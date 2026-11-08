@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-34-d4-5.yaml, and the port writes this file again (R12).
+id: "tri-34-d4-5"
+statement:
+  - text: "Yana thought of a number. If she takes it away from 50, she gets the same as if she adds 14 to it. What number did Yana think of?"
+givens: ["Taking Yana's number away from 50 gives the same as adding 14 to it."]
+unknown: "The number Yana thought of."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "18"
+          trap_values:
+            - value: "25"
+              trap: "ignored-condition"
+              text: "25 is half of 50, but 50 - 25 = 25 and 25 + 14 = 39."
+            - value: "32"
+              trap: "answered-other-question"
+              text: "32 is what Yana gets, not the number she thought of."
+            - value: "36"
+              trap: "stopped-early"
+              text: "36 is 50 - 14; it is two of the number, so halve it."
+            - value: "64"
+              trap: "wrong-operation"
+              text: "64 is 50 + 14."
+    simpler_case: "Try a number that, taken away from 10, gives the same as adding 2 to it."
+solution:
+  - text: "50 is the number, plus the number again, plus 14. So two of the number make 50 - 14 = 36, and the number is 18. Check: 50 - 18 = 32 and 18 + 14 = 32."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-3-4"
+difficulty: 4

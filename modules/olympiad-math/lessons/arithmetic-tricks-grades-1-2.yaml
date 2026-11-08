@@ -1,0 +1,34 @@
+# A lesson of E3 (T38; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# arithmetic-tricks on the band of grades 1–2. Its texts are those of the page arithmetic-with-a-trick of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: arithmetic-tricks-grades-1-2
+title: "Arithmetic with a trick: first steps"
+skills: [arithmetic-tricks]
+segments:
+  - explanation:
+      - text: "What is 19 + 23 + 81 + 77? Added in order, it is three sums with carrying; paired as 19 + 81 and 23 + 77, it is 100 + 100. In these mental maths tasks the arithmetic is easy once the right order is found, and “I thought of a number” puzzles are solved by undoing the steps from the end. The skill is to look before counting."
+      - text: "Any order. Numbers can be added or multiplied in any order and grouped any way: 25 × 9 × 4 is 25 × 4 × 9, which is 100 × 9."
+      - text: "Round numbers. Look for pairs that make 10, 100 or 1000: 36 + 64, 25 × 4, 125 × 8. A round number is easy to carry on with."
+      - text: "Undo from the end. In “I thought of a number”, go back from the result and undo each step: what was added is taken away, and what was doubled is halved."
+  - worked_example:
+      statement:
+        - text: "What is 6 + 7 + 8 + 2 + 3 + 4?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Look for pairs that make 10. Here there are three of them, 6 + 4, 7 + 3 and 8 + 2."
+        - text: "Three tens make 30."
+        - text: "So 6 + 7 + 8 + 2 + 3 + 4 = 30, with no carrying at all."
+        - text: "Answer: 30."
+  - explanation:
+      - text: "The long way. 6 + 7 = 13, then 21, 23, 26 and 30. The answer is the same, but it takes five steps instead of one, and every step is a chance to slip."
+  - task: tri-12-d1-1
+  - task: tri-12-d3-1
+  - task: tri-12-d5-1
+  - explanation:
+      - text: "How to solve: look for round numbers."
+      - text: "Look at the whole task first."
+      - text: "Regroup into round numbers, or undo from the end."
+      - text: "Check the answer another way."

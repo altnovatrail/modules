@@ -1,0 +1,9 @@
+# What a person adds to cal-12-d4-6 of standalone; the port writes the task from it (R12).
+givens:
+  - "Omar has school from Sunday to Thursday."
+  - "1 April is a Sunday, and April has 30 days."
+unknown: "How many school days that April has."
+simpler_case: "Try the first two weeks of April. How many school days do they have?"
+techniques: [pattern]
+trap_texts:
+  "20": "20 counts only the 4 whole weeks. Check the days of April after them."

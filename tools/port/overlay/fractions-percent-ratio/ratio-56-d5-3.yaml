@@ -1,0 +1,9 @@
+# What a person adds to ratio-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Leo ate 20% fewer spoonfuls than Mia."
+  - "His spoon held 100% more jam than hers."
+unknown: "The part of the jar Leo ate."
+simpler_case: "Try: Leo ate as many spoonfuls as Mia, but his spoon held twice as much. What part of the jar did Leo eat?"
+trap_texts:
+  "5/13": "5/13 is not Leo's part."
+  "8/5": "8/5 is Leo's jam against Mia's, not against the whole jar."

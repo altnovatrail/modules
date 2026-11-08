@@ -1,0 +1,6 @@
+# What a person adds to tri-12-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Adding 5 to Lena's number gives the same as doubling it."
+unknown: "The number Lena thought of."
+simpler_case: "Try a number that gives the same when you add 3 to it as when you double it."
+leak_phrases: ["the number is 5"]

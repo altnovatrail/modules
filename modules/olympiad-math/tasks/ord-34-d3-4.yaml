@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-34-d3-4.yaml, and the port writes this file again (R12).
+id: "ord-34-d3-4"
+statement:
+  - text: "Five pencils have different lengths. The yellow pencil is longer than the red one. The red pencil is longer than the green one. The blue pencil is shorter than the green one. The white pencil is longer than the yellow one. Which pencil is the third longest?"
+givens: ["Five pencils have different lengths.", "The yellow pencil is longer than the red one, and the red longer than the green one.", "The blue pencil is shorter than the green one, and the white longer than the yellow one."]
+unknown: "Which pencil is the third longest."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["the white pencil", "the yellow pencil", "the green pencil", "the red pencil", "the blue pencil"]
+        check:
+          kind: "choice"
+          key: "the red pencil"
+          trap_values:
+            - value: "the white pencil"
+              trap: "answered-other-question"
+              text: "The white pencil is the longest."
+            - value: "the yellow pencil"
+              trap: "off-by-one"
+              text: "The yellow pencil is second."
+            - value: "the green pencil"
+              trap: "off-by-one"
+              text: "The green pencil is fourth."
+            - value: "the blue pencil"
+              trap: "reversed-relation"
+              text: "The blue pencil is the shortest."
+    simpler_case: "Try three pencils: the yellow one is longer than the green one, and the white one longer than the yellow one. Which pencil is the third longest?"
+solution:
+  - text: "From the longest: white, yellow, red, green, blue. The red pencil is third."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-3-4"
+difficulty: 3

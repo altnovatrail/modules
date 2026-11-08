@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/gaps-34-d3-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/gaps-34-d3-1.yaml, and the port writes this file again (R12).
 id: "gaps-34-d3-1"
 statement:
   - text: "Pete walks up from floor 1 to floor 4 in 30 seconds. At the same speed, how many seconds does it take him to walk up from floor 1 to floor 10?"

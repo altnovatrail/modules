@@ -1,0 +1,9 @@
+# What a person adds to sets-56-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The class has 30 pupils."
+  - "18 like maths and 21 like art."
+unknown: "At most how many could like neither."
+simpler_case: "Try 10 pupils, 4 who like maths and 6 who like art. At most how many could like neither?"
+picture_alt: "Two overlapping circles, M of 18 and A of 21, inside a box of 30, with the space outside both marked ?."
+trap_texts:
+  "12": "12 takes away only the maths fans."

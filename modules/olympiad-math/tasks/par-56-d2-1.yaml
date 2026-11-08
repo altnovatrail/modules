@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-56-d2-1.yaml, and the port writes this file again (R12).
+id: "par-56-d2-1"
+statement:
+  - text: "Kim starts with the number 1. In each step she either adds 4 or multiplies by 3. Which of these numbers can she get?"
+givens: ["Kim starts with 1.", "Each step adds 4 or multiplies by 3."]
+unknown: "Which of the numbers she can get."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["51", "64", "40", "100", "52"]
+        check:
+          kind: "choice"
+          key: "51"
+          trap_values:
+            - value: "64"
+              trap: "wrong-parity"
+              text: "Kim's number is always odd, and 64 is even."
+            - value: "40"
+              trap: "wrong-parity"
+              text: "Kim's number is always odd, and 40 is even."
+            - value: "100"
+              trap: "wrong-parity"
+              text: "Kim's number is always odd, and 100 is even."
+            - value: "52"
+              trap: "wrong-parity"
+              text: "Kim's number is always odd, and 52 is even."
+    simpler_case: "Try two steps from 1. Which numbers can she get?"
+solution:
+  - text: "1 is odd. Adding 4 to an odd number gives an odd number, and so does multiplying it by 3. So Kim's number is always odd, which rules out 40, 52, 64 and 100. And 51 can be made: 1 + 4 + 4 + 4 + 4 = 17, and 17 × 3 = 51."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-5-6"
+difficulty: 2

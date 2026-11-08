@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-12-d3-1.yaml, and the port writes this file again (R12).
+id: "ord-12-d3-1"
+statement:
+  - text: "Five friends stand in a line. Ann is first. Kim stands right behind Ann. Ben stands right behind Kim. Dan is last. In which place is Eva?"
+givens: ["Five friends stand in a line.", "Ann is first, Kim right behind Ann, and Ben right behind Kim.", "Dan is last."]
+unknown: "In which place Eva stands."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["st", "nd", "rd", "th"]
+          trap_values:
+            - value: "1"
+              trap: "ignored-condition"
+              text: "Ann stands first."
+            - value: "2"
+              trap: "ignored-condition"
+              text: "Kim stands right behind Ann, in the 2nd place."
+            - value: "3"
+              trap: "reversed-relation"
+              text: "Ben is right behind Kim, so Ben is 3rd."
+            - value: "5"
+              trap: "ignored-condition"
+              text: "Dan stands last."
+    simpler_case: "Try four friends: Ann is first, Kim right behind her, and Dan last. In which place is Eva?"
+solution:
+  - text: "Ann is 1st, Kim is 2nd, Ben is 3rd and Dan is 5th. The only place left for Eva is 4th."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-1-2"
+difficulty: 3

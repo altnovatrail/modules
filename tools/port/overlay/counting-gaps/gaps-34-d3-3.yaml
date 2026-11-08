@@ -1,0 +1,8 @@
+# What a person adds to gaps-34-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Masha is 7th from the front."
+  - "Dasha is 5th from the back."
+  - "Masha is in front of Dasha."
+  - "3 people stand between them."
+unknown: "How many people are in the queue."
+simpler_case: "Try a queue where Masha is 2nd from the front, Dasha is 2nd from the back, and 1 person stands between them. How many people are in it?"

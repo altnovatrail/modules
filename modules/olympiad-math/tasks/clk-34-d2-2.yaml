@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-34-d2-2.yaml, and the port writes this file again (R12).
+id: "clk-34-d2-2"
+statement:
+  - text: "A bus leaves every 12 minutes. The first bus leaves at 6:00. At what time does the sixth bus leave?"
+  - picture: "pictures/clk-34-d2-2.png"
+    alt: "A clock showing 6 o'clock."
+    width: 200
+    height: 200
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["A bus leaves every 12 minutes.", "The first bus leaves at 6:00."]
+unknown: "The time when the sixth bus leaves."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "7:00"
+          options: ["7:00", "6:48", "6:60", "7:12", "7:24"]
+          trap_values:
+            - value: "6:48"
+              trap: "off-by-one"
+              text: "6:48 is when an earlier bus leaves. Count the buses from 6:00 again."
+            - value: "6:60"
+              trap: "time-unit-mixup"
+              text: "60 minutes make a whole hour, so there is no 6:60."
+            - value: "7:12"
+              trap: "off-by-one"
+              text: "Count the gaps between six buses again."
+            - value: "7:24"
+              trap: "off-by-one"
+              text: "7:24 is when a later bus leaves. Count the buses from 6:00 again."
+    simpler_case: "Try a bus every 10 minutes, the first at 6:00. At what time does the third bus leave?"
+solution:
+  - text: "Between the first and the sixth bus there are 5 gaps of 12 minutes: 60 minutes. So the sixth bus leaves at 7:00."
+skills:
+  primary: ["time-clocks"]
+band: "grades-3-4"
+difficulty: 2

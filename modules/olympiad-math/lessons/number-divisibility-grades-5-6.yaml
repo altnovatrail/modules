@@ -1,0 +1,34 @@
+# A lesson of E3 (T40; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# number-divisibility on the band of grades 5–6. Its texts are those of the page divisibility-and-remainders of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: number-divisibility-grades-5-6
+title: "Divisibility and remainders: olympiad level"
+skills: [number-divisibility]
+segments:
+  - explanation:
+      - text: "29 pupils go on a trip, and each car takes 4 of them. How many cars are needed? In these tasks you divide with a remainder and then decide what the remainder means: one more car, a sweet left over, a place in the next row. Rules of divisibility answer “does it divide?” without dividing at all."
+      - text: "The remainder is smaller. When dividing by 7, the remainder is 0, 1, 2 and so on up to 6. If it comes out 7 or more, one more group fits."
+      - text: "What the remainder means. 29 pupils in cars of 4 are 7 full cars and 1 pupil left over, so 8 cars are needed. The same division can be asked for 7, for 8 or for 1: the question decides."
+      - text: "Rules of thumb. A number divides by 2 when its last digit is even, by 5 when it ends in 0 or 5, and by 3 or by 9 when the sum of its digits does."
+  - worked_example:
+      statement:
+        - text: "150 pupils go on a school trip, and each bus has 40 seats. How many buses are needed?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Count the pupils out by 40: 150 = 3 × 40 + 30. Three buses are full, and 30 pupils are left."
+        - text: "The 30 pupils need a bus too, even though it will not be full."
+        - text: "3 + 1 = 4 buses."
+        - text: "Answer: 4 buses."
+  - explanation:
+      - text: "Why not 3 or 30? 3 is the number of full buses, and 30 is how many pupils ride in the last one. The question asks for every bus that is needed."
+  - task: div-56-d1-1
+  - task: div-56-d3-2
+  - task: div-56-d5-1
+  - explanation:
+      - text: "How to solve: full groups and a remainder."
+      - text: "Split into full groups and a remainder."
+      - text: "Decide what the question asks for."
+      - text: "Check the answer against the words."

@@ -1,0 +1,36 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d1-3.yaml, and the port writes this file again (R12).
+id: "wp-34-d1-3"
+statement:
+  - text: "There are 3 coins that look the same. One of them is fake and lighter than the others; the other two weigh the same. What is the smallest number of weighings on a balance without weights that is sure to find the fake coin?"
+givens: ["There are 3 coins that look the same, and one of them is a lighter fake.", "The real coins all weigh the same, and the balance has no weights."]
+unknown: "The smallest number of weighings that is sure to find the fake."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "1"
+          units: ["weighing", "weighings"]
+          trap_values:
+            - value: "0"
+              trap: "ignored-condition"
+              text: "The coins look the same, so without weighing you cannot tell."
+            - value: "2"
+              trap: "missed-case"
+              text: "Think what each result of one weighing tells you."
+            - value: "3"
+              trap: "number-from-text"
+              text: "3 is the number of coins."
+    simpler_case: "Try 4 coins with one lighter fake. How many weighings are sure to find it?"
+solution:
+  - text: "Put one coin on each pan. If one pan goes up, the coin on it is the fake. If the pans balance, the fake is the coin that was not weighed. One weighing is enough."
+traps: ["ignored-condition"]
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-3-4"
+difficulty: 1

@@ -1,0 +1,5 @@
+# What a person adds to tri-34-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The expression is 999 × 5 + 5."
+unknown: "The value of the expression."
+simpler_case: "Try 9 × 5 + 5 first. How many fives are there in all?"

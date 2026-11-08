@@ -1,0 +1,9 @@
+# What a person adds to ratio-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are 3 gold fish for every 5 silver fish, and every fish is gold or silver."
+  - "There are 20 silver fish."
+unknown: "How many fish are in the tank."
+simpler_case: "Try 1 gold fish for every 2 silver fish, with 6 silver fish. How many fish are there?"
+picture_alt: "Two bars: G of 3 equal parts and S of 5 equal parts, with the notes S = 20 and G + S = ?."
+trap_texts:
+  "12": "12 is only part of the fish."

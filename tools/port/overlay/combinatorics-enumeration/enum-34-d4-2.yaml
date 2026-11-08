@@ -1,0 +1,7 @@
+# What a person adds to enum-34-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "A code has 3 different digits chosen from 1, 2, 3 and 4."
+  - "The digits are written in increasing order, like 134."
+unknown: "How many different codes there are."
+simpler_case: "Try codes of 2 different digits chosen from 1, 2 and 3, written in increasing order. List them."
+leak_phrases: ["4 codes", "four codes"]

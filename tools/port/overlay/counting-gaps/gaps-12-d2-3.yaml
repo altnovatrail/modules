@@ -1,0 +1,6 @@
+# What a person adds to gaps-12-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Sam is 3rd from the front."
+  - "Sam is 3rd from the back."
+unknown: "How many children are in the queue."
+simpler_case: "Try a queue where someone is 1st from the front and 1st from the back. How many children is that?"

@@ -1,0 +1,9 @@
+# What a person adds to pct-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "20% of Mia's stamps is as many as 30% of Sam's."
+  - "Together they have 200 stamps."
+unknown: "How many stamps Mia has."
+simpler_case: "Try: 50% of Mia's stamps is as many as all of Sam's, and together they have 30. How many does Mia have?"
+trap_texts:
+  "24": "24 is part of Mia's stamps, not all of them."
+  "80": "80 is not Mia's number of stamps."

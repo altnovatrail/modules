@@ -1,0 +1,9 @@
+# What a person adds to enum-56-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The lines of the garden are walls."
+  - "The beetle starts in cell S."
+  - "It moves to the cell next to it, never through a wall."
+unknown: "How many cells the beetle can reach, counting S."
+simpler_case: "Try a garden of 2 by 2 cells with a wall between the two top cells, the beetle in the top left cell. How many cells can it reach?"
+picture_alt: "A garden on squared paper, six cells across and six down, S in the top left cell. Walls: down the right side of the second column from the top, 3 cells long; along the bottom of the third row under the first two columns; down the right side of the fourth column from the bottom of the second row to the bottom edge, 4 cells long; along the bottom of the second row under the fifth and sixth columns; and along the bottom of the fourth row under the third and fourth columns."
+solution_picture_alt: "The same garden with the cells the beetle can reach shaded."

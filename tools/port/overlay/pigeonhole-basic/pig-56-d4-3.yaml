@@ -1,0 +1,9 @@
+# What a person adds to pig-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "You choose different numbers from 1 to 10."
+  - "One of them must divide another."
+unknown: "How many numbers you must choose to be sure of it."
+simpler_case: "Try the numbers from 1 to 4 first. How many must you choose to be sure that one divides another?"
+trap_texts:
+  "5": "5 is not enough: five numbers can be found with no one dividing another. Try the biggest numbers."
+  "10": "10 is how many numbers there are to choose from; far fewer are already enough."

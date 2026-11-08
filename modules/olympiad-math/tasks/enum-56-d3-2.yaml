@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/enum-56-d3-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/enum-56-d3-2.yaml, and the port writes this file again (R12).
 id: "enum-56-d3-2"
 statement:
   - text: "Four boards of a fence stand in a row. Each board is painted red, white or blue. Boards next to each other must have different colours, and the first board may not be red. In how many ways can the fence be painted?"

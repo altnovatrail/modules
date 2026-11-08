@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/percent.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/pct-56-d1-3.yaml, and the port writes this file again (R12).
+id: "pct-56-d1-3"
+statement:
+  - text: "Sam puts 500 coins in a bank. Every year the bank adds 20% of the 500 coins he first put in. How many coins does Sam have after 3 years?"
+givens: ["Sam puts 500 coins in a bank.", "Every year the bank adds 20% of the first 500 coins."]
+unknown: "How many coins Sam has after 3 years."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "800"
+          units: ["coin", "coins"]
+          trap_values:
+            - value: "600"
+              trap: "stopped-early"
+              text: "600 is not what Sam has after 3 years."
+            - value: "300"
+              trap: "part-whole-swap"
+              text: "300 is what the bank added, not all Sam has."
+            - value: "864"
+              trap: "percent-wrong-base"
+              text: "864 takes 20% of the new sum every year. The bank adds 20% of the first 500 coins only."
+            - value: "560"
+              trap: "wrong-operation"
+              text: "560 adds 20 coins a year, as if 20% were 20 coins."
+    simpler_case: "Try 200 coins with 10% of them added every year. How many coins are there after 2 years?"
+solution:
+  - text: "20% of 500 coins is 100 coins. The bank adds the same 100 coins every year, so in 3 years it adds 300 coins. Sam has 500 + 300 = 800 coins."
+skills:
+  primary: ["percent-basic"]
+band: "grades-5-6"
+difficulty: 1

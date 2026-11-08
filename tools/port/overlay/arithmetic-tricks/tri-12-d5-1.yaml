@@ -1,0 +1,5 @@
+# What a person adds to tri-12-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "All the numbers from 1 to 20 are added."
+unknown: "The sum."
+simpler_case: "Try the numbers from 1 to 6 first. Pair the first with the last."

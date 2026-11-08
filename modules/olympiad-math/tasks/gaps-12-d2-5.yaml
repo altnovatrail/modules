@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-12-d2-5.yaml, and the port writes this file again (R12).
+id: "gaps-12-d2-5"
+statement:
+  - text: "Ben writes all the numbers from 10 to 20, including 10 and 20. How many numbers does he write?"
+givens: ["Ben writes every number from 10 to 20.", "He writes 10 and 20 too."]
+unknown: "How many numbers Ben writes."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "11"
+          units: ["number", "numbers"]
+          trap_values:
+            - value: "9"
+              trap: "ignored-condition"
+              text: "10 and 20 must be counted too."
+            - value: "10"
+              trap: "off-by-one"
+              text: "20 - 10 = 10 misses one number. Count them one by one."
+            - value: "20"
+              trap: "number-from-text"
+              text: "20 is the last number, not how many numbers there are."
+            - value: "30"
+              trap: "wrong-operation"
+              text: "You added 10 and 20. Count the numbers instead."
+    simpler_case: "Try the numbers from 1 to 3 first. How many numbers is that?"
+solution:
+  - text: "10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20: that is 11 numbers."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 2

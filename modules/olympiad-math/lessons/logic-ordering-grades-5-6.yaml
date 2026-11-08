@@ -1,0 +1,34 @@
+# A lesson of E3 (T38; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# logic-ordering on the band of grades 5–6. Its texts are those of the page ordering of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: logic-ordering-grades-5-6
+title: "Ordering: olympiad level"
+skills: [logic-ordering]
+segments:
+  - explanation:
+      - text: "Who is taller, who is older, who came first? In these logic puzzles a few comparisons have to be joined into one order: by height, by age, by a place in a queue or in a race. It is a chain of reasoning, in which every clue is a link and none may be left out."
+      - text: "Every clue is an arrow. “Ann is taller than Ben” puts Ann before Ben on the line. Whatever a clue compares, height, age or a place in a race, it says who comes first."
+      - text: "Read it both ways. “Ben is shorter than Ann” says the same as “Ann is taller than Ben”. Turn every clue round so that all of them point the same way before they go on the line."
+      - text: "A chain goes on. If a car is faster than a bus and the bus is faster than a bike, then the car is faster than the bike as well, though no clue says so."
+  - worked_example:
+      statement:
+        - text: "Six runners finished a race with no ties: Ada, Bob, Cid, Dot, Eli and Fay. Bob finished right after Ada. Cid finished after Dot but before Ada. Fay finished right before Eli, and Eli was not last. Dot was not first. Who won?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Find the blocks: “Bob right after Ada” makes Ada-Bob, and “Fay right before Eli” makes Fay-Eli. Dot, then Cid, then the block Ada-Bob go in that order."
+        - text: "Dot was not first, so someone finished before her. Cid, Ada and Bob all finished after Dot: only Fay and Eli can be in front of her, and they come together."
+        - text: "So Fay-Eli opens the race: Fay, Eli, Dot, Cid, Ada, Bob. Eli is not last, as the clue says. Every clue holds."
+        - text: "Answer: Fay won."
+  - explanation:
+      - text: "Blocks move together. When a clue says “right after”, the two runners stand side by side wherever they go. Treat them as one block, and six runners become four things to place."
+  - task: ord-56-d1-1
+  - task: ord-56-d3-1
+  - task: ord-56-d5-2
+  - explanation:
+      - text: "How to solve: draw the line."
+      - text: "Turn every clue the same way."
+      - text: "Put the clues on the line, the certain ones first."
+      - text: "Read the answer, and check every clue against it."

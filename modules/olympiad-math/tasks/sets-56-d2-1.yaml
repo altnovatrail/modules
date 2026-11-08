@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.sets.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/sets-56-d2-1.yaml, and the port writes this file again (R12).
+id: "sets-56-d2-1"
+statement:
+  - text: "A class has 25 pupils. 15 of them are in the football club (F), 12 are in the chess club (C), and 5 are in both clubs. How many pupils are in neither club?"
+  - picture: "pictures/sets-56-d2-1.png"
+    alt: "Two overlapping circles, F of 15 and C of 12, inside a box of 25; the overlap holds 5 and the space outside both is marked ?."
+    width: 256
+    height: 212
+givens: ["The class has 25 pupils.", "15 are in the football club, 12 in the chess club, and 5 in both."]
+unknown: "How many pupils are in neither club."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["pupil", "pupils"]
+          trap_values:
+            - value: "22"
+              trap: "answered-other-question"
+              text: "22 is not the number of pupils in neither club."
+            - value: "5"
+              trap: "number-from-text"
+              text: "5 is how many are in both clubs, copied from the question."
+            - value: "8"
+              trap: "double-count"
+              text: "8 takes the pupils in both clubs away twice."
+            - value: "13"
+              trap: "missed-case"
+              text: "Only the chess players were taken away; the footballers who do not play chess were left in."
+    simpler_case: "Try 10 pupils, 6 in football, 5 in chess and 2 in both. How many are in neither club?"
+solution:
+  - text: "Adding 15 and 12 counts the 5 pupils in both clubs twice, so 15 + 12 - 5 = 22 pupils are in at least one club. That leaves 25 - 22 = 3 pupils in neither."
+  - text: "25 − (15 + 12 − 5) = 3"
+  - picture: "pictures/sets-56-d2-1-solution.png"
+    alt: "The same circles, with 3 in the space outside both."
+    width: 256
+    height: 212
+skills:
+  primary: ["logic-sets"]
+band: "grades-5-6"
+difficulty: 2

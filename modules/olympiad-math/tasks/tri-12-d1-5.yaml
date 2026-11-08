@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-12-d1-5.yaml, and the port writes this file again (R12).
+id: "tri-12-d1-5"
+statement:
+  - text: "What is 9 + 9 + 9 + 1 + 1 + 1?"
+givens: ["The sum is 9 + 9 + 9 + 1 + 1 + 1."]
+unknown: "The sum."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "30"
+          trap_values:
+            - value: "10"
+              trap: "answered-other-question"
+              text: "10 is one pair, 9 + 1. There are three such pairs."
+            - value: "27"
+              trap: "stopped-early"
+              text: "27 is only the three nines."
+            - value: "29"
+              trap: "stopped-early"
+              text: "29 leaves out one of the 1s."
+            - value: "40"
+              trap: "double-count"
+              text: "There are three pairs of 9 + 1, not four."
+    simpler_case: "Try 9 + 9 + 1 + 1 first. Which numbers make 10 together?"
+solution:
+  - text: "Make pairs: 9 + 1 = 10, three times. 10 + 10 + 10 = 30."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-1-2"
+difficulty: 1

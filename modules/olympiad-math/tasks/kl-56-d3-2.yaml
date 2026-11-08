@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-56-d3-2.yaml, and the port writes this file again (R12).
+id: "kl-56-d3-2"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Seven islanders stand in a line, one behind another. Each of them says: 'In front of me there are more liars than knights.' The first in the line has nobody in front. How many knights are in the line?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Seven islanders stand in a line, one behind another.", "Each says: 'In front of me there are more liars than knights.'", "The first has nobody in front."]
+unknown: "How many knights are in the line."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["knight", "knights"]
+          trap_values:
+            - value: "4"
+              trap: "answered-other-question"
+              text: "4 is not the number of knights."
+            - value: "7"
+              trap: "trusted-statement"
+              text: "Not everyone can be right: with nobody in front, the first one's words are false."
+            - value: "0"
+              trap: "ignored-condition"
+              text: "The second has one liar and no knights in front, so the second one's words are true."
+            - value: "1"
+              trap: "stopped-early"
+              text: "The pattern goes on past the second in the line."
+    simpler_case: "Try three islanders in a line, each saying 'In front of me there are more liars than knights.' How many knights are there?"
+solution:
+  - text: "The first has nobody in front, and 0 liars are not more than 0 knights, so the first is a liar. The second has one liar and no knights in front and tells the truth. The third has one of each in front and lies. The fourth has two liars and one knight in front and tells the truth. It goes on like this: liars stand 1st, 3rd, 5th and 7th, and knights 2nd, 4th and 6th. There are 3 knights."
+techniques: ["pattern"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-5-6"
+difficulty: 3

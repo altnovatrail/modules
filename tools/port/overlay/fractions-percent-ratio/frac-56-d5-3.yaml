@@ -1,0 +1,9 @@
+# What a person adds to frac-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Owen ate some biscuits, and then shared the rest equally with Zoe."
+  - "In the end Owen had eaten 4 times as many biscuits as Zoe."
+unknown: "The part of all the biscuits Owen ate before Zoe came."
+simpler_case: "Try the same with 3 times as many instead of 4 times. What part did Owen eat before Zoe came?"
+trap_texts:
+  "4/5": "4/5 counts what Owen ate after Zoe came too."
+  "2/5": "2/5 is not what Owen ate before Zoe came."

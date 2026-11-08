@@ -1,0 +1,9 @@
+# What a person adds to gaps-34-d3-6 of standalone; the port writes the task from it (R12).
+givens:
+  - "Kitten A starts on the floor, step 0."
+  - "Kitten B starts on the top step."
+  - "With each move, each kitten goes as far as its jump in the picture shows: A up and B down."
+unknown: "On which step the kittens meet."
+simpler_case: "Try a staircase of 6 steps, A starting on the floor and B on the top step, each going 1 step a move. On which step do they meet?"
+picture_alt: "A staircase of 10 steps above the floor. Kitten A sits on the floor and kitten B on the top step. One arrow shows A's jump up from the floor to step 2, and another shows B's jump down from step 10 to step 7."
+solution_picture_alt: "The same staircase with kitten A on the step where the kittens meet, and the jumps of both kittens drawn."

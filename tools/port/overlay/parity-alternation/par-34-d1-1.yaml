@@ -1,0 +1,7 @@
+# What a person adds to par-34-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The sum of two whole numbers is odd."
+  - "One of them is 14."
+unknown: "Which of the numbers the other can be."
+simpler_case: "Try 14 + 1 and 14 + 2. Which sum is odd?"
+techniques: [parity]

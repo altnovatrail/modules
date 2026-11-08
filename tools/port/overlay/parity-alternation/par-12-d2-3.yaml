@@ -1,0 +1,9 @@
+# What a person adds to par-12-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The frog starts on stone 0."
+  - "It always jumps 2 stones forward: 0, 2, 4, and so on."
+unknown: "On which of the stones it can land."
+simpler_case: "Try jumps of 2 from stone 0 up to stone 8. Which stones does it land on?"
+techniques: [parity]
+picture_alt: "A number line from 0 to 6 with the frog's mark on 0."
+solution_picture_alt: "A number line from 0 to 12 with the stones the frog lands on marked: every even number."

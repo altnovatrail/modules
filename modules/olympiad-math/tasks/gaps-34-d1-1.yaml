@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/gaps-34-d1-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/gaps-34-d1-1.yaml, and the port writes this file again (R12).
 id: "gaps-34-d1-1"
 statement:
   - text: "Trees grow along one side of a road, 5 metres apart. There are 21 trees from the first to the last. How many metres is it from the first tree to the last?"

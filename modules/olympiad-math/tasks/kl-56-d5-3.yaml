@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-56-d5-3.yaml, and the port writes this file again (R12).
+id: "kl-56-d5-3"
+statement:
+  - text: "In a football match, a team of 6 truth-tellers, who always tell the truth, played a team of 6 liars, who always lie. The truth-tellers won 12 to 9. Afterwards every player was asked: 'How many goals did you score?' Some said 'one', some 'three' and some 'seven', and Misha alone said 'four'. Is Misha a liar?"
+givens: ["A team of 6 truth-tellers played a team of 6 liars, and the truth-tellers won 12 to 9.", "Asked how many goals they scored, players said one, three or seven, and Misha alone said four."]
+unknown: "Whether Misha is a liar."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["No: 12 is even, and so is 4", "No, he tells the truth", "It cannot be told without knowing his team", "Yes, he is a liar", "No: anyone may have scored four goals"]
+        check:
+          kind: "choice"
+          key: "Yes, he is a liar"
+          trap_values:
+            - value: "No: 12 is even, and so is 4"
+              trap: "wrong-parity"
+              text: "Five odd answers add up to an odd number, and adding 4 keeps it odd, so the sum cannot be the even 12."
+            - value: "No, he tells the truth"
+              trap: "trusted-statement"
+              text: "This takes Misha at his word. With him among the truth-tellers, their answers could not add up to 12."
+            - value: "It cannot be told without knowing his team"
+              trap: "stopped-early"
+              text: "His team can be found: a truth-teller who said four would make the truth-tellers' answers add up to an odd number, not 12."
+            - value: "No: anyone may have scored four goals"
+              trap: "trusted-statement"
+              text: "Four goals are possible in a game, but not for a truth-teller here: the truth-tellers' answers would then add up to an odd number."
+    simpler_case: "Try three truth-tellers who scored 6 goals in all, each saying one, three or seven. Can that be?"
+solution:
+  - text: "The truth-tellers' answers are their real goals, so they add up to 12. If Misha were one of them, the other five would have said one, three or seven, all odd numbers, and five odd numbers add up to an odd number. With Misha's four the sum would still be odd, never 12. So Misha played for the liars, and he lied."
+techniques: ["parity"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-5-6"
+difficulty: 5

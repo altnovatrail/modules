@@ -1,0 +1,12 @@
+# What a person adds to cal-34-d4-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The holidays start on Saturday, 26 October."
+  - "They last 9 days, counting the first day."
+  - "October has 31 days."
+unknown: "The day the holidays end."
+simpler_case: "Try holidays of 4 days from Saturday, 26 October. On which day do they end?"
+techniques: [draw]
+trap_texts:
+  "Saturday, 2 November": "That is not yet the 9th day of the holidays."
+  "Sunday, 4 November": "October has 31 days, not 30."
+  "Monday, 4 November": "That is past the 9th day of the holidays."

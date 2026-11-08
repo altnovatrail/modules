@@ -1,0 +1,10 @@
+# What a person adds to cal-34-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Today is Thursday."
+unknown: "The day of the week in 15 days."
+simpler_case: "Try 10 days from Thursday. What day is it?"
+techniques: [pattern]
+trap_texts:
+  "Thursday": "15 days is not a whole number of weeks."
+  "Saturday": "15 days is not 2 weeks and 2 days."
+  "Monday": "Count whole weeks first, then the days left over."

@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d1-1.yaml, and the port writes this file again (R12).
+id: "wp-56-d1-1"
+statement:
+  - text: "A bag holds 10 coins, and one of them is a fake that weighs more than a real coin. All the real coins weigh the same. What is the smallest number of weighings on a balance with no weights that always finds the fake?"
+givens: ["A bag holds 10 coins, and one of them is a heavier fake.", "The real coins weigh the same, and the balance has no weights."]
+unknown: "The smallest number of weighings that always finds the fake."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["weighing", "weighings"]
+          trap_values:
+            - value: "2"
+              trap: "best-case-not-worst"
+              text: "2 weighings find the fake only with luck: they cannot tell apart 10 coins."
+            - value: "1"
+              trap: "stopped-early"
+              text: "1 weighing of 5 against 5 shows only which five coins hold the fake, not which coin it is."
+            - value: "4"
+              trap: "wrong-operation"
+              text: "Count again how many coins each weighing can leave the fake among."
+            - value: "5"
+              trap: "missed-case"
+              text: "5 weighs the coins in pairs, one against one, and only the fifth pair finds the fake in the worst case. With several coins on each pan, fewer weighings are enough."
+    simpler_case: "Try 4 coins with one heavier fake. How many weighings find it?"
+solution:
+  - text: "A weighing ends in one of three ways, so it can leave the fake among a third of the coins: as many on each pan, and the rest aside. Two weighings tell apart at most 3 × 3 = 9 coins, and there are 10, so 2 are not sure to be enough. Three are: weigh 3 against 3 with 4 aside, and the 4 coins or fewer that are left need two more weighings."
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-5-6"
+difficulty: 1

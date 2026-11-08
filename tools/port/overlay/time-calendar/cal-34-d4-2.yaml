@@ -1,0 +1,9 @@
+# What a person adds to cal-34-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The brothers are 5, 8 and 11 years old."
+unknown: "In how many years their ages add up to 60."
+simpler_case: "Try two brothers of 4 and 6. In how many years will their ages add up to 20?"
+techniques: [draw]
+trap_texts:
+  "13": "13 years make the sum too big."
+  "36": "36 is how much the sum must grow, not the number of years."

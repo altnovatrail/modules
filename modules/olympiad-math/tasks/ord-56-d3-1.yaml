@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-56-d3-1.yaml, and the port writes this file again (R12).
+id: "ord-56-d3-1"
+statement:
+  - text: "Six girls swam a race: Lara, Maya, Nell, Olive, Paula and Rosa. Olive finished after Maya. Rosa and Nell both finished before Maya. Paula finished after Olive, but not right after her. Who finished fifth?"
+givens: ["Lara, Maya, Nell, Olive, Paula and Rosa swam a race.", "Olive finished after Maya, and Rosa and Nell before Maya.", "Paula finished after Olive, but not right after her."]
+unknown: "Who finished fifth."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Lara"
+          options: ["Paula", "Olive", "Lara", "It is impossible to tell", "Rosa"]
+          trap_values:
+            - value: "Paula"
+              trap: "ignored-not"
+              text: "Paula finished after Olive but not right after her, so she cannot be 5th."
+            - value: "Olive"
+              trap: "off-by-one"
+              text: "Olive is 4th, right after Maya."
+            - value: "It is impossible to tell"
+              trap: "stopped-early"
+              text: "Rosa and Nell can swap places, but the 5th place is the same in both orders."
+            - value: "Rosa"
+              trap: "reversed-relation"
+              text: "Rosa finished 1st or 2nd; only counting from the last place makes 2nd into 5th."
+    simpler_case: "Try five girls, Maya, Nell, Olive, Paula and Rosa: Rosa and Nell finished before Maya, Olive after Maya, and Paula after Olive. Who finished fourth?"
+solution:
+  - text: "Rosa and Nell finished before Maya, so Maya is at least 3rd. Olive finished after Maya, and Paula after Olive with someone between them, so Paula is at least three places after Maya. With six places, Maya is 3rd, Olive 4th and Paula 6th, and the 5th place is left for Lara. Rosa and Nell can be 1st and 2nd either way round, but the 5th is Lara in both orders."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-5-6"
+difficulty: 3

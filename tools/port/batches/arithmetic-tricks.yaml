@@ -1,0 +1,79 @@
+# The tasks of arithmetic-tricks of standalone at 42b4408: all 67 of them (E3; T25). The units are
+# the word a question counts, in the singular and the plural; a task that asks for a number by itself
+# has none. The technique standalone's site links to the topic, backwards, goes in the overlay of each
+# task that is undone step by step, and the others have none.
+standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+skills:
+  arithmetic-tricks:
+    techniques: []
+tasks:
+  tri-12-d1-1: {}
+  tri-12-d1-2: {}
+  tri-12-d1-3: {}
+  tri-12-d1-4: {}
+  tri-12-d1-5: {}
+  tri-12-d2-1: {}
+  tri-12-d2-2: {}
+  tri-12-d2-3: {}
+  tri-12-d2-4: {}
+  tri-12-d2-5: {}
+  tri-12-d2-6: {}
+  tri-12-d3-1: {}
+  tri-12-d3-2: {}
+  tri-12-d3-3: {}
+  tri-12-d3-4: {}
+  tri-12-d3-5: {}
+  tri-12-d4-1: {}
+  tri-12-d4-2: {}
+  tri-12-d4-3: {}
+  tri-12-d4-4: {}
+  tri-12-d4-5: {}
+  tri-12-d5-1: {}
+  tri-12-d5-2: {}
+  tri-12-d5-3: {}
+  tri-12-d5-4: {units: [sweet, sweets]}
+  tri-12-d5-5: {}
+  tri-34-d1-1: {}
+  tri-34-d1-2: {}
+  tri-34-d1-3: {}
+  tri-34-d1-4: {}
+  tri-34-d1-5: {}
+  tri-34-d2-1: {}
+  tri-34-d2-2: {}
+  tri-34-d2-3: {}
+  tri-34-d2-4: {}
+  tri-34-d2-5: {}
+  tri-34-d3-1: {}
+  tri-34-d3-2: {}
+  tri-34-d3-3: {}
+  tri-34-d3-4: {}
+  tri-34-d3-5: {}
+  tri-34-d3-6: {}
+  tri-34-d4-1: {}
+  tri-34-d4-2: {}
+  tri-34-d4-3: {}
+  tri-34-d4-4: {}
+  tri-34-d4-5: {}
+  tri-34-d5-1: {}
+  tri-34-d5-2: {}
+  tri-34-d5-3: {}
+  tri-34-d5-4: {units: [zero, zeros]}
+  tri-34-d5-5: {}
+  tri-56-d1-1: {}
+  tri-56-d1-2: {units: [point, points]}
+  tri-56-d1-3: {}
+  tri-56-d2-1: {}
+  tri-56-d2-2: {}
+  tri-56-d2-3: {}
+  tri-56-d3-1: {}
+  tri-56-d3-2: {}
+  tri-56-d3-3: {}
+  tri-56-d4-1: {}
+  tri-56-d4-2: {}
+  tri-56-d4-3: {units: [coin, coins]}
+  tri-56-d5-1: {}
+  tri-56-d5-2: {units: [number, numbers]}
+  tri-56-d5-3: {}

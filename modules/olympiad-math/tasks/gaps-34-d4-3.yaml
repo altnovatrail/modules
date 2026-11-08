@@ -1,0 +1,48 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-34-d4-3.yaml, and the port writes this file again (R12).
+id: "gaps-34-d4-3"
+statement:
+  - text: "A path is 90 metres long. On each side of the path there is a post every 10 metres, including both ends. How many posts are there on both sides together?"
+  - picture: "pictures/gaps-34-d4-3.png"
+    alt: "Two rows of posts, one on each side of the path, each with a stretch left out in the middle; every gap drawn is marked 10 and each row is marked 90."
+    width: 272
+    height: 168
+givens: ["The path is 90 metres long.", "On each side there is a post every 10 metres.", "There are posts at both ends of each side."]
+unknown: "How many posts there are on both sides together."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "20"
+          units: ["post", "posts"]
+          trap_values:
+            - value: "9"
+              trap: "answered-other-question"
+              text: "9 is the number of gaps on one side."
+            - value: "10"
+              trap: "stopped-early"
+              text: "10 posts stand on one side only."
+            - value: "18"
+              trap: "off-by-one"
+              text: "Each side has 10 posts, not 9."
+            - value: "22"
+              trap: "off-by-one"
+              text: "Each side has 10 posts, not 11."
+    simpler_case: "Try one side of a path 30 metres long, with a post every 10 metres and posts at both ends. How many posts does it have?"
+solution:
+  - text: "One side has 90 ÷ 10 = 9 gaps and 9 + 1 = 10 posts. Two sides have 10 + 10 = 20 posts."
+  - text: "10 + 10 = 20"
+  - picture: "pictures/gaps-34-d4-3-solution.png"
+    alt: "The same two rows with their posts numbered 1, 2 and 3, a stretch left out, and post 10 at the end; every gap is 10 and each row is 90."
+    width: 272
+    height: 212
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-3-4"
+difficulty: 4

@@ -1,0 +1,34 @@
+# A lesson of E3 (T39; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# algorithms-weighing-pouring on the band of grades 3–4. Its texts are those of the page weighing-and-pouring of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: algorithms-weighing-pouring-grades-3-4
+title: "Weighing and pouring: going further"
+skills: [algorithms-weighing-pouring]
+segments:
+  - explanation:
+      - text: "With an 8-litre jug and a 5-litre jug, how do you measure exactly 1 litre? With a balance and no weights, how do you find the one light coin among many? In these tasks you plan a short sequence of steps, and every rule counts: no marks on the jugs, no weights for the balance. It is a first meeting with algorithms, plans that work whatever happens."
+      - text: "A state is every jug. Write what each jug holds after every step: 0 and 5, then 5 and 0. A list of states shows where you can get to and where you have already been."
+      - text: "Three outcomes. A balance can tip left, tip right or stay level, so every weighing has three outcomes. Split the coins into three groups, not two."
+      - text: "Every rule counts. No marks on the jugs, no water poured away, weights on one pan only: each rule changes which steps are allowed, and so the answer."
+  - worked_example:
+      statement:
+        - text: "A cook has an empty 3-litre jug, an empty 5-litre jug and a tap. The jugs have no marks. In one step she fills a jug from the tap, pours a jug out, or pours from one jug into the other until the first is empty or the second is full. What is the fewest steps to get exactly 1 litre in a jug?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Fill the 3-litre jug and pour it into the 5-litre jug, which now holds 3 litres."
+        - text: "Fill the 3-litre jug again and pour from it until the big jug is full: only 2 more litres fit."
+        - text: "1 litre is left in the small jug, after 4 steps: fill, pour, fill, pour."
+        - text: "Answer: 4 steps."
+  - explanation:
+      - text: "Why not fewer? A table of every state reached in up to three steps has no 1 litre in it: the jugs hold only 0, 2, 3 or 5 litres. The first litre appears after the fourth step."
+  - task: wp-34-d1-2
+  - task: wp-34-d3-3
+  - task: wp-34-d5-2
+  - explanation:
+      - text: "How to solve: a table of states."
+      - text: "Write down the state, what each jug or pan holds."
+      - text: "Try every allowed step from it."
+      - text: "Stop at the goal, and count the steps."

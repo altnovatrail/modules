@@ -1,0 +1,12 @@
+# What a person adds to par-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The board is 3 by 3 squares with a bug on every square."
+  - "At once every bug crawls to a square that shares a side with its own."
+unknown: "At least how many squares must be empty."
+simpler_case: "Try a board of 2 by 2 squares with a bug on each. At least how many squares are empty after they crawl?"
+techniques: [parity]
+trap_texts:
+  "0": "Colour the board like a chess board, and see where the bugs on each colour can go."
+  "2": "2 is too many: look for a way that leaves fewer squares empty."
+  "4": "4 is how many bugs come from the light squares, not how many squares stay empty."
+  "5": "5 squares are left by the bugs on the dark squares, but the bugs from the light squares fill some of them."

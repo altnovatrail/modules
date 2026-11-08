@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/cube-12-d4-1.yaml, and the port writes this file again (R12).
+id: "cube-12-d4-1"
+statement:
+  - text: "The net in the picture is folded into a die. Opposite faces of a die add up to 7. Which number goes on the empty face?"
+  - picture: "pictures/cube-12-d4-1.png"
+    alt: "A net of six squares: a column of four, with 1, 3 and 6 in the top three and the bottom one empty, and a square on each side of the second one: 2 on its left and 5 on its right."
+    width: 168
+    height: 208
+givens: ["The net is folded into a die.", "Opposite faces of a die add up to 7."]
+unknown: "The number for the empty face."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          trap_values:
+            - value: "6"
+              trap: "double-count"
+              text: "6 is on the die already."
+            - value: "3"
+              trap: "answered-other-question"
+              text: "3 is on the net already."
+            - value: "7"
+              trap: "number-from-text"
+              text: "7 is the sum of the two."
+            - value: "1"
+              trap: "ignored-condition"
+              text: "1 is on the die already."
+    simpler_case: "Try a die with 5 on top. Which number is on its bottom?"
+solution:
+  - text: "When the net is folded, the empty face lands opposite 3. Opposite faces add up to 7, and 7 − 3 = 4, so the empty face gets 4."
+  - text: "7 − 3 = 4"
+  - picture: "pictures/cube-12-d4-1-solution.png"
+    alt: "The net with the number for the empty face written in."
+    width: 168
+    height: 208
+techniques: ["draw"]
+skills:
+  primary: ["geometry-cubes-paper"]
+band: "grades-1-2"
+difficulty: 4

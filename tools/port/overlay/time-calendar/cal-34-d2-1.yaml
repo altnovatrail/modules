@@ -1,0 +1,11 @@
+# What a person adds to cal-34-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "1 September is a Monday."
+  - "September has 30 days."
+unknown: "The day of the week of 1 October."
+simpler_case: "Try a month of 30 days that starts on a Friday. What day is the 1st of the next month?"
+techniques: [pattern]
+trap_texts:
+  "Monday": "30 days are not whole weeks."
+  "Tuesday": "Count the days left over after 4 weeks again."
+  "Saturday": "Count the days left over after 4 weeks again, on from Monday."

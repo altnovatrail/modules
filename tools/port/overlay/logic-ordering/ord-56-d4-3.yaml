@@ -1,0 +1,12 @@
+# What a person adds to ord-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Abby, Bob, Cora, Dean, Emma and Finn perform one after another."
+  - "Emma performs first or third, and Finn just before or just after Emma."
+  - "Bob performs after Cora, and Dean second or last."
+  - "Exactly one act comes between Abby's and Bob's."
+unknown: "Who performs third."
+simpler_case: "Try four children, Bob, Cora, Emma and Finn: Emma performs first, Finn right after her, and Bob after Cora. Who performs third?"
+techniques: [table]
+trap_texts:
+  "Cora": "Cora can be third only if the clue about the one act between two others is broken."
+  "Emma": "With Emma third, no two free places are left with exactly one act between them, as the last clue needs."

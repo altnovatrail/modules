@@ -1,0 +1,6 @@
+# What a person adds to pig-12-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The bag has 6 red and 6 blue marbles."
+  - "You take marbles out without looking."
+unknown: "How many marbles you must take to be sure to have 2 marbles of each colour."
+simpler_case: "Try a bag of 3 red and 3 blue marbles first. What is the unluckiest you can take?"

@@ -1,0 +1,106 @@
+# A template of ratio-sharing (T37; R22): the solver of mathtrail-standalone
+# content/solvers/ratio.sharing/for-every.star at 42b4408, made a solver of the template. It came from
+# reference task ratio-56-d4-1, whose numbers are one of its instances.
+# The numbers of reference task ratio-56-d4-1: daisies 30.
+# Its capital START, the daisies, is the number that the statement shows, a multiple of 15 from 15
+# to 60, so that every link, 4 tulips for every 5 daisies and 2 roses for every 3 tulips,
+# gives a whole number. standalone's sandbox gives it sum, which the dialect of the format has not
+# (format/README.md, section 24), so a loop adds the chain. The reference task's picture is left out:
+# one picture for every instance would show its 30 daisies. The trap values are derived numbers.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: for-every
+template:
+  parameters:
+    daisies: {from: 15, to: 60}
+  derived:
+    groups5: daisies // 5
+    tulips: "4 * daisies // 5"
+    groups3: "4 * daisies // 15"
+    roses: "8 * daisies // 15"
+    joined_235: "2 * daisies"
+    joined_245: "11 * daisies // 5"
+    one_fewer: "3 * daisies - 3"
+    no_roses: "9 * daisies // 5"
+  constraint: daisies % 15 == 0
+  solver:
+    program: |
+      # For "a of one for every b of another", chained: go along the chain from the
+      # quantity the question gives, finding each next count as the one count that
+      # is a for every b of the one before.
+
+      links = [(4, 5), (2, 3)]  # each link: a of the next quantity for every b of the one before
+
+      def next_count(count, a, b):
+          found = [n for n in range(0, 1001) if n * b == count * a]
+          if len(found) != 1:
+              fail("%d counts are %d for every %d of %d" % (len(found), a, b, count))
+          return found[0]
+
+      def solve(numbers):
+          chain = [numbers["daisies"]]
+          for a, b in links:
+              chain.append(next_count(chain[-1], a, b))
+          total = 0
+          for count in chain:
+              total += count
+          return {"flowers": total}
+    results: [flowers]
+statement:
+  - text: A flower stall sells only roses, tulips and daisies. It has 2 roses for every 3 tulips, and 4 tulips for every 5 daisies. There are {daisies} daisies. How many flowers does the stall have?
+givens:
+  - The stall sells only roses, tulips and daisies.
+  - There are 2 roses for every 3 tulips, and 4 tulips for every 5 daisies.
+  - There are {daisies} daisies.
+unknown: How many flowers the stall has.
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{flowers}"
+          units: [flower, flowers]
+          trap_values:
+            - value: "{joined_235}"
+              trap: ratio-total-confusion
+              text: "That joins the ratios into 2 : 3 : 5, but the 3 tulips and the 4 tulips belong to different groups."
+            - value: "{joined_245}"
+              trap: ratio-total-confusion
+              text: "That joins the ratios into 2 : 4 : 5, but 2 roses go with 3 tulips, not with 4."
+            - value: "{one_fewer}"
+              trap: wrong-operation
+              text: That counts one flower fewer each time, as if for every meant one fewer.
+            - value: "{no_roses}"
+              trap: part-whole-swap
+              text: That leaves out one kind of flower.
+    simpler_case: Try 1 rose for every 2 tulips, with 10 tulips and no other flowers. How many flowers are there?
+solution:
+  - text: "{daisies} daisies make {groups5} groups of 5, so there are {tulips} tulips. {tulips} tulips make {groups3} groups of 3, so there are {roses} roses. Altogether there are {flowers} flowers."
+leak_phrases: ["{flowers} flowers"]
+skills:
+  primary: [ratio-sharing]
+band: grades-5-6
+difficulty: 4

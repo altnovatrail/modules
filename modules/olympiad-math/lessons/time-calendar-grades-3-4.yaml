@@ -1,0 +1,32 @@
+# A lesson of E3 (T39; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# time-calendar on the band of grades 3–4. Its texts are those of the page calendar-and-age of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: time-calendar-grades-3-4
+title: "Calendar and age: going further"
+skills: [time-calendar]
+segments:
+  - explanation:
+      - text: "Today is Tuesday: what day will it be in 30 days? Mum is 30 and Ann is 6: how old will Ann be when Mum is twice her age? In these calendar and age problems you work with weeks, months and years, and two facts carry most of them: the week comes round every 7 days, and the difference between two ages never changes."
+      - text: "The week comes round. Every 7 days the same day of the week comes back. So for 30 days ahead, only the 2 days left after 4 whole weeks matter."
+      - text: "Both ends of a period. From 3 May to 10 May is 7 days ahead, but a holiday from the 3rd to the 10th lasts 8 days, because both the first and the last day count."
+      - text: "The difference stays. Mum is 24 years older than Ann now, and she will be 24 years older in 10 years: each of them gets one year older every year."
+  - worked_example:
+      statement:
+        - text: "Dad is 28 years older than Vera. In 4 years he will be 3 times as old as she will be. How old is Vera now?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "The difference never changes: in 4 years Dad is still 28 years older."
+        - text: "Then Dad's age is three of Vera's. The two extra parts are the 28 years, so one part is 28 : 2 = 14."
+        - text: "In 4 years Vera is 14, so now she is 14 − 4 = 10. Check: Dad is 38 now, and in 4 years 42 = 3 × 14."
+        - text: "Answer: 10 years old."
+  - task: cal-34-d1-1
+  - task: cal-34-d3-1
+  - task: cal-34-d5-1
+  - explanation:
+      - text: "How to solve: find what does not change."
+      - text: "Find what repeats or stays the same."
+      - text: "Drop the whole weeks, or work with the difference of ages."
+      - text: "Count what is left, and check whether both ends count."

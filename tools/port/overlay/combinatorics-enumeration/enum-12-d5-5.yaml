@@ -1,0 +1,6 @@
+# What a person adds to enum-12-d5-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The digits are 0, 1 and 2."
+  - "A digit may be used twice."
+unknown: "How many two-digit numbers can be written."
+simpler_case: "Try the digits 0 and 1, a digit used twice if you like. How many two-digit numbers are there?"

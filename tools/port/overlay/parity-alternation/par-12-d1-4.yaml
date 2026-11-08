@@ -1,0 +1,7 @@
+# What a person adds to par-12-d1-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The lamp is off at the start."
+  - "Masha presses its switch again and again."
+unknown: "After which press the lamp is on."
+simpler_case: "Try 3 presses. Write on or off after each one."
+techniques: [parity]

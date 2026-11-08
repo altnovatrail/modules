@@ -1,0 +1,9 @@
+# What a person adds to enum-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Maya rolls a red die and a blue die, each showing 1 to 6."
+  - "The two dice show a total of 8."
+  - "Red 2 with blue 6 is a different way from red 6 with blue 2."
+unknown: "In how many ways the dice can show a total of 8."
+simpler_case: "Try a total of 4 with a red die and a blue die. In how many ways can it come?"
+trap_texts:
+  "3": "3 counts each pair of numbers once, but red 2 with blue 6 and red 6 with blue 2 are two ways."

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-12-d5-1.yaml, and the port writes this file again (R12).
+id: "par-12-d5-1"
+statement:
+  - text: "Kolya writes the numbers 1 to 10 in a row and puts a plus or a minus sign between every two neighbours. Which of these results can he get?"
+givens: ["The numbers 1 to 10 stand in a row.", "A plus or a minus stands between every two neighbours."]
+unknown: "Which of the results Kolya can get."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["5", "0", "2", "4", "10"]
+        check:
+          kind: "choice"
+          key: "5"
+          trap_values:
+            - value: "0"
+              trap: "wrong-parity"
+              text: "The result is always odd, and 0 is even."
+            - value: "2"
+              trap: "wrong-parity"
+              text: "The result is always odd, and 2 is even."
+            - value: "4"
+              trap: "wrong-parity"
+              text: "The result is always odd, and 4 is even."
+            - value: "10"
+              trap: "wrong-parity"
+              text: "The result is always odd, and 10 is even."
+    simpler_case: "Try 1, 2 and 3 with plus or minus between them. Which results can you get?"
+solution:
+  - text: "1 + 2 + ... + 10 = 55 is odd. Turning a plus into a minus takes that number away twice, and taking away an even amount does not change odd into even. So the result is always odd. Only 5 is odd, and it works: 1 + 2 + 3 + 4 + 5 - 6 + 7 + 8 - 9 - 10 = 5."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-1-2"
+difficulty: 5

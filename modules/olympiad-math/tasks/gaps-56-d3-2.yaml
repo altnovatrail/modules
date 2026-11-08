@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-56-d3-2.yaml, and the port writes this file again (R12).
+id: "gaps-56-d3-2"
+statement:
+  - text: "A window has 3 rows of 4 square panes. A wooden strip as long as one pane runs along each side of each pane, and two panes next to each other share the strip between them. How many strips are there, counting those around the edge of the window?"
+givens: ["The window has 3 rows of 4 square panes.", "A strip runs along each side of each pane.", "Two panes next to each other share the strip between them."]
+unknown: "How many strips there are, counting those around the edge."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "31"
+          units: ["strip", "strips"]
+          trap_values:
+            - value: "48"
+              trap: "double-count"
+              text: "48 gives each pane its own 4 strips, but two panes next to each other share one."
+            - value: "24"
+              trap: "off-by-one"
+              text: "24 takes one line too few each way: 3 lines across and 4 upright."
+            - value: "17"
+              trap: "ignored-condition"
+              text: "17 counts only the strips between panes, not those around the edge of the window."
+            - value: "12"
+              trap: "answered-other-question"
+              text: "12 is the number of panes."
+    simpler_case: "Try a window of 1 row of 2 panes first. Draw it and count the strips across and the upright ones."
+solution:
+  - text: "The strips lying across form 4 lines, one above each row and one below the last row, with 4 strips in each line: 16. The upright strips form 5 lines, with 3 strips in each: 15. Together 16 + 15 = 31."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-5-6"
+difficulty: 3

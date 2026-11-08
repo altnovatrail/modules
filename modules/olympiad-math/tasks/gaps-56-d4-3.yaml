@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-56-d4-3.yaml, and the port writes this file again (R12).
+id: "gaps-56-d4-3"
+statement:
+  - text: "30 lamps stand round the edge of a rectangular ice rink, with a lamp in each corner. Each short side has 6 lamps, counting its corners. How many lamps does each long side have, counting its corners?"
+givens: ["30 lamps stand round the edge of a rectangular rink.", "There is a lamp in each corner.", "Each short side has 6 lamps, counting its corners."]
+unknown: "How many lamps each long side has, counting its corners."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "11"
+          units: ["lamp", "lamps"]
+          trap_values:
+            - value: "9"
+              trap: "ignored-condition"
+              text: "9 leaves out the long side's corner lamps: the 18 lamps left after both short sides stand between the corners of the long sides."
+            - value: "7"
+              trap: "wrong-operation"
+              text: "7 takes the 4 corner lamps away from 30 instead of adding them back: (26 − 12) ÷ 2."
+            - value: "15"
+              trap: "answered-other-question"
+              text: "15 is half of all the lamps, not the lamps of one long side."
+            - value: "22"
+              trap: "answered-other-question"
+              text: "22 is the number of lamps on both long sides together, counting their corners."
+    simpler_case: "Try 10 lamps round a rectangle, one in each corner, with 3 lamps on each short side counting its corners. How many lamps does each long side have?"
+solution:
+  - text: "Adding up the lamps of the four sides counts each of the 4 corner lamps twice, so the four sides together hold 30 + 4 = 34. The two short sides hold 6 + 6 = 12 of these, which leaves 34 − 12 = 22 for the two long sides: 11 each."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-5-6"
+difficulty: 4

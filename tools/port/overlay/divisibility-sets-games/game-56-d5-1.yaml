@@ -1,0 +1,11 @@
+# What a person adds to game-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann, Ben and 8 other children stand in a circle."
+  - "3 children between Ann and Ben on one side and 5 on the other."
+  - "In turn, Ann first, each sends home one of the two children next to them, and sending the other player home wins."
+unknown: "Who wins if both play as well as they can."
+simpler_case: "Try 1 child between them on one side and 2 on the other. Who wins?"
+trap_texts:
+  "Ann, since she goes first": "Going first does not decide it here."
+  "Ann, by sending home the children on the side of 3 first": "Which side Ann takes children from does not matter."
+  "Ann, since 8 is an even number": "Count the moves until someone has to give way."

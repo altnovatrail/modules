@@ -1,0 +1,45 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-56-d4-1.yaml, and the port writes this file again (R12).
+id: "ord-56-d4-1"
+statement:
+  - text: "Seven bikes stand in a rack with slots numbered 1 to 7 from the left. Hana's bike is in slot 3. There are exactly three bikes between Ivo's bike and Jon's bike. Kai's bike is right next to Jon's, on its right. Lea's bike is to the right of Hana's but to the left of Ivo's. The other two bikes belong to Max and Ned. In which slot is Ivo's bike?"
+  - picture: "pictures/ord-56-d4-1.png"
+    alt: "A rack of seven slots in a row, numbered 1 to 7 from the left."
+    width: 384
+    height: 74
+givens: ["Seven bikes stand in a rack with slots numbered 1 to 7 from the left.", "Hana's bike is in slot 3.", "Exactly three bikes stand between Ivo's and Jon's.", "Kai's bike is right next to Jon's, on its right.", "Lea's bike is to the right of Hana's but to the left of Ivo's."]
+unknown: "The slot of Ivo's bike."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          trap_values:
+            - value: "1"
+              trap: "reversed-relation"
+              text: "Reading each left in the clues as right, and each right as left, puts Ivo's bike in slot 1, but Lea's bike stands to the left of Ivo's."
+            - value: "6"
+              trap: "ignored-condition"
+              text: "With Ivo at 6, Jon is at 2 and Kai's bike, right next to Jon's, would be in Hana's slot 3."
+            - value: "4"
+              trap: "answered-other-question"
+              text: "4 is the slot of someone else's bike. The question asks about Ivo's."
+    simpler_case: "Try five slots, numbered from the left: Hana's bike is in slot 2, Lea's right next to Hana's on its right, and Ivo's right next to Lea's on its right. In which slot is Ivo's bike?"
+solution:
+  - text: "Two slots with exactly three bikes between them are 4 apart: 1 and 5, 2 and 6, or 3 and 7. Slot 3 is Hana's, so 3 and 7 are out. Lea is to the right of Hana and to the left of Ivo, so Ivo is at 5 or further right. That leaves Ivo at 5 with Jon at 1, or Ivo at 6 with Jon at 2. With Jon at 2, Kai would be at 3, which is Hana's slot. So Jon (J) is at 1, Kai (K) at 2, Hana (H) at 3, Lea (L) at 4 and Ivo (I) at 5."
+  - picture: "pictures/ord-56-d4-1-solution.png"
+    alt: "The rack with J under slot 1, K under slot 2, H under slot 3, L under slot 4 and I under slot 5, which is ringed; slots 6 and 7 are empty."
+    width: 384
+    height: 96
+techniques: ["table"]
+traps: ["stopped-early"]
+leak_phrases: ["slot 5", "fifth slot"]
+skills:
+  primary: ["logic-ordering"]
+band: "grades-5-6"
+difficulty: 4

@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/percent.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/pct-56-d5-1.yaml, and the port writes this file again (R12).
+id: "pct-56-d5-1"
+statement:
+  - text: "A shop sells wheels for 150 coins each and bolts for 10 coins each. Once a customer has paid 320 coins or more in the shop, everything they buy after that is 20% cheaper. Tom needs 3 wheels and 1 bolt. He may pay in several goes and may buy more than he needs. What is the least he can pay to get what he needs?"
+givens: ["Wheels cost 150 coins and bolts 10 coins.", "Once 320 coins or more are paid, everything after that is 20% cheaper.", "Tom needs 3 wheels and 1 bolt, may pay in several goes and may buy more than he needs."]
+unknown: "The least Tom can pay to get what he needs."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "440"
+          units: ["coin", "coins"]
+          trap_values:
+            - value: "460"
+              trap: "ignored-condition"
+              text: "460 pays full price for everything. Think whether paying in several goes can help."
+            - value: "458"
+              trap: "missed-case"
+              text: "458 buys the 3 wheels first and then the bolt with the discount. Think which thing is best bought cheaper."
+            - value: "430"
+              trap: "ignored-condition"
+              text: "430 counts 2 wheels and 1 bolt as enough for the discount, but they cost less than 320 coins."
+            - value: "368"
+              trap: "percent-wrong-base"
+              text: "368 takes 20% off the whole bill. The first 320 coins are paid in full, and only what comes after them is cheaper."
+    simpler_case: "Try a shop with books of 90 coins and pens of 10 coins, where everything bought after 100 coins are paid is 20% cheaper. Tom needs 2 books and may buy more. What is the least he can pay?"
+solution:
+  - text: "The discount saves the most on a wheel, so Tom should buy the last wheel after paying 320 coins. Two wheels cost 300 coins, so he also buys 2 bolts, one of them spare, and pays 320. Then the third wheel costs 150 − 30 = 120 coins. In all he pays 320 + 120 = 440 coins, less than the 458 coins of buying the 3 wheels first."
+skills:
+  primary: ["percent-basic"]
+band: "grades-5-6"
+difficulty: 5

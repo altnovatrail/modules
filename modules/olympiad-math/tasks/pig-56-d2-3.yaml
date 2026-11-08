@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-56-d2-3.yaml, and the port writes this file again (R12).
+id: "pig-56-d2-3"
+statement:
+  - text: "Each of 50 pupils got a mark from 1 to 5 in maths and a mark from 1 to 5 in reading. At least how many pupils must have got exactly the same pair of marks?"
+givens: ["There are 50 pupils.", "Each got a mark from 1 to 5 in maths and a mark from 1 to 5 in reading."]
+unknown: "At least how many pupils got exactly the same pair of marks."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["pupil", "pupils"]
+          trap_values:
+            - value: "10"
+              trap: "ignored-condition"
+              text: "10 shares the 50 pupils among the 5 maths marks only, but a pair is a maths mark and a reading mark."
+            - value: "1"
+              trap: "best-case-not-worst"
+              text: "1 hopes every pupil got a different pair of marks. Count the different pairs of marks first."
+            - value: "25"
+              trap: "answered-other-question"
+              text: "25 is the number of different pairs of marks, not how many pupils share one."
+            - value: "5"
+              trap: "wrong-operation"
+              text: "5 shares the 50 pupils among 5 + 5 marks, but a pair takes one mark in each subject, so there are 5 × 5 pairs."
+    simpler_case: "Try 10 pupils with a mark of 4 or 5 in each of two subjects. At least how many got the same pair of marks?"
+solution:
+  - text: "A pair is a maths mark and a reading mark, so there are 5 × 5 = 25 different pairs. 50 pupils are more than 25, so at least two pupils share a pair. And two is all that is sure: two pupils on each of the 25 pairs make exactly 50."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-5-6"
+difficulty: 2

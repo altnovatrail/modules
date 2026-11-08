@@ -1,0 +1,9 @@
+# What a person adds to wp-34-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Tim has a balance and weights of 1 kg and 3 kg."
+  - "The weights may go only on the pan opposite the load."
+unknown: "Which load Tim cannot weigh in one weighing."
+simpler_case: "Try only the 1 kg weight. Which loads can Tim weigh?"
+picture_alt: "A balance with a load marked ? on the left pan and weights of 1 and 3 kg on the right."
+trap_texts:
+  "He can weigh all of them": "One of the loads would need a weight on the load's pan, which is not allowed."

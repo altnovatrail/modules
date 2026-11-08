@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-12-d4-5.yaml, and the port writes this file again (R12).
+id: "gaps-12-d4-5"
+statement:
+  - text: "12 fence posts stand in a row, 1 metre apart. A cat walks from the 3rd post to the 10th post. How many metres does it walk?"
+  - picture: "pictures/gaps-12-d4-5.png"
+    alt: "Posts in a row with a stretch of the row left out in the middle, and every gap drawn between two posts marked 1."
+    width: 272
+    height: 74
+givens: ["12 posts stand in a row.", "The posts are 1 metre apart.", "The cat walks from the 3rd post to the 10th post."]
+unknown: "How many metres the cat walks."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "7"
+          units: ["metre", "metres", "m"]
+          trap_values:
+            - value: "8"
+              trap: "off-by-one"
+              text: "Count the gaps between post 3 and post 10 once more: there is one fewer gap than posts."
+            - value: "10"
+              trap: "number-from-text"
+              text: "10 is the number of the post, not the distance."
+            - value: "12"
+              trap: "number-from-text"
+              text: "12 is the number of posts in the whole fence."
+            - value: "13"
+              trap: "wrong-operation"
+              text: "You added 3 and 10. Count the gaps between the two posts."
+    simpler_case: "Try walking from the 3rd post to the 4th post first. How many gaps is that?"
+solution:
+  - text: "From post 3 to post 10 there are 7 gaps of 1 metre, so the cat walks 7 metres."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 4

@@ -1,0 +1,12 @@
+# What a person adds to clk-12-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "A ride lasts 5 minutes."
+  - "A 2-minute break comes before every next ride."
+  - "The first ride starts at 3:00."
+unknown: "The time when the fourth ride ends."
+simpler_case: "Try rides of 5 minutes with 1-minute breaks, the first at 3:00. At what time does the second ride end?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 3 o'clock."
+trap_texts:
+  "3:21": "You stopped at the start of the fourth ride. The question asks when it ends."
+  "3:28": "Count the breaks between 4 rides again."

@@ -1,0 +1,10 @@
+# What a person adds to ord-12-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five children stand in a line."
+  - "Tom stands somewhere in front of Sam."
+  - "Exactly 2 children stand between them."
+unknown: "In how many different places Tom can stand."
+simpler_case: "Try five children with exactly 3 children between Tom and Sam, Tom in front. In how many places can Tom stand?"
+trap_texts:
+  "1": "Tom can stand in more than one place. Try each place for Tom and check where Sam would be."
+leak_phrases: ["2 places", "two places", "2 different places", "two different places"]

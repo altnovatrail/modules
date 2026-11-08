@@ -2,7 +2,9 @@
 # stage of .devcontainer/Dockerfile, where module-kit's CLI is the binary that stage pins, at an
 # exact tag and sum: ci.yml runs them there by spec's tools/toolchain/toolchain.sh, and a person runs
 # them the same way in the devcontainer. Every recipe is bash, and its tests are in test/, run by
-# `just test`.
+# `just test`, with two tests of content among them: test/templates.test.mjs builds olympiad-math
+# and checks each template against the task it came from (R22), and test/lesson-pictures.test.mjs
+# checks the size of each picture of a lesson against its file (amendment T41 to R12).
 #
 # The calls of module-kit follow the forms that module-kit's docs/architecture.md gives at v0.2.3
 # (R102 spec) — check, build and index in section 3.6, diff in section 3.5:
@@ -597,8 +599,9 @@ ci-licenses:
 # token and none of the caller's git settings. Standalone's bench proves the answer of each task
 # first, and the port writes nothing unless each passes (R05; R12). It is a step of the batch's
 # task, run by a person in the devcontainer, not of CI: the bench fetches standalone's Go modules.
-# After the module come the options: --batch <file> and --overlay <folder> in place of the first
-# batch and its overlays, and --check to compare the module with what the port writes.
+# After the module come the options: --batch <file> in place of the first batch, whose overlays are
+# then tools/port/overlay/<the batch's name>/ (T22), --overlay <folder> in place of those, and --check
+# to compare the module with what the port writes.
 # Write the tasks of a batch of standalone into a module, or with --check compare them.
 [positional-arguments]
 port module *options:
@@ -607,7 +610,7 @@ port module *options:
     module=$1
     shift
     batch=tools/port/batches/first.yaml
-    overlay=tools/port/overlay
+    overlay=""
     rest=()
     while [ "$#" -gt 0 ]; do
         case "$1" in
@@ -616,6 +619,9 @@ port module *options:
             *) rest+=("$1"); shift ;;
         esac
     done
+    if [ -z "$overlay" ]; then
+        overlay="tools/port/overlay/$(basename "$batch" .yaml)"
+    fi
     commit=$(sed -n 's/^standalone: \([0-9a-f]\{40\}\)$/\1/p' "$batch")
     if [ -z "$commit" ]; then
         echo "port: ${batch} has no line standalone: with the full SHA of a commit" >&2
@@ -627,3 +633,87 @@ port module *options:
     git clone --quiet --filter=blob:none --no-checkout https://github.com/mathtrail/mathtrail-standalone "$clone"
     git -C "$clone" checkout --quiet --detach "$commit"
     go run ./tools/port --standalone "$clone" --batch "$batch" --overlay "$overlay" --module "$module" --prove "${rest[@]}"
+
+# The pictures of the lessons of a module are tools/port/pictures/<the module's folder>/<name>.json,
+# in the schema of standalone's pictures, which the port draws into media/lessons/<name>.png of the
+# module, with no clone, as it draws a task's picture (amendment T41 to R12). CI runs it with
+# --check, which writes nothing and names every picture that differs from what the port draws.
+# Draw the pictures of the lessons into a module, or with --check compare them.
+[positional-arguments]
+lesson-pictures module *options:
+    go run ./tools/port --pictures "tools/port/pictures/$(basename "$1")" --module "$@"
+
+# A survey runs the port over every task of standalone that no batch of tools/port/batches/ names
+# yet, at a commit, 42b4408 unless another is given, before E3's batches are written (R20): the
+# clone as port makes it, then _port-survey with standalone's bench. The module is a folder that is
+# not there yet, which the survey makes and which never enters the repository. It is a step of E3's
+# tasks, run by a person in the devcontainer, not of CI.
+# Survey the tasks of standalone that no batch names, into a new module of the format's examples.
+[positional-arguments]
+port-survey module commit="42b4408225e4163d8efbdfb93c299f3fc4b70afa":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    clone=$(mktemp -d)
+    trap 'rm -rf "$clone"' EXIT
+    export GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_TERMINAL_PROMPT=0
+    git clone --quiet --filter=blob:none --no-checkout https://github.com/mathtrail/mathtrail-standalone "$clone"
+    git -C "$clone" checkout --quiet --detach "$2"
+    {{quote(just_executable())}} _port-survey "$clone" "$2" "$1" --prove
+
+# The module of a survey is the format's examples of olympiad-math — manifest, skill graph, traps,
+# techniques and solving steps — with the root's LICENSE, as in test/port.test.mjs, and the tasks
+# the port writes into it. The example's graph has the 17 topics of standalone at c6cbeb2, so the
+# survey adds the two topics of 42b4408 where the clone has them and the graph does not, with no
+# prerequisites, as their builds_on is empty, and the topics' names for titles (docs/architecture.md,
+# section 3.5; R21). They go at the graph's end, under skills:, which must be its last key. module-kit check then reads it: a breach of task.no-leaks is what E3's
+# overlays are to mend, and the recipe counts them; any other breach, and any warning, fails it.
+# The exit status is the port's — 1 when it refused a task, 2 when it could not run — or 1 when the
+# check found more than task.no-leaks. The port is built first, rather than run by go run, which
+# makes every status other than 0 into 1.
+# Survey a clone of standalone into a new module, and check the module.
+[private]
+[positional-arguments]
+_port-survey clone commit module *options:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    clone=$1 commit=$2 module=$3
+    shift 3
+    if [ -e "$module" ]; then
+        echo "port-survey: ${module} is there already: a survey makes its module anew" >&2
+        exit 2
+    fi
+    mkdir -p "$module"
+    for part in manifest skill-graph traps techniques solving-steps; do
+        cp "spec/format/examples/${part}/valid/olympiad-math.yaml" "${module}/${part}.yaml"
+    done
+    cp LICENSE "${module}/LICENSE"
+    graph="${module}/skill-graph.yaml"
+    if [ "$(awk '/^[a-z_]+:/ { key = $1 } END { print key }' "$graph")" != "skills:" ]; then
+        echo "port-survey: the format's example graph does not end with skills:, so no skill can be added to it" >&2
+        exit 2
+    fi
+    while IFS='|' read -r topic skill title; do
+        if jq -e --arg id "$topic" 'any(.[]; .id == $id)' "${clone}/content/catalogs/topics.json" > /dev/null &&
+            ! grep -q "^  ${skill}:$" "$graph"; then
+            printf '  %s:\n    title: %s\n    assessability: verdict\n' "$skill" "$title" >> "$graph"
+        fi
+    done <<< $'counting.figures|counting-figures|Counting figures\ngeometry.cubes_paper|geometry-cubes-paper|Cubes and paper'
+    bin=$(mktemp -d)
+    trap 'rm -rf "$bin"' EXIT
+    go build -o "${bin}/port" ./tools/port
+    status=0
+    "${bin}/port" --standalone "$clone" --survey --commit "$commit" --except tools/port/batches --module "$module" "$@" || status=$?
+    if [ "$status" -eq 2 ]; then
+        exit 2
+    fi
+    checked=$(module-kit check "$module" 2>&1) || true
+    leaks=$(grep -c ': task\.no-leaks: ' <<< "$checked" || true)
+    other=$(grep -v -e ': task\.no-leaks: ' -E -e ': the format [0-9.]* refuses the module: [0-9]* breach(es)?$' \
+        -e ': the module breaks no rule of the format [0-9.]*$' <<< "$checked" || true)
+    echo "port-survey: module-kit check ${module}: task.no-leaks ${leaks}, for the overlays to mend"
+    if [ -n "$other" ]; then
+        echo "port-survey: module-kit check found more than task.no-leaks:" >&2
+        echo "$other" >&2
+        status=1
+    fi
+    exit "$status"

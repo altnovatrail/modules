@@ -1,0 +1,9 @@
+# What a person adds to wp-34-d1-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Sasha has a balance and weights of 1 kg and 2 kg."
+  - "He wants exactly 3 kg of sugar in one weighing."
+unknown: "Where the weights should go."
+simpler_case: "Try weighing out 2 kg of sugar with weights of 1 kg and 3 kg. Where do they go?"
+trap_texts:
+  "Both weights on the pan with the sugar": "Weights next to the sugar make its pan heavier, not lighter."
+  "It cannot be done in one weighing": "It can be done in one weighing."

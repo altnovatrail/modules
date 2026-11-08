@@ -1,0 +1,9 @@
+# What a person adds to pig-56-d1-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The scent of a bush reaches 25 metres all round it."
+  - "The path is straight and 300 metres long."
+  - "The scent must reach every point of the path."
+unknown: "At least how many bushes are needed."
+simpler_case: "Try a path of 100 metres first. How many bushes does it need?"
+trap_texts:
+  "7": "7 plants a bush at each end of the path and every 50 metres, like posts. But a bush's scent covers 25 metres on both sides of it, so no bush is needed at the very ends."

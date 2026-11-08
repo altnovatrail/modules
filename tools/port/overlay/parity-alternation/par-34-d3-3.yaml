@@ -1,0 +1,8 @@
+# What a person adds to par-34-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The cards have the numbers 1 to 100."
+  - "Ann takes all the odd cards."
+  - "Ben takes from Ann every card whose number ends in 5."
+unknown: "How many cards Ann has left."
+simpler_case: "Try the cards 1 to 20 first. How many does Ann have left?"
+techniques: [parity]

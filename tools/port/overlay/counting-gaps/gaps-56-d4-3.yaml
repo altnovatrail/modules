@@ -1,0 +1,7 @@
+# What a person adds to gaps-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "30 lamps stand round the edge of a rectangular rink."
+  - "There is a lamp in each corner."
+  - "Each short side has 6 lamps, counting its corners."
+unknown: "How many lamps each long side has, counting its corners."
+simpler_case: "Try 10 lamps round a rectangle, one in each corner, with 3 lamps on each short side counting its corners. How many lamps does each long side have?"

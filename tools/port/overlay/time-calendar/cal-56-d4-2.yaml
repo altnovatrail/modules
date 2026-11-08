@@ -1,0 +1,8 @@
+# What a person adds to cal-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "5 June 2026 is a Friday."
+unknown: "The next year after 2026 in which 5 June is a Friday."
+simpler_case: "Try 5 June 2021, a Saturday. On which day of the week is 5 June 2022?"
+techniques: [pattern]
+trap_texts:
+  "2054": "5 June 2054 is a Friday too, when the whole calendar comes round again after 28 years, but an earlier year comes first."

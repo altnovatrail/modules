@@ -1,0 +1,48 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.figures.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/fig-12-d5-1.yaml, and the port writes this file again (R12).
+id: "fig-12-d5-1"
+statement:
+  - text: "Lines go from the top of the big triangle to its base. How many triangles are there, small and big?"
+  - picture: "pictures/fig-12-d5-1.png"
+    alt: "A right triangle with its top corner at the top left and its base along the bottom. Two lines run from the top corner to points on the base."
+    width: 208
+    height: 208
+givens: ["Lines go from the top of the big triangle to its base."]
+unknown: "How many triangles there are, small and big."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["triangle", "triangles"]
+          trap_values:
+            - value: "3"
+              trap: "missed-case"
+              text: "Bigger triangles count too."
+            - value: "4"
+              trap: "stopped-early"
+              text: "Triangles of two pieces count too."
+            - value: "5"
+              trap: "off-by-one"
+              text: "Some triangles were missed."
+            - value: "7"
+              trap: "double-count"
+              text: "Some triangles were counted twice."
+    simpler_case: "Try a triangle with one line from the top to the base. How many triangles are there?"
+solution:
+  - text: "The lines from the top corner cut the big triangle into 3 small triangles. Two small ones side by side make a triangle too, and there are 2 such pairs. The whole triangle is 1 more. So there are 3 + 2 + 1 = 6 triangles."
+  - text: "3 + 2 + 1 = 6"
+  - picture: "pictures/fig-12-d5-1-solution.png"
+    alt: "The small triangles between the lines numbered from the left."
+    width: 208
+    height: 208
+techniques: ["systematic"]
+skills:
+  primary: ["counting-figures"]
+band: "grades-1-2"
+difficulty: 5

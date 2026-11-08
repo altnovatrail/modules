@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-12-d3-2.yaml, and the port writes this file again (R12).
+id: "clk-12-d3-2"
+statement:
+  - text: "Lessons start at 8:30. There are 3 lessons of 40 minutes, with a 10-minute break between every two lessons. At what time does the third lesson end?"
+  - picture: "pictures/clk-12-d3-2.png"
+    alt: "A clock showing 8:30."
+    width: 200
+    height: 200
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["Lessons start at 8:30.", "There are 3 lessons of 40 minutes.", "A 10-minute break comes between every two lessons."]
+unknown: "The time when the third lesson ends."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "10:50"
+          options: ["9:70", "10:00", "10:30", "11:00", "10:50"]
+          trap_values:
+            - value: "9:70"
+              trap: "time-unit-mixup"
+              text: "An hour has 60 minutes, so there is no 9:70."
+            - value: "10:00"
+              trap: "stopped-early"
+              text: "10:00 is when the second lesson ends."
+            - value: "10:30"
+              trap: "ignored-condition"
+              text: "You forgot the breaks between the lessons."
+            - value: "11:00"
+              trap: "off-by-one"
+              text: "Count the breaks between 3 lessons again."
+    simpler_case: "Try 2 lessons of 30 minutes from 9:00, with a 10-minute break between them. At what time does the second lesson end?"
+solution:
+  - text: "Three lessons take 3 × 40 = 120 minutes, and there are 2 breaks between them: 20 minutes. In all 140 minutes, which is 2 hours 20 minutes. 8:30 + 2 hours 20 minutes = 10:50."
+skills:
+  primary: ["time-clocks"]
+band: "grades-1-2"
+difficulty: 3

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-34-d5-3.yaml, and the port writes this file again (R12).
+id: "pig-34-d5-3"
+statement:
+  - text: "What is the smallest number of pupils in a class for which you can be sure that at least 4 of them have their birthday in the same month?"
+givens: ["A year has 12 months.", "At least 4 pupils must have their birthday in the same month."]
+unknown: "The smallest number of pupils in the class that makes you sure of it."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "37"
+          units: ["pupil", "pupils"]
+          trap_values:
+            - value: "13"
+              trap: "answered-other-question"
+              text: "13 pupils make you sure of 2 in the same month, not 4."
+            - value: "36"
+              trap: "stopped-early"
+              text: "36 pupils can be 3 for each month."
+            - value: "48"
+              trap: "wrong-operation"
+              text: "You multiplied 12 by 4. Think of the unluckiest class: how many pupils can have birthdays with no 4 in one month?"
+            - value: "49"
+              trap: "wrong-operation"
+              text: "12 × 4 + 1 is more than you need. Think again how many pupils can have birthdays with no 4 in one month."
+    simpler_case: "Try to be sure of 2 pupils in the same month first. How many pupils does that take?"
+solution:
+  - text: "36 pupils could be 3 for each of the 12 months. With 37 pupils, some month has at least 4."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-3-4"
+difficulty: 5

@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d4-3.yaml, and the port writes this file again (R12).
+id: "wp-34-d4-3"
+statement:
+  - text: "Lena wants a set of weights, each weighing a whole number of kilograms, so that with her balance she can weigh any load of 1, 2, 3, 4, 5, 6 or 7 kg in one weighing. The weights may go only on the pan opposite the load. What is the smallest number of weights she needs?"
+givens: ["Each weight weighs a whole number of kilograms.", "With them Lena wants to weigh any load of 1 to 7 kg in one weighing.", "The weights go only on the pan opposite the load."]
+unknown: "The smallest number of weights she needs."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["weight", "weights"]
+          trap_values:
+            - value: "2"
+              trap: "stopped-early"
+              text: "Two weights make at most 3 different loads, but 7 are needed."
+            - value: "4"
+              trap: "off-by-one"
+              text: "Count the weights again."
+            - value: "7"
+              trap: "number-from-text"
+              text: "7 kg is the heaviest load, not the number of weights."
+    simpler_case: "Try loads of 1, 2 and 3 kg only. How many weights does she need?"
+solution:
+  - text: "Weights of 1, 2 and 4 kg work: 3 = 1 + 2, 5 = 1 + 4, 6 = 2 + 4 and 7 = 1 + 2 + 4. Two weights are not enough: they can make at most 3 different loads, one weight, the other, or both, but 7 loads are needed."
+traps: ["ignored-condition"]
+leak_phrases: ["3 weights", "three weights"]
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-3-4"
+difficulty: 4

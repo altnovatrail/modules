@@ -1,0 +1,9 @@
+# What a person adds to div-56-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Counted out in twos, threes, fours, fives or sixes, the lemons always leave one over."
+  - "There is more than one lemon."
+unknown: "The smallest number of lemons."
+simpler_case: "Try counting out in twos and threes only, with one lemon always left over and more than one lemon. What is the smallest number?"
+trap_texts:
+  "60": "60 leaves no lemon over."
+  "121": "121 leaves one over each time too, but a smaller number works."

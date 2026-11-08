@@ -1,0 +1,7 @@
+# What a person adds to gaps-34-d4-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "11 lamps stand in a row, 30 metres apart."
+  - "A new lamp is put in the middle between every two neighbouring lamps."
+unknown: "How many lamps there are now."
+simpler_case: "Try 3 lamps in a row first. How many new lamps go between them?"
+picture_alt: "Lamps in a row with a stretch left out in the middle, and every gap drawn between two lamps marked 30."

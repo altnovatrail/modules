@@ -1,0 +1,7 @@
+# What a person adds to tri-34-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Fay multiplied her number by 5 and then took 7 away."
+  - "She got 23."
+unknown: "The number Fay thought of."
+simpler_case: "Try a number that gives 5 when you double it and take 1 away."
+techniques: [backwards]

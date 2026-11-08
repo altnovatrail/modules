@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d3-5.yaml, and the port writes this file again (R12).
+id: "wp-34-d3-5"
+statement:
+  - text: "You have an empty 6-litre jug, an empty 4-litre jug and a tap. The jugs have no marks. Each step is one of these: fill a jug from the tap, empty a jug onto the ground, or pour water from one jug into the other until the first jug is empty or the second is full. What is the smallest number of steps needed to have exactly 3 litres in one of the jugs?"
+  - picture: "pictures/wp-34-d3-5.png"
+    alt: "An empty 6-litre jug and an empty 4-litre jug."
+    width: 188
+    height: 133
+givens: ["There is an empty 6-litre jug, an empty 4-litre jug and a tap; the jugs have no marks.", "A step fills a jug, empties a jug, or pours from one jug into the other until the first is empty or the second is full."]
+unknown: "The smallest number of steps to have exactly 3 litres in one jug."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["3", "4", "5", "6", "It is impossible"]
+        check:
+          kind: "choice"
+          key: "It is impossible"
+          trap_values:
+            - value: "3"
+              trap: "number-from-text"
+              text: "3 is the amount of water wanted, not a number of steps."
+            - value: "4"
+              trap: "wrong-parity"
+              text: "Check which amounts the jugs can ever hold."
+            - value: "5"
+              trap: "wrong-parity"
+              text: "Check which amounts the jugs can ever hold."
+            - value: "6"
+              trap: "wrong-parity"
+              text: "Check which amounts the jugs can ever hold."
+    simpler_case: "Try having exactly 2 litres in one jug. How many steps does it take?"
+solution:
+  - text: "Both jugs hold an even number of litres. Filling, emptying and pouring always leave an even number of litres in each jug: 0, 2, 4 or 6. So 3 litres can never be made."
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-3-4"
+difficulty: 3

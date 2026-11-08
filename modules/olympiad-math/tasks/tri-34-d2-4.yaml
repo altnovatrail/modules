@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-34-d2-4.yaml, and the port writes this file again (R12).
+id: "tri-34-d2-4"
+statement:
+  - text: "What is 36 + 37 + 38 + 39 + 40 + 41 + 42 + 43 + 44?"
+givens: ["The numbers 36 to 44 are added."]
+unknown: "The sum."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "360"
+          trap_values:
+            - value: "9"
+              trap: "answered-other-question"
+              text: "9 is how many numbers there are."
+            - value: "44"
+              trap: "number-from-text"
+              text: "44 is the biggest number."
+            - value: "320"
+              trap: "stopped-early"
+              text: "320 is the four pairs of 80; you forgot the 40 in the middle."
+            - value: "400"
+              trap: "double-count"
+              text: "40 is only one number, not a pair that makes 80."
+    simpler_case: "Try 36 + 37 + 38 first. Which two numbers make the same sum as the middle one twice?"
+solution:
+  - text: "The pairs 36 + 44, 37 + 43, 38 + 42 and 39 + 41 each make 80: 320 in all. With 40 in the middle the sum is 360."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-3-4"
+difficulty: 2

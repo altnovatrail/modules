@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-56-d5-2.yaml, and the port writes this file again (R12).
+id: "ord-56-d5-2"
+statement:
+  - text: "Five houses stand in a row, numbered 1 to 5 from the left. They are painted red, blue, green, yellow and white, one colour each, and in each lives one pet: a cat, a dog, a fish, a bird or a horse. The blue house is house 3. The green house stands just to the left of the white one. The dog lives in the red house, and the cat next door to the dog. The fish lives in house 5, and the bird next door to the yellow house. Which pet lives in the green house?"
+  - picture: "pictures/ord-56-d5-2.png"
+    alt: "Five houses in a row, numbered 1 to 5 from the left."
+    width: 272
+    height: 74
+givens: ["Five houses in a row are numbered 1 to 5 from the left.", "Each is red, blue, green, yellow or white, and in each lives a cat, a dog, a fish, a bird or a horse.", "The blue house is house 3, and the green house stands just to the left of the white one.", "The dog lives in the red house, and the cat next door to the dog.", "The fish lives in house 5, and the bird next door to the yellow house."]
+unknown: "Which pet lives in the green house."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["The fish", "The horse", "The cat", "The bird", "The dog"]
+        check:
+          kind: "choice"
+          key: "The horse"
+          trap_values:
+            - value: "The fish"
+              trap: "reversed-relation"
+              text: "The fish would live in the green house if the green house stood just to the right of the white one, but it stands just to the left of it."
+            - value: "The cat"
+              trap: "ignored-condition"
+              text: "The cat lives next door to the dog. Find the dog's house first, then check the green one."
+            - value: "The bird"
+              trap: "ignored-condition"
+              text: "The bird lives next door to the yellow house. Find where the yellow house is first."
+            - value: "The dog"
+              trap: "answered-other-question"
+              text: "The dog lives in the red house. The question asks about the green house."
+    simpler_case: "Try three houses numbered 1 to 3 from the left, red, green and white: the green house stands just to the left of the white one, and the red house is house 1. Which house is the white one?"
+solution:
+  - text: "The blue house is house 3, so the green and white houses are houses 1 and 2 or houses 4 and 5. If they were 1 and 2, the dog's red house would be 4, since the fish is in 5, and the yellow house 5; the bird, next door to it, would then share house 4 with the dog. So green and white are houses 4 and 5. The red house is not 2 either: the yellow house would be 1, and the bird next door to it would again be in the dog's house. So the colours are red, yellow, blue, green and white, the dog lives in 1, the cat in 2, the bird in 3, the fish in 5, and the horse in the green house 4."
+techniques: ["table"]
+skills:
+  primary: ["logic-ordering"]
+band: "grades-5-6"
+difficulty: 5

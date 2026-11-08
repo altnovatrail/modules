@@ -1,0 +1,10 @@
+# What a person adds to ord-34-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Seven children stand in a line."
+  - "The children in front of Sasha are twice as many as those behind her."
+unknown: "In which place Sasha stands."
+simpler_case: "Try four children in a line, with twice as many in front of Sasha as behind her. In which place is Sasha?"
+trap_texts:
+  "3": "You swapped front and back: more children stand in front of Sasha than behind her."
+  "4": "Count the places: the children in front of Sasha all come before her place."
+  "6": "With Sasha 6th, the children in front are more than twice those behind."

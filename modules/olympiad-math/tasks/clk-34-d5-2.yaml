@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-34-d5-2.yaml, and the port writes this file again (R12).
+id: "clk-34-d5-2"
+statement:
+  - text: "A clock strikes once at a quarter past, at half past and at a quarter to every hour. At every full hour it strikes as many times as the hour, from 1 to 12. How many times does it strike in a whole day of 24 hours?"
+givens: ["The clock strikes once at a quarter past, at half past and at a quarter to every hour.", "At every full hour it strikes as many times as the hour, from 1 to 12."]
+unknown: "How many times it strikes in 24 hours."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "228"
+          units: ["time", "times"]
+          trap_values:
+            - value: "150"
+              trap: "stopped-early"
+              text: "The full hours strike twice in a day, not once."
+            - value: "156"
+              trap: "missed-case"
+              text: "You forgot the quarter strikes."
+            - value: "204"
+              trap: "missed-case"
+              text: "Count the quarter strikes in each hour again."
+            - value: "252"
+              trap: "off-by-one"
+              text: "At the full hour the clock strikes the hour, not an extra quarter."
+    simpler_case: "Try 2 hours, from just after 12:00 to 2:00. How many times does it strike?"
+solution:
+  - text: "In 12 hours the full hours give 1 + 2 + ... + 12 = 78 strikes, so 156 in a day. Every hour has 3 quarter strikes: 3 × 24 = 72. 156 + 72 = 228."
+skills:
+  primary: ["time-clocks"]
+band: "grades-3-4"
+difficulty: 5

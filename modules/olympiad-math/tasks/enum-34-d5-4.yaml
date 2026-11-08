@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-34-d5-4.yaml, and the port writes this file again (R12).
+id: "enum-34-d5-4"
+statement:
+  - text: "In a chess tournament every two players played each other exactly once. There were 28 games in all. How many players took part?"
+givens: ["Every two players played each other exactly once.", "There were 28 games in all."]
+unknown: "How many players took part."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "8"
+          units: ["player", "players"]
+          trap_values:
+            - value: "7"
+              trap: "off-by-one"
+              text: "7 players play only 6 + 5 + 4 + 3 + 2 + 1 = 21 games."
+            - value: "14"
+              trap: "wrong-operation"
+              text: "You halved 28. Count the games for different numbers of players."
+            - value: "28"
+              trap: "number-from-text"
+              text: "28 is the number of games."
+            - value: "56"
+              trap: "wrong-operation"
+              text: "You doubled 28. That is not the number of players."
+    simpler_case: "Try a tournament of 3 games in all, every two players playing once. How many players took part?"
+solution:
+  - text: "With 8 players, the first plays 7 games, the second 6 new ones, and so on: 7 + 6 + 5 + 4 + 3 + 2 + 1 = 28. So there were 8 players."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 5

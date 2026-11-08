@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-12-d5-3.yaml, and the port writes this file again (R12).
+id: "gaps-12-d5-3"
+statement:
+  - text: "A frog sits on the first of 9 stones in a row. With each jump it skips one stone and lands on the next one. How many jumps does it need to reach the last stone?"
+givens: ["The frog sits on the first of 9 stones in a row.", "With each jump it skips one stone and lands on the next."]
+unknown: "How many jumps it needs to reach the last stone."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["jump", "jumps"]
+          trap_values:
+            - value: "3"
+              trap: "off-by-one"
+              text: "After 3 jumps the frog is on stone 7, not on the last one."
+            - value: "5"
+              trap: "answered-other-question"
+              text: "5 is the number of stones the frog stands on, counting the first. Jumps are one fewer."
+            - value: "8"
+              trap: "ignored-condition"
+              text: "8 jumps are needed only without skipping stones."
+            - value: "9"
+              trap: "number-from-text"
+              text: "9 is the number of stones."
+    simpler_case: "Try 5 stones with the same jumps, skipping one stone each time. How many jumps reach the last stone?"
+solution:
+  - text: "The frog lands on stones 3, 5, 7 and 9. That is 4 jumps."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 5

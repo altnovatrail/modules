@@ -1,0 +1,7 @@
+# What a person adds to enum-34-d3-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The group has 3 boys and 4 girls."
+  - "The teacher chooses 2 children."
+  - "They must not both be girls."
+unknown: "In how many ways she can choose them."
+simpler_case: "Try 2 boys and 2 girls, choosing 2 children who are not both girls. In how many ways?"

@@ -1,8 +1,10 @@
-# The skill graph of the first batch of olympiad mathematics (R07; docs/architecture.md, section
-# 3.6 of modules): three topics of mathtrail-standalone and their link, builds_on, as the format's
-# example of this module has them. Their tiers come out 1, 1 and 2, and the names of the tiers
-# are those standalone gives the layers of its map; the third names nothing until the rest of the
-# port adds tier 3. standalone's content in this module carries the MIT notice of NOTICE.
+# The skill graph of olympiad mathematics (R07; E3; docs/architecture.md, section 3.5 of modules):
+# the topics of mathtrail-standalone that the module's tasks train and their links, builds_on, each
+# entry verbatim as the format's example of this module has it, but counting-figures and
+# geometry-cubes-paper, which the example lacks: they come from standalone's
+# content/catalogs/topics.json at 42b4408, with its name and description. Their tiers come from the
+# graph, and the names of the tiers are those standalone gives the layers of its map. standalone's
+# content in this module carries the MIT notice of NOTICE.
 tiers: [Foundations, Rules, Hard problems]
 skills:
   counting-gaps:
@@ -14,4 +16,64 @@ skills:
   pigeonhole-basic:
     title: Pigeonhole principle
     prerequisites: [combinatorics-enumeration]
+    assessability: verdict
+  arithmetic-tricks:
+    title: Arithmetic with a trick
+    assessability: verdict
+  parity-alternation:
+    title: Parity and alternation
+    assessability: verdict
+  logic-ordering:
+    title: Ordering
+    assessability: verdict
+  time-clocks:
+    title: Clocks
+    assessability: verdict
+  time-calendar:
+    title: Calendar and age
+    prerequisites: [counting-gaps]
+    assessability: verdict
+  logic-knights-liars:
+    title: Knights and liars
+    prerequisites: [logic-ordering, combinatorics-enumeration]
+    assessability: verdict
+  algorithms-weighing-pouring:
+    title: Weighing and pouring
+    prerequisites: [combinatorics-enumeration, pigeonhole-basic]
+    assessability: verdict
+  fractions-parts:
+    title: Parts and shares
+    prerequisites: [arithmetic-tricks, core.fractions-of-a-whole]
+    assessability: verdict
+  percent-basic:
+    title: Percentages
+    prerequisites: [fractions-parts]
+    assessability: verdict
+  ratio-sharing:
+    title: Ratios and sharing
+    prerequisites: [fractions-parts]
+    assessability: verdict
+  number-divisibility:
+    title: Divisibility and remainders
+    prerequisites: [time-calendar, parity-alternation, core.division-with-remainder]
+    assessability: verdict
+  logic-sets:
+    title: Overlapping groups
+    prerequisites: [combinatorics-enumeration, pigeonhole-basic]
+    assessability: verdict
+  games-strategy:
+    title: Games with a winning strategy
+    prerequisites: [combinatorics-enumeration, parity-alternation]
+    assessability: verdict
+  geometry-grid:
+    title: Figures on a square grid
+    prerequisites: [combinatorics-enumeration, counting-gaps]
+    assessability: verdict
+  counting-figures:
+    title: Counting figures
+    description: How many triangles or squares a figure drawn on squared paper holds, and matches moved or taken away to leave a figure.
+    assessability: verdict
+  geometry-cubes-paper:
+    title: Cubes and paper
+    description: The nets of a cube, a sheet folded and punched, and a die rolled along a straight path.
     assessability: verdict

@@ -1,0 +1,10 @@
+# What a person adds to ord-12-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Nora is the oldest of four girls."
+  - "Kim is older than Lily and older than Mia."
+  - "Lily is not the youngest."
+unknown: "Who is the youngest."
+simpler_case: "Try three girls, Nora, Lily and Kim: Nora is the oldest, and Lily is not the youngest. Who is the youngest?"
+trap_texts:
+  "Kim": "Kim is older than two of the girls, so she is not the youngest."
+  "It is impossible to tell": "Nora is first and Kim second. Use the fact about Lily to place the last two."

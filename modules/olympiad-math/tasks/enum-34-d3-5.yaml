@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-34-d3-5.yaml, and the port writes this file again (R12).
+id: "enum-34-d3-5"
+statement:
+  - text: "A group has 3 boys and 4 girls. The teacher chooses 2 children from the group. In how many ways can she choose them so that they are not both girls?"
+givens: ["The group has 3 boys and 4 girls.", "The teacher chooses 2 children.", "They must not both be girls."]
+unknown: "In how many ways she can choose them."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "15"
+          units: ["way", "ways"]
+          trap_values:
+            - value: "6"
+              trap: "answered-other-question"
+              text: "6 is the number of pairs of two girls, which are not allowed."
+            - value: "12"
+              trap: "missed-case"
+              text: "You counted only boy-girl pairs. Two boys also count."
+            - value: "21"
+              trap: "ignored-not"
+              text: "The two children must not both be girls."
+            - value: "42"
+              trap: "double-count"
+              text: "Ann and Ben is the same pair as Ben and Ann."
+    simpler_case: "Try 2 boys and 2 girls, choosing 2 children who are not both girls. In how many ways?"
+solution:
+  - text: "Any 2 of the 7 children: 21 pairs. Pairs of two girls: 6. 21 - 6 = 15."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 3

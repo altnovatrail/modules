@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-34-d4-1.yaml, and the port writes this file again (R12).
+id: "clk-34-d4-1"
+statement:
+  - text: "A clock gains 3 minutes every hour. It was set right at 8:00. Now the clock shows 12:12. What is the real time?"
+  - picture: "pictures/clk-34-d4-1.png"
+    alt: "A clock showing 12:12."
+    width: 200
+    height: 200
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["The clock gains 3 minutes every hour.", "It was set right at 8:00.", "Now it shows 12:12."]
+unknown: "The real time."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "12:00"
+          options: ["11:48", "12:00", "12:09", "12:12", "12:24"]
+          trap_values:
+            - value: "11:48"
+              trap: "wrong-operation"
+              text: "You took away too much. Find how far ahead the clock is."
+            - value: "12:09"
+              trap: "stopped-early"
+              text: "3 minutes is the gain of one hour only."
+            - value: "12:12"
+              trap: "number-from-text"
+              text: "12:12 is what the fast clock shows."
+            - value: "12:24"
+              trap: "reversed-relation"
+              text: "A fast clock is ahead, so the real time is earlier."
+    simpler_case: "Try a clock that gains 3 minutes an hour, set right at 8:00, that now shows 9:03. What is the real time?"
+solution:
+  - text: "In each real hour the clock moves on 63 minutes. It has moved from 8:00 to 12:12, which is 252 minutes = 4 × 63. So 4 real hours have passed: it is 12:00."
+skills:
+  primary: ["time-clocks"]
+band: "grades-3-4"
+difficulty: 4

@@ -1,0 +1,12 @@
+# What a person adds to game-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "One row has 2 counters and the other 4, and Rosa goes first."
+  - "A turn takes any number from one row, or the same number from both."
+  - "Taking the last counter wins, and Jack plays as well as he can."
+unknown: "The first move that lets Rosa be sure to win."
+simpler_case: "Try rows of 1 and 1 with the same rules. Which move wins?"
+techniques: [backwards]
+picture_alt: "Two rows of counters, one of 2 and one of 4."
+trap_texts:
+  "1 from both rows": "That leaves 1 and 3, and Jack has a good reply."
+  "Any move, since she goes first": "Going first is not enough."

@@ -1,0 +1,45 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-34-d3-6.yaml, and the port writes this file again (R12).
+id: "enum-34-d3-6"
+statement:
+  - text: "Lin lays all the sticks in the picture end to end to make one square. The side of a cell is 1. How long is each side of the square?"
+  - picture: "pictures/enum-34-d3-6.png"
+    alt: "Eight sticks on squared paper of 8 cells by 5: four sticks three cells long and four sticks one cell long."
+    width: 368
+    height: 248
+givens: ["Lin lays all the sticks in the picture end to end.", "They make one square.", "The side of a cell is 1."]
+unknown: "How long each side of the square is."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          trap_values:
+            - value: "16"
+              trap: "stopped-early"
+              text: "That is all four sides together."
+            - value: "3"
+              trap: "number-from-text"
+              text: "That is one long stick."
+            - value: "8"
+              trap: "wrong-operation"
+              text: "The total was halved, not split in four."
+    simpler_case: "Try four sticks 2 long and four sticks 1 long, laid into one square. How long is each side?"
+solution:
+  - text: "Four sticks are 3 long and four are 1 long, 16 in all. A square has four equal sides, so each side is 4: a long stick and a short one."
+  - text: "16 ÷ 4 = 4"
+  - picture: "pictures/enum-34-d3-6-solution.png"
+    alt: "A square on squared paper made of the eight sticks, each side a long stick and a short one."
+    width: 208
+    height: 208
+techniques: ["systematic"]
+traps: ["missed-case"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 3

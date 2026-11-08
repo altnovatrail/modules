@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-56-d5-1.yaml, and the port writes this file again (R12).
+id: "enum-56-d5-1"
+statement:
+  - text: "A necklace has 8 beads on a closed loop of thread: 6 red beads and 2 blue ones. Beads of one colour look alike. Two necklaces count as the same if one can be turned round or turned over to look like the other. How many different necklaces can be made?"
+givens: ["The necklace has 8 beads on a closed loop: 6 red and 2 blue.", "Beads of one colour look alike.", "Two necklaces are the same if one can be turned round or over to look like the other."]
+unknown: "How many different necklaces can be made."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["necklace", "necklaces"]
+          trap_values:
+            - value: "28"
+              trap: "ignored-condition"
+              text: "28 counts every choice of 2 places out of 8, but turning the necklace round moves the blue beads to other places and gives the same necklace."
+            - value: "7"
+              trap: "double-count"
+              text: "7 counts 0 to 6 red beads on one side between the blue beads. But 1 red bead on one side means 5 on the other, the same necklace as 5 and 1, so most necklaces are counted twice."
+            - value: "3"
+              trap: "missed-case"
+              text: "3 leaves out the necklace whose two blue beads sit side by side."
+            - value: "1"
+              trap: "stopped-early"
+              text: "Turning brings one blue bead to the top of every necklace, but the second blue bead can still be in different places."
+    simpler_case: "Try a necklace of 5 beads, 3 red and 2 blue, first. Draw the different ones."
+solution:
+  - text: "Only the places of the 2 blue beads matter. Turning the necklace round or over changes nothing but where they sit, so a necklace is fixed by the number of red beads between the blue beads on the side that has fewer. That side has 0, 1, 2 or 3 of the 6 red beads, with 6, 5, 4 or 3 on the other side. So there are 4 different necklaces."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 5

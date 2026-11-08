@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/percent.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/pct-56-d2-3.yaml, and the port writes this file again (R12).
+id: "pct-56-d2-3"
+statement:
+  - text: "A board game costs 200 coins. Its price goes up by 10%. A week later, the new price goes down by 10%. What does the game cost now?"
+givens: ["The game costs 200 coins.", "Its price goes up by 10%, and a week later the new price goes down by 10%."]
+unknown: "What the game costs now."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "198"
+          units: ["coin", "coins"]
+          trap_values:
+            - value: "200"
+              trap: "percent-wrong-base"
+              text: "200 takes the fall as 10% of the old price, but it is 10% of the new one."
+            - value: "220"
+              trap: "stopped-early"
+              text: "220 is the price after it went up; the fall a week later still has to come."
+            - value: "242"
+              trap: "reversed-relation"
+              text: "242 raises the price a second time, but the second change was a fall."
+            - value: "180"
+              trap: "ignored-condition"
+              text: "180 takes 10% off the old price and forgets that the price first went up."
+    simpler_case: "Try a price of 100 coins that goes up by 10%. What is it then?"
+solution:
+  - text: "10% of 200 is 20, so the price goes up to 220. 10% of 220 is 22, so it goes down to 220 - 22 = 198 coins."
+skills:
+  primary: ["percent-basic"]
+band: "grades-5-6"
+difficulty: 2

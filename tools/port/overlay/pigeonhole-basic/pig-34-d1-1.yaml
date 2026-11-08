@@ -1,0 +1,8 @@
+# What a person adds to pig-34-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The drawer has 10 black socks and 10 white socks."
+  - "You take socks in the dark."
+unknown: "How many socks you must take to be sure of 2 socks of the same colour."
+simpler_case: "Try a drawer of black socks only first. How many socks make you sure of two of the same colour?"
+trap_texts:
+  "21": "There are only 20 socks, and far fewer are enough."

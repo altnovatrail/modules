@@ -1,0 +1,105 @@
+# A template of pigeonhole-basic (T35; R22): the solver of mathtrail-standalone
+# content/solvers/pigeonhole.basic/draws.star at 42b4408, made a solver of the template. It came
+# from reference task pig-12-d4-1, whose numbers are one of its instances.
+# The numbers of reference task pig-12-d4-1: red 4, blue 5, green 6, wanted 3.
+# Its capitals STOCK and WANTED are the numbers that the statement shows: the three colours of the
+# stock, from the fewest to the most, and how many of one colour the question wants, 3 or 4, so
+# that at least two of each colour can be taken. No colour has as many balls as the key, which
+# would let a number copied from the statement pass for the answer. standalone's
+# sandbox gives it product, which the dialect of the format has not (format/README.md, section 24),
+# so three loops go through the handfuls instead. The constraint keeps every colour at least as
+# many as wanted, as in the reference task; the trap values are derived numbers, its mistakes.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: draws
+template:
+  parameters:
+    red: {from: 4, to: 6}
+    blue: {from: 5, to: 7}
+    green: {from: 6, to: 8}
+    wanted: {from: 3, to: 4}
+  derived:
+    less: wanted - 1
+    stop: "3 * (wanted - 1)"
+    times: "3 * wanted"
+    sure_green: red + blue + wanted
+  constraint: red < blue and blue < green and red >= wanted and red != 3 * wanted - 2 and blue != 3 * wanted - 2 and green != 3 * wanted - 2
+  solver:
+    program: |
+      # For "how many must you take to be sure": try every handful the stock allows,
+      # note the sizes of the handfuls that are not yet enough, and the answer is the
+      # smallest size that none of them has. Taking more never undoes what is wanted,
+      # which is what makes the smallest such size the answer.
+
+      def solve(numbers):
+          stock = [numbers["red"], numbers["blue"], numbers["green"]]
+          wanted = numbers["wanted"]
+          failed = set()
+          for red in range(stock[0] + 1):
+              for blue in range(stock[1] + 1):
+                  for green in range(stock[2] + 1):
+                      if max(red, blue, green) < wanted:  # no colour has enough yet
+                          failed.add(red + blue + green)
+          for size in range(stock[0] + stock[1] + stock[2] + 1):
+              if size not in failed:
+                  return {"draws": size}
+          fail("no number of draws is ever enough")
+    results: [draws]
+statement:
+  - text: A box has {red} red, {blue} blue and {green} green balls. Without looking, how many balls must you take to be sure to have {wanted} balls of the same colour?
+givens:
+  - The box has {red} red, {blue} blue and {green} green balls.
+  - You take balls out without looking.
+unknown: How many balls you must take to be sure to have {wanted} balls of the same colour.
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{draws}"
+          units: [ball, balls]
+          trap_values:
+            - value: "{wanted}"
+              trap: best-case-not-worst
+              text: "{wanted} balls need not all be of one colour."
+            - value: "{stop}"
+              trap: stopped-early
+              text: "{stop} balls can be {less} of each colour."
+            - value: "{times}"
+              trap: wrong-operation
+              text: You multiplied {wanted} by 3. Think of the unluckiest balls. How many can you take with no {wanted} alike?
+            - value: "{sure_green}"
+              trap: answered-other-question
+              text: "{sure_green} balls make you sure of {wanted} green balls, but any colour will do."
+    simpler_case: Try a box of red and blue balls, many of each, first. How many balls make you sure of 2 of the same colour?
+solution:
+  - text: You may take {less} balls of each colour, {stop} balls, and have no {wanted} alike. The next ball makes {wanted} of one colour, so you must take {draws}.
+techniques: [pigeonhole]
+leak_phrases: ["{draws} balls"]
+skills:
+  primary: [pigeonhole-basic]
+band: grades-1-2
+difficulty: 4

@@ -1,0 +1,9 @@
+# What a person adds to tri-12-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann added 6 to her number and then took 10 away."
+  - "She got 5."
+unknown: "The number Ann thought of."
+simpler_case: "Try a number that gives 2 when you add 3 and then take 4 away."
+techniques: [backwards]
+trap_texts:
+  "1": "To undo, add the 10 back and then take the 6 away."

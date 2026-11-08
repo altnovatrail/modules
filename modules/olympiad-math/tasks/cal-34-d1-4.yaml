@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-34-d1-4.yaml, and the port writes this file again (R12).
+id: "cal-34-d1-4"
+statement:
+  - text: "A leap year has 366 days. How many full weeks are there in a leap year?"
+givens: ["A leap year has 366 days."]
+unknown: "How many full weeks it has."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "52"
+          units: ["week", "weeks"]
+          trap_values:
+            - value: "12"
+              trap: "answered-other-question"
+              text: "12 is the number of months."
+            - value: "51"
+              trap: "off-by-one"
+              text: "51 weeks are only 357 days; see whether more fit."
+            - value: "53"
+              trap: "off-by-one"
+              text: "53 weeks would be 371 days, more than 366."
+            - value: "366"
+              trap: "number-from-text"
+              text: "366 is the number of days."
+    simpler_case: "Try a month of 31 days. How many full weeks does it have?"
+solution:
+  - text: "52 weeks are 364 days. 366 - 364 = 2 days are left, which is not a full week. So there are 52 full weeks."
+skills:
+  primary: ["time-calendar"]
+band: "grades-3-4"
+difficulty: 1

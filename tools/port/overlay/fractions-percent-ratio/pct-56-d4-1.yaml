@@ -1,0 +1,10 @@
+# What a person adds to pct-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "25% of the apples are red."
+  - "After 6 red apples are eaten, 10% of the apples left are red."
+unknown: "How many apples were in the basket at first."
+simpler_case: "Try a basket where 50% of the apples are red, and after 2 red apples are eaten a third of the apples left are red. How many apples were there?"
+trap_texts:
+  "9": "9 is only part of the basket."
+  "24": "24 takes the 6 eaten apples as all the red apples, but not all of them were eaten."
+  "27": "27 is only part of the basket."

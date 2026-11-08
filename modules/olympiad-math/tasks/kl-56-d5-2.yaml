@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-56-d5-2.yaml, and the port writes this file again (R12).
+id: "kl-56-d5-2"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Four islanders talk about a cake. Ann says: 'Ben and Kim both ate some of it.' Ben says: 'Neither Ann nor Kim ate any of it.' Kim says: 'Ann and Ben are both liars.' Dan says: 'Exactly two of Ann, Ben and Kim are knights.' How many of the four are knights?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Ann says Ben and Kim both ate some of the cake.", "Ben says neither Ann nor Kim ate any.", "Kim says: 'Ann and Ben are both liars.'", "Dan says: 'Exactly two of Ann, Ben and Kim are knights.'"]
+unknown: "How many of the four are knights."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "1"
+          units: ["knight", "knights"]
+          trap_values:
+            - value: "2"
+              trap: "ignored-condition"
+              text: "2 makes Ann and Ben both knights, but Ann says Kim ate some cake and Ben says Kim ate none."
+            - value: "3"
+              trap: "trusted-statement"
+              text: "3 takes Dan at his word. Check his words against the others first."
+            - value: "0"
+              trap: "missed-case"
+              text: "0 cannot be: if Ann and Ben are both liars, Kim's sentence is true, so Kim is a knight."
+    simpler_case: "Try two: Ann says 'Ben ate some cake', and Ben says 'Ann is a liar.' Can both be knights?"
+solution:
+  - text: "Ann says Kim ate some cake and Ben says Kim ate none, so they cannot both be knights. If Ann is a knight, Ben is a liar and Kim, who says both are liars, is a liar too. If Ben is a knight, Ann and Kim are liars in the same way. If both Ann and Ben are liars, Kim tells the truth and is a knight. So exactly one of Ann, Ben and Kim is a knight, Dan's 'exactly two' is false, and Dan is a liar: one of the four is a knight."
+techniques: ["opposite"]
+traps: ["stopped-early"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-5-6"
+difficulty: 5

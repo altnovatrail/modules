@@ -1,0 +1,6 @@
+# What a person adds to enum-12-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann, Ben and Kim sit on 3 chairs in a row."
+  - "Ann does not sit next to Ben."
+unknown: "In how many different ways they can sit."
+simpler_case: "Try Ann, Ben, Kim and Lea on 4 chairs, with Ann and Ben on the two end chairs. In how many ways can they sit?"

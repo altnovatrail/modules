@@ -1,0 +1,9 @@
+# What a person adds to clk-34-d1-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The clock strikes once at 1 o'clock, twice at 2 o'clock, and so on up to 12 times at 12 o'clock."
+unknown: "How many times it strikes from 1 o'clock to 12 o'clock, both included."
+simpler_case: "Try from 1 o'clock to 4 o'clock first. How many times does it strike?"
+trap_texts:
+  "66": "You forgot the strikes at 12 o'clock."
+  "77": "You forgot the strike at 1 o'clock."
+  "144": "You multiplied 12 by 12. Add the strikes of each hour instead."

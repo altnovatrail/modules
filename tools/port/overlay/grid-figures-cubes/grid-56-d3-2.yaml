@@ -1,0 +1,7 @@
+# What a person adds to grid-56-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "A domino covers two squares of a 3 by 3 board that share a side."
+  - "Placements are different when they cover different squares."
+unknown: "In how many ways the domino can be placed."
+simpler_case: "Try a 2 by 2 board. In how many ways can the domino be placed?"
+picture_alt: "An empty 3 by 3 board with rows A to C from the top and columns 1 to 3 from the left."

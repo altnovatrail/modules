@@ -1,0 +1,11 @@
+# What a person adds to kl-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Knights always tell the truth, and liars always lie."
+  - "Every islander is a knight or a liar."
+  - "Four knights and two liars meet."
+  - "Each of the six speaks to the other five."
+unknown: "Which sentence each of the six could say."
+simpler_case: "Try three islanders, two knights and a liar. Could each of them say 'At least one of you is a knight'?"
+techniques: [opposite]
+trap_texts:
+  "'Exactly four of you are knights.'": "This counts the speaker among 'you'. Count the knights a knight sees among the other five."

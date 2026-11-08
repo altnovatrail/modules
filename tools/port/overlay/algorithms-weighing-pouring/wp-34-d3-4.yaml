@@ -1,0 +1,12 @@
+# What a person adds to wp-34-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "There is an empty 4-litre jug, an empty 9-litre jug and a tap; the jugs have no marks."
+  - "A step fills a jug, empties a jug, or pours from one jug into the other until the first is empty or the second is full."
+unknown: "The smallest number of steps to have exactly 6 litres in one jug."
+simpler_case: "Try jugs of 2 and 3 litres. How many steps does it take to have exactly 1 litre?"
+techniques: [backwards]
+picture_alt: "An empty 4-litre jug and an empty 9-litre jug."
+trap_texts:
+  "6": "6 steps are not enough."
+  "7": "Count the steps again."
+  "10": "10 steps work, but there is a shorter way."

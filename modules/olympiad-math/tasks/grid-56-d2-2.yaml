@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/grid-56-d2-2.yaml, and the port writes this file again (R12).
+id: "grid-56-d2-2"
+statement:
+  - text: "A mosaic is a square of 3 by 3 tiles, each 1 cm by 1 cm. The artist takes away the four corner tiles. What area do the tiles that are left cover, in square centimetres?"
+givens: ["A square of 3 by 3 tiles of 1 cm by 1 cm loses its four corner tiles."]
+unknown: "The area the tiles left cover, in square centimetres."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          units: ["cm²", "sq cm", "square centimetre", "square centimetres"]
+          trap_values:
+            - value: "9"
+              trap: "ignored-condition"
+              text: "9 is the whole square before the corners go."
+            - value: "4"
+              trap: "answered-other-question"
+              text: "4 is not the tiles that are left."
+            - value: "12"
+              trap: "area-perimeter-swap"
+              text: "12 is the length around the shape, its perimeter."
+            - value: "6"
+              trap: "double-count"
+              text: "6 counts the centre tile twice, once in each line."
+    simpler_case: "Try a 2 by 2 square of tiles with one corner tile taken away. What area do the rest cover?"
+solution:
+  - text: "The square has 3 × 3 = 9 tiles. Taking away 4 corners leaves 9 - 4 = 5 tiles, so they cover 5 square centimetres."
+techniques: ["draw"]
+skills:
+  primary: ["geometry-grid"]
+band: "grades-5-6"
+difficulty: 2

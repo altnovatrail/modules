@@ -1,0 +1,9 @@
+# What a person adds to ord-34-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The red box is heavier than the blue box, and the white box heavier than the red box."
+  - "The green box is lighter than the blue box."
+unknown: "How many boxes are lighter than the red box."
+simpler_case: "Try three boxes: the red box is heavier than the blue one, and the white box heavier than the red one. How many boxes are lighter than the red box?"
+trap_texts:
+  "0": "0 is too few: some boxes are lighter than the red one. Find them."
+  "1": "Check the green box too: compare it with the red box through the blue one."

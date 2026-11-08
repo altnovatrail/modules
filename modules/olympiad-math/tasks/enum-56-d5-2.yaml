@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/enum-56-d5-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/enum-56-d5-2.yaml, and the port writes this file again (R12).
 id: "enum-56-d5-2"
 statement:
   - text: "Four points are marked on one straight line, and three points on another straight line parallel to it. How many triangles have all three corners at marked points?"

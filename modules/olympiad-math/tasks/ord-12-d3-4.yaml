@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-12-d3-4.yaml, and the port writes this file again (R12).
+id: "ord-12-d3-4"
+statement:
+  - text: "Four books stand on a shelf. The red book is to the left of the blue book. The green book is to the right of the blue book. The yellow book is to the left of the red book. Which book is at the right end?"
+givens: ["Four books stand on a shelf.", "The red book is to the left of the blue book, and the yellow book to the left of the red book.", "The green book is to the right of the blue book."]
+unknown: "Which book is at the right end."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["the red book", "the green book", "the blue book", "the yellow book", "It is impossible to tell"]
+        check:
+          kind: "choice"
+          key: "the green book"
+          trap_values:
+            - value: "the red book"
+              trap: "reversed-relation"
+              text: "The red book is to the left of the blue book."
+            - value: "the blue book"
+              trap: "stopped-early"
+              text: "Another book is to the right of the blue book."
+            - value: "the yellow book"
+              trap: "reversed-relation"
+              text: "The yellow book is at the left end."
+            - value: "It is impossible to tell"
+              trap: "ignored-condition"
+              text: "The three facts give the whole order. Line the books up from the left."
+    simpler_case: "Try three books: the red book is to the left of the blue book, and the yellow book to the left of the red book. Which book is at the right end?"
+solution:
+  - text: "From left to right: yellow, red, blue, green. The green book is at the right end."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-1-2"
+difficulty: 3

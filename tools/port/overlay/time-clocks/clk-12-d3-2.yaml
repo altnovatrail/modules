@@ -1,0 +1,11 @@
+# What a person adds to clk-12-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Lessons start at 8:30."
+  - "There are 3 lessons of 40 minutes."
+  - "A 10-minute break comes between every two lessons."
+unknown: "The time when the third lesson ends."
+simpler_case: "Try 2 lessons of 30 minutes from 9:00, with a 10-minute break between them. At what time does the second lesson end?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 8:30."
+trap_texts:
+  "11:00": "Count the breaks between 3 lessons again."

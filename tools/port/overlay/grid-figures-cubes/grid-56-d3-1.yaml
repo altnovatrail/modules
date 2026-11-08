@@ -1,0 +1,7 @@
+# What a person adds to grid-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The squares have sides of 1 m."
+  - "The playground takes up A1, B1, C1, C2, C3, B3 and A3."
+unknown: "How many metres of fence go round it."
+simpler_case: "Try an L of three squares. How many metres of fence go round it?"
+picture_alt: "A 3 by 3 grid with rows A to C from the top and columns 1 to 3 from the left; every square is shaded but A2 and B2, which make a gap in the middle from the top."

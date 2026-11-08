@@ -1,0 +1,6 @@
+# What a person adds to enum-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "An octagon has 8 straight sides and 8 corners."
+  - "A diagonal joins two corners that are not next to each other."
+unknown: "How many diagonals an octagon has."
+simpler_case: "Try a pentagon, with 5 corners, first. How many diagonals start at one corner?"

@@ -1,0 +1,12 @@
+# What a person adds to game-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Two dragons sit on the corners A1 and D4 of a 4 by 4 board."
+  - "In turn, the dragon on A1 first, each must move one square up, down, left or right."
+  - "A dragon that moves onto the other one's square wins."
+unknown: "Which dragon wins."
+simpler_case: "Try a board of 2 by 2 squares with dragons on opposite corners. Can the dragon that moves first ever land on the other?"
+trap_texts:
+  "The dragon from A1, since it moves first": "Moving first does not decide it here."
+  "Neither: they can run round the board for ever": "A dragon must move every turn, and the board has only 16 squares."
+  "The dragon from A1, if it heads straight for the other": "Heading straight for the other dragon does not help."
+  "The dragon from A1, since the two are 6 squares apart, an even number": "Think about the colours of the squares the dragons stand on."

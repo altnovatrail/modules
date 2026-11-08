@@ -1,0 +1,10 @@
+# What a person adds to sets-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The group has 20 children."
+  - "12 have a dog and 10 have a cat."
+unknown: "The smallest number who could have both."
+simpler_case: "Try 10 children, 6 with a dog and 5 with a cat. What is the smallest number who could have both?"
+picture_alt: "Two overlapping circles, D of 12 and C of 10, inside a box of 20, with the overlap marked ?."
+trap_texts:
+  "8": "8 is not the number with both pets."
+  "22": "22 is not a number of children with both pets."

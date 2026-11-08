@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/cube-34-d4-1.yaml, and the port writes this file again (R12).
+id: "cube-34-d4-1"
+statement:
+  - text: "The net in the picture is folded into a cube. How many faces marked S touch face M along an edge?"
+  - picture: "pictures/cube-34-d4-1.png"
+    alt: "A net of six squares: a column of four with a square on each side of the second. The second square of the column is marked M; the top square, the bottom square and the square to the right of M are marked S; the other two are empty."
+    width: 168
+    height: 208
+givens: ["The net is folded into a cube."]
+unknown: "How many faces marked S touch face M along an edge."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["face", "faces"]
+          trap_values:
+            - value: "0"
+              trap: "stopped-early"
+              text: "Faces marked S do touch M."
+            - value: "3"
+              trap: "ignored-condition"
+              text: "Check each S against M."
+            - value: "1"
+              trap: "missed-case"
+              text: "Look again at each S."
+            - value: "4"
+              trap: "answered-other-question"
+              text: "That is the faces M touches."
+    simpler_case: "Try a cube. How many faces are opposite one face?"
+solution:
+  - text: "Folded, every face of the cube touches M but the one opposite it. The face at the foot of the net lands opposite M, so its S does not touch M. The other two faces marked S touch it, so the answer is 2."
+  - picture: "pictures/cube-34-d4-1-solution.png"
+    alt: "The net with M and the faces marked S that touch it."
+    width: 168
+    height: 208
+techniques: ["draw"]
+skills:
+  primary: ["geometry-cubes-paper"]
+band: "grades-3-4"
+difficulty: 4

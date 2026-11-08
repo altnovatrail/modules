@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-56-d1-2.yaml, and the port writes this file again (R12).
+id: "pig-56-d1-2"
+statement:
+  - text: "Every member of a hiking club is from 11 to 16 years old, in whole years. At least how many members must the club have to be sure that two of them are the same age?"
+givens: ["Every member is from 11 to 16 years old, in whole years."]
+unknown: "At least how many members the club must have to be sure that two of them are the same age."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "7"
+          units: ["member", "members"]
+          trap_values:
+            - value: "6"
+              trap: "off-by-one"
+              text: "6 members can still all be of different ages, one of each age from 11 to 16."
+            - value: "17"
+              trap: "number-from-text"
+              text: "17 is 16 + 1, as if there were 16 ages, but the ages from 11 to 16 are only six."
+            - value: "2"
+              trap: "best-case-not-worst"
+              text: "2 is enough only if the first two members happen to be the same age."
+            - value: "13"
+              trap: "answered-other-question"
+              text: "13 makes sure that three members are the same age. The question asks for two."
+    simpler_case: "Try members of 11 or 12 years only. How many make you sure that two are the same age?"
+solution:
+  - text: "The ages from 11 to 16 are six: 11, 12, 13, 14, 15 and 16. Six members can still all be of different ages, but a seventh must share an age with one of them. So the club needs at least 7 members."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-5-6"
+difficulty: 1

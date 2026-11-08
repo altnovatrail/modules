@@ -1,0 +1,9 @@
+# What a person adds to pct-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Lena has 15 more stickers than Max."
+  - "That is 25% more than Max has."
+unknown: "By what percentage Max has fewer stickers than Lena."
+simpler_case: "Try: Lena has 10 stickers and Max 9. By what percentage does Max have fewer than Lena?"
+trap_texts:
+  "25": "25% compares with Max's stickers, but here the comparison is with Lena's."
+  "80": "80% is not how much less Max has."

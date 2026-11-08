@@ -1,0 +1,48 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-56-d3-5.yaml, and the port writes this file again (R12).
+id: "enum-56-d3-5"
+statement:
+  - text: "A robot moves on the squared paper in the picture from cell S to cell F, one cell at a time, only to the right or down. It must pass through cell M on the way. How many different routes can it take?"
+  - picture: "pictures/enum-56-d3-5.png"
+    alt: "Squared paper of 4 cells across and 3 down. S is in the top left cell, M is one cell to the right of S and one cell down, and F is in the bottom right cell."
+    width: 208
+    height: 168
+givens: ["The robot goes from cell S to cell F.", "It moves one cell at a time, only to the right or down.", "It must pass through cell M."]
+unknown: "How many different routes it can take."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["route", "routes"]
+          trap_values:
+            - value: "3"
+              trap: "stopped-early"
+              text: "That is only from M to F."
+            - value: "10"
+              trap: "ignored-condition"
+              text: "Every route must pass through M."
+            - value: "5"
+              trap: "wrong-operation"
+              text: "The routes were added, not multiplied."
+            - value: "2"
+              trap: "missed-case"
+              text: "That is only from S to M."
+    simpler_case: "Try squared paper of 2 by 2 cells, from the top left cell to the bottom right one, only right or down. How many routes are there?"
+solution:
+  - text: "From S to M the robot goes one cell right and one cell down, in either order: 2 routes. From M to F it goes two cells right and one down, and the step down can come first, second or last: 3 routes. Each route to M can go on by each route from M, so there are 2 × 3 = 6 routes."
+  - text: "2 × 3 = 6"
+  - picture: "pictures/enum-56-d3-5-solution.png"
+    alt: "The same paper with the routes through M counted cell by cell: 1 in S and in the two cells next to it, 2 in M and in the cells to its right and below it, 4 in the next cell of the bottom row, and 6 in F."
+    width: 208
+    height: 168
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 3

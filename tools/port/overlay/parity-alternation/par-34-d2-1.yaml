@@ -1,0 +1,7 @@
+# What a person adds to par-34-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "A pen costs an odd number of cents."
+  - "Masha buys 7 such pens."
+unknown: "Which of the amounts she can pay."
+simpler_case: "Try 3 pens at 5 cents each. Is the cost even or odd?"
+techniques: [parity]

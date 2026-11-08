@@ -1,0 +1,11 @@
+# What a person adds to wp-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Tim has an empty 4-litre jug, an empty 6-litre jug and a tap."
+  - "He may fill a jug, empty a jug, or pour from one into the other until one is empty or the other is full."
+unknown: "Which amount he can end up with in one jug."
+simpler_case: "Try a 2-litre jug and a 3-litre jug. Can you end up with 1 litre in one of them?"
+picture_alt: "An empty 4-litre jug and an empty 6-litre jug."
+trap_texts:
+  "1 litre": "Check which amounts the jugs can ever hold."
+  "3 litres": "Check which amounts the jugs can ever hold."
+  "5 litres": "Check which amounts the jugs can ever hold."

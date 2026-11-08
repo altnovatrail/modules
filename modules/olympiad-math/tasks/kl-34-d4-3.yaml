@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-34-d4-3.yaml, and the port writes this file again (R12).
+id: "kl-34-d4-3"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Five islanders sit at a round table. Each of them says: 'Both my neighbours are liars.' How many knights are at the table?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Five islanders sit at a round table.", "Each says: 'Both my neighbours are liars.'"]
+unknown: "How many knights are at the table."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["knight", "knights"]
+          trap_values:
+            - value: "0"
+              trap: "ignored-condition"
+              text: "If all were liars, their words would be true."
+            - value: "1"
+              trap: "stopped-early"
+              text: "With one knight, check the two liars who sit farthest from him."
+            - value: "3"
+              trap: "ignored-condition"
+              text: "Among 5 people at a round table, 3 knights would have two of them side by side."
+            - value: "5"
+              trap: "ignored-condition"
+              text: "If all were knights, their words would be false."
+    simpler_case: "Try three islanders at a round table, each saying 'Both my neighbours are liars.' How many knights are there?"
+solution:
+  - text: "Two knights cannot sit side by side, so there are at most 2 knights among 5 people at a round table. Every liar must have a knight next to him, or his words would be true. With only 1 knight, the two liars sitting farthest from him would be next to each other with no knight beside them. With 2 knights it works: knight, liar, knight, liar, liar."
+techniques: ["opposite"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-3-4"
+difficulty: 4

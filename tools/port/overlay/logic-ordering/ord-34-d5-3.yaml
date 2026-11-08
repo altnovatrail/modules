@@ -1,0 +1,9 @@
+# What a person adds to ord-34-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Lev, Mira, Nika and Oleg all have different heights."
+  - "Lev is taller than exactly two of the others."
+  - "Mira is shorter than Lev, and Nika shorter than Mira."
+unknown: "Who is the tallest."
+simpler_case: "Try three children, Lev, Mira and Nika: Mira is shorter than Lev, and Nika shorter than Mira. Who is the tallest?"
+trap_texts:
+  "It is impossible to tell": "The facts leave only one child for the top place."

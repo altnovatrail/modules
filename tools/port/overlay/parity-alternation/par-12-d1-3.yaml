@@ -1,0 +1,9 @@
+# What a person adds to par-12-d1-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are 9 children."
+  - "They stand in pairs."
+unknown: "How many children are left without a pair."
+simpler_case: "Try 6 children first. Draw them in pairs."
+techniques: [parity]
+trap_texts:
+  "0": "9 cannot all be put into pairs. Draw the children in pairs and see."

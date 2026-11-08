@@ -1,0 +1,10 @@
+# What a person adds to par-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each child holds the hands of two boys or of two girls."
+  - "There are 7 boys and at least one girl."
+unknown: "How many girls there are."
+simpler_case: "Try a circle with 2 boys and some girls, each child holding two boys or two girls. How many girls are there?"
+techniques: [parity]
+trap_texts:
+  "14": "14 gives each boy two girls of his own, but each girl holds two boys too."
+leak_phrases: ["7 girls", "seven girls", "as many girls as boys"]

@@ -1,0 +1,11 @@
+# What a person adds to ord-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five stalls stand in a row, numbered 1 to 5 from the gate."
+  - "The toy stall is number 4."
+  - "The candy stall is right next to the cake stall."
+  - "The cake stall is further from the gate than the popcorn stall."
+unknown: "The number of the popcorn stall."
+simpler_case: "Try four stalls, numbered from the gate: toys at the last one, and the cakes further from the gate than both the popcorn and the juice. What number is the cake stall?"
+techniques: [table]
+picture_alt: "Five stalls in a row from the gate, the fourth marked T."
+leak_phrases: ["stall 1", "number 1", "popcorn is at 1"]

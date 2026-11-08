@@ -1,0 +1,8 @@
+# What a person adds to par-34-d1-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The light shows green, yellow, red, yellow, green, yellow, red, yellow, and so on."
+unknown: "The colour it shows the 30th time."
+simpler_case: "Try the 6th time first. Write the colours in order."
+techniques: [pattern]
+trap_texts:
+  "green or red": "The colours follow a fixed order, so each time has one colour. Write them in groups of four."

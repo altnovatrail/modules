@@ -1,0 +1,7 @@
+# What a person adds to par-12-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Lena goes to the pool every second day."
+  - "She goes on 1 March, 3 March, 5 March and so on."
+unknown: "On which of the days she goes to the pool."
+simpler_case: "Try the days up to 9 March. Which of them does she go on?"
+techniques: [parity]

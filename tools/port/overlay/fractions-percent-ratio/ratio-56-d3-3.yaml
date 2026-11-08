@@ -1,0 +1,6 @@
+# What a person adds to ratio-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The dough is flour and sugar in the ratio 5 : 2 by weight."
+  - "The baker has 1000 g of flour and 300 g of sugar and makes as much dough as she can."
+unknown: "How many grams of flour are left over."
+simpler_case: "Try flour and sugar in the ratio 2 : 1, with 500 g of flour and 200 g of sugar. How many grams of flour are left over?"

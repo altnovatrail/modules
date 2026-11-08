@@ -1,0 +1,8 @@
+# What a person adds to enum-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Mia has 4 red, 3 blue and 2 green balls; balls of one colour are alike."
+  - "She puts them into three bags, 3 balls in each."
+  - "The bags are alike too."
+unknown: "In how many different ways she can do it."
+simpler_case: "Try 2 red and 2 blue balls in two bags of 2 balls each, the bags alike. In how many ways can it be done?"
+leak_phrases: ["9 ways", "nine ways"]

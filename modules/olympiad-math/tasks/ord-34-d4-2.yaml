@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-34-d4-2.yaml, and the port writes this file again (R12).
+id: "ord-34-d4-2"
+statement:
+  - text: "Six runners finished a race without ties. Pavel beat Ruslan, Ruslan beat Semyon, Semyon beat Timur, and Timur beat Uliana. Vika beat Pavel. How many runners finished between Vika and Timur?"
+givens: ["Six runners finished a race without ties.", "Pavel beat Ruslan, Ruslan beat Semyon, Semyon beat Timur, and Timur beat Uliana.", "Vika beat Pavel."]
+unknown: "How many runners finished between Vika and Timur."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["runner", "runners"]
+          trap_values:
+            - value: "2"
+              trap: "missed-case"
+              text: "Some runner is missing. Write the whole order and count again between Vika and Timur."
+            - value: "4"
+              trap: "off-by-one"
+              text: "Do not count Vika or Timur themselves."
+            - value: "5"
+              trap: "answered-other-question"
+              text: "5 is Timur's place."
+            - value: "6"
+              trap: "number-from-text"
+              text: "6 is the number of runners."
+    simpler_case: "Try four runners: Vika beat Pavel, Pavel beat Ruslan, and Ruslan beat Timur. How many finished between Vika and Timur?"
+solution:
+  - text: "The order is Vika, Pavel, Ruslan, Semyon, Timur, Uliana. Between Vika and Timur are Pavel, Ruslan and Semyon: 3 runners."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-3-4"
+difficulty: 4

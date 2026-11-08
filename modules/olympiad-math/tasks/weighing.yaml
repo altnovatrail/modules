@@ -1,0 +1,88 @@
+# A template of algorithms-weighing-pouring (T36; R22): the solver of mathtrail-standalone
+# content/solvers/algorithms.weighing_pouring/weighing.star at 42b4408, made a solver of the
+# template. It came from reference task wp-34-d4-1, whose numbers are one of its instances.
+# The numbers of reference task wp-34-d4-1: coins 12.
+# Its capital COINS is the number that the statement shows, from 10 to 27: the coins that three
+# weighings find and two do not, so that every instance is as hard as the reference task. The trap
+# values are the mistakes of the reference task: two numbers of their own and two derived ones.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: weighing
+template:
+  parameters:
+    coins: {from: 10, to: 27}
+  derived:
+    pairs: coins // 2
+    real: coins - 1
+  solver:
+    program: |
+      # For the fewest weighings on a balance without weights: fill in the answer for
+      # every number of coins from the bottom up, because a function may not call
+      # itself here. Putting k coins on each pan leaves the fake among the k on the
+      # pan that rises, or among the rest when the pans balance.
+
+      def solve(numbers):
+          coins = numbers["coins"]
+          best = {0: 0, 1: 0}  # weighings that find the fake among that many coins
+          for count in range(2, coins + 1):
+              best[count] = min([1 + max([best[k], best[count - 2 * k]]) for k in range(1, count // 2 + 1)])
+          return {"weighings": best[coins]}
+    results: [weighings]
+statement:
+  - text: There are {coins} coins that look the same. One of them is fake and lighter than the others; all real coins weigh the same. What is the smallest number of weighings on a balance without weights that is sure to find the fake coin?
+givens:
+  - There are {coins} coins that look the same, and one of them is a lighter fake.
+  - The real coins all weigh the same, and the balance has no weights.
+unknown: The smallest number of weighings that is sure to find the fake.
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{weighings}"
+          units: [weighing, weighings]
+          trap_values:
+            - value: "2"
+              trap: stopped-early
+              text: "2 weighings have only 9 outcomes, but there are {coins} coins."
+            - value: "4"
+              trap: off-by-one
+              text: Count the weighings again in the worst case.
+            - value: "{pairs}"
+              trap: wrong-operation
+              text: Weighing in pairs is slow; try bigger groups.
+            - value: "{real}"
+              trap: answered-other-question
+              text: That is how many coins are real.
+    simpler_case: Try two coins with one lighter fake. How many weighings find it?
+solution:
+  - text: Split the coins into three groups as equal as can be, and weigh two of them. The fake is in the lighter group, or in the third one when the pans balance. Do the same with that group.
+  - text: Each weighing has 3 outcomes, so 2 weighings tell apart only 9 coins, and {weighings} weighings are needed for {coins}.
+leak_phrases: ["{weighings} weighings"]
+skills:
+  primary: [algorithms-weighing-pouring]
+band: grades-3-4
+difficulty: 4
