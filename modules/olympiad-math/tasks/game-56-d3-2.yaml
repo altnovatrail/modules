@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/games.strategy.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/game-56-d3-2.yaml, and the port writes this file again (R12).
+id: "game-56-d3-2"
+statement:
+  - text: "Lily and Sam play with two jars of coins, one with 3 coins and one with 5. Lily moves first, and then they take it in turns. A move is to take one or more coins out of one jar. Taking the last coin wins the game. Sam makes no mistakes. Which opening move lets Lily win for sure?"
+  - picture: "pictures/game-56-d3-2.png"
+    alt: "Two jars, one of 3 coins and one of 5."
+    width: 131
+    height: 84
+givens: ["One jar holds 3 coins and the other 5, and Lily moves first.", "A move takes one or more coins out of one jar, and taking the last coin wins.", "Sam makes no mistakes."]
+unknown: "The opening move that lets Lily win for sure."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["3 from the jar of 3", "1 from the jar of 5", "2 from the jar of 3", "Any move, since she goes first", "2 from the jar of 5"]
+        check:
+          kind: "choice"
+          key: "2 from the jar of 5"
+          trap_values:
+            - value: "3 from the jar of 3"
+              trap: "best-case-not-worst"
+              text: "Emptying a jar leaves Sam 5 coins in one jar, and he simply takes them all."
+            - value: "1 from the jar of 5"
+              trap: "off-by-one"
+              text: "Taking 1 leaves 3 and 4, and Sam has a good reply."
+            - value: "2 from the jar of 3"
+              trap: "reversed-relation"
+              text: "Taking 2 from the smaller jar leaves 1 and 5, and Sam has a good reply."
+            - value: "Any move, since she goes first"
+              trap: "first-move-assumed"
+              text: "Going first does not win on its own."
+    simpler_case: "Try jars of 1 and 2 coins. Which move wins?"
+solution:
+  - text: "Two equal jars lose for the player whose turn it is: whatever she takes from one jar, the other player takes the same from the other. He always has a reply, so he takes the last coin. Lily makes the jars equal by taking 2 from the jar of 5, which leaves 3 and 3."
+techniques: ["mirror"]
+skills:
+  primary: ["games-strategy"]
+band: "grades-5-6"
+difficulty: 3

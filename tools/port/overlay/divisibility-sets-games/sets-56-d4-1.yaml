@@ -1,0 +1,11 @@
+# What a person adds to sets-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Year 6 has 32 pupils."
+  - "15 sing in the choir, 13 act in drama and 12 paint in art."
+  - "5 are in choir and drama, 4 in choir and art, and 3 in drama and art, counting the 2 who are in all three."
+unknown: "How many pupils are in none of the groups."
+simpler_case: "Try 10 pupils: 6 in the choir, 5 in drama and 4 in both. How many are in neither?"
+trap_texts:
+  "4": "4 forgets to add back the pupils in all three groups."
+  "6": "6 takes the pupils in all three groups away once too often."
+leak_phrases: ["2 pupils in none", "two pupils in none"]

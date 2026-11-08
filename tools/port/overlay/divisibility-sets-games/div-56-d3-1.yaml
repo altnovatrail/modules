@@ -1,0 +1,11 @@
+# What a person adds to div-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each row has 18 seats, numbered row by row."
+  - "Row 1 has seats 1 to 18, row 2 seats 19 to 36, and so on."
+unknown: "The row of seat 97."
+simpler_case: "Try rows of 10 seats. In which row is seat 35?"
+picture_alt: "A table of the seats: row 1 has seats 1 to 18, row 2 seats 19 to 36, and a row marked ? holds seat 97."
+solution_picture_alt: "The table on to row 6: row 5 ends at seat 90, and row 6 holds seats 91 to 108, seat 97 among them."
+trap_texts:
+  "5": "5 counts only the full rows before seat 97."
+  "90": "90 is the number of a seat, not of a row."

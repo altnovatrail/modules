@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.sets.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/sets-56-d4-3.yaml, and the port writes this file again (R12).
+id: "sets-56-d4-3"
+statement:
+  - text: "A year has 50 pupils. 32 of them read comics (C) and 25 read magazines (M). Twice as many pupils read both as read neither. How many pupils read neither?"
+  - picture: "pictures/sets-56-d4-3.png"
+    alt: "Two overlapping circles, C of 32 and M of 25, inside a box of 50, with the space outside both marked ?."
+    width: 256
+    height: 212
+givens: ["The year has 50 pupils.", "32 read comics and 25 read magazines.", "Twice as many read both as read neither."]
+unknown: "How many read neither."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "7"
+          units: ["pupil", "pupils"]
+          trap_values:
+            - value: "14"
+              trap: "answered-other-question"
+              text: "14 is not the number who read neither."
+            - value: "18"
+              trap: "missed-case"
+              text: "18 = 50 - 32 counts everyone who skips comics, but some of them read magazines."
+            - value: "25"
+              trap: "number-from-text"
+              text: "25 is the number of magazine readers, copied from the question."
+            - value: "57"
+              trap: "double-count"
+              text: "57 adds the two groups, so the pupils who read both are counted twice."
+    simpler_case: "Try 10 pupils, 6 reading comics and 6 magazines, with twice as many reading both as reading neither. How many read neither?"
+solution:
+  - text: "If n pupils read neither, then 2n read both, and 32 + 25 - 2n = 57 - 2n read at least one. Together 57 - 2n + n = 57 - n makes 50, so n = 7. Check: 14 read both, 43 read at least one, and 43 + 7 = 50."
+skills:
+  primary: ["logic-sets"]
+band: "grades-5-6"
+difficulty: 4

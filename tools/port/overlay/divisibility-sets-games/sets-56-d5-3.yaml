@@ -1,0 +1,9 @@
+# What a person adds to sets-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "A zoo may or may not keep lions, zebras and camels: 8 kinds of zoo."
+  - "A zoo with lions keeps zebras, a zoo with camels keeps zebras, and a zoo with zebras keeps lions."
+unknown: "How many of the 8 kinds the rules allow."
+simpler_case: "Try only the rule that a zoo with lions keeps zebras too. How many of the 8 kinds does it allow?"
+trap_texts:
+  "1": "1 keeps only the zoo with all three animals, but other kinds break no rule either."
+  "2": "2 crosses out lions with camels twice, once for each of the first two rules."

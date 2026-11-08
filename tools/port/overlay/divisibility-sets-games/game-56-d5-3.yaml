@@ -1,0 +1,12 @@
+# What a person adds to game-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Jack puts two dice on the table with any faces on top."
+  - "Jill may turn either die, both or neither upside down; top and bottom add up to 7."
+  - "Jill wins if the two top faces add up to a number that divides by 4."
+unknown: "Who wins."
+simpler_case: "Try a 1 and a 3 on top. Can Jill make the total divide by 4?"
+trap_texts:
+  "Jack, if he puts a 1 and a 2 on top": "Think how Jill can turn the dice."
+  "Jack, since he moves first": "Moving first does not decide it here."
+  "It depends on the faces Jack puts on top": "Check every pair of faces."
+  "Jill, but only when the two faces add up to an even number": "Check odd totals too."

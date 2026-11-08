@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/games.strategy.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/game-56-d1-1.yaml, and the port writes this file again (R12).
+id: "game-56-d1-1"
+statement:
+  - text: "Five cards numbered 1, 2, 3, 4 and 5 lie face up in a row. Ben and Ann take turns to pick up one card, Ben first, until one card is left. Ann wins if its number is odd, and Ben wins if it is even. Who can make sure to win, and how?"
+  - picture: "pictures/game-56-d1-1.png"
+    alt: "Five cards in a row, numbered 1 to 5."
+    width: 272
+    height: 74
+givens: ["Five cards, numbered 1 to 5, lie face up.", "Ben and Ann take turns to pick up a card, Ben first, until one card is left.", "Ann wins if its number is odd, Ben if it is even."]
+unknown: "Who can make sure to win, and how."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Ben, since he goes first", "Ben, by picking up an odd card each time", "Ann, by picking up an even card each time she can", "Ann, by picking up an odd card each time", "Nobody can be sure: it is a matter of luck"]
+        check:
+          kind: "choice"
+          key: "Ann, by picking up an even card each time she can"
+          trap_values:
+            - value: "Ben, since he goes first"
+              trap: "first-move-assumed"
+              text: "Going first does not help Ben: Ann picks up the last card and so chooses which one is left."
+            - value: "Ben, by picking up an odd card each time"
+              trap: "best-case-not-worst"
+              text: "Ben picks up two cards, but there are three odd ones, so one of them is left."
+            - value: "Ann, by picking up an odd card each time"
+              trap: "wrong-parity"
+              text: "Picking up odd cards helps Ben."
+            - value: "Nobody can be sure: it is a matter of luck"
+              trap: "ignored-condition"
+              text: "Nothing is left to chance: the cards lie face up, and both players choose every move."
+    simpler_case: "Try three cards, 1, 2 and 3, with Ben picking up one and then Ann one. Who chooses which card is left?"
+solution:
+  - text: "Four cards are picked up: Ben picks up the first and the third, and Ann the second and the fourth. If Ann picks up an even card each time there is one, both even cards are gone by the end, whatever Ben does, and an odd card is left. So Ann wins."
+skills:
+  primary: ["games-strategy"]
+band: "grades-5-6"
+difficulty: 1

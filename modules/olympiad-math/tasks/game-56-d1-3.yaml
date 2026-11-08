@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/games.strategy.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/game-56-d1-3.yaml, and the port writes this file again (R12).
+id: "game-56-d1-3"
+statement:
+  - text: "The numbers 1, 2, 3, 4, 5 and 6 are written on a board. Ann and Ben take turns, Ann first. A move rubs out two of the numbers and writes their sum instead. When only one number is left, Ann wins if it is even, and Ben wins if it is odd. Who wins?"
+  - picture: "pictures/game-56-d1-3.png"
+    alt: "The numbers 1 to 6 in a row."
+    width: 328
+    height: 74
+givens: ["The numbers 1 to 6 are on the board.", "A move rubs out two numbers and writes their sum, Ann first.", "Ann wins if the last number is even, Ben if it is odd."]
+unknown: "Who wins."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Ann, since she goes first", "Ben, whatever they do", "Ann, if Ben ever adds two even numbers", "Ann, since the six numbers add up to an even number", "Ann, since she makes the last move"]
+        check:
+          kind: "choice"
+          key: "Ben, whatever they do"
+          trap_values:
+            - value: "Ann, since she goes first"
+              trap: "first-move-assumed"
+              text: "Going first does not decide it here."
+            - value: "Ann, if Ben ever adds two even numbers"
+              trap: "best-case-not-worst"
+              text: "No slip of Ben's changes the result."
+            - value: "Ann, since the six numbers add up to an even number"
+              trap: "wrong-parity"
+              text: "Add the six numbers again."
+            - value: "Ann, since she makes the last move"
+              trap: "ignored-condition"
+              text: "Ann does make the last of the five moves, but the winner is decided by the number left, not by who moves last."
+    simpler_case: "Try the numbers 1, 2 and 3 with the same moves. What number is left at the end?"
+solution:
+  - text: "A move rubs out two numbers and writes their sum, so the total of the numbers on the board stays the same. The one number left at the end is therefore 1 + 2 + 3 + 4 + 5 + 6 = 21, which is odd, whatever the players do. So Ben wins."
+skills:
+  primary: ["games-strategy"]
+band: "grades-5-6"
+difficulty: 1

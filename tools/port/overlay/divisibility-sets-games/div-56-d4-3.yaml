@@ -1,0 +1,7 @@
+# What a person adds to div-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The number leaves 22 when divided by 24."
+unknown: "Its remainder when divided by 3."
+simpler_case: "Try a number that leaves 4 when divided by 6. What does it leave when divided by 2?"
+trap_texts:
+  "7": "7 is a number of threes, not what is left over."

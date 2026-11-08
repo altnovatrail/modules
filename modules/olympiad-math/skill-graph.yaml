@@ -51,3 +51,15 @@ skills:
     title: Ratios and sharing
     prerequisites: [fractions-parts]
     assessability: verdict
+  number-divisibility:
+    title: Divisibility and remainders
+    prerequisites: [time-calendar, parity-alternation, core.division-with-remainder]
+    assessability: verdict
+  logic-sets:
+    title: Overlapping groups
+    prerequisites: [combinatorics-enumeration, pigeonhole-basic]
+    assessability: verdict
+  games-strategy:
+    title: Games with a winning strategy
+    prerequisites: [combinatorics-enumeration, parity-alternation]
+    assessability: verdict

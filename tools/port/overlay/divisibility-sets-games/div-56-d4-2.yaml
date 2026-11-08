@@ -1,0 +1,8 @@
+# What a person adds to div-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each dart scores 3 points or 8 points."
+  - "A player can throw as many darts as she likes."
+unknown: "The largest total that cannot be scored."
+simpler_case: "Try darts of 2 and 5 points. What is the largest total that cannot be scored?"
+trap_texts:
+  "10": "10 cannot be scored either, but a bigger total cannot be scored too."

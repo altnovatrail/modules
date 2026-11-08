@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.sets.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/sets-56-d2-3.yaml, and the port writes this file again (R12).
+id: "sets-56-d2-3"
+statement:
+  - text: "A class of 30 children had a free afternoon, and each child went to at least one of two places: the museum (M) or the zoo (Z). 20 children went to the museum and 16 went to the zoo. How many went to both places?"
+  - picture: "pictures/sets-56-d2-3.png"
+    alt: "Two overlapping circles, M of 20 and Z of 16, inside a box of 30; 0 outside both and the overlap marked ?."
+    width: 256
+    height: 212
+givens: ["Each of 30 children went to the museum, the zoo or both.", "20 went to the museum and 16 to the zoo."]
+unknown: "How many went to both places."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["child", "children"]
+          trap_values:
+            - value: "36"
+              trap: "stopped-early"
+              text: "36 is where the adding stops."
+            - value: "4"
+              trap: "wrong-operation"
+              text: "4 is the museum group minus the zoo group, which says nothing about the overlap."
+            - value: "10"
+              trap: "answered-other-question"
+              text: "10 is not the number who went to both places."
+            - value: "16"
+              trap: "number-from-text"
+              text: "16 is the zoo group, copied from the question."
+    simpler_case: "Try 10 children, 7 at the museum and 5 at the zoo, each at one place at least. How many went to both?"
+solution:
+  - text: "Adding the visits gives 20 + 16 = 36, but there are only 30 children. The 36 - 30 = 6 extra visits belong to children who went to both places."
+skills:
+  primary: ["logic-sets"]
+band: "grades-5-6"
+difficulty: 2

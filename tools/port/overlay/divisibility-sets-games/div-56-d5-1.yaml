@@ -1,0 +1,9 @@
+# What a person adds to div-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each child ate the same number of sweets, more than one."
+  - "Each child ate 5 fewer sweets than all the other children together."
+unknown: "How many sweets the children ate in all."
+simpler_case: "Try children who each ate as many sweets as all the others together. How many children were there?"
+trap_texts:
+  "5": "5 is not the number of all the sweets."
+  "30": "30 counts every sweet twice."

@@ -1,0 +1,11 @@
+# What a person adds to game-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five cards, numbered 1 to 5, lie face up."
+  - "Ben and Ann take turns to pick up a card, Ben first, until one card is left."
+  - "Ann wins if its number is odd, Ben if it is even."
+unknown: "Who can make sure to win, and how."
+simpler_case: "Try three cards, 1, 2 and 3, with Ben picking up one and then Ann one. Who chooses which card is left?"
+picture_alt: "Five cards in a row, numbered 1 to 5."
+trap_texts:
+  "Ben, by picking up an odd card each time": "Ben picks up two cards, but there are three odd ones, so one of them is left."
+  "Ann, by picking up an odd card each time": "Picking up odd cards helps Ben."

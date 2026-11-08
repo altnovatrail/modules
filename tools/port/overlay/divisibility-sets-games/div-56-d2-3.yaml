@@ -1,0 +1,9 @@
+# What a person adds to div-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The loop has 20 stations, numbered 1 to 20, and after 20 comes 1 again."
+  - "The train starts at station 1 and moves on to the next station 47 times."
+unknown: "The station the train is at now."
+simpler_case: "Try a loop of 5 stations and 7 moves from station 1. At which station is the train?"
+picture_alt: "A loop of 20 stations, with station 1 marked S."
+trap_texts:
+  "7": "7 counts the moves left after the full rounds, not the station."

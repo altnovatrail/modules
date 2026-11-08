@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/games.strategy.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/game-56-d5-1.yaml, and the port writes this file again (R12).
+id: "game-56-d5-1"
+statement:
+  - text: "Ann, Ben and 8 other children stand in a circle, with 3 children between Ann and Ben on one side and 5 on the other. Ann and Ben take turns, Ann first. On each turn a player sends home one of the two children next to them. Whoever sends the other player home wins. Who wins if both play as well as they can?"
+givens: ["Ann, Ben and 8 other children stand in a circle.", "3 children between Ann and Ben on one side and 5 on the other.", "In turn, Ann first, each sends home one of the two children next to them, and sending the other player home wins."]
+unknown: "Who wins if both play as well as they can."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Nobody can be sure: it is a matter of luck", "Ann, since she goes first", "Ann, by sending home the children on the side of 3 first", "Ben", "Ann, since 8 is an even number"]
+        check:
+          kind: "choice"
+          key: "Ben"
+          trap_values:
+            - value: "Nobody can be sure: it is a matter of luck"
+              trap: "ignored-condition"
+              text: "Nothing is left to chance: both players see the circle and choose every move."
+            - value: "Ann, since she goes first"
+              trap: "first-move-assumed"
+              text: "Going first does not decide it here."
+            - value: "Ann, by sending home the children on the side of 3 first"
+              trap: "best-case-not-worst"
+              text: "Which side Ann takes children from does not matter."
+            - value: "Ann, since 8 is an even number"
+              trap: "wrong-parity"
+              text: "Count the moves until someone has to give way."
+    simpler_case: "Try 1 child between them on one side and 2 on the other. Who wins?"
+solution:
+  - text: "A player who sends home the last child between them on one side stands next to the other player, who then sends them home. So both avoid it while they can, and the game goes on until there is one child on each side. From 3 and 5 down to 1 and 1, six children are sent home, by Ann, Ben, Ann, Ben, Ann and Ben. Then Ann has to send home a last child, so Ben wins."
+skills:
+  primary: ["games-strategy"]
+band: "grades-5-6"
+difficulty: 5

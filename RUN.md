@@ -126,7 +126,7 @@
 | [x] | T30 | `logic-knights-liars`: 40 задач | Claude, проверяю я | — | T23, T27 |
 | [x] | T31 | `algorithms-weighing-pouring`: 40 задач | Claude, проверяю я | — | T20, T23, T24 |
 | [x] | T32 | `fractions-parts`, `percent-basic` и `ratio-sharing`: 45 задач | Claude, проверяю я | — | T19, T25 |
-| [ ] | T33 | `number-divisibility`, `logic-sets` и `games-strategy`: 45 задач | Claude, проверяю я | — | T20, T23, T24, T26, T29 |
+| [x] | T33 | `number-divisibility`, `logic-sets` и `games-strategy`: 45 задач | Claude, проверяю я | — | T20, T23, T24, T26, T29 |
 | [ ] | T34 | `geometry-grid`, `counting-figures` и `geometry-cubes-paper`: 49 задач | Claude, проверяю я | — | T20, T21, T23 |
 | [ ] | T35 | Шаблоны: как шаблон standalone становится шаблоном формата, и 7 шаблонов навыков первой пачки | Claude, проверяю я | да | T22–T24 |
 | [ ] | T36 | Шаблоны семи навыков: 14 | Claude, проверяю я | — | T25–T31, T35 |
@@ -580,6 +580,19 @@
 - **Сделать:** по общему для задач содержания.
   - Пререквизиты по `builds_on`: у `number-divisibility` — `time-calendar` и `parity-alternation`, у `logic-sets` — `combinatorics-enumeration` и `pigeonhole-basic`, у `games-strategy` — `combinatorics-enumeration` и `parity-alternation`.
   - Навык-опора задач на делимость — `core.division-with-remainder` (R50 spec).
+- **Решено при планировании (2026-11-08) — исполнителем, по поручению автора:** одна пачка на три навыка, `divisibility-sets-games`, как в T32; `supporting` — только у задач `number-divisibility`; в `dependencies` паспорта — обе опоры, в порядке примера формата.
+- **Сделано (2026-11-08):**
+  - правило 12 — до начала: у SonarCloud на `e3` и у CodeQL находок нет, у Scorecard те же 6, их причины — в R33 spec. Правок нет;
+  - `tools/port/batches/divisibility-sets-games.yaml` — 45 задач на 42b4408; `units` у задач, чей вопрос считает предметы. Сайт standalone связывает с играми приёмы `backwards` и `mirror`: `backwards` стоит у восьми игр, которые считаются от конца, `mirror` — у игры с двумя банками, а у делимости и множеств связанных приёмов нет;
+  - `tools/port/overlay/divisibility-sets-games/` — 45 файлов правок: `givens`, `unknown` и `simpler_case` каждой задачи, `alt` 14 картинок задач и трёх картинок решения, 88 переписанных пояснений в 40 задачах, `leak_phrases` пяти задач, чей ключ стоит в условии или на картинке;
+  - `modules/olympiad-math/` — 45 новых задач и 17 картинок; в графе — навыки `number-divisibility`, `logic-sets` и `games-strategy`, записи примера формата дословно; в каталоге ловушек — `remainder-vs-quotient` и `first-move-assumed`, в каталоге приёмов — `mirror`; паспорт получил вторую опору, `dependencies: [core.division-with-remainder, core.fractions-of-a-whole]`, как в примере формата; версия по-прежнему `0.1.1`, `diff` с `v0.1.0` видит минорную правку;
+  - виды ответа, как их дал R20: 35 чисел и 10 выборов касанием — кто победит и каким ходом, «They are as many», «5 with 12 left over»; слово «Ben» в `game-56-d5-1` тоже касанием: его неверные варианты — доводы, которые ребёнок от руки не напишет, и пачка ставит ему новое поле `tapped: true` (поправка 2026-11-08 к R20), с тестом;
+  - пояснения — по мерке T22–T32: переписаны те, что называли ключ — «but 13 is bigger», «What is left over is 3», — давали ход, после которого ключ виден сразу, — «Sam evens them up himself», «Jack … hands Rosa 1 and 2» — или правило, которое решает задачу, — «the total on the board stays 21»;
+  - `/code-review high`, один круг, нашёл 10 пунктов, исправлены 9: выбор от руки с вариантами-доводами в `game-56-d5-1` — поле `tapped`; пояснения, которые давали ключ за шаг, — «one fewer than the pages», «it still has to be divided by 9», «Ann can be sure only of the shorter one», «counted as if the train started before station 1», «12 learn only German», «the sum is more than the whole group»; два `simpler_case` — один выдавал задумку задачи, другой отвечал сам себя; счёт картинок и описание выборов в этом отчёте. Десятый — в «Открыто»;
+  - проверено 2026-11-08: `just port modules/olympiad-math --batch tools/port/batches/divisibility-sets-games.yaml --check` — стенд 42b4408 доказывает все 45, файлы совпадают; `module-kit check modules/olympiad-math` — без нарушений и предупреждений; `just modules-check`; `just test`; `just -f spec/justfile docs-check-repo`.
+- **Открыто:**
+  - тексты 45 задач вычитываешь ты: `modules/olympiad-math/tasks/div-*.yaml`, `sets-*.yaml` и `game-*.yaml`;
+  - `sets-56-d1-3` из standalone отмечает свои неверные значения ловушками чужих навыков — `ratio-total-confusion` и `part-whole-swap`, чьи `skills` — `ratio-sharing`, `fractions-parts` и `percent-basic`, — так что ошибка в задаче о множествах считается против них. Ловушку правка не меняет; это та же беда, что и В27.
 
 #### T34. `geometry-grid`, `counting-figures` и `geometry-cubes-paper`: 49 задач
 

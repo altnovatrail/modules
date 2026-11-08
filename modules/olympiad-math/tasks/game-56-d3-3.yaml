@@ -1,0 +1,35 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/games.strategy.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/game-56-d3-3.yaml, and the port writes this file again (R12).
+id: "game-56-d3-3"
+statement:
+  - text: "Eva and Dan share a bowl of 12 sweets. They eat in turn, Eva first, and each time a player eats 1 or 2 sweets. This time the one who eats the last sweet loses. Dan never makes a mistake. How many sweets must Eva eat at the start so that she wins whatever he does?"
+givens: ["The bowl holds 12 sweets, and Eva eats first.", "Each eats 1 or 2 sweets in turn, and the one who eats the last sweet loses.", "Dan never makes a mistake."]
+unknown: "How many sweets Eva must eat first to win whatever he does."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["sweet", "sweets"]
+          trap_values:
+            - value: "1"
+              trap: "best-case-not-worst"
+              text: "Eating 1 leaves 11, and Dan has a good reply."
+            - value: "3"
+              trap: "ignored-condition"
+              text: "Eating 3 would leave 9, but nobody may eat more than 2 sweets at a time."
+    simpler_case: "Try a bowl of 5 sweets with the same rules. How many must Eva eat first?"
+solution:
+  - text: "A bowl of 1 loses for the player whose turn it is, since she must eat the last sweet. A bowl of 4 loses too: after 1 or 2 sweets, the other player leaves 1. In the same way 7 and 10 lose. Eva eats 2 and leaves 10, and each round she makes the two turns add up to 3."
+techniques: ["backwards"]
+traps: ["ignored-condition", "first-move-assumed"]
+leak_phrases: ["eat 2 first", "eats 2 first"]
+skills:
+  primary: ["games-strategy"]
+band: "grades-5-6"
+difficulty: 3

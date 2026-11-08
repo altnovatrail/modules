@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.sets.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/sets-56-d1-1.yaml, and the port writes this file again (R12).
+id: "sets-56-d1-1"
+statement:
+  - text: "In a yard there are cats and other animals, and some of the animals are called Vaska. Who are more: the cats, leaving out the cats that are not called Vaska, or the animals called Vaska, leaving out those that are not cats?"
+givens: ["Some of the animals in the yard are called Vaska.", "One group is the cats, leaving out the cats not called Vaska.", "The other is the animals called Vaska, leaving out those that are not cats."]
+unknown: "Which group is bigger."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["The cats", "The animals called Vaska", "It depends on how many cats there are", "They are as many", "The cats, by the cats not called Vaska"]
+        check:
+          kind: "choice"
+          key: "They are as many"
+          trap_values:
+            - value: "The cats"
+              trap: "ignored-not"
+              text: "The cats misses a 'not' in the question."
+            - value: "The animals called Vaska"
+              trap: "ignored-not"
+              text: "The animals called Vaska misses a 'not' in the question."
+            - value: "It depends on how many cats there are"
+              trap: "ignored-condition"
+              text: "It depends would be right for all the cats against all the animals called Vaska, but the question leaves some of both out."
+            - value: "The cats, by the cats not called Vaska"
+              trap: "answered-other-question"
+              text: "Both groups in the question leave the cats not called Vaska out."
+    simpler_case: "Try a yard with 4 cats, 2 of them called Vaska, and a dog called Vaska. Are there more cats or more animals called Vaska?"
+solution:
+  - text: "Leaving out the cats that are not called Vaska leaves the cats called Vaska. Leaving out the animals called Vaska that are not cats leaves the same animals: the cats called Vaska. Both groups are the same animals, so they are as many."
+skills:
+  primary: ["logic-sets"]
+band: "grades-5-6"
+difficulty: 1
