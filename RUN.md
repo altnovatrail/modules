@@ -135,7 +135,7 @@
 | [x] | T39 | Уроки `time-clocks`, `time-calendar`, `logic-knights-liars` и `algorithms-weighing-pouring`: 10 | Claude, проверяю я | — | T28–T31 |
 | [x] | T40 | Уроки семи навыков полосы 5–6: 7 | Claude, проверяю я | — | T32–T34 |
 | [x] | T41 | Уроки `counting-figures` и `geometry-cubes-paper`: 6, с картинками | Claude, проверяю я | да | T21, T34 |
-| [ ] | T42 | Релиз: ветка эпика в `main` и второй релиз | я + Claude | да | T18–T41 |
+| [x] | T42 | Релиз: ветка эпика в `main` и второй релиз | я + Claude | да | T18–T41 |
 | [ ] | T43 | Итог эпика: просьбы к формату и архив | Claude | — | T42 |
 
 **Почему такой порядок.**
@@ -768,6 +768,17 @@
   3. **мерж `e3` в `main`** и релиз делает исполнитель, по поручению автора 2026-11-08: «сам доводи до мержа в main». Ветку `e3` после релиза он удаляет и убирает её из ruleset `main`, куда её добавил T18.
 - **Выяснилось при планировании** (2026-11-08): `release-verify modules v0.1.0` принимает индекс `v0.1.0` — «signed by the shared release.yml of .github v0.1.15». Пробный прогон `just release-files v0.1.1 <индекс v0.1.0>` на `e3` после T41 пишет индекс трёх пакетов, `LICENSE` и один архив — `novatrail/olympiad-math` 0.1.1; `grade-3-math` и `english-essays` 0.1.0 «stay in v0.1.0, which published it». Дайджест пакета `olympiad-math` 0.1.1 — sha256:123cb0d3…839cb1, архив — sha256 2e180f31…7d7c.
 - **Мой шаг:** мерж в `main` (правило 4); ветка эпика удаляется после релиза.
+- **Сделано (2026-11-08):**
+  - правило 12 — до начала: у SonarCloud на `e3` и у CodeQL находок нет, у Scorecard те же 6, их причины — в R33 spec. Правок нет;
+  - до релиза, по поручению автора, — переход на `spec` v0.9.9 на `e3`, pull request #57 (R23), и планирование T42, #58;
+  - pull request #59, `e3` в `main`, 52 коммита. Все проверки зелёные; проба «Release / release» дала номер `v0.1.1`, «module-index.json: modules v0.1.0, signed by the shared release.yml of .github v0.1.15», тот же пакет `olympiad-math` 0.1.1, sha256:123cb0d3…839cb1, что локальный прогон, и «Verified OK» подписей. Исполнитель слил #59 merge-коммитом 5f6d7a9 по поручению автора;
+  - после CI на `main` Release выпустил `v0.1.1`, 2026-11-08, неизменяемый: `module-index.json`, `LICENSE` и один архив, `sha256-123cb0d3…839cb1.tar.gz`, каждый с bundle. `grade-3-math` и `english-essays` 0.1.0 остаются в `v0.1.0`;
+  - после релиза проверено:
+    - `release-verify modules v0.1.1` принял все три файла — «signed by the shared release.yml of .github v0.1.15»;
+    - sha256 трёх файлов совпали с локальным пробным прогоном;
+    - `just modules-check` на `main` прошёл путь с настоящим индексом `v0.1.1`: четыре записи — три из `v0.1.0` и `olympiad-math` 0.1.1 из `v0.1.1`, — и у всех трёх модулей «the newest published version as it was»;
+  - README.md — статус; [docs/architecture.md](docs/architecture.md), раздел 3.7 — строки E3.
+- **Открыто:** ветка `e3` ещё есть, и ruleset `main` (id 25506537) ещё называет `refs/heads/e3` в `include`. Исполнителю правку ruleset и удаление ветки не дали права сессии. Шаг автора: убрать `refs/heads/e3` из `conditions.ref_name.include` ruleset — правило `deletion` иначе не даст удалить ветку, — затем удалить ветку `e3`.
 - **Разделы:** R03, R17; R63 spec, R77 spec; [docs/architecture.md](docs/architecture.md), раздел 3.3.
 
 #### T43. Итог эпика: просьбы к формату и архив
