@@ -16,7 +16,11 @@ import (
 
 // choiceForm is a text as a choice normalizes it: NFKC, the dashes and slashes of step 3 of
 // section 15, the white space of step 4, and each character to its simple lowercase mapping.
-func choiceForm(text string) string {
+func choiceForm(text string) string { return normalized(text, true) }
+
+// normalized is a text after NFKC, the dashes and slashes of step 3 of section 15 and the white
+// space of step 4, and, where lower says so, each character to its simple lowercase mapping.
+func normalized(text string, lower bool) string {
 	text = norm.NFKC.String(text)
 	text = strings.Map(func(r rune) rune {
 		switch {
@@ -24,15 +28,25 @@ func choiceForm(text string) string {
 			return '-'
 		case r == '⁄', r == '∕':
 			return '/'
+		case lower:
+			return unicode.ToLower(r)
 		}
-		return unicode.ToLower(r)
+		return r
 	}, text)
 	return strings.Join(strings.FieldsFunc(text, func(r rune) bool { return unicode.Is(unicode.White_Space, r) }), " ")
 }
 
 // leakForm is a text in the normal form of the leak check: step 1 of section 15, then as a choice
 // normalizes it (section 20).
-func leakForm(text string) string {
+func leakForm(text string) string { return normalized(stepOne(text), true) }
+
+// casedForm is the normal form of the leak check without the lowercase mapping: a label A of a
+// picture is no word a.
+func casedForm(text string) string { return normalized(stepOne(text), false) }
+
+// stepOne is step 1 of section 15: a superscript or subscript digit, and a vulgar fraction that a
+// number stands right before or right after, become the replacement character.
+func stepOne(text string) string {
 	runes := []rune(text)
 	out := make([]rune, len(runes))
 	for i, r := range runes {
@@ -44,7 +58,7 @@ func leakForm(text string) string {
 			out[i] = unicode.ReplacementChar
 		}
 	}
-	return choiceForm(string(out))
+	return string(out)
 }
 
 // vulgar tells a vulgar fraction, such as ½, from any other character.
@@ -60,8 +74,14 @@ func wordChar(r rune) bool {
 // names tells whether a text holds a phrase as the leak check finds one: the phrase's normal form
 // stands in the text's, and where it begins or ends with a character of a word, no character of a
 // word stands right before or right after it. A phrase whose normal form is empty is found nowhere.
-func names(text, phrase string) bool {
-	in, what := []rune(leakForm(text)), []rune(leakForm(phrase))
+func names(text, phrase string) bool { return phraseIn(leakForm(text), leakForm(phrase)) }
+
+// namesCased is names that tells capitals from small letters.
+func namesCased(text, phrase string) bool { return phraseIn(casedForm(text), casedForm(phrase)) }
+
+// phraseIn is the search of a phrase in a text, both in a normal form already.
+func phraseIn(form, phraseForm string) bool {
+	in, what := []rune(form), []rune(phraseForm)
 	if len(what) == 0 {
 		return false
 	}

@@ -200,11 +200,11 @@ func TestConvertSurveyPictures(t *testing.T) {
 		t.Errorf("a survey: %v\n%s", err, c.Files["tasks/lamps-9.yaml"])
 	}
 
-	ex.Picture = json.RawMessage(`{"kind": "lattice", "width": 2}`)
+	ex.Picture = json.RawMessage(`{"kind": "flags", "groups": []}`)
 	_, err = convert(ex, batch, metres, Overlay{}, "content/examples/x.json")
 	var notYet notDrawn
-	if !errors.As(err, &notYet) || notYet.kind != "lattice" || !strings.Contains(err.Error(), `kind "lattice", which the port does not draw yet`) {
-		t.Errorf("a lattice: error = %v", err)
+	if !errors.As(err, &notYet) || notYet.kind != "flags" || !strings.Contains(err.Error(), `kind "flags", which the port does not draw yet`) {
+		t.Errorf("flags: error = %v", err)
 	}
 }
 

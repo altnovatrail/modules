@@ -32,11 +32,12 @@ import (
 // those of T21 (E3).
 
 // drawing is a picture of one kind, read: what the service checks, the size it is drawn at in CSS
-// px, and how it is drawn there.
+// px, how it is drawn there, and the texts it writes (labels.go).
 type drawing interface {
 	valid() error
 	size() (width, height int)
 	paint(c canvas)
+	labels() []string
 }
 
 // kinds are the kinds the port draws, each a new empty description to read one into.
@@ -53,6 +54,10 @@ var kinds = map[string]func() drawing{
 	"venn":        func() drawing { return &vennPicture{} },
 	"balance":     func() drawing { return &balancePicture{} },
 	"ring":        func() drawing { return &ringPicture{} },
+	"lattice":     func() drawing { return &latticePicture{} },
+	"tiles":       func() drawing { return &tilesPicture{} },
+	"shapes":      func() drawing { return &shapesPicture{} },
+	"stairs":      func() drawing { return &stairsPicture{} },
 }
 
 var (
@@ -76,27 +81,9 @@ func pictureOf(id string, raw json.RawMessage, alt, suffix string) (mapping, []b
 	if alt == "" {
 		return nil, nil, fmt.Errorf("%s: its picture has no alt in its overlay", id)
 	}
-	var kind struct {
-		Kind string `json:"kind"`
-	}
-	if err := json.Unmarshal(raw, &kind); err != nil {
-		return nil, nil, fmt.Errorf("%s: its picture: %w", id, err)
-	}
-	newDrawing, drawn := kinds[kind.Kind]
-	if !drawn {
-		return nil, nil, notDrawn{id: id, kind: kind.Kind}
-	}
-	if err := exactKeys(raw, keyedByData[kind.Kind]); err != nil {
-		return nil, nil, fmt.Errorf("%s: its picture: %w", id, err)
-	}
-	picture := newDrawing()
-	decoder := json.NewDecoder(bytes.NewReader(raw))
-	decoder.DisallowUnknownFields()
-	if err := decoder.Decode(picture); err != nil {
-		return nil, nil, fmt.Errorf("%s: its picture: %w", id, err)
-	}
-	if err := picture.valid(); err != nil {
-		return nil, nil, fmt.Errorf("%s: its picture: %w", id, err)
+	picture, err := readPicture(id, raw)
+	if err != nil {
+		return nil, nil, err
 	}
 	data, width, height, err := render(picture)
 	if err != nil {
@@ -167,6 +154,34 @@ func exactKeys(raw json.RawMessage, keyed string) error {
 	return walk(false)
 }
 
+// readPicture reads a picture of standalone strictly, by its kind, and holds it to the checks of
+// standalone's service: a kind the port does not draw is notDrawn.
+func readPicture(id string, raw json.RawMessage) (drawing, error) {
+	var kind struct {
+		Kind string `json:"kind"`
+	}
+	if err := json.Unmarshal(raw, &kind); err != nil {
+		return nil, fmt.Errorf("%s: its picture: %w", id, err)
+	}
+	newDrawing, drawn := kinds[kind.Kind]
+	if !drawn {
+		return nil, notDrawn{id: id, kind: kind.Kind}
+	}
+	if err := exactKeys(raw, keyedByData[kind.Kind]); err != nil {
+		return nil, fmt.Errorf("%s: its picture: %w", id, err)
+	}
+	picture := newDrawing()
+	decoder := json.NewDecoder(bytes.NewReader(raw))
+	decoder.DisallowUnknownFields()
+	if err := decoder.Decode(picture); err != nil {
+		return nil, fmt.Errorf("%s: its picture: %w", id, err)
+	}
+	if err := picture.valid(); err != nil {
+		return nil, fmt.Errorf("%s: its picture: %w", id, err)
+	}
+	return picture, nil
+}
+
 // pathOfPicture is the path of a picture part's file from the module's folder.
 func pathOfPicture(part mapping) string {
 	return "media/" + part[0].value.(string)
@@ -211,6 +226,8 @@ var (
 	// shade fills what a picture shades, such as the shaded parts of a bar; paper fills a header.
 	shade = color.RGBA{0xbf, 0xc5, 0xce, 0xff}
 	paper = color.RGBA{0xee, 0xf0, 0xf3, 0xff}
+	// rule is the lines of squared paper: light, and still there to count the cells by.
+	rule = color.RGBA{0xa8, 0xaf, 0xb8, 0xff}
 )
 
 // goRegular is the font of the labels, Go Regular, BSD-3-Clause, parsed once; faces holds a face
@@ -375,4 +392,21 @@ func (c canvas) outline(cx, cy, r, width float64) {
 	circle(path, cx, cy, r+width/2, 96, 1)
 	circle(path, cx, cy, r-width/2, 96, -1)
 	path.Draw(c.img, c.img.Bounds(), image.NewUniform(ink), image.Point{})
+}
+
+// polygon draws the outline of a closed polygon through its corners, of a width.
+func (c canvas) polygon(corners [][2]float64, width float64) {
+	for i, from := range corners {
+		to := corners[(i+1)%len(corners)]
+		c.line(from[0], from[1], to[0], to[1], width)
+	}
+}
+
+// dashed draws a dashed line of a width from one point to another: dashes of 6 CSS px, 4 apart.
+func (c canvas) dashed(x0, y0, x1, y1, width float64) {
+	length := math.Hypot(x1-x0, y1-y0)
+	for from := 0.0; from < length; from += 10 {
+		to := min(from+6, length)
+		c.line(x0+(x1-x0)*from/length, y0+(y1-y0)*from/length, x0+(x1-x0)*to/length, y0+(y1-y0)*to/length, width)
+	}
 }

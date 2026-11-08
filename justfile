@@ -647,7 +647,10 @@ port-survey module commit="42b4408225e4163d8efbdfb93c299f3fc4b70afa":
 
 # The module of a survey is the format's examples of olympiad-math — manifest, skill graph, traps,
 # techniques and solving steps — with the root's LICENSE, as in test/port.test.mjs, and the tasks
-# the port writes into it. module-kit check then reads it: a breach of task.no-leaks is what E3's
+# the port writes into it. The example's graph has the 17 topics of standalone at c6cbeb2, so the
+# survey adds the two topics of 42b4408 where the clone has them and the graph does not, with no
+# prerequisites, as their builds_on is empty, and the topics' names for titles (docs/architecture.md,
+# section 3.5; R21). They go at the graph's end, under skills:, which must be its last key. module-kit check then reads it: a breach of task.no-leaks is what E3's
 # overlays are to mend, and the recipe counts them; any other breach, and any warning, fails it.
 # The exit status is the port's — 1 when it refused a task, 2 when it could not run — or 1 when the
 # check found more than task.no-leaks. The port is built first, rather than run by go run, which
@@ -669,6 +672,17 @@ _port-survey clone commit module *options:
         cp "spec/format/examples/${part}/valid/olympiad-math.yaml" "${module}/${part}.yaml"
     done
     cp LICENSE "${module}/LICENSE"
+    graph="${module}/skill-graph.yaml"
+    if [ "$(awk '/^[a-z_]+:/ { key = $1 } END { print key }' "$graph")" != "skills:" ]; then
+        echo "port-survey: the format's example graph does not end with skills:, so no skill can be added to it" >&2
+        exit 2
+    fi
+    while IFS='|' read -r topic skill title; do
+        if jq -e --arg id "$topic" 'any(.[]; .id == $id)' "${clone}/content/catalogs/topics.json" > /dev/null &&
+            ! grep -q "^  ${skill}:$" "$graph"; then
+            printf '  %s:\n    title: %s\n    assessability: verdict\n' "$skill" "$title" >> "$graph"
+        fi
+    done <<< $'counting.figures|counting-figures|Counting figures\ngeometry.cubes_paper|geometry-cubes-paper|Cubes and paper'
     bin=$(mktemp -d)
     trap 'rm -rf "$bin"' EXIT
     go build -o "${bin}/port" ./tools/port
