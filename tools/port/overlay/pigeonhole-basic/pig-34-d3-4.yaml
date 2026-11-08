@@ -1,0 +1,6 @@
+# What a person adds to pig-34-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are 35 pupils."
+  - "Each read between 0 and 9 books during the summer."
+unknown: "At least how many pupils read the same number of books."
+simpler_case: "Try 7 pupils who each read 0, 1 or 2 books first. At least how many read the same number?"

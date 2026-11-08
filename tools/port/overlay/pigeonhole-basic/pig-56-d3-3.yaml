@@ -1,0 +1,8 @@
+# What a person adds to pig-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Tom writes different whole numbers."
+  - "Two of them must differ by a number of the 7 times table."
+unknown: "How many numbers he must write to be sure of it."
+simpler_case: "Try differences of 2, 4, 6 and so on first. How many numbers make you sure that two differ by an even number?"
+trap_texts:
+  "14": "14 takes two numbers for each remainder, but you do not need two of every remainder: two of one remainder are enough."

@@ -29,7 +29,7 @@ items:
             - value: "27"
               trap: "wrong-operation"
               text: "You multiplied 3 by 3 by 3, but each digit is used exactly once, and a number cannot start with 0."
-    simpler_case: "Which digit cannot come first? Count the numbers that start with 1 first."
+    simpler_case: "Try three-digit numbers with the digits 0, 1 and 2, each used once. How many are there?"
 solution:
   - text: "The four digits can be ordered in 24 ways, but a four-digit number cannot start with 0. There are 6 orders starting with 0, so 24 - 6 = 18."
 techniques: ["systematic"]

@@ -1,0 +1,8 @@
+# What a person adds to pig-34-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The bag has 10 red, 10 blue and 10 green balls."
+  - "You take balls out without looking."
+unknown: "How many balls you must take to be sure to have 10 balls of the same colour."
+simpler_case: "Try a bag of 3 red and 3 blue balls first. How many balls make you sure of 3 of the same colour?"
+trap_texts:
+  "10": "10 balls could be of mixed colours, with fewer than 10 of each."

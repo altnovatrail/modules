@@ -29,7 +29,7 @@ items:
             - value: "8"
               trap: "off-by-one"
               text: "Check that each way adds up to exactly 7 cents, and that no way is counted twice."
-    simpler_case: "Count the ways with a 5-cent coin first, and then the ways without one."
+    simpler_case: "Try paying 4 cents with 1-cent and 2-cent coins. In how many ways can it be done?"
 solution:
   - text: "With a 5-cent coin: 5 + 2 or 5 + 1 + 1. Without it: three 2-cent coins and one 1-cent coin, two 2-cent coins and three 1-cent coins, one 2-cent coin and five 1-cent coins, or seven 1-cent coins. That is 2 + 4 = 6 ways."
 techniques: ["systematic"]

@@ -29,7 +29,7 @@ items:
             - value: "On day 4"
               trap: "answered-other-question"
               text: "4 is the number of nights the frog slips back. It gets out on the day after its last night."
-    simpler_case: "Make a table of how high the frog is after each day and after each night."
+    simpler_case: "Try a well 5 metres deep, a climb of 3 metres each day and a slip of 2 metres each night. On which day does the frog get out?"
 solution:
   - text: "A day and a night together lift the frog 5 − 3 = 2 metres. After 4 days and 4 nights it is 8 metres up. On day 5 it climbs 5 metres more, to 13 metres, and is out of the 12-metre well before it can slip back."
 techniques: ["draw", "small-numbers"]

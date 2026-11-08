@@ -29,7 +29,7 @@ items:
             - value: "42"
               trap: "double-count"
               text: "Ann and Ben is the same pair as Ben and Ann."
-    simpler_case: "Count all the pairs first. Which pairs are not allowed?"
+    simpler_case: "Try 2 boys and 2 girls, choosing 2 children who are not both girls. In how many ways?"
 solution:
   - text: "Any 2 of the 7 children: 21 pairs. Pairs of two girls: 6. 21 - 6 = 15."
 techniques: ["systematic"]

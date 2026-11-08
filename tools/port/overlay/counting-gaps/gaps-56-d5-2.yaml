@@ -4,7 +4,7 @@ givens:
   - "The second channel shows parts of 15 minutes, with a 3-minute advert between every two parts."
   - "Both start the same film at the same moment."
 unknown: "Which channel ends the film first, and how much sooner."
-simpler_case: "Take a film of 30 minutes first. How many adverts does each channel show?"
+simpler_case: "Try one channel that shows a 20-minute film in parts of 10 minutes, with a 2-minute advert between them. How long does it take to show?"
 trap_texts:
   "The second, 3 minutes sooner": "This turns the comparison round. Work out which channel shows more minutes of adverts: that one ends later."
   "It cannot be told without the length of the film": "It can be told: take a film of any length cut into whole parts, and compare how many minutes of adverts each channel shows."

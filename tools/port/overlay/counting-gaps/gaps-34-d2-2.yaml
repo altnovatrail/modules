@@ -3,4 +3,4 @@ givens:
   - "From the first of 3 rings to the last is 6 seconds."
   - "The rings are evenly spaced."
 unknown: "How many seconds pass from the first ring to the last when the bell rings 7 times."
-simpler_case: "How many gaps are there between 3 rings? Find how long one gap lasts."
+simpler_case: "Try a bell that rings 2 times in 4 seconds. How long do 4 rings take, from the first to the last?"

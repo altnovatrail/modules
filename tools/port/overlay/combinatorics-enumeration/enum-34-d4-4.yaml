@@ -3,4 +3,4 @@ givens:
   - "Masha has 5 different stickers."
   - "She gives 2 of them to Dasha and 1 to Pasha."
 unknown: "In how many different ways she can do it."
-simpler_case: "Count the ways to choose Dasha's two stickers first. How many are left for Pasha then?"
+simpler_case: "Try 3 stickers, 1 for Dasha and 1 for Pasha. In how many ways can she give them?"

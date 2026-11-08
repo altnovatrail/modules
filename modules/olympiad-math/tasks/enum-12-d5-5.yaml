@@ -29,7 +29,7 @@ items:
             - value: "12"
               trap: "double-count"
               text: "Each number is counted only once."
-    simpler_case: "Which digits can a two-digit number start with? Start with those."
+    simpler_case: "Try the digits 0 and 1, a digit used twice if you like. How many two-digit numbers are there?"
 solution:
   - text: "The first digit can be 1 or 2, because a two-digit number cannot start with 0. The second digit can be 0, 1 or 2. So there are 3 + 3 = 6 numbers: 10, 11, 12, 20, 21, 22."
 techniques: ["systematic"]

@@ -1,0 +1,67 @@
+# The tasks of pigeonhole-basic of standalone at 42b4408 that the first batch did not carry: all 56
+# of them (E3; T24). The units are the word each question counts, in the singular and the plural; a
+# task whose answer is no number has none. The techniques are those of the first batch.
+standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+skills:
+  pigeonhole-basic:
+    techniques: [pigeonhole]
+tasks:
+  pig-12-d1-1: {units: [ball, balls]}
+  pig-12-d1-3: {units: [rabbit, rabbits]}
+  pig-12-d1-4: {units: [pencil, pencils]}
+  pig-12-d1-5: {units: [counter, counters]}
+  pig-12-d2-1: {units: [marble, marbles]}
+  pig-12-d2-2: {units: [ball, balls]}
+  pig-12-d2-3: {units: [child, children]}
+  pig-12-d2-4: {units: [sock, socks]}
+  pig-12-d2-5: {units: [pencil, pencils]}
+  pig-12-d3-2: {units: [sock, socks]}
+  pig-12-d3-3: {units: [child, children]}
+  pig-12-d3-4: {units: [ball, balls]}
+  pig-12-d3-5: {units: [sweet, sweets]}
+  pig-12-d4-1: {units: [ball, balls]}
+  pig-12-d4-2: {units: [sock, socks]}
+  pig-12-d4-3: {units: [marble, marbles]}
+  pig-12-d4-4: {units: [card, cards]}
+  pig-12-d4-5: {units: [child, children]}
+  pig-12-d5-2: {units: [glove, gloves]}
+  pig-12-d5-3: {units: [card, cards]}
+  pig-12-d5-4: {units: [ball, balls]}
+  pig-12-d5-5: {units: [apple, apples]}
+  pig-34-d1-1: {units: [sock, socks]}
+  pig-34-d1-3: {units: [ball, balls]}
+  pig-34-d1-4: {units: [pencil, pencils]}
+  pig-34-d1-5: {}
+  pig-34-d2-1: {units: [ball, balls]}
+  pig-34-d2-2: {units: [pupil, pupils]}
+  pig-34-d2-3: {units: [pencil, pencils]}
+  pig-34-d2-4: {units: [card, cards]}
+  pig-34-d2-5: {units: [pupil, pupils]}
+  pig-34-d3-2: {units: [ball, balls]}
+  pig-34-d3-3: {units: [sock, socks]}
+  pig-34-d3-4: {units: [pupil, pupils]}
+  pig-34-d3-5: {units: [ball, balls]}
+  pig-34-d4-1: {units: [ball, balls]}
+  pig-34-d4-2: {units: [number, numbers]}
+  pig-34-d4-3: {units: [glove, gloves]}
+  pig-34-d4-4: {units: [pupil, pupils]}
+  pig-34-d4-5: {units: [ball, balls]}
+  pig-34-d5-2: {units: [pupil, pupils]}
+  pig-34-d5-3: {units: [pupil, pupils]}
+  pig-34-d5-4: {units: [sock, socks]}
+  pig-34-d5-5: {}
+  pig-56-d1-2: {units: [member, members]}
+  pig-56-d1-3: {units: [bush, bushes]}
+  pig-56-d2-1: {units: [time, times]}
+  pig-56-d2-2: {units: [sock, socks]}
+  pig-56-d2-3: {units: [pupil, pupils]}
+  pig-56-d3-1: {units: [coin, coins]}
+  pig-56-d3-3: {units: [number, numbers]}
+  pig-56-d4-1: {units: [pupil, pupils]}
+  pig-56-d4-2: {units: [number, numbers]}
+  pig-56-d4-3: {units: [number, numbers]}
+  pig-56-d5-2: {units: [picture, pictures]}
+  pig-56-d5-3: {units: [bowl, bowls]}

@@ -4,4 +4,4 @@ givens:
   - "The rows are 5 metres apart, and in a row the trees are 5 metres apart."
   - "There are trees along all four edges, one in each corner."
 unknown: "How many trees there are."
-simpler_case: "Count the trees along one 20-metre edge first: they stand every 5 metres from one end to the other."
+simpler_case: "Try an orchard 10 metres by 10 metres, with trees every 5 metres both ways and one in each corner. How many trees are there?"

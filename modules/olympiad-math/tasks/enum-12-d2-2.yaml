@@ -29,7 +29,7 @@ items:
             - value: "12"
               trap: "double-count"
               text: "Each number is counted only once."
-    simpler_case: "Start with the numbers whose first digit is 3. Write them all down."
+    simpler_case: "Try the digits 1 and 2 only, the two digits of a number different. How many two-digit numbers can you write?"
 solution:
   - text: "The numbers are 35, 37, 53, 57, 73 and 75. That is 6 numbers."
 techniques: ["systematic"]

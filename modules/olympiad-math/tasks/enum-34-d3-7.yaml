@@ -33,7 +33,7 @@ items:
             - value: "4"
               trap: "stopped-early"
               text: "That is the choices for one flavour."
-    simpler_case: "Take one flavour first. How many choices of topping does it have?"
+    simpler_case: "Try 2 flavours and 1 topping, a cone with the topping or without it. How many cones are there?"
 solution:
   - text: "With each flavour there are 4 choices: one of the 3 toppings or no topping. So there are 3 times 4, which is 12 cones."
   - text: "3 × 4 = 12"

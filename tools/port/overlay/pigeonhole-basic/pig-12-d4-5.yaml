@@ -1,0 +1,7 @@
+# What a person adds to pig-12-d4-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each child likes one colour best: red, blue or green."
+unknown: "At least how many children the group must have to be sure that 3 of them like the same colour best."
+simpler_case: "Try to be sure of 2 children with the same colour first. How many children does that take?"
+trap_texts:
+  "10": "Fewer children are already enough: count the children who can like the colours with no 3 alike, and add one."

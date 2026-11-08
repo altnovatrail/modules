@@ -4,4 +4,4 @@ givens:
   - "The filling is cheese, ham or egg."
   - "The sauce is one of two sauces, or none."
 unknown: "How many different sandwiches the café can make."
-simpler_case: "Leave the sauce out first. How many ways are there to choose the bread and the filling?"
+simpler_case: "Try white or brown bread with cheese, and a sauce or none. How many sandwiches are there?"

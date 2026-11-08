@@ -3,6 +3,6 @@ givens:
   - "Masha has one red, one blue and one green bead."
   - "She puts all three on a string in a row."
 unknown: "How many different rows she can make."
-simpler_case: "Put the red bead first. In how many ways can the other two follow it?"
+simpler_case: "Try two beads, a red one and a blue one. How many rows can she make?"
 trap_texts:
   "8": "You counted some rows twice. Write each row as three colour letters, and cross out the rows that repeat."

@@ -29,7 +29,7 @@ items:
             - value: "8"
               trap: "double-count"
               text: "The order of the coins does not matter."
-    simpler_case: "Sort the ways by how many 10-cent coins they use. Start with two of them."
+    simpler_case: "Try paying 10 cents with 2-cent and 5-cent coins. In how many ways can it be done?"
 solution:
   - text: "With two 10-cent coins: 1 way. With one 10-cent coin, 10 cents are left: five 2-cent coins or two 5-cent coins, 2 ways. With no 10-cent coins: ten 2-cent coins, two 5-cent and five 2-cent coins, or four 5-cent coins, 3 ways. 1 + 2 + 3 = 6."
 techniques: ["systematic"]

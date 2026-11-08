@@ -33,7 +33,7 @@ items:
             - value: "13"
               trap: "double-count"
               text: "A gap was counted twice."
-    simpler_case: "Take one side first. How many gaps are there between its posts?"
+    simpler_case: "Try a fence of 3 posts on each side of the path. How many rails do both sides take?"
 solution:
   - text: "One side has 7 posts, so it has 6 gaps and takes 6 rails. The other side takes 6 more, so both sides take 6 + 6 = 12 rails."
   - text: "6 + 6 = 12"

@@ -3,4 +3,4 @@ givens:
   - "There are 2 paths from the house to the bridge."
   - "There are 3 paths from the bridge to the park."
 unknown: "How many different ways there are from the house to the park over the bridge."
-simpler_case: "Take one path to the bridge first. How many ways go on from there to the park?"
+simpler_case: "Try 2 paths to the bridge and 2 paths on to the park. How many ways are there?"

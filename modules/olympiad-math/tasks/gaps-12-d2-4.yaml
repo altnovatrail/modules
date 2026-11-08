@@ -29,7 +29,7 @@ items:
             - value: "30"
               trap: "off-by-one"
               text: "From floor 1 to floor 3 there are only 2 flights, not 3."
-    simpler_case: "Draw the floors 1, 2 and 3 as dots in a column. How many flights of stairs join them?"
+    simpler_case: "Try a house where each flight has 4 steps. How many steps is it from floor 1 to floor 3?"
 solution:
   - text: "From floor 1 to floor 3 there are 2 flights: 1 to 2 and 2 to 3. That is 10 + 10 = 20 steps."
 techniques: ["draw", "small-numbers"]

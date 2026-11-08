@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-56-d4-1.yaml, and the port writes this file again (R12).
+id: "pig-56-d4-1"
+statement:
+  - text: "Every pupil was born in one of the four seasons, and every pupil is a boy or a girl. How many pupils must a group have to be sure that 3 of them were born in the same season and are all boys or all girls?"
+givens: ["Every pupil was born in one of the four seasons.", "Every pupil is a boy or a girl."]
+unknown: "How many pupils a group must have to be sure that 3 of them were born in the same season and are all boys or all girls."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "17"
+          units: ["pupil", "pupils"]
+          trap_values:
+            - value: "3"
+              trap: "best-case-not-worst"
+              text: "Three pupils could be of one kind by luck, but they need not."
+            - value: "24"
+              trap: "wrong-operation"
+              text: "24 multiplies 3 by the kinds of pupil, but you do not need three of every kind: three of one kind are enough."
+            - value: "9"
+              trap: "ignored-condition"
+              text: "9 makes sure of two pupils of the same kind, but the question asks for three."
+            - value: "16"
+              trap: "off-by-one"
+              text: "16 pupils could be exactly two of each of the 8 kinds, with no three alike."
+    simpler_case: "Try pupils born in one of 2 seasons, all of them girls. How many make you sure that 2 were born in the same season?"
+solution:
+  - text: "A season together with boy or girl makes 4 × 2 = 8 kinds of pupil. A group can have two pupils of each kind, 16 pupils, with no three alike. With 17 pupils one kind must have 3."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-5-6"
+difficulty: 4

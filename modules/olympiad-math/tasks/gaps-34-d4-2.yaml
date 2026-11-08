@@ -29,7 +29,7 @@ items:
             - value: "39"
               trap: "number-from-text"
               text: "39 is the number of digits, not pages."
-    simpler_case: "How many digits do pages 1 to 9 use? See how many digits are left for the other pages."
+    simpler_case: "Try a book whose page numbers use 15 digits in all. How many pages does it have?"
 solution:
   - text: "Pages 1 to 9 use 9 digits. The other 39 - 9 = 30 digits are on two-digit pages: 30 ÷ 2 = 15 pages, from 10 to 24. So the book has 24 pages."
 techniques: ["draw", "small-numbers"]

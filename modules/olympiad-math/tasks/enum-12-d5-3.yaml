@@ -29,7 +29,7 @@ items:
             - value: "12"
               trap: "double-count"
               text: "You counted every way through Birch twice."
-    simpler_case: "Count the ways through Birch first. Then think of the road that does not go through Birch."
+    simpler_case: "Try 2 roads from Ash to Birch, 1 road from Birch to Cedar and 1 straight road. How many ways are there?"
 solution:
   - text: "Through Birch: each of 3 roads with each of 2 roads, 6 ways. Plus the straight road: 6 + 1 = 7."
 techniques: ["systematic"]

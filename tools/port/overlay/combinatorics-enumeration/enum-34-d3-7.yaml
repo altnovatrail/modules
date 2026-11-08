@@ -4,6 +4,6 @@ givens:
   - "Each square mark is a topping."
   - "A cone has one flavour, with one topping or with no topping."
 unknown: "How many different cones there are."
-simpler_case: "Take one flavour first. How many choices of topping does it have?"
+simpler_case: "Try 2 flavours and 1 topping, a cone with the topping or without it. How many cones are there?"
 picture_alt: "Two piles of marks: 3 round marks in the first and 3 square marks in the second."
 solution_picture_alt: "Three piles of 4 marks each, one pile for each flavour with its cones."

@@ -4,4 +4,4 @@ givens:
   - "He has 3 pairs of trousers."
   - "An outfit is one shirt and one pair of trousers."
 unknown: "How many different outfits he can make."
-simpler_case: "Take one shirt first. How many outfits can it make?"
+simpler_case: "Try 2 shirts and 2 pairs of trousers. How many outfits are there?"

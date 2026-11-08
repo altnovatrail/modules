@@ -3,7 +3,7 @@ givens:
   - "Frog F starts on the floor."
   - "Every jump is as long as the jump drawn in the picture."
 unknown: "How many jumps take the frog from the floor to the top step."
-simpler_case: "Count the steps the drawn jump goes up. Then jump on from where it lands."
+simpler_case: "Try a staircase of 4 steps where each jump goes up 2 steps. How many jumps reach the top?"
 picture_alt: "A staircase of 9 steps going up from the floor. Frog F sits on the floor, and an arrow shows one jump from the floor up three steps."
 solution_picture_alt: "The same staircase with frog F on the top step, and three jumps drawn: from the floor to step 3, from step 3 to step 6 and from step 6 to step 9."
 trap_texts:

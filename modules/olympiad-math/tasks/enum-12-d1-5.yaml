@@ -29,7 +29,7 @@ items:
             - value: "12"
               trap: "double-count"
               text: "You counted every way twice."
-    simpler_case: "Take one path to the bridge first. How many ways go on from there to the park?"
+    simpler_case: "Try 2 paths to the bridge and 2 paths on to the park. How many ways are there?"
 solution:
   - text: "Each of the 2 paths to the bridge can be followed by any of the 3 paths to the park: 3 + 3 = 6 ways."
 techniques: ["systematic"]

@@ -4,5 +4,5 @@ givens:
   - "Posts stand every 4 metres along the fence."
   - "There is a post in every corner."
 unknown: "How many posts there are."
-simpler_case: "Take one side first. How many posts stand on it, counting its corners? Then see which posts two sides share."
+simpler_case: "Try a square garden with sides of 8 metres, a post every 4 metres and one in every corner. How many posts are there?"
 leak_phrases: ["20 posts"]

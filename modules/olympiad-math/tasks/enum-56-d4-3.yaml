@@ -29,7 +29,7 @@ items:
             - value: "8"
               trap: "double-count"
               text: "8 takes away the team with Ella and Finn twice, but it is one team."
-    simpler_case: "Gia is in. List the pairs of the other pupils who can join her."
+    simpler_case: "Try picking 2 of 4 pupils, Ella, Finn, Gia and Hugo, with Ella and Finn not together. How many pairs are there?"
 solution:
   - text: "Gia is in, so the teacher picks 2 of the other 5 pupils. There are 10 such pairs: Ella with Finn, Hugo, Ivy or Jack; Finn with Hugo, Ivy or Jack; Hugo with Ivy or Jack; and Ivy with Jack. Only Ella with Finn is not allowed, so 9 teams are left."
 techniques: ["systematic"]

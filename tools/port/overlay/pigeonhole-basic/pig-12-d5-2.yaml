@@ -1,0 +1,7 @@
+# What a person adds to pig-12-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The drawer has 3 pairs of red gloves and 3 pairs of blue gloves, all mixed up."
+  - "Every pair has a left glove and a right glove."
+  - "You take gloves in the dark."
+unknown: "How many gloves you must take to be sure of a left and a right glove of the same colour."
+simpler_case: "Try a drawer of 1 red pair and 1 blue pair first. What is the unluckiest you can take?"

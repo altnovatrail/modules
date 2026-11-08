@@ -29,7 +29,7 @@ items:
             - value: "21"
               trap: "ignored-condition"
               text: "A three-digit number cannot start with 0."
-    simpler_case: "Go through the first digit: 5, then 4, and so on. How many numbers start with 5?"
+    simpler_case: "Try three-digit numbers whose digits add up to 2. How many are there?"
 solution:
   - text: "First digit 5: 500, 1 number. First digit 4: 2 numbers. First digit 3: 3 numbers. First digit 2: 4 numbers. First digit 1: 5 numbers. 1 + 2 + 3 + 4 + 5 = 15."
 techniques: ["systematic"]

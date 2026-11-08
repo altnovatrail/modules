@@ -29,7 +29,7 @@ items:
             - value: "12"
               trap: "double-count"
               text: "Each corner bush belongs to two sides. You counted the corners twice."
-    simpler_case: "Draw the square and put a bush in each corner first. How many more does each side need?"
+    simpler_case: "Try a flowerbed shaped like a triangle, with a bush in every corner and 3 bushes on each side, counting its corners. How many bushes are there?"
 solution:
   - text: "There are 4 corner bushes and 1 more bush in the middle of each side. 4 + 4 = 8."
 techniques: ["draw", "small-numbers"]

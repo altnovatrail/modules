@@ -3,6 +3,6 @@ givens:
   - "Four different books stand on a shelf."
   - "The red book stands at the left end."
 unknown: "In how many different orders the books can stand."
-simpler_case: "The red book does not move. In how many orders can the other books stand? Try 2 other books first."
+simpler_case: "Try three books, the red one at the left end. In how many orders can they stand?"
 trap_texts:
   "3": "The other books can stand in more orders. List them, starting with each book in turn."

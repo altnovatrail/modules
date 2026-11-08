@@ -33,7 +33,7 @@ items:
             - value: "9"
               trap: "ignored-condition"
               text: "That counts cells through a wall."
-    simpler_case: "Shade S, then every cell next to a shaded cell with no wall between them, until no more can be shaded."
+    simpler_case: "Try a garden of 2 by 2 cells with a wall between the two top cells, the beetle in the top left cell. How many cells can it reach?"
 solution:
   - text: "The walls close S into a part of the garden of 6 cells. The beetle can reach every one of them, and no other."
   - picture: "pictures/enum-56-d3-4-solution.png"

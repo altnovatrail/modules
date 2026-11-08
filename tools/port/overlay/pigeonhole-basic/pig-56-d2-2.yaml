@@ -1,0 +1,9 @@
+# What a person adds to pig-56-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The socks come in 3 colours."
+  - "Each colour comes in 2 sizes, many of each kind, all mixed up."
+  - "You take socks in the dark."
+unknown: "How many socks you must take to be sure of 2 socks of the same colour and the same size."
+simpler_case: "Try socks of 2 colours in 1 size first. How many make you sure of 2 alike?"
+trap_texts:
+  "12": "12 takes two socks of every kind, but you do not need a pair of every kind: one pair of one kind is enough."

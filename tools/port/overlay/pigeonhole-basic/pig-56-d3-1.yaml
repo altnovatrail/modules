@@ -1,0 +1,6 @@
+# What a person adds to pig-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The purse has 1 coin of 50 cents, 2 coins of 20 cents and 9 coins of 10 cents."
+  - "You take coins out without looking."
+unknown: "How many coins you must take to be sure of 3 coins of the same value."
+simpler_case: "Try a purse of 1 coin of 20 cents and 5 coins of 10 cents first. How many coins make you sure of 2 of the same value?"

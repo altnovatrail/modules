@@ -29,7 +29,7 @@ items:
             - value: "8"
               trap: "wrong-operation"
               text: "8 adds the 6 ways there and the 2 ways back, but every way there goes with every way back."
-    simpler_case: "Count the ways there first. How many roads are still unused for the way back?"
+    simpler_case: "Try 2 roads from the village to the town and 2 from the town to the city, never a road twice. How many trips are there?"
 solution:
   - text: "Going there, she takes one of 3 roads and one of 2 roads: 3 × 2 = 6 ways. Coming back, 1 of the 2 roads between the city and the town and 2 of the 3 roads between the town and the village are still unused: 1 × 2 = 2 ways. So there are 6 × 2 = 12 trips."
 techniques: ["systematic"]

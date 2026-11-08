@@ -4,6 +4,6 @@ givens:
   - "It moves one cell at a time, only to the right or down."
   - "It must pass through cell M."
 unknown: "How many different routes it can take."
-simpler_case: "Count the routes from S to M first, then from M to F."
+simpler_case: "Try squared paper of 2 by 2 cells, from the top left cell to the bottom right one, only right or down. How many routes are there?"
 picture_alt: "Squared paper of 4 cells across and 3 down. S is in the top left cell, M is one cell to the right of S and one cell down, and F is in the bottom right cell."
 solution_picture_alt: "The same paper with the routes through M counted cell by cell: 1 in S and in the two cells next to it, 2 in M and in the cells to its right and below it, 4 in the next cell of the bottom row, and 6 in F."

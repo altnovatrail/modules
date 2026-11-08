@@ -1,0 +1,6 @@
+# What a person adds to pig-34-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The box has 10 red, 10 blue and 10 green pencils."
+  - "You take pencils out without looking."
+unknown: "How many pencils you must take to be sure to get a blue one."
+simpler_case: "Try a box of 2 pencils of each colour first. What is the unluckiest you can take?"

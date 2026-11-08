@@ -4,4 +4,4 @@ givens:
   - "The letter is X, Y or Z."
   - "The digit is 1, 2, 3 or 4."
 unknown: "How many different codes there are."
-simpler_case: "Take the letter X first. How many codes start with it?"
+simpler_case: "Try the letters X and Y and the digits 1 and 2. How many codes are there?"

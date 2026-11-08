@@ -3,4 +3,4 @@ givens:
   - "Every two players played each other exactly once."
   - "There were 28 games in all."
 unknown: "How many players took part."
-simpler_case: "Count the games for 3 players, then for 4, and go on."
+simpler_case: "Try a tournament of 3 games in all, every two players playing once. How many players took part?"

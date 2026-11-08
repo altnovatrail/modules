@@ -29,7 +29,7 @@ items:
             - value: "24"
               trap: "double-count"
               text: "Each corner post belongs to two sides. You counted the corners twice."
-    simpler_case: "Take one side first. How many posts stand on it, counting its corners? Then see which posts two sides share."
+    simpler_case: "Try a square garden with sides of 8 metres, a post every 4 metres and one in every corner. How many posts are there?"
 solution:
   - text: "The whole fence is 4 × 20 = 80 metres long and closed. 80 ÷ 4 = 20 gaps, and a closed fence has as many posts as gaps: 20."
 techniques: ["draw", "small-numbers"]

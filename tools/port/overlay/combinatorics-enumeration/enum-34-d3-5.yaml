@@ -4,4 +4,4 @@ givens:
   - "The teacher chooses 2 children."
   - "They must not both be girls."
 unknown: "In how many ways she can choose them."
-simpler_case: "Count all the pairs first. Which pairs are not allowed?"
+simpler_case: "Try 2 boys and 2 girls, choosing 2 children who are not both girls. In how many ways?"

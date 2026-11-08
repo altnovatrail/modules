@@ -29,7 +29,7 @@ items:
             - value: "22"
               trap: "double-count"
               text: "22 counts the post in the middle twice, once for each inner fence."
-    simpler_case: "Count the posts of the outer fence first. Then add only the new posts of each inner fence."
+    simpler_case: "Try a square garden 6 metres on each side with a post every 3 metres, and one straight fence across its middle with a post every 3 metres. How many posts are there?"
 solution:
   - text: "The outer fence is 48 metres round, so it has 48 ÷ 3 = 16 posts. Each inner fence is 12 metres long with 5 posts, and its two end posts are on the outer fence. The first inner fence adds 3 posts. The second adds 2, because its middle post is where the two inner fences cross, and that post is already there. In all 16 + 3 + 2 = 21 posts."
 techniques: ["draw", "small-numbers"]

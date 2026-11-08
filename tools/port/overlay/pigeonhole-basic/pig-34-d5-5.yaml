@@ -1,0 +1,12 @@
+# What a person adds to pig-34-d5-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "6 teams play some games."
+  - "Two teams play each other at most once, and no team plays itself."
+unknown: "Whether you can be sure that two teams have played the same number of games."
+simpler_case: "Try 3 teams first. List the numbers of games each can have played."
+trap_texts:
+  "No, never": "Look at the luckiest case: can the 6 teams all have different numbers of games? Think of a team with 0 games and a team with 5."
+  "Only if every team has played": "Look at the case where some team has played no games too."
+  "Only if some team has played no games": "Look at the case where every team has played too."
+  "It is impossible to tell": "It can be told: think whether a team with 0 games and a team with 5 games can both be there."
+leak_phrases: ["yes, always"]

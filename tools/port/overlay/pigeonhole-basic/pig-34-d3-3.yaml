@@ -1,0 +1,6 @@
+# What a person adds to pig-34-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The drawer has 6 pairs of socks, each pair a different colour, all mixed up."
+  - "You take socks in the dark."
+unknown: "How many socks you must take to be sure of 2 matching pairs."
+simpler_case: "Try a drawer of 2 pairs of different colours first. How many socks make you sure of 2 matching pairs?"

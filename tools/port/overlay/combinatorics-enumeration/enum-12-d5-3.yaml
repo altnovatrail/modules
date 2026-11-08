@@ -4,4 +4,4 @@ givens:
   - "There are 2 roads from Birch to Cedar."
   - "1 road goes straight from Ash to Cedar."
 unknown: "How many different ways there are from Ash to Cedar."
-simpler_case: "Count the ways through Birch first. Then think of the road that does not go through Birch."
+simpler_case: "Try 2 roads from Ash to Birch, 1 road from Birch to Cedar and 1 straight road. How many ways are there?"

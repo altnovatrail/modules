@@ -33,7 +33,7 @@ items:
             - value: "2"
               trap: "stopped-early"
               text: "Two jumps reach only step 6."
-    simpler_case: "Count the steps the drawn jump goes up. Then jump on from where it lands."
+    simpler_case: "Try a staircase of 4 steps where each jump goes up 2 steps. How many jumps reach the top?"
 solution:
   - text: "One jump takes 3 steps, and there are 9 steps. 3, 6, 9: the frog needs 3 jumps."
   - text: "9 ÷ 3 = 3"

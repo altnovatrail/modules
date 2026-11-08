@@ -33,7 +33,7 @@ items:
             - value: "162"
               trap: "off-by-one"
               text: "9 floors have 8 flights between them, not 9."
-    simpler_case: "How many flights are there from floor 1 to floor 3?"
+    simpler_case: "Try a block of 3 floors with 10 steps in each flight. How many steps are there from floor 1 to floor 3?"
 solution:
   - text: "From floor 1 to floor 9 there are 8 flights. 8 × 18 = 144 steps."
 techniques: ["draw", "small-numbers"]

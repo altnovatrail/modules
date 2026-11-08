@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/pigeonhole-basic/pig-34-d4-3.yaml, and the port writes this file again (R12).
+id: "pig-34-d4-3"
+statement:
+  - text: "A drawer has 4 red left gloves, 4 red right gloves, 4 blue left gloves and 4 blue right gloves. In the dark, how many gloves must you take to be sure of a left and a right glove of the same colour?"
+givens: ["The drawer has 4 red left gloves, 4 red right gloves, 4 blue left gloves and 4 blue right gloves.", "You take gloves in the dark."]
+unknown: "How many gloves you must take to be sure of a left and a right glove of the same colour."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "9"
+          units: ["glove", "gloves"]
+          trap_values:
+            - value: "2"
+              trap: "best-case-not-worst"
+              text: "2 gloves can be a red left and a blue right."
+            - value: "3"
+              trap: "ignored-condition"
+              text: "You need a left and a right glove of the same colour, not just the same colour."
+            - value: "5"
+              trap: "stopped-early"
+              text: "5 gloves could be 4 red left gloves and 1 blue right glove."
+            - value: "16"
+              trap: "number-from-text"
+              text: "16 is the number of gloves."
+    simpler_case: "Try a drawer of 1 red left, 1 red right, 1 blue left and 1 blue right glove first. How many gloves make you sure of a pair?"
+solution:
+  - text: "Without a matching pair you could have, for example, all 4 red left gloves and all 4 blue right gloves: 8 gloves. The 9th glove always completes a pair of the same colour."
+techniques: ["pigeonhole"]
+skills:
+  primary: ["pigeonhole-basic"]
+band: "grades-3-4"
+difficulty: 4

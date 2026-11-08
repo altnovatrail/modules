@@ -29,7 +29,7 @@ items:
             - value: "30"
               trap: "wrong-operation"
               text: "6 minutes was the time for two cuts, not for one."
-    simpler_case: "How many cuts make 3 pieces? Find how long one cut takes."
+    simpler_case: "Try a log that takes 4 minutes to saw into 2 pieces. How long does it take to saw it into 4 pieces?"
 solution:
   - text: "3 pieces need 2 cuts, so one cut takes 3 minutes. 6 pieces need 5 cuts: 5 × 3 = 15 minutes."
 techniques: ["draw", "small-numbers"]

@@ -5,4 +5,4 @@ givens:
   - "The new lamps stand every 40 metres, the first one where an old one stood."
   - "A new lamp at an old lamp's place uses the old hole."
 unknown: "How many new holes are dug."
-simpler_case: "Write the places of the new lamps, measured round the path from the first one. Which of them are places of old lamps too?"
+simpler_case: "Try a circular path 60 metres round, old lamps every 10 metres and new ones every 15 metres, the first where an old one stood. How many new holes are dug?"

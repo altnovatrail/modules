@@ -1,0 +1,6 @@
+# What a person adds to pig-34-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The drawer has 4 red left gloves, 4 red right gloves, 4 blue left gloves and 4 blue right gloves."
+  - "You take gloves in the dark."
+unknown: "How many gloves you must take to be sure of a left and a right glove of the same colour."
+simpler_case: "Try a drawer of 1 red left, 1 red right, 1 blue left and 1 blue right glove first. How many gloves make you sure of a pair?"

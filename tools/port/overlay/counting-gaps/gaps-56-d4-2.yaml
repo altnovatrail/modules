@@ -5,4 +5,4 @@ givens:
   - "Two straight fences cross the garden through its middle, with a post every 3 metres."
   - "Where fences meet, one post serves both."
 unknown: "How many posts there are."
-simpler_case: "Count the posts of the outer fence first. Then add only the new posts of each inner fence."
+simpler_case: "Try a square garden 6 metres on each side with a post every 3 metres, and one straight fence across its middle with a post every 3 metres. How many posts are there?"

@@ -33,7 +33,7 @@ items:
             - value: "2"
               trap: "number-from-text"
               text: "That is only the toppings."
-    simpler_case: "Take one flavour first. How many cones can it make?"
+    simpler_case: "Try 2 flavours and 2 toppings. How many cones can be made?"
 solution:
   - text: "Each of the 3 flavours can go with each of the 2 toppings. That makes 3 times 2, which is 6 cones."
   - text: "3 × 2 = 6"

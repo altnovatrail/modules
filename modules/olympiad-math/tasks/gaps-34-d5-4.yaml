@@ -29,7 +29,7 @@ items:
             - value: "120"
               trap: "answered-other-question"
               text: "120 is from floor 1 to floor 9. The question starts at floor 3."
-    simpler_case: "How many flights are there from floor 1 to floor 5? Find how long one flight takes."
+    simpler_case: "Try 30 seconds from floor 1 to floor 3. How long does it take from floor 2 to floor 4?"
 solution:
   - text: "From floor 1 to floor 5 there are 4 flights, so one flight takes 15 seconds. From floor 3 to floor 9 there are 6 flights: 6 × 15 = 90."
 techniques: ["draw", "small-numbers"]

@@ -3,4 +3,4 @@ givens:
   - "Four children stand in a line."
   - "Tom stands at one of the two ends."
 unknown: "How many different lines they can make."
-simpler_case: "Put Tom at the left end first. In how many orders can the other children stand?"
+simpler_case: "Try three children in a line, with Tom at one of the two ends. How many lines can they make?"

@@ -29,7 +29,7 @@ items:
             - value: "9"
               trap: "number-from-text"
               text: "9 is the number of stones."
-    simpler_case: "Write the numbers of the stones the frog lands on, starting from stone 1."
+    simpler_case: "Try 5 stones with the same jumps, skipping one stone each time. How many jumps reach the last stone?"
 solution:
   - text: "The frog lands on stones 3, 5, 7 and 9. That is 4 jumps."
 techniques: ["draw", "small-numbers"]

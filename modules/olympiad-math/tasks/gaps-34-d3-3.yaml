@@ -29,7 +29,7 @@ items:
             - value: "35"
               trap: "wrong-operation"
               text: "You multiplied 7 by 5."
-    simpler_case: "Draw the queue: Masha with the people in front of her, then the people between, then Dasha with those behind her."
+    simpler_case: "Try a queue where Masha is 2nd from the front, Dasha is 2nd from the back, and 1 person stands between them. How many people are in it?"
 solution:
   - text: "Up to and including Masha there are 7 people. Then come 3 people, then Dasha and the 4 people behind her, 5 more. 7 + 3 + 5 = 15."
 techniques: ["draw", "small-numbers"]

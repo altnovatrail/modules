@@ -1,0 +1,8 @@
+# What a person adds to pig-12-d3-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "10 sweets are shared among 3 children."
+  - "Every sweet is given out."
+unknown: "At least how many sweets the child with the most sweets gets."
+simpler_case: "Try 5 sweets for 3 children first. How few can the luckiest child get?"
+trap_texts:
+  "5": "The sweets can be shared more evenly. Try to give the luckiest child as few sweets as you can."

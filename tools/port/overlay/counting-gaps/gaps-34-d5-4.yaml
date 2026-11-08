@@ -3,4 +3,4 @@ givens:
   - "Nick walks up from floor 1 to floor 5 in 60 seconds."
   - "He walks at the same speed all the time."
 unknown: "How many seconds he takes from floor 3 to floor 9."
-simpler_case: "How many flights are there from floor 1 to floor 5? Find how long one flight takes."
+simpler_case: "Try 30 seconds from floor 1 to floor 3. How long does it take from floor 2 to floor 4?"
