@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/grid-56-d4-3.yaml, and the port writes this file again (R12).
+id: "grid-56-d4-3"
+statement:
+  - text: "Pasha lays 4 square tiles with sides of 1 cm on a table to make one shape, each tile touching another along a whole side. What is the largest perimeter the shape can have, in centimetres?"
+givens: ["4 square tiles with sides of 1 cm make one shape.", "Each tile touches another along a whole side."]
+unknown: "The largest perimeter the shape can have, in centimetres."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "10"
+          units: ["cm", "centimetre", "centimetres"]
+          trap_values:
+            - value: "16"
+              trap: "double-count"
+              text: "16 counts the sides where tiles touch each other."
+            - value: "8"
+              trap: "reversed-relation"
+              text: "8 is the smallest perimeter, the 2 by 2 square."
+            - value: "12"
+              trap: "ignored-condition"
+              text: "12 is two pairs lying apart, not one shape."
+            - value: "4"
+              trap: "area-perimeter-swap"
+              text: "4 is the area in square centimetres."
+    simpler_case: "Try 2 tiles. What is the largest perimeter their shape can have?"
+solution:
+  - text: "Four tiles have 16 cm of sides. Each shared side hides 2 cm. One shape of 4 tiles needs at least 3 shared sides, so the most is 16 - 6 = 10 cm, as a straight line of 4 tiles has."
+techniques: ["draw"]
+skills:
+  primary: ["geometry-grid"]
+band: "grades-5-6"
+difficulty: 4

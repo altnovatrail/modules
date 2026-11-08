@@ -1,0 +1,9 @@
+# What a person adds to cube-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The die rolls straight along the row from S to the last cell, tipping over one edge for each cell."
+  - "In the last cell it shows the number drawn there on top."
+  - "Opposite faces of a die add up to 7."
+unknown: "The number on top at S."
+simpler_case: "Try a die that rolls 4 times straight on and shows 5 on top at the end. Which number was on top at the start?"
+picture_alt: "A row of seven cells; the first is marked S and the last holds the number 4."
+solution_picture_alt: "The row with the number on top at the start and after four rolls written in."

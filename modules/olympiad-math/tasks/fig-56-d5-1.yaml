@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.figures.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/fig-56-d5-1.yaml, and the port writes this file again (R12).
+id: "fig-56-d5-1"
+statement:
+  - text: "Each line in the picture is a match. How many more matches are needed to finish a big square of three by three made of nine small squares?"
+  - picture: "pictures/fig-56-d5-1.png"
+    alt: "Matches laid as a square of three by three small squares, with the bottom side and the right side missing."
+    width: 168
+    height: 168
+givens: ["Each line in the picture is a match.", "A big square of three by three small squares is to be finished."]
+unknown: "How many more matches are needed."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["match", "matches"]
+          trap_values:
+            - value: "24"
+              trap: "answered-other-question"
+              text: "That is all the matches of the square."
+            - value: "5"
+              trap: "off-by-one"
+              text: "The corner needs a match on both sides."
+            - value: "3"
+              trap: "stopped-early"
+              text: "Not every missing side was counted."
+            - value: "18"
+              trap: "answered-other-question"
+              text: "Those are the matches already there."
+    simpler_case: "Try a square of two by two small squares of matches with its bottom side missing. How many more matches finish it?"
+solution:
+  - text: "The bottom side and the right side of the big square are missing, 3 matches each. So 6 more matches are needed."
+  - picture: "pictures/fig-56-d5-1-solution.png"
+    alt: "The missing sides drawn dashed."
+    width: 168
+    height: 168
+techniques: ["systematic"]
+skills:
+  primary: ["counting-figures"]
+band: "grades-5-6"
+difficulty: 5

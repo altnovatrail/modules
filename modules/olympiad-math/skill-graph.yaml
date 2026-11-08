@@ -1,8 +1,10 @@
 # The skill graph of olympiad mathematics (R07; E3; docs/architecture.md, section 3.5 of modules):
 # the topics of mathtrail-standalone that the module's tasks train and their links, builds_on, each
-# entry verbatim as the format's example of this module has it. Their tiers come from the graph, and
-# the names of the tiers are those standalone gives the layers of its map. standalone's content in
-# this module carries the MIT notice of NOTICE.
+# entry verbatim as the format's example of this module has it, but counting-figures and
+# geometry-cubes-paper, which the example lacks: they come from standalone's
+# content/catalogs/topics.json at 42b4408, with its name and description. Their tiers come from the
+# graph, and the names of the tiers are those standalone gives the layers of its map. standalone's
+# content in this module carries the MIT notice of NOTICE.
 tiers: [Foundations, Rules, Hard problems]
 skills:
   counting-gaps:
@@ -62,4 +64,16 @@ skills:
   games-strategy:
     title: Games with a winning strategy
     prerequisites: [combinatorics-enumeration, parity-alternation]
+    assessability: verdict
+  geometry-grid:
+    title: Figures on a square grid
+    prerequisites: [combinatorics-enumeration, counting-gaps]
+    assessability: verdict
+  counting-figures:
+    title: Counting figures
+    description: How many triangles or squares a figure drawn on squared paper holds, and matches moved or taken away to leave a figure.
+    assessability: verdict
+  geometry-cubes-paper:
+    title: Cubes and paper
+    description: The nets of a cube, a sheet folded and punched, and a die rolled along a straight path.
     assessability: verdict

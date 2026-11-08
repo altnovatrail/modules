@@ -1,0 +1,45 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/cube-34-d5-1.yaml, and the port writes this file again (R12).
+id: "cube-34-d5-1"
+statement:
+  - text: "A die stands on the first cell of the path in the picture, with the number in that cell on top. It rolls over its edge from cell to cell along the path, without turning, to cell E. Opposite faces of a die add up to 7. Which number is on top when it reaches E?"
+  - picture: "pictures/cube-34-d5-1.png"
+    alt: "A path of three cells in a row; the first holds the number 2 and the last is marked E."
+    width: 168
+    height: 88
+givens: ["The die starts on the first cell of the path with that cell's number on top.", "It rolls over its edge from cell to cell, without turning, to cell E.", "Opposite faces of a die add up to 7."]
+unknown: "The number on top at E."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          trap_values:
+            - value: "2"
+              trap: "answered-other-question"
+              text: "That is the top at the start."
+            - value: "7"
+              trap: "number-from-text"
+              text: "7 is the sum of the two."
+            - value: "9"
+              trap: "wrong-operation"
+              text: "2 and 7 were added."
+    simpler_case: "Try a die with 2 on top that rolls over one edge. Can you tell which number is on top now?"
+solution:
+  - text: "Each roll tips the die over one edge. After the first roll the face that was at the back is on top, and after the second the face that was at the bottom is. The bottom is opposite the 2 on top, so it is 7 − 2 = 5."
+  - text: "7 − 2 = 5"
+  - picture: "pictures/cube-34-d5-1-solution.png"
+    alt: "The path with the number on top at the last cell written in."
+    width: 168
+    height: 88
+techniques: ["draw"]
+traps: ["missed-case"]
+skills:
+  primary: ["geometry-cubes-paper"]
+band: "grades-3-4"
+difficulty: 5

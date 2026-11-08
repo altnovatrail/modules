@@ -1,0 +1,11 @@
+# What a person adds to cube-34-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The three shapes have six cells each."
+unknown: "How many of them can be folded into a cube."
+simpler_case: "Try a row of six cells. Can it be folded into a cube?"
+picture_alt: "Three shapes of six cells: a block two cells wide and three high; a cross, a column of four with one cell on each side of the second; and a row of four with one cell above its left end and one cell below its right end."
+solution_picture_alt: "The shapes that fold into a cube."
+trap_texts:
+  "0": "Some of the shapes do fold."
+  "1": "Look again at each shape."
+  "3": "Check whether each shape can fold."

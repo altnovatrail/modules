@@ -1,0 +1,10 @@
+# What a person adds to grid-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The bar has 2 rows of 3 squares."
+  - "It breaks into two pieces of 3 squares, each holding together by whole sides."
+unknown: "How many ways there are."
+simpler_case: "Try a bar of 2 rows of 2 squares, broken into a piece of 1 square and a piece of 3. How many ways are there?"
+picture_alt: "An empty bar of 2 rows, A and B, and 3 columns, 1 to 3."
+trap_texts:
+  "2": "2 misses a split."
+leak_phrases: ["3 ways", "three ways"]

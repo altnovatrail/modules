@@ -1,0 +1,10 @@
+# What a person adds to grid-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "A pond fills the middle square of a 3 by 3 grid, and the other 8 are slabs."
+  - "Two gardeners take 4 slabs each, and each gardener's slabs stay joined by whole sides."
+unknown: "How many splits are possible."
+simpler_case: "Try a ring of 6 slabs shared 3 each, each gardener's slabs joined. How many splits are possible?"
+picture_alt: "A 3 by 3 grid with rows A to C from the top and columns 1 to 3 from the left; every square but the middle one, B2, is shaded."
+trap_texts:
+  "8": "8 counts each split more than once."
+leak_phrases: ["4 splits", "four splits"]

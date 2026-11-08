@@ -1,0 +1,7 @@
+# What a person adds to fig-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The rectangle of squared paper is drawn with all its lines."
+unknown: "How many squares of every size can be found on its lines."
+simpler_case: "Try a rectangle of 3 by 2 cells. How many squares of every size are there?"
+picture_alt: "A rectangle of squared paper four cells wide and three cells high, with all its lines."
+solution_picture_alt: "The counts of each size of square written in the top row."

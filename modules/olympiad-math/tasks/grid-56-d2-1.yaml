@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/grid-56-d2-1.yaml, and the port writes this file again (R12).
+id: "grid-56-d2-1"
+statement:
+  - text: "Nina covers four cells of a 3 by 3 grid with square tiles: A1, B1, C1 and C2. Rows are A to C from the top, columns 1 to 3 from the left. Each tile has sides of 1 cm. What is the perimeter of her shape in centimetres?"
+  - picture: "pictures/grid-56-d2-1.png"
+    alt: "A 3 by 3 grid with rows A to C from the top and columns 1 to 3 from the left; cells A1, B1, C1 and C2 are shaded."
+    width: 149
+    height: 154
+givens: ["Tiles of 1 cm cover cells A1, B1, C1 and C2 of a 3 by 3 grid."]
+unknown: "The perimeter of the shape in centimetres."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "10"
+          units: ["cm", "centimetre", "centimetres"]
+          trap_values:
+            - value: "8"
+              trap: "missed-case"
+              text: "8 misses the two sides in the inner corner of the shape."
+            - value: "16"
+              trap: "double-count"
+              text: "16 also counts the sides where two tiles touch, which are inside."
+            - value: "4"
+              trap: "area-perimeter-swap"
+              text: "4 is how many tiles there are, the area, not the way round."
+            - value: "5"
+              trap: "stopped-early"
+              text: "5 is only the height plus the width; go all the way round."
+    simpler_case: "Try two tiles side by side. What is the perimeter of the shape in centimetres?"
+solution:
+  - text: "Four tiles have 16 sides in all. Three pairs of tiles touch, and each touching pair hides 2 sides. 16 - 6 = 10 cm."
+techniques: ["draw"]
+skills:
+  primary: ["geometry-grid"]
+band: "grades-5-6"
+difficulty: 2

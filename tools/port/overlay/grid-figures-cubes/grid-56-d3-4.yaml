@@ -1,0 +1,11 @@
+# What a person adds to grid-56-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The filled cells make a shape, and the cells marked 1 make a piece."
+  - "Pieces like it, turned but never turned over, must cover the shape with no gaps or overlaps."
+unknown: "How many pieces are needed."
+simpler_case: "Try a shape of 6 cells, three wide and two high. How many such pieces cover it?"
+picture_alt: "On the left, a block of filled cells, four cells wide and three high: the shape. On the right, apart from it, three cells marked 1: the seventh column in the top two rows and the eighth column in the second row, an L of three cells."
+solution_picture_alt: "The shape split into L pieces of three cells, each piece numbered."
+trap_texts:
+  "3": "Check whether the pieces cover every cell."
+  "5": "Check how many cells the pieces cover in all."

@@ -1,0 +1,7 @@
+# What a person adds to grid-56-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "A square of 3 by 3 tiles of 1 cm by 1 cm loses its four corner tiles."
+unknown: "The area the tiles left cover, in square centimetres."
+simpler_case: "Try a 2 by 2 square of tiles with one corner tile taken away. What area do the rest cover?"
+trap_texts:
+  "4": "4 is not the tiles that are left."

@@ -1,0 +1,6 @@
+# What a person adds to grid-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Tiles of 1 cm cover cells A1, B1, C1 and C2 of a 3 by 3 grid."
+unknown: "The perimeter of the shape in centimetres."
+simpler_case: "Try two tiles side by side. What is the perimeter of the shape in centimetres?"
+picture_alt: "A 3 by 3 grid with rows A to C from the top and columns 1 to 3 from the left; cells A1, B1, C1 and C2 are shaded."

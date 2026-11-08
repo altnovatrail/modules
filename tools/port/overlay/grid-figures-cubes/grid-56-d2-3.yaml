@@ -1,0 +1,8 @@
+# What a person adds to grid-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The garden is a 4 by 4 grid of beds, rows A to D and columns 1 to 4."
+  - "Roses grow in B2, B3, C2 and C3."
+unknown: "How many other beds share a whole side with a rose bed."
+simpler_case: "Try a 3 by 3 grid with a rose in the corner bed A1. How many beds share a whole side with it?"
+picture_alt: "A 4 by 4 grid with rows A to D from the top and columns 1 to 4 from the left; beds B2, B3, C2 and C3 are shaded."
+solution_picture_alt: "The same grid with the beds round the roses numbered 1 to 8: A2, A3, B4, C4, D3, D2, C1 and B1."

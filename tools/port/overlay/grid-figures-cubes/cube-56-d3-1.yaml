@@ -1,0 +1,10 @@
+# What a person adds to cube-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The seven filled cells are one cell too many for a cube."
+unknown: "How many of the cells could be cut away so that the other six fold into a cube."
+simpler_case: "Try the cross of six cells. Does it fold into a cube?"
+picture_alt: "Seven filled cells: a column of four, with a cell on each side of the second one and one more cell to the right of the third."
+solution_picture_alt: "The cells that could be cut away, numbered."
+trap_texts:
+  "1": "Look again at each cell."
+  "3": "Some of those cells leave no cube."

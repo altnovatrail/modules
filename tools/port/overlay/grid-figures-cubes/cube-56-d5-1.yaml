@@ -1,0 +1,12 @@
+# What a person adds to cube-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The die starts on the first cell with its number on top, and rolls straight along the row, one edge for each cell."
+  - "Opposite faces of a die add up to 7."
+unknown: "In how many cells, the first too, you can tell which number is on top."
+simpler_case: "Try a die with 3 on top that rolls twice straight on. Which number is on top?"
+picture_alt: "A row of seven cells; the first holds the number 3."
+solution_picture_alt: "The row with the number on top written in each cell where it can be told."
+trap_texts:
+  "1": "Check every cell of the row."
+  "2": "Check every cell of the row."
+  "3": "Check every cell of the row."

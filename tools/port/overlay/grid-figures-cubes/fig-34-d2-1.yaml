@@ -1,0 +1,11 @@
+# What a person adds to fig-34-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Cell X is in the picture."
+  - "Squares of filled cells, small or big, are counted."
+unknown: "How many of them have X inside them."
+simpler_case: "Try a square of 2 by 2 filled cells, with X in one corner cell. How many squares hold X?"
+picture_alt: "A square of three by three filled cells; the cell in the middle of the left column is marked X."
+solution_picture_alt: "The six cells of the left two columns, with X in the middle of the left column."
+trap_texts:
+  "3": "Squares of other sizes hold X too."
+  "5": "Some squares were counted twice."

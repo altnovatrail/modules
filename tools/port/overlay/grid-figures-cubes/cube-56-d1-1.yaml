@@ -1,0 +1,9 @@
+# What a person adds to cube-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The net is folded into a paper cube, with a number on each square."
+unknown: "The largest sum of the numbers on two opposite faces."
+simpler_case: "Try a row of four squares, numbered 1, 2, 3 and 4, folded into a ring. What is the largest sum of two opposite squares?"
+picture_alt: "A net of six squares: a row of four, 9, 3, 1 and 6 from the left, with 8 above the 9 and 4 below the 1."
+solution_picture_alt: "The net with the outline of its folds."
+trap_texts:
+  "10": "10 is not the largest sum."

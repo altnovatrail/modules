@@ -1,0 +1,10 @@
+# What a person adds to grid-56-d3-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The dashed line should be an axis of symmetry of the filled cells."
+unknown: "The least number of cells you must fill."
+simpler_case: "Try a 2 by 2 square with the top left cell filled and a dashed line down the middle. How many cells must you fill?"
+picture_alt: "A square of four by four cells with a dashed line down the middle. Left of it, five cells are filled: the first and second cells of the top row, the first cell of the second row, the second cell of the third row and the first cell of the bottom row. The right half is empty."
+solution_picture_alt: "The same square with the mirror image of each filled cell filled on the right of the dashed line."
+trap_texts:
+  "4": "Check the mirror image of every filled cell."
+  "10": "10 is not the cells you must fill."

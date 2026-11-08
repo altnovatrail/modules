@@ -1,0 +1,48 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/cube-12-d5-1.yaml, and the port writes this file again (R12).
+id: "cube-12-d5-1"
+statement:
+  - text: "Fold the sheet along line 1, then along line 2. Each fold lays the left part over the right, or the top part over the bottom. A hole is then punched at cell O. How many holes are in the open sheet?"
+  - picture: "pictures/cube-12-d5-1.png"
+    alt: "A square sheet of four by four cells. A dashed line marked 1 runs down the middle from top to bottom, and a dashed line marked 2 runs across the middle from left to right. The bottom right cell is marked O."
+    width: 208
+    height: 208
+givens: ["The sheet is folded along line 1, then along line 2: left over right, or top over bottom.", "A hole is punched at cell O."]
+unknown: "How many holes there are in the open sheet."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["hole", "holes"]
+          trap_values:
+            - value: "8"
+              trap: "double-count"
+              text: "Two folds do not give eight layers."
+            - value: "2"
+              trap: "stopped-early"
+              text: "The second fold adds layers too."
+            - value: "1"
+              trap: "ignored-condition"
+              text: "Every layer gets a hole."
+            - value: "16"
+              trap: "answered-other-question"
+              text: "That is all the cells of the sheet."
+    simpler_case: "Try a strip folded like a fan into three layers, with one hole punched through all of them. How many holes are there?"
+solution:
+  - text: "The first fold lays the left half over the right half, so every cell there has 2 layers. The second fold lays the top over the bottom, so cell O has 2 + 2 = 4 layers, one from each quarter of the sheet. The opened sheet has 4 holes, one in each quarter."
+  - text: "2 + 2 = 4"
+  - picture: "pictures/cube-12-d5-1-solution.png"
+    alt: "The opened sheet with O in its four corner cells."
+    width: 208
+    height: 208
+techniques: ["draw"]
+skills:
+  primary: ["geometry-cubes-paper"]
+band: "grades-1-2"
+difficulty: 5

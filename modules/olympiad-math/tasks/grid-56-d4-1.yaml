@@ -1,0 +1,44 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/grid-figures-cubes/grid-56-d4-1.yaml, and the port writes this file again (R12).
+id: "grid-56-d4-1"
+statement:
+  - text: "A chocolate bar has 2 rows of 3 squares. Rows are A and B from the top, columns 1 to 3 from the left. Kim and Lev break it along the lines into two pieces of 3 squares each, and each piece must hold together by whole sides. Two ways are different if they split the squares differently. How many ways are there?"
+  - picture: "pictures/grid-56-d4-1.png"
+    alt: "An empty bar of 2 rows, A and B, and 3 columns, 1 to 3."
+    width: 149
+    height: 118
+givens: ["The bar has 2 rows of 3 squares.", "It breaks into two pieces of 3 squares, each holding together by whole sides."]
+unknown: "How many ways there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["way", "ways"]
+          trap_values:
+            - value: "7"
+              trap: "ignored-condition"
+              text: "7 includes splits where the second piece falls apart."
+            - value: "2"
+              trap: "missed-case"
+              text: "2 misses a split."
+            - value: "1"
+              trap: "stopped-early"
+              text: "1 stops at the straight break; corner pieces work too."
+            - value: "6"
+              trap: "double-count"
+              text: "6 counts each split twice, once for each piece."
+    simpler_case: "Try a bar of 2 rows of 2 squares, broken into a piece of 1 square and a piece of 3. How many ways are there?"
+solution:
+  - text: "A straight break gives the two rows of 3. A corner-shaped piece works too: the left column with the next top square, or the left column with the next bottom square, and the other 3 squares hold together each time. That makes 3 ways."
+techniques: ["draw"]
+leak_phrases: ["3 ways", "three ways"]
+skills:
+  primary: ["geometry-grid"]
+band: "grades-5-6"
+difficulty: 4
