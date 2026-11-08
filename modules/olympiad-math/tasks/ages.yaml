@@ -1,0 +1,91 @@
+# A template of time-calendar (T36; R22): the solver of mathtrail-standalone
+# content/solvers/time.calendar/ages.star at 42b4408, made a solver of the template. It came from
+# reference task cal-12-d3-2, whose numbers are one of its instances.
+# The numbers of reference task cal-12-d3-2: years_on 5, ben_then 12, older_by 3.
+# Its capitals YEARS_ON, BEN_THEN and OLDER_BY are the numbers that the statement shows. The trap
+# values are derived numbers, the mistakes of the reference task, and the constraint keeps the key
+# and Ben's age now apart from them and from the numbers that the statement shows.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: ages
+template:
+  parameters:
+    years_on: {from: 3, to: 6}
+    ben_then: {from: 10, to: 14}
+    older_by: {from: 2, to: 4}
+  derived:
+    ben_now: ben_then - years_on
+    ann_then: ben_then + older_by
+    all_added: ben_then + years_on + older_by
+  constraint: older_by != years_on and ben_then - years_on + older_by != years_on and ben_then - years_on != years_on and ben_then - years_on != older_by
+  solver:
+    program: |
+      # For ages, "how old" or "in how many years": try every whole number for the
+      # one the words leave unknown, here Ben's age now, and keep those the words
+      # allow. Exactly one must be left; any other count means the words do not
+      # settle the question.
+
+      def solve(numbers):
+          fitting = [age for age in range(100) if age + numbers["years_on"] == numbers["ben_then"]]
+          if len(fitting) != 1:
+              fail("%d ages of Ben fit the clue" % len(fitting))
+          return {"ann_now": fitting[0] + numbers["older_by"]}
+    results: [ann_now]
+statement:
+  - text: Ann is {older_by} years older than Ben. In {years_on} years Ben will be {ben_then}. How old is Ann now?
+givens:
+  - Ann is {older_by} years older than Ben.
+  - In {years_on} years Ben will be {ben_then}.
+unknown: Ann's age now.
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{ann_now}"
+          units: [year, years]
+          trap_values:
+            - value: "{ben_now}"
+              trap: stopped-early
+              text: That is Ben's age now, not Ann's.
+            - value: "{ben_then}"
+              trap: number-from-text
+              text: That is Ben's age in {years_on} years.
+            - value: "{ann_then}"
+              trap: answered-other-question
+              text: That is Ann's age in {years_on} years, not now.
+            - value: "{all_added}"
+              trap: wrong-operation
+              text: You added all three numbers. Ben is younger now than in {years_on} years.
+    simpler_case: "Try: Ann is 2 years older than Ben, who is 6 now. How old is Ann?"
+solution:
+  - text: Ben is {ben_then} - {years_on} = {ben_now} now. Ann is {older_by} years older, {ann_now}.
+techniques: [draw]
+leak_phrases: ["Ann is {ann_now}"]
+skills:
+  primary: [time-calendar]
+band: grades-1-2
+difficulty: 3

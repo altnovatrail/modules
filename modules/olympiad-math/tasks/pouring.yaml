@@ -1,0 +1,117 @@
+# A template of algorithms-weighing-pouring (T36; R22): the solver of mathtrail-standalone
+# content/solvers/algorithms.weighing_pouring/pouring.star at 42b4408, made a solver of the
+# template. It came from reference task wp-34-d1-1, whose numbers are one of its instances.
+# The numbers of reference task wp-34-d1-1: small 3, big 5.
+# Its capital CAPACITIES, the two jugs that the statement shows, becomes the parameters small and
+# big. standalone's solver holds the amount wanted, 2, inside reached rather than as a capital: here
+# it is the difference of the two jugs, a derived number, as in the reference task, so that every
+# instance is the same easy search of difficulty 1 and its key the same. The constraint keeps the
+# amount wanted at 2 litres or more, apart from the jugs and from the trap values 3 and 4, and equal
+# to the key only in the reference task. The trap values are the mistakes of the reference task,
+# numbers of their own; as there, 3 or 4 is also the small jug.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: pouring
+template:
+  parameters:
+    small: {from: 3, to: 4}
+    big: {from: 5, to: 10}
+  derived:
+    wanted: big - small
+  constraint: big - small != small and big - small >= 2 and big - small != 3 and big - small != 4 and (big - small != 2 or big == 5)
+  solver:
+    program: |
+      # For the fewest steps of pouring: a breadth-first search over what every jug
+      # holds, nearest first, so the first time the goal comes up is the fewest
+      # steps. A search that runs out of states without meeting it means it cannot
+      # be done.
+
+      def following(state, capacities):
+          # Every state one step away: fill a jug, empty a jug, or pour one into another.
+          after = []
+          for i in range(len(capacities)):
+              after.append(state[:i] + (capacities[i],) + state[i + 1:])
+              after.append(state[:i] + (0,) + state[i + 1:])
+              for j in range(len(capacities)):
+                  if i != j:
+                      amount = min([state[i], capacities[j] - state[j]])
+                      poured = list(state)
+                      poured[i] -= amount
+                      poured[j] += amount
+                      after.append(tuple(poured))
+          return after
+
+      def solve(numbers):
+          capacities = (numbers["small"], numbers["big"])
+          wanted = numbers["wanted"]
+          start = (0, 0)
+          steps = {start: 0}
+          queue = [start]
+          head = 0
+          while head < len(queue):
+              state = queue[head]
+              head += 1
+              if wanted in state:
+                  return {"steps": steps[state]}
+              for after in following(state, capacities):
+                  if after not in steps:
+                      steps[after] = steps[state] + 1
+                      queue.append(after)
+          fail("it cannot be done")
+    results: [steps]
+statement:
+  - text: You have an empty {small}-litre jug, an empty {big}-litre jug and a tap. The jugs have no marks. Each step is one of these, fill a jug from the tap, empty a jug onto the ground, or pour water from one jug into the other until the first jug is empty or the second is full. What is the smallest number of steps needed to have exactly {wanted} litres in one of the jugs?
+givens:
+  - There is an empty {small}-litre jug, an empty {big}-litre jug and a tap; the jugs have no marks.
+  - A step fills a jug, empties a jug, or pours from one jug into the other until the first is empty or the second is full.
+unknown: The smallest number of steps to have exactly {wanted} litres in one jug.
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{steps}"
+          units: [step, steps]
+          trap_values:
+            - value: "1"
+              trap: stopped-early
+              text: After one step each jug is empty or full, so neither can hold {wanted} litres.
+            - value: "3"
+              trap: off-by-one
+              text: Count the steps again.
+            - value: "4"
+              trap: missed-case
+              text: "4 steps work, but there is a shorter way."
+    simpler_case: Try filling a jug from the tap. Which amounts of water can one step give?
+solution:
+  - text: Fill the {big}-litre jug and pour from it into the {small}-litre jug until that one is full. {big} - {small} = {wanted} litres stay in the big jug. That takes {steps} steps, and one step is not enough.
+techniques: [backwards]
+traps: [ignored-condition]
+leak_phrases: ["{steps} steps", "two steps"]
+skills:
+  primary: [algorithms-weighing-pouring]
+band: grades-3-4
+difficulty: 1
