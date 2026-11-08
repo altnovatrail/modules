@@ -1,0 +1,34 @@
+# A lesson of E3 (T39; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# time-clocks on the band of grades 3–4. Its texts are those of the page clocks of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: time-clocks-grades-3-4
+title: "Clocks: going further"
+skills: [time-clocks]
+segments:
+  - explanation:
+      - text: "A walk starts at 4:50 and lasts 25 minutes: when does it end? In these elapsed-time tasks you add and take away time, and the catch is that an hour has 60 minutes, not 100. Going past the whole hour, past noon or past midnight is where most mistakes happen."
+      - text: "An hour is 60 minutes. Not 100. So 8:50 and 20 minutes more is 9:10, not 8:70, and 110 minutes is 1 hour 50 minutes, not 1 hour 10."
+      - text: "Through the whole hour. To add time across an hour, step to the whole hour first and add the rest after it: from 8:50, 10 minutes to 9:00, then 10 more."
+      - text: "A day is 24 hours. After 23:59 comes 0:00 of the next day. From 22:00 to 6:00 is 2 hours to midnight and 6 hours after it."
+  - worked_example:
+      statement:
+        - text: "A chess tournament has 5 rounds. Each round lasts 50 minutes, and there is a 15-minute break between every two rounds. The first round starts at 10:00. At what time does the last round end?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "5 rounds of 50 minutes: 5 × 50 = 250 minutes of play."
+        - text: "The breaks are only between rounds, so there are 4 of them, not 5: 4 × 15 = 60 minutes."
+        - text: "250 + 60 = 310 minutes, which is 5 hours 10 minutes. 10:00 and 5 hours 10 minutes more is 15:10."
+        - text: "Answer: At 15:10."
+  - explanation:
+      - text: "Why not 13:10? 310 minutes is not 3 hours 10 minutes: an hour has 60 minutes, not 100. 310 = 5 × 60 + 10."
+  - task: clk-34-d1-1
+  - task: clk-34-d3-1
+  - task: clk-34-d5-1
+  - explanation:
+      - text: "How to solve: a line of time."
+      - text: "Put the times on a line, the earlier first."
+      - text: "Step to the whole hour, then go on."
+      - text: "Add the steps up, and check the answer is earlier or later as it should be."

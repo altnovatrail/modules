@@ -29,7 +29,7 @@ items:
               text: "Count the pourings again."
             - value: "7"
               trap: "answered-other-question"
-              text: "7 steps give 4 litres in both the bucket and the 5-litre jug, but one container is enough."
+              text: "One container with 4 litres is enough; look for a shorter way."
     simpler_case: "Try having exactly 3 litres in the bucket. How many steps does it take?"
 solution:
   - text: "Write the litres in the bucket, the 5-litre jug and the 3-litre jug. One shortest way: (8, 0, 0), (3, 5, 0), (3, 2, 3), (6, 2, 0), (6, 0, 2), (1, 5, 2), (1, 4, 3). After 6 steps the 5-litre jug holds 4 litres."

@@ -1,0 +1,34 @@
+# A lesson of E3 (T39; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# algorithms-weighing-pouring on the band of grades 5–6. Its texts are those of the page weighing-and-pouring of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: algorithms-weighing-pouring-grades-5-6
+title: "Weighing and pouring: olympiad level"
+skills: [algorithms-weighing-pouring]
+segments:
+  - explanation:
+      - text: "With an 8-litre jug and a 5-litre jug, how do you measure exactly 1 litre? With a balance and no weights, how do you find the one light coin among many? In these tasks you plan a short sequence of steps, and every rule counts: no marks on the jugs, no weights for the balance. It is a first meeting with algorithms, plans that work whatever happens."
+      - text: "A state is every jug. Write what each jug holds after every step: 0 and 5, then 5 and 0. A list of states shows where you can get to and where you have already been."
+      - text: "Three outcomes. A balance can tip left, tip right or stay level, so every weighing has three outcomes. Split the coins into three groups, not two."
+      - text: "Every rule counts. No marks on the jugs, no water poured away, weights on one pan only: each rule changes which steps are allowed, and so the answer."
+  - worked_example:
+      statement:
+        - text: "Among 100 coins that look the same, one is fake and lighter than the others, which all weigh the same. What is the smallest number of weighings on a balance without weights that is sure to find the fake?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Each weighing has 3 outcomes, so 4 weighings tell apart at most 3 × 3 × 3 × 3 = 81 cases. That is fewer than 100 coins, so 4 weighings are not enough."
+        - text: "Put 33 coins on each pan and keep 34 aside: whatever happens, at most 34 coins are left. In the same way 34 come down to at most 12, then 4, then 2, then 1."
+        - text: "That makes 5 weighings, as the coins go from 100 to 34, 12, 4, 2 and 1."
+        - text: "Answer: 5 weighings."
+  - explanation:
+      - text: "Two halves of a proof. The answer needs both: a plan that finds the fake in 5 weighings, and the count of outcomes that shows 4 can never be enough. Olympiad answers about “the fewest” always have these two halves."
+  - task: wp-56-d1-2
+  - task: wp-56-d3-1
+  - task: wp-56-d5-1
+  - explanation:
+      - text: "How to solve: a table of states."
+      - text: "Write down the state, what each jug or pan holds."
+      - text: "Try every allowed step from it."
+      - text: "Stop at the goal, and count the steps."

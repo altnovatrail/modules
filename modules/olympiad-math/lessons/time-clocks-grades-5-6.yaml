@@ -1,0 +1,34 @@
+# A lesson of E3 (T39; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# time-clocks on the band of grades 5–6. Its texts are those of the page clocks of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: time-clocks-grades-5-6
+title: "Clocks: olympiad level"
+skills: [time-clocks]
+segments:
+  - explanation:
+      - text: "A walk starts at 4:50 and lasts 25 minutes: when does it end? In these elapsed-time tasks you add and take away time, and the catch is that an hour has 60 minutes, not 100. Going past the whole hour, past noon or past midnight is where most mistakes happen."
+      - text: "An hour is 60 minutes. Not 100. So 8:50 and 20 minutes more is 9:10, not 8:70, and 110 minutes is 1 hour 50 minutes, not 1 hour 10."
+      - text: "Through the whole hour. To add time across an hour, step to the whole hour first and add the rest after it: from 8:50, 10 minutes to 9:00, then 10 more."
+      - text: "A day is 24 hours. After 23:59 comes 0:00 of the next day. From 22:00 to 6:00 is 2 hours to midnight and 6 hours after it."
+  - worked_example:
+      statement:
+        - text: "Grandma flies to see Ann, who lives in another city. The plane takes off at 8:00 by the clocks of Grandma's city and lands at 8:30 by the clocks of Ann's. The clocks in Ann's city show 4 hours less than in Grandma's. How long is the flight?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "8:00 and 8:30 are read on different clocks, so first put both times on one clock: Grandma's."
+        - text: "When the clocks in Ann's city show 8:30, Grandma's show 4 hours more: 12:30."
+        - text: "From 8:00 to 12:30 on one clock is 4 hours 30 minutes."
+        - text: "Answer: 4 hours 30 minutes."
+  - explanation:
+      - text: "Half an hour? 8:30 − 8:00 is half an hour only when both times are on one clock. Times from two cities are compared after one of them is moved onto the other's clock."
+  - task: clk-56-d1-1
+  - task: clk-56-d3-1
+  - task: clk-56-d5-1
+  - explanation:
+      - text: "How to solve: a line of time."
+      - text: "Put the times on a line, the earlier first."
+      - text: "Step to the whole hour, then go on."
+      - text: "Add the steps up, and check the answer is earlier or later as it should be."
