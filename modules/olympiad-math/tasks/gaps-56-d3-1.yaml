@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/gaps-56-d3-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/gaps-56-d3-1.yaml, and the port writes this file again (R12).
 id: "gaps-56-d3-1"
 statement:
   - text: "A sheet of stamps has 5 rows of 8 stamps. You tear it along the lines of holes into single stamps. Each tear splits one piece into two. How many tears are needed?"

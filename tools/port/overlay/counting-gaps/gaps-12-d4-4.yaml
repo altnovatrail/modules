@@ -1,0 +1,7 @@
+# What a person adds to gaps-12-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The flowerbed is a square."
+  - "There is a bush in every corner."
+  - "Each side has exactly 3 bushes, counting its two corner bushes."
+unknown: "How many bushes there are."
+simpler_case: "Draw the square and put a bush in each corner first. How many more does each side need?"

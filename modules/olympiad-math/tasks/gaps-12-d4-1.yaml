@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-12-d4-1.yaml, and the port writes this file again (R12).
+id: "gaps-12-d4-1"
+statement:
+  - text: "It takes 6 minutes to saw a log into 3 pieces. How many minutes does it take to saw the same kind of log into 6 pieces?"
+givens: ["Sawing a log into 3 pieces takes 6 minutes.", "The new log is of the same kind."]
+unknown: "How many minutes it takes to saw it into 6 pieces."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "15"
+          units: ["minute", "minutes", "min"]
+          trap_values:
+            - value: "10"
+              trap: "off-by-one"
+              text: "6 minutes were for 2 cuts, not 3, so one cut takes 3 minutes."
+            - value: "12"
+              trap: "wrong-operation"
+              text: "Twice as many pieces does not mean twice as many cuts. Count the cuts."
+            - value: "18"
+              trap: "off-by-one"
+              text: "6 pieces need 5 cuts, not 6."
+            - value: "30"
+              trap: "wrong-operation"
+              text: "6 minutes was the time for two cuts, not for one."
+    simpler_case: "How many cuts make 3 pieces? Find how long one cut takes."
+solution:
+  - text: "3 pieces need 2 cuts, so one cut takes 3 minutes. 6 pieces need 5 cuts: 5 × 3 = 15 minutes."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 4

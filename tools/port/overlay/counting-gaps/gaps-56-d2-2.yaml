@@ -1,0 +1,7 @@
+# What a person adds to gaps-56-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The orchard is 20 metres wide and 30 metres long."
+  - "The rows are 5 metres apart, and in a row the trees are 5 metres apart."
+  - "There are trees along all four edges, one in each corner."
+unknown: "How many trees there are."
+simpler_case: "Count the trees along one 20-metre edge first: they stand every 5 metres from one end to the other."

@@ -1,0 +1,10 @@
+# What a person adds to gaps-12-d1-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The flowers grow in a row."
+  - "There are 4 gaps between them."
+unknown: "How many flowers there are."
+simpler_case: "Draw 2 flowers in a row. How many gaps are between them?"
+trap_texts:
+  "4": "4 is the number of gaps, not flowers. Draw the gaps with a flower on each side and count the flowers."
+  "6": "6 flowers would have more gaps than the question gives. Draw the flowers and count again."
+  "8": "You doubled the gaps. Draw the flowers with the gaps between them and count the flowers."

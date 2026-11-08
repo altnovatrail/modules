@@ -1,0 +1,8 @@
+# What a person adds to gaps-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The garden is a square, 12 metres on each side."
+  - "Its fence has a post every 3 metres, one in each corner."
+  - "Two straight fences cross the garden through its middle, with a post every 3 metres."
+  - "Where fences meet, one post serves both."
+unknown: "How many posts there are."
+simpler_case: "Count the posts of the outer fence first. Then add only the new posts of each inner fence."

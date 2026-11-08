@@ -1,4 +1,4 @@
-# The traps of the first batch's tasks: 10 of the 20 traps of mathtrail-standalone, as the format's
+# The traps of this module's tasks: 11 of the 20 traps of mathtrail-standalone, as the format's
 # example of this module has them, each with its description and its advice. Each ID is the
 # trap's, with _ made -. standalone's content in this module carries the MIT notice of NOTICE.
 traps:
@@ -23,6 +23,9 @@ traps:
   wrong-operation:
     description: "Used the wrong operation: added instead of subtracting, multiplied instead of dividing."
     trap_advice: Act the story out with small objects or a drawing to see whether things are added, taken away or shared.
+  reversed-relation:
+    description: "Reversed a comparison: taller and shorter, before and after, more and less."
+    trap_advice: Draw the comparison as a line from the smallest to the largest before reading off the answer.
   best-case-not-worst:
     description: Counted the lucky case instead of the worst case when the answer must be certain.
     trap_advice: Ask what the unluckiest possible way would be, and make sure the answer holds even then.

@@ -1,0 +1,6 @@
+# What a person adds to gaps-34-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "From the first of 3 rings to the last is 6 seconds."
+  - "The rings are evenly spaced."
+unknown: "How many seconds pass from the first ring to the last when the bell rings 7 times."
+simpler_case: "How many gaps are there between 3 rings? Find how long one gap lasts."

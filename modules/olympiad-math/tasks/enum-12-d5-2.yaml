@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/enum-12-d5-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/enum-12-d5-2.yaml, and the port writes this file again (R12).
 id: "enum-12-d5-2"
 statement:
   - text: "Dima has 3 shirts and 3 pairs of trousers. The red shirt must not be worn with the green trousers. How many different outfits of one shirt and one pair of trousers can he wear?"

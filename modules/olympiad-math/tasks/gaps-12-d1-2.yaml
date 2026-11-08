@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-12-d1-2.yaml, and the port writes this file again (R12).
+id: "gaps-12-d1-2"
+statement:
+  - text: "Mia cuts a long ribbon into 4 pieces. How many cuts does she make?"
+givens: ["Mia cuts one long ribbon.", "At the end there are 4 pieces."]
+unknown: "How many cuts Mia makes."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["cut", "cuts"]
+          trap_values:
+            - value: "2"
+              trap: "off-by-one"
+              text: "2 cuts leave you short of 4 pieces. You need one more cut."
+            - value: "4"
+              trap: "number-from-text"
+              text: "4 is the number of pieces, not cuts. Draw the ribbon, mark each cut and count the cuts."
+            - value: "5"
+              trap: "off-by-one"
+              text: "5 cuts would make 6 pieces."
+            - value: "8"
+              trap: "wrong-operation"
+              text: "You doubled the number of pieces. Each cut adds just one piece."
+    simpler_case: "Try cutting a ribbon into 2 pieces first. How many cuts does that take?"
+solution:
+  - text: "The first cut makes 2 pieces, the second makes 3, the third makes 4. So 3 cuts are enough."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 1

@@ -1,0 +1,48 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-34-d2-6.yaml, and the port writes this file again (R12).
+id: "gaps-34-d2-6"
+statement:
+  - text: "A fence runs along both sides of a path, as the picture shows. Each gap between two posts takes one rail. How many rails do both sides take together?"
+  - picture: "pictures/gaps-34-d2-6.png"
+    alt: "Two rows of fence posts, one along each side of a path, with 7 posts in each row."
+    width: 384
+    height: 94
+givens: ["A fence runs along both sides of the path.", "Each gap between two posts takes one rail."]
+unknown: "How many rails both sides take together."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "12"
+          units: ["rail", "rails"]
+          trap_values:
+            - value: "6"
+              trap: "stopped-early"
+              text: "That is only one side."
+            - value: "14"
+              trap: "off-by-one"
+              text: "Count the gaps, not the posts."
+            - value: "7"
+              trap: "missed-case"
+              text: "One side, and posts not gaps."
+            - value: "13"
+              trap: "double-count"
+              text: "A gap was counted twice."
+    simpler_case: "Take one side first. How many gaps are there between its posts?"
+solution:
+  - text: "One side has 7 posts, so it has 6 gaps and takes 6 rails. The other side takes 6 more, so both sides take 6 + 6 = 12 rails."
+  - text: "6 + 6 = 12"
+  - picture: "pictures/gaps-34-d2-6-solution.png"
+    alt: "The same two rows of 7 posts, with every gap marked 1 and each row marked 6."
+    width: 384
+    height: 168
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-3-4"
+difficulty: 2

@@ -1,0 +1,8 @@
+# What a person adds to gaps-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The children stand in a circle at equal distances."
+  - "They are numbered 1, 2, 3 and so on, all the way round."
+  - "Child 6 stands exactly opposite child 17."
+unknown: "How many children are in the circle."
+simpler_case: "Try a circle where child 1 stands opposite child 3. Draw it and count."
+solution_picture_alt: "22 children in a circle, numbered from 1 at the top round clockwise, with child 6 marked."

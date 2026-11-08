@@ -1,0 +1,6 @@
+# What a person adds to gaps-12-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Tim is 5th from the left."
+  - "Tim is 7th from the right."
+unknown: "How many children are in the row."
+simpler_case: "Try a row where Tim is 2nd from the left and 2nd from the right. How many children is that?"

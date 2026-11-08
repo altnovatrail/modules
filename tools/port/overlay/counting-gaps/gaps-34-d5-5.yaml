@@ -1,0 +1,6 @@
+# What a person adds to gaps-34-d5-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "One person can sit on each side of a small square table."
+  - "Eight tables are pushed together into one long row."
+unknown: "How many people can sit around the long table."
+simpler_case: "Try 2 tables pushed together first. Draw them and mark the free sides."

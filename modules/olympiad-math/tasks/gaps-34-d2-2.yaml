@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-34-d2-2.yaml, and the port writes this file again (R12).
+id: "gaps-34-d2-2"
+statement:
+  - text: "A bell rings 3 times in 6 seconds, counting from the first ring to the last. The rings are evenly spaced. How many seconds pass from the first ring to the last if it rings 7 times?"
+givens: ["From the first of 3 rings to the last is 6 seconds.", "The rings are evenly spaced."]
+unknown: "How many seconds pass from the first ring to the last when the bell rings 7 times."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "18"
+          units: ["second", "seconds", "s"]
+          trap_values:
+            - value: "7"
+              trap: "number-from-text"
+              text: "7 is the number of rings, not seconds."
+            - value: "12"
+              trap: "wrong-operation"
+              text: "7 rings do not take twice as long as 3 rings. Count the gaps between rings."
+            - value: "14"
+              trap: "off-by-one"
+              text: "6 seconds were for 2 gaps, not 3, so each gap is 3 seconds."
+            - value: "21"
+              trap: "off-by-one"
+              text: "7 rings have 6 gaps, not 7."
+    simpler_case: "How many gaps are there between 3 rings? Find how long one gap lasts."
+solution:
+  - text: "3 rings have 2 gaps, so one gap lasts 6 ÷ 2 = 3 seconds. 7 rings have 6 gaps: 6 × 3 = 18 seconds."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-3-4"
+difficulty: 2

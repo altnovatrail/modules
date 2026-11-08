@@ -1,0 +1,11 @@
+# What a person adds to gaps-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The well is 12 metres deep."
+  - "Each day the frog climbs 5 metres up."
+  - "Each night it slips 3 metres back down."
+unknown: "On which day the frog gets out of the well."
+simpler_case: "Make a table of how high the frog is after each day and after each night."
+trap_texts:
+  "On day 6": "Day 6 comes from 12 ÷ 2, as if the frog gained only 2 metres a day all the way to the top. On its last climb it goes up 5 metres and is out before night comes."
+  "On day 4": "4 is the number of nights the frog slips back. It gets out on the day after its last night."
+leak_phrases: ["day 5", "fifth day"]

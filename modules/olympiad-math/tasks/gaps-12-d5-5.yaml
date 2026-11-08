@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/gaps-12-d5-5.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/gaps-12-d5-5.yaml, and the port writes this file again (R12).
 id: "gaps-12-d5-5"
 statement:
   - text: "Anna lives on floor 3 and walks up 20 steps from floor 1 to get home. Bob lives on floor 6 of the same house. How many steps does Bob walk up from floor 1?"

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/gaps-56-d5-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/gaps-56-d5-1.yaml, and the port writes this file again (R12).
 id: "gaps-56-d5-1"
 statement:
   - text: "Nine parallels and twelve meridians are drawn on a globe. A parallel is a circle that goes all the way round the globe from west to east. A meridian is a line from the North Pole to the South Pole. Into how many parts do these lines cut the surface of the globe?"

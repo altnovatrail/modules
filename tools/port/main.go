@@ -127,6 +127,7 @@ func portAll(gitCommand, standalone, batchFile, overlayDir string) ([]Converted,
 	if err != nil {
 		return nil, err
 	}
+	batch.overlays = filepath.ToSlash(filepath.Clean(overlayDir))
 	var converted []Converted
 	for _, id := range slices.Sorted(maps.Keys(batch.Tasks)) {
 		ex, has := examples[id]

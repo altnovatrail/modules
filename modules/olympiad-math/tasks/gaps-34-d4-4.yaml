@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-34-d4-4.yaml, and the port writes this file again (R12).
+id: "gaps-34-d4-4"
+statement:
+  - text: "Nina counts 36 steps from floor 1 to floor 3. All flights of stairs are the same. How many steps are there from floor 3 to floor 7?"
+givens: ["Nina counts 36 steps from floor 1 to floor 3.", "All the flights of stairs are the same."]
+unknown: "How many steps there are from floor 3 to floor 7."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "72"
+          units: ["step", "steps"]
+          trap_values:
+            - value: "36"
+              trap: "number-from-text"
+              text: "36 steps is from floor 1 to floor 3."
+            - value: "48"
+              trap: "off-by-one"
+              text: "36 steps are for 2 flights, not 3."
+            - value: "90"
+              trap: "off-by-one"
+              text: "From floor 3 to floor 7 there are 4 flights, not 5."
+            - value: "108"
+              trap: "answered-other-question"
+              text: "108 is from floor 1 to floor 7. The question starts at floor 3."
+    simpler_case: "How many flights are there from floor 1 to floor 3? Find how many steps one flight has."
+solution:
+  - text: "From floor 1 to floor 3 there are 2 flights, so one flight has 18 steps. From floor 3 to floor 7 there are 4 flights: 4 × 18 = 72."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-3-4"
+difficulty: 4

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-12-d3-4.yaml, and the port writes this file again (R12).
+id: "gaps-12-d3-4"
+statement:
+  - text: "A house has 4 floors. Between every two neighbouring floors there are 8 steps. How many steps are there from floor 1 to floor 4?"
+givens: ["The house has 4 floors.", "There are 8 steps between every two neighbouring floors."]
+unknown: "How many steps there are from floor 1 to floor 4."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "24"
+          units: ["step", "steps"]
+          trap_values:
+            - value: "8"
+              trap: "stopped-early"
+              text: "8 steps take you only to floor 2."
+            - value: "12"
+              trap: "wrong-operation"
+              text: "You added 4 to 8. Add 8 steps for each flight."
+            - value: "16"
+              trap: "off-by-one"
+              text: "From floor 1 to floor 4 there are 3 flights, not 2."
+            - value: "32"
+              trap: "off-by-one"
+              text: "4 floors have only 3 flights between them, not 4."
+    simpler_case: "Try going from floor 1 to floor 2 first. How many flights is that?"
+solution:
+  - text: "From floor 1 to floor 4 there are 3 flights: 1 to 2, 2 to 3 and 3 to 4. That is 8 + 8 + 8 = 24 steps."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 3

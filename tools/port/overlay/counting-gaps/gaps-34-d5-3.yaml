@@ -1,0 +1,8 @@
+# What a person adds to gaps-34-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The garden is a square, and each side is 20 metres long."
+  - "Posts stand every 4 metres along the fence."
+  - "There is a post in every corner."
+unknown: "How many posts there are."
+simpler_case: "Take one side first. How many posts stand on it, counting its corners? Then see which posts two sides share."
+leak_phrases: ["20 posts"]

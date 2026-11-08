@@ -1,0 +1,9 @@
+# What a person adds to gaps-12-d1-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Tom starts on page 3."
+  - "He stops after page 7."
+  - "He reads both of these pages too."
+unknown: "How many pages Tom reads."
+simpler_case: "Try reading from page 1 to page 2. How many pages is that?"
+trap_texts:
+  "4": "7 - 3 = 4 misses one page. Count the pages one by one, from page 3 to page 7."

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-56-d5-3.yaml, and the port writes this file again (R12).
+id: "gaps-56-d5-3"
+statement:
+  - text: "Nine people stand in a queue in the rain, each under an open umbrella, so close that the umbrellas of neighbours touch. Take each person as a point and each umbrella as a circle of radius 40 cm round them. When the rain stops, they close their umbrellas and stand 60 cm apart. A queue's length runs from its very front to its very back. By how many metres is the queue now shorter?"
+givens: ["Nine people stand in a queue.", "Each umbrella is a circle of radius 40 cm round its person, and neighbours' umbrellas touch.", "After the rain, the people stand 60 cm apart.", "The queue runs from its very front to its very back."]
+unknown: "By how many metres the queue is now shorter."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2.4"
+          units: ["metre", "metres", "m"]
+          trap_values:
+            - value: "1.8"
+              trap: "off-by-one"
+              text: "1.8 m counts 9 gaps of 60 cm, but between 9 people in a row there are 8 gaps."
+            - value: "1.6"
+              trap: "ignored-condition"
+              text: "1.6 m measures the queue under the umbrellas from the first person to the last, 8 × 80 cm, but the umbrellas reach 40 cm further at each end."
+            - value: "7.2"
+              trap: "answered-other-question"
+              text: "7.2 m is how long the queue was under the umbrellas. The question asks how much shorter it is now."
+            - value: "1.5"
+              trap: "wrong-operation"
+              text: "1.5 divides the two lengths, 720 ÷ 480, which tells how many times as long the queue was. The question asks by how many metres it got shorter."
+    simpler_case: "Try a queue of 2 people first. How long is it under umbrellas, and how long without them?"
+solution:
+  - text: "Touching umbrellas put neighbours 80 cm apart, and the first and last umbrellas reach 40 cm beyond the people holding them. So the queue was 9 umbrellas of 80 cm each, 720 cm long. Now it runs from the first person to the last, 8 gaps of 60 cm, 480 cm. It is 720 − 480 = 240 cm, or 2.4 metres, shorter."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-5-6"
+difficulty: 5

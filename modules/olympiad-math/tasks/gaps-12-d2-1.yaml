@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/gaps-12-d2-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/gaps-12-d2-1.yaml, and the port writes this file again (R12).
 id: "gaps-12-d2-1"
 statement:
   - text: "A fence has 8 posts in a straight line. Each post is 2 metres from the next one. How many metres is it from the first post to the last?"

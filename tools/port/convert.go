@@ -175,10 +175,14 @@ func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile
 		pair{"difficulty", ex.Difficulty},
 	)
 
+	overlays := batch.overlays
+	if overlays == "" {
+		overlays = "tools/port/overlay"
+	}
 	comment := []string{
 		fmt.Sprintf("Written by tools/port from mathtrail-standalone at %s, from", batch.Standalone[:7]),
 		topicFile + ", and not to be edited here: what a person adds goes in",
-		fmt.Sprintf("tools/port/overlay/%s.yaml, and the port writes this file again (R12).", ex.ID),
+		fmt.Sprintf("%s/%s.yaml, and the port writes this file again (R12).", overlays, ex.ID),
 	}
 	files["tasks/"+ex.ID+".yaml"] = emit(comment, root)
 	return Converted{ID: ex.ID, Files: files, Answer: given.kind, Notes: notes, KeyNamed: given.keyNamed, FromPicture: ex.fromPicture}, nil
