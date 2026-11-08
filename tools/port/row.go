@@ -65,7 +65,7 @@ func pictureOf(id string, raw json.RawMessage, alt, suffix string) (mapping, []b
 		return nil, nil, fmt.Errorf("%s: its picture: %w", id, err)
 	}
 	if kind.Kind != "row" {
-		return nil, nil, fmt.Errorf("%s: its picture is of the kind %q, which the port does not draw yet: only row", id, kind.Kind)
+		return nil, nil, notDrawn{id: id, kind: kind.Kind}
 	}
 	var row rowPicture
 	decoder := json.NewDecoder(bytes.NewReader(raw))
@@ -330,4 +330,12 @@ func (c canvas) text(s string, cx, cy float64) {
 		Y: fixed.I(int(math.Round(cy*scale))) + (metrics.Ascent-metrics.Descent)/2,
 	}
 	d.DrawString(s)
+}
+
+// notDrawn is a picture of a kind the port does not draw yet, which a survey counts by kind: the
+// kinds other than row are E3's (T19–T21).
+type notDrawn struct{ id, kind string }
+
+func (e notDrawn) Error() string {
+	return fmt.Sprintf("%s: its picture is of the kind %q, which the port does not draw yet: only row", e.id, e.kind)
 }

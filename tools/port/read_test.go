@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"errors"
 	"os"
 	"path/filepath"
@@ -142,4 +143,72 @@ func TestEmitScalars(t *testing.T) {
 		}
 	}()
 	scalar(1.5)
+}
+
+func TestReadIdea(t *testing.T) {
+	clone, _ := standaloneWith(t, nil)
+	writeFile(t, filepath.Join(clone, "content", "examples", "a.json"), `[`+exampleJSON(t, example("lamps-1"), `"idea": 14`)+`]`)
+	examples, err := readExamples(clone)
+	if err != nil || examples["lamps-1"].Idea != 14 {
+		t.Errorf("readExamples() = %v, %v", examples, err)
+	}
+	ex := example("lamps-1")
+	ex.Idea = -1
+	if err := ex.valid(); err == nil || !strings.Contains(err.Error(), "no place in a list") {
+		t.Errorf("a negative idea: error = %v", err)
+	}
+}
+
+// exampleJSON is a task as standalone writes it, with fields of JSON added.
+func exampleJSON(t *testing.T, ex Example, fields string) string {
+	t.Helper()
+	data, err := json.Marshal(ex)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return strings.TrimSuffix(string(data), "}") + ", " + fields + "}"
+}
+
+func TestReadTopics(t *testing.T) {
+	clone, _ := standaloneWith(t, map[string][]Example{"counting.gaps.json": {example("lamps-1")}})
+	topics, err := readTopics(clone)
+	if err != nil || len(topics) != 1 || topics["counting.gaps"].Slug != "counting.gaps" {
+		t.Errorf("readTopics() = %v, %v", topics, err)
+	}
+	file := filepath.Join(clone, "content", "catalogs", "topics.json")
+	for text, message := range map[string]string{
+		`[{"id": "a", "pages": 2}]`:  "unknown field",
+		`[{"id": "a"}, {"id": "a"}]`: "is there twice",
+		`[{"name": "A"}]`:            "has no ID",
+	} {
+		writeFile(t, file, text)
+		if _, err := readTopics(clone); err == nil || !strings.Contains(err.Error(), message) {
+			t.Errorf("%s: error = %v, want one that says %q", text, err, message)
+		}
+	}
+	if _, err := readTopics(t.TempDir()); !errors.Is(err, os.ErrNotExist) {
+		t.Errorf("no catalog: error = %v", err)
+	}
+}
+
+func TestOfTopic(t *testing.T) {
+	pictured := topicOf("counting.figures")
+	pictured.SolvedFromPicture = true
+	topics := map[string]Topic{"counting.gaps": topicOf("counting.gaps"), "counting.figures": pictured}
+	ex := example("lamps-1")
+	if err := ofTopic(ex, topics); err != nil {
+		t.Errorf("a task of its topic: %v", err)
+	}
+	ex.Topic = "logic.sets"
+	if err := ofTopic(ex, topics); err == nil || !strings.Contains(err.Error(), "is no topic of content/catalogs/topics.json") {
+		t.Errorf("a topic not in the catalog: error = %v", err)
+	}
+	ex.Topic = "counting.figures"
+	if err := ofTopic(ex, topics); err == nil || !strings.Contains(err.Error(), "is solved from the picture, and the task has no picture") {
+		t.Errorf("no picture: error = %v", err)
+	}
+	ex.Picture = json.RawMessage(rowJSON)
+	if err := ofTopic(ex, topics); err != nil {
+		t.Errorf("a picture: %v", err)
+	}
 }

@@ -42,6 +42,65 @@ type Example struct {
 	// Hint is not carried: the format has no field for it, and the ladder of hints is built from
 	// the traps, the givens, the techniques and the simpler case (format/README.md, section 19).
 	Hint string `json:"hint,omitempty"`
+	// Idea is the place of the task's idea in its topic's list of ideas, at 42b4408 on a task solved
+	// from the picture. It is not carried: the ideas are not (docs/architecture.md, section 3.5).
+	Idea int `json:"idea,omitempty"`
+}
+
+// Topic is a topic of standalone, as content/catalogs/topics.json holds it at the commit the batch
+// names. The port reads it to hold each task to its topic, and carries none of it: the skill graph
+// is the format's example, and a topic solved from the picture tells standalone in which chat its
+// tasks may be given, while the module's every app shows the picture (docs/architecture.md, section
+// 3.5).
+type Topic struct {
+	ID                string   `json:"id"`
+	Name              string   `json:"name"`
+	Description       string   `json:"description"`
+	GradeLevels       []string `json:"grade_levels"`
+	Slug              string   `json:"slug"`
+	BuildsOn          []string `json:"builds_on"`
+	SitePage          bool     `json:"site_page"`
+	SolvedFromPicture bool     `json:"solved_from_picture,omitempty"`
+}
+
+// readTopics reads content/catalogs/topics.json of a clone of standalone, strictly, and gives its
+// topics by ID.
+func readTopics(clone string) (map[string]Topic, error) {
+	file := filepath.Join(clone, "content", "catalogs", "topics.json")
+	data, err := os.ReadFile(file)
+	if err != nil {
+		return nil, err
+	}
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	var list []Topic
+	if err := decoder.Decode(&list); err != nil {
+		return nil, fmt.Errorf("%s: %w", file, err)
+	}
+	topics := map[string]Topic{}
+	for _, topic := range list {
+		if topic.ID == "" {
+			return nil, fmt.Errorf("%s: a topic has no ID", file)
+		}
+		if _, twice := topics[topic.ID]; twice {
+			return nil, fmt.Errorf("%s: the topic %s is there twice", file, topic.ID)
+		}
+		topics[topic.ID] = topic
+	}
+	return topics, nil
+}
+
+// ofTopic holds a task to its topic: the topic is one of the catalog, and a task of a topic solved
+// from the picture has a picture, since its facts stand on the picture alone.
+func ofTopic(ex Example, topics map[string]Topic) error {
+	topic, known := topics[ex.Topic]
+	if !known {
+		return fmt.Errorf("%s: its topic %s is no topic of content/catalogs/topics.json", ex.ID, ex.Topic)
+	}
+	if topic.SolvedFromPicture && ex.Picture == nil {
+		return fmt.Errorf("%s: its topic %s is solved from the picture, and the task has no picture", ex.ID, ex.Topic)
+	}
+	return nil
 }
 
 // Distractor is a wrong option of a task of standalone: the trap it comes from and what the child
@@ -106,6 +165,9 @@ func (e Example) valid() error {
 	}
 	if e.Difficulty < 1 || e.Difficulty > 5 {
 		problems = append(problems, fmt.Sprintf("its difficulty %d is not 1 to 5", e.Difficulty))
+	}
+	if e.Idea < 0 {
+		problems = append(problems, fmt.Sprintf("its idea %d is no place in a list", e.Idea))
 	}
 	if len(e.Options) != len(letters) {
 		problems = append(problems, fmt.Sprintf("it has %d options, not %d", len(e.Options), len(letters)))

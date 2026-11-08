@@ -627,3 +627,64 @@ port module *options:
     git clone --quiet --filter=blob:none --no-checkout https://github.com/mathtrail/mathtrail-standalone "$clone"
     git -C "$clone" checkout --quiet --detach "$commit"
     go run ./tools/port --standalone "$clone" --batch "$batch" --overlay "$overlay" --module "$module" --prove "${rest[@]}"
+
+# A survey runs the port over every task of standalone that no batch of tools/port/batches/ names
+# yet, at a commit, 42b4408 unless another is given, before E3's batches are written (R20): the
+# clone as port makes it, then _port-survey with standalone's bench. The module is a folder that is
+# not there yet, which the survey makes and which never enters the repository. It is a step of E3's
+# tasks, run by a person in the devcontainer, not of CI.
+# Survey the tasks of standalone that no batch names, into a new module of the format's examples.
+[positional-arguments]
+port-survey module commit="42b4408225e4163d8efbdfb93c299f3fc4b70afa":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    clone=$(mktemp -d)
+    trap 'rm -rf "$clone"' EXIT
+    export GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_TERMINAL_PROMPT=0
+    git clone --quiet --filter=blob:none --no-checkout https://github.com/mathtrail/mathtrail-standalone "$clone"
+    git -C "$clone" checkout --quiet --detach "$2"
+    {{quote(just_executable())}} _port-survey "$clone" "$2" "$1" --prove
+
+# The module of a survey is the format's examples of olympiad-math — manifest, skill graph, traps,
+# techniques and solving steps — with the root's LICENSE, as in test/port.test.mjs, and the tasks
+# the port writes into it. module-kit check then reads it: a breach of task.no-leaks is what E3's
+# overlays are to mend, and the recipe counts them; any other breach, and any warning, fails it.
+# The exit status is the port's — 1 when it refused a task, 2 when it could not run — or 1 when the
+# check found more than task.no-leaks. The port is built first, rather than run by go run, which
+# makes every status other than 0 into 1.
+# Survey a clone of standalone into a new module, and check the module.
+[private]
+[positional-arguments]
+_port-survey clone commit module *options:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    clone=$1 commit=$2 module=$3
+    shift 3
+    if [ -e "$module" ]; then
+        echo "port-survey: ${module} is there already: a survey makes its module anew" >&2
+        exit 2
+    fi
+    mkdir -p "$module"
+    for part in manifest skill-graph traps techniques solving-steps; do
+        cp "spec/format/examples/${part}/valid/olympiad-math.yaml" "${module}/${part}.yaml"
+    done
+    cp LICENSE "${module}/LICENSE"
+    bin=$(mktemp -d)
+    trap 'rm -rf "$bin"' EXIT
+    go build -o "${bin}/port" ./tools/port
+    status=0
+    "${bin}/port" --standalone "$clone" --survey --commit "$commit" --except tools/port/batches --module "$module" "$@" || status=$?
+    if [ "$status" -eq 2 ]; then
+        exit 2
+    fi
+    checked=$(module-kit check "$module" 2>&1) || true
+    leaks=$(grep -c ': task\.no-leaks: ' <<< "$checked" || true)
+    other=$(grep -v -e ': task\.no-leaks: ' -E -e ': the format [0-9.]* refuses the module: [0-9]* breach(es)?$' \
+        -e ': the module breaks no rule of the format [0-9.]*$' <<< "$checked" || true)
+    echo "port-survey: module-kit check ${module}: task.no-leaks ${leaks}, for the overlays to mend"
+    if [ -n "$other" ]; then
+        echo "port-survey: module-kit check found more than task.no-leaks:" >&2
+        echo "$other" >&2
+        status=1
+    fi
+    exit "$status"

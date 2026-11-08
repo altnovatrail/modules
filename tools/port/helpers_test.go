@@ -2,9 +2,11 @@ package main
 
 import (
 	"encoding/json"
+	"maps"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"slices"
 	"strings"
 	"testing"
 )
@@ -56,17 +58,36 @@ func standaloneWith(t *testing.T, files map[string][]Example) (string, string) {
 	if err := os.MkdirAll(dir, 0o755); err != nil {
 		t.Fatal(err)
 	}
+	topics := map[string]bool{}
 	for name, tasks := range files {
 		data, err := json.MarshalIndent(tasks, "", "  ")
 		if err != nil {
 			t.Fatal(err)
 		}
 		writeFile(t, filepath.Join(dir, name), string(data))
+		for _, task := range tasks {
+			topics[task.Topic] = true
+		}
 	}
+	var catalog []Topic
+	for _, id := range slices.Sorted(maps.Keys(topics)) {
+		catalog = append(catalog, topicOf(id))
+	}
+	data, err := json.Marshal(catalog)
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeFile(t, filepath.Join(clone, "content", "catalogs", "topics.json"), string(data))
 	git(t, clone, "init", "-q")
 	git(t, clone, "add", "-A")
 	git(t, clone, "commit", "-q", "--allow-empty", "-m", "Tasks")
 	return clone, git(t, clone, "rev-parse", "HEAD")
+}
+
+// topicOf is a topic of standalone's catalog, as it writes one, with a text of its own.
+func topicOf(id string) Topic {
+	return Topic{ID: id, Name: id, Description: "A topic of the tests.", GradeLevels: []string{"1-2"},
+		Slug: id, BuildsOn: []string{}, SitePage: true}
 }
 
 // testBatch is a batch of the tasks given, each counted in metres.
