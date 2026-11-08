@@ -1,0 +1,100 @@
+# A template of counting-gaps (T35; R22): the solver of mathtrail-standalone
+# content/solvers/counting.gaps/neighbours.star at 42b4408, made a solver of the template. It came
+# from reference task gaps-34-d4-4, whose numbers are one of its instances.
+# The numbers of reference task gaps-34-d4-4: told_steps 36, told_to 3, asked_from 3, asked_to 7.
+# Its capitals TOLD_TO, TOLD_STEPS, ASKED_FROM and ASKED_TO are the numbers that the statement
+# shows; TOLD_FROM stays 1, as in the reference task. The constraint keeps a flight of 10 to 18
+# steps, a whole number of them; the trap values are derived numbers, the mistakes of the reference
+# task, and the constraint keeps them whole and apart.
+# The solver carries this notice:
+#
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: neighbours
+template:
+  parameters:
+    told_steps: {from: 20, to: 54}
+    told_to: {from: 3, to: 4}
+    asked_from: {from: 2, to: 4}
+    asked_to: {from: 6, to: 9}
+  derived:
+    flight: told_steps // (told_to - 1)
+    told_flights: told_to - 1
+    gaps_wrong: told_steps // told_to * (asked_to - asked_from)
+    one_more: told_steps // (told_to - 1) * (asked_to - asked_from + 1)
+    from_first: told_steps // (told_to - 1) * (asked_to - 1)
+  constraint: told_steps % (told_to - 1) == 0 and flight >= 10 and flight <= 18 and told_steps % told_to == 0 and gaps_wrong != flight * (asked_to - asked_from) and gaps_wrong != told_steps and gaps_wrong != one_more and gaps_wrong != from_first and told_steps != flight * (asked_to - asked_from) and told_steps != one_more and told_steps != from_first and one_more != from_first
+  solver:
+    program: |
+      # For something paid for gap by gap, such as steps per flight of stairs or
+      # seconds between rings: count the gaps as pairs of neighbours, work out what
+      # one gap is worth from what the task tells, and carry it over to what it asks.
+
+      def flights(start, end):
+          # One flight between every floor and the next.
+          return len([(floor, floor + 1) for floor in range(start, end)])
+
+      def solve(numbers):
+          told = flights(1, numbers["told_to"])
+          if numbers["told_steps"] % told != 0:
+              fail("%d steps do not share out evenly over %d flights" % (numbers["told_steps"], told))
+          return {"steps": flights(numbers["asked_from"], numbers["asked_to"]) * (numbers["told_steps"] // told)}
+    results: [steps]
+statement:
+  - text: Nina counts {told_steps} steps from floor 1 to floor {told_to}. All flights of stairs are the same. How many steps are there from floor {asked_from} to floor {asked_to}?
+givens:
+  - Nina counts {told_steps} steps from floor 1 to floor {told_to}.
+  - All the flights of stairs are the same.
+unknown: How many steps there are from floor {asked_from} to floor {asked_to}.
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{steps}"
+          units: [step, steps]
+          trap_values:
+            - value: "{told_steps}"
+              trap: number-from-text
+              text: That is the number of steps from floor 1 to floor {told_to}, not the steps the question asks about.
+            - value: "{gaps_wrong}"
+              trap: off-by-one
+              text: Count the flights from floor 1 to floor {told_to} again. A flight goes from a floor to the next one.
+            - value: "{one_more}"
+              trap: off-by-one
+              text: Count the flights from floor {asked_from} to floor {asked_to} again. A flight goes from a floor to the next one.
+            - value: "{from_first}"
+              trap: answered-other-question
+              text: That counts the steps from floor 1. The question starts at floor {asked_from}.
+    simpler_case: Suppose the stairs go only from one floor to the next. How many flights are there, and how many steps does each one have?
+solution:
+  - text: From floor 1 to floor {told_to} there are {told_flights} flights, so one flight has {told_steps} ÷ {told_flights} = {flight} steps.
+  - text: From floor {asked_from} to floor {asked_to} there are as many flights as floors you climb past, and each has {flight} steps, so there are {steps} steps.
+techniques: [draw, small-numbers]
+leak_phrases: ["{steps} steps"]
+skills:
+  primary: [counting-gaps]
+band: grades-3-4
+difficulty: 4

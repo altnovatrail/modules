@@ -1,0 +1,98 @@
+# A template of counting-gaps (T35; R22): the solver of mathtrail-standalone
+# content/solvers/counting.gaps/positions.star at 42b4408, made a solver of the template. It came
+# from reference task gaps-34-d5-3, whose numbers are one of its instances.
+# The numbers of reference task gaps-34-d5-3: side 20, apart 4.
+# Its capitals SIDE and APART are the numbers that the statement shows. The constraint keeps a whole
+# number of gaps on a side, from 3 to 8, so that the instances are alike in difficulty, and other
+# than the spacing; posts every 4 metres make as many posts as metres of a side, so only the
+# reference task keeps them. The trap values are derived numbers, the mistakes of the reference
+# task, and stay apart for every instance.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: positions
+template:
+  parameters:
+    side: {from: 9, to: 30}
+    apart: {from: 2, to: 5}
+  derived:
+    per_side: side // apart
+    no_corners: "4 * (side // apart - 1)"
+    one_more: "4 * (side // apart) + 1"
+    corners_twice: "4 * (side // apart + 1)"
+    fence: "4 * side"
+  constraint: side % apart == 0 and side // apart >= 3 and side // apart <= 8 and side // apart != apart and (apart != 4 or side == 20)
+  solver:
+    program: |
+      # For posts, trees or lamps and the gaps between them: put every object at its
+      # place and count the places, instead of adding or taking one away by hand. A
+      # set keeps a place that two sides share, such as a corner, from being counted
+      # twice.
+
+      def solve(numbers):
+          side, apart = numbers["side"], numbers["apart"]
+          posts = set()
+          for x in range(0, side + 1, apart):
+              for y in range(0, side + 1, apart):
+                  if x == 0 or x == side or y == 0 or y == side:  # on the fence, not inside the garden
+                      posts.add((x, y))
+          return {"posts": len(posts)}
+    results: [posts]
+statement:
+  - text: A square garden has a fence. Each side is {side} metres long. Posts stand every {apart} metres along the fence, with a post in every corner. How many posts are there?
+givens:
+  - The garden is a square, and each side is {side} metres long.
+  - Posts stand every {apart} metres along the fence.
+  - There is a post in every corner.
+unknown: How many posts there are.
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{posts}"
+          units: [post, posts]
+          trap_values:
+            - value: "{per_side}"
+              trap: answered-other-question
+              text: That is the number of gaps on one side, not the posts all round.
+            - value: "{no_corners}"
+              trap: ignored-condition
+              text: You forgot the corner posts.
+            - value: "{one_more}"
+              trap: off-by-one
+              text: A closed fence has as many posts as gaps, not one more.
+            - value: "{corners_twice}"
+              trap: double-count
+              text: Each corner post belongs to two sides. You counted the corners twice.
+    simpler_case: Try a square garden with sides as long as two gaps between posts, and a post in every corner. How many posts are there?
+solution:
+  - text: The whole fence is 4 × {side} = {fence} metres long and closed. {fence} ÷ {apart} = {posts} gaps, and a closed fence has as many posts as gaps, {posts}.
+techniques: [draw, small-numbers]
+leak_phrases: ["{posts} posts"]
+skills:
+  primary: [counting-gaps]
+band: grades-3-4
+difficulty: 5
