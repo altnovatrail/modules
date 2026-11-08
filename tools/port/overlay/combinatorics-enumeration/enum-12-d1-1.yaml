@@ -1,0 +1,9 @@
+# What a person adds to enum-12-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann has 3 hats: red, blue and yellow."
+  - "She has 2 scarves: green and white."
+  - "She wears one hat and one scarf."
+unknown: "How many different pairs of a hat and a scarf she can make."
+simpler_case: "Try 2 hats and 2 scarves first. Draw each hat with each scarf."
+trap_texts:
+  "4": "You missed some pairs. Draw the hats and the scarves, and join every hat to a scarf in every way you can."

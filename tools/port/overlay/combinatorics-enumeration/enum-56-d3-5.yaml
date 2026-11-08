@@ -1,0 +1,9 @@
+# What a person adds to enum-56-d3-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The robot goes from cell S to cell F."
+  - "It moves one cell at a time, only to the right or down."
+  - "It must pass through cell M."
+unknown: "How many different routes it can take."
+simpler_case: "Count the routes from S to M first, then from M to F."
+picture_alt: "Squared paper of 4 cells across and 3 down. S is in the top left cell, M is one cell to the right of S and one cell down, and F is in the bottom right cell."
+solution_picture_alt: "The same paper with the routes through M counted cell by cell: 1 in S and in the two cells next to it, 2 in M and in the cells to its right and below it, 4 in the next cell of the bottom row, and 6 in F."

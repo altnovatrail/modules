@@ -1,0 +1,10 @@
+# What a person adds to enum-12-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann, Ben and Kim meet."
+  - "Each of them shakes hands with each of the others once."
+unknown: "How many handshakes there are."
+simpler_case: "Try just Ann and Ben first. Then let Kim come in and shake hands with them."
+trap_texts:
+  "2": "You missed a handshake. List them by pairs of names, each pair once."
+  "4": "You counted a handshake that is not there. List them by pairs of names, each pair once."
+  "9": "You multiplied the children by themselves. Nobody shakes hands with themselves, and each handshake is one pair of names."

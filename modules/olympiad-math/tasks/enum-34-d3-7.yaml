@@ -1,0 +1,48 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-34-d3-7.yaml, and the port writes this file again (R12).
+id: "enum-34-d3-7"
+statement:
+  - text: "In the picture, each round mark is a flavour and each square mark is a topping. A cone has one flavour, with one topping or with no topping at all. How many different cones are there?"
+  - picture: "pictures/enum-34-d3-7.png"
+    alt: "Two piles of marks: 3 round marks in the first and 3 square marks in the second."
+    width: 78
+    height: 84
+givens: ["Each round mark in the picture is a flavour.", "Each square mark is a topping.", "A cone has one flavour, with one topping or with no topping."]
+unknown: "How many different cones there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "12"
+          units: ["cone", "cones"]
+          trap_values:
+            - value: "9"
+              trap: "missed-case"
+              text: "The cones with no topping were left out."
+            - value: "6"
+              trap: "wrong-operation"
+              text: "Flavours and toppings were added."
+            - value: "10"
+              trap: "off-by-one"
+              text: "No topping is one more choice for each flavour."
+            - value: "4"
+              trap: "stopped-early"
+              text: "That is the choices for one flavour."
+    simpler_case: "Take one flavour first. How many choices of topping does it have?"
+solution:
+  - text: "With each flavour there are 4 choices: one of the 3 toppings or no topping. So there are 3 times 4, which is 12 cones."
+  - text: "3 × 4 = 12"
+  - picture: "pictures/enum-34-d3-7-solution.png"
+    alt: "Three piles of 4 marks each, one pile for each flavour with its cones."
+    width: 96
+    height: 120
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 3

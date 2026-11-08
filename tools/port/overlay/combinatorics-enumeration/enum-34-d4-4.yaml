@@ -1,0 +1,6 @@
+# What a person adds to enum-34-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Masha has 5 different stickers."
+  - "She gives 2 of them to Dasha and 1 to Pasha."
+unknown: "In how many different ways she can do it."
+simpler_case: "Count the ways to choose Dasha's two stickers first. How many are left for Pasha then?"

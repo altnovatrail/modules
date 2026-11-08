@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-34-d2-3.yaml, and the port writes this file again (R12).
+id: "enum-34-d2-3"
+statement:
+  - text: "How many three-digit numbers are there whose digits are all 1, 2 or 3? A digit may be used more than once, like in 313."
+givens: ["The numbers have three digits.", "Every digit is 1, 2 or 3.", "A digit may be used more than once, like in 313."]
+unknown: "How many such numbers there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "27"
+          units: ["number", "numbers"]
+          trap_values:
+            - value: "6"
+              trap: "ignored-condition"
+              text: "A digit may be used more than once, so 111 and 313 count too."
+            - value: "9"
+              trap: "stopped-early"
+              text: "3 × 3 counts only two places. The number has three digits."
+            - value: "18"
+              trap: "wrong-operation"
+              text: "You added 9 and 9. Each place has its own choices: multiply them."
+            - value: "81"
+              trap: "wrong-operation"
+              text: "You multiplied by 3 once too often. There are only three places."
+    simpler_case: "Try two-digit numbers with the digits 1, 2 or 3 first. How many are there?"
+solution:
+  - text: "Each of the three places can hold 1, 2 or 3: 3 × 3 × 3 = 27."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 2

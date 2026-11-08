@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-34-d3-3.yaml, and the port writes this file again (R12).
+id: "enum-34-d3-3"
+statement:
+  - text: "Four different books stand on a shelf. The red book must be at the left end. In how many different orders can the books stand?"
+givens: ["Four different books stand on a shelf.", "The red book stands at the left end."]
+unknown: "In how many different orders the books can stand."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["order", "orders"]
+          trap_values:
+            - value: "3"
+              trap: "missed-case"
+              text: "The other books can stand in more orders. List them, starting with each book in turn."
+            - value: "4"
+              trap: "number-from-text"
+              text: "4 is the number of books."
+            - value: "12"
+              trap: "wrong-operation"
+              text: "You multiplied 4 by 3. The red book does not move."
+            - value: "24"
+              trap: "ignored-condition"
+              text: "The red book must be at the left end, so only 3 books can move."
+    simpler_case: "The red book does not move. In how many orders can the other books stand? Try 2 other books first."
+solution:
+  - text: "The red book is fixed. The other 3 books can stand in 3 × 2 × 1 = 6 orders."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 3

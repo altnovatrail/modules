@@ -1,0 +1,8 @@
+# What a person adds to enum-34-d3-8 of standalone; the port writes the task from it (R12).
+givens:
+  - "The lines of the maze are walls."
+  - "A move goes to the cell next to it, never through a wall."
+unknown: "The least number of moves from S to E."
+simpler_case: "Find which walls you must go round first. Draw the way with your finger."
+picture_alt: "A maze of 4 by 4 cells, S in the top left cell and E in the bottom right one. Three walls run up and down: along the right side of the first column from the top, 3 cells long; along the right side of the second column from the bottom, 3 cells long; and along the right side of the third column from the top, 3 cells long."
+solution_picture_alt: "The same maze with the shortest way from S to E numbered move by move."

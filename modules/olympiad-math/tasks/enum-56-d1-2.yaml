@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-56-d1-2.yaml, and the port writes this file again (R12).
+id: "enum-56-d1-2"
+statement:
+  - text: "An octagon is a shape with 8 straight sides and 8 corners. A diagonal joins two of its corners that are not next to each other. How many diagonals does an octagon have?"
+givens: ["An octagon has 8 straight sides and 8 corners.", "A diagonal joins two corners that are not next to each other."]
+unknown: "How many diagonals an octagon has."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "20"
+          units: ["diagonal", "diagonals"]
+          trap_values:
+            - value: "5"
+              trap: "stopped-early"
+              text: "5 diagonals start at one corner, and there are 8 corners."
+            - value: "40"
+              trap: "double-count"
+              text: "40 counts each diagonal twice, once from each of its two ends."
+            - value: "28"
+              trap: "ignored-condition"
+              text: "28 joins every two corners, the 8 sides included. Corners next to each other are joined by a side, not by a diagonal."
+            - value: "8"
+              trap: "number-from-text"
+              text: "8 is the number of corners. It says nothing yet about the diagonals between them."
+    simpler_case: "Try a pentagon, with 5 corners, first. How many diagonals start at one corner?"
+solution:
+  - text: "From one corner a diagonal can go to any corner but itself and its two neighbours, so 8 − 3 = 5 diagonals start there. The 8 corners give 8 × 5 = 40 ends of diagonals, and each diagonal has two ends, so there are 40 ÷ 2 = 20 diagonals."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 1

@@ -1,0 +1,9 @@
+# What a person adds to enum-34-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Sveta has many 2-cent, 5-cent and 10-cent coins."
+  - "She pays exactly 20 cents."
+  - "The order of the coins does not matter."
+unknown: "In how many different ways she can pay."
+simpler_case: "Sort the ways by how many 10-cent coins they use. Start with two of them."
+trap_texts:
+  "7": "One 5-cent coin cannot be used alone with 2-cent coins: the 15 cents left cannot be made from 2s. Check each way."

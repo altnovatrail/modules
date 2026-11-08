@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-56-d2-3.yaml, and the port writes this file again (R12).
+id: "enum-56-d2-3"
+statement:
+  - text: "Maya rolls a red die and a blue die. Each die shows a number from 1 to 6. In how many ways can the two dice show a total of 8? Red 2 with blue 6 is a different way from red 6 with blue 2."
+givens: ["Maya rolls a red die and a blue die, each showing 1 to 6.", "The two dice show a total of 8.", "Red 2 with blue 6 is a different way from red 6 with blue 2."]
+unknown: "In how many ways the dice can show a total of 8."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          units: ["way", "ways"]
+          trap_values:
+            - value: "3"
+              trap: "missed-case"
+              text: "3 counts each pair of numbers once, but red 2 with blue 6 and red 6 with blue 2 are two ways."
+            - value: "6"
+              trap: "double-count"
+              text: "6 counts red 4 with blue 4 twice; it is one way."
+            - value: "36"
+              trap: "answered-other-question"
+              text: "36 is how many ways the two dice can fall in all, not how many make 8."
+            - value: "4"
+              trap: "missed-case"
+              text: "4 leaves out red 4 with blue 4."
+    simpler_case: "Go through the red die: 1, 2, 3 and so on. Which blue number makes 8 with it?"
+solution:
+  - text: "Red 1 would need blue 7, which cannot be. Red 2, 3, 4, 5 and 6 need blue 6, 5, 4, 3 and 2. That is 5 ways."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 2

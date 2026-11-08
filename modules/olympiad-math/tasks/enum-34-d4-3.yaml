@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-34-d4-3.yaml, and the port writes this file again (R12).
+id: "enum-34-d4-3"
+statement:
+  - text: "A robot moves on a grid. It makes 3 steps to the right and 2 steps up, in any order. How many different orders of steps can it make?"
+givens: ["The robot makes 3 steps to the right and 2 steps up.", "The steps come in any order."]
+unknown: "How many different orders of steps it can make."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "10"
+          units: ["order", "orders"]
+          trap_values:
+            - value: "5"
+              trap: "number-from-text"
+              text: "5 is the number of steps."
+            - value: "6"
+              trap: "wrong-operation"
+              text: "You multiplied 3 by 2. Choose the places of the 2 up steps among 5."
+            - value: "12"
+              trap: "missed-case"
+              text: "You missed some orders. List the places of the two up steps."
+            - value: "20"
+              trap: "double-count"
+              text: "The two up steps are the same kind of step, so swapping them gives the same order."
+    simpler_case: "Try 2 steps right and 1 step up first. Where can the step up stand?"
+solution:
+  - text: "There are 5 steps. We only need to choose which 2 of the 5 steps go up: 4 + 3 + 2 + 1 = 10 ways."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 4

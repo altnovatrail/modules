@@ -1,0 +1,6 @@
+# What a person adds to enum-12-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "A lunch is one soup, one main dish and one dessert."
+  - "The cafe has 2 soups, 3 main dishes and 2 desserts."
+unknown: "How many different lunches can be chosen."
+simpler_case: "Leave the dessert out first. How many pairs of a soup and a main dish are there?"

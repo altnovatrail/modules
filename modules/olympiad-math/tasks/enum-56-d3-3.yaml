@@ -1,0 +1,48 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-56-d3-3.yaml, and the port writes this file again (R12).
+id: "enum-56-d3-3"
+statement:
+  - text: "A robot walks on a board of 4 by 4 squares from square A1 to square D4. Rows are A to D from the top, columns 1 to 4 from the left. Each step takes it to the next square to the right or the next square down. Square B2 is blocked. How many different routes can the robot take?"
+  - picture: "pictures/enum-56-d3-3.png"
+    alt: "A board of 4 rows, A to D from the top, and 4 columns, 1 to 4 from the left, with square B2 shaded."
+    width: 185
+    height: 190
+givens: ["The board is 4 by 4 squares, rows A to D from the top and columns 1 to 4 from the left.", "The robot goes from A1 to D4, one square right or down at a time.", "Square B2 is blocked."]
+unknown: "How many different routes the robot can take."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "8"
+          units: ["route", "routes"]
+          trap_values:
+            - value: "20"
+              trap: "ignored-condition"
+              text: "20 counts every route, including the 12 that pass through the blocked square B2."
+            - value: "12"
+              trap: "answered-other-question"
+              text: "12 is the number of routes through B2, the ones the robot cannot take."
+            - value: "4"
+              trap: "missed-case"
+              text: "4 counts only the routes that go round B2 on one side; as many go round it on the other side."
+            - value: "6"
+              trap: "missed-case"
+              text: "6 leaves out the two routes along the edges: along row A and down column 4, or down column 1 and along row D."
+    simpler_case: "Write in each square how many routes reach it, starting from A1."
+solution:
+  - text: "Count the routes to each square. Every square in row A and in column 1 is reached in 1 way, and B2 in none, as it is blocked. Every other square gets the routes of the square above it plus those of the square to its left: B3 gets 1, B4 2, C2 1, C3 2, C4 4, D2 2, D3 4 and D4 8."
+  - text: "4 + 4 = 8"
+  - picture: "pictures/enum-56-d3-3-solution.png"
+    alt: "The same board with the number of routes to each square written in it, and B2 shaded."
+    width: 185
+    height: 190
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-5-6"
+difficulty: 3

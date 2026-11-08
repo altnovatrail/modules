@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-34-d3-2.yaml, and the port writes this file again (R12).
+id: "enum-34-d3-2"
+statement:
+  - text: "Six teams play a tournament. First every team plays every other team once. Then the two best teams play one final game. How many games are played in all?"
+givens: ["Six teams play.", "First every team plays every other team once.", "Then the two best teams play one final game."]
+unknown: "How many games are played in all."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "16"
+          units: ["game", "games"]
+          trap_values:
+            - value: "15"
+              trap: "stopped-early"
+              text: "Do not forget the final game."
+            - value: "30"
+              trap: "double-count"
+              text: "A game between two teams is one game. You counted each twice and forgot the final."
+            - value: "31"
+              trap: "double-count"
+              text: "You counted every first-round game twice."
+            - value: "36"
+              trap: "wrong-operation"
+              text: "You multiplied 6 by 6. A team does not play itself."
+    simpler_case: "Try 4 teams first. How many games does the first round take?"
+solution:
+  - text: "Every pair of teams plays once: 5 + 4 + 3 + 2 + 1 = 15 games. Plus the final: 16."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 3

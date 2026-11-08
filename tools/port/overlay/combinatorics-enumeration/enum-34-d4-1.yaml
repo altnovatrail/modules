@@ -1,0 +1,6 @@
+# What a person adds to enum-34-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers go from 1 to 100."
+  - "A number counts if it contains the digit 7."
+unknown: "How many of these numbers contain the digit 7."
+simpler_case: "Count the numbers that end in 7 first. Then those from 70 to 79. Is any number in both lists?"

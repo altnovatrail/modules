@@ -1,0 +1,44 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-34-d3-4.yaml, and the port writes this file again (R12).
+id: "enum-34-d3-4"
+statement:
+  - text: "Katya writes all the three-digit numbers whose digits add up to 3. How many numbers does she write?"
+givens: ["The numbers have three digits.", "Their digits add up to 3."]
+unknown: "How many numbers Katya writes."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["number", "numbers"]
+          trap_values:
+            - value: "3"
+              trap: "missed-case"
+              text: "You missed several. Sort the numbers by their first digit: 1, 2 and 3."
+            - value: "4"
+              trap: "missed-case"
+              text: "You missed some numbers with 0 in the middle or at the end."
+            - value: "5"
+              trap: "missed-case"
+              text: "You forgot 111: 1 + 1 + 1 = 3."
+            - value: "10"
+              trap: "ignored-condition"
+              text: "A three-digit number cannot start with 0, so 012 or 030 do not count."
+    simpler_case: "Try three-digit numbers whose digits add up to 2 first. Start with the first digit 1."
+solution:
+  - text: "The numbers are 102, 111, 120, 201, 210 and 300: three start with 1, two with 2 and one with 3. That is 3 + 2 + 1 = 6 numbers."
+  - text: "3 + 2 + 1 = 6"
+  - picture: "pictures/enum-34-d3-4-solution.png"
+    alt: "A table of the numbers: those starting with 1 in the first row, with 2 in the second and with 3 in the third."
+    width: 137
+    height: 108
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 3

@@ -1,0 +1,8 @@
+# What a person adds to enum-12-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are 6 children in the group."
+  - "The teacher picks 2 of them."
+unknown: "How many different pairs she can pick."
+simpler_case: "Try 3 children first. List every pair once."
+trap_texts:
+  "12": "You doubled 6. Count the pairs: let each child pair only with the children after them."

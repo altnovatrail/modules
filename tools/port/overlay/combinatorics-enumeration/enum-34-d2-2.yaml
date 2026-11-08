@@ -1,0 +1,9 @@
+# What a person adds to enum-34-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Kolya has many 1-cent, 2-cent and 5-cent coins."
+  - "He pays exactly 7 cents."
+  - "The order of the coins does not matter."
+unknown: "In how many different ways he can pay."
+simpler_case: "Count the ways with a 5-cent coin first, and then the ways without one."
+trap_texts:
+  "8": "Check that each way adds up to exactly 7 cents, and that no way is counted twice."

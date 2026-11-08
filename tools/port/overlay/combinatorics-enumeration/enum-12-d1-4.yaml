@@ -1,0 +1,6 @@
+# What a person adds to enum-12-d1-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Leo, Mia and Zoe stand in a line."
+  - "Leo always stands first."
+unknown: "How many different lines they can make."
+simpler_case: "Try two children, Leo and Mia, with Leo first. How many lines can they make?"

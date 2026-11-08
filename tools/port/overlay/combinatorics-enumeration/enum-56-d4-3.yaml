@@ -1,0 +1,7 @@
+# What a person adds to enum-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The teacher picks 3 of 6 pupils: Ella, Finn, Gia, Hugo, Ivy and Jack."
+  - "Gia must be in the team."
+  - "Ella and Finn are not in it together."
+unknown: "How many different teams the teacher can pick."
+simpler_case: "Gia is in. List the pairs of the other pupils who can join her."

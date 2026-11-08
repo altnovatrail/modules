@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-12-d4-4.yaml, and the port writes this file again (R12).
+id: "enum-12-d4-4"
+statement:
+  - text: "Ann, Ben and Kim sit on 3 chairs in a row. Ann does not want to sit next to Ben. In how many different ways can they sit?"
+givens: ["Ann, Ben and Kim sit on 3 chairs in a row.", "Ann does not sit next to Ben."]
+unknown: "In how many different ways they can sit."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["way", "ways"]
+          trap_values:
+            - value: "1"
+              trap: "missed-case"
+              text: "Ann can sit on the left end or on the right end."
+            - value: "3"
+              trap: "number-from-text"
+              text: "3 is the number of children."
+            - value: "4"
+              trap: "answered-other-question"
+              text: "4 is the number of ways in which Ann does sit next to Ben."
+            - value: "6"
+              trap: "ignored-not"
+              text: "Ann does not want to sit next to Ben. Remove the ways where they sit together."
+    simpler_case: "Which chair must Kim take so that Ann and Ben are not next to each other?"
+solution:
+  - text: "Ann and Ben must sit on the two end chairs, with Kim in the middle. Ann can be on the left or on the right: 2 ways."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-1-2"
+difficulty: 4

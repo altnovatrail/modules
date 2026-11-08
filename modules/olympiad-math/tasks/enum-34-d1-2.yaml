@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/combinatorics-enumeration/enum-34-d1-2.yaml, and the port writes this file again (R12).
+id: "enum-34-d1-2"
+statement:
+  - text: "Oleg has 4 shirts and 3 pairs of trousers. How many different outfits of one shirt and one pair of trousers can he make?"
+givens: ["Oleg has 4 shirts.", "He has 3 pairs of trousers.", "An outfit is one shirt and one pair of trousers."]
+unknown: "How many different outfits he can make."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "12"
+          units: ["outfit", "outfits"]
+          trap_values:
+            - value: "3"
+              trap: "number-from-text"
+              text: "3 is the number of pairs of trousers."
+            - value: "4"
+              trap: "number-from-text"
+              text: "4 is the number of shirts."
+            - value: "7"
+              trap: "wrong-operation"
+              text: "You added 4 and 3. Each shirt goes with each pair of trousers."
+            - value: "24"
+              trap: "double-count"
+              text: "You counted every outfit twice."
+    simpler_case: "Take one shirt first. How many outfits can it make?"
+solution:
+  - text: "Each of the 4 shirts goes with each of the 3 pairs of trousers: 4 × 3 = 12."
+techniques: ["systematic"]
+skills:
+  primary: ["combinatorics-enumeration"]
+band: "grades-3-4"
+difficulty: 1

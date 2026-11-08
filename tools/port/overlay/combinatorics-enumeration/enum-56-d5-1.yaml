@@ -1,0 +1,7 @@
+# What a person adds to enum-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The necklace has 8 beads on a closed loop: 6 red and 2 blue."
+  - "Beads of one colour look alike."
+  - "Two necklaces are the same if one can be turned round or over to look like the other."
+unknown: "How many different necklaces can be made."
+simpler_case: "Try a necklace of 5 beads, 3 red and 2 blue, first. Draw the different ones."

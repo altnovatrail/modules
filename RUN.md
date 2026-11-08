@@ -116,7 +116,7 @@
 | [x] | T20 | Картинки: сосуды, клетчатое поле, кучки, круги Эйлера, весы и кольцо | Claude, проверяю я | — | T18 |
 | [x] | T21 | Задачи по картинке: `lattice`, `tiles`, `shapes`, `stairs` и их `alt` | Claude, проверяю я | да | T18 |
 | [x] | T22 | `counting-gaps`: 60 задач | Claude, проверяю я | да | T20, T21 |
-| [ ] | T23 | `combinatorics-enumeration`: 62 задачи | Claude, проверяю я | — | T19–T22 |
+| [x] | T23 | `combinatorics-enumeration`: 62 задачи | Claude, проверяю я | — | T19–T22 |
 | [ ] | T24 | `pigeonhole-basic`: 56 задач | Claude, проверяю я | — | T19, T20, T22 |
 | [ ] | T25 | `arithmetic-tricks`: 67 задач | Claude, проверяю я | — | T19, T21, T22 |
 | [ ] | T26 | `parity-alternation`: 67 задач | Claude, проверяю я | — | T19, T21, T22 |
@@ -410,6 +410,15 @@
 
 - **Цель:** 62 задачи: 23 на 1–2, 25 на 3–4 и 14 на 5–6, все с ответом-целым числом. Картинки — у 7 задач: `grid`, `lattice`, `piles` и `table`. Шесть задач решаются по картинке.
 - **Сделать:** по общему для задач содержания.
+- **Сделано (2026-11-08):**
+  - правило 12 — до начала: у SonarCloud на `e3` и у CodeQL находок нет, у Scorecard те же 6, их причины — в R33 spec. Правок нет;
+  - `tools/port/batches/combinatorics-enumeration.yaml` — 62 задачи на 42b4408 с единицами и приёмом `systematic`; `tools/port/overlay/combinatorics-enumeration/` — 62 файла правок: `givens`, `unknown` и `simpler_case` каждой задачи, `alt` 7 картинок задач и 9 картинок решения, 26 переписанных пояснений в 20 задачах, `leak_phrases` четырёх задач, чей ключ стоит в условии: `enum-12-d3-2`, `enum-12-d3-5`, `enum-34-d4-2` и `enum-56-d5-3`;
+  - `modules/olympiad-math/` — 62 новые задачи и 16 картинок, версия по-прежнему `0.1.1`; каталоги те же, новых ловушек и приёмов задачи не называют;
+  - шесть задач решаются по картинке: `enum-12-d2-6`, `enum-34-d3-6`, `enum-34-d3-7`, `enum-34-d3-8`, `enum-56-d3-4` и `enum-56-d3-5`, и их `alt` называют всё, что читает решатель (R21). У `enum-56-d3-4` поле шесть на шесть клеток, а ключ — 6 клеток, и у `enum-34-d3-6` палок по четыре, а ключ — 4: `alt` говорит эти числа словами;
+  - пояснения — по мерке T22: 10 называли ключ числом — их нашёл `module-kit check`; ещё 16 перечисляли все ответы («You missed one of 35, 37, 53, 57, 73 and 75») или считали ключ целиком («Count 3 + 2 + 1», «3 × 2 × 1») — их нашла вычитка. Два `simpler_case` тоже давали ключ: у `enum-12-d2-5` числом, у `enum-34-d4-2` правилом «leave one digit out», — оба заменены;
+  - проверено 2026-11-08: `just port modules/olympiad-math --batch tools/port/batches/combinatorics-enumeration.yaml --check` — стенд 42b4408 доказывает все 62, файлы совпадают; первая пачка и `counting-gaps` — те же; `module-kit check modules/olympiad-math` — без нарушений и предупреждений; `just modules-check`; `just -f spec/justfile docs-check-repo`. `/code-review high`, один круг, нашёл 10 пунктов, исправлены все: ещё семь пояснений давали ключ правилом счёта — «each new coin doubles», «3, 3, 2, 1», «each friend sends 6 cards», — три `simpler_case` вели прямо к ответу или повторяли задачу, а `alt` картинки решения `enum-56-d3-5` был неточен.
+  - граница мерки уточнена: остаётся пояснение, которое называет пропущенное действие — «You added 4 and 3. Each shirt goes with each pair of trousers», — это урок навыка; переписывается пояснение, которое вместо ошибки даёт правило счёта, из которого ключ выходит сразу. `simpler_case` не даёт того же ответа, что задача, и не повторяет её;
+- **Открыто:** тексты 62 задач вычитываешь ты: `modules/olympiad-math/tasks/enum-*.yaml`.
 
 #### T24. `pigeonhole-basic`: 56 задач
 
