@@ -17,6 +17,16 @@ var (
 	// pointsAtOptions is a question that is not asked without its options, "Which of these
 	// numbers…": it keeps them, and the learner taps one (docs/architecture.md, section 3.5).
 	pointsAtOptions = regexp.MustCompile(`(?i)\bwhich of these\b`)
+	// clockTime and oneWord are the answers that are not numbers and are written by hand: a time on
+	// a clock, as 7:30 or 19:40, and one word, when the question holds it (R20).
+	clockTime = regexp.MustCompile(`^([01]?[0-9]|2[0-3]):[0-5][0-9]$`)
+	oneWord   = regexp.MustCompile(`^\p{L}+$`)
+	// yesOrNo is tapped, though it is one word, and the question may hold it: written by hand, a
+	// learner's "yes, always" would be no option at all (R20).
+	yesOrNo = regexp.MustCompile(`(?i)^(yes|no)$`)
+	// leadingDigit is an answer that looks like a number: as a choice tapped, the report names it,
+	// since the batch may have forgotten its units.
+	leadingDigit = regexp.MustCompile(`^-?[0-9]`)
 )
 
 // maxValue is the longest a key or a trap value of a check number or fraction may be written: a
@@ -24,14 +34,31 @@ var (
 // 15).
 const maxValue = 16
 
+// The kinds of answer, as the survey counts them.
+const (
+	answerNumber   = "number"
+	answerFraction = "fraction"
+	answerByHand   = "choice by hand"
+	answerTapped   = "choice tapped"
+)
+
 // Converted is a task of the module as the port writes it: the file tasks/<id>.yaml and the
 // pictures it shows, by their paths from the module's folder.
 type Converted struct {
 	ID    string
 	Files map[string][]byte
+	// Answer is the kind of its answer: one of answerNumber, answerFraction, answerByHand and
+	// answerTapped.
+	Answer string
 	// Notes are what the port left out, for the person who reads its report.
 	Notes []string
+	// KeyNamed counts the explanations that name the key of a choice, which only a survey writes.
+	KeyNamed int
 }
+
+// surveyAlt is the alt of every picture of a survey, whose tasks have no overlays: the module of a
+// survey is a folder of its own, which no batch writes and the repository never holds.
+const surveyAlt = "Survey: a picture of standalone, with no alt written."
 
 // convert carries one task of standalone into a task of the module, by the table «что во что»
 // (docs/architecture.md, section 3.5).
@@ -53,22 +80,35 @@ func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile
 	if ex.SolutionPicture == nil && overlay.SolutionPictureAlt != "" {
 		return Converted{}, fmt.Errorf("%s: its overlay has solution_picture_alt, and its solution has no picture", ex.ID)
 	}
+	pictureAlt, solutionAlt := overlay.PictureAlt, overlay.SolutionPictureAlt
+	if batch.survey {
+		pictureAlt, solutionAlt = surveyAlt, surveyAlt
+	}
 	statement := sequence{mapping{{"text", ex.Question}}}
 	if ex.Picture != nil {
-		part, png, err := pictureOf(ex.ID, ex.Picture, overlay.PictureAlt, "")
+		part, png, err := pictureOf(ex.ID, ex.Picture, pictureAlt, "")
 		if err != nil {
 			return Converted{}, err
 		}
 		statement = append(statement, part)
 		files[pathOfPicture(part)] = png
 	}
+	if overlay.AnswerForm != "" {
+		statement = append(statement, mapping{{"text", overlay.AnswerForm}})
+	}
 
-	slot, traps, dropped, err := answerOf(ex, task, overlay)
+	given, err := answerOf(ex, task, overlay, batch.survey)
 	if err != nil {
 		return Converted{}, err
 	}
-	notes = append(notes, dropped...)
-	item := mapping{{"answer_slots", sequence{slot}}}
+	// The statement shows answer_form, so the leak check of the format would take a key in it for
+	// one the task shows, and search for that key nowhere else (format/README.md, section 20).
+	if names(overlay.AnswerForm, given.key) {
+		return Converted{}, fmt.Errorf("%s: its overlay's answer_form names its key %q", ex.ID, given.key)
+	}
+	notes = append(notes, given.notes...)
+	traps := given.traps
+	item := mapping{{"answer_slots", sequence{given.slot}}}
 	if overlay.SimplerCase != "" {
 		item = append(item, pair{"simpler_case", overlay.SimplerCase})
 	}
@@ -78,7 +118,7 @@ func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile
 		solution = append(solution, mapping{{"text", ex.SolutionTotal}})
 	}
 	if ex.SolutionPicture != nil {
-		part, png, err := pictureOf(ex.ID, ex.SolutionPicture, overlay.SolutionPictureAlt, "-solution")
+		part, png, err := pictureOf(ex.ID, ex.SolutionPicture, solutionAlt, "-solution")
 		if err != nil {
 			return Converted{}, err
 		}
@@ -132,29 +172,56 @@ func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile
 		fmt.Sprintf("tools/port/overlay/%s.yaml, and the port writes this file again (R12).", ex.ID),
 	}
 	files["tasks/"+ex.ID+".yaml"] = emit(comment, root)
-	return Converted{ID: ex.ID, Files: files, Notes: notes}, nil
+	return Converted{ID: ex.ID, Files: files, Answer: given.kind, Notes: notes, KeyNamed: given.keyNamed}, nil
 }
 
-// answerOf is the answer slot of a task, the traps of the wrong options that become no trap value,
-// and a note of each such option. A question that points at its options keeps them and is tapped;
-// any other answer is written by hand anywhere on the sheet: a simple fraction is checked as a
-// fraction, and an integer or a decimal, with units, as a number, which takes a fraction too. An
-// answer that is neither, a word, a time or a date, is the rest of the port's to write (E3).
-func answerOf(ex Example, task BatchTask, overlay Overlay) (mapping, []string, []string, error) {
+// answer is the answer slot of a task, as answerOf gives it: the slot, its key, the traps of the
+// wrong options that become no trap value, a note of each such option, the kind of the answer, and
+// how many explanations name the key of a choice, which only a survey lets through.
+type answer struct {
+	slot     mapping
+	key      string
+	traps    []string
+	notes    []string
+	kind     string
+	keyNamed int
+}
+
+// answerOf is the answer slot of a task, by the kind of its right option (R05; R20):
+//   - a question that points at its options keeps them, and the learner taps one;
+//   - an answer in the notation of the checks of numbers is written by hand anywhere on the sheet:
+//     a simple fraction is checked as a fraction, and an integer or a decimal, with units of the
+//     batch, as a number, which takes a fraction too;
+//   - a time on a clock, and one word other than yes and no that the question holds, are a choice
+//     written by hand anywhere on the sheet, whose options are the check's and closed;
+//   - any other answer — a word the question does not hold, yes or no, a phrase, a date, a
+//     quantity of more than one part, and a number with words after it that the batch gives no
+//     units for — is a choice tapped. The report names such an answer that begins with a digit.
+//
+// In a survey, lenient, an explanation that names the key of a choice is counted, not refused.
+func answerOf(ex Example, task BatchTask, overlay Overlay, lenient bool) (answer, error) {
 	right := ex.Options[ex.CorrectAnswer]
-	if pointsAtOptions.MatchString(ex.Question) {
-		slot, err := chosen(ex, overlay)
-		return slot, nil, nil, err
+	switch {
+	case pointsAtOptions.MatchString(ex.Question):
+		return chosen(ex, overlay, lenient, false)
+	case clockTime.MatchString(right):
+		// A time reads as a number with words after it, 7 and :30, so it goes before valueOf.
+		return chosen(ex, overlay, lenient, true)
 	}
 	kind, key, err := valueOf(right, task.Units)
 	if err != nil {
-		return nil, nil, nil, fmt.Errorf("%s: its answer %q: %w", ex.ID, right, err)
+		return answer{}, fmt.Errorf("%s: its answer %q: %w", ex.ID, right, err)
 	}
 	if kind == "" {
-		return nil, nil, nil, fmt.Errorf("%s: its answer %q is no number and no fraction: how such an answer is given is for the rest of the port to decide (docs/architecture.md, section 3.5)", ex.ID, right)
+		byHand := oneWord.MatchString(right) && !yesOrNo.MatchString(right) && names(ex.Question, right)
+		a, err := chosen(ex, overlay, lenient, byHand)
+		if err == nil && !byHand && leadingDigit.MatchString(right) {
+			a.notes = append(a.notes, fmt.Sprintf("its answer %q is no number in the notation of the checks, or one with words after it that the batch gives no units for: it is a choice tapped", right))
+		}
+		return a, err
 	}
 	if len(key) > maxValue {
-		return nil, nil, nil, fmt.Errorf("%s: its answer %s is longer than %d characters", ex.ID, key, maxValue)
+		return answer{}, fmt.Errorf("%s: its answer %s is longer than %d characters", ex.ID, key, maxValue)
 	}
 	check := mapping{{"kind", kind}, {"key", key}}
 	if kind == "number" && len(task.Units) > 0 {
@@ -184,11 +251,11 @@ func answerOf(ex Example, task BatchTask, overlay Overlay) (mapping, []string, [
 			continue
 		}
 		if len(value) > maxValue {
-			return nil, nil, nil, fmt.Errorf("%s: its option %s, %s, is longer than %d characters", ex.ID, letter, value, maxValue)
+			return answer{}, fmt.Errorf("%s: its option %s, %s, is longer than %d characters", ex.ID, letter, value, maxValue)
 		}
 		for _, other := range slices.Sorted(maps.Keys(seen)) {
 			if same(value, other) {
-				return nil, nil, nil, fmt.Errorf("%s: its option %s, %s, is the value of option %s too", ex.ID, letter, value, seen[other])
+				return answer{}, fmt.Errorf("%s: its option %s, %s, is the value of option %s too", ex.ID, letter, value, seen[other])
 			}
 		}
 		seen[value] = letter
@@ -200,24 +267,36 @@ func answerOf(ex Example, task BatchTask, overlay Overlay) (mapping, []string, [
 		values = append(values, mapping{{"value", value}, {"trap", trap}, {"text", text}})
 	}
 	if err := unusedTexts(ex.ID, overlay, used); err != nil {
-		return nil, nil, nil, err
+		return answer{}, err
 	}
 	if len(values) > 0 {
 		check = append(check, pair{"trap_values", values})
 	}
-	return mapping{{"binding", "anywhere"}, {"check", check}}, traps, dropped, nil
+	return answer{slot: mapping{{"binding", "anywhere"}, {"check", check}}, key: key, traps: traps, notes: dropped, kind: kind}, nil
 }
 
-// chosen is the answer slot of a question that points at its options: the five of them, tapped,
-// the right one the key and each other a trap value, as written.
-func chosen(ex Example, overlay Overlay) (mapping, error) {
+// chosen is the answer slot of a choice: the five options as written, the right one the key and
+// each other a trap value. Tapped, the options are the answer slot's; written by hand, anywhere on
+// the sheet, they are the check's, which the learner does not see (format/README.md, section 15).
+// No two options may be alike in the normal form of a choice. The leak check of the format searches
+// neither the key of a choice tapped nor one that the statement holds (R05; R20), so the port
+// searches it in the texts it writes that the learner sees before the task is solved: an
+// explanation that names the key is to be rewritten in the overlay, and the overlay's givens,
+// unknown and simpler case are not to name it. A survey, lenient, has no overlay, and writes such
+// an explanation, and counts it.
+func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
+	key := ex.Options[ex.CorrectAnswer]
 	var options, values sequence
+	var notes []string
+	keyNamed := 0
 	used := map[string]bool{}
+	seen := map[string]string{}
 	for _, letter := range letters {
 		option := ex.Options[letter]
-		if slices.Contains(options, any(option)) {
-			return nil, fmt.Errorf("%s: its option %s, %q, is another option too", ex.ID, letter, option)
+		if other, twice := seen[choiceForm(option)]; twice {
+			return answer{}, fmt.Errorf("%s: its option %s, %q, is option %s too, as a choice compares them", ex.ID, letter, option, other)
 		}
+		seen[choiceForm(option)] = letter
 		options = append(options, option)
 		if letter == ex.CorrectAnswer {
 			continue
@@ -228,13 +307,29 @@ func chosen(ex Example, overlay Overlay) (mapping, error) {
 			text = rewritten
 			used[option] = true
 		}
+		if names(text, key) {
+			if !lenient {
+				return answer{}, fmt.Errorf("%s: the explanation of its option %s names its key %q: rewrite it in the trap_texts of its overlay (R05)", ex.ID, letter, key)
+			}
+			keyNamed++
+			notes = append(notes, fmt.Sprintf("the explanation of its option %s names its key %q", letter, key))
+		}
 		values = append(values, mapping{{"value", option}, {"trap", idOf(distractor.Trap)}, {"text", text}})
 	}
 	if err := unusedTexts(ex.ID, overlay, used); err != nil {
-		return nil, err
+		return answer{}, err
 	}
-	check := mapping{{"kind", "choice"}, {"key", ex.Options[ex.CorrectAnswer]}, {"trap_values", values}}
-	return mapping{{"binding", "choice"}, {"options", options}, {"check", check}}, nil
+	for _, text := range append([]string{overlay.Unknown, overlay.SimplerCase}, overlay.Givens...) {
+		if names(text, key) {
+			return answer{}, fmt.Errorf("%s: its overlay's text %q names its key %q", ex.ID, text, key)
+		}
+	}
+	if byHand {
+		check := mapping{{"kind", "choice"}, {"key", key}, {"options", options}, {"trap_values", values}}
+		return answer{slot: mapping{{"binding", "anywhere"}, {"check", check}}, key: key, notes: notes, kind: answerByHand, keyNamed: keyNamed}, nil
+	}
+	check := mapping{{"kind", "choice"}, {"key", key}, {"trap_values", values}}
+	return answer{slot: mapping{{"binding", "choice"}, {"options", options}, {"check", check}}, key: key, notes: notes, kind: answerTapped, keyNamed: keyNamed}, nil
 }
 
 // unusedTexts refuses an overlay that rewrites the explanation of a value the task does not have:
@@ -255,8 +350,10 @@ func unusedTexts(id string, overlay Overlay, used map[string]bool) error {
 
 // valueOf reads an option in the notation of the checks of numbers: "fraction" for a simple
 // fraction, "number" for an integer or a decimal, each with the value as it is written, without its
-// unit; or no kind for any other option, such as 07, a word or a time. A number with a unit that is
-// not among the task's units is an error: as a key, its unit would be lost.
+// unit; or no kind for any other option, such as 07, a word or a time. A number with words after it
+// is a number only when the batch gives the task units: then words that are none of them are an
+// error, since as a key their unit would be lost, and without units the option is no number, such
+// as 3 and 6 or 19 May (R20).
 func valueOf(option string, units []string) (kind, value string, err error) {
 	m := notation.FindStringSubmatch(option)
 	if m == nil {
@@ -268,7 +365,7 @@ func valueOf(option string, units []string) (kind, value string, err error) {
 	}
 	if m[2] != "" && !slices.Contains(units, m[2]) {
 		if len(units) == 0 {
-			return "", "", fmt.Errorf("its unit %q needs the units of the task in the batch", m[2])
+			return "", "", nil
 		}
 		return "", "", fmt.Errorf("its unit %q is not among the units %s", m[2], strings.Join(units, ", "))
 	}

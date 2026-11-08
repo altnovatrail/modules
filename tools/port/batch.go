@@ -22,6 +22,10 @@ type Batch struct {
 	Canvas     Canvas                   `yaml:"canvas"`
 	Skills     map[string]SkillDefaults `yaml:"skills"`
 	Tasks      map[string]BatchTask     `yaml:"tasks"`
+	// survey marks the batch that a survey makes, of every task no batch names: it is never read
+	// from a file, its pictures get surveyAlt, and an explanation that names the key of a choice is
+	// counted, not refused.
+	survey bool
 }
 
 // Canvas is the canvas of a task (format/README.md, section 14).
@@ -59,6 +63,10 @@ type Overlay struct {
 	// solution: what the picture shows, in words, with no answer in them.
 	PictureAlt         string `yaml:"picture_alt,omitempty"`
 	SolutionPictureAlt string `yaml:"solution_picture_alt,omitempty"`
+	// AnswerForm is a paragraph of the statement after the question and its picture, which says what
+	// form the answer takes, such as "Write the time as on the clock, like 7:30.": a choice written
+	// by hand keeps its options closed (format/README.md, section 15).
+	AnswerForm string `yaml:"answer_form,omitempty"`
 	// TrapTexts are explanations written anew, by the trap value they explain, as the module
 	// writes it: "5", not "5 m".
 	TrapTexts map[string]string `yaml:"trap_texts,omitempty"`

@@ -14,8 +14,8 @@ import (
 )
 
 // The exit statuses: 0 when the port wrote the tasks or found them as it would write them, 1 when
-// --check found a file of the module other than the port would write, and 2 when it could not do
-// its work.
+// --check found a file of the module other than the port would write, or a survey refused a task,
+// and 2 when it could not do its work.
 const (
 	statusDone      = 0
 	statusDiffers   = 1
@@ -23,11 +23,17 @@ const (
 )
 
 const usage = `usage: port --standalone <clone> --batch <file> --overlay <folder> --module <folder> [--prove] [--check] [--go <command>] [--git <command>]
+       port --standalone <clone> --survey --commit <sha> --except <folder> --module <folder> [--prove] [--go <command>] [--git <command>]
 
 Writes tasks/<id>.yaml and the pictures of media/pictures/ of the module for every task of the
 batch, from a clone of mathtrail-standalone at the batch's commit and the overlays. --prove first
 runs standalone's bench on the batch's tasks, and writes nothing unless each passes. --check writes
-nothing, and says which files of the module differ from what the port would write.`
+nothing, and says which files of the module differ from what the port would write.
+
+--survey writes every task of the clone at the commit that no batch of the folder --except names,
+with no overlays, into a module of its own, and says what became of each: written, by the kind of
+its answer, waiting for a picture of a kind not drawn yet, or refused. --prove runs the bench on the
+tasks written.`
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdout, os.Stderr))
@@ -43,14 +49,25 @@ func run(args []string, stdout, stderr io.Writer) int {
 	module := flags.String("module", "", "")
 	check := flags.Bool("check", false, "")
 	proveFirst := flags.Bool("prove", false, "")
+	surveying := flags.Bool("survey", false, "")
+	commitOf := flags.String("commit", "", "")
+	except := flags.String("except", "", "")
 	goCommand := flags.String("go", "go", "")
 	gitCommand := flags.String("git", "git", "")
-	if err := flags.Parse(args); err != nil || flags.NArg() != 0 ||
-		*standalone == "" || *batchFile == "" || *overlayDir == "" || *module == "" {
+	err := flags.Parse(args)
+	ordinary := *batchFile != "" && *overlayDir != "" && *commitOf == "" && *except == ""
+	surveyed := *commitOf != "" && *except != "" && *batchFile == "" && *overlayDir == "" && !*check
+	if err != nil || flags.NArg() != 0 || *standalone == "" || *module == "" ||
+		(*surveying && !surveyed) || (!*surveying && !ordinary) {
 		fmt.Fprintln(stderr, usage)
 		return statusCannotRun
 	}
-
+	if *surveying {
+		return runSurvey(survey{
+			gitCommand: *gitCommand, goCommand: *goCommand, standalone: *standalone,
+			commit: *commitOf, except: *except, module: *module, prove: *proveFirst,
+		}, stdout, stderr)
+	}
 	converted, err := portAll(*gitCommand, *standalone, *batchFile, *overlayDir)
 	if err != nil {
 		fmt.Fprintf(stderr, "port: %v\n", err)
@@ -102,10 +119,7 @@ func portAll(gitCommand, standalone, batchFile, overlayDir string) ([]Converted,
 	if err != nil {
 		return nil, err
 	}
-	if err := atCommit(gitCommand, standalone, batch.Standalone); err != nil {
-		return nil, err
-	}
-	examples, err := readExamples(standalone)
+	examples, topics, err := readClone(gitCommand, standalone, batch.Standalone)
 	if err != nil {
 		return nil, err
 	}
@@ -119,14 +133,37 @@ func portAll(gitCommand, standalone, batchFile, overlayDir string) ([]Converted,
 		if !has {
 			return nil, fmt.Errorf("%s: %w", id, errNoExample)
 		}
-		topicFile := "content/examples/" + ex.Topic + ".json"
-		c, err := convert(ex, batch, batch.Tasks[id], overlays[id], topicFile)
+		c, err := convertOf(ex, topics, batch, batch.Tasks[id], overlays[id])
 		if err != nil {
 			return nil, err
 		}
 		converted = append(converted, c)
 	}
 	return converted, nil
+}
+
+// readClone holds a clone of standalone to a commit, and reads its tasks and its topics.
+func readClone(gitCommand, standalone, commit string) (map[string]Example, map[string]Topic, error) {
+	if err := atCommit(gitCommand, standalone, commit); err != nil {
+		return nil, nil, err
+	}
+	examples, err := readExamples(standalone)
+	if err != nil {
+		return nil, nil, err
+	}
+	topics, err := readTopics(standalone)
+	if err != nil {
+		return nil, nil, err
+	}
+	return examples, topics, nil
+}
+
+// convertOf holds a task to its topic and converts it.
+func convertOf(ex Example, topics map[string]Topic, batch Batch, task BatchTask, overlay Overlay) (Converted, error) {
+	if err := ofTopic(ex, topics); err != nil {
+		return Converted{}, err
+	}
+	return convert(ex, batch, task, overlay, "content/examples/"+ex.Topic+".json")
 }
 
 // paths are the files of the converted tasks, by their paths from the module's folder, in order.
