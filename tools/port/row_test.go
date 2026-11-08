@@ -94,7 +94,7 @@ func inked(img image.Image) bool {
 
 func TestRowRefuses(t *testing.T) {
 	for _, test := range []struct{ raw, message string }{
-		{`{"kind": "clock", "time": "3:15"}`, `"clock", which the port does not draw yet`},
+		{`{"kind": "lattice", "width": 2}`, `"lattice", which the port does not draw yet`},
 		{`not json`, "its picture"},
 		{`{"kind": "row", "items": [{}, {}], "colour": "red"}`, "unknown field"},
 		{`{"kind": "row", "items": [{}]}`, "2 to 12 items"},
