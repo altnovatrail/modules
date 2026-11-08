@@ -27,3 +27,7 @@ skills:
   time-clocks:
     title: Clocks
     assessability: verdict
+  time-calendar:
+    title: Calendar and age
+    prerequisites: [counting-gaps]
+    assessability: verdict

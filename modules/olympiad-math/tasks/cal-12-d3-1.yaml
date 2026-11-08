@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-12-d3-1.yaml, and the port writes this file again (R12).
+id: "cal-12-d3-1"
+statement:
+  - text: "Today is Tuesday. What day of the week will it be in 10 days?"
+givens: ["Today is Tuesday."]
+unknown: "The day of the week in 10 days."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Wednesday", "Thursday", "Saturday", "Friday", "Sunday"]
+        check:
+          kind: "choice"
+          key: "Friday"
+          trap_values:
+            - value: "Wednesday"
+              trap: "stopped-early"
+              text: "Wednesday is only 1 day after Tuesday."
+            - value: "Thursday"
+              trap: "off-by-one"
+              text: "You counted today as the first day."
+            - value: "Saturday"
+              trap: "off-by-one"
+              text: "In 7 days it is Tuesday again. Count the days left from there."
+            - value: "Sunday"
+              trap: "wrong-operation"
+              text: "10 days is not one week and 5 days."
+    simpler_case: "Try 8 days from Monday. What day is it?"
+solution:
+  - text: "In 7 days it will be Tuesday again. 3 more days give Wednesday, Thursday, Friday. So it will be Friday."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-1-2"
+difficulty: 3

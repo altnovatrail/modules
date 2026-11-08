@@ -1,0 +1,9 @@
+# What a person adds to cal-56-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "2028 is a leap year: its February has 29 days."
+unknown: "The date 100 days after 1 January 2028."
+simpler_case: "Try 40 days after 1 January 2028. What date is it?"
+techniques: [draw]
+solution_picture_alt: "A bar of 100 days cut into parts of 30, 29, 31 and 10."
+trap_texts:
+  "1 April 2028": "1 April stops after the whole months, but some of the 100 days are still to come."

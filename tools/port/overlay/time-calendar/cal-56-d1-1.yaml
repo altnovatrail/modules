@@ -1,0 +1,8 @@
+# What a person adds to cal-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Leo writes dates in numbers, such as 5.3.2024."
+  - "On that date the digits of the day and the month add up to 8, as the digits of the year do."
+unknown: "The last date of 2024 when this happens."
+simpler_case: "Try only the dates of January 2024. Which is the last one whose digits add up to 8?"
+trap_texts:
+  "14 December": "The digits of 14 December do add up to 8, but a later date of December works too."

@@ -1,0 +1,9 @@
+# What a person adds to cal-12-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Today is Monday."
+unknown: "The day of the week the day after tomorrow."
+simpler_case: "Try it from Friday: today is Friday. What day is it tomorrow?"
+techniques: [pattern]
+trap_texts:
+  "Tuesday": "Tuesday is tomorrow, not the day after tomorrow."
+  "Thursday": "Thursday is too far: count the days from Monday again."

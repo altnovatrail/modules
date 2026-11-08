@@ -1,0 +1,9 @@
+# What a person adds to cal-34-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The boy is as many months old as his grandfather is years old."
+  - "Together they are 65 years old."
+unknown: "The boy's age in years."
+simpler_case: "Try a girl as many months old as her grandmother is years old, the girl being 6. How old is the grandmother?"
+techniques: [draw]
+trap_texts:
+  "60": "60 is not the boy's age: he is the younger one."

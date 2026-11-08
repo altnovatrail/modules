@@ -1,0 +1,10 @@
+# What a person adds to cal-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "In Europe 3/5 means 3 May, and in the USA it means 5 March."
+  - "Ann writes every date from 1 January to 30 June the European way."
+unknown: "How many of these dates a reader from the USA takes for a different real date."
+simpler_case: "Try only the dates from 1 to 3 January. For how many would the reader get a different real date?"
+trap_texts:
+  "11": "11 is the count for one month only."
+  "72": "72 counts dates that read the same either way."
+  "132": "132 counts the whole year, but Ann writes only the dates from January to June."

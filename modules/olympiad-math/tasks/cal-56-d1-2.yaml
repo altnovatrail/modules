@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-56-d1-2.yaml, and the port writes this file again (R12).
+id: "cal-56-d1-2"
+statement:
+  - text: "13 February 2026 is a Friday, and February 2026 has 28 days. On which day of the week is 13 March 2026?"
+givens: ["13 February 2026 is a Friday.", "February 2026 has 28 days."]
+unknown: "The day of the week of 13 March 2026."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Friday"
+          options: ["Saturday", "Monday", "Sunday", "Friday", "Thursday"]
+          trap_values:
+            - value: "Saturday"
+              trap: "off-by-one"
+              text: "Saturday counts 13 February as one of the days too."
+            - value: "Monday"
+              trap: "ignored-condition"
+              text: "Monday counts 31 days from 13 February to 13 March, as if February were as long as January. It has 28 days."
+            - value: "Sunday"
+              trap: "ignored-condition"
+              text: "Sunday counts 30 days, but February 2026 has 28."
+            - value: "Thursday"
+              trap: "off-by-one"
+              text: "Thursday counts only the days from 14 February to 12 March."
+    simpler_case: "Try 17 February 2026. What day of the week is it?"
+solution:
+  - text: "From 13 February to 13 March there are as many days as February has, 28, which is exactly 4 weeks. So 13 March falls on the same day of the week as 13 February: a Friday."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-5-6"
+difficulty: 1

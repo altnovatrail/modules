@@ -1,0 +1,10 @@
+# What a person adds to cal-34-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The festival lasts from 25 June to 5 July."
+  - "Both of these days count."
+  - "June has 30 days."
+unknown: "How many days it lasts."
+simpler_case: "Try a festival from 28 June to 2 July, both days counted. How many days is it?"
+techniques: [draw]
+trap_texts:
+  "10": "Both 25 June and 5 July count."

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-34-d5-1.yaml, and the port writes this file again (R12).
+id: "cal-34-d5-1"
+statement:
+  - text: "1 January 2026 is a Thursday. The years 2026 and 2027 have 365 days each, and 2028 is a leap year with 366 days. What day of the week is 1 January 2029?"
+givens: ["1 January 2026 is a Thursday.", "2026 and 2027 have 365 days each, and 2028 has 366."]
+unknown: "The day of the week of 1 January 2029."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Sunday", "Tuesday", "Monday", "Wednesday", "Thursday"]
+        check:
+          kind: "choice"
+          key: "Monday"
+          trap_values:
+            - value: "Sunday"
+              trap: "ignored-condition"
+              text: "2028 is a leap year, so it moves the day by 2, not 1."
+            - value: "Tuesday"
+              trap: "off-by-one"
+              text: "Count how far each year moves the day again."
+            - value: "Wednesday"
+              trap: "ignored-condition"
+              text: "Only 2028 is a leap year; 2026 and 2027 move the day by 1 each."
+            - value: "Thursday"
+              trap: "ignored-condition"
+              text: "365 days are 52 weeks and 1 day, so the day of the week changes every year."
+    simpler_case: "Try a year of 365 days that starts on a Friday. What day is the first day of the next year?"
+solution:
+  - text: "365 days are 52 weeks and 1 day, and 366 days are 52 weeks and 2 days. From 1 January 2026 to 1 January 2029 the day moves on 1 + 1 + 2 = 4 days: Friday, Saturday, Sunday, Monday."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-3-4"
+difficulty: 5

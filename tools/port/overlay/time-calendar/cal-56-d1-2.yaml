@@ -1,0 +1,10 @@
+# What a person adds to cal-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "13 February 2026 is a Friday."
+  - "February 2026 has 28 days."
+unknown: "The day of the week of 13 March 2026."
+simpler_case: "Try 17 February 2026. What day of the week is it?"
+techniques: [pattern]
+trap_texts:
+  "Saturday": "Saturday counts 13 February as one of the days too."
+  "Thursday": "Thursday counts only the days from 14 February to 12 March."

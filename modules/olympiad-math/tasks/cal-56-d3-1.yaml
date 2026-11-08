@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-56-d3-1.yaml, and the port writes this file again (R12).
+id: "cal-56-d3-1"
+statement:
+  - text: "Ten years ago, Mum was 4 times as old as her son. In ten years, she will be twice as old as he will be. How old is the son now?"
+givens: ["Ten years ago Mum was 4 times as old as her son.", "In ten years she will be twice as old as he will be."]
+unknown: "The son's age now."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "20"
+          units: ["year", "years"]
+          trap_values:
+            - value: "50"
+              trap: "answered-other-question"
+              text: "50 is Mum's age now, not her son's."
+            - value: "10"
+              trap: "answered-other-question"
+              text: "10 is an age ten years ago, not now."
+            - value: "30"
+              trap: "stopped-early"
+              text: "30 is the difference between their ages, a step on the way."
+            - value: "5"
+              trap: "wrong-operation"
+              text: "5 multiplies only the son's age by 4, not the 10 years: 4 times his age less 10 is 4 times his age less 40."
+    simpler_case: "Try: Dad is 24 years older than his son and now 3 times as old. How old is the son?"
+solution:
+  - text: "Ten years ago Mum was 4 times the son's age then, so the difference between their ages was 3 times his age then. In ten years she will be twice his age, so the difference will equal his age then. The difference stays the same: 3 × (the son's age − 10) = the son's age + 10. So the son is 20 now, and Mum is 50."
+techniques: ["draw"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-5-6"
+difficulty: 3

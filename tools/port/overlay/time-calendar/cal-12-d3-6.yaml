@@ -1,0 +1,8 @@
+# What a person adds to cal-12-d3-6 of standalone; the port writes the task from it (R12).
+givens:
+  - "The club meets every 4 days: on 3 May, on 7 May and so on."
+unknown: "The date of the fifth meeting."
+simpler_case: "Try a club that meets every 2 days from 4 May. On which date is its third meeting?"
+techniques: [pattern]
+trap_texts:
+  "15 May": "15 May is an earlier meeting. Count the meetings from 3 May again."

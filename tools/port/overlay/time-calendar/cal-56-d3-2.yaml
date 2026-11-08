@@ -1,0 +1,9 @@
+# What a person adds to cal-56-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "A year is a leap year when it can be divided by 4."
+  - "A year ending in 00 is a leap year only when it can be divided by 400."
+  - "The years go from 1896 to 1912, both counted."
+unknown: "How many leap years there are."
+simpler_case: "Try the years from 2001 to 2005. How many leap years are there?"
+techniques: [pattern]
+leak_phrases: ["4 leap years", "four leap years"]

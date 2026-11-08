@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-34-d1-1.yaml, and the port writes this file again (R12).
+id: "cal-34-d1-1"
+statement:
+  - text: "Today is Thursday. What day of the week will it be in 15 days?"
+givens: ["Today is Thursday."]
+unknown: "The day of the week in 15 days."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Wednesday", "Thursday", "Saturday", "Friday", "Monday"]
+        check:
+          kind: "choice"
+          key: "Friday"
+          trap_values:
+            - value: "Wednesday"
+              trap: "reversed-relation"
+              text: "The day comes after today, not before."
+            - value: "Thursday"
+              trap: "ignored-condition"
+              text: "15 days is not a whole number of weeks."
+            - value: "Saturday"
+              trap: "off-by-one"
+              text: "15 days is not 2 weeks and 2 days."
+            - value: "Monday"
+              trap: "wrong-operation"
+              text: "Count whole weeks first, then the days left over."
+    simpler_case: "Try 10 days from Thursday. What day is it?"
+solution:
+  - text: "In 14 days, two weeks, it is Thursday again. 1 more day gives Friday."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-3-4"
+difficulty: 1

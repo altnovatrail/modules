@@ -1,0 +1,10 @@
+# What a person adds to cal-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "In four years Anya will be 3 times as old as she was eight years ago."
+unknown: "Anya's age now."
+simpler_case: "Try: in three years Bob will be twice as old as he was three years ago. How old is he now?"
+techniques: [draw]
+trap_texts:
+  "6": "6 is an age eight years ago, not now."
+  "12": "12 divides the 12 years by 3, but going from an age to 3 times it adds twice that age."
+  "18": "18 is an age in four years, not now."

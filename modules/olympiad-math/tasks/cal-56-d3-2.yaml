@@ -1,0 +1,40 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-56-d3-2.yaml, and the port writes this file again (R12).
+id: "cal-56-d3-2"
+statement:
+  - text: "A year is a leap year when it can be divided by 4. But a year ending in 00 is a leap year only when it can be divided by 400. How many leap years are there from 1896 to 1912, counting both of these years?"
+givens: ["A year is a leap year when it can be divided by 4.", "A year ending in 00 is a leap year only when it can be divided by 400.", "The years go from 1896 to 1912, both counted."]
+unknown: "How many leap years there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["leap year", "leap years"]
+          trap_values:
+            - value: "5"
+              trap: "ignored-condition"
+              text: "5 counts 1900, but a year ending in 00 is a leap year only when it can be divided by 400."
+            - value: "3"
+              trap: "off-by-one"
+              text: "3 leaves out one end, but both 1896 and 1912 are counted."
+            - value: "2"
+              trap: "off-by-one"
+              text: "2 leaves out both ends, 1896 and 1912."
+            - value: "16"
+              trap: "wrong-operation"
+              text: "16 is 1912 − 1896, the number of years between the two, not a count of leap years."
+    simpler_case: "Try the years from 2001 to 2005. How many leap years are there?"
+solution:
+  - text: "The years that can be divided by 4 are 1896, 1900, 1904, 1908 and 1912. 1900 ends in 00 and cannot be divided by 400, so it is not a leap year. That leaves 4 leap years: 1896, 1904, 1908 and 1912."
+techniques: ["pattern"]
+leak_phrases: ["4 leap years", "four leap years"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-5-6"
+difficulty: 3

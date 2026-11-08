@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-12-d1-6.yaml, and the port writes this file again (R12).
+id: "cal-12-d1-6"
+statement:
+  - text: "It is November now. Which month will it be in 2 months?"
+givens: ["It is November now."]
+unknown: "The month in 2 months."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["December", "January", "February", "September", "November"]
+        check:
+          kind: "choice"
+          key: "January"
+          trap_values:
+            - value: "December"
+              trap: "stopped-early"
+              text: "December is only 1 month after November."
+            - value: "February"
+              trap: "off-by-one"
+              text: "February is too far: count the months from November again."
+            - value: "September"
+              trap: "reversed-relation"
+              text: "September was 2 months ago. The question asks about later."
+            - value: "November"
+              trap: "answered-other-question"
+              text: "November is the month now, not the month in 2 months."
+    simpler_case: "Try it from March: which month comes 2 months after March?"
+solution:
+  - text: "1 month after November comes December. The next month is January, the first month of a new year."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-1-2"
+difficulty: 1

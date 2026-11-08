@@ -1,0 +1,11 @@
+# What a person adds to cal-12-d5-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "This year the birthday is on a Wednesday."
+  - "Next year it comes 365 days later."
+unknown: "The day of the week of next year's birthday."
+simpler_case: "Try 18 days after a Wednesday. What day is it?"
+techniques: [pattern]
+trap_texts:
+  "Wednesday": "365 days are not a whole number of weeks."
+  "Friday": "Friday is too far for 365 days."
+  "Saturday": "Count the days left over after 52 weeks again."

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-12-d3-6.yaml, and the port writes this file again (R12).
+id: "cal-12-d3-6"
+statement:
+  - text: "A chess club meets every 4 days: on 3 May, on 7 May, and so on. On which date is its fifth meeting?"
+givens: ["The club meets every 4 days: on 3 May, on 7 May and so on."]
+unknown: "The date of the fifth meeting."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["19 May", "15 May", "23 May", "20 May", "7 May"]
+        check:
+          kind: "choice"
+          key: "19 May"
+          trap_values:
+            - value: "15 May"
+              trap: "off-by-one"
+              text: "15 May is an earlier meeting. Count the meetings from 3 May again."
+            - value: "23 May"
+              trap: "off-by-one"
+              text: "23 May adds 4 days five times, but the first meeting is 3 May itself."
+            - value: "20 May"
+              trap: "wrong-operation"
+              text: "20 May multiplies 5 by 4 and forgets that the meetings start on 3 May."
+            - value: "7 May"
+              trap: "stopped-early"
+              text: "7 May is only the second meeting."
+    simpler_case: "Try a club that meets every 2 days from 4 May. On which date is its third meeting?"
+solution:
+  - text: "The meetings are on 3 May, 7 May, 11 May, 15 May and 19 May. The fifth one is on 19 May."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-1-2"
+difficulty: 3

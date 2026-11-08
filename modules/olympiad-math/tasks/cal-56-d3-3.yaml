@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-56-d3-3.yaml, and the port writes this file again (R12).
+id: "cal-56-d3-3"
+statement:
+  - text: "Grandpa, Dad and the son are 110 years old together. When the son was born, Dad was 26 and Grandpa was 51. How old is the son now?"
+givens: ["Grandpa, Dad and the son are 110 years old together.", "When the son was born, Dad was 26 and Grandpa 51."]
+unknown: "The son's age now."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "11"
+          units: ["year", "years"]
+          trap_values:
+            - value: "33"
+              trap: "stopped-early"
+              text: "33 is three times the son's age, not his age."
+            - value: "37"
+              trap: "answered-other-question"
+              text: "37 is not the son's age: he is the youngest."
+            - value: "62"
+              trap: "answered-other-question"
+              text: "62 is not the son's age: he is the youngest."
+            - value: "28"
+              trap: "ignored-condition"
+              text: "28 leaves out Grandpa's 51 extra years: 110 − 26 = 84, and 84 ÷ 3 = 28."
+    simpler_case: "Try a mother and a daughter who are 40 together, the mother being 30 when the daughter was born. How old is the daughter?"
+solution:
+  - text: "Dad is always 26 years older than the son, and Grandpa 51 years older. Without those extra years the three ages would add up to 110 − 26 − 51 = 33, which is three times the son's age. So the son is 33 ÷ 3 = 11, Dad is 37 and Grandpa is 62."
+techniques: ["draw"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-5-6"
+difficulty: 3

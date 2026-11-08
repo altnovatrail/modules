@@ -1,0 +1,9 @@
+# What a person adds to cal-12-d1-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Yesterday was Friday."
+unknown: "The day of the week today."
+simpler_case: "Try it with Tuesday: yesterday was Tuesday. What day is it today?"
+techniques: [pattern]
+trap_texts:
+  "Sunday": "Sunday is too late: yesterday was Friday."
+  "Monday": "Monday is too late."
