@@ -1,0 +1,34 @@
+# A lesson of E3 (T40; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# percent-basic on the band of grades 5–6. Its texts are those of the page percentages of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: percent-basic-grades-5-6
+title: "Percentages: olympiad level"
+skills: [percent-basic]
+segments:
+  - explanation:
+      - text: "A price falls by 20%, and then by 20% again. Has it fallen by 40%? In these tasks a percent is a hundredth of something, and the whole difficulty is the something: the old price or the new one, all the birds or only the hens. Asking “percent of what?” before each step avoids most of the mistakes."
+      - text: "One hundredth. One percent is one hundredth of an amount. 100% is the whole amount, and 50% is half of it."
+      - text: "Percent of what? A percentage is always of something: the old price or the new one, all the guests or only the girls. The same 10% of different amounts are different numbers."
+      - text: "Ten percent first. 10% is the amount divided by 10. From it, 20%, 30% or 5% are one step away: 30% of 70 is 3 × 7 = 21."
+  - worked_example:
+      statement:
+        - text: "A school has 300 pupils, and 35% of them go to a sports club. How many pupils do not go to a sports club?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "100% is all 300 pupils, so 1% is 300 : 100 = 3 pupils."
+        - text: "Those who do not go to a club are 100% − 35% = 65% of the pupils."
+        - text: "65% is 65 × 3 = 195 pupils."
+        - text: "Answer: 195 pupils."
+  - explanation:
+      - text: "The other way. 35% of 300 is 35 × 3 = 105 pupils who go, and 300 − 105 = 195. Both ways give the same answer; taking 65% at once saves a step."
+  - task: pct-56-d1-3
+  - task: pct-56-d3-1
+  - task: pct-56-d5-1
+  - explanation:
+      - text: "How to solve: name the hundred percent."
+      - text: "Name what is 100%."
+      - text: "Find 1% or 10% of it."
+      - text: "Take the percentage asked for, and check what it is of."

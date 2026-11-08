@@ -1,0 +1,32 @@
+# A lesson of E3 (T40; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# logic-sets on the band of grades 5–6. Its texts are those of the page overlapping-groups of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: logic-sets-grades-5-6
+title: "Overlapping groups: olympiad level"
+skills: [logic-sets]
+segments:
+  - explanation:
+      - text: "Some children go to the chess club, some to football, some to both, and some to neither. In these tasks the groups overlap, and the trick is to count everyone exactly once. A Venn diagram, two circles drawn on paper, turns a confusing question into four numbers."
+      - text: "Added, counted twice. Adding the two groups counts the children in both of them twice, once in each. Take them away once, and everyone is counted once."
+      - text: "Some are in neither. Nobody has to be in a group. The whole class is those in at least one group and those in none."
+      - text: "When the middle is not given. If nobody says how many are in both groups, that number can only be bounded: the more the groups share, the fewer children are in at least one of them."
+  - worked_example:
+      statement:
+        - text: "In a group of 24 children, 15 have a sister, 11 have a brother, and 6 have both a sister and a brother. How many children have neither?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Draw two circles that overlap, “sister” and “brother”. In the middle: the 6 children who have both."
+        - text: "A sister only: 15 − 6 = 9. A brother only: 11 − 6 = 5."
+        - text: "In the circles: 9 + 6 + 5 = 20 children. Outside them: 24 − 20 = 4."
+        - text: "Answer: 4 children."
+  - task: sets-56-d1-1
+  - task: sets-56-d3-1
+  - task: sets-56-d5-1
+  - explanation:
+      - text: "How to solve: from the middle out."
+      - text: "Draw the circles."
+      - text: "Fill the middle, then the rest."
+      - text: "Check that the parts add up to everyone."

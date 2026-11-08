@@ -133,7 +133,7 @@
 | [x] | T37 | Шаблоны девяти малых навыков: 18 | Claude, проверяю я | — | T32–T35 |
 | [x] | T38 | Уроки `arithmetic-tricks`, `parity-alternation` и `logic-ordering`: 9 | Claude, проверяю я | да | T25–T27 |
 | [x] | T39 | Уроки `time-clocks`, `time-calendar`, `logic-knights-liars` и `algorithms-weighing-pouring`: 10 | Claude, проверяю я | — | T28–T31 |
-| [ ] | T40 | Уроки семи навыков полосы 5–6: 7 | Claude, проверяю я | — | T32–T34 |
+| [x] | T40 | Уроки семи навыков полосы 5–6: 7 | Claude, проверяю я | — | T32–T34 |
 | [ ] | T41 | Уроки `counting-figures` и `geometry-cubes-paper`: 6, с картинками | Claude, проверяю я | да | T21, T34 |
 | [ ] | T42 | Релиз: ветка эпика в `main` и второй релиз | я + Claude | да | T18–T41 |
 | [ ] | T43 | Итог эпика: просьбы к формату и архив | Claude | — | T42 |
@@ -710,6 +710,23 @@
 
 - **Цель:** по уроку `fractions-parts`, `percent-basic`, `ratio-sharing`, `number-divisibility`, `logic-sets`, `games-strategy` и `geometry-grid`.
 - **Сделать:** по общему для задач уроков и правилу выбора T38. На сайте у каждого из этих навыков три примера полосы 5–6: урок берёт первый.
+- **Сделано (2026-11-08):**
+  - правило 12 — до начала: у SonarCloud на `e3` и у CodeQL находок нет, у Scorecard те же 6, их причины — в R33 spec. Правок нет;
+  - семь уроков полосы 5–6 в `modules/olympiad-math/lessons/`, по R14 и поправкам T38 и T39 к нему, со страниц `parts-and-shares`, `percentages`, `ratios-and-sharing`, `divisibility-and-remainders`, `overlapping-groups`, `winning-strategy` и `figures-on-a-grid` на 42b4408. Примеры — первые из трёх примеров полосы 5–6: «Rolls at the bakery», «Sports clubs», «Mushrooms», «Buses for a trip», «Sisters and brothers», «Sweets in a bowl», «A cross»;
+  - задачи уроков: `frac-56-d1-1`, `frac-56-d3-1`, `frac-56-d5-2`; `pct-56-d1-3`, `pct-56-d3-1`, `pct-56-d5-1`; `ratio-56-d1-1`, `ratio-56-d3-1`, `ratio-56-d5-2`; `div-56-d1-1`, `div-56-d3-2`, `div-56-d5-1`; `sets-56-d1-1`, `sets-56-d3-1`, `sets-56-d5-1`; `game-56-d1-1`, `game-56-d3-2`, `game-56-d5-2`; `grid-56-d1-1`, `grid-56-d3-1`, `grid-56-d5-1`. Сложность не сдвинулась ни разу. Правило прошло мимо семи задач: `frac-56-d5-1` и `game-56-d5-1` — их ключи, 24 и Ben, стоят в условии более ранней задачи урока; `pct-56-d1-1`, `pct-56-d1-2`, `ratio-56-d5-1`, `div-56-d3-1` и `game-56-d3-1` — их ключи, 20, 100, 9, 6 и 2, стоят в тексте урока;
+  - тексты страниц переписаны к ученику: «A child who asks…», «a child divides…», «a child looks for a plan…» — теперь безлично или «you…»;
+  - переписаны и тексты, которые давали ключ задачи урока или начинали решать задачу модуля, по поправке T38 к R14:
+    - карточка «The parts make the whole»: «1 − 1/3 − 1/4 = 5/12» — последний шаг решения и ключ задачи урока `frac-56-d5-2`, а 5/12 — ещё и остаток пачки `frac-56-d2-2`. Теперь отдают 1/2 и 1/7 и остаётся 5/14;
+    - карточка «Through one part»: 3/4 от 20 — половина решения задачи урока `frac-56-d1-1`, а 21 и 28, первая замена, — первый шаг экземпляра шаблона `what-is-left`. Теперь 3/4 от 64, вне чисел шаблона;
+    - карточка «Different things»: «four in a square have 8» давала ключ задачи урока `grid-56-d1-1`, а «four cells in a row have a perimeter of 10» — ключ `grid-56-d4-3`. Любые числа здесь — прямоугольники ширины 1 и 2, и они начинают разбор задачи урока `grid-56-d5-1`, поэтому теперь карточка без чисел: длинный ряд клеток против квадрата;
+    - вступление `figures-on-a-grid`: «a rectangle can lose a corner cell and keep its perimeter» — ход решения `grid-56-d3-3`; снято;
+    - карточка «Ten percent first»: «30% of 80 is 3 × 8 = 24» — проверка и ловушка `pct-56-d4-2`. Теперь 30% от 70;
+    - карточка «Scale both sides»: «30 to 40» рядом с рецептом — ключ `ratio-56-d2-1`, рецепта. Теперь «15 to 20», как в карточке «One part first»;
+  - карточка «Copy and mirror» оставлена: «the winner keeps things even… making the same move on the mirrored side» — ход задачи урока `game-56-d3-2`, где банки уравнивают, но это метод темы, который урок и должен дать, и банок, чисел и хода карточка не называет. Так R14 оставил карточку «In a row, one fewer»;
+  - пары с совпадающими значениями, которые перечитываешь ты, как в R13: в уроке `logic-sets-grades-5-6` ключ `sets-56-d5-1`, 22, — вариант-ловушка и шаг решения `sets-56-d3-1`, «12 + 10 = 22»; в уроке `geometry-grid-grades-5-6` ключ `grid-56-d3-1`, 16, — вариант-ловушка `grid-56-d1-1`, ходы ферзя. Это совпадения, а не ответ;
+  - проверено 2026-11-08: `module-kit check modules/olympiad-math` — `lesson.no-leaks` и остальные правила без нарушений и предупреждений; `just modules-check`; `just test`; `just -f spec/justfile docs-check-repo`;
+  - `/code-review high`, один круг, нашёл 8 пунктов. Исправлены семь: карточки «Through one part», «Different things», «Ten percent first» и «Scale both sides», которые начинали решать задачи модуля и после первой замены; лишняя задача в списке пропущенных; неполные причины замен «The parts make the whole» и «Different things». Восьмой — «Copy and mirror» — оставлен, причина выше.
+- **Открыто:** тексты семи уроков вычитываешь ты: `modules/olympiad-math/lessons/fractions-parts-grades-5-6.yaml`, `percent-basic-grades-5-6.yaml`, `ratio-sharing-grades-5-6.yaml`, `number-divisibility-grades-5-6.yaml`, `logic-sets-grades-5-6.yaml`, `games-strategy-grades-5-6.yaml` и `geometry-grid-grades-5-6.yaml`.
 
 #### T41. Уроки `counting-figures` и `geometry-cubes-paper`: 6, с картинками
 
