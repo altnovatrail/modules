@@ -1,0 +1,114 @@
+# A template of logic-sets (T37; R22): the solver of mathtrail-standalone
+# content/solvers/logic.sets/three-groups.star at 42b4408, made a solver of the template. It came from
+# reference task sets-56-d4-2, whose numbers are one of its instances.
+# The numbers of reference task sets-56-d4-2: total 10, swim 7, skate 8, bike 9.
+# Its capitals TOTAL and GROUPS are the numbers that the statement shows: a team of 10 to 12 and
+# three groups, each smaller than the next and than the team, that must overlap in at least two
+# pupils; PAIRS and ALL_THREE stay unknown, as in the reference task, and fits says nothing more.
+# The trap values are derived numbers, its mistakes, and 0.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: three-groups
+template:
+  parameters:
+    total: {from: 10, to: 12}
+    swim: {from: 6, to: 9}
+    skate: {from: 7, to: 10}
+    bike: {from: 8, to: 11}
+  derived:
+    pair_least: swim + skate - total
+    all_added: swim + skate + bike
+    no_swim: total - swim
+    no_skate: total - skate
+    no_bike: total - bike
+    missing: "3 * total - swim - skate - bike"
+  constraint: swim < skate and skate < bike and bike < total and swim + skate + bike - 2 * total >= 2
+  solver:
+    program: |
+      # For three overlapping groups: try every way the pupils can split among the
+      # seven parts of the picture, keep the ways that fit everything the question
+      # says, and answer from them. Here the question asks for the fewest in all
+      # three, so the answer is the smallest that any split allows.
+
+      def solve(numbers):
+          total = numbers["total"]
+          a, b, c = numbers["swim"], numbers["skate"], numbers["bike"]
+          found = []
+          for all_three in range(0, min(a, b, c) + 1):
+              for in_ab in range(all_three, min(a, b) + 1):
+                  for in_ac in range(all_three, min(a, c) + 1):
+                      a_only = a - in_ab - in_ac + all_three
+                      if a_only < 0:
+                          break  # a larger overlap only leaves fewer in A alone
+                      for in_bc in range(all_three, min(b, c) + 1):
+                          ab = in_ab - all_three
+                          ac = in_ac - all_three
+                          bc = in_bc - all_three
+                          b_only = b - ab - bc - all_three
+                          c_only = c - ac - bc - all_three
+                          if min(b_only, c_only) < 0:
+                              break  # a larger overlap only leaves fewer in B or C alone
+                          none = total - a_only - b_only - c_only - ab - ac - bc - all_three
+                          if min(ab, ac, bc, none) >= 0:
+                              found.append(all_three)
+          if len(found) == 0:
+              fail("no split fits everything the question says")
+          return {"all_three": min(found)}
+    results: [all_three]
+statement:
+  - text: A team has {total} pupils. {swim} of them can swim, {skate} can skate and {bike} can ride a bike. At least how many pupils on the team must be able to do all three?
+givens:
+  - The team has {total} pupils.
+  - "{swim} can swim, {skate} can skate and {bike} can ride a bike."
+unknown: At least how many can do all three.
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{all_three}"
+          units: [pupil, pupils]
+          trap_values:
+            - value: "{swim}"
+              trap: reversed-relation
+              text: That is the most who could do all three, not the fewest.
+            - value: "{pair_least}"
+              trap: stopped-early
+              text: That is the fewest who can both swim and skate; the bike riders were never brought in.
+            - value: "0"
+              trap: ignored-condition
+              text: That forgets there are only {total} pupils, so the three groups have to overlap.
+            - value: "{all_added}"
+              trap: wrong-operation
+              text: That adds the three groups, which gives more than the {total} pupils.
+    simpler_case: Try 10 pupils, 7 who can swim and 9 who can skate. At least how many can do both?
+solution:
+  - text: "{no_swim} pupils cannot swim, {no_skate} cannot skate and {no_bike} cannot ride a bike. Even if these are all different pupils, only {missing} miss something. The other {all_three} can do all three, and that is possible when the {missing} are all different."
+leak_phrases: ["{all_three} pupils can do all three"]
+skills:
+  primary: [logic-sets]
+band: grades-5-6
+difficulty: 4

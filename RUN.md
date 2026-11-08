@@ -130,7 +130,7 @@
 | [x] | T34 | `geometry-grid`, `counting-figures` и `geometry-cubes-paper`: 49 задач | Claude, проверяю я | — | T20, T21, T23 |
 | [x] | T35 | Шаблоны: как шаблон standalone становится шаблоном формата, и 7 шаблонов навыков первой пачки | Claude, проверяю я | да | T22–T24 |
 | [x] | T36 | Шаблоны семи навыков: 14 | Claude, проверяю я | — | T25–T31, T35 |
-| [ ] | T37 | Шаблоны девяти малых навыков: 18 | Claude, проверяю я | — | T32–T35 |
+| [x] | T37 | Шаблоны девяти малых навыков: 18 | Claude, проверяю я | — | T32–T35 |
 | [ ] | T38 | Уроки `arithmetic-tricks`, `parity-alternation` и `logic-ordering`: 9 | Claude, проверяю я | да | T25–T27 |
 | [ ] | T39 | Уроки `time-clocks`, `time-calendar`, `logic-knights-liars` и `algorithms-weighing-pouring`: 10 | Claude, проверяю я | — | T28–T31 |
 | [ ] | T40 | Уроки семи навыков полосы 5–6: 7 | Claude, проверяю я | — | T32–T34 |
@@ -664,6 +664,14 @@
 
 - **Цель:** по два шаблона `fractions-parts`, `percent-basic`, `ratio-sharing`, `number-divisibility`, `logic-sets`, `games-strategy`, `geometry-grid`, `counting-figures` и `geometry-cubes-paper` — по решению T35. Шаблоны двух новых навыков читают картинку, как и их задачи.
 - **Сделать:** по общему для задач шаблонов и по решению T35.
+- **Сделано (2026-11-08):**
+  - правило 12 — до начала: у SonarCloud на `e3` и у CodeQL находок нет, у Scorecard те же 6, их причины — в R33 spec. Правок нет;
+  - восемь шаблонов в `modules/olympiad-math/tasks/`, по R22: `what-is-left` (12 экземпляров) навыка `fractions-parts`, `changes` (7) и `counts` (3) навыка `percent-basic`, `for-every` (4) и `split` (4) навыка `ratio-sharing`, `groups` (374) навыка `number-divisibility`, `three-groups` (19) и `two-groups` (94) навыка `logic-sets`. Картинка эталонной задачи — у `for-every`, `split`, `groups` и `two-groups` — в шаблон не идёт, как и картинки решения `changes` и `groups` и строка решения `changes` «60 ÷ 4 × 5 = 75»: одна картинка и одна строка на все экземпляры показали бы числа эталонной задачи. `counts` теряет ловушку эталонной задачи 40, `percent-wrong-base`: её значение целое только при 6 съеденных яблоках. Итог корзин `split` и съеденные яблоки `counts` standalone пишет внутри `fits`, а не заглавной константой, — они тоже параметры, раз их показывает условие (поправка T37 к R22). Решатели складывают своим циклом: `sum` в диалекте формата нет, — а постоянные списки пишут строчными, как велит раздел 3.5 [docs/architecture.md](docs/architecture.md);
+  - не переносятся десять: `squares-on-lines`, `triangles-on-lines`, `fold-net` и `fold-sheet` читают картинку (R22); `two-piles` — ответ-ход, выбор (поправка T36 к R22); `figure`, `search`, `share-of-all`, `pieces` и `one-pile` — по поправке 2026-11-08 (T37) к R22: их числа не меняются в пределах задачи или ключ каждого экземпляра равен числу условия;
+  - `/code-review high`, один круг, нашёл 7 пунктов, исправлены все: `one-pile` с ключом 1 во всех экземплярах, который условие называет среди ходов, — теперь не переносится, по той же поправке, что `pieces`; остаток `groups`, равный 1 или 2 из условия, — теперь от 3; мёртвая ветвь 10% у `changes`; заглавные константы в решателях; параметры, которых нет среди заглавных, и потерянные картинки решения и ловушка — теперь записаны;
+  - `test/templates.test.mjs` доказывает ключ эталонной задачи у всех 19 шаблонов модуля;
+  - проверено 2026-11-08: `module-kit check modules/olympiad-math` — каждый экземпляр без нарушений и предупреждений; `just test`; `just modules-check`; `just -f spec/justfile docs-check-repo`.
+- **Открыто:** тексты восьми шаблонов вычитываешь ты: `modules/olympiad-math/tasks/what-is-left.yaml`, `changes.yaml`, `counts.yaml`, `for-every.yaml`, `split.yaml`, `groups.yaml`, `three-groups.yaml` и `two-groups.yaml`.
 
 #### T38. Уроки `arithmetic-tricks`, `parity-alternation` и `logic-ordering`: 9
 
