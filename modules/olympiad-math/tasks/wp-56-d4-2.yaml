@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d4-2.yaml, and the port writes this file again (R12).
+id: "wp-56-d4-2"
+statement:
+  - text: "A 12-litre churn is full of milk. Next to it stand two empty jugs of 7 and 5 litres. In each step, milk is poured from one of the three into another, until the one poured from is empty or the one poured into is full. What is the smallest number of steps that leaves exactly 4 litres in one of them?"
+  - picture: "pictures/wp-56-d4-2.png"
+    alt: "A full 12-litre churn, an empty 7-litre jug and an empty 5-litre jug."
+    width: 272
+    height: 217
+givens: ["A 12-litre churn is full of milk, and jugs of 7 and 5 litres are empty.", "A step pours from one of the three into another until the first is empty or the second is full."]
+unknown: "The smallest number of steps that leaves exactly 4 litres in one of them."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["step", "steps"]
+          trap_values:
+            - value: "7"
+              trap: "missed-case"
+              text: "7 steps work, but there is a shorter way."
+            - value: "2"
+              trap: "stopped-early"
+              text: "After 2 steps the 7-litre jug holds 2 litres, not yet 4."
+            - value: "5"
+              trap: "off-by-one"
+              text: "Count every pouring as a step, the first one too."
+            - value: "4"
+              trap: "number-from-text"
+              text: "4 is the amount asked for, copied from the question."
+    simpler_case: "Try having exactly 5 litres in the churn. How many steps does it take?"
+solution:
+  - text: "Write the litres in the churn, the 7-litre jug and the 5-litre jug. One shortest way: (12, 0, 0), (5, 7, 0), (5, 2, 5), (10, 2, 0), (10, 0, 2), (3, 7, 2), (3, 4, 5). After 6 steps the 7-litre jug holds 4 litres. Starting with the 5-litre jug takes 7 steps, and no way gives 4 litres in fewer than 6."
+techniques: ["backwards"]
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-5-6"
+difficulty: 4

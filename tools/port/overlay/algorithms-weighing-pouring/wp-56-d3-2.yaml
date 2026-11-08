@@ -1,0 +1,6 @@
+# What a person adds to wp-56-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Two of four coins are lighter fakes."
+  - "The real coins all weigh the same, and the balance has no weights."
+unknown: "The smallest number of weighings to be sure which two coins are fake."
+simpler_case: "Try 3 coins with one lighter fake. How many weighings find it?"

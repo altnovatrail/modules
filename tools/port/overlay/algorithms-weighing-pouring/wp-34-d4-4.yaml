@@ -1,0 +1,9 @@
+# What a person adds to wp-34-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Of 3 coins, one is a fake, heavier or lighter, and nobody knows which."
+  - "The real coins weigh the same, and the balance has no weights."
+unknown: "The smallest number of weighings that finds the fake and tells whether it is heavier or lighter."
+simpler_case: "Try 3 coins with a fake known to be lighter. How many weighings find it?"
+trap_texts:
+  "3": "Count the weighings again in the worst case."
+  "4": "Each weighing compares two coins at once."

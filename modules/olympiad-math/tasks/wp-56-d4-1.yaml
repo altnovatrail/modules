@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d4-1.yaml, and the port writes this file again (R12).
+id: "wp-56-d4-1"
+statement:
+  - text: "Four stones look alike, but each has a different weight. A balance compares two stones at a time. What is the smallest number of weighings that is sure to put all four stones in order from the lightest to the heaviest?"
+givens: ["Four stones look alike, but each has a different weight.", "A balance compares two stones at a time."]
+unknown: "The smallest number of weighings that is sure to put the stones in order."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          units: ["weighing", "weighings"]
+          trap_values:
+            - value: "3"
+              trap: "stopped-early"
+              text: "3 weighings can find the heaviest stone, but not the order of the other three."
+            - value: "24"
+              trap: "answered-other-question"
+              text: "24 is the number of possible orders, not the number of weighings."
+            - value: "6"
+              trap: "missed-case"
+              text: "6 weighs every pair, but part of the order follows from the rest: a stone lighter than a lighter one needs no weighing against the heavier."
+            - value: "4"
+              trap: "number-from-text"
+              text: "4 is the number of stones; four weighings give at most 16 results, fewer than the 24 orders."
+    simpler_case: "Try three stones. How many weighings are sure to put them in order?"
+solution:
+  - text: "Four stones can lie in 4 × 3 × 2 × 1 = 24 orders. Each weighing has 2 results, so 4 weighings have at most 2 × 2 × 2 × 2 = 16 results, fewer than 24: four cannot always tell the order. Five can. Call the stones K, L, M and N. Weigh K against L and M against N, then the two heavier ones against each other; say this shows that K is lighter than L, L than N, and M than N. Now N is the heaviest. Weigh M against L: if M is heavier, the order is K, L, M, N; if not, one more weighing of M against K places it."
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-5-6"
+difficulty: 4

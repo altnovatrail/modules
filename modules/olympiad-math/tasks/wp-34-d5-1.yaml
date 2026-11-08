@@ -1,0 +1,36 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d5-1.yaml, and the port writes this file again (R12).
+id: "wp-34-d5-1"
+statement:
+  - text: "There are 12 coins. One of them is fake: it is heavier or lighter than a real coin, but nobody knows which. All real coins weigh the same. What is the smallest number of weighings on a balance without weights that is sure to find the fake coin and tell whether it is heavier or lighter?"
+givens: ["Of 12 coins, one is a fake, heavier or lighter, and nobody knows which.", "The real coins weigh the same, and the balance has no weights."]
+unknown: "The smallest number of weighings that finds the fake and tells whether it is heavier or lighter."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["weighing", "weighings"]
+          trap_values:
+            - value: "2"
+              trap: "stopped-early"
+              text: "2 weighings have 9 outcomes, but there are 24 possible answers."
+            - value: "4"
+              trap: "off-by-one"
+              text: "Count the weighings again in the worst case."
+            - value: "6"
+              trap: "wrong-operation"
+              text: "12 ÷ 2 = 6 is the number of pairs, not of weighings."
+    simpler_case: "Try 2 coins, one a fake that is heavier or lighter, and a third coin known to be real. How many weighings find the fake and tell which?"
+solution:
+  - text: "There are 24 possible answers: each of 12 coins, heavier or lighter, and 2 weighings have only 9 outcomes. 3 weighings are enough. Weigh coins 1-4 against 5-8. If they balance, coins 1-8 are real: weigh 9, 10, 11 against 1, 2, 3; if these balance, coin 12 is fake and one more weighing against a real coin shows how; if not, you know whether the fake is heavier or lighter, and weighing 9 against 10 finds it. If 1-4 is heavier, weigh 1, 2, 5 against 3, 6, 9: if they balance, the fake is 4 (heavier), 7 or 8 (lighter), and weighing 7 against 8 finds it; if 1, 2, 5 is heavier, the fake is 1 or 2 (heavier) or 6 (lighter), and weighing 1 against 2 finds it; if 1, 2, 5 is lighter, the fake is 3 (heavier) or 5 (lighter), and weighing 3 against a real coin finds it. The case where 5-8 is heavier is the same with the pans swapped."
+traps: ["ignored-condition"]
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-3-4"
+difficulty: 5

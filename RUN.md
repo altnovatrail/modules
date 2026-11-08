@@ -124,7 +124,7 @@
 | [x] | T28 | `time-clocks`: 65 задач | Claude, проверяю я | — | T19, T22 |
 | [x] | T29 | `time-calendar`: 65 задач | Claude, проверяю я | — | T19, T22 |
 | [x] | T30 | `logic-knights-liars`: 40 задач | Claude, проверяю я | — | T23, T27 |
-| [ ] | T31 | `algorithms-weighing-pouring`: 40 задач | Claude, проверяю я | — | T20, T23, T24 |
+| [x] | T31 | `algorithms-weighing-pouring`: 40 задач | Claude, проверяю я | — | T20, T23, T24 |
 | [ ] | T32 | `fractions-parts`, `percent-basic` и `ratio-sharing`: 45 задач | Claude, проверяю я | — | T19, T25 |
 | [ ] | T33 | `number-divisibility`, `logic-sets` и `games-strategy`: 45 задач | Claude, проверяю я | — | T20, T23, T24, T26, T29 |
 | [ ] | T34 | `geometry-grid`, `counting-figures` и `geometry-cubes-paper`: 49 задач | Claude, проверяю я | — | T20, T21, T23 |
@@ -537,6 +537,17 @@
 
 - **Цель:** 40 задач: 25 на 3–4 и 15 на 5–6. Ответы — 29 целых чисел, 5 чисел с единицей, 4 слова и 2 другого текста с цифрами. У четырёх задач вопрос «Which of these…». Картинки — у 15 задач, `balance`, `containers` и `table`.
 - **Сделать:** по общему для задач содержания. Пререквизиты — `combinatorics-enumeration` и `pigeonhole-basic`.
+- **Сделано (2026-11-08):**
+  - правило 12 — до начала: у SonarCloud на `e3` и у CodeQL находок нет, у Scorecard те же 6, их причины — в R33 spec. Правок нет;
+  - `tools/port/batches/algorithms-weighing-pouring.yaml` — 40 задач на 42b4408; `units` у задач, чей вопрос считает взвешивания, шаги, гири и болты, и `l`, `litre`, `litres` у задачи о литрах. Сайт standalone связывает с темой приём `backwards`: он стоит у 11 задач, которые считают шаги до нужного количества, — девяти о переливании и двух о делении гвоздей и риса, — где помогает идти от него назад; у четырёх задач о переливании, где шаги не считают, и у задач о поиске фальшивой монеты приёма нет;
+  - `tools/port/overlay/algorithms-weighing-pouring/` — 40 файлов правок: `givens`, `unknown` и `simpler_case` каждой задачи, `alt` 15 картинок задач и двух картинок решения, 63 переписанных пояснения в 33 задачах, `leak_phrases` трёх задач, чей ключ стоит в условии или на картинке: `containers` пишет на картинке вместимость и количество, и у `wp-56-d2-1` вместимость 3 — это ключ;
+  - `modules/olympiad-math/` — 40 новых задач и 17 картинок; в графе — навык `algorithms-weighing-pouring`, запись примера формата дословно, с пререквизитами `combinatorics-enumeration` и `pigeonhole-basic`; каталоги не изменились; версия по-прежнему `0.1.1`;
+  - виды ответа, как их дал R20: 11 выборов касанием — «Which of these…», «It is impossible», «bag 3», — и 29 чисел; слов от руки нет;
+  - пояснения — по мерке T22–T30: переписаны те, что называли ключ — «2 steps are enough», «the shortest way takes 6», — давали способ, после которого ключ виден сразу, — «groups of 3 need only 2 weighings» — или правило, которое отбрасывает все остальные варианты, — «Every amount you can make is even»;
+  - картинка `containers` больше не рисует деления на стенках: шесть задач говорят «The jugs have no marks» (поправка 2026-11-08 к R12), с тестами;
+  - `/code-review high`, один круг, нашёл 9 пунктов, исправлены все: деления на стенках сосудов; «Count the steps again» у 12, хотя 12 — верный счёт пути, который начинается с малого сосуда; ложный довод «4 halves the coins»; пояснения, которые давали способ — «you do not need to weigh it», «groups of 3», «try the other jug first», — и пары пояснений, которые зажимали ключ с двух сторон, — «There is a shorter way than 3 steps» рядом с «After one step each jug is empty or full»; описание приёма `backwards`; два `simpler_case` на промежуточных числах решения;
+  - проверено 2026-11-08: `just port modules/olympiad-math --batch tools/port/batches/algorithms-weighing-pouring.yaml --check` — стенд 42b4408 доказывает все 40, файлы совпадают; `module-kit check modules/olympiad-math` — без нарушений и предупреждений; `just modules-check`; `just test`; `just -f spec/justfile docs-check-repo`.
+- **Открыто:** тексты 40 задач вычитываешь ты: `modules/olympiad-math/tasks/wp-*.yaml`.
 
 #### T32. `fractions-parts`, `percent-basic` и `ratio-sharing`: 45 задач
 

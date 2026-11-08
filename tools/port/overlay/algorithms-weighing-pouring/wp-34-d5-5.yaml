@@ -1,0 +1,10 @@
+# What a person adds to wp-34-d5-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "A bag holds 24 kg of nails."
+  - "One weighing on a balance without weights splits any amount into two equal parts."
+  - "Parts may be poured together without weighing."
+unknown: "The smallest number of weighings to get exactly 9 kg in one pile."
+simpler_case: "Try getting 4 kg from 16 kg of nails. How many weighings does it take?"
+techniques: [backwards]
+trap_texts:
+  "4": "Count the weighings again."

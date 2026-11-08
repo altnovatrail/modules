@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d2-3.yaml, and the port writes this file again (R12).
+id: "wp-56-d2-3"
+statement:
+  - text: "A toy balance has room for at most two marbles on each pan. One of 12 marbles is a fake that is lighter than the others, which all weigh the same. What is the smallest number of weighings that is sure to find the fake marble?"
+givens: ["The balance holds at most two marbles on each pan.", "One of 12 marbles is a lighter fake, and the others all weigh the same."]
+unknown: "The smallest number of weighings that is sure to find the fake."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["weighing", "weighings"]
+          trap_values:
+            - value: "3"
+              trap: "ignored-condition"
+              text: "3 would do with four marbles on each pan, but this balance holds only two."
+            - value: "1"
+              trap: "best-case-not-worst"
+              text: "One weighing finds the fake only by luck."
+            - value: "6"
+              trap: "missed-case"
+              text: "6 weighs one marble against one; two against two clears four marbles at a time."
+            - value: "2"
+              trap: "stopped-early"
+              text: "After 2 weighings that balance, some marbles are still suspect."
+    simpler_case: "Try 6 marbles with the same balance. How many weighings are sure to find the fake?"
+solution:
+  - text: "Weigh two marbles against two. If a pan rises, the fake is one of its two marbles, and one more weighing of one against the other finds it. If the pans balance, those four are real. In the worst case the first two weighings balance, the third shows which pair of the last four holds the fake, and a fourth tells those two apart: 4 weighings. Three are not enough: after two weighings that balance, 4 marbles are still suspect, and one weighing has only 3 results."
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-5-6"
+difficulty: 2

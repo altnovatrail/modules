@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d4-3.yaml, and the port writes this file again (R12).
+id: "wp-56-d4-3"
+statement:
+  - text: "Ten machines make bolts. Nine of them make bolts of 10 g each, but one machine is faulty and makes bolts of 11 g. You may take any number of bolts from each machine and weigh them all together, once, on a scale that shows the weight. What is the smallest number of bolts you must take to be sure of finding the faulty machine?"
+givens: ["Nine machines make bolts of 10 g, and one faulty machine bolts of 11 g.", "You may take any number of bolts from each machine and weigh them all together, once."]
+unknown: "The smallest number of bolts that is sure to show the faulty machine."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "45"
+          units: ["bolt", "bolts"]
+          trap_values:
+            - value: "55"
+              trap: "missed-case"
+              text: "55 takes 1 to 10 bolts, but one machine may give fewer."
+            - value: "10"
+              trap: "ignored-condition"
+              text: "One bolt from each machine always weighs 101 g, whichever machine is faulty."
+            - value: "1"
+              trap: "best-case-not-worst"
+              text: "One bolt could come from the faulty machine by luck, but it need not."
+            - value: "9"
+              trap: "ignored-condition"
+              text: "One bolt from each of nine machines only tells whether the tenth machine is the faulty one."
+    simpler_case: "Try three machines. What is the smallest number of bolts?"
+solution:
+  - text: "Take a different number of bolts from each machine. Each bolt from the faulty machine adds 1 g to the weight, so the extra grams tell how many bolts came from it, and so which machine it is. Two machines that gave the same number of bolts could not be told apart. The ten smallest different numbers are 0, 1, 2, ..., 9, which add up to 45: take no bolts from one machine, 1 from the next, and so on. If nothing is extra, the machine that gave no bolts is the faulty one."
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-5-6"
+difficulty: 4

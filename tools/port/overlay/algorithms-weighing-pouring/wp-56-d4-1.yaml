@@ -1,0 +1,6 @@
+# What a person adds to wp-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Four stones look alike, but each has a different weight."
+  - "A balance compares two stones at a time."
+unknown: "The smallest number of weighings that is sure to put the stones in order."
+simpler_case: "Try three stones. How many weighings are sure to put them in order?"

@@ -1,0 +1,9 @@
+# What a person adds to wp-34-d5-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are 10 coins that look the same, and one of them is a lighter fake."
+  - "The real coins all weigh the same, and the balance has no weights."
+unknown: "The smallest number of weighings that is sure to find the fake."
+simpler_case: "Try 4 coins with one lighter fake. How many weighings find it?"
+trap_texts:
+  "4": "Count the weighings again in the worst case."
+  "5": "Weighing in pairs takes 5 weighings; try bigger groups."

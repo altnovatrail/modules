@@ -1,0 +1,48 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d2-1.yaml, and the port writes this file again (R12).
+id: "wp-56-d2-1"
+statement:
+  - text: "A gardener has three empty buckets that hold 3, 5 and 8 litres, and a tap. In one step she fills a bucket from the tap or pours from one bucket into another. A pouring stops when one bucket is empty or the other is full. What is the smallest number of steps after which the 8-litre bucket holds exactly 2 litres?"
+  - picture: "pictures/wp-56-d2-1.png"
+    alt: "Three empty buckets of 3, 5 and 8 litres."
+    width: 272
+    height: 161
+givens: ["There are three empty buckets of 3, 5 and 8 litres, and a tap.", "A step fills a bucket from the tap or pours from one bucket into another until one is empty or the other is full."]
+unknown: "The smallest number of steps after which the 8-litre bucket holds exactly 2 litres."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["step", "steps"]
+          trap_values:
+            - value: "2"
+              trap: "ignored-condition"
+              text: "2 steps give 2 litres, but not in the 8-litre bucket."
+            - value: "6"
+              trap: "answered-other-question"
+              text: "6 is how many litres would have to leave a full 8-litre bucket, not a number of steps."
+            - value: "8"
+              trap: "number-from-text"
+              text: "8 is the size of the big bucket, copied from the question."
+            - value: "4"
+              trap: "missed-case"
+              text: "4 steps work, but there is a shorter way."
+    simpler_case: "Try having exactly 5 litres in the 8-litre bucket. How many steps does it take?"
+solution:
+  - text: "Fill the 5-litre bucket and pour it into the 3-litre one: 2 litres stay in the 5-litre bucket. Pour them into the 8-litre bucket. That is 3 steps. Two steps are not enough: after two steps the only way to have 2 litres is in the 5-litre bucket, not yet in the 8-litre one."
+  - picture: "pictures/wp-56-d2-1-solution.png"
+    alt: "The 3-litre bucket full, the 5-litre bucket empty and the 8-litre bucket holding 2 litres."
+    width: 272
+    height: 161
+techniques: ["backwards"]
+leak_phrases: ["3 steps", "three steps"]
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-5-6"
+difficulty: 2

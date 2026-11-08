@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d5-2.yaml, and the port writes this file again (R12).
+id: "wp-56-d5-2"
+statement:
+  - text: "Six balls that look alike lie at the corners A to F of a hexagon, in this order round it. The ball at A weighs 1 g, at B 5 g, at C 2 g, at D 6 g, at E 3 g and at F 4 g. A joker has swapped the balls at two opposite corners: A and D, B and E, or C and F. Which one weighing on a balance without weights is sure to show which two were swapped?"
+givens: ["Balls of 1, 5, 2, 6, 3 and 4 g lie at the corners A to F of a hexagon, in this order.", "The balls at two opposite corners were swapped: A and D, B and E, or C and F."]
+unknown: "The one weighing that is sure to show which two were swapped."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["The balls at A and B against the balls at C and D", "The ball at A against the ball at D", "The ball at B against the ball at E", "The balls at A and E against the ball at D", "No one weighing can do it"]
+        check:
+          kind: "choice"
+          key: "The balls at A and E against the ball at D"
+          trap_values:
+            - value: "The balls at A and B against the balls at C and D"
+              trap: "missed-case"
+              text: "This misses a case. If B and E were swapped, the pans hold 4 g against 8 g, and if C and F were, 6 g against 10 g, so the right pan sinks both times."
+            - value: "The ball at A against the ball at D"
+              trap: "best-case-not-worst"
+              text: "This shows the swap only if A and D were swapped. If B and E or C and F were, the pans hold 1 g against 6 g either way."
+            - value: "The ball at B against the ball at E"
+              trap: "best-case-not-worst"
+              text: "This shows the swap only if B and E were swapped. If A and D or C and F were, the pans hold 5 g against 3 g either way."
+            - value: "No one weighing can do it"
+              trap: "ignored-condition"
+              text: "That would be so if any two balls could have been swapped. But only balls at opposite corners were, so there are three cases, and one weighing has three results."
+    simpler_case: "Try the ball at A against the ball at D. What does it show if A and D were swapped?"
+solution:
+  - text: "Weigh the balls at A and E against the ball at D. If A and D were swapped, the left pan holds 6 + 3 = 9 g against 1 g and sinks. If B and E were swapped, it holds 1 + 5 = 6 g against 6 g, and the pans balance. If C and F were swapped, it holds 1 + 3 = 4 g against 6 g and rises. The three swaps give three different results."
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-5-6"
+difficulty: 5

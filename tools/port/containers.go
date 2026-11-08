@@ -7,7 +7,8 @@ import (
 
 // containersPicture is jugs, buckets and the like to pour between, as the schema of standalone's
 // tasks has it: 1 to 4 of them, each with how much it can hold, from 1 to 20, how much it holds
-// now, from 0 up to that, and a label. The picture writes both numbers on it.
+// now, from 0 up to that, and a label. The picture writes both numbers on it, and no marks on the
+// walls: the tasks pour between jugs that have none.
 type containersPicture struct {
 	Kind  string      `json:"kind"`
 	Items []container `json:"items"`
@@ -101,10 +102,6 @@ func (p *containersPicture) paint(c canvas) {
 		c.rect(left-jugWall, top, left, floor+jugWall, ink)
 		c.rect(right, top, right+jugWall, floor+jugWall, ink)
 		c.rect(left-jugWall, floor, right+jugWall, floor+jugWall, ink)
-		for unit := 1; unit < *item.Capacity; unit++ {
-			y := floor - float64(unit)*u
-			c.rect(left, y-0.5, left+6, y+0.5, ink)
-		}
 		amount := strconv.Itoa(*item.Amount)
 		switch {
 		case float64(*item.Amount)*u >= numberRoom:

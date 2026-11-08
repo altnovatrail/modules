@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d4-1.yaml, and the port writes this file again (R12).
+id: "wp-34-d4-1"
+statement:
+  - text: "There are 12 coins that look the same. One of them is fake and lighter than the others; all real coins weigh the same. What is the smallest number of weighings on a balance without weights that is sure to find the fake coin?"
+givens: ["There are 12 coins that look the same, and one of them is a lighter fake.", "The real coins all weigh the same, and the balance has no weights."]
+unknown: "The smallest number of weighings that is sure to find the fake."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["weighing", "weighings"]
+          trap_values:
+            - value: "2"
+              trap: "stopped-early"
+              text: "2 weighings have only 9 outcomes, but there are 12 coins."
+            - value: "4"
+              trap: "off-by-one"
+              text: "Count the weighings again in the worst case."
+            - value: "6"
+              trap: "wrong-operation"
+              text: "Weighing in pairs is slow; try bigger groups."
+            - value: "11"
+              trap: "answered-other-question"
+              text: "11 is how many coins are real."
+    simpler_case: "Try 9 coins with one lighter fake. How many weighings find it?"
+solution:
+  - text: "Weigh 4 coins against 4. The fake is among the 4 lighter coins, or among the 4 not weighed. 4 coins need 2 more weighings, so 3 in all. 2 weighings have only 3 × 3 = 9 outcomes, fewer than 12 coins, so they are not enough."
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-3-4"
+difficulty: 4

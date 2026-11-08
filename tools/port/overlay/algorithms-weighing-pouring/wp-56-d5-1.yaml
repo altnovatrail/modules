@@ -1,0 +1,6 @@
+# What a person adds to wp-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Nine coins lie in a circle, numbered 1 to 9 round it."
+  - "Five of them, next to each other, are lighter fakes; the real coins weigh the same, and so do the fakes."
+unknown: "The one weighing that is sure to show two of the fakes."
+simpler_case: "Try 3 coins in a row, 2 of them fakes next to each other. Which coin is surely a fake?"

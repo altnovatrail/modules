@@ -1,0 +1,9 @@
+# What a person adds to wp-34-d1-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "A bucket holds 10 litres of water."
+  - "Water is poured from it into an empty 7-litre jug until the jug is full."
+unknown: "How many litres are left in the bucket."
+simpler_case: "Try a bucket of 10 litres poured into an empty 4-litre jug. How many litres are left?"
+picture_alt: "A full 10-litre bucket and an empty 7-litre jug."
+trap_texts:
+  "17": "The water is poured out of the bucket, not into it."

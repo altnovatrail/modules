@@ -1,0 +1,9 @@
+# What a person adds to wp-34-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each weight weighs a whole number of kilograms."
+  - "With them Pavel wants to weigh any whole load from 1 to 13 kg in one weighing."
+  - "The weights may go on either pan, also next to the load."
+unknown: "The smallest number of weights he needs."
+simpler_case: "Try loads from 1 to 4 kg, with weights on either pan. How many weights does he need?"
+trap_texts:
+  "4": "Count the weights again."

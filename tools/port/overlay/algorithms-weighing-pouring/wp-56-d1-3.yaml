@@ -1,0 +1,9 @@
+# What a person adds to wp-56-d1-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Sam has a balance, one 1 kg weight and 11 kg of rice."
+  - "He wants a part of 3 kg and a part of 8 kg."
+unknown: "The smallest number of weighings he needs."
+simpler_case: "Try splitting 7 kg of rice into 3 kg and 4 kg with the 1 kg weight. How many weighings does it take?"
+techniques: [backwards]
+trap_texts:
+  "3": "3 weighings work, weighing out 1 kg three times, but a weighing can split the rice in other ways too."

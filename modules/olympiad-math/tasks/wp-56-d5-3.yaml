@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d5-3.yaml, and the port writes this file again (R12).
+id: "wp-56-d5-3"
+statement:
+  - text: "Eight weights of 10, 20, 30, 40, 50, 60, 70 and 80 g lie on the two pans of a balance, and one pan is heavier. Seven children take the weights away one at a time. Every time a child takes a weight, the other pan becomes the heavier one. Which weight can be left on the balance at the end?"
+givens: ["Weights of 10, 20, 30, 40, 50, 60, 70 and 80 g lie on the two pans, and one pan is heavier.", "Seven children take weights away one at a time, and each time the other pan becomes the heavier."]
+unknown: "Which weight can be left at the end."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Any of them", "80 g", "70 g", "Any of them but 80 g", "10 g"]
+        check:
+          kind: "choice"
+          key: "10 g"
+          trap_values:
+            - value: "Any of them"
+              trap: "ignored-condition"
+              text: "This leaves out the rule that every child makes the other pan heavier."
+            - value: "80 g"
+              trap: "reversed-relation"
+              text: "80 g can never be left: the last weight taken lay on the heavier pan, so it outweighed the one left, and nothing outweighs 80 g."
+            - value: "70 g"
+              trap: "missed-case"
+              text: "70 g would be left if 80 g were taken last, but the steps before matter too."
+            - value: "Any of them but 80 g"
+              trap: "stopped-early"
+              text: "The last step alone rules out only 80 g. Look at every step."
+    simpler_case: "Try two weights, 30 g and 40 g, one on each pan. Which can a child take so that the other pan becomes heavier?"
+solution:
+  - text: "All the weights are whole tens of grams, and the pans never balance, so the heavier pan always outweighs the other by 10 g or more. Taking 10 g from the lighter pan makes it lighter still, and taking it from the heavier pan leaves that pan heavier, or the pans balance. So no child can ever take the 10 g weight, and it is the weight left at the end. This can happen: with 10, 30, 50 and 70 g on one pan and 20, 40, 60 and 80 g on the other, the children take 80, 70, 60, 50, 40, 30 and 20 g in turn."
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-5-6"
+difficulty: 5
