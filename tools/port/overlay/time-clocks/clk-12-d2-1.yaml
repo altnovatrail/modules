@@ -1,0 +1,12 @@
+# What a person adds to clk-12-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The bus leaves at 9:30."
+  - "It arrives at 10:00."
+unknown: "How many minutes the trip takes."
+simpler_case: "Try a bus that leaves at 9:45 and arrives at 10:00. How many minutes does the trip take?"
+picture_alt: "A clock showing 9:30."
+trap_texts:
+  "60": "60 minutes is a whole hour. Is the trip that long?"
+  "70": "You took the minutes from 100, but an hour has 60 minutes."
+  "100": "An hour has 60 minutes, not 100."
+leak_phrases: ["30 minutes", "half an hour", "thirty minutes"]

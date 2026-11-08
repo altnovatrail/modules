@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-56-d5-3.yaml, and the port writes this file again (R12).
+id: "clk-56-d5-3"
+statement:
+  - text: "Ann, Ben and Cal start packing boxes at 13:00, and each of them packs 1 box every 3 minutes. Some time later, Zoe joins them and packs 1 box every 2 minutes. At 14:00 they have packed 75 boxes in all. At what time did Zoe join them?"
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["Ann, Ben and Cal start at 13:00, each packing 1 box every 3 minutes.", "Zoe joins later and packs 1 box every 2 minutes.", "At 14:00 they have packed 75 boxes in all."]
+unknown: "The time when Zoe joined."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "13:30"
+          options: ["13:50", "13:45", "14:30", "13:30", "13:00"]
+          trap_values:
+            - value: "13:50"
+              trap: "time-unit-mixup"
+              text: "13:50 writes half an hour as 50 minutes. Half an hour is not 50 minutes."
+            - value: "13:45"
+              trap: "wrong-operation"
+              text: "13:45 gives Zoe 15 minutes for her boxes, but she packs a box every 2 minutes."
+            - value: "14:30"
+              trap: "reversed-relation"
+              text: "14:30 counts on from 14:00, but she packed until 14:00."
+            - value: "13:00"
+              trap: "ignored-condition"
+              text: "13:00 has Zoe packing from the start, but then the four would have packed 60 + 30 = 90 boxes."
+    simpler_case: "Try Ann alone from 13:00, packing 1 box every 3 minutes. How many boxes has she packed at 14:00?"
+solution:
+  - text: "In the hour from 13:00 to 14:00, each of the three packs 60 ÷ 3 = 20 boxes, so together they pack 60. The other 75 − 60 = 15 boxes are Zoe's, and at 1 box every 2 minutes they take her 30 minutes. So she joined at 13:30."
+skills:
+  primary: ["time-clocks"]
+band: "grades-5-6"
+difficulty: 5

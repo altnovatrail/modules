@@ -1,0 +1,6 @@
+# What a person adds to clk-34-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The train leaves at 13:20."
+  - "It arrives at 15:05 on the same day."
+unknown: "How long the trip is."
+simpler_case: "Try a train from 13:20 to 14:05. How long is the trip?"

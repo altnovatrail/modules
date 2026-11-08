@@ -1,0 +1,9 @@
+# What a person adds to clk-12-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Tim went to bed at 9 o'clock in the evening."
+  - "He got up at 7 o'clock in the morning."
+unknown: "How many hours he slept."
+simpler_case: "Try going to bed at 9 o'clock in the evening and getting up at midnight. How many hours is that?"
+picture_alt: "A clock showing 9 o'clock."
+trap_texts:
+  "3": "3 hours take you only to midnight. Count on to the morning."

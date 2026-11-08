@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-56-d4-1.yaml, and the port writes this file again (R12).
+id: "clk-56-d4-1"
+statement:
+  - text: "A plane flies from Alpha to Beta. It takes off at 10:00 Alpha time and lands at 15:00 Beta time. On the way back it takes off at 17:00 Beta time and lands at 18:00 Alpha time. All of this happens on one day, and both flights take the same time. By how many hours are Beta's clocks ahead of Alpha's, or behind them?"
+givens: ["Out, the plane takes off at 10:00 Alpha time and lands at 15:00 Beta time.", "Back, it takes off at 17:00 Beta time and lands at 18:00 Alpha time.", "All of it happens on one day, and both flights take the same time."]
+unknown: "By how many hours Beta's clocks are ahead of Alpha's, or behind them."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["2 hours behind", "5 hours ahead", "2 hours ahead", "3 hours ahead", "4 hours ahead"]
+        check:
+          kind: "choice"
+          key: "2 hours ahead"
+          trap_values:
+            - value: "2 hours behind"
+              trap: "reversed-relation"
+              text: "If Beta's clocks were behind, the flight there would seem shorter than the flight back, not longer."
+            - value: "5 hours ahead"
+              trap: "ignored-condition"
+              text: "5 hours is how long the flight there seems by the clocks; the flight itself takes time too."
+            - value: "3 hours ahead"
+              trap: "stopped-early"
+              text: "3 hours is how long each flight takes, a step on the way."
+            - value: "4 hours ahead"
+              trap: "stopped-early"
+              text: "4 hours is the gap between how long the two flights seem, not the difference between the clocks."
+    simpler_case: "Try flights that seem to take 7 hours there and 1 hour back by the clocks. How long does each flight take?"
+solution:
+  - text: "By the clocks, the flight there seems to take 5 hours and the flight back 1 hour. The real flight time is the same both ways; the difference between the clocks is added to it on the way there and taken away on the way back. So each flight takes (5 + 1) ÷ 2 = 3 hours, and Beta's clocks are 5 − 3 = 2 hours ahead."
+skills:
+  primary: ["time-clocks"]
+band: "grades-5-6"
+difficulty: 4

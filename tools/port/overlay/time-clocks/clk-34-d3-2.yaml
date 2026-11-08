@@ -1,0 +1,12 @@
+# What a person adds to clk-34-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "One clock is 7 minutes fast, and another is 5 minutes slow."
+  - "The fast clock shows 10:02."
+unknown: "What the slow clock shows."
+simpler_case: "Try only one clock: it shows 10:02 and is 4 minutes fast. What is the real time?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 10:02."
+solution_picture_alt: "A clock showing 9:50."
+trap_texts:
+  "9:55": "9:55 takes off only the 7 minutes of the fast clock. The slow clock is behind the real time too."
+  "10:00": "You took away the difference of 2 minutes, but one clock is fast and the other slow."

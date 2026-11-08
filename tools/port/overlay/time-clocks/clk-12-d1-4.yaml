@@ -1,0 +1,11 @@
+# What a person adds to clk-12-d1-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "It is 7 o'clock now."
+unknown: "The time in half an hour."
+simpler_case: "Try a whole hour first: it is 7 o'clock. What time will it be in 1 hour?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 7 o'clock."
+trap_texts:
+  "7:15": "15 minutes is a quarter of an hour, not half an hour."
+  "7:50": "An hour has 60 minutes, not 100."
+  "8:00": "8:00 is a whole hour later, not half an hour."

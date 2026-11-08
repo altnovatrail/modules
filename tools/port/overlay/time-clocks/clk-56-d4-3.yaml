@@ -1,0 +1,8 @@
+# What a person adds to clk-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Both clocks are set right at noon."
+  - "One gains 2 minutes every hour, and the other loses 3 minutes every hour."
+unknown: "After how many days they first show the same time again."
+simpler_case: "Try one clock that gains 5 minutes every hour and one that is always right. After how many hours is the first clock a whole hour ahead?"
+trap_texts:
+  "144": "144 is a number of hours, not of days."

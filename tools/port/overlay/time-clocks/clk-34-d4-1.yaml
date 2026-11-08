@@ -1,0 +1,12 @@
+# What a person adds to clk-34-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The clock gains 3 minutes every hour."
+  - "It was set right at 8:00."
+  - "Now it shows 12:12."
+unknown: "The real time."
+simpler_case: "Try a clock that gains 3 minutes an hour, set right at 8:00, that now shows 9:03. What is the real time?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 12:12."
+trap_texts:
+  "11:48": "You took away too much. Find how far ahead the clock is."
+  "12:09": "3 minutes is the gain of one hour only."

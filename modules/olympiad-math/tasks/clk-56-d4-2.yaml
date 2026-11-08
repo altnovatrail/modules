@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-56-d4-2.yaml, and the port writes this file again (R12).
+id: "clk-56-d4-2"
+statement:
+  - text: "Lena sets her watch right at 8:00 at home. The watch gains 5 minutes in every hour of real time. She flies to a city whose clocks show 3 hours more than at home. When she lands later that day, her watch shows 21:00. What is the local time in that city?"
+  - picture: "pictures/clk-56-d4-2.png"
+    alt: "A clock showing 8 o'clock."
+    width: 200
+    height: 200
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["Lena sets her watch right at 8:00 at home.", "The watch gains 5 minutes in every hour of real time.", "The city's clocks show 3 hours more than at home.", "When she lands, her watch shows 21:00."]
+unknown: "The local time in the city."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "23:00"
+          options: ["0:00", "17:00", "23:00", "20:00", "22:55"]
+          trap_values:
+            - value: "0:00"
+              trap: "ignored-condition"
+              text: "0:00 believes the watch, but it gains 5 minutes every hour."
+            - value: "17:00"
+              trap: "reversed-relation"
+              text: "17:00 takes the 3 hours away, but the city's clocks show more than at home."
+            - value: "20:00"
+              trap: "stopped-early"
+              text: "20:00 is the time at home, not in the city."
+            - value: "22:55"
+              trap: "wrong-operation"
+              text: "22:55 takes off 5 minutes for each hour the watch counted, but the watch gains 5 minutes in each real hour."
+    simpler_case: "Try a watch that is always right: it shows 21:00 when she lands in a city whose clocks show 1 hour more. What is the local time there?"
+solution:
+  - text: "The watch moved on 13 hours, which is 780 minutes. In each real hour it moves 65 minutes, so 780 ÷ 65 = 12 real hours passed, and the time at home is 20:00. The clocks in the city show 3 hours more: 23:00."
+skills:
+  primary: ["time-clocks"]
+band: "grades-5-6"
+difficulty: 4

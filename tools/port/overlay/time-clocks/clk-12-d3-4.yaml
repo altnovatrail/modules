@@ -1,0 +1,10 @@
+# What a person adds to clk-12-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "It takes 3 minutes to boil an egg."
+  - "3 eggs boil together in one pot."
+unknown: "How many minutes it takes to boil the 3 eggs."
+simpler_case: "Try 2 eggs that take 5 minutes each, boiled together in one pot. How many minutes does it take?"
+trap_texts:
+  "6": "You added 3 and 3. Think how the eggs boil in one pot."
+  "12": "You multiplied, but think how the eggs boil in one pot."
+leak_phrases: ["does not grow", "still takes", "the same time"]

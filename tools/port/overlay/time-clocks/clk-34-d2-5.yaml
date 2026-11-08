@@ -1,0 +1,10 @@
+# What a person adds to clk-34-d2-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The plane takes off at 22:40."
+  - "It lands at 1:15 the next day."
+unknown: "How long the flight is."
+simpler_case: "Try a flight from 23:30 to 1:00. How long is it?"
+picture_alt: "A clock showing 1:15."
+trap_texts:
+  "2 hours 25 minutes": "Count the time from 22:40 to midnight again."
+  "3 hours 35 minutes": "Count the time from 22:40 to midnight again."

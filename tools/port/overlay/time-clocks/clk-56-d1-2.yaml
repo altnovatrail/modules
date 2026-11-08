@@ -1,0 +1,11 @@
+# What a person adds to clk-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The clock calls once at every half hour and, at every full hour, as many times as the hour."
+  - "Its hands show 4:20."
+  - "The minute hand is turned forward 3 whole turns, and the hour hand moves along."
+unknown: "How many times the cuckoo calls."
+simpler_case: "Try a clock that shows 1:20, turned forward 1 whole turn. How many times does the cuckoo call?"
+picture_alt: "A clock showing 4:20."
+trap_texts:
+  "18": "18 counts only the calls at the full hours. The half hours call too."
+  "25": "25 counts the calls of 4:00 too, but the hands were already past 4:00 when Tim began."

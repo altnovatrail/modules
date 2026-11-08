@@ -1,7 +1,7 @@
-# The traps of this module's tasks: 13 of the 20 traps of mathtrail-standalone, as the format's
+# The traps of this module's tasks: 14 of the 20 traps of mathtrail-standalone, as the format's
 # example of this module has them, each with its description and its advice, but the advice of
-# wrong-parity, which holds no number or parity word here (R13). Each ID is the trap's, with _
-# made -. standalone's content in this module carries the MIT notice of NOTICE.
+# wrong-parity and of time-unit-mixup, which hold no number or parity word here (R13). Each ID is
+# the trap's, with _ made -. standalone's content in this module carries the MIT notice of NOTICE.
 traps:
   off-by-one:
     description: Off by one when counting gaps, floors or saw cuts.
@@ -33,6 +33,9 @@ traps:
   trusted-statement:
     description: Took a statement as true without checking whether the speaker may be lying.
     trap_advice: "For each speaker, try both: what follows if they tell the truth, and what follows if they lie."
+  time-unit-mixup:
+    description: Mixed up hours and minutes, or counted 100 minutes in an hour.
+    trap_advice: Draw a clock face and count on in minutes, remembering how many minutes an hour has.
   number-from-text:
     description: Answered with a number from the question without computing anything.
     trap_advice: "Before writing a number down, say which calculation it comes from: a number copied from the question is rarely the answer."

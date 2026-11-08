@@ -1,0 +1,9 @@
+# What a person adds to clk-12-d1-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The film starts at 3 o'clock."
+  - "It ends at 5 o'clock."
+unknown: "How many hours long the film is."
+simpler_case: "Try a film from 3 o'clock to 6 o'clock. How many hours long is it?"
+picture_alt: "A clock showing 3 o'clock."
+trap_texts:
+  "1": "Count each hour from 3 o'clock on, until 5 o'clock."

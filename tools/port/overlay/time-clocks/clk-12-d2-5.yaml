@@ -1,0 +1,8 @@
+# What a person adds to clk-12-d2-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Anna's watch is 10 minutes fast."
+  - "It shows 8:20."
+unknown: "The real time."
+simpler_case: "Try a watch that is 10 minutes fast and shows 9:00. What is the real time?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 8:20."

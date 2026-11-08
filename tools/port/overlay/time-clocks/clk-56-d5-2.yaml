@@ -1,0 +1,7 @@
+# What a person adds to clk-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "At 10:40 the boat sets off up the river, and a ball falls into the water."
+  - "At 11:05 the boat turns round."
+  - "Through the water the boat always goes at the same speed."
+unknown: "The time when the boat reaches the ball."
+simpler_case: "Try a lake with no current: the boat goes away from a ball for 10 minutes from 10:40, then turns. When does it reach the ball?"

@@ -1,0 +1,11 @@
+# What a person adds to clk-12-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Tom's clock goes 2 minutes too fast every hour."
+  - "He sets it right at 8:00 in the morning."
+unknown: "What it shows when the real time is 12:00 noon."
+simpler_case: "Try the real time 10:00. What does the clock show?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 8 o'clock."
+trap_texts:
+  "12:02": "2 minutes is for one hour. Count the hours from 8:00 to 12:00."
+  "12:10": "Count the hours from 8:00 to 12:00 again."

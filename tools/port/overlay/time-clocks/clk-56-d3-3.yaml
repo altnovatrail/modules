@@ -1,0 +1,12 @@
+# What a person adds to clk-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "When it is noon in London, it is 15:00 in Moscow."
+  - "When it is 15:00 in Moscow, it is 20:00 in Beijing."
+  - "It is 1:00 on Saturday in Beijing."
+unknown: "The day and time in London."
+simpler_case: "Try only Moscow and Beijing: it is 23:00 on Friday in Beijing. What day and time is it in Moscow?"
+trap_texts:
+  "17:00 on Saturday": "Going back from 1:00 on Saturday passes midnight."
+  "9:00 on Saturday": "9:00 adds the hours, but the clocks in London show less than in Beijing."
+  "20:00 on Friday": "20:00 on Friday is the time in Moscow, not in London."
+  "23:00 on Friday": "23:00 takes the two differences away from each other, but they add up."
