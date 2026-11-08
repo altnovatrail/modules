@@ -1,0 +1,9 @@
+# What a person adds to ord-12-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Tom is taller than Sam but shorter than Leo."
+  - "Max is shorter than Sam."
+unknown: "Who is the second tallest."
+simpler_case: "Try three boys: Leo is taller than Sam, and Sam is taller than Max. Who is the second tallest?"
+solution_picture_alt: "Four boys in a row from the tallest, marked L, T, S and M; T is ringed."
+trap_texts:
+  "It is impossible to tell": "All the facts together give the order. Line the boys up from the tallest."

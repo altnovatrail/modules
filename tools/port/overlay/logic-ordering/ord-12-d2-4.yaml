@@ -1,0 +1,9 @@
+# What a person adds to ord-12-d2-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Eva finished before Tom, and Tom before Max."
+  - "Leo finished after Max."
+unknown: "Who finished third."
+simpler_case: "Try three runners: Eva finished before Tom, and Tom before Leo. Who finished third?"
+trap_texts:
+  "Leo": "Leo finished after everyone else, so he was last, not third."
+  "It is impossible to tell": "The facts give the whole order. Write the runners from the first."

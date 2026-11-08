@@ -1,0 +1,9 @@
+# What a person adds to ord-12-d1-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The red box is heavier than the blue box."
+  - "The green box is lighter than the blue box."
+unknown: "Which box is the lightest."
+simpler_case: "Try two boxes: the red box is heavier than the blue box. Which box is lighter?"
+trap_texts:
+  "the blue box": "The blue box is lighter than the red box, but one box is lighter still."
+  "It is impossible to tell": "Put the facts together and line the boxes up from the heaviest."

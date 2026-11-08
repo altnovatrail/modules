@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-12-d2-3.yaml, and the port writes this file again (R12).
+id: "ord-12-d2-3"
+statement:
+  - text: "Rex is bigger than Spot. Spot is bigger than Max. Max is bigger than Bo. Which dog is the second biggest?"
+givens: ["Rex is bigger than Spot.", "Spot is bigger than Max.", "Max is bigger than Bo."]
+unknown: "Which dog is the second biggest."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Spot"
+          options: ["Rex", "Max", "Bo", "It is impossible to tell", "Spot"]
+          trap_values:
+            - value: "Rex"
+              trap: "answered-other-question"
+              text: "Rex is the biggest. The question asks about the second biggest."
+            - value: "Max"
+              trap: "off-by-one"
+              text: "Max is the third biggest."
+            - value: "Bo"
+              trap: "reversed-relation"
+              text: "Bo is the smallest dog."
+            - value: "It is impossible to tell"
+              trap: "ignored-condition"
+              text: "The three facts give the whole order. Line the dogs up from the biggest."
+    simpler_case: "Try three dogs: Rex is bigger than Max, and Max is bigger than Bo. Which dog is the second biggest?"
+solution:
+  - text: "From the biggest: Rex, Spot, Max, Bo. The second biggest is Spot."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-1-2"
+difficulty: 2

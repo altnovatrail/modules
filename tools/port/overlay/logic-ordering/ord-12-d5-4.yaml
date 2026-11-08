@@ -1,0 +1,11 @@
+# What a person adds to ord-12-d5-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Sam, Tom, Ula and Vera sit on a bench."
+  - "Sam sits at one end, and Tom next to Sam."
+  - "Vera does not sit next to Tom."
+unknown: "Who sits at the other end."
+simpler_case: "Try three children, Sam, Tom and Ula: Sam sits at one end and Tom next to him. Who sits at the other end?"
+techniques: [table]
+trap_texts:
+  "Ula": "If Ula sits at the other end, check who is left for the 3rd seat, next to Tom."
+  "It is impossible to tell": "Try both ends for Sam: either way the same child is at the other end."

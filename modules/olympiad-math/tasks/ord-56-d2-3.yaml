@@ -1,0 +1,41 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-56-d2-3.yaml, and the port writes this file again (R12).
+id: "ord-56-d2-3"
+statement:
+  - text: "Five stalls stand in a row at a fair, numbered 1 to 5 from the gate. They sell toys, candy, cakes, popcorn and juice. The toy stall (T) is number 4. The candy stall is right next to the cake stall. The cake stall is further from the gate than the popcorn stall. What number is the popcorn stall?"
+  - picture: "pictures/ord-56-d2-3.png"
+    alt: "Five stalls in a row from the gate, the fourth marked T."
+    width: 272
+    height: 74
+givens: ["Five stalls stand in a row, numbered 1 to 5 from the gate.", "The toy stall is number 4.", "The candy stall is right next to the cake stall.", "The cake stall is further from the gate than the popcorn stall."]
+unknown: "The number of the popcorn stall."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "1"
+          trap_values:
+            - value: "5"
+              trap: "reversed-relation"
+              text: "At 5 the popcorn would be further from the gate than the cakes; it is the cakes that are further."
+            - value: "2"
+              trap: "ignored-condition"
+              text: "2 fits only if the candy stall need not stand next to the cake stall."
+            - value: "4"
+              trap: "number-from-text"
+              text: "4 is the toy stall's number, given in the question."
+    simpler_case: "Try four stalls, numbered from the gate: toys at the last one, and the cakes further from the gate than both the popcorn and the juice. What number is the cake stall?"
+solution:
+  - text: "Stall 4 sells toys, so the candy and cake stalls are 1 and 2, or 2 and 3. The cakes are further from the gate than the popcorn, so they are not at 1, and with the cakes at 2 and the candy at 1 no stall nearer the gate is left for the popcorn. So the candy and the cakes take 2 and 3. The only free stall nearer the gate than the cakes is 1: the popcorn is at 1, and the juice at 5."
+techniques: ["table"]
+traps: ["ignored-condition"]
+leak_phrases: ["stall 1", "number 1", "popcorn is at 1"]
+skills:
+  primary: ["logic-ordering"]
+band: "grades-5-6"
+difficulty: 2

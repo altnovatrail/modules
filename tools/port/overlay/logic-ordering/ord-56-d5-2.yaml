@@ -1,0 +1,15 @@
+# What a person adds to ord-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five houses in a row are numbered 1 to 5 from the left."
+  - "Each is red, blue, green, yellow or white, and in each lives a cat, a dog, a fish, a bird or a horse."
+  - "The blue house is house 3, and the green house stands just to the left of the white one."
+  - "The dog lives in the red house, and the cat next door to the dog."
+  - "The fish lives in house 5, and the bird next door to the yellow house."
+unknown: "Which pet lives in the green house."
+simpler_case: "Try three houses numbered 1 to 3 from the left, red, green and white: the green house stands just to the left of the white one, and the red house is house 1. Which house is the white one?"
+techniques: [table]
+picture_alt: "Five houses in a row, numbered 1 to 5 from the left."
+trap_texts:
+  "The cat": "The cat lives next door to the dog. Find the dog's house first, then check the green one."
+  "The bird": "The bird lives next door to the yellow house. Find where the yellow house is first."
+  "The dog": "The dog lives in the red house. The question asks about the green house."

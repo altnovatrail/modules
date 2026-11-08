@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-12-d5-1.yaml, and the port writes this file again (R12).
+id: "ord-12-d5-1"
+statement:
+  - text: "Five children stand in a line. Kim is last, and Dan stands right in front of Kim. Ann is not first and not last. Ben stands right in front of Ann. Eva is not first. In which place is Eva?"
+givens: ["Five children stand in a line.", "Kim is last, and Dan stands right in front of Kim.", "Ann is not first and not last, and Ben stands right in front of Ann.", "Eva is not first."]
+unknown: "In which place Eva stands."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["st", "nd", "rd", "th"]
+          trap_values:
+            - value: "1"
+              trap: "ignored-not"
+              text: "Eva is not first."
+            - value: "2"
+              trap: "reversed-relation"
+              text: "Ben stands right in front of Ann, and that pair must fit somewhere. Try each place for Ann."
+            - value: "4"
+              trap: "ignored-condition"
+              text: "Dan stands 4th, right in front of Kim."
+            - value: "5"
+              trap: "ignored-condition"
+              text: "Kim is last."
+    simpler_case: "Try four children: Kim is last, Ben stands right in front of Ann, and Eva is not next to Kim. In which place is Eva?"
+solution:
+  - text: "Kim is 5th and Dan is 4th. Ann can be 2nd or 3rd, with Ben right in front of her. If Ann were 3rd, Ben would be 2nd and Eva 1st, but Eva is not first. So Ben is 1st, Ann 2nd and Eva 3rd."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-1-2"
+difficulty: 5

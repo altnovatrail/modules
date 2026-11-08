@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-56-d2-1.yaml, and the port writes this file again (R12).
+id: "ord-56-d2-1"
+statement:
+  - text: "Five friends compared their heights. Max is shorter than Lily. Paul is taller than Lily. Rita is taller than Olga but shorter than Max. The friends line up from the shortest to the tallest. Who stands second?"
+givens: ["Max is shorter than Lily, and Paul taller than Lily.", "Rita is taller than Olga but shorter than Max.", "The friends line up from the shortest to the tallest."]
+unknown: "Who stands second."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Rita"
+          options: ["Lily", "Rita", "Max", "Olga", "Paul"]
+          trap_values:
+            - value: "Lily"
+              trap: "reversed-relation"
+              text: "Lily is second from the tallest end; the line starts from the shortest."
+            - value: "Max"
+              trap: "ignored-condition"
+              text: "Two friends are shorter than Max, so he is not second from the shortest."
+            - value: "Olga"
+              trap: "off-by-one"
+              text: "Olga is the shortest, so she stands first, not second."
+            - value: "Paul"
+              trap: "answered-other-question"
+              text: "Paul is the tallest, at the far end of the line."
+    simpler_case: "Try three friends: Max is shorter than Lily, and Paul taller than Lily. They line up from the shortest. Who stands second?"
+solution:
+  - text: "Paul is taller than Lily, and Lily is taller than Max. Rita is shorter than Max but taller than Olga. So from the shortest the line is Olga, Rita, Max, Lily, Paul, and Rita stands second."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-5-6"
+difficulty: 2

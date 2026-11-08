@@ -1,0 +1,7 @@
+# What a person adds to ord-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Lara, Maya, Nell, Olive, Paula and Rosa swam a race."
+  - "Olive finished after Maya, and Rosa and Nell before Maya."
+  - "Paula finished after Olive, but not right after her."
+unknown: "Who finished fifth."
+simpler_case: "Try five girls, Maya, Nell, Olive, Paula and Rosa: Rosa and Nell finished before Maya, Olive after Maya, and Paula after Olive. Who finished fourth?"

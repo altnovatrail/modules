@@ -1,0 +1,7 @@
+# What a person adds to ord-34-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Six children stand in a row, and Kim at the right end."
+  - "Exactly 2 children stand between Ben and Kim, and exactly 1 between Ann and Ben."
+  - "Ann does not stand at an end."
+unknown: "In which place from the left Ann stands."
+simpler_case: "Try five children: Kim is at the right end, and exactly 1 child stands between Ben and Kim. In which place from the left is Ben?"

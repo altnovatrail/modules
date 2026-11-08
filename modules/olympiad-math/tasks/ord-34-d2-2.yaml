@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-34-d2-2.yaml, and the port writes this file again (R12).
+id: "ord-34-d2-2"
+statement:
+  - text: "Five runners finished a race. Hal won. Dan finished after Eva but before Fay. Gil finished right after Fay. Who finished third?"
+givens: ["Five runners finished a race, and Hal won.", "Dan finished after Eva but before Fay.", "Gil finished right after Fay."]
+unknown: "Who finished third."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Dan"
+          options: ["Dan", "Eva", "Fay", "Gil", "Hal"]
+          trap_values:
+            - value: "Eva"
+              trap: "reversed-relation"
+              text: "Eva finished 2nd, right after Hal."
+            - value: "Fay"
+              trap: "ignored-condition"
+              text: "Gil comes right after Fay, so Fay is 4th."
+            - value: "Gil"
+              trap: "reversed-relation"
+              text: "Gil finished right after Fay, at the end."
+            - value: "Hal"
+              trap: "answered-other-question"
+              text: "Hal won the race; the question asks who was third."
+    simpler_case: "Try four runners: Hal won, Eva finished before Fay, and Gil right after Fay. Who finished third?"
+solution:
+  - text: "Hal is 1st. Eva, Dan and Fay come in this order, and Gil is right after Fay. So the order is Hal, Eva, Dan, Fay, Gil, and Dan is third."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-3-4"
+difficulty: 2

@@ -1,0 +1,11 @@
+# What a person adds to ord-34-d5-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five houses in a row are red, blue, green, white and yellow."
+  - "The green house is second from the left, and the yellow house next to it."
+  - "The white house is at the right end and not next to the red one."
+  - "The red house is next to the blue one."
+unknown: "The colour of the house in the middle."
+simpler_case: "Try four houses, green, yellow, blue and white: the yellow house is at the left end, the green one next to it, and the white one at the right end. What colour is the house second from the right?"
+techniques: [table]
+trap_texts:
+  "blue": "With blue in the middle, check the fact about the white house."

@@ -1,0 +1,10 @@
+# What a person adds to ord-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann is taller than Dan."
+  - "Dan is taller than Ben and taller than Eve."
+  - "Kim is shorter than Ben and shorter than Eve."
+  - "Fay is shorter than Kim."
+unknown: "Which two children cannot be put in order of height."
+simpler_case: "Try four children: Ann is taller than Dan, and Dan is taller than Ben and taller than Kim. Which two cannot be put in order?"
+trap_texts:
+  "None: all six can be put in order": "Look for two children whom no chain of results compares."

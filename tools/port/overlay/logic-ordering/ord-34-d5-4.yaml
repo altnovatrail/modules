@@ -1,0 +1,9 @@
+# What a person adds to ord-34-d5-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Six runners finished a race without ties."
+  - "Kolya finished ahead of exactly 4 runners."
+  - "Dima finished behind exactly 3 runners."
+unknown: "How many runners finished between Kolya and Dima."
+simpler_case: "Try six runners: Kolya finished ahead of exactly 5, and Dima behind exactly 4. How many finished between them?"
+trap_texts:
+  "2": "Find the places of Kolya and Dima first, then count the places between them."

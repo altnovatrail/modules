@@ -1,0 +1,9 @@
+# What a person adds to ord-34-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Six runners finished a race without ties."
+  - "Pavel beat Ruslan, Ruslan beat Semyon, Semyon beat Timur, and Timur beat Uliana."
+  - "Vika beat Pavel."
+unknown: "How many runners finished between Vika and Timur."
+simpler_case: "Try four runners: Vika beat Pavel, Pavel beat Ruslan, and Ruslan beat Timur. How many finished between Vika and Timur?"
+trap_texts:
+  "2": "Some runner is missing. Write the whole order and count again between Vika and Timur."

@@ -1,0 +1,10 @@
+# What a person adds to ord-12-d5-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann is 2 years older than Ben."
+  - "Ben is 3 years younger than Kim."
+  - "Kim is 1 year older than Dan."
+unknown: "Who is the youngest."
+simpler_case: "Try three children: Kim is 1 year older than Dan, and Ann is 2 years younger than Kim. Who is the youngest of Kim, Dan and Ann?"
+trap_texts:
+  "Ann": "Ann is older than someone, so she is not the youngest."
+  "Dan": "Dan is younger than Kim, but still older than one of the others."

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-34-d1-3.yaml, and the port writes this file again (R12).
+id: "ord-34-d1-3"
+statement:
+  - text: "Five boxes weigh 1, 2, 3, 4 and 5 kilograms. The red box is heavier than the green box but lighter than the blue box. The green box weighs 3 kilograms. How many kilograms does the red box weigh?"
+givens: ["The boxes weigh 1, 2, 3, 4 and 5 kilograms.", "The red box is heavier than the green box but lighter than the blue box.", "The green box weighs 3 kilograms."]
+unknown: "How many kilograms the red box weighs."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["kg", "kilogram", "kilograms"]
+          trap_values:
+            - value: "2"
+              trap: "reversed-relation"
+              text: "The red box is heavier than the green box, not lighter."
+            - value: "3"
+              trap: "number-from-text"
+              text: "3 kg is the green box."
+            - value: "5"
+              trap: "answered-other-question"
+              text: "5 kilograms leaves no box heavier than the red one, but the blue box is heavier."
+            - value: "6"
+              trap: "ignored-condition"
+              text: "The boxes weigh only 1 to 5 kilograms."
+    simpler_case: "Try three boxes of 1, 2 and 3 kilograms: the red box is heavier than the green one but lighter than the blue one. How many kilograms does the red box weigh?"
+solution:
+  - text: "The red box is heavier than 3 kg, so it weighs 4 or 5 kg. The blue box is heavier still, so blue is 5 kg and red is 4 kg."
+leak_phrases: ["weighs 4", "4 kilograms", "4 kg"]
+skills:
+  primary: ["logic-ordering"]
+band: "grades-3-4"
+difficulty: 1

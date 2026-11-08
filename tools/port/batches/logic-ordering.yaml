@@ -1,0 +1,78 @@
+# The tasks of logic-ordering of standalone at 42b4408: all 65 of them (E3; T27). The units are the
+# word a question counts, in the singular and the plural, a measure with its abbreviation, and the
+# endings of an ordinal; a task whose answer is no number, or a number by itself, has none.
+# standalone's site links the topic to the technique table, which goes in the overlay of each task
+# that matches things to places.
+standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+skills:
+  logic-ordering:
+    techniques: []
+tasks:
+  ord-12-d1-1: {}
+  ord-12-d1-2: {}
+  ord-12-d1-3: {units: [boy, boys]}
+  ord-12-d1-4: {}
+  ord-12-d1-5: {}
+  ord-12-d2-1: {}
+  ord-12-d2-2: {units: [friend, friends]}
+  ord-12-d2-3: {}
+  ord-12-d2-4: {}
+  ord-12-d2-5: {units: [person, people]}
+  ord-12-d3-1: {units: [st, nd, rd, th]}
+  ord-12-d3-2: {}
+  ord-12-d3-3: {}
+  ord-12-d3-4: {}
+  ord-12-d3-5: {units: [boy, boys]}
+  ord-12-d4-1: {}
+  ord-12-d4-2: {}
+  ord-12-d4-3: {units: [place, places]}
+  ord-12-d4-4: {}
+  ord-12-d4-5: {}
+  ord-12-d5-1: {units: [st, nd, rd, th]}
+  ord-12-d5-2: {}
+  ord-12-d5-3: {}
+  ord-12-d5-4: {}
+  ord-12-d5-5: {}
+  ord-34-d1-1: {}
+  ord-34-d1-2: {units: [st, nd, rd, th]}
+  ord-34-d1-3: {units: [kg, kilogram, kilograms]}
+  ord-34-d1-4: {units: [child, children]}
+  ord-34-d1-5: {}
+  ord-34-d2-1: {}
+  ord-34-d2-2: {}
+  ord-34-d2-3: {units: [box, boxes]}
+  ord-34-d2-4: {}
+  ord-34-d2-5: {}
+  ord-34-d3-1: {}
+  ord-34-d3-2: {}
+  ord-34-d3-3: {units: [st, nd, rd, th]}
+  ord-34-d3-4: {}
+  ord-34-d3-5: {}
+  ord-34-d4-1: {units: [st, nd, rd, th]}
+  ord-34-d4-2: {units: [runner, runners]}
+  ord-34-d4-3: {}
+  ord-34-d4-4: {units: [st, nd, rd, th]}
+  ord-34-d4-5: {units: [cm, centimetre, centimetres]}
+  ord-34-d5-1: {units: [st, nd, rd, th]}
+  ord-34-d5-2: {}
+  ord-34-d5-3: {}
+  ord-34-d5-4: {units: [runner, runners]}
+  ord-34-d5-5: {}
+  ord-56-d1-1: {units: [st, nd, rd, th]}
+  ord-56-d1-2: {}
+  ord-56-d1-3: {}
+  ord-56-d2-1: {}
+  ord-56-d2-2: {units: [st, nd, rd, th]}
+  ord-56-d2-3: {}
+  ord-56-d3-1: {}
+  ord-56-d3-2: {}
+  ord-56-d3-3: {}
+  ord-56-d4-1: {}
+  ord-56-d4-2: {}
+  ord-56-d4-3: {}
+  ord-56-d5-1: {}
+  ord-56-d5-2: {}
+  ord-56-d5-3: {}

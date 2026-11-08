@@ -1,0 +1,15 @@
+# What a person adds to ord-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Seven bikes stand in a rack with slots numbered 1 to 7 from the left."
+  - "Hana's bike is in slot 3."
+  - "Exactly three bikes stand between Ivo's and Jon's."
+  - "Kai's bike is right next to Jon's, on its right."
+  - "Lea's bike is to the right of Hana's but to the left of Ivo's."
+unknown: "The slot of Ivo's bike."
+simpler_case: "Try five slots, numbered from the left: Hana's bike is in slot 2, Lea's right next to Hana's on its right, and Ivo's right next to Lea's on its right. In which slot is Ivo's bike?"
+techniques: [table]
+picture_alt: "A rack of seven slots in a row, numbered 1 to 7 from the left."
+solution_picture_alt: "The rack with J under slot 1, K under slot 2, H under slot 3, L under slot 4 and I under slot 5, which is ringed; slots 6 and 7 are empty."
+trap_texts:
+  "4": "4 is the slot of someone else's bike. The question asks about Ivo's."
+leak_phrases: ["slot 5", "fifth slot"]

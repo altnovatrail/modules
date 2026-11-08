@@ -1,0 +1,12 @@
+# What a person adds to ord-12-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Four jars stand on a shelf: jam, honey, salt and pickles."
+  - "The salt is at the left end, and the honey at neither end."
+  - "The jam stands just to the right of the honey."
+  - "The pickles are not next to the salt."
+unknown: "Which jar is at the right end."
+simpler_case: "Try three jars, jam, honey and salt: the salt is at the left end, and the jam just to the right of the honey. Which jar is at the right end?"
+techniques: [table]
+trap_texts:
+  "the jam": "The jam is just to the right of the honey, but the last fact still has to fit."
+  "It is impossible to tell": "Use the last fact too: then only one order is left."

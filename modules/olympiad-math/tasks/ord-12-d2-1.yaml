@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-12-d2-1.yaml, and the port writes this file again (R12).
+id: "ord-12-d2-1"
+statement:
+  - text: "Four children stand in a line. Kim stands first and Dan stands last. Ann stands right behind Ben. Who stands second?"
+givens: ["Four children stand in a line.", "Kim stands first and Dan stands last.", "Ann stands right behind Ben."]
+unknown: "Who stands second."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Ben"
+          options: ["Ann", "Kim", "Ben", "Dan", "It is impossible to tell"]
+          trap_values:
+            - value: "Ann"
+              trap: "reversed-relation"
+              text: "Ann stands right behind another child, so she is not the first of the two in the middle."
+            - value: "Kim"
+              trap: "ignored-condition"
+              text: "Kim stands first, not second."
+            - value: "Dan"
+              trap: "ignored-condition"
+              text: "Dan stands last."
+            - value: "It is impossible to tell"
+              trap: "stopped-early"
+              text: "The two middle places go to two children, and the facts say which of them is in front."
+    simpler_case: "Try three children, Kim, Ann and Dan: Kim stands first and Dan last. Who stands second?"
+solution:
+  - text: "Kim is first and Dan is last, so Ann and Ben take places 2 and 3. Ann is right behind Ben, so Ben is second and Ann is third."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-1-2"
+difficulty: 2

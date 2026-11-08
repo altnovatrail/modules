@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-56-d1-1.yaml, and the port writes this file again (R12).
+id: "ord-56-d1-1"
+statement:
+  - text: "Five friends ran a race: Kim, Leo, Max, Nina and Olga. Leo finished right after Nina. Olga finished before Kim, and Max finished after Kim but was not last. In which place did Max finish?"
+givens: ["Kim, Leo, Max, Nina and Olga ran a race.", "Leo finished right after Nina.", "Olga finished before Kim, and Max after Kim but not last."]
+unknown: "In which place Max finished."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["st", "nd", "rd", "th"]
+          trap_values:
+            - value: "5"
+              trap: "ignored-condition"
+              text: "5 forgets that Max was not last."
+            - value: "4"
+              trap: "ignored-condition"
+              text: "4 leaves a place between Nina and Leo, but Leo finished right after Nina. The two need two places side by side."
+            - value: "1"
+              trap: "reversed-relation"
+              text: "1 puts Max before Kim, but Max finished after Kim."
+            - value: "2"
+              trap: "off-by-one"
+              text: "2 is how many friends finished ahead of Max, not his place."
+    simpler_case: "Try four friends, Kim, Max, Nina and Leo: Leo finished right after Nina, and Max after Kim but not last. In which place did Max finish?"
+solution:
+  - text: "Olga and Kim finished before Max, so Max was at least third, and he was not last. If Max were fourth, only the last place would be left after him, and Nina and Leo, who need two places side by side, would not fit before him with Olga and Kim. So Max was third: Olga, Kim, Max, Nina, Leo."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-5-6"
+difficulty: 1

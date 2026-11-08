@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-34-d3-1.yaml, and the port writes this file again (R12).
+id: "ord-34-d3-1"
+statement:
+  - text: "Six children stand in a line. Dan is first and Eva is last. Fay stands right behind Dan. Ann stands right behind Ben, and Kim stands right behind Ann. Who is fifth?"
+givens: ["Six children stand in a line.", "Dan is first and Eva last, and Fay right behind Dan.", "Ann stands right behind Ben, and Kim right behind Ann."]
+unknown: "Who is fifth."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Kim"
+          options: ["Kim", "Ann", "Ben", "Fay", "Eva"]
+          trap_values:
+            - value: "Ann"
+              trap: "off-by-one"
+              text: "Ann is 4th, so she is not fifth."
+            - value: "Ben"
+              trap: "reversed-relation"
+              text: "Ben is in front of Ann, in 3rd place."
+            - value: "Fay"
+              trap: "ignored-condition"
+              text: "Fay stands right behind Dan, in 2nd place."
+            - value: "Eva"
+              trap: "ignored-condition"
+              text: "Eva is last, in 6th place."
+    simpler_case: "Try five children: Dan is first and Eva last, Fay right behind Dan, and Ann right behind Ben. Who is fourth?"
+solution:
+  - text: "Dan is 1st and Fay 2nd. Ben, Ann and Kim stand together in this order in places 3, 4 and 5. Eva is 6th. So Kim is fifth."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-3-4"
+difficulty: 3

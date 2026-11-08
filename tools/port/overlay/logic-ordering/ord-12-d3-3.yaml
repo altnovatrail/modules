@@ -1,0 +1,10 @@
+# What a person adds to ord-12-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Nina, Olga, Pete and Rita ran a race."
+  - "Nina was not first and not last."
+  - "Olga finished right before Nina, and Pete after Nina."
+  - "Rita was last."
+unknown: "Who won."
+simpler_case: "Try three runners, Nina, Pete and Rita: Rita was last, and Pete finished after Nina. Who won?"
+trap_texts:
+  "It is impossible to tell": "The facts fix every place. Start from Rita, who is last, and work forward."

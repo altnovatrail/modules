@@ -1,0 +1,9 @@
+# What a person adds to ord-12-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Rex is bigger than Spot."
+  - "Spot is bigger than Max."
+  - "Max is bigger than Bo."
+unknown: "Which dog is the second biggest."
+simpler_case: "Try three dogs: Rex is bigger than Max, and Max is bigger than Bo. Which dog is the second biggest?"
+trap_texts:
+  "It is impossible to tell": "The three facts give the whole order. Line the dogs up from the biggest."

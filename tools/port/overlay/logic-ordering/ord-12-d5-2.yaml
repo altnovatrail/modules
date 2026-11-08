@@ -1,0 +1,10 @@
+# What a person adds to ord-12-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Leo is taller than Max, and Max is taller than Oleg."
+  - "Nick is shorter than Oleg."
+unknown: "Who is the shortest."
+simpler_case: "Try three boys: Leo is taller than Max, and Max is taller than Oleg. Who is the shortest?"
+trap_texts:
+  "Max": "Max is taller than Oleg, so Max is not the shortest."
+  "Oleg": "Oleg is shorter than Max, but one of the facts names someone shorter than Oleg."
+  "It is impossible to tell": "Join the facts and line the boys up from the tallest."
