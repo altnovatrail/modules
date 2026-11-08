@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-56-d4-3.yaml, and the port writes this file again (R12).
+id: "kl-56-d4-3"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Eight islanders have dinner round a table, so everyone sits between two neighbours. All eight say: 'At least one of my neighbours is a liar.' How many knights can there be at most?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Eight islanders sit round a table, each between two neighbours.", "All say: 'At least one of my neighbours is a liar.'"]
+unknown: "How many knights there can be at most."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          units: ["knight", "knights"]
+          trap_values:
+            - value: "4"
+              trap: "stopped-early"
+              text: "Knights and liars taking turns works, but some knights can sit side by side."
+            - value: "8"
+              trap: "ignored-condition"
+              text: "With no liars at all, every knight's words would be false."
+            - value: "6"
+              trap: "ignored-condition"
+              text: "Two liars sit beside at most four knights, so two of six knights would have no liar next to them."
+            - value: "3"
+              trap: "answered-other-question"
+              text: "3 is not the number of knights at the best table."
+    simpler_case: "Try four islanders at a table, each saying 'At least one of my neighbours is a liar.' How many knights can there be at most?"
+solution:
+  - text: "A liar's words are false, so both neighbours of a liar are knights. A knight's words are true, so every knight has a liar next to them. One liar sits next to only two people, so two liars are beside at most four knights, and six knights are too many. With three liars, five knights fit: knight, knight, liar, knight, knight, liar, knight, liar, round the table."
+techniques: ["opposite"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-5-6"
+difficulty: 4

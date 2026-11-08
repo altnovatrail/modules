@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-34-d1-2.yaml, and the port writes this file again (R12).
+id: "kl-34-d1-2"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Ann says: '2 + 2 = 5.' Ben says: 'Ann is a knight.' Who are Ann and Ben?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Ann says: '2 + 2 = 5.'", "Ben says: 'Ann is a knight.'"]
+unknown: "Who Ann and Ben are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Both are knights", "Ann is a knight, Ben is a liar", "Ann is a liar, Ben is a knight", "It is impossible to tell", "Both are liars"]
+        check:
+          kind: "choice"
+          key: "Both are liars"
+          trap_values:
+            - value: "Both are knights"
+              trap: "trusted-statement"
+              text: "Ann said something false, so she cannot be a knight."
+            - value: "Ann is a knight, Ben is a liar"
+              trap: "trusted-statement"
+              text: "Ann's words are false, so Ann is a liar, not a knight."
+            - value: "Ann is a liar, Ben is a knight"
+              trap: "stopped-early"
+              text: "Check Ben's words about Ann too."
+            - value: "It is impossible to tell"
+              trap: "ignored-condition"
+              text: "Ann's false words show she is a liar, and that tells us about Ben as well."
+    simpler_case: "Try Ann alone: she says '2 + 2 = 4.' Is she a knight or a liar?"
+solution:
+  - text: "2 + 2 = 5 is false, so Ann is a liar. Then Ben's words 'Ann is a knight' are false, so Ben is a liar too."
+techniques: ["opposite"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-3-4"
+difficulty: 1

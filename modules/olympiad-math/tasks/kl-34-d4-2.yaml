@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-34-d4-2.yaml, and the port writes this file again (R12).
+id: "kl-34-d4-2"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Ann says: 'Exactly one of us three is a liar.' Ben says: 'Exactly two of us three are liars.' Kim says: 'All three of us are liars.' How many knights are among Ann, Ben and Kim?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Ann says exactly one of the three is a liar, and Ben says exactly two are.", "Kim says: 'All three of us are liars.'"]
+unknown: "How many knights are among Ann, Ben and Kim."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "1"
+          units: ["knight", "knights"]
+          trap_values:
+            - value: "0"
+              trap: "ignored-condition"
+              text: "If all three were liars, Kim's words would be true."
+            - value: "2"
+              trap: "trusted-statement"
+              text: "Ann and Ben name different numbers, so they cannot both be right."
+            - value: "3"
+              trap: "trusted-statement"
+              text: "If all were knights, Kim would be calling herself a liar."
+    simpler_case: "Try two: Ann says 'Exactly one of us two is a liar', and Ben says 'Both of us are liars.' Who is a knight?"
+solution:
+  - text: "Kim cannot be a knight: then she would be a liar too. So Kim is a liar, and not all three are liars. If Ann were a knight, there would be exactly one liar, Kim, so Ben would be a knight too, but then Ben's words would be false. So Ann is a liar. Then Ann and Kim are liars, and Ben's words are true: Ben is the only knight."
+techniques: ["opposite"]
+traps: ["stopped-early"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-3-4"
+difficulty: 4

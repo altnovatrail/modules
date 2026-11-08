@@ -1,0 +1,12 @@
+# What a person adds to kl-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Knights always tell the truth, and liars always lie."
+  - "Every islander is a knight or a liar."
+  - "Lou says: 'If you asked Meg, she would say that Ned is a liar.'"
+  - "Meg says: 'Ned is a knight.'"
+  - "Ned says: 'Lou is a liar.'"
+unknown: "Who is lying."
+simpler_case: "Try two: Meg says 'Ned is a knight', and Ned says '2 + 2 = 4.' Who is lying?"
+techniques: [opposite]
+trap_texts:
+  "It is impossible to tell": "Check Lou's words against what Meg has already said."

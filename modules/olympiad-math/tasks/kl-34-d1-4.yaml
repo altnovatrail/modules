@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-34-d1-4.yaml, and the port writes this file again (R12).
+id: "kl-34-d1-4"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Ann says: 'Ben is a liar.' Ben says: '10 is more than 7.' Who are Ann and Ben?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Ann says: 'Ben is a liar.'", "Ben says: '10 is more than 7.'"]
+unknown: "Who Ann and Ben are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Both are knights", "Ann is a liar, Ben is a knight", "Both are liars", "Ann is a knight, Ben is a liar", "It is impossible to tell"]
+        check:
+          kind: "choice"
+          key: "Ann is a liar, Ben is a knight"
+          trap_values:
+            - value: "Both are knights"
+              trap: "stopped-early"
+              text: "Check Ann's words about Ben too."
+            - value: "Both are liars"
+              trap: "ignored-condition"
+              text: "Ben said something true, so he is a knight."
+            - value: "Ann is a knight, Ben is a liar"
+              trap: "trusted-statement"
+              text: "You believed Ann. Check Ben's words first."
+            - value: "It is impossible to tell"
+              trap: "ignored-condition"
+              text: "Ben's words can be checked, and they tell you about Ann too."
+    simpler_case: "Try Ben alone: he says '10 is less than 7.' Is he a knight or a liar?"
+solution:
+  - text: "10 is more than 7, so Ben told the truth and is a knight. Ann's words 'Ben is a liar' are false, so Ann is a liar."
+techniques: ["opposite"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-3-4"
+difficulty: 1

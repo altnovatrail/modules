@@ -1,0 +1,10 @@
+# What a person adds to kl-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Knights always tell the truth, and liars always lie."
+  - "Every islander is a knight or a liar."
+  - "24 islanders sit on 24 chairs, some blue and some red, and each says 'I sit on a blue chair.'"
+  - "They change seats, and now 8 say 'I sit on a red chair' and 16 say 'I sit on a blue chair.'"
+unknown: "How many knights sit on red chairs now."
+simpler_case: "Try six islanders on six chairs: 3 knights on blue chairs and 3 liars on red ones. They change seats, and 1 knight now sits on a red chair. How many of them now say 'red'?"
+trap_texts:
+  "0": "With 0 knights on red chairs, think who would now be saying 'red'."

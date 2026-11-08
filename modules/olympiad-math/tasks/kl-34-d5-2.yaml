@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-34-d5-2.yaml, and the port writes this file again (R12).
+id: "kl-34-d5-2"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Twelve islanders stand in a line. Each of them except the first says: 'The person just before me is a liar.' The first says nothing. How many knights are in the line?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Twelve islanders stand in a line.", "Each but the first says: 'The person just before me is a liar.'"]
+unknown: "How many knights are in the line."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["knight", "knights"]
+          trap_values:
+            - value: "5"
+              trap: "off-by-one"
+              text: "Check who can stand right after a knight, and right after a liar."
+            - value: "7"
+              trap: "off-by-one"
+              text: "7 knights would put two knights in a row, but a knight always stands right after a liar."
+            - value: "11"
+              trap: "number-from-text"
+              text: "11 is how many people speak."
+    simpler_case: "Try four islanders in a line, each but the first saying 'The person just before me is a liar.' How many knights are there?"
+solution:
+  - text: "A knight stands right after a liar, and a liar right after a knight, so knights and liars take turns. We do not know who the first person is, but either way 12 people taking turns make 6 knights."
+techniques: ["pattern"]
+traps: ["missed-case"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-3-4"
+difficulty: 5

@@ -1,0 +1,8 @@
+# What a person adds to kl-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ilya always tells the truth."
+  - "He was asked the same question twice and gave two different answers."
+unknown: "Which question it could have been."
+simpler_case: "Try a question whose true answer changes every day, such as 'What day is it today?' Could Ilya give two different true answers to it?"
+trap_texts:
+  "None: someone who always tells the truth never changes an answer": "An answer can change when the truth changes between the two times."

@@ -1,0 +1,10 @@
+# What a person adds to kl-56-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Knights always tell the truth, and liars always lie."
+  - "Every islander is a knight or a liar."
+  - "Fay says: 'At least one of us three is a liar.'"
+  - "Gus says: 'Fay is a liar.'"
+  - "Hal says: 'Gus is a liar.'"
+unknown: "Who among them lies."
+simpler_case: "Try two: Fay says 'Hal is a liar', and Hal says '2 + 2 = 5.' Who lies?"
+techniques: [opposite]

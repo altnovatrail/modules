@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-34-d2-4.yaml, and the port writes this file again (R12).
+id: "kl-34-d2-4"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Ann says: 'Ben is a knight.' Ben says: 'Kim is a knight.' Kim says: '2 + 2 = 5.' How many knights are among Ann, Ben and Kim?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Ann says Ben is a knight, and Ben says Kim is a knight.", "Kim says: '2 + 2 = 5.'"]
+unknown: "How many knights are among Ann, Ben and Kim."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "0"
+          units: ["knight", "knights"]
+          trap_values:
+            - value: "1"
+              trap: "stopped-early"
+              text: "Kim is a liar; follow what that means for Ben and then Ann."
+            - value: "2"
+              trap: "trusted-statement"
+              text: "You believed Ann and Ben. Check Kim's words first."
+            - value: "3"
+              trap: "trusted-statement"
+              text: "Kim said 2 + 2 = 5, so she is not a knight."
+    simpler_case: "Try two: Ben says 'Kim is a knight', and Kim says '2 + 2 = 4.' How many knights are there?"
+solution:
+  - text: "Kim said something false, so she is a liar. Then Ben's words 'Kim is a knight' are false, so Ben is a liar. Then Ann's words are false too, so Ann is a liar. There are no knights."
+techniques: ["opposite"]
+traps: ["ignored-condition"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-3-4"
+difficulty: 2

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-56-d4-2.yaml, and the port writes this file again (R12).
+id: "kl-56-d4-2"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Tom says: 'Uma is lying.' Uma says: 'Val is lying.' Val says: 'Tom and Uma are both lying.' Wes says: 'Exactly one of Tom, Uma and Val is telling the truth.' Who are the knights among the four?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Tom says: 'Uma is lying.'", "Uma says: 'Val is lying.'", "Val says: 'Tom and Uma are both lying.'", "Wes says: 'Exactly one of Tom, Uma and Val is telling the truth.'"]
+unknown: "Who the knights are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Tom and Val", "Only Uma", "Uma and Wes", "Uma and Val", "Nobody"]
+        check:
+          kind: "choice"
+          key: "Uma and Wes"
+          trap_values:
+            - value: "Tom and Val"
+              trap: "trusted-statement"
+              text: "Believing Tom makes Uma a liar and Val a knight, but Val's words say Tom is lying."
+            - value: "Only Uma"
+              trap: "stopped-early"
+              text: "Check Wes's words too."
+            - value: "Uma and Val"
+              trap: "ignored-condition"
+              text: "Uma says Val is lying, so if Uma is a knight, Val is a liar."
+            - value: "Nobody"
+              trap: "ignored-condition"
+              text: "If all four lied, Tom's words 'Uma is lying' would be true."
+    simpler_case: "Try two: Tom says 'Uma is lying', and Uma says '2 + 2 = 5.' Who are the knights?"
+solution:
+  - text: "If Val told the truth, Tom and Uma would both be lying. But Tom says Uma is lying, so Tom would be telling the truth. So Val is lying. Then Uma's words 'Val is lying' are true, and Uma is a knight. Tom calls Uma a liar, so Tom is lying. Of Tom, Uma and Val only Uma tells the truth, so Wes is right and a knight. The knights are Uma and Wes."
+techniques: ["opposite"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-5-6"
+difficulty: 4

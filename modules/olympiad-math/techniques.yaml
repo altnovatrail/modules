@@ -1,4 +1,4 @@
-# The techniques of this module's tasks: 8 of the 11 of mathtrail-standalone's site, as the
+# The techniques of this module's tasks: 9 of the 11 of mathtrail-standalone's site, as the
 # format's example of this module has them, each with its title and its description. standalone's
 # content in this module carries the MIT notice of NOTICE.
 techniques:
@@ -20,6 +20,9 @@ techniques:
   pattern:
     title: Look for a pattern
     description: Look at the first few steps and find what repeats. The repeating piece lets you jump far ahead without drawing everything in between.
+  opposite:
+    title: Suppose the opposite
+    description: To prove that something cannot be, suppose it can, and follow the reasoning until you run into a contradiction. Almost every knights-and-liars problem is solved this way.
   parity:
     title: Watch the parity
     description: "Sometimes you need not know everything: it is enough to know whether a number is even or odd. If something switches between even and odd at every step, the number of steps tells you at once where you can end up and where you cannot."
