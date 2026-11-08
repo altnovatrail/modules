@@ -29,7 +29,7 @@ import (
 // at 42b4408, and held to what standalone's service checks and the schema cannot say
 // (internal/domain/picture/ of standalone): a field the port does not know stops it. It is drawn in
 // CSS px, twice as many pixels each way, with labels in Go Regular. The kinds not drawn yet are
-// those of T20 and T21 (E3).
+// those of T21 (E3).
 
 // drawing is a picture of one kind, read: what the service checks, the size it is drawn at in CSS
 // px, and how it is drawn there.
@@ -47,6 +47,12 @@ var kinds = map[string]func() drawing{
 	"bars":        func() drawing { return &barsPicture{} },
 	"number_line": func() drawing { return &numberLinePicture{} },
 	"calendar":    func() drawing { return &calendarPicture{} },
+	"containers":  func() drawing { return &containersPicture{} },
+	"grid":        func() drawing { return &gridPicture{} },
+	"piles":       func() drawing { return &pilesPicture{} },
+	"venn":        func() drawing { return &vennPicture{} },
+	"balance":     func() drawing { return &balancePicture{} },
+	"ring":        func() drawing { return &ringPicture{} },
 }
 
 var (
@@ -80,7 +86,7 @@ func pictureOf(id string, raw json.RawMessage, alt, suffix string) (mapping, []b
 	if !drawn {
 		return nil, nil, notDrawn{id: id, kind: kind.Kind}
 	}
-	if err := exactKeys(raw); err != nil {
+	if err := exactKeys(raw, keyedByData[kind.Kind]); err != nil {
 		return nil, nil, fmt.Errorf("%s: its picture: %w", id, err)
 	}
 	picture := newDrawing()
@@ -105,24 +111,31 @@ func pictureOf(id string, raw json.RawMessage, alt, suffix string) (mapping, []b
 	return part, data, nil
 }
 
-// key is a member's name as standalone's schema writes every one: lowercase, or a day of a
-// calendar's marks.
+// key is a member's name as standalone's schema writes every one: lowercase.
 var key = regexp.MustCompile(`^[a-z0-9_]+$`)
+
+// keyedByData are the members of a kind that are maps keyed by data, not by the schema's names:
+// the marks of a grid, keyed by a cell, B2, and of a calendar, keyed by a day.
+var keyedByData = map[string]string{"grid": "marks", "calendar": "marks"}
 
 // exactKeys refuses what encoding/json lets through: a member named in other letters than the
 // schema's, such as TIME for time, which it matches without regard to case, and a member named
 // twice in one object, whose last value it takes. Every name of the schema is lowercase, so a
-// lowercase name matches only itself.
-func exactKeys(raw json.RawMessage) error {
+// lowercase name matches only itself. The member of the picture that keyed names, a map keyed by
+// data, has its keys held only to being named once.
+func exactKeys(raw json.RawMessage, keyed string) error {
 	decoder := json.NewDecoder(bytes.NewReader(raw))
-	var walk func() error
-	walk = func() error {
+	depth := 0
+	var walk func(byData bool) error
+	walk = func(byData bool) error {
 		token, err := decoder.Token()
 		if err != nil {
 			return err
 		}
 		switch token {
 		case json.Delim('{'):
+			depth++
+			defer func() { depth-- }()
 			seen := map[string]bool{}
 			for decoder.More() {
 				name, err := decoder.Token()
@@ -130,11 +143,11 @@ func exactKeys(raw json.RawMessage) error {
 					return err
 				}
 				member := name.(string)
-				if !key.MatchString(member) || seen[member] {
+				if (!byData && !key.MatchString(member)) || seen[member] {
 					return fmt.Errorf("the member %q is named in other letters than the schema's, or twice", member)
 				}
 				seen[member] = true
-				if err := walk(); err != nil {
+				if err := walk(depth == 1 && keyed != "" && member == keyed); err != nil {
 					return err
 				}
 			}
@@ -142,7 +155,7 @@ func exactKeys(raw json.RawMessage) error {
 			return err
 		case json.Delim('['):
 			for decoder.More() {
-				if err := walk(); err != nil {
+				if err := walk(false); err != nil {
 					return err
 				}
 			}
@@ -151,7 +164,7 @@ func exactKeys(raw json.RawMessage) error {
 		}
 		return nil
 	}
-	return walk()
+	return walk(false)
 }
 
 // pathOfPicture is the path of a picture part's file from the module's folder.
@@ -250,10 +263,16 @@ func (c canvas) size() (float64, float64) {
 func (c canvas) disc(cx, cy, r float64) { c.discColor(cx, cy, r, ink) }
 
 func (c canvas) discColor(cx, cy, r float64, col color.RGBA) {
-	const sides = 48
 	path := c.rasterizer()
+	circle(path, cx, cy, r, 48, 1)
+	path.Draw(c.img, c.img.Bounds(), image.NewUniform(col), image.Point{})
+}
+
+// circle adds a closed circle of a number of sides to a path, one way round or, with turn -1, the
+// other.
+func circle(path *vector.Rasterizer, cx, cy, r float64, sides int, turn float64) {
 	for i := range sides + 1 {
-		angle := 2 * math.Pi * float64(i) / sides
+		angle := turn * 2 * math.Pi * float64(i) / float64(sides)
 		px, py := float32((cx+r*math.Cos(angle))*scale), float32((cy+r*math.Sin(angle))*scale)
 		if i == 0 {
 			path.MoveTo(px, py)
@@ -262,7 +281,6 @@ func (c canvas) discColor(cx, cy, r float64, col color.RGBA) {
 		}
 	}
 	path.ClosePath()
-	path.Draw(c.img, c.img.Bounds(), image.NewUniform(col), image.Point{})
 }
 
 // ring draws a circle's outline of a width, centred on its radius.
@@ -348,4 +366,13 @@ func (c canvas) span(left, right, y float64, s string, halfWide, halfTall float6
 	c.rect(left-stroke/2, y-6, left+stroke/2, y+6, ink)
 	c.rect(right-stroke/2, y-6, right+stroke/2, y+6, ink)
 	c.plateOf(s, (left+right)/2, y, halfWide, halfTall)
+}
+
+// outline draws a circle's outline of a width, centred on its radius, and leaves the inside as it
+// is: the outer edge one way round and the inner the other, in one path.
+func (c canvas) outline(cx, cy, r, width float64) {
+	path := c.rasterizer()
+	circle(path, cx, cy, r+width/2, 96, 1)
+	circle(path, cx, cy, r-width/2, 96, -1)
+	path.Draw(c.img, c.img.Bounds(), image.NewUniform(ink), image.Point{})
 }

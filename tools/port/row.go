@@ -33,13 +33,12 @@ func (r *rowPicture) valid() error {
 	if r.Copies < 0 || r.Copies > 2 {
 		return fmt.Errorf("a row is drawn once or twice, not %d times", r.Copies)
 	}
+	skips := make([]bool, len(r.Items))
 	for i, item := range r.Items {
+		skips[i] = item.Skip
 		if item.Skip {
 			if item.Label != "" || item.Below != "" || item.Mark != "" {
 				return fmt.Errorf("the skip %d has a label or a mark", i+1)
-			}
-			if i == 0 || i == len(r.Items)-1 || r.Items[i-1].Skip {
-				return fmt.Errorf("the skip %d is first, last or next to another", i+1)
 			}
 			continue
 		}
@@ -59,7 +58,7 @@ func (r *rowPicture) valid() error {
 			return fmt.Errorf("the label %q is none", text)
 		}
 	}
-	return nil
+	return skipsPlaced(skips)
 }
 
 // The geometry of a row, in CSS px, beside what picture.go gives every kind.
