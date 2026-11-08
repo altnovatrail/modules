@@ -1,0 +1,7 @@
+# What a person adds to par-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Kim starts with 1."
+  - "Each step adds 4 or multiplies by 3."
+unknown: "Which of the numbers she can get."
+simpler_case: "Try two steps from 1. Which numbers can she get?"
+techniques: [parity]

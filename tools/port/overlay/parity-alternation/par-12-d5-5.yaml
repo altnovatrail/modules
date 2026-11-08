@@ -1,0 +1,7 @@
+# What a person adds to par-12-d5-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each sheet has an odd page on the front and the next even page on the back."
+  - "Tom tears 3 sheets out of a book of 50 pages."
+unknown: "Which of the numbers can be the sum of the 6 page numbers."
+simpler_case: "Try one sheet first, such as pages 7 and 8. Is their sum even or odd?"
+techniques: [parity]

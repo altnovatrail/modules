@@ -234,8 +234,9 @@ func TestConvertTappedAfterReview(t *testing.T) {
 }
 
 // The texts of the overlay that the learner sees before the task is solved do not name the key of
-// a choice, nor answer_form the key of any answer: the leak check of the format does not search a
-// key that the statement shows.
+// a choice, but for givens and an unknown that restate a question naming it beside another option,
+// nor answer_form the key of any answer: the leak check of the format does not search a key that
+// the statement shows.
 func TestConvertOverlayNamesTheKey(t *testing.T) {
 	for name, overlay := range map[string]Overlay{
 		"givens":       {Givens: []string{"Ben runs slowest."}},
@@ -243,10 +244,42 @@ func TestConvertOverlayNamesTheKey(t *testing.T) {
 		"simpler case": {SimplerCase: "Suppose Ben runs alone."},
 	} {
 		ex := wordExample("race-8")
+		ex.Question = "Which of these children is the slowest?"
 		if _, err := convert(ex, testBatch(ex.ID), BatchTask{}, overlay, "content/examples/x.json"); err == nil ||
 			!strings.Contains(err.Error(), `names its key "Ben"`) {
 			t.Errorf("%s: error = %v", name, err)
 		}
+	}
+	// The givens and the unknown restate the statement: a key the question names may stand in them
+	// beside another option or in the question's own words, but not alone, nor ever in the simpler
+	// case.
+	for name, overlay := range map[string]Overlay{
+		"givens":  {Givens: []string{"Kim runs faster than Ben."}},
+		"unknown": {Unknown: "Which of Ann, Kim and Ben is the slowest."},
+		"words":   {Givens: []string{"Ben is slow."}},
+	} {
+		restating := wordExample("race-9")
+		restating.Question = "Ann is fast and Ben is slow. " + restating.Question
+		if _, err := convert(restating, testBatch(restating.ID), BatchTask{}, overlay, "content/examples/x.json"); err != nil {
+			t.Errorf("%s that restate the question: %v", name, err)
+		}
+	}
+	for name, overlay := range map[string]Overlay{
+		"givens alone":  {Givens: []string{"Ben runs slowest."}},
+		"unknown alone": {Unknown: "Whether Ben is the slowest."},
+		"simpler case":  {SimplerCase: "Suppose Kim runs faster than Ben."},
+	} {
+		asked := wordExample("race-11")
+		if _, err := convert(asked, testBatch(asked.ID), BatchTask{}, overlay, "content/examples/x.json"); err == nil ||
+			!strings.Contains(err.Error(), `names its key "Ben"`) {
+			t.Errorf("%s, with the question naming the key: error = %v", name, err)
+		}
+	}
+	notAsked := wordExample("race-10")
+	notAsked.Question = "Which of these children is the slowest?"
+	if _, err := convert(notAsked, testBatch(notAsked.ID), BatchTask{}, Overlay{Givens: []string{"Ben is slow."}}, "content/examples/x.json"); err == nil ||
+		!strings.Contains(err.Error(), `names its key "Ben"`) {
+		t.Errorf("givens that name a key the question does not: error = %v", err)
 	}
 	for name, ex := range map[string]Example{"a time": clockExample("clock-2"), "a number": example("lamps-12")} {
 		key := ex.Options[ex.CorrectAnswer]

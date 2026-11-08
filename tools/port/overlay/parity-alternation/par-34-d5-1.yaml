@@ -1,0 +1,9 @@
+# What a person adds to par-34-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "6 glasses stand in a row, all upside down."
+  - "In one move exactly 4 of them are turned over."
+unknown: "The smallest number of moves that makes all 6 stand the right way up."
+simpler_case: "Try 4 glasses upside down, turning 2 in a move. How many moves does it take?"
+techniques: [parity]
+trap_texts:
+  "4": "4 moves are not needed: fewer moves already work."

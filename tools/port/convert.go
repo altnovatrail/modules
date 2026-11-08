@@ -340,9 +340,9 @@ func answerOf(ex Example, task BatchTask, overlay Overlay, lenient bool) (answer
 // No two options may be alike in the normal form of a choice. The leak check of the format searches
 // neither the key of a choice tapped nor one that the statement holds (R05; R20), so the port
 // searches it in the texts it writes that the learner sees before the task is solved: an
-// explanation that names the key is to be rewritten in the overlay, and the overlay's givens,
-// unknown and simpler case are not to name it. A survey, lenient, has no overlay, and writes such
-// an explanation, and counts it.
+// explanation that names the key is to be rewritten in the overlay, and the overlay's simpler case
+// is not to name it, nor its givens and unknown, but where they restate a question that names it.
+// A survey, lenient, has no overlay, and writes such an explanation, and counts it.
 func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
 	key := ex.Options[ex.CorrectAnswer]
 	var options, values sequence
@@ -378,10 +378,17 @@ func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
 	if err := unusedTexts(ex.ID, overlay, used); err != nil {
 		return answer{}, err
 	}
-	for _, text := range append([]string{overlay.Unknown, overlay.SimplerCase}, overlay.Givens...) {
-		if names(text, key) {
-			return answer{}, fmt.Errorf("%s: its overlay's text %q names its key %q", ex.ID, text, key)
+	// The givens and the unknown restate the statement, so they may name a key that the question
+	// names too, as a word written by hand always is, but only beside another option or in words
+	// of the question as they stand: else the key there is the answer. Only the question counts, not
+	// the picture, which is stricter than the leak check's statement (format/README.md, section 20).
+	// The simpler case never names the key.
+	restated := append([]string{overlay.Unknown}, overlay.Givens...)
+	for i, text := range append(restated, overlay.SimplerCase) {
+		if !names(text, key) || i < len(restated) && names(ex.Question, key) && (namesAnother(text, ex) || names(ex.Question, text)) {
+			continue
 		}
+		return answer{}, fmt.Errorf("%s: its overlay's text %q names its key %q", ex.ID, text, key)
 	}
 	if byHand {
 		check := mapping{{"kind", "choice"}, {"key", key}, {"options", options}, {"trap_values", values}}
@@ -389,6 +396,16 @@ func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
 	}
 	check := mapping{{"kind", "choice"}, {"key", key}, {"trap_values", values}}
 	return answer{slot: mapping{{"binding", "choice"}, {"options", options}, {"check", check}}, key: key, notes: notes, kind: answerTapped, keyNamed: keyNamed}, nil
+}
+
+// namesAnother tells whether a text names an option of a choice other than its key.
+func namesAnother(text string, ex Example) bool {
+	for _, letter := range letters {
+		if letter != ex.CorrectAnswer && names(text, ex.Options[letter]) {
+			return true
+		}
+	}
+	return false
 }
 
 // unusedTexts refuses an overlay that rewrites the explanation of a value the task does not have:

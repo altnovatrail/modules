@@ -1,0 +1,8 @@
+# What a person adds to par-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The board is 3 by 3 squares."
+  - "Each step goes to a square that shares a side."
+  - "The robot comes back to its first square and visits no other square twice."
+unknown: "How many squares such a route can visit."
+simpler_case: "Try a board of 2 by 2 squares first. How many squares can such a route visit?"
+techniques: [parity]

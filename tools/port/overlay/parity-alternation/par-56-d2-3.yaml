@@ -1,0 +1,7 @@
+# What a person adds to par-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The sum of 20 whole numbers is odd."
+  - "More than half of the numbers are even."
+unknown: "How many of the numbers can be even."
+simpler_case: "Try 4 whole numbers with an odd sum. How many of them can be even?"
+techniques: [parity]

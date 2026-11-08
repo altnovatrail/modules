@@ -1,0 +1,9 @@
+# What a person adds to par-34-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "15 children stand in a circle holding hands."
+unknown: "Whether boys and girls can take turns all the way round."
+simpler_case: "Try 4 children and then 5 children in a circle. Can boys and girls take turns?"
+techniques: [parity]
+trap_texts:
+  "Yes": "Look at the number of children: can boys and girls take turns all the way round a circle of that many?"
+  "It is impossible to tell": "It can be told: look whether the number of children is even or odd."

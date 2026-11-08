@@ -1,0 +1,7 @@
+# What a person adds to par-34-d5-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The digits 1 to 6 are written in some order."
+  - "The digits in the 1st, 3rd and 5th places are added, and those in the 2nd, 4th and 6th are taken away."
+unknown: "Which of the results Kolya can get."
+simpler_case: "Try the digits 1 to 4, adding the 1st and 3rd and taking away the 2nd and 4th. Which results can you get?"
+techniques: [parity]

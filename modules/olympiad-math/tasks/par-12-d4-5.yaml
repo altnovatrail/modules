@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-12-d4-5.yaml, and the port writes this file again (R12).
+id: "par-12-d4-5"
+statement:
+  - text: "Which of these numbers can be the sum of 4 odd numbers?"
+givens: ["Four odd numbers are added."]
+unknown: "Which of the numbers can be their sum."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["17", "19", "21", "22", "23"]
+        check:
+          kind: "choice"
+          key: "22"
+          trap_values:
+            - value: "17"
+              trap: "wrong-parity"
+              text: "The sum of 4 odd numbers is even, and 17 is odd."
+            - value: "19"
+              trap: "wrong-parity"
+              text: "The sum of 4 odd numbers is even, and 19 is odd."
+            - value: "21"
+              trap: "wrong-parity"
+              text: "The sum of 4 odd numbers is even, and 21 is odd."
+            - value: "23"
+              trap: "wrong-parity"
+              text: "The sum of 4 odd numbers is even, and 23 is odd."
+    simpler_case: "Try two odd numbers first, like 1 and 3. Is their sum even or odd?"
+solution:
+  - text: "Two odd numbers add up to an even number. So 4 odd numbers make two even sums, and their total is even. Only 22 is even, and it works: 1 + 3 + 7 + 11 = 22."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-1-2"
+difficulty: 4

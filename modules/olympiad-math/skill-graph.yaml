@@ -18,3 +18,6 @@ skills:
   arithmetic-tricks:
     title: Arithmetic with a trick
     assessability: verdict
+  parity-alternation:
+    title: Parity and alternation
+    assessability: verdict

@@ -1,0 +1,9 @@
+# What a person adds to par-34-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers go from 1 to 99."
+  - "1 and 99 are counted too."
+unknown: "How many odd numbers there are."
+simpler_case: "Try the numbers from 1 to 9 first. How many are odd?"
+techniques: [parity]
+trap_texts:
+  "51": "Count the odd numbers again: one in each pair of neighbours, and then 99."

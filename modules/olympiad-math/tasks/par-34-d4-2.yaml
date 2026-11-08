@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d4-2.yaml, and the port writes this file again (R12).
+id: "par-34-d4-2"
+statement:
+  - text: "5 coins lie heads up. In one move you turn over exactly 3 coins. What is the smallest number of moves needed to make all 5 coins tails up?"
+givens: ["5 coins lie heads up.", "In one move exactly 3 coins are turned over."]
+unknown: "The smallest number of moves that makes all 5 coins tails up."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["move", "moves"]
+          trap_values:
+            - value: "1"
+              trap: "ignored-condition"
+              text: "One move turns only 3 of the 5 coins."
+            - value: "2"
+              trap: "wrong-parity"
+              text: "After 2 moves some coin is turned an even number of times and is heads up again."
+            - value: "5"
+              trap: "stopped-early"
+              text: "5 moves would work too, but fewer moves are already enough."
+    simpler_case: "Try 3 coins heads up first. How many moves does it take?"
+solution:
+  - text: "Every coin must be turned an odd number of times, so the total number of turns is odd. Each move gives 3 turns, so the number of moves must be odd. 1 move is too few, but 3 moves work: turn coins 1, 2 and 3, then 1, 2 and 4, then 1, 2 and 5."
+techniques: ["parity"]
+traps: ["wrong-parity"]
+leak_phrases: ["3 moves", "three moves"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 4

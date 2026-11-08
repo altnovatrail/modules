@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d2-1.yaml, and the port writes this file again (R12).
+id: "par-34-d2-1"
+statement:
+  - text: "A pen costs an odd number of cents. Masha buys 7 such pens. Which of these amounts can she pay?"
+givens: ["A pen costs an odd number of cents.", "Masha buys 7 such pens."]
+unknown: "Which of the amounts she can pay."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["42 cents", "56 cents", "70 cents", "84 cents", "63 cents"]
+        check:
+          kind: "choice"
+          key: "63 cents"
+          trap_values:
+            - value: "42 cents"
+              trap: "wrong-parity"
+              text: "7 times an odd price is odd, and 42 is even."
+            - value: "56 cents"
+              trap: "wrong-parity"
+              text: "7 times an odd price is odd, and 56 is even."
+            - value: "70 cents"
+              trap: "wrong-parity"
+              text: "7 times an odd price is odd, and 70 is even."
+            - value: "84 cents"
+              trap: "wrong-parity"
+              text: "7 times an odd price is odd, and 84 is even."
+    simpler_case: "Try 3 pens at 5 cents each. Is the cost even or odd?"
+solution:
+  - text: "7 is odd and the price is odd, and an odd number times an odd number is odd. Only 63 is odd, and it works: 7 pens at 9 cents cost 63 cents."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 2

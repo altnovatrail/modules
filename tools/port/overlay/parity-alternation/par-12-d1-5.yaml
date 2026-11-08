@@ -1,0 +1,8 @@
+# What a person adds to par-12-d1-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The houses on one side have odd numbers: 1, 3, 5 and so on."
+unknown: "The number of the 6th house."
+simpler_case: "Try the 3rd house first. Write the numbers in order."
+techniques: [parity]
+trap_texts:
+  "13": "13 is one house too far. Write the house numbers in order and count to the 6th."

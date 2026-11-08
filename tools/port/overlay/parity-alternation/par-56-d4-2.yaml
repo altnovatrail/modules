@@ -1,0 +1,7 @@
+# What a person adds to par-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Eight lamps stand in a row, all off."
+  - "In one move three lamps next to each other are switched."
+unknown: "The smallest number of moves after which all eight are on."
+simpler_case: "Try 3 lamps in a row first, switching all three in a move. How many moves does it take?"
+techniques: [parity]

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d2-4.yaml, and the port writes this file again (R12).
+id: "par-34-d2-4"
+statement:
+  - text: "7 coins lie heads up. In one move you turn over exactly 2 coins. What is the smallest number of moves needed to make all 7 coins tails up?"
+givens: ["7 coins lie heads up.", "In one move exactly 2 coins are turned over."]
+unknown: "The smallest number of moves that makes all 7 coins tails up."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["3", "4", "It can never be done", "7", "14"]
+        check:
+          kind: "choice"
+          key: "It can never be done"
+          trap_values:
+            - value: "3"
+              trap: "wrong-parity"
+              text: "3 moves turn only 6 coins. Follow how many coins are heads up after each move."
+            - value: "4"
+              trap: "wrong-parity"
+              text: "4 moves turn 8 coins in all, so some coin is turned twice and ends heads up."
+            - value: "7"
+              trap: "wrong-parity"
+              text: "Follow how many coins are heads up after each move: can it ever reach 0?"
+            - value: "14"
+              trap: "wrong-operation"
+              text: "You doubled 7. Follow how many coins are heads up after each move."
+    simpler_case: "Try 2 coins heads up first. How many moves does it take?"
+solution:
+  - text: "Each move changes the number of heads by 2 or not at all. It starts at 7, an odd number, so it always stays odd and can never become 0."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 2

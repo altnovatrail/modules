@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-12-d5-5.yaml, and the port writes this file again (R12).
+id: "par-12-d5-5"
+statement:
+  - text: "In a book, each sheet has two pages: an odd page on the front and the next even page on the back, like pages 7 and 8. Tom tears 3 sheets out of a book of 50 pages. Which of these can be the sum of the 6 page numbers on the torn sheets?"
+givens: ["Each sheet has an odd page on the front and the next even page on the back.", "Tom tears 3 sheets out of a book of 50 pages."]
+unknown: "Which of the numbers can be the sum of the 6 page numbers."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["60", "80", "90", "100", "77"]
+        check:
+          kind: "choice"
+          key: "77"
+          trap_values:
+            - value: "60"
+              trap: "wrong-parity"
+              text: "The pages of 3 sheets add up to an odd number, and 60 is even."
+            - value: "80"
+              trap: "wrong-parity"
+              text: "The pages of 3 sheets add up to an odd number, and 80 is even."
+            - value: "90"
+              trap: "wrong-parity"
+              text: "The pages of 3 sheets add up to an odd number, and 90 is even."
+            - value: "100"
+              trap: "wrong-parity"
+              text: "The pages of 3 sheets add up to an odd number, and 100 is even."
+    simpler_case: "Try one sheet first, such as pages 7 and 8. Is their sum even or odd?"
+solution:
+  - text: "The two pages of a sheet, like 7 and 8, always add up to an odd number. Three odd numbers add up to an odd number. Only 77 is odd, and it works: pages 1, 2, 3, 4, 33 and 34 add up to 77."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-1-2"
+difficulty: 5

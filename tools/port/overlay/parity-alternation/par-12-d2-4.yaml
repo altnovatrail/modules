@@ -1,0 +1,8 @@
+# What a person adds to par-12-d2-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The sweets can be shared equally between 2 friends."
+  - "They can also be shared equally between 5 friends."
+  - "None is left over either way."
+unknown: "How many sweets Masha can have."
+simpler_case: "Try sharing between 2 friends only. Which of the numbers can be shared?"
+techniques: [parity]

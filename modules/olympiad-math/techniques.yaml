@@ -1,4 +1,4 @@
-# The techniques of this module's tasks: 5 of the 11 of mathtrail-standalone's site, as the
+# The techniques of this module's tasks: 7 of the 11 of mathtrail-standalone's site, as the
 # format's example of this module has them, each with its title and its description. standalone's
 # content in this module carries the MIT notice of NOTICE.
 techniques:
@@ -14,6 +14,12 @@ techniques:
   backwards:
     title: Work from the end
     description: "When you know how the story ends and are asked how it began, go backwards. Turn every action into its opposite: “ate” into “gave back”, “multiplied” into “divided”."
+  pattern:
+    title: Look for a pattern
+    description: Look at the first few steps and find what repeats. The repeating piece lets you jump far ahead without drawing everything in between.
+  parity:
+    title: Watch the parity
+    description: "Sometimes you need not know everything: it is enough to know whether a number is even or odd. If something switches between even and odd at every step, the number of steps tells you at once where you can end up and where you cannot."
   pigeonhole:
     title: Pigeons and pigeonholes
     description: If there are more pigeons than holes, some hole holds at least two pigeons. It sounds obvious, yet it proves things that seem impossible to check.

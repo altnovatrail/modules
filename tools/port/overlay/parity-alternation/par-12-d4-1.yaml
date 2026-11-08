@@ -1,0 +1,9 @@
+# What a person adds to par-12-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The beads go red, red, blue, red, red, blue, and so on."
+unknown: "The colour of the 20th bead."
+simpler_case: "Try the 7th bead first. Draw the beads in groups of three."
+techniques: [pattern]
+trap_texts:
+  "red or blue": "The pattern tells exactly which colour each bead has. Draw the beads in groups of three."
+  "green": "The string has only two colours, and green is not one of them."

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d3-3.yaml, and the port writes this file again (R12).
+id: "par-34-d3-3"
+statement:
+  - text: "The numbers 1 to 100 are written on cards. Ann takes all the cards with odd numbers. Then Ben takes from Ann every card whose number ends in 5. How many cards does Ann have left?"
+givens: ["The cards have the numbers 1 to 100.", "Ann takes all the odd cards.", "Ben takes from Ann every card whose number ends in 5."]
+unknown: "How many cards Ann has left."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "40"
+          units: ["card", "cards"]
+          trap_values:
+            - value: "10"
+              trap: "answered-other-question"
+              text: "10 is how many cards Ben takes."
+            - value: "45"
+              trap: "wrong-operation"
+              text: "Ben takes 10 cards, not 5."
+            - value: "50"
+              trap: "stopped-early"
+              text: "Ann has 50 cards before Ben takes his."
+            - value: "90"
+              trap: "ignored-condition"
+              text: "Ann had only the odd cards, 50 of them."
+    simpler_case: "Try the cards 1 to 20 first. How many does Ann have left?"
+solution:
+  - text: "There are 50 odd numbers from 1 to 100. The odd numbers that end in 5 are 5, 15, ..., 95: 10 of them. 50 - 10 = 40."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 3

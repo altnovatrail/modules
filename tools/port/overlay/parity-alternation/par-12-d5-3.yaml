@@ -1,0 +1,11 @@
+# What a person adds to par-12-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers 1 to 20 are on the board."
+  - "Again and again two numbers are rubbed out, and their sum is written instead."
+unknown: "Whether the last number is even or odd."
+simpler_case: "Try the numbers 1, 2 and 3 first. What is the last number?"
+techniques: [parity]
+trap_texts:
+  "odd": "The total of all the numbers never changes. Work out the total at the start."
+  "It is always 0": "Adding numbers never gives 0 here."
+  "sometimes even, sometimes odd": "The total never changes, so the last number is always the same. Work out the total at the start."

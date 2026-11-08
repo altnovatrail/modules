@@ -1,0 +1,10 @@
+# What a person adds to par-12-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "10 children stand in a circle."
+  - "A boy, a girl, a boy, a girl and so on, all the way round."
+unknown: "How many girls there are."
+simpler_case: "Try 6 children in a circle first. How many girls are there?"
+techniques: [parity]
+trap_texts:
+  "4": "Boys and girls take turns, so there are as many girls as boys."
+  "6": "Boys and girls take turns, so there are as many girls as boys."

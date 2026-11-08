@@ -1,0 +1,9 @@
+# What a person adds to par-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The digits 1 to 7 are written in a row, each once."
+  - "The digits between 1 and 2, between 2 and 3, and so on up to 6 and 7, are counted."
+unknown: "At most how many of the six counts can be odd."
+simpler_case: "Try the digits 1 to 3 in a row first. At most how many of the two counts can be odd?"
+techniques: [parity]
+trap_texts:
+  "3": "3 counts only the odd counts among the digits in the odd places, but the digits in the even places add more."
