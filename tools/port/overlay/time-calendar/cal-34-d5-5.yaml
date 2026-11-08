@@ -1,0 +1,11 @@
+# What a person adds to cal-34-d5-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The year has 366 days."
+  - "1 January is a Saturday."
+unknown: "How many Saturdays the year has."
+simpler_case: "Try a month of 31 days that starts on a Saturday. How many Saturdays does it have?"
+techniques: [pattern]
+trap_texts:
+  "51": "51 is too few: count the full weeks of the year."
+  "52": "Check the days left after the full weeks."
+  "54": "Check the days left after the full weeks again."

@@ -1,0 +1,9 @@
+# What a person adds to cal-34-d1-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Grandma was born in 1958."
+unknown: "Her age on her birthday in 2026."
+simpler_case: "Try a grandma born in 1960. How old is she on her birthday in 2026?"
+trap_texts:
+  "67": "Check the subtraction again."
+  "69": "Check the subtraction again."
+  "78": "Check the subtraction by adding back."

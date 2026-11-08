@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-56-d5-2.yaml, and the port writes this file again (R12).
+id: "cal-56-d5-2"
+statement:
+  - text: "A date written in numbers, such as 6.8.2026, is called even when all its digits are even, with 0 counting as even. February 2026 has 28 days. How many even dates does the year 2026 have?"
+givens: ["A date such as 6.8.2026 is even when all its digits are even, 0 counting as even.", "February 2026 has 28 days."]
+unknown: "How many even dates the year 2026 has."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "36"
+          units: ["date", "dates"]
+          trap_values:
+            - value: "45"
+              trap: "ignored-condition"
+              text: "45 counts October as well, but 10 has the odd digit 1."
+            - value: "59"
+              trap: "ignored-condition"
+              text: "59 counts every even day of the months 2, 4, 6 and 8, but days such as 12 and 30 have an odd digit."
+            - value: "9"
+              trap: "stopped-early"
+              text: "9 is the count for one month only."
+            - value: "35"
+              trap: "missed-case"
+              text: "35 leaves out 28 February, but February 2026 has 28 days, so 28.2.2026 is an even date too."
+    simpler_case: "Try only the first ten days of April 2026. How many of them are even dates?"
+solution:
+  - text: "The digits of 2026, 2, 0, 2 and 6, are all even. The month must be 2, 4, 6 or 8, since 10 and 12 have the digit 1. The day must be 2, 4, 6, 8, 20, 22, 24, 26 or 28, nine of them, and each of the four months has all nine, February's 28 days included. So there are 4 × 9 = 36 even dates."
+skills:
+  primary: ["time-calendar"]
+band: "grades-5-6"
+difficulty: 5

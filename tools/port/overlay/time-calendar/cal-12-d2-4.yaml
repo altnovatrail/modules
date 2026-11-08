@@ -1,0 +1,10 @@
+# What a person adds to cal-12-d2-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Today is 28 April."
+  - "The birthday is on 5 May."
+  - "April has 30 days."
+unknown: "How many days are left until the birthday."
+simpler_case: "Try a birthday on 2 May, with today 28 April. How many days are left?"
+techniques: [draw]
+trap_texts:
+  "6": "Count the days again: the last ones of April, then May up to the 5th."

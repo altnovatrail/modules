@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-34-d3-4.yaml, and the port writes this file again (R12).
+id: "cal-34-d3-4"
+statement:
+  - text: "Anya was born on 29 February 2016. This date exists only in leap years: 2020, 2024 and every fourth year after that. How many birthdays on the real date will she have from 2017 to 2032, including 2032?"
+givens: ["Anya was born on 29 February 2016.", "That date comes only in leap years: 2020, 2024 and every fourth year after."]
+unknown: "How many birthdays on the real date she has from 2017 to 2032."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["birthday", "birthdays"]
+          trap_values:
+            - value: "3"
+              trap: "missed-case"
+              text: "2032 counts too."
+            - value: "5"
+              trap: "ignored-condition"
+              text: "2016 is the year she was born, not a birthday."
+            - value: "8"
+              trap: "wrong-operation"
+              text: "Leap years do not come every 2 years."
+            - value: "16"
+              trap: "answered-other-question"
+              text: "16 is the number of years from 2016 to 2032."
+    simpler_case: "Try the years from 2017 to 2024. How many birthdays on the real date are there?"
+solution:
+  - text: "The leap years are 2020, 2024, 2028 and 2032. That is 4 birthdays."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-3-4"
+difficulty: 3

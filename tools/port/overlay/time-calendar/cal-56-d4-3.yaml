@@ -1,0 +1,8 @@
+# What a person adds to cal-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Anya was born on Monday, 4 March 2024."
+unknown: "The day of the week of 4 March 2034."
+simpler_case: "Try 1 May 2023, a Monday. On which day of the week is 1 May 2024, with 29 February 2024 between them?"
+techniques: [pattern]
+trap_texts:
+  "Monday": "Monday takes the ten years to be whole weeks, but they are not."

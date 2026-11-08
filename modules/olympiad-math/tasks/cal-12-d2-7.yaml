@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-12-d2-7.yaml, and the port writes this file again (R12).
+id: "cal-12-d2-7"
+statement:
+  - text: "Tim goes to school from Monday to Friday. Saturday and Sunday are his days off. How many days off does he have in 3 weeks?"
+givens: ["Tim has school from Monday to Friday.", "Saturday and Sunday are his days off."]
+unknown: "How many days off he has in 3 weeks."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "6"
+          units: ["day", "days"]
+          trap_values:
+            - value: "2"
+              trap: "stopped-early"
+              text: "2 days off come in one week only."
+            - value: "3"
+              trap: "number-from-text"
+              text: "3 is the number of weeks, not the number of days off."
+            - value: "15"
+              trap: "answered-other-question"
+              text: "15 is the number of school days in 3 weeks."
+            - value: "5"
+              trap: "wrong-operation"
+              text: "5 adds the weeks and the days off together."
+    simpler_case: "Try a girl with 1 day off a week. How many days off does she have in 4 weeks?"
+solution:
+  - text: "Every week has 2 days off, Saturday and Sunday. In 3 weeks that is 2 + 2 + 2 = 6 days off."
+techniques: ["draw"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-1-2"
+difficulty: 2

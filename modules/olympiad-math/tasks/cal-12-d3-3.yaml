@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-12-d3-3.yaml, and the port writes this file again (R12).
+id: "cal-12-d3-3"
+statement:
+  - text: "A month has 30 days, and its 1st day is a Monday. What day of the week is the 15th?"
+givens: ["The month has 30 days.", "Its 1st day is a Monday."]
+unknown: "The day of the week of the 15th."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Monday"
+          options: ["Monday", "Sunday", "Tuesday", "Wednesday", "Friday"]
+          trap_values:
+            - value: "Sunday"
+              trap: "off-by-one"
+              text: "Count the days from the 1st to the 15th again."
+            - value: "Tuesday"
+              trap: "off-by-one"
+              text: "You added 15 days to the 1st. The 15th is only 14 days after the 1st."
+            - value: "Wednesday"
+              trap: "wrong-operation"
+              text: "Count the days from the 1st again."
+            - value: "Friday"
+              trap: "ignored-condition"
+              text: "Friday does not follow from the 1st. Count on from it."
+    simpler_case: "Try another month: its 1st day is a Thursday. What day is the 8th?"
+solution:
+  - text: "The 8th is a Monday, one week after the 1st. The 15th is one more week later: also a Monday."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-1-2"
+difficulty: 3

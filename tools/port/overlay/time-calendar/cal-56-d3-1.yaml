@@ -1,0 +1,10 @@
+# What a person adds to cal-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ten years ago Mum was 4 times as old as her son."
+  - "In ten years she will be twice as old as he will be."
+unknown: "The son's age now."
+simpler_case: "Try: Dad is 24 years older than his son and now 3 times as old. How old is the son?"
+techniques: [draw]
+trap_texts:
+  "10": "10 is an age ten years ago, not now."
+  "30": "30 is the difference between their ages, a step on the way."

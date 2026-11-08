@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-34-d4-3.yaml, and the port writes this file again (R12).
+id: "cal-34-d4-3"
+statement:
+  - text: "A month has 5 Fridays and 5 Saturdays, but only 4 Thursdays and 4 Sundays. What day of the week is the 1st of this month?"
+givens: ["The month has 5 Fridays and 5 Saturdays.", "It has only 4 Thursdays and 4 Sundays."]
+unknown: "The day of the week of the 1st."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Thursday", "Saturday", "Sunday", "Friday", "Monday"]
+        check:
+          kind: "choice"
+          key: "Friday"
+          trap_values:
+            - value: "Thursday"
+              trap: "ignored-condition"
+              text: "If the 1st were a Thursday, there would be 5 Thursdays."
+            - value: "Saturday"
+              trap: "ignored-condition"
+              text: "If the 1st were a Saturday, there would be 5 Sundays instead of 5 Fridays."
+            - value: "Sunday"
+              trap: "ignored-condition"
+              text: "If the 1st were a Sunday, there would be 5 Sundays."
+            - value: "Monday"
+              trap: "ignored-condition"
+              text: "If the 1st were a Monday, the two days that appear 5 times could not be those."
+    simpler_case: "Try a month of 29 days that starts on a Tuesday. Which day of the week appears 5 times?"
+solution:
+  - text: "A month is 4 full weeks plus 0 to 3 extra days, and only the days of the week of the extra days appear 5 times. Here only Friday and Saturday appear 5 times, so the month has 30 days and starts on a Friday."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-3-4"
+difficulty: 4

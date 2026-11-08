@@ -1,0 +1,6 @@
+# What a person adds to cal-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "A year has 366 days."
+  - "Its months have 29, 30 and 31 days, with at least one month of each length."
+unknown: "How many months the year has."
+simpler_case: "Try a year of 92 days, split into months of 30 and 31 days. How many months does it have?"

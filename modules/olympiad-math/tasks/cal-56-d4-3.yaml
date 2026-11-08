@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-56-d4-3.yaml, and the port writes this file again (R12).
+id: "cal-56-d4-3"
+statement:
+  - text: "Anya was born on Monday, 4 March 2024. On which day of the week is her 10th birthday, 4 March 2034?"
+givens: ["Anya was born on Monday, 4 March 2024."]
+unknown: "The day of the week of 4 March 2034."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Thursday", "Friday", "Sunday", "Saturday", "Monday"]
+        check:
+          kind: "choice"
+          key: "Saturday"
+          trap_values:
+            - value: "Thursday"
+              trap: "ignored-condition"
+              text: "Thursday leaves out the 29 Februaries: 3650 days move the day by only 3."
+            - value: "Friday"
+              trap: "missed-case"
+              text: "Friday counts only one of the two 29 Februaries, in 2028 and 2032."
+            - value: "Sunday"
+              trap: "off-by-one"
+              text: "Sunday also counts 29 February 2024, but that came before Anya was born."
+            - value: "Monday"
+              trap: "ignored-condition"
+              text: "Monday takes the ten years to be whole weeks, but they are not."
+    simpler_case: "Try 1 May 2023, a Monday. On which day of the week is 1 May 2024, with 29 February 2024 between them?"
+solution:
+  - text: "Ten years are 3650 days, plus one day for each 29 February in between. 29 February 2024 came before Anya was born, so only 2028 and 2032 count: 3652 days. 3652 days are 521 weeks and 5 days, so the weekday moves 5 days on, from Monday to Saturday."
+techniques: ["pattern"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-5-6"
+difficulty: 4

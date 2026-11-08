@@ -1,0 +1,10 @@
+# What a person adds to cal-12-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Olya swims every 3 days: on the 2nd, the 5th, the 8th and so on."
+  - "The month has 30 days."
+unknown: "How many times she swims that month."
+simpler_case: "Try the first 15 days of the month. How many times does she swim?"
+techniques: [pattern]
+solution_picture_alt: "A table of the swimming days: 2, 5, 8, 11 and 14 in the first row, and 17, 20, 23, 26 and 29 in the second."
+trap_texts:
+  "9": "List the days from the 2nd, every 3 days, and count them."

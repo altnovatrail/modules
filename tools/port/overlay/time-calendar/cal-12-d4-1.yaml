@@ -1,0 +1,10 @@
+# What a person adds to cal-12-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Today is Sunday."
+unknown: "The day of the week in 20 days."
+simpler_case: "Try 10 days from Sunday. What day is it?"
+techniques: [pattern]
+trap_texts:
+  "Friday": "20 days is not 2 weeks and 5 days."
+  "Sunday": "Sunday comes again only after whole weeks, and 20 days are not whole weeks."
+  "Tuesday": "Count the days left over after the whole weeks again, from Sunday."

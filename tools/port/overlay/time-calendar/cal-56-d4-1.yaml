@@ -1,0 +1,11 @@
+# What a person adds to cal-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The family is a mother, a father and two children."
+  - "Their four ages now add up to 73."
+  - "Five years ago their ages added up to 54."
+unknown: "The younger child's age now."
+simpler_case: "Try a family of three whose ages add up to 62 now and to 54 three years ago. How old is the child?"
+techniques: [draw]
+trap_texts:
+  "15": "15 is how much the three older people grew together, not an age."
+  "19": "19 is how much the sum grew in five years, not an age."

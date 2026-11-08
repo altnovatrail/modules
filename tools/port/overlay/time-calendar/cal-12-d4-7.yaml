@@ -1,0 +1,9 @@
+# What a person adds to cal-12-d4-7 of standalone; the port writes the task from it (R12).
+givens:
+  - "The family spends 3 nights in a hotel and the next 2 nights at grandma's."
+  - "The day they leave home and the day they come back both count."
+unknown: "How many days the trip takes."
+simpler_case: "Try 1 night in a hotel and the next night at grandma's. How many days is that?"
+techniques: [draw]
+trap_texts:
+  "5": "5 is the number of nights, not of days."

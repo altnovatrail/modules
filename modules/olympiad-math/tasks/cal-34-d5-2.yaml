@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-calendar/cal-34-d5-2.yaml, and the port writes this file again (R12).
+id: "cal-34-d5-2"
+statement:
+  - text: "A boy is as many months old as his grandfather is years old. Together they are 65 years old. How old is the boy in years?"
+givens: ["The boy is as many months old as his grandfather is years old.", "Together they are 65 years old."]
+unknown: "The boy's age in years."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          units: ["year", "years"]
+          trap_values:
+            - value: "6"
+              trap: "off-by-one"
+              text: "If the boy were 6, the grandfather would be 72 and together they would be 78."
+            - value: "12"
+              trap: "time-unit-mixup"
+              text: "12 is how many months are in a year, not the boy's age."
+            - value: "13"
+              trap: "stopped-early"
+              text: "13 is the number of equal parts, not the age."
+            - value: "60"
+              trap: "answered-other-question"
+              text: "60 is not the boy's age: he is the younger one."
+    simpler_case: "Try a girl as many months old as her grandmother is years old, the girl being 6. How old is the grandmother?"
+solution:
+  - text: "A year has 12 months, so the grandfather is 12 times as old as the boy. Their ages are 1 part and 12 parts, 13 parts in all. 65 ÷ 13 = 5. The boy is 5 and the grandfather is 60."
+techniques: ["draw"]
+skills:
+  primary: ["time-calendar"]
+band: "grades-3-4"
+difficulty: 5

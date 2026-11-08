@@ -1,0 +1,9 @@
+# What a person adds to cal-34-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Anya was born on 29 February 2016."
+  - "That date comes only in leap years: 2020, 2024 and every fourth year after."
+unknown: "How many birthdays on the real date she has from 2017 to 2032."
+simpler_case: "Try the years from 2017 to 2024. How many birthdays on the real date are there?"
+techniques: [pattern]
+trap_texts:
+  "8": "Leap years do not come every 2 years."

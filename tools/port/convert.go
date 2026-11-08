@@ -379,13 +379,13 @@ func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
 		return answer{}, err
 	}
 	// The givens and the unknown restate the statement, so they may name a key that the question
-	// names too, as a word written by hand always is, but only beside another option or in words
-	// of the question as they stand: else the key there is the answer. Only the question counts, not
-	// the picture, which is stricter than the leak check's statement (format/README.md, section 20).
+	// names too, as a word written by hand always is, but only beside another option or where they
+	// quote the question: else the key there is the answer. Only the question counts, not the
+	// picture, which is stricter than the leak check's statement (format/README.md, section 20).
 	// The simpler case never names the key.
 	restated := append([]string{overlay.Unknown}, overlay.Givens...)
 	for i, text := range append(restated, overlay.SimplerCase) {
-		if !names(text, key) || i < len(restated) && names(ex.Question, key) && (namesAnother(text, ex) || names(ex.Question, text)) {
+		if !names(text, key) || i < len(restated) && names(ex.Question, key) && (namesAnother(text, ex) || quotes(ex.Question, text, key)) {
 			continue
 		}
 		return answer{}, fmt.Errorf("%s: its overlay's text %q names its key %q", ex.ID, text, key)
@@ -397,6 +397,27 @@ func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
 	check := mapping{{"kind", "choice"}, {"key", key}, {"trap_values", values}}
 	return answer{slot: mapping{{"binding", "choice"}, {"options", options}, {"check", check}}, key: key, notes: notes, kind: answerTapped, keyNamed: keyNamed}, nil
 }
+
+// quotes tells whether a text is words of a question as they stand there, but for the punctuation
+// that ends a sentence, and holds at least three words besides those of a key: a fragment as short
+// as "a Friday" only states the key.
+func quotes(question, text, key string) bool {
+	text = strings.TrimRight(text, " .!?;:")
+	keyWords := map[string]bool{}
+	for _, word := range strings.FieldsFunc(leakForm(key), notWordChar) {
+		keyWords[word] = true
+	}
+	others := 0
+	for _, word := range strings.FieldsFunc(leakForm(text), notWordChar) {
+		if !keyWords[word] {
+			others++
+		}
+	}
+	return others >= 3 && names(question, text)
+}
+
+// notWordChar is a character that parts two words.
+func notWordChar(r rune) bool { return !wordChar(r) }
 
 // namesAnother tells whether a text names an option of a choice other than its key.
 func namesAnother(text string, ex Example) bool {

@@ -1,0 +1,11 @@
+# What a person adds to cal-12-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The month has 30 days."
+  - "Its 1st day is a Monday."
+unknown: "The day of the week of the 15th."
+simpler_case: "Try another month: its 1st day is a Thursday. What day is the 8th?"
+techniques: [pattern]
+trap_texts:
+  "Sunday": "Count the days from the 1st to the 15th again."
+  "Wednesday": "Count the days from the 1st again."
+  "Friday": "Friday does not follow from the 1st. Count on from it."

@@ -256,10 +256,11 @@ func TestConvertOverlayNamesTheKey(t *testing.T) {
 	for name, overlay := range map[string]Overlay{
 		"givens":  {Givens: []string{"Kim runs faster than Ben."}},
 		"unknown": {Unknown: "Which of Ann, Kim and Ben is the slowest."},
-		"words":   {Givens: []string{"Ben is slow."}},
+		"words":   {Givens: []string{"Ben runs the slowest of them all."}},
+		"query":   {Unknown: "Does Ben run the slowest of them all?"},
 	} {
 		restating := wordExample("race-9")
-		restating.Question = "Ann is fast and Ben is slow. " + restating.Question
+		restating.Question = "Ben runs the slowest of them all, and Ann is fast. Does Ben run the slowest of them all? " + restating.Question
 		if _, err := convert(restating, testBatch(restating.ID), BatchTask{}, overlay, "content/examples/x.json"); err != nil {
 			t.Errorf("%s that restate the question: %v", name, err)
 		}
@@ -268,6 +269,7 @@ func TestConvertOverlayNamesTheKey(t *testing.T) {
 		"givens alone":  {Givens: []string{"Ben runs slowest."}},
 		"unknown alone": {Unknown: "Whether Ben is the slowest."},
 		"simpler case":  {SimplerCase: "Suppose Kim runs faster than Ben."},
+		"a fragment":    {Givens: []string{"Ben."}},
 	} {
 		asked := wordExample("race-11")
 		if _, err := convert(asked, testBatch(asked.ID), BatchTask{}, overlay, "content/examples/x.json"); err == nil ||

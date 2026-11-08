@@ -1,0 +1,10 @@
+# What a person adds to cal-34-d2-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Mum is 4 times as old as Petya."
+  - "Together they are 40."
+unknown: "Petya's age."
+simpler_case: "Try Mum 2 times as old as Petya, together 36 years. How old is Petya?"
+techniques: [draw]
+trap_texts:
+  "10": "You divided 40 by 4, but together they make more parts."
+  "32": "32 is not Petya's age: Petya is the younger one."
