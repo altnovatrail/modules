@@ -21,3 +21,6 @@ skills:
   parity-alternation:
     title: Parity and alternation
     assessability: verdict
+  logic-ordering:
+    title: Ordering
+    assessability: verdict

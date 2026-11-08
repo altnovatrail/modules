@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-12-d5-5.yaml, and the port writes this file again (R12).
+id: "ord-12-d5-5"
+statement:
+  - text: "Ann is 2 years older than Ben. Ben is 3 years younger than Kim. Kim is 1 year older than Dan. Who is the youngest?"
+givens: ["Ann is 2 years older than Ben.", "Ben is 3 years younger than Kim.", "Kim is 1 year older than Dan."]
+unknown: "Who is the youngest."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Ben"
+          options: ["Ann", "Kim", "Dan", "Ann and Dan", "Ben"]
+          trap_values:
+            - value: "Ann"
+              trap: "reversed-relation"
+              text: "Ann is older than someone, so she is not the youngest."
+            - value: "Kim"
+              trap: "reversed-relation"
+              text: "Kim is the oldest."
+            - value: "Dan"
+              trap: "stopped-early"
+              text: "Dan is younger than Kim, but still older than one of the others."
+            - value: "Ann and Dan"
+              trap: "answered-other-question"
+              text: "Ann and Dan are the same age, but they are not the youngest."
+    simpler_case: "Try three children: Kim is 1 year older than Dan, and Ann is 2 years younger than Kim. Who is the youngest of Kim, Dan and Ann?"
+solution:
+  - text: "Start from Ben. Ann is 2 years older, Kim is 3 years older, and Dan is 1 year younger than Kim, so 2 years older than Ben. Everyone is older than Ben."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-1-2"
+difficulty: 5

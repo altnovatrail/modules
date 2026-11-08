@@ -1,0 +1,10 @@
+# What a person adds to ord-34-d4-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The four friends are 128, 131, 134 and 137 centimetres tall."
+  - "Ira is taller than Kolya, and Lida shorter than Kolya."
+  - "Misha is 131 centimetres tall and taller than Lida."
+unknown: "How many centimetres tall Ira is."
+simpler_case: "Try three friends of 120, 125 and 130 centimetres: Ira is taller than Kolya, and Kolya taller than Lida. How tall is Kolya?"
+trap_texts:
+  "134": "134 centimetres is not Ira's height: Ira is taller than Kolya, and Kolya taller than Lida."
+leak_phrases: ["Ira is 137", "137 is Ira", "Ira's height is 137"]

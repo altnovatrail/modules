@@ -1,0 +1,11 @@
+# What a person adds to ord-56-d1-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "A circle, a square, a star and a heart lie in a row, each red, blue, green or yellow."
+  - "The circle is at the left end and the heart at the right end."
+  - "The red shape lies right after the circle."
+  - "The star is yellow, and the green shape lies next to the star."
+unknown: "The colour of the circle."
+simpler_case: "Try three shapes, a circle, a square and a star, each red, green or yellow: the circle is at the left end, the red shape right after it, and the star is yellow. What colour is the circle?"
+techniques: [table]
+trap_texts:
+  "It cannot be told": "It can be told: find the colour of the heart first, and one colour is left for the circle."

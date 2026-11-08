@@ -1,0 +1,9 @@
+# What a person adds to ord-12-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five girls ran a race."
+  - "Ann finished before Bea but after Cleo."
+  - "Dora finished right after Bea, and Emma was last."
+unknown: "Who finished second."
+simpler_case: "Try four girls: Cleo finished before Bea, Dora right after Bea, and Emma last. Who finished second?"
+trap_texts:
+  "Bea": "Bea finished after two of the girls, so she is not second."

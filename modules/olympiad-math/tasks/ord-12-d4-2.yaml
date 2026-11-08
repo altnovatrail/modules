@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-12-d4-2.yaml, and the port writes this file again (R12).
+id: "ord-12-d4-2"
+statement:
+  - text: "Nora is the oldest of four girls. Kim is older than Lily and older than Mia. Lily is not the youngest. Who is the youngest?"
+givens: ["Nora is the oldest of four girls.", "Kim is older than Lily and older than Mia.", "Lily is not the youngest."]
+unknown: "Who is the youngest."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Mia"
+          options: ["Mia", "Kim", "Lily", "Nora", "It is impossible to tell"]
+          trap_values:
+            - value: "Kim"
+              trap: "reversed-relation"
+              text: "Kim is older than two of the girls, so she is not the youngest."
+            - value: "Lily"
+              trap: "ignored-not"
+              text: "Lily is not the youngest."
+            - value: "Nora"
+              trap: "reversed-relation"
+              text: "You picked the oldest girl, and the question asks for the youngest."
+            - value: "It is impossible to tell"
+              trap: "stopped-early"
+              text: "Nora is first and Kim second. Use the fact about Lily to place the last two."
+    simpler_case: "Try three girls, Nora, Lily and Kim: Nora is the oldest, and Lily is not the youngest. Who is the youngest?"
+solution:
+  - text: "Nora is the oldest. Kim is older than both Lily and Mia, so Kim is second. Lily is not the youngest, so Mia is."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-1-2"
+difficulty: 4

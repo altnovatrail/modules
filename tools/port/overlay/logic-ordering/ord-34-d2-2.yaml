@@ -1,0 +1,9 @@
+# What a person adds to ord-34-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five runners finished a race, and Hal won."
+  - "Dan finished after Eva but before Fay."
+  - "Gil finished right after Fay."
+unknown: "Who finished third."
+simpler_case: "Try four runners: Hal won, Eva finished before Fay, and Gil right after Fay. Who finished third?"
+trap_texts:
+  "Eva": "Eva finished 2nd, right after Hal."

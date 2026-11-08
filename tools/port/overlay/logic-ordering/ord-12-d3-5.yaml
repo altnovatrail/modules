@@ -1,0 +1,9 @@
+# What a person adds to ord-12-d3-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Leo has more stickers than Max but fewer than Sam."
+  - "Tom has more stickers than Sam."
+unknown: "How many boys have more stickers than Max."
+simpler_case: "Try three boys: Leo has more stickers than Max, and Sam more than Leo. How many boys have more than Max?"
+trap_texts:
+  "1": "Leo has more than Max, but he is not the only one. Check Sam and Tom too."
+  "2": "Check Tom too: compare him with Max through Sam."

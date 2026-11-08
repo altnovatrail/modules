@@ -1,0 +1,8 @@
+# What a person adds to ord-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann, Ben, Cat, Dan, Eve and Fay ran a race."
+  - "Dan finished after Cat but before Eve."
+  - "Ann finished right after Dan, and Ben right after Eve."
+  - "Eve did not finish next to Ann."
+unknown: "Who finished fourth."
+simpler_case: "Try five runners, Ann, Ben, Cat, Dan and Eve: Dan finished after Cat, Ann right after Dan, and Ben right after Eve, who finished after Ann. Who finished fourth?"

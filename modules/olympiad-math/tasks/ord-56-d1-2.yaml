@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-56-d1-2.yaml, and the port writes this file again (R12).
+id: "ord-56-d1-2"
+statement:
+  - text: "Five children stand in a queue: Ali, Bea, Cal, Dina and Eli. Bea stands somewhere in front of Dina, and Dina somewhere in front of Ali. Cal stands right behind Ali. Eli is not last, and Eli does not stand next to Bea. Who stands third?"
+givens: ["Ali, Bea, Cal, Dina and Eli stand in a queue.", "Bea stands somewhere in front of Dina, and Dina somewhere in front of Ali.", "Cal stands right behind Ali.", "Eli is not last, and Eli does not stand next to Bea."]
+unknown: "Who stands third."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Eli"
+          options: ["Cal", "Ali", "Dina", "Eli", "Bea"]
+          trap_values:
+            - value: "Cal"
+              trap: "reversed-relation"
+              text: "Cal stands third if Ali stands in front of Dina, but Dina stands somewhere in front of Ali."
+            - value: "Ali"
+              trap: "ignored-condition"
+              text: "Ali stands third only if the last place goes to a child who may not stand last."
+            - value: "Dina"
+              trap: "ignored-not"
+              text: "Dina stands third only if two children who may not stand together stand next to each other."
+            - value: "Bea"
+              trap: "reversed-relation"
+              text: "Bea stands third if she stands behind Dina, but she stands somewhere in front of Dina."
+    simpler_case: "Try four children, Ali, Bea, Cal and Dina: Bea stands in front of Dina, Dina in front of Ali, and Cal right behind Ali. Who stands third?"
+solution:
+  - text: "Bea stands in front of Dina, Dina in front of Ali, and Cal right behind Ali, so Cal stands behind all three of them. Eli is not last, so Cal is last and Ali fourth. Bea, Dina and Eli fill the first three places, Bea before Dina and Eli not next to Bea, so the order is Bea, Dina, Eli. Eli stands third."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-5-6"
+difficulty: 1

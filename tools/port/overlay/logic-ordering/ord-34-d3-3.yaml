@@ -1,0 +1,10 @@
+# What a person adds to ord-34-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Team Red finished 2 places ahead of Team Blue."
+  - "Team Green finished 3 places behind Team Blue."
+  - "Team Green finished 6th."
+unknown: "In which place Team Red finished."
+simpler_case: "Try Team Blue finishing 2 places behind Team Green, which is 3rd. In which place is Team Blue?"
+trap_texts:
+  "2": "Find Blue's place first, then count 2 places ahead of it."
+  "4": "Find Blue's place first, from Green's, and only then Red's."

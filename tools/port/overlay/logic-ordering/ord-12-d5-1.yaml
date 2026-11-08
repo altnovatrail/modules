@@ -1,0 +1,10 @@
+# What a person adds to ord-12-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five children stand in a line."
+  - "Kim is last, and Dan stands right in front of Kim."
+  - "Ann is not first and not last, and Ben stands right in front of Ann."
+  - "Eva is not first."
+unknown: "In which place Eva stands."
+simpler_case: "Try four children: Kim is last, Ben stands right in front of Ann, and Eva is not next to Kim. In which place is Eva?"
+trap_texts:
+  "2": "Ben stands right in front of Ann, and that pair must fit somewhere. Try each place for Ann."

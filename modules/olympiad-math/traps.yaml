@@ -1,4 +1,4 @@
-# The traps of this module's tasks: 12 of the 20 traps of mathtrail-standalone, as the format's
+# The traps of this module's tasks: 13 of the 20 traps of mathtrail-standalone, as the format's
 # example of this module has them, each with its description and its advice, but the advice of
 # wrong-parity, which holds no number or parity word here (R13). Each ID is the trap's, with _
 # made -. standalone's content in this module carries the MIT notice of NOTICE.
@@ -30,6 +30,9 @@ traps:
   best-case-not-worst:
     description: Counted the lucky case instead of the worst case when the answer must be certain.
     trap_advice: Ask what the unluckiest possible way would be, and make sure the answer holds even then.
+  trusted-statement:
+    description: Took a statement as true without checking whether the speaker may be lying.
+    trap_advice: "For each speaker, try both: what follows if they tell the truth, and what follows if they lie."
   number-from-text:
     description: Answered with a number from the question without computing anything.
     trap_advice: "Before writing a number down, say which calculation it comes from: a number copied from the question is rarely the answer."

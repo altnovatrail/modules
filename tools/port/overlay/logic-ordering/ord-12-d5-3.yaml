@@ -1,0 +1,10 @@
+# What a person adds to ord-12-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Five houses stand in a row: red, blue, green, yellow and white."
+  - "The yellow house is at the left end, the white house next to it, and the red house next to the white one."
+  - "The green house is between the red and the blue houses, next to both."
+unknown: "Which house is at the right end."
+simpler_case: "Try four houses, yellow, white, red and green: the yellow house is at the left end, the white house next to it, and the red house next to the white one. Which house is at the right end?"
+techniques: [table]
+trap_texts:
+  "the green house": "The green house is between two houses, so it is not at an end."

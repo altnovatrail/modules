@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-34-d5-1.yaml, and the port writes this file again (R12).
+id: "ord-34-d5-1"
+statement:
+  - text: "Six children stand in a row. Kim stands at the right end. There are exactly 2 children between Ben and Kim, and exactly 1 child between Ann and Ben. Ann does not stand at an end. In which place from the left is Ann?"
+givens: ["Six children stand in a row, and Kim at the right end.", "Exactly 2 children stand between Ben and Kim, and exactly 1 between Ann and Ben.", "Ann does not stand at an end."]
+unknown: "In which place from the left Ann stands."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          units: ["st", "nd", "rd", "th"]
+          trap_values:
+            - value: "1"
+              trap: "ignored-not"
+              text: "Ann does not stand at an end."
+            - value: "2"
+              trap: "off-by-one"
+              text: "There must be exactly 1 child between Ann and Ben, not 0."
+            - value: "4"
+              trap: "off-by-one"
+              text: "Place 4 is right next to Ben; there must be one child between them."
+            - value: "6"
+              trap: "ignored-condition"
+              text: "Kim stands at the right end."
+    simpler_case: "Try five children: Kim is at the right end, and exactly 1 child stands between Ben and Kim. In which place from the left is Ben?"
+solution:
+  - text: "Kim is 6th, and with 2 children between Ben and Kim, Ben is 3rd. With 1 child between Ann and Ben, Ann is 1st or 5th. Ann is not at an end, so she is 5th."
+skills:
+  primary: ["logic-ordering"]
+band: "grades-3-4"
+difficulty: 5

@@ -1,0 +1,9 @@
+# What a person adds to ord-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Max is shorter than Lily, and Paul taller than Lily."
+  - "Rita is taller than Olga but shorter than Max."
+  - "The friends line up from the shortest to the tallest."
+unknown: "Who stands second."
+simpler_case: "Try three friends: Max is shorter than Lily, and Paul taller than Lily. They line up from the shortest. Who stands second?"
+trap_texts:
+  "Max": "Two friends are shorter than Max, so he is not second from the shortest."

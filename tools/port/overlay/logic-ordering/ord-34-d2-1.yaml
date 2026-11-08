@@ -1,0 +1,10 @@
+# What a person adds to ord-34-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Oak, Pine, Reed and Stone lie along a straight road."
+  - "Pine lies between Oak and Reed."
+  - "Stone lies at one end, right next to Reed."
+unknown: "Which village lies at the other end."
+simpler_case: "Try three villages, Pine, Reed and Stone: Stone lies at one end, right next to Reed. Which village lies at the other end?"
+trap_texts:
+  "It is impossible to tell": "The facts leave only one order. Start from Stone at one end."
+  "Pine": "Pine lies between two villages, so it is not at an end."

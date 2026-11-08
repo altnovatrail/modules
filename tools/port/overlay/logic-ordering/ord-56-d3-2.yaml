@@ -1,0 +1,10 @@
+# What a person adds to ord-56-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Amy, Beth, Cleo, Dora and Gwen are sisters."
+  - "Amy is older than exactly one of the others."
+  - "Beth is younger than exactly one of the others."
+  - "Cleo is older than Amy but younger than Gwen."
+unknown: "Who is the eldest."
+simpler_case: "Try three sisters, Amy, Beth and Cleo: Amy is older than exactly one of the others, and Cleo older than Amy. Who is the eldest?"
+trap_texts:
+  "Cleo": "Cleo is younger than one of the sisters, so she cannot be the eldest."

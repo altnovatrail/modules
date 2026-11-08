@@ -1,0 +1,11 @@
+# What a person adds to ord-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ali, Bea, Cal, Dina and Eli stand in a queue."
+  - "Bea stands somewhere in front of Dina, and Dina somewhere in front of Ali."
+  - "Cal stands right behind Ali."
+  - "Eli is not last, and Eli does not stand next to Bea."
+unknown: "Who stands third."
+simpler_case: "Try four children, Ali, Bea, Cal and Dina: Bea stands in front of Dina, Dina in front of Ali, and Cal right behind Ali. Who stands third?"
+trap_texts:
+  "Ali": "Ali stands third only if the last place goes to a child who may not stand last."
+  "Dina": "Dina stands third only if two children who may not stand together stand next to each other."

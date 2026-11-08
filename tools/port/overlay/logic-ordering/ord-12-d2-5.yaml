@@ -1,0 +1,9 @@
+# What a person adds to ord-12-d2-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Grandma is older than Mum, and Mum is older than Kate."
+  - "Dad is older than Mum but younger than Grandma."
+unknown: "How many of them are older than Kate."
+simpler_case: "Try Mum, Kate and Grandma only: Grandma is older than Mum, and Mum is older than Kate. How many are older than Kate?"
+trap_texts:
+  "1": "Mum is older than Kate, but she is not the only one. Check Dad and Grandma too."
+  "2": "You forgot someone. Check each of the others against Kate."

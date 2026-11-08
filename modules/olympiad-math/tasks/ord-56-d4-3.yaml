@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-56-d4-3.yaml, and the port writes this file again (R12).
+id: "ord-56-d4-3"
+statement:
+  - text: "Six children perform one after another at a school concert: Abby, Bob, Cora, Dean, Emma and Finn. Emma performs first or third. Finn performs just before or just after Emma. Bob performs after Cora. Dean performs second or last. There is exactly one act between Abby's act and Bob's. Who performs third?"
+givens: ["Abby, Bob, Cora, Dean, Emma and Finn perform one after another.", "Emma performs first or third, and Finn just before or just after Emma.", "Bob performs after Cora, and Dean second or last.", "Exactly one act comes between Abby's and Bob's."]
+unknown: "Who performs third."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Abby"
+          options: ["Abby", "Bob", "Emma", "Cora", "Dean"]
+          trap_values:
+            - value: "Bob"
+              trap: "reversed-relation"
+              text: "Bob is third only if Cora performs after him, but Bob performs after Cora."
+            - value: "Emma"
+              trap: "stopped-early"
+              text: "With Emma third, no two free places are left with exactly one act between them, as the last clue needs."
+            - value: "Cora"
+              trap: "ignored-condition"
+              text: "Cora can be third only if the clue about the one act between two others is broken."
+            - value: "Dean"
+              trap: "ignored-condition"
+              text: "Dean performs second or last, never third."
+    simpler_case: "Try four children, Bob, Cora, Emma and Finn: Emma performs first, Finn right after her, and Bob after Cora. Who performs third?"
+solution:
+  - text: "If Emma were third, Finn would be second or fourth, and Dean second or last. In each case the three places left for Abby, Bob and Cora have no two with exactly one act between them. So Emma is first, Finn second and Dean last. Abby and Bob take places 3 and 5, and as Bob performs after Cora, Bob is 5th, Cora 4th and Abby 3rd."
+techniques: ["table"]
+skills:
+  primary: ["logic-ordering"]
+band: "grades-5-6"
+difficulty: 4

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-ordering/ord-34-d5-5.yaml, and the port writes this file again (R12).
+id: "ord-34-d5-5"
+statement:
+  - text: "Five houses in a row are painted red, blue, green, white and yellow. The green house is second from the left. The white house is at the right end and is not next to the red one. The yellow house is next to the green one. The red house is next to the blue one. What colour is the house in the middle?"
+givens: ["Five houses in a row are red, blue, green, white and yellow.", "The green house is second from the left, and the yellow house next to it.", "The white house is at the right end and not next to the red one.", "The red house is next to the blue one."]
+unknown: "The colour of the house in the middle."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "red"
+          options: ["blue", "red", "green", "white", "yellow"]
+          trap_values:
+            - value: "blue"
+              trap: "ignored-not"
+              text: "With blue in the middle, check the fact about the white house."
+            - value: "green"
+              trap: "ignored-condition"
+              text: "Green is second from the left."
+            - value: "white"
+              trap: "ignored-condition"
+              text: "White is at the right end."
+            - value: "yellow"
+              trap: "stopped-early"
+              text: "Yellow is next to green, but on the other side: 1st from the left."
+    simpler_case: "Try four houses, green, yellow, blue and white: the yellow house is at the left end, the green one next to it, and the white one at the right end. What colour is the house second from the right?"
+solution:
+  - text: "Green is 2nd and white is 5th. Red is not next to white, so red is not 4th. Red is next to blue, so red cannot be 1st, because blue would then have to be 2nd. So red is 3rd, blue is 4th and yellow is 1st."
+techniques: ["table"]
+skills:
+  primary: ["logic-ordering"]
+band: "grades-3-4"
+difficulty: 5

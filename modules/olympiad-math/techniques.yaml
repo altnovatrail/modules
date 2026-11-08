@@ -1,10 +1,13 @@
-# The techniques of this module's tasks: 7 of the 11 of mathtrail-standalone's site, as the
+# The techniques of this module's tasks: 8 of the 11 of mathtrail-standalone's site, as the
 # format's example of this module has them, each with its title and its description. standalone's
 # content in this module carries the MIT notice of NOTICE.
 techniques:
   draw:
     title: Draw the problem
     description: A picture or a diagram turns words into something you can look at. Lines, dots and arrows are enough; it does not have to be pretty.
+  table:
+    title: Make a table
+    description: "When there are many clues, they are hard to keep in your head. A table keeps them for you: every clue is a cross, and where a row has one free cell left, that is the answer."
   small-numbers:
     title: Start with small numbers
     description: When the numbers are big and you cannot see where to start, solve the same problem with small numbers. Spot the rule, then apply it to the big ones.

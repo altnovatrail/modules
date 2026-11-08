@@ -1,0 +1,10 @@
+# What a person adds to ord-34-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Six children stand in a line."
+  - "Dan is first and Eva last, and Fay right behind Dan."
+  - "Ann stands right behind Ben, and Kim right behind Ann."
+unknown: "Who is fifth."
+simpler_case: "Try five children: Dan is first and Eva last, Fay right behind Dan, and Ann right behind Ben. Who is fourth?"
+trap_texts:
+  "Ann": "Ann is 4th, so she is not fifth."
+  "Ben": "Ben is in front of Ann, in 3rd place."
