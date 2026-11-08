@@ -1,0 +1,12 @@
+# What a person adds to game-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Zoe and Max share 12 matches, Zoe first."
+  - "Each picks up 1, 2 or 3 matches in turn, and picking up the last match wins."
+  - "Both play perfectly."
+unknown: "Who wins."
+simpler_case: "Try a box of 5 matches with the same rules. Who wins?"
+techniques: [backwards]
+trap_texts:
+  "Zoe, whatever she does": "Going first does not decide it here."
+  "Zoe, if she picks up 1 first": "After Zoe picks up 1, Max has a good reply."
+  "Zoe, if she picks up 3 first": "After Zoe picks up 3, Max has a good reply."

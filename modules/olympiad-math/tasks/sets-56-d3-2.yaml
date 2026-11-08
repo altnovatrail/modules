@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.sets.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/sets-56-d3-2.yaml, and the port writes this file again (R12).
+id: "sets-56-d3-2"
+statement:
+  - text: "There are 30 pupils in a class. 18 of them like maths (M) and 21 like art (A). At most how many pupils could like neither subject?"
+  - picture: "pictures/sets-56-d3-2.png"
+    alt: "Two overlapping circles, M of 18 and A of 21, inside a box of 30, with the space outside both marked ?."
+    width: 256
+    height: 212
+givens: ["The class has 30 pupils.", "18 like maths and 21 like art."]
+unknown: "At most how many could like neither."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "9"
+          units: ["pupil", "pupils"]
+          trap_values:
+            - value: "0"
+              trap: "reversed-relation"
+              text: "0 is the fewest who could like neither, not the most."
+            - value: "12"
+              trap: "missed-case"
+              text: "12 takes away only the maths fans."
+            - value: "39"
+              trap: "double-count"
+              text: "39 adds the two groups, which counts every pupil who likes both subjects twice."
+            - value: "21"
+              trap: "number-from-text"
+              text: "21 is the number of art fans, copied from the question."
+    simpler_case: "Try 10 pupils, 4 who like maths and 6 who like art. At most how many could like neither?"
+solution:
+  - text: "The fewest pupils like at least one subject when all 18 maths fans also like art. Then only the 21 art fans like anything, and 30 - 21 = 9 like neither. With less overlap, more pupils like something, so 9 is the most."
+skills:
+  primary: ["logic-sets"]
+band: "grades-5-6"
+difficulty: 3

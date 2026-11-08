@@ -1,4 +1,4 @@
-# The traps of this module's tasks: 17 of the 20 traps of mathtrail-standalone, as the format's
+# The traps of this module's tasks: 19 of the 20 traps of mathtrail-standalone, as the format's
 # example of this module has them, each with its description and its advice, but the advice of
 # wrong-parity and of time-unit-mixup, which hold no number or parity word here (R13). Each ID is
 # the trap's, with _ made -. standalone's content in this module carries the MIT notice of NOTICE.
@@ -57,3 +57,11 @@ traps:
     description: Treated a share of a ratio as a share of the total, or added the parts of the ratio wrongly.
     skills: [ratio-sharing]
     trap_advice: Draw the ratio as equal boxes, count all the boxes for the total, then work out what one box holds.
+  remainder-vs-quotient:
+    description: Gave the quotient where the remainder was asked for, or the other way round.
+    skills: [number-divisibility]
+    trap_advice: Share real objects into groups, then say aloud which number is the groups and which is what is left over.
+  first-move-assumed:
+    description: Assumed that whoever moves first always wins, without checking the position.
+    skills: [games-strategy]
+    trap_advice: Play the game a few times from small positions and see who wins each one before deciding.

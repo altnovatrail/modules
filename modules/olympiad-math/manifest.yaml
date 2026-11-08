@@ -1,8 +1,9 @@
 # The manifest of the official module of olympiad mathematics for grades 1–6, carried over from
 # mathtrail-standalone (R05): the first batch of three skills (R07), and the rest of the port, E3,
 # task by task, by three bands of difficulty, those of MathTrail: grades 1–2, 3–4 and 5–6. An adult
-# learns with it too, as the first application has its author do (R76 spec). Its skill of parts
-# and shares needs an anchor skill of the shared taxonomy, which school mathematics teaches.
+# learns with it too, as the first application has its author do (R76 spec). Its skills of parts
+# and shares and of divisibility need two anchor skills of the shared taxonomy, which school
+# mathematics teaches.
 module_format_version: "0.3"
 id: novatrail/olympiad-math
 version: "0.1.1"
@@ -23,7 +24,7 @@ bands:
     grades: [5, 6]
 languages:
   explanation: en
-dependencies: [core.fractions-of-a-whole]
+dependencies: [core.division-with-remainder, core.fractions-of-a-whole]
 authors:
   - name: The NovaTrail authors
 license: Apache-2.0

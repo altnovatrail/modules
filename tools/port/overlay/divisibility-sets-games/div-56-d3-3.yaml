@@ -1,0 +1,8 @@
+# What a person adds to div-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The number is 5 555 555."
+unknown: "Its remainder when divided by 9."
+simpler_case: "Try 222 divided by 9. What is the remainder?"
+trap_texts:
+  "3": "3 is a number of nines, not what is left over."
+  "35": "35 is the sum of the digits, not a remainder."

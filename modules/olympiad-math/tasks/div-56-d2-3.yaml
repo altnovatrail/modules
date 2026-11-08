@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/number.divisibility.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/div-56-d2-3.yaml, and the port writes this file again (R12).
+id: "div-56-d2-3"
+statement:
+  - text: "A loop railway has 20 stations, numbered 1 to 20 in the order the train goes, and after station 20 comes station 1 again. The train starts at station 1, marked S, and moves on to the next station 47 times. At which station is it now?"
+  - picture: "pictures/div-56-d2-3.png"
+    alt: "A loop of 20 stations, with station 1 marked S."
+    width: 327
+    height: 327
+givens: ["The loop has 20 stations, numbered 1 to 20, and after 20 comes 1 again.", "The train starts at station 1 and moves on to the next station 47 times."]
+unknown: "The station the train is at now."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "8"
+          trap_values:
+            - value: "2"
+              trap: "remainder-vs-quotient"
+              text: "2 is how many full rounds the train makes, not the station where it stops."
+            - value: "7"
+              trap: "off-by-one"
+              text: "7 counts the moves left after the full rounds, not the station."
+            - value: "48"
+              trap: "ignored-condition"
+              text: "48 counts on past 20 as if the line did not loop; there is no station 48."
+            - value: "14"
+              trap: "reversed-relation"
+              text: "14 is where the train would be if it went round the loop the other way."
+    simpler_case: "Try a loop of 5 stations and 7 moves from station 1. At which station is the train?"
+solution:
+  - text: "Every 20 moves take the train round the loop and back to station 1. 47 = 2 × 20 + 7, so after two full rounds it moves on 7 more stations, from station 1 to station 8."
+skills:
+  primary: ["number-divisibility"]
+  supporting: ["core.division-with-remainder"]
+band: "grades-5-6"
+difficulty: 2

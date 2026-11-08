@@ -1,0 +1,10 @@
+# What a person adds to sets-56-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each of 40 pupils learns English, German or both."
+  - "28 learn English and 19 German."
+unknown: "How many learn exactly one of the two."
+simpler_case: "Try 10 pupils, 7 learning English and 5 German, each at least one. How many learn exactly one?"
+trap_texts:
+  "7": "7 is not the number who learn exactly one."
+  "12": "12 is not everyone who learns exactly one language."
+  "40": "40 counts every pupil, also those who learn both."

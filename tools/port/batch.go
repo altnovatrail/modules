@@ -46,9 +46,11 @@ type SkillDefaults struct {
 
 // BatchTask is what a task of a batch needs beside standalone: the units of its answer, the word
 // its question counts in the singular and the plural and, for a measure, its abbreviation
-// (format/README.md, section 15).
+// (format/README.md, section 15); and whether its choice is tapped though its key is a word of the
+// question, because its wrong options are reasons a learner would not write by hand (R20).
 type BatchTask struct {
-	Units []string `yaml:"units,omitempty"`
+	Units  []string `yaml:"units,omitempty"`
+	Tapped bool     `yaml:"tapped,omitempty"`
 }
 
 // Overlay is what a person writes for a task, tools/port/overlay/<batch>/<id>.yaml: none of it comes from

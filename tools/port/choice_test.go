@@ -84,6 +84,15 @@ func TestConvertWordByHand(t *testing.T) {
 	}
 }
 
+// A batch may have a task tapped though its key is a word of the question: its wrong options are
+// reasons, not answers a learner writes.
+func TestConvertTappedByBatch(t *testing.T) {
+	got, c := convertOne(t, wordExample("race-12"), BatchTask{Tapped: true}, Overlay{})
+	if c.Answer != answerTapped || !strings.Contains(got, `binding: "choice"`) {
+		t.Errorf("answer = %q, want %q:\n%s", c.Answer, answerTapped, got)
+	}
+}
+
 func TestConvertTapped(t *testing.T) {
 	for name, change := range map[string]func(*Example){
 		"a word the question does not hold": func(e *Example) { e.Question = "Three children run. Who is the slowest?" },

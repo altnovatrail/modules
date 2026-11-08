@@ -1,0 +1,10 @@
+# What a person adds to sets-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each of 30 children went to the museum, the zoo or both."
+  - "20 went to the museum and 16 to the zoo."
+unknown: "How many went to both places."
+simpler_case: "Try 10 children, 7 at the museum and 5 at the zoo, each at one place at least. How many went to both?"
+picture_alt: "Two overlapping circles, M of 20 and Z of 16, inside a box of 30; 0 outside both and the overlap marked ?."
+trap_texts:
+  "10": "10 is not the number who went to both places."
+  "36": "36 is where the adding stops."

@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/number.divisibility.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/div-56-d4-1.yaml, and the port writes this file again (R12).
+id: "div-56-d4-1"
+statement:
+  - text: "Some nuts are shared among 9 squirrels. Each squirrel gets the same number of nuts, as many as possible, and the nuts left over are exactly as many as each squirrel got. What is the largest number of nuts there could be?"
+givens: ["Nuts are shared among 9 squirrels, each as many as possible.", "The nuts left over are exactly as many as each squirrel got."]
+unknown: "The largest number of nuts there could be."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "80"
+          units: ["nut", "nuts"]
+          trap_values:
+            - value: "90"
+              trap: "off-by-one"
+              text: "90 leaves 9 nuts over, but then each squirrel could get one more."
+            - value: "72"
+              trap: "stopped-early"
+              text: "72 leaves out the nuts left over."
+            - value: "8"
+              trap: "answered-other-question"
+              text: "8 is not the number of all the nuts."
+            - value: "89"
+              trap: "ignored-condition"
+              text: "89 gives each squirrel 9 and leaves 8, but the nuts left over must equal each share."
+    simpler_case: "Try 4 squirrels, with as many nuts left over as each squirrel got. What is the largest number of nuts?"
+solution:
+  - text: "When the nuts are shared among 9 as far as they go, at most 8 are left over: 9 more would give each squirrel one more. So each squirrel gets at most 8 and 8 are left over, which makes 9 × 8 + 8 = 80 nuts."
+skills:
+  primary: ["number-divisibility"]
+  supporting: ["core.division-with-remainder"]
+band: "grades-5-6"
+difficulty: 4

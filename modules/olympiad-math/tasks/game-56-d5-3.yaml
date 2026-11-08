@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/games.strategy.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/game-56-d5-3.yaml, and the port writes this file again (R12).
+id: "game-56-d5-3"
+statement:
+  - text: "Jack puts two dice on the table, each with any face he likes on top. Then Jill may turn either die, both or neither upside down. On a die, the top and bottom faces always add up to 7. Jill wins if the two top faces then add up to a number that divides by 4. Who wins if both play as well as they can?"
+givens: ["Jack puts two dice on the table with any faces on top.", "Jill may turn either die, both or neither upside down; top and bottom add up to 7.", "Jill wins if the two top faces add up to a number that divides by 4."]
+unknown: "Who wins."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Jack, if he puts a 1 and a 2 on top", "Jack, since he moves first", "Jill, whatever Jack does", "It depends on the faces Jack puts on top", "Jill, but only when the two faces add up to an even number"]
+        check:
+          kind: "choice"
+          key: "Jill, whatever Jack does"
+          trap_values:
+            - value: "Jack, if he puts a 1 and a 2 on top"
+              trap: "best-case-not-worst"
+              text: "Think how Jill can turn the dice."
+            - value: "Jack, since he moves first"
+              trap: "first-move-assumed"
+              text: "Moving first does not decide it here."
+            - value: "It depends on the faces Jack puts on top"
+              trap: "missed-case"
+              text: "Check every pair of faces."
+            - value: "Jill, but only when the two faces add up to an even number"
+              trap: "wrong-parity"
+              text: "Check odd totals too."
+    simpler_case: "Try a 1 and a 3 on top. Can Jill make the total divide by 4?"
+solution:
+  - text: "If the total s divides by 4, Jill leaves the dice as they are. Turning both dice changes s into 14 − s, so if s is even and does not divide by 4, then 14 − s does. If s is odd, the two faces differ by an odd number d, and turning one die or the other gives 7 − d or 7 + d, and one of these divides by 4. So Jill always wins."
+skills:
+  primary: ["games-strategy"]
+band: "grades-5-6"
+difficulty: 5

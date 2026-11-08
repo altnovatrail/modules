@@ -1,0 +1,10 @@
+# What a person adds to sets-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Two purses hold four coins in all."
+  - "One purse holds twice as many coins as the other."
+unknown: "How many coins the purse that holds more has inside it."
+simpler_case: "Try two purses side by side with 9 coins in all, one holding twice as many as the other. How many does the bigger one hold?"
+trap_texts:
+  "2": "2 is not what the purse that holds more has."
+  "6": "6 counts the coins in the small purse twice, once for each purse."
+  "8/3": "8/3 shares the four coins in the ratio 2 to 1, but a coin cannot be cut."

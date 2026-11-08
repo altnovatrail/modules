@@ -1,4 +1,4 @@
-# The techniques of this module's tasks: 9 of the 11 of mathtrail-standalone's site, as the
+# The techniques of this module's tasks: 10 of the 11 of mathtrail-standalone's site, as the
 # format's example of this module has them, each with its title and its description. standalone's
 # content in this module carries the MIT notice of NOTICE.
 techniques:
@@ -29,3 +29,6 @@ techniques:
   pigeonhole:
     title: Pigeons and pigeonholes
     description: If there are more pigeons than holes, some hole holds at least two pigeons. It sounds obvious, yet it proves things that seem impossible to check.
+  mirror:
+    title: Mirror the moves
+    description: In two-player games the winner is often the one who can mirror the other's moves. Then you always have a reply, as long as your opponent has a move.

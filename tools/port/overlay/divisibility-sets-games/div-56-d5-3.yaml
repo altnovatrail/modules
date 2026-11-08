@@ -1,0 +1,9 @@
+# What a person adds to div-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The number has four digits, all odd and no two the same."
+  - "It divides by 11."
+unknown: "The largest such number."
+simpler_case: "Try three-digit numbers of different odd digits. What is the largest that divides by 11?"
+trap_texts:
+  "885": "885 is what a number gives when it is divided by 11, not the number itself."
+  "9713": "9713 divides by 11, but a larger number of different odd digits does too."

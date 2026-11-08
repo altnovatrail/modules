@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.sets.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/divisibility-sets-games/sets-56-d4-2.yaml, and the port writes this file again (R12).
+id: "sets-56-d4-2"
+statement:
+  - text: "A team has 10 pupils. 7 of them can swim, 8 can skate and 9 can ride a bike. At least how many pupils on the team must be able to do all three?"
+givens: ["The team has 10 pupils.", "7 can swim, 8 can skate and 9 can ride a bike."]
+unknown: "At least how many can do all three."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["pupil", "pupils"]
+          trap_values:
+            - value: "7"
+              trap: "reversed-relation"
+              text: "7 is the most who could do all three, not the fewest."
+            - value: "5"
+              trap: "stopped-early"
+              text: "5 = 7 + 8 - 10 is the fewest who can both swim and skate; the bike riders were never brought in."
+            - value: "0"
+              trap: "ignored-condition"
+              text: "0 forgets there are only 10 pupils, so the three groups have to overlap."
+            - value: "24"
+              trap: "wrong-operation"
+              text: "24 adds the three groups, which gives more than the 10 pupils."
+    simpler_case: "Try 10 pupils, 7 who can swim and 9 who can skate. At least how many can do both?"
+solution:
+  - text: "3 pupils cannot swim, 2 cannot skate and 1 cannot ride a bike. Even if these are all different pupils, only 3 + 2 + 1 = 6 miss something. The other 10 - 6 = 4 can do all three, and 4 is possible when the six are all different."
+skills:
+  primary: ["logic-sets"]
+band: "grades-5-6"
+difficulty: 4

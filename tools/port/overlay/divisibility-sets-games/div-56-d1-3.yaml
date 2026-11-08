@@ -1,0 +1,9 @@
+# What a person adds to div-56-d1-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann's number divided by 9 leaves 5."
+  - "Ben's number divided by 9 leaves 7."
+unknown: "The remainder of the sum of their numbers divided by 9."
+simpler_case: "Try remainders of 2 and 4 when dividing by 9. What is the remainder of the sum?"
+trap_texts:
+  "1": "1 is how many nines the two remainders make together, not what is left over."
+  "12": "12 is the sum of the two remainders, a step on the way; it is more than 9."

@@ -1,0 +1,64 @@
+# The tasks of number-divisibility, logic-sets and games-strategy of standalone at 42b4408: all 45
+# of them (E3; T33). The units are the word a question counts, in the singular and the plural; a task
+# whose answer is no number, or a number by itself, has none. standalone's site links the techniques
+# backwards and mirror to games-strategy, which go in the overlay of each game they help, and none to
+# the other two topics. A task of number-divisibility has the anchor skill
+# core.division-with-remainder as its support.
+standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+skills:
+  number-divisibility:
+    techniques: []
+    supporting: [core.division-with-remainder]
+  logic-sets:
+    techniques: []
+  games-strategy:
+    techniques: []
+tasks:
+  div-56-d1-1: {}
+  div-56-d1-2: {}
+  div-56-d1-3: {}
+  div-56-d2-1: {units: [page, pages]}
+  div-56-d2-2: {}
+  div-56-d2-3: {}
+  div-56-d3-1: {}
+  div-56-d3-2: {units: [lemon, lemons]}
+  div-56-d3-3: {}
+  div-56-d4-1: {units: [nut, nuts]}
+  div-56-d4-2: {}
+  div-56-d4-3: {}
+  div-56-d5-1: {units: [sweet, sweets]}
+  div-56-d5-2: {units: [number, numbers]}
+  div-56-d5-3: {}
+  sets-56-d1-1: {}
+  sets-56-d1-2: {units: [coin, coins]}
+  sets-56-d1-3: {units: [pupil, pupils]}
+  sets-56-d2-1: {units: [pupil, pupils]}
+  sets-56-d2-2: {units: [child, children]}
+  sets-56-d2-3: {units: [child, children]}
+  sets-56-d3-1: {units: [child, children]}
+  sets-56-d3-2: {units: [pupil, pupils]}
+  sets-56-d3-3: {units: [pupil, pupils]}
+  sets-56-d4-1: {units: [pupil, pupils]}
+  sets-56-d4-2: {units: [pupil, pupils]}
+  sets-56-d4-3: {units: [pupil, pupils]}
+  sets-56-d5-1: {units: [pupil, pupils]}
+  sets-56-d5-2: {units: [number, numbers]}
+  sets-56-d5-3: {units: [kind, kinds]}
+  game-56-d1-1: {}
+  game-56-d1-2: {units: [square, squares]}
+  game-56-d1-3: {}
+  game-56-d2-1: {units: [stone, stones]}
+  game-56-d2-2: {}
+  game-56-d2-3: {}
+  game-56-d3-1: {units: [start, starts]}
+  game-56-d3-2: {}
+  game-56-d3-3: {units: [sweet, sweets]}
+  game-56-d4-1: {units: [marble, marbles]}
+  game-56-d4-2: {}
+  game-56-d4-3: {units: [move, moves]}
+  game-56-d5-1: {tapped: true}
+  game-56-d5-2: {}
+  game-56-d5-3: {}

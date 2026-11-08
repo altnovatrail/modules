@@ -1,0 +1,9 @@
+# What a person adds to div-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Kim reads from page 40 to page 100, both counted."
+  - "Every page whose number divides by 4 has a picture."
+unknown: "How many pages with pictures Kim reads."
+simpler_case: "Try pages 8 to 20. How many of them can be divided by 4?"
+trap_texts:
+  "15": "15 counts the gaps between the pages with pictures, not the pages themselves."
+  "17": "17 adds a page at the ends that is already counted."

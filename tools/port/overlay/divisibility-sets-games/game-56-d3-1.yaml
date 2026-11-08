@@ -1,0 +1,13 @@
+# What a person adds to game-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "A turn removes 1 or 3 cards, Mia first, and removing the last card wins."
+  - "Both play as well as they can."
+  - "The stack may start with 10, 11, 12, 13 or 14 cards."
+unknown: "For how many of these starts Mia can be sure to win."
+simpler_case: "Try stacks of 4, 5 and 6 cards with the same rules. For how many can Mia be sure to win?"
+techniques: [backwards]
+trap_texts:
+  "1": "One of the starts Mia wins from was missed."
+  "3": "3 counts the wrong starts."
+  "4": "This uses the rule of another game. Here only 1 or 3 cards may go."
+  "5": "Going first is not enough for every start."

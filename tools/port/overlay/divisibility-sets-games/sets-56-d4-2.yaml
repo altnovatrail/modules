@@ -1,0 +1,6 @@
+# What a person adds to sets-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The team has 10 pupils."
+  - "7 can swim, 8 can skate and 9 can ride a bike."
+unknown: "At least how many can do all three."
+simpler_case: "Try 10 pupils, 7 who can swim and 9 who can skate. At least how many can do both?"

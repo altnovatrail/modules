@@ -1,0 +1,12 @@
+# What a person adds to sets-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Some of the animals in the yard are called Vaska."
+  - "One group is the cats, leaving out the cats not called Vaska."
+  - "The other is the animals called Vaska, leaving out those that are not cats."
+unknown: "Which group is bigger."
+simpler_case: "Try a yard with 4 cats, 2 of them called Vaska, and a dog called Vaska. Are there more cats or more animals called Vaska?"
+trap_texts:
+  "The cats": "The cats misses a 'not' in the question."
+  "The animals called Vaska": "The animals called Vaska misses a 'not' in the question."
+  "It depends on how many cats there are": "It depends would be right for all the cats against all the animals called Vaska, but the question leaves some of both out."
+  "The cats, by the cats not called Vaska": "Both groups in the question leave the cats not called Vaska out."

@@ -1,0 +1,9 @@
+# What a person adds to div-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Nuts are shared among 9 squirrels, each as many as possible."
+  - "The nuts left over are exactly as many as each squirrel got."
+unknown: "The largest number of nuts there could be."
+simpler_case: "Try 4 squirrels, with as many nuts left over as each squirrel got. What is the largest number of nuts?"
+trap_texts:
+  "8": "8 is not the number of all the nuts."
+  "72": "72 leaves out the nuts left over."

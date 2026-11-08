@@ -252,7 +252,8 @@ type answer struct {
 //     a simple fraction is checked as a fraction, and an integer or a decimal, with units of the
 //     batch, as a number, which takes a fraction too;
 //   - a time on a clock, and one word other than yes and no that the question holds, are a choice
-//     written by hand anywhere on the sheet, whose options are the check's and closed;
+//     written by hand anywhere on the sheet, whose options are the check's and closed, unless the
+//     batch has the task tapped: its wrong options are reasons, not answers a learner writes;
 //   - any other answer — a word the question does not hold, yes or no, a phrase, a date, a
 //     quantity of more than one part, and a number with words after it that the batch gives no
 //     units for — is a choice tapped. The report names such an answer that begins with a digit.
@@ -272,7 +273,7 @@ func answerOf(ex Example, task BatchTask, overlay Overlay, lenient bool) (answer
 		return answer{}, fmt.Errorf("%s: its answer %q: %w", ex.ID, right, err)
 	}
 	if kind == "" {
-		byHand := oneWord.MatchString(right) && !yesOrNo.MatchString(right) && names(ex.Question, right)
+		byHand := !task.Tapped && oneWord.MatchString(right) && !yesOrNo.MatchString(right) && names(ex.Question, right)
 		a, err := chosen(ex, overlay, lenient, byHand)
 		if err == nil && !byHand && leadingDigit.MatchString(right) {
 			a.notes = append(a.notes, fmt.Sprintf("its answer %q is no number in the notation of the checks, or one with words after it that the batch gives no units for: it is a choice tapped", right))

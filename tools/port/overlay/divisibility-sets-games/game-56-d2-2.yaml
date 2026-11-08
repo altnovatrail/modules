@@ -1,0 +1,13 @@
+# What a person adds to game-56-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Kate and Leo count up to 22, Kate first."
+  - "Each says the last number plus 1, 2 or 3, and nobody may go past 22."
+  - "Whoever says 22 wins, and Leo plays as well as he can."
+unknown: "The number Kate should say first."
+simpler_case: "Try a race to 10, adding 1 or 2 each time. What number should Kate say first?"
+techniques: [backwards]
+picture_alt: "The numbers 1, 2, 3 and 4, a gap, then 19, 20, 21 and 22 in a row."
+trap_texts:
+  "1": "1 would win a race to another number. Here the goal is 22."
+  "3": "3 is the biggest first step, but it follows no plan."
+leak_phrases: ["say 2", "says 2"]
