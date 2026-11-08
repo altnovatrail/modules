@@ -1,0 +1,34 @@
+# A lesson of E3 (T40; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# fractions-parts on the band of grades 5–6. Its texts are those of the page parts-and-shares of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: fractions-parts-grades-5-6
+title: "Parts and shares: olympiad level"
+skills: [fractions-parts]
+segments:
+  - explanation:
+      - text: "Ben eats a third of a pizza, and Ann eats half of what is left. Who ate more? In these tasks a fraction is always a fraction of something, and most of the difficulty is knowing of what: of the whole, or of what was left. A strip of paper cut into equal parts shows it better than any rule."
+      - text: "A part of what? A fraction is always a fraction of something. “A quarter of the rest” and “a quarter of the whole” are different numbers, so first find what the fraction is taken of."
+      - text: "Through one part. To find 3/4 of 64, divide by 4 and take 3 parts: 48. To find the whole when 3/4 of it is 48, divide by 3 for one part and take 4 parts: 64."
+      - text: "The parts make the whole. What is given away and what is left together make one whole. If 1/2 and 1/7 are given away, 1 − 1/2 − 1/7 = 5/14 is left."
+  - worked_example:
+      statement:
+        - text: "A baker bakes 60 rolls. By noon he sells half of them, and by evening two thirds of the rest. How many rolls are left?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Half of 60 rolls is 30, so 30 rolls are left after noon."
+        - text: "Two thirds of the rest is two thirds of 30, not of 60: 30 : 3 × 2 = 20 rolls are sold in the evening."
+        - text: "30 − 20 = 10 rolls are left."
+        - text: "Answer: 10 rolls."
+  - explanation:
+      - text: "Two thirds of what? Two thirds of all 60 rolls would be 40, and 30 + 40 = 70 rolls is more than the baker baked. “Two thirds of the rest” is a share of what is left at that moment."
+  - task: frac-56-d1-1
+  - task: frac-56-d3-1
+  - task: frac-56-d5-2
+  - explanation:
+      - text: "How to solve: draw a strip."
+      - text: "Draw the whole as a strip."
+      - text: "Cut it into equal parts, and the rest again if needed."
+      - text: "Find one part, then the parts the question asks for."

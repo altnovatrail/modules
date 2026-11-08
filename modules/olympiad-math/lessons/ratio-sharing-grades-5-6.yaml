@@ -1,0 +1,34 @@
+# A lesson of E3 (T40; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# ratio-sharing on the band of grades 5–6. Its texts are those of the page ratios-and-sharing of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: ratio-sharing-grades-5-6
+title: "Ratios and sharing: olympiad level"
+skills: [ratio-sharing]
+segments:
+  - explanation:
+      - text: "Ann and Ben share 35 sweets in the ratio 3 to 4. How many does each get? In these tasks a ratio says how many equal parts each one gets, not how many things. Counting the parts first and finding what one part is worth turns every ratio task into a division."
+      - text: "A ratio is parts. 3 to 4 means: for every 3 equal parts of one, 4 of the other. Together that is 7 equal parts, not 3 or 4."
+      - text: "One part first. Divide the total by the number of parts to find one part, then multiply by each one's number: 35 : 7 = 5, so 3 parts are 15 and 4 parts are 20."
+      - text: "Scale both sides. A ratio stays the same when both of its numbers are multiplied by the same number: 3 to 4 is 6 to 8 and 15 to 20. That is how a recipe grows."
+  - worked_example:
+      statement:
+        - text: "Max and Lena pick 45 mushrooms together. For every 4 mushrooms Max picks, Lena picks 5. How many mushrooms does Lena pick?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "4 to 5 means 4 parts for Max and 5 for Lena, 9 equal parts in all."
+        - text: "One part is 45 : 9 = 5 mushrooms."
+        - text: "Lena has 5 parts: 5 × 5 = 25 mushrooms. Check: Max has 20, and 20 + 25 = 45."
+        - text: "Answer: 25 mushrooms."
+  - explanation:
+      - text: "Why not 45 : 5? 45 : 5 = 9 divides by Lena's number alone. The 45 mushrooms are all 9 parts, Max's and Lena's together."
+  - task: ratio-56-d1-1
+  - task: ratio-56-d3-1
+  - task: ratio-56-d5-2
+  - explanation:
+      - text: "How to solve: a box for every part."
+      - text: "Draw a box for every part."
+      - text: "Find what one box holds."
+      - text: "Fill in the shares, and check the total."
