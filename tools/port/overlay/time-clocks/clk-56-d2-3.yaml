@@ -1,0 +1,10 @@
+# What a person adds to clk-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The plane takes off at 10:00 local time and flies for 3 hours."
+  - "Where it lands, the clocks show 4 hours less."
+unknown: "The local time when it lands."
+simpler_case: "Try a flight of 2 hours to a city whose clocks show 1 hour less. When does it land?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 10 o'clock."
+trap_texts:
+  "13:00": "13:00 is the time in the city it left, not where it lands."

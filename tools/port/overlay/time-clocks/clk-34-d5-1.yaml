@@ -1,0 +1,11 @@
+# What a person adds to clk-34-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The clock has 12 hours on its face."
+  - "It goes 6 minutes too fast every day."
+  - "At noon today it shows the right time."
+unknown: "After how many days it next shows the right time."
+simpler_case: "Try a clock that goes 30 minutes too fast every day. After how many days is it a whole hour ahead?"
+picture_alt: "A clock showing 12 o'clock."
+trap_texts:
+  "10": "After 10 days the clock is only a little ahead. How far ahead must it be?"
+  "60": "Count the minutes in 12 hours again."

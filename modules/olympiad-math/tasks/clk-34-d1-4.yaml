@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-34-d1-4.yaml, and the port writes this file again (R12).
+id: "clk-34-d1-4"
+statement:
+  - text: "Masha went to sleep at 21:30 and woke up at 7:00 the next morning. How long did she sleep?"
+  - picture: "pictures/clk-34-d1-4.png"
+    alt: "A clock showing 7 o'clock."
+    width: 200
+    height: 200
+givens: ["Masha went to sleep at 21:30.", "She woke up at 7:00 the next morning."]
+unknown: "How long she slept."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["8 hours 30 minutes", "9 hours 30 minutes", "9 hours", "10 hours 30 minutes", "14 hours 30 minutes"]
+        check:
+          kind: "choice"
+          key: "9 hours 30 minutes"
+          trap_values:
+            - value: "8 hours 30 minutes"
+              trap: "off-by-one"
+              text: "Count the time from 21:30 to midnight again."
+            - value: "9 hours"
+              trap: "ignored-condition"
+              text: "You dropped the half hour: she went to sleep at 21:30."
+            - value: "10 hours 30 minutes"
+              trap: "off-by-one"
+              text: "Count the hours from midnight to 7:00 again."
+            - value: "14 hours 30 minutes"
+              trap: "wrong-operation"
+              text: "You took 7 from 21. Count forward through midnight."
+    simpler_case: "Try going to sleep at 22:00 and waking up at 6:00 the next morning. How long is that?"
+solution:
+  - text: "From 21:30 to midnight is 2 hours 30 minutes. From midnight to 7:00 is 7 hours. In all 9 hours 30 minutes."
+skills:
+  primary: ["time-clocks"]
+band: "grades-3-4"
+difficulty: 1

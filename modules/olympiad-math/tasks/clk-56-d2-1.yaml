@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-56-d2-1.yaml, and the port writes this file again (R12).
+id: "clk-56-d2-1"
+statement:
+  - text: "A night guard's shift starts at 22:40 and ends at 7:10. During the shift he takes two breaks of 25 minutes each. How long does he work?"
+givens: ["The shift starts at 22:40 and ends at 7:10.", "He takes two breaks of 25 minutes each."]
+unknown: "How long he works."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["8 hours 30 minutes", "14 hours 40 minutes", "7 hours 40 minutes", "9 hours 20 minutes", "8 hours 20 minutes"]
+        check:
+          kind: "choice"
+          key: "7 hours 40 minutes"
+          trap_values:
+            - value: "8 hours 30 minutes"
+              trap: "stopped-early"
+              text: "8 hours 30 minutes is the whole shift; the breaks still come off it."
+            - value: "14 hours 40 minutes"
+              trap: "reversed-relation"
+              text: "14 hours 40 minutes counts the day from 7:10 to 22:40 and takes the breaks off it, but the shift runs through the night, from 22:40 to 7:10."
+            - value: "9 hours 20 minutes"
+              trap: "wrong-operation"
+              text: "9 hours 20 minutes adds the breaks to the shift instead of taking them away."
+            - value: "8 hours 20 minutes"
+              trap: "time-unit-mixup"
+              text: "8 hours 20 minutes counts 100 minutes in an hour: from 22:40 to midnight is 1 hour 20 minutes, not 1 hour 60 minutes."
+    simpler_case: "Try a shift from 22:40 to 1:10 with one break of 25 minutes. How long does he work?"
+solution:
+  - text: "From 22:40 to midnight is 1 hour 20 minutes, and from midnight to 7:10 the next morning is 7 hours 10 minutes, so the shift lasts 8 hours 30 minutes. The two breaks take 50 minutes, which leaves 7 hours 40 minutes of work."
+skills:
+  primary: ["time-clocks"]
+band: "grades-5-6"
+difficulty: 2

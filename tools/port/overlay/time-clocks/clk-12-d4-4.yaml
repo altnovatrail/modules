@@ -1,0 +1,9 @@
+# What a person adds to clk-12-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Masha started her homework at 4:50."
+  - "She finished at 6:10."
+unknown: "How long it took."
+simpler_case: "Try homework from 4:50 to 5:15. How long did it take?"
+picture_alt: "A clock showing 4:50."
+trap_texts:
+  "1 hour 10 minutes": "1 hour 10 minutes counts only from 5:00, but she started before 5:00."

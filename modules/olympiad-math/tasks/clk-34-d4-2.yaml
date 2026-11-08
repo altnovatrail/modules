@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-34-d4-2.yaml, and the port writes this file again (R12).
+id: "clk-34-d4-2"
+statement:
+  - text: "Trains leave a station every 25 minutes, starting at 6:10. How many trains leave from 7:00 to 9:00, counting a train that leaves exactly at 7:00?"
+  - picture: "pictures/clk-34-d4-2.png"
+    alt: "A clock showing 6:10."
+    width: 200
+    height: 200
+givens: ["Trains leave every 25 minutes, starting at 6:10.", "A train that leaves exactly at 7:00 counts."]
+unknown: "How many trains leave from 7:00 to 9:00."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          units: ["train", "trains"]
+          trap_values:
+            - value: "4"
+              trap: "missed-case"
+              text: "The train at 7:00 counts too."
+            - value: "6"
+              trap: "off-by-one"
+              text: "Check the last train you counted: it must leave by 9:00."
+            - value: "7"
+              trap: "answered-other-question"
+              text: "7 counts the trains before 7:00 too."
+            - value: "25"
+              trap: "number-from-text"
+              text: "25 is the number of minutes between trains."
+    simpler_case: "Try from 7:00 to 8:00 first. How many trains leave?"
+solution:
+  - text: "The trains leave at 6:10, 6:35, 7:00, 7:25, 7:50, 8:15, 8:40 and 9:05. From 7:00 to 9:00 they are 7:00, 7:25, 7:50, 8:15 and 8:40: 5 trains."
+skills:
+  primary: ["time-clocks"]
+band: "grades-3-4"
+difficulty: 4

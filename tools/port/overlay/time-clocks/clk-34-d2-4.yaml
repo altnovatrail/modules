@@ -1,0 +1,11 @@
+# What a person adds to clk-34-d2-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "School starts at 8:00."
+  - "Each lesson lasts 45 minutes."
+  - "After each lesson there is a 10-minute break."
+unknown: "How many lessons end before 12:00."
+simpler_case: "Try the lessons that end before 10:00. How many are there?"
+picture_alt: "A clock showing 8 o'clock."
+trap_texts:
+  "3": "List the end times of the lessons and count those before 12:00."
+  "6": "You divided the hours by 40 minutes. List the end times instead."

@@ -1,0 +1,10 @@
+# What a person adds to clk-34-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The clock strikes once at a quarter past, at half past and at a quarter to every hour."
+  - "At every full hour it strikes as many times as the hour, from 1 to 12."
+unknown: "How many times it strikes in 24 hours."
+simpler_case: "Try 2 hours, from just after 12:00 to 2:00. How many times does it strike?"
+trap_texts:
+  "150": "The full hours strike twice in a day, not once."
+  "204": "Count the quarter strikes in each hour again."
+  "252": "At the full hour the clock strikes the hour, not an extra quarter."

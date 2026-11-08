@@ -1,0 +1,46 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-56-d3-1.yaml, and the port writes this file again (R12).
+id: "clk-56-d3-1"
+statement:
+  - text: "Train A leaves at 22:35 and arrives at 6:10. Train B leaves at 23:50 and arrives at 7:05. Which trip is longer, and by how many minutes?"
+  - picture: "pictures/clk-56-d3-1.png"
+    alt: "A table: train A leaves at 22:35 and arrives at 6:10; train B leaves at 23:50 and arrives at 7:05."
+    width: 151
+    height: 80
+givens: ["Train A leaves at 22:35 and arrives at 6:10.", "Train B leaves at 23:50 and arrives at 7:05."]
+unknown: "Which trip is longer, and by how many minutes."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Train B, by 20 minutes", "Train A, by 20 minutes", "Train B, by 55 minutes", "Train A, by 75 minutes", "Train A, by 7 hours 35 minutes"]
+        check:
+          kind: "choice"
+          key: "Train A, by 20 minutes"
+          trap_values:
+            - value: "Train B, by 20 minutes"
+              trap: "reversed-relation"
+              text: "Work out each trip through midnight, then compare them."
+            - value: "Train B, by 55 minutes"
+              trap: "ignored-condition"
+              text: "55 minutes is the gap between the arrival times only; the departure times differ too."
+            - value: "Train A, by 75 minutes"
+              trap: "ignored-condition"
+              text: "75 minutes is the gap between the departure times only; the arrival times differ too."
+            - value: "Train A, by 7 hours 35 minutes"
+              trap: "stopped-early"
+              text: "7 hours 35 minutes is how long train A's trip takes, a step on the way; the question asks how much longer it is than train B's."
+    simpler_case: "Try train C from 22:00 to 6:00 and train D from 23:00 to 6:00. Which trip is longer, and by how many hours?"
+solution:
+  - text: "Train A travels 1 hour 25 minutes up to midnight and 6 hours 10 minutes after it, 7 hours 35 minutes in all. Train B travels 10 minutes up to midnight and 7 hours 5 minutes after it, 7 hours 15 minutes in all. Train A's trip is 20 minutes longer."
+  - picture: "pictures/clk-56-d3-1-solution.png"
+    alt: "The same table with the length of each trip: 7:35 for train A and 7:15 for train B."
+    width: 192
+    height: 80
+skills:
+  primary: ["time-clocks"]
+band: "grades-5-6"
+difficulty: 3

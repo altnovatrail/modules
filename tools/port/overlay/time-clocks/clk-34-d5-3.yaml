@@ -1,0 +1,10 @@
+# What a person adds to clk-34-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Swift leaves at 7:50 and arrives at 10:35."
+  - "Pony takes 25 minutes longer for its trip."
+  - "Pony leaves at 8:20."
+unknown: "The time when Pony arrives."
+simpler_case: "Try a trip 10 minutes longer than Swift's, leaving at 7:50. When does it arrive?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+trap_texts:
+  "11:00": "Pony also leaves later than Swift."

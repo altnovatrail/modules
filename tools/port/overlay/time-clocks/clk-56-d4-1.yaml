@@ -1,0 +1,10 @@
+# What a person adds to clk-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Out, the plane takes off at 10:00 Alpha time and lands at 15:00 Beta time."
+  - "Back, it takes off at 17:00 Beta time and lands at 18:00 Alpha time."
+  - "All of it happens on one day, and both flights take the same time."
+unknown: "By how many hours Beta's clocks are ahead of Alpha's, or behind them."
+simpler_case: "Try flights that seem to take 7 hours there and 1 hour back by the clocks. How long does each flight take?"
+trap_texts:
+  "3 hours ahead": "3 hours is how long each flight takes, a step on the way."
+  "4 hours ahead": "4 hours is the gap between how long the two flights seem, not the difference between the clocks."

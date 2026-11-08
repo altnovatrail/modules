@@ -24,3 +24,6 @@ skills:
   logic-ordering:
     title: Ordering
     assessability: verdict
+  time-clocks:
+    title: Clocks
+    assessability: verdict

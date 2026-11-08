@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-34-d3-4.yaml, and the port writes this file again (R12).
+id: "clk-34-d3-4"
+statement:
+  - text: "A candle burns for 50 minutes. Katya lights 3 candles one after another: she lights the next candle as soon as the previous one goes out. She lights the first candle at 18:40. At what time does the last candle go out?"
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["A candle burns for 50 minutes.", "Katya lights 3 candles one after another, each as soon as the previous one goes out.", "She lights the first at 18:40."]
+unknown: "The time when the last candle goes out."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "21:10"
+          options: ["19:30", "20:20", "20:90", "21:10", "21:40"]
+          trap_values:
+            - value: "19:30"
+              trap: "stopped-early"
+              text: "19:30 is when the first candle goes out."
+            - value: "20:20"
+              trap: "stopped-early"
+              text: "20:20 is when an earlier candle goes out."
+            - value: "20:90"
+              trap: "time-unit-mixup"
+              text: "An hour has 60 minutes, so there is no 20:90."
+            - value: "21:40"
+              trap: "wrong-operation"
+              text: "You added 3 hours, not 2 hours 30 minutes."
+    simpler_case: "Try 2 candles of 30 minutes from 18:40. At what time does the last one go out?"
+solution:
+  - text: "Three candles burn for 3 × 50 = 150 minutes, which is 2 hours 30 minutes. 18:40 + 2 hours 30 minutes = 21:10."
+skills:
+  primary: ["time-clocks"]
+band: "grades-3-4"
+difficulty: 3

@@ -1,0 +1,10 @@
+# What a person adds to clk-34-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "A candle burns for 50 minutes."
+  - "Katya lights 3 candles one after another, each as soon as the previous one goes out."
+  - "She lights the first at 18:40."
+unknown: "The time when the last candle goes out."
+simpler_case: "Try 2 candles of 30 minutes from 18:40. At what time does the last one go out?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+trap_texts:
+  "20:20": "20:20 is when an earlier candle goes out."

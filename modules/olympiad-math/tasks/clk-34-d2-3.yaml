@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-34-d2-3.yaml, and the port writes this file again (R12).
+id: "clk-34-d2-3"
+statement:
+  - text: "The clock shows 8:40. What time was it 2 hours 55 minutes ago?"
+  - text: "Write the time as hours and minutes, like 9:15."
+givens: ["The clock shows 8:40."]
+unknown: "The time 2 hours 55 minutes ago."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "5:45"
+          options: ["5:15", "5:45", "5:85", "6:45", "11:35"]
+          trap_values:
+            - value: "5:15"
+              trap: "wrong-operation"
+              text: "5:15 is 3 hours 25 minutes before 8:40."
+            - value: "5:85"
+              trap: "time-unit-mixup"
+              text: "An hour has 60 minutes, so there is no 5:85."
+            - value: "6:45"
+              trap: "wrong-operation"
+              text: "6:45 is only 1 hour 55 minutes before 8:40."
+            - value: "11:35"
+              trap: "reversed-relation"
+              text: "Ago means earlier, so count back, not forward."
+    simpler_case: "Try 1 hour 30 minutes ago. What time was it?"
+solution:
+  - text: "2 hours ago it was 6:40. 40 more minutes back gives 6:00, and 15 more gives 5:45. 40 + 15 = 55 minutes."
+skills:
+  primary: ["time-clocks"]
+band: "grades-3-4"
+difficulty: 2

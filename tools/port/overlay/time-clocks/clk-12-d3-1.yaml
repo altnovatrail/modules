@@ -1,0 +1,8 @@
+# What a person adds to clk-12-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The cartoon lasts 25 minutes."
+  - "It ends at 5:10."
+unknown: "The time when it started."
+simpler_case: "Try a cartoon that lasts 10 minutes and ends at 5:10. At what time did it start?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 5:10."

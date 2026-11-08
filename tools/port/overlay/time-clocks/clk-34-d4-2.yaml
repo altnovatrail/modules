@@ -1,0 +1,10 @@
+# What a person adds to clk-34-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Trains leave every 25 minutes, starting at 6:10."
+  - "A train that leaves exactly at 7:00 counts."
+unknown: "How many trains leave from 7:00 to 9:00."
+simpler_case: "Try from 7:00 to 8:00 first. How many trains leave?"
+picture_alt: "A clock showing 6:10."
+trap_texts:
+  "6": "Check the last train you counted: it must leave by 9:00."
+  "7": "7 counts the trains before 7:00 too."

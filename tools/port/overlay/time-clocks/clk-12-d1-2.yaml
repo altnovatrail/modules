@@ -1,0 +1,8 @@
+# What a person adds to clk-12-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Lunch is at 12 o'clock."
+  - "The walk starts 2 hours before lunch."
+unknown: "The time when the walk starts."
+simpler_case: "Try a walk that starts 1 hour before lunch at 12 o'clock. At what time does it start?"
+answer_form: "Write the hour, like 7 o'clock."
+picture_alt: "A clock showing 12 o'clock."

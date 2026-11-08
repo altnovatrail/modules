@@ -1,0 +1,11 @@
+# What a person adds to clk-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "One bus leaves A at 8:00 and gets to B at 14:00."
+  - "Another leaves B at 9:00 and gets to A at 12:00."
+  - "Both go along the same road, each at its own steady speed."
+unknown: "The time when they meet."
+simpler_case: "Try two buses that both leave at 8:00 from the two ends, each taking 2 hours for the road. At what time do they meet?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+trap_texts:
+  "11:06": "11:06 reads part of an hour as minutes the wrong way: two thirds of an hour is not 66 minutes."
+  "1:40": "1:40 is a length of time, not the time on the clock."

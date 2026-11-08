@@ -1,0 +1,10 @@
+# What a person adds to clk-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The shop opens at 7:00."
+  - "Mixing takes 20 minutes, rising 2 hours, baking 40 minutes and cooling 15 minutes."
+  - "The oven needs 30 minutes to heat up and can heat while the dough rises."
+unknown: "The latest time the baker can start."
+simpler_case: "Try bread that only rises for 2 hours and bakes for 40 minutes, ready at 7:00. What is the latest time to start?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+trap_texts:
+  "3:35": "3:35 turns the minutes of work into hours the wrong way: a quarter of an hour is 15 minutes, not 25."

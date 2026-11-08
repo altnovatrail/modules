@@ -1,0 +1,10 @@
+# What a person adds to clk-34-d5-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Sasha's watch was 2 minutes slow at 8:00 on Monday."
+  - "Every day it loses 3 more minutes."
+unknown: "What it shows at 8:00 on Friday of the same week."
+simpler_case: "Try Wednesday at 8:00. What does the watch show?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+trap_texts:
+  "7:43": "Count the days from Monday to Friday again."
+  "7:49": "Count the days from Monday to Friday again."

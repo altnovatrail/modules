@@ -1,0 +1,7 @@
+# What a person adds to clk-34-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The film is 1 hour 50 minutes long."
+  - "It must end by 21:30."
+unknown: "The latest time it can start."
+simpler_case: "Try a film of 30 minutes that must end by 21:30. What is the latest time it can start?"
+answer_form: "Write the time as hours and minutes, like 9:15."

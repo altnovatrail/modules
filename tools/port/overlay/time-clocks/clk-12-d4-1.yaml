@@ -1,0 +1,11 @@
+# What a person adds to clk-12-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Kate's watch is 5 minutes slow."
+  - "Tom's watch is 5 minutes fast and shows 3:10."
+unknown: "What Kate's watch shows."
+simpler_case: "Try one watch: it is 5 minutes slow, and the real time is 4:00. What does it show?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 3:10."
+trap_texts:
+  "3:05": "3:05 takes only Tom's 5 minutes into account. Kate's watch is slow too."
+  "3:20": "Tom's watch is ahead and Kate's is behind, so Kate's shows less than Tom's, not more."

@@ -1,0 +1,12 @@
+# What a person adds to clk-34-d4-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Petya's watch is 10 minutes slow, but he thinks it is 10 minutes fast."
+  - "He wants to arrive at school at 9:00, and the walk takes 20 minutes."
+  - "He leaves when he believes the real time is 8:40."
+unknown: "How many minutes late he arrives."
+simpler_case: "Try a watch that is right: Petya leaves at 8:40 and the walk takes 25 minutes. How many minutes late does he arrive?"
+trap_texts:
+  "10": "10 counts only one of the mistakes."
+  "30": "The walk itself is not lateness."
+  "40": "You counted each mistake twice."
+leak_phrases: ["20 minutes late", "twenty minutes late"]

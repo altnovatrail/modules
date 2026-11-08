@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/time-clocks/clk-34-d2-4.yaml, and the port writes this file again (R12).
+id: "clk-34-d2-4"
+statement:
+  - text: "School starts at 8:00. Each lesson lasts 45 minutes, and after each lesson there is a 10-minute break. How many lessons end before 12:00?"
+  - picture: "pictures/clk-34-d2-4.png"
+    alt: "A clock showing 8 o'clock."
+    width: 200
+    height: 200
+givens: ["School starts at 8:00.", "Each lesson lasts 45 minutes.", "After each lesson there is a 10-minute break."]
+unknown: "How many lessons end before 12:00."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["lesson", "lessons"]
+          trap_values:
+            - value: "3"
+              trap: "off-by-one"
+              text: "List the end times of the lessons and count those before 12:00."
+            - value: "5"
+              trap: "ignored-condition"
+              text: "Remember the 10-minute breaks between lessons."
+            - value: "6"
+              trap: "wrong-operation"
+              text: "You divided the hours by 40 minutes. List the end times instead."
+            - value: "12"
+              trap: "number-from-text"
+              text: "12 is the hour, not the number of lessons."
+    simpler_case: "Try the lessons that end before 10:00. How many are there?"
+solution:
+  - text: "Lessons end at 8:45, 9:40, 10:35, 11:30 and 12:25. Four of them end before 12:00."
+skills:
+  primary: ["time-clocks"]
+band: "grades-3-4"
+difficulty: 2

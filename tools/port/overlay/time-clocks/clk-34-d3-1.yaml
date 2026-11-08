@@ -1,0 +1,9 @@
+# What a person adds to clk-34-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The clock strikes once at every half hour."
+  - "At every full hour it strikes as many times as the hour, from 1 to 12."
+unknown: "How many times it strikes in 12 hours."
+simpler_case: "Try 2 hours, from just after 12:00 to 2:00. How many times does it strike?"
+trap_texts:
+  "84": "Count the half hours in 12 hours again."
+  "91": "Count the half hours in 12 hours again: there are not 13."

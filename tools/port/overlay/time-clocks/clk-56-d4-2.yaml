@@ -1,0 +1,13 @@
+# What a person adds to clk-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Lena sets her watch right at 8:00 at home."
+  - "The watch gains 5 minutes in every hour of real time."
+  - "The city's clocks show 3 hours more than at home."
+  - "When she lands, her watch shows 21:00."
+unknown: "The local time in the city."
+simpler_case: "Try a watch that is always right: it shows 21:00 when she lands in a city whose clocks show 1 hour more. What is the local time there?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+picture_alt: "A clock showing 8 o'clock."
+trap_texts:
+  "20:00": "20:00 is the time at home, not in the city."
+  "22:55": "22:55 takes off 5 minutes for each hour the watch counted, but the watch gains 5 minutes in each real hour."

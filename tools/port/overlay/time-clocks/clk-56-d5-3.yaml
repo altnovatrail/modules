@@ -1,0 +1,12 @@
+# What a person adds to clk-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann, Ben and Cal start at 13:00, each packing 1 box every 3 minutes."
+  - "Zoe joins later and packs 1 box every 2 minutes."
+  - "At 14:00 they have packed 75 boxes in all."
+unknown: "The time when Zoe joined."
+simpler_case: "Try Ann alone from 13:00, packing 1 box every 3 minutes. How many boxes has she packed at 14:00?"
+answer_form: "Write the time as hours and minutes, like 9:15."
+trap_texts:
+  "13:50": "13:50 writes half an hour as 50 minutes. Half an hour is not 50 minutes."
+  "13:45": "13:45 gives Zoe 15 minutes for her boxes, but she packs a box every 2 minutes."
+  "14:30": "14:30 counts on from 14:00, but she packed until 14:00."
