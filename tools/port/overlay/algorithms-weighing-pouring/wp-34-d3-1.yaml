@@ -11,3 +11,4 @@ solution_picture_alt: "A table of the litres in the 8-, 5- and 3-litre container
 trap_texts:
   "4": "4 steps are not enough."
   "5": "Count the pourings again."
+  "7": "One container with 4 litres is enough; look for a shorter way."

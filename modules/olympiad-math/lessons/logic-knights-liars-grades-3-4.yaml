@@ -1,0 +1,33 @@
+# A lesson of E3 (T39; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# logic-knights-liars on the band of grades 3–4. Its texts are those of the page knights-and-liars of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: logic-knights-liars-grades-3-4
+title: "Knights and liars: going further"
+skills: [logic-knights-liars]
+segments:
+  - explanation:
+      - text: "On an island live knights, who always tell the truth, and liars, who always lie: the puzzles also known as knights and knaves. From what they say, you have to work out who is who. It is a first meeting with real logical reasoning: make an assumption, follow where it leads, and notice a contradiction."
+      - text: "Knight. Always tells the truth. Every statement a knight makes is true, without exception."
+      - text: "Liar. Always lies. Every statement a liar makes is false, and a liar never tells the truth, not even by accident."
+      - text: "Nobody else. Every islander is either a knight or a liar. You cannot tell them apart by their looks, only by their words."
+  - worked_example:
+      statement:
+        - text: "Two islanders, A and B, meet on a road. A says: “I am a liar, and B is a knight.” Who is who?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Suppose A is a knight. Then the words are true, and A is a liar. But we supposed A is a knight: a contradiction, so this case is impossible."
+        - text: "Suppose A is a liar. Then the words are false. Their first half, “I am a liar”, is true, so the second half is false: B is not a knight but a liar. Everything fits."
+        - text: "Answer: A and B are both liars."
+  - explanation:
+      - text: "How can a liar say “I am a liar”? On its own, “I am a liar” is impossible. Joined to another sentence by “and”, a liar can say it: the whole sentence is false as soon as one of its parts is."
+  - task: kl-34-d1-2
+  - task: kl-34-d3-1
+  - task: kl-34-d5-2
+  - explanation:
+      - text: "How to solve: “suppose that…”."
+      - text: "Suppose."
+      - text: "Work out what follows."
+      - text: "Find a contradiction, or check the answer."
