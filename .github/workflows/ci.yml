@@ -68,7 +68,10 @@ jobs:
   # The tree of modules/ and every module in it, by module-kit check and build, and each against its
   # published versions by module-kit diff — the index of the newest release of modules, checked by
   # release-verify, or --first before the first release (R11) —, once the binary's signature has
-  # passed; the tests of the recipes first. diff's status is the job's.
+  # passed; the tests of the recipes first. diff's status is the job's. Then the layout of each
+  # module's eval/, and its guard, which refuses every sample until spec's sample-check checks eval
+  # sets (R25): no key and no network, so a pull request from a fork runs it too, and it runs even when
+  # a step before it failed, so that a refused sample shows on the first run.
   modules:
     name: Modules
     needs: module-kit
@@ -82,10 +85,14 @@ jobs:
           submodules: true
           persist-credentials: false
       - name: Toolchain image
+        id: toolchain
         run: sh spec/tools/toolchain/toolchain.sh build
       - name: Tests of the recipes and of the templates
         run: sh spec/tools/toolchain/toolchain.sh run just test
       - name: modules-check
         run: sh spec/tools/toolchain/toolchain.sh run just modules-check
+      - name: eval-check
+        if: ${{ !cancelled() && steps.toolchain.outcome == 'success' }}
+        run: sh spec/tools/toolchain/toolchain.sh run just eval-check
       - name: The pictures of the lessons
         run: sh spec/tools/toolchain/toolchain.sh run just lesson-pictures modules/olympiad-math --check
