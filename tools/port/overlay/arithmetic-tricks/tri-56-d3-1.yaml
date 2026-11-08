@@ -1,0 +1,6 @@
+# What a person adds to tri-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Think of any number, add 5, double it, take 4 away, halve it."
+  - "Then take away the number you thought of."
+unknown: "What you get."
+simpler_case: "Try a shorter game: think of a number, add 2, then take away the number you thought of. What do you get?"

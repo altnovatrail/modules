@@ -1,0 +1,8 @@
+# What a person adds to tri-12-d5-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Masha gave half of her sweets to Ann."
+  - "Then she gave 1 sweet to Ben."
+  - "Now she has 4 sweets."
+unknown: "How many sweets Masha had at first."
+simpler_case: "Try Masha giving half to Ann and then 1 to Ben, and having 2 left. How many did she have?"
+techniques: [backwards]

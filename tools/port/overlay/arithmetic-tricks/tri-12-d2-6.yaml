@@ -1,0 +1,8 @@
+# What a person adds to tri-12-d2-6 of standalone; the port writes the task from it (R12).
+givens:
+  - "Each shape stands for a number, the same number every time."
+  - "The number beside a row is the sum of its shapes."
+unknown: "The number that the question mark stands for."
+simpler_case: "Try two circles that make 10. What is one circle?"
+picture_alt: "Three rows of shapes. The first row has two triangles, with 8 beside it. The second row has a triangle and a square, with 7 beside it. The third row has a square alone, with a question mark beside it."
+solution_picture_alt: "One triangle with 4 beside it, and one square with 3 beside it."

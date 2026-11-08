@@ -1,0 +1,44 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-56-d4-3.yaml, and the port writes this file again (R12).
+id: "tri-56-d4-3"
+statement:
+  - text: "A traveller went into three shops, one after another. In each shop he spent half of the coins he had and then 2 coins more. After the third shop he had no coins left. How many coins did he have at first?"
+givens: ["In each of three shops the traveller spent half of his coins and then 2 coins more.", "After the third shop he had no coins left."]
+unknown: "How many coins he had at first."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "28"
+          units: ["coin", "coins"]
+          trap_values:
+            - value: "12"
+              trap: "stopped-early"
+              text: "12 is what he had before the second shop; the first shop is still to be undone."
+            - value: "4"
+              trap: "stopped-early"
+              text: "4 is what he had before the third shop only."
+            - value: "14"
+              trap: "wrong-operation"
+              text: "14 doubles first and adds the 2 coins after, but going backwards the 2 coins come back before the doubling."
+            - value: "60"
+              trap: "off-by-one"
+              text: "60 undoes one shop too many: there were three shops, not four."
+    simpler_case: "Try one shop: he spent half of his coins and then 1 coin more, and had none left."
+solution:
+  - text: "Go backwards. After the third shop he had 0, so before its last 2 coins he had 2, and before spending half he had 4. Before the second shop he had (4 + 2) × 2 = 12, and before the first (12 + 2) × 2 = 28. Check: 28 → 14 − 2 = 12 → 6 − 2 = 4 → 2 − 2 = 0."
+  - text: "(12 + 2) × 2 = 28"
+  - picture: "pictures/tri-56-d4-3-solution.png"
+    alt: "A row of four numbers from left to right: 28 before the first shop, 12 before the second, 4 before the third, and 0 at the end."
+    width: 216
+    height: 74
+techniques: ["backwards"]
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-5-6"
+difficulty: 4

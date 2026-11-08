@@ -1,0 +1,7 @@
+# What a person adds to tri-34-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Dan multiplied his number by 3."
+  - "He got 27."
+unknown: "The number Dan thought of."
+simpler_case: "Try a number that gives 8 when you multiply it by 2."
+techniques: [backwards]

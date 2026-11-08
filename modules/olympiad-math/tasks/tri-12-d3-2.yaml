@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-12-d3-2.yaml, and the port writes this file again (R12).
+id: "tri-12-d3-2"
+statement:
+  - text: "Ben thought of a number. He added 8 to it and then took 3 away. He got 20. What number did Ben think of?"
+givens: ["Ben added 8 to his number and then took 3 away.", "He got 20."]
+unknown: "The number Ben thought of."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "15"
+          trap_values:
+            - value: "9"
+              trap: "wrong-operation"
+              text: "To undo taking 3 away, add 3 back; do not take it away."
+            - value: "20"
+              trap: "number-from-text"
+              text: "20 is what Ben got."
+            - value: "23"
+              trap: "stopped-early"
+              text: "23 undoes only taking 3 away; you still have to undo adding 8."
+            - value: "25"
+              trap: "wrong-operation"
+              text: "You did the same steps again instead of undoing them: 20 + 8 - 3."
+    simpler_case: "Try a number that gives 6 when you add 4 and then take 1 away."
+solution:
+  - text: "Adding 8 and taking 3 away is the same as adding 5. 20 - 5 = 15. Check: 15 + 8 = 23, 23 - 3 = 20."
+techniques: ["backwards"]
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-1-2"
+difficulty: 3

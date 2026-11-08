@@ -1,0 +1,10 @@
+# What a person adds to tri-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers of the sum, multiplied together, make 96 too."
+  - "The sum has two or more whole numbers and makes 96."
+unknown: "The fewest numbers such a sum can have."
+simpler_case: "Try 6 first: a sum of whole numbers that also multiply to 6."
+trap_texts:
+  "2": "2 takes just two numbers that multiply to 96, but they add up to less than 96."
+  "46": "46 is how many ones are needed, but the two other numbers are in the sum too."
+  "63": "63 uses 3 and 32 with 61 ones, but another pair adds up to more and needs fewer ones."

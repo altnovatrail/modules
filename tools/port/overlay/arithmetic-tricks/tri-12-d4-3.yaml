@@ -1,0 +1,5 @@
+# What a person adds to tri-12-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The product is 2 × 7 × 5."
+unknown: "The product."
+simpler_case: "Try 2 × 3 × 5 first. Which two numbers make 10?"

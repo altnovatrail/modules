@@ -1,0 +1,9 @@
+# What a person adds to tri-34-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Eva divided her number by 4 and then added 6."
+  - "She got 11."
+unknown: "The number Eva thought of."
+simpler_case: "Try a number that gives 5 when you halve it and add 1."
+techniques: [backwards]
+trap_texts:
+  "68": "To undo adding 6, take 6 away, and then undo the division."

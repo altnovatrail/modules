@@ -1,0 +1,5 @@
+# What a person adds to tri-12-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers 11, 22, 33 and so on up to 99 are added."
+unknown: "The sum."
+simpler_case: "Try 11 + 22 + 33 first. Which two numbers make the same sum as the middle one twice?"

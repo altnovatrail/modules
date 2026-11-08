@@ -1,0 +1,10 @@
+# What a person adds to tri-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The first shooter scores 40 and the second 70."
+  - "Each later shooter scores the average of all the scores before theirs."
+unknown: "How many points the tenth shooter scores."
+simpler_case: "Try a first score of 2 and a second of 4. What do the third and the fourth score?"
+trap_texts:
+  "30": "30 takes 40 away from 70, but an average adds the scores up and shares the total out."
+  "110": "110 is 40 + 70, the two scores added up but not yet shared out into their average."
+  "550": "550 is what all ten shooters score together, not what the tenth one scores."

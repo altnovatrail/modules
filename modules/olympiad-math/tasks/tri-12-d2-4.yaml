@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-12-d2-4.yaml, and the port writes this file again (R12).
+id: "tri-12-d2-4"
+statement:
+  - text: "What is 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5 - 5?"
+givens: ["Ten fives are added, and then one 5 is taken away."]
+unknown: "The value of the expression."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "45"
+          trap_values:
+            - value: "5"
+              trap: "number-from-text"
+              text: "5 is the number that is added."
+            - value: "10"
+              trap: "answered-other-question"
+              text: "10 is how many fives are added."
+            - value: "50"
+              trap: "stopped-early"
+              text: "50 is the ten fives: you forgot to take the last 5 away."
+            - value: "55"
+              trap: "wrong-operation"
+              text: "The last 5 is taken away, not added."
+    simpler_case: "Try 5 + 5 + 5 - 5 first."
+solution:
+  - text: "Ten fives make 50. Taking one 5 away leaves 45."
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-1-2"
+difficulty: 2

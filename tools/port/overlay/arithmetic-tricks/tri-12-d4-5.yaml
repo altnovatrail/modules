@@ -1,0 +1,6 @@
+# What a person adds to tri-12-d4-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers 1 to 9 are taken away from 50."
+unknown: "What is left."
+simpler_case: "Try 20 - 1 - 2 - 3 - 4 first. How much is taken away in all?"
+leak_phrases: ["5 is left", "five is left"]

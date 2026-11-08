@@ -1,0 +1,11 @@
+# What a person adds to tri-12-d2-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Masha added 7 to her number and then took 7 away."
+  - "She got 12."
+unknown: "The number Masha thought of."
+simpler_case: "Try a number that gives 4 when you add 1 and then take 2 away."
+techniques: [backwards]
+trap_texts:
+  "0": "Put 0 through Masha's steps: it does not give 12."
+  "5": "Adding 7 and then taking 7 away: what do these two steps do together?"
+leak_phrases: ["the number does not change", "cancel out"]

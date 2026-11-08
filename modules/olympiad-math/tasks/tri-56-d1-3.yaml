@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/arithmetic-tricks/tri-56-d1-3.yaml, and the port writes this file again (R12).
+id: "tri-56-d1-3"
+statement:
+  - text: "Tom adds the digits 1 to 6 in turn, again and again. He writes 1 + 2 + 3 + 4 + 5 + 6 + 1 + 2 and so on. He stops when the total is exactly 120. Which digit does he add last?"
+givens: ["Tom adds the digits 1 to 6 in turn, again and again.", "He stops when the total is exactly 120."]
+unknown: "Which digit he adds last."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          trap_values:
+            - value: "4"
+              trap: "off-by-one"
+              text: "4 stops one digit short: the total is not yet 120."
+            - value: "6"
+              trap: "stopped-early"
+              text: "6 ends a round, but after five rounds the total still falls short of 120."
+            - value: "2"
+              trap: "wrong-operation"
+              text: "2 divides 120 by 6 and takes 20 digits, three rounds and then 1 and 2. But 120 is what the digits add up to, not how many digits there are."
+            - value: "3"
+              trap: "wrong-operation"
+              text: "3 counts 15 more digits after five rounds, two rounds and then 1, 2 and 3. But 15 is what the last digits add up to, not how many of them there are."
+    simpler_case: "Try the digits 1 to 3 in turn, stopping at a total of 9. Which digit comes last?"
+solution:
+  - text: "One round, 1 + 2 + 3 + 4 + 5 + 6, adds 21. Five rounds make 105, and 120 − 105 = 15, which is 1 + 2 + 3 + 4 + 5. So the last digit Tom adds is 5."
+leak_phrases: ["the digit 5", "adds 5 last"]
+skills:
+  primary: ["arithmetic-tricks"]
+band: "grades-5-6"
+difficulty: 1

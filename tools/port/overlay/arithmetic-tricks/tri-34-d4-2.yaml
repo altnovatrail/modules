@@ -1,0 +1,9 @@
+# What a person adds to tri-34-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ivan added 7 to his number and then doubled the result."
+  - "He got 30."
+unknown: "The number Ivan thought of."
+simpler_case: "Try a number that gives 10 when you add 1 and then double it."
+techniques: [backwards]
+trap_texts:
+  "22": "To undo adding 7, take 7 away, not add it."

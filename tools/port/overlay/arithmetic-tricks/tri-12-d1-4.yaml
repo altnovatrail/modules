@@ -1,0 +1,7 @@
+# What a person adds to tri-12-d1-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "Masha took 4 away from her number."
+  - "She got 6."
+unknown: "The number Masha thought of."
+simpler_case: "Try a number that gives 2 when you take 1 away from it."
+techniques: [backwards]
