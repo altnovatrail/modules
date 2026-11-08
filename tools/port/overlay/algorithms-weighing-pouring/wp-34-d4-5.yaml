@@ -1,0 +1,10 @@
+# What a person adds to wp-34-d4-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Nine bags have coins of 10 g, and one bag coins of 11 g."
+  - "Vera takes 1 coin from bag 1, 2 from bag 2, and so on up to 10 from bag 10."
+  - "All of them weigh 553 g."
+unknown: "Which bag has the heavy coins."
+simpler_case: "Try 3 bags, taking 1, 2 and 3 coins, with all of them weighing 62 g. Which bag has the heavy coins?"
+trap_texts:
+  "bag 1": "Count the extra grams first."
+  "bag 10": "Bag 10 would add 10 extra grams. Count the extra grams first."

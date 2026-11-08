@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d3-2.yaml, and the port writes this file again (R12).
+id: "wp-34-d3-2"
+statement:
+  - text: "There are 27 coins that look the same. One of them is fake and lighter than the others; all real coins weigh the same. What is the smallest number of weighings on a balance without weights that is sure to find the fake coin?"
+givens: ["There are 27 coins that look the same, and one of them is a lighter fake.", "The real coins all weigh the same, and the balance has no weights."]
+unknown: "The smallest number of weighings that is sure to find the fake."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "3"
+          units: ["weighing", "weighings"]
+          trap_values:
+            - value: "2"
+              trap: "stopped-early"
+              text: "2 weighings have only 9 outcomes, fewer than 27 coins."
+            - value: "4"
+              trap: "off-by-one"
+              text: "Count the weighings again in the worst case."
+            - value: "9"
+              trap: "answered-other-question"
+              text: "9 is the size of each group in the first weighing."
+            - value: "26"
+              trap: "answered-other-question"
+              text: "26 is how many coins are real."
+    simpler_case: "Try 9 coins with one lighter fake. How many weighings find it?"
+solution:
+  - text: "Split the coins into 3 groups of 9 and weigh two of them: the fake is in the lighter group or in the third one. Then split those 9 into groups of 3, and then the 3 into single coins. 3 weighings. 2 weighings are not enough: they have only 3 × 3 = 9 outcomes, fewer than 27 coins."
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-3-4"
+difficulty: 3

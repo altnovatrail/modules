@@ -1,0 +1,8 @@
+# What a person adds to wp-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "A cook has an empty 4-litre pot, an empty 7-litre pot and a tap."
+  - "A step fills a pot or pours from one pot into the other until it is empty or the other is full."
+  - "No water may go down the sink."
+unknown: "The smallest number of steps after which a pot holds exactly 6 litres."
+simpler_case: "Try having exactly 3 litres in a pot. How many steps does it take?"
+picture_alt: "An empty 4-litre pot and an empty 7-litre pot."

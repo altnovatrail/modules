@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d1-1.yaml, and the port writes this file again (R12).
+id: "wp-34-d1-1"
+statement:
+  - text: "You have an empty 3-litre jug, an empty 5-litre jug and a tap. The jugs have no marks. Each step is one of these: fill a jug from the tap, empty a jug onto the ground, or pour water from one jug into the other until the first jug is empty or the second is full. What is the smallest number of steps needed to have exactly 2 litres in one of the jugs?"
+  - picture: "pictures/wp-34-d1-1.png"
+    alt: "An empty 3-litre jug and an empty 5-litre jug."
+    width: 188
+    height: 119
+givens: ["There is an empty 3-litre jug, an empty 5-litre jug and a tap; the jugs have no marks.", "A step fills a jug, empties a jug, or pours from one jug into the other until the first is empty or the second is full."]
+unknown: "The smallest number of steps to have exactly 2 litres in one jug."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["step", "steps"]
+          trap_values:
+            - value: "1"
+              trap: "stopped-early"
+              text: "After one step each jug is empty or full, so neither can hold 2 litres."
+            - value: "3"
+              trap: "off-by-one"
+              text: "Count the steps again."
+            - value: "4"
+              trap: "missed-case"
+              text: "4 steps work, but there is a shorter way."
+    simpler_case: "Try having exactly 5 litres in one jug. How many steps does it take?"
+solution:
+  - text: "Fill the 5-litre jug (step 1) and pour from it into the 3-litre jug until that one is full (step 2). 5 - 3 = 2 litres stay in the big jug. One step is not enough: after one step each jug is empty or full."
+techniques: ["backwards"]
+traps: ["ignored-condition"]
+leak_phrases: ["2 steps", "two steps"]
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-3-4"
+difficulty: 1

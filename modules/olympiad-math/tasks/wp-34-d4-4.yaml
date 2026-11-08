@@ -1,0 +1,36 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d4-4.yaml, and the port writes this file again (R12).
+id: "wp-34-d4-4"
+statement:
+  - text: "There are 3 coins. One of them is fake: it is either heavier or lighter than a real coin, but nobody knows which. The two real coins weigh the same. What is the smallest number of weighings on a balance without weights that is sure to find the fake coin and tell whether it is heavier or lighter?"
+givens: ["Of 3 coins, one is a fake, heavier or lighter, and nobody knows which.", "The real coins weigh the same, and the balance has no weights."]
+unknown: "The smallest number of weighings that finds the fake and tells whether it is heavier or lighter."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "2"
+          units: ["weighing", "weighings"]
+          trap_values:
+            - value: "1"
+              trap: "best-case-not-worst"
+              text: "One weighing has 3 outcomes, but there are 6 possible answers, so it is not always enough."
+            - value: "3"
+              trap: "off-by-one"
+              text: "Count the weighings again in the worst case."
+            - value: "4"
+              trap: "double-count"
+              text: "Each weighing compares two coins at once."
+    simpler_case: "Try 3 coins with a fake known to be lighter. How many weighings find it?"
+solution:
+  - text: "Weigh coin 1 against coin 2. If they balance, coin 3 is fake; weigh it against coin 1 to see whether it is heavier or lighter. If they do not balance, weigh coin 1 against coin 3: if these balance, coin 2 is fake, and the first weighing shows how; if not, coin 1 is fake, and the pans show how. So 2 weighings. One weighing has only 3 outcomes, but there are 6 possible answers: each of 3 coins, heavier or lighter."
+traps: ["ignored-condition"]
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-3-4"
+difficulty: 4

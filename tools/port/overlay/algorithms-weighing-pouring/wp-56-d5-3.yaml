@@ -1,0 +1,10 @@
+# What a person adds to wp-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Weights of 10, 20, 30, 40, 50, 60, 70 and 80 g lie on the two pans, and one pan is heavier."
+  - "Seven children take weights away one at a time, and each time the other pan becomes the heavier."
+unknown: "Which weight can be left at the end."
+simpler_case: "Try two weights, 30 g and 40 g, one on each pan. Which can a child take so that the other pan becomes heavier?"
+trap_texts:
+  "Any of them": "This leaves out the rule that every child makes the other pan heavier."
+  "70 g": "70 g would be left if 80 g were taken last, but the steps before matter too."
+  "Any of them but 80 g": "The last step alone rules out only 80 g. Look at every step."

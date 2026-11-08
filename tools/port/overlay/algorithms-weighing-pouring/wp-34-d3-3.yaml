@@ -1,0 +1,6 @@
+# What a person adds to wp-34-d3-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Oleg has weights of 1 kg, 3 kg and 9 kg."
+  - "They may go on either pan, also next to the load."
+unknown: "Which load he cannot weigh in one weighing."
+simpler_case: "Try only the weights of 1 kg and 3 kg, on either pan. Which loads can he weigh?"

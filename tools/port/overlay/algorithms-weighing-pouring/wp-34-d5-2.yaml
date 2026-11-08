@@ -1,0 +1,13 @@
+# What a person adds to wp-34-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "An 8-litre bucket is full, and jugs of 5 and 3 litres are empty."
+  - "There is no tap, and no water may be poured away."
+  - "A step pours from one container into another until the first is empty or the second is full."
+unknown: "The smallest number of steps to have 4 litres in the bucket and 4 litres in the 5-litre jug."
+simpler_case: "Try having exactly 3 litres in the bucket. How many steps does it take?"
+techniques: [backwards]
+picture_alt: "A full 8-litre bucket, an empty 5-litre jug and an empty 3-litre jug."
+trap_texts:
+  "5": "5 steps are not enough."
+  "6": "After 6 steps only the 5-litre jug holds 4 litres; the bucket does not yet."
+  "8": "Count the steps again."

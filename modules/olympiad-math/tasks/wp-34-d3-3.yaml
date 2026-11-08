@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d3-3.yaml, and the port writes this file again (R12).
+id: "wp-34-d3-3"
+statement:
+  - text: "Oleg has a balance and three weights: 1 kg, 3 kg and 9 kg. He may put weights on either pan, also next to the load. Which of these loads can he NOT weigh in one weighing?"
+givens: ["Oleg has weights of 1 kg, 3 kg and 9 kg.", "They may go on either pan, also next to the load."]
+unknown: "Which load he cannot weigh in one weighing."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["2 kg", "5 kg", "14 kg", "7 kg", "11 kg"]
+        check:
+          kind: "choice"
+          key: "14 kg"
+          trap_values:
+            - value: "2 kg"
+              trap: "ignored-condition"
+              text: "Put 3 kg opposite the load and 1 kg next to it: 3 - 1 = 2."
+            - value: "5 kg"
+              trap: "ignored-condition"
+              text: "Put 9 kg opposite, and 3 kg and 1 kg next to the load: 9 - 3 - 1 = 5."
+            - value: "7 kg"
+              trap: "ignored-condition"
+              text: "Put 9 kg and 1 kg opposite, and 3 kg next to the load: 9 + 1 - 3 = 7."
+            - value: "11 kg"
+              trap: "ignored-condition"
+              text: "Put 9 kg and 3 kg opposite, and 1 kg next to the load: 9 + 3 - 1 = 11."
+    simpler_case: "Try only the weights of 1 kg and 3 kg, on either pan. Which loads can he weigh?"
+solution:
+  - text: "A weight next to the load counts as taken away: 2 = 3 - 1, 5 = 9 - 3 - 1, 7 = 9 + 1 - 3, 11 = 9 + 3 - 1. But all three weights together make only 13 kg, so 14 kg cannot be weighed."
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-3-4"
+difficulty: 3

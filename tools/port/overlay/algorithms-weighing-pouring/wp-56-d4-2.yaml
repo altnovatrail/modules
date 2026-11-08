@@ -1,0 +1,11 @@
+# What a person adds to wp-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "A 12-litre churn is full of milk, and jugs of 7 and 5 litres are empty."
+  - "A step pours from one of the three into another until the first is empty or the second is full."
+unknown: "The smallest number of steps that leaves exactly 4 litres in one of them."
+simpler_case: "Try having exactly 5 litres in the churn. How many steps does it take?"
+techniques: [backwards]
+picture_alt: "A full 12-litre churn, an empty 7-litre jug and an empty 5-litre jug."
+trap_texts:
+  "5": "Count every pouring as a step, the first one too."
+  "7": "7 steps work, but there is a shorter way."

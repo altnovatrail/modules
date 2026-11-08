@@ -1,0 +1,9 @@
+# What a person adds to wp-56-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Four parcels look alike, but no two weigh the same."
+  - "A balance without weights compares two parcels at a time."
+unknown: "The smallest number of weighings that is sure to find the heaviest parcel."
+simpler_case: "Try three parcels. How many weighings are sure to find the heaviest?"
+trap_texts:
+  "2": "After 2 weighings two parcels may still not have been the lighter one."
+  "4": "The heaviest parcel never has to lose a weighing."

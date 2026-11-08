@@ -1,0 +1,42 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d3-1.yaml, and the port writes this file again (R12).
+id: "wp-56-d3-1"
+statement:
+  - text: "A cook has a 4-litre pot and a 7-litre pot, both empty, and a tap. Each step fills a pot from the tap or pours water from one pot into the other until that pot is empty or the other is full. No water may ever go down the sink. What is the smallest number of steps after which a pot holds exactly 6 litres?"
+  - picture: "pictures/wp-56-d3-1.png"
+    alt: "An empty 4-litre pot and an empty 7-litre pot."
+    width: 188
+    height: 147
+givens: ["A cook has an empty 4-litre pot, an empty 7-litre pot and a tap.", "A step fills a pot or pours from one pot into the other until it is empty or the other is full.", "No water may go down the sink."]
+unknown: "The smallest number of steps after which a pot holds exactly 6 litres."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["6", "It is impossible", "4", "14", "7"]
+        check:
+          kind: "choice"
+          key: "It is impossible"
+          trap_values:
+            - value: "6"
+              trap: "ignored-condition"
+              text: "The 6-step way pours water down the sink once, which is not allowed here."
+            - value: "4"
+              trap: "wrong-operation"
+              text: "Two steps leave 3 litres in the big pot, but doing them again needs the small pot emptied, so 4 steps do not give 6."
+            - value: "14"
+              trap: "ignored-condition"
+              text: "The 14-step way keeps pouring the 4-litre pot into the 7-litre one and empties the big pot whenever it is full, down the sink."
+            - value: "7"
+              trap: "number-from-text"
+              text: "7 is the size of the big pot, copied from the question."
+    simpler_case: "Try having exactly 3 litres in a pot. How many steps does it take?"
+solution:
+  - text: "Water can come from the tap or move between the pots, but it never leaves them. Starting from two empty pots, only these states can be reached, as litres in the 4-litre pot and in the 7-litre pot: 0 and 0, 4 and 0, 0 and 7, 4 and 7, 4 and 3, 0 and 4, 4 and 4, and 1 and 7. None of them has 6 litres in a pot, so it cannot be done."
+skills:
+  primary: ["algorithms-weighing-pouring"]
+band: "grades-5-6"
+difficulty: 3

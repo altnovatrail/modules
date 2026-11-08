@@ -1,0 +1,13 @@
+# What a person adds to wp-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are three empty buckets of 3, 5 and 8 litres, and a tap."
+  - "A step fills a bucket from the tap or pours from one bucket into another until one is empty or the other is full."
+unknown: "The smallest number of steps after which the 8-litre bucket holds exactly 2 litres."
+simpler_case: "Try having exactly 5 litres in the 8-litre bucket. How many steps does it take?"
+techniques: [backwards]
+picture_alt: "Three empty buckets of 3, 5 and 8 litres."
+solution_picture_alt: "The 3-litre bucket full, the 5-litre bucket empty and the 8-litre bucket holding 2 litres."
+trap_texts:
+  "2": "2 steps give 2 litres, but not in the 8-litre bucket."
+  "4": "4 steps work, but there is a shorter way."
+leak_phrases: ["3 steps", "three steps"]

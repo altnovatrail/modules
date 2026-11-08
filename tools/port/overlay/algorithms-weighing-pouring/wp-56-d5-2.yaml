@@ -1,0 +1,6 @@
+# What a person adds to wp-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Balls of 1, 5, 2, 6, 3 and 4 g lie at the corners A to F of a hexagon, in this order."
+  - "The balls at two opposite corners were swapped: A and D, B and E, or C and F."
+unknown: "The one weighing that is sure to show which two were swapped."
+simpler_case: "Try the ball at A against the ball at D. What does it show if A and D were swapped?"

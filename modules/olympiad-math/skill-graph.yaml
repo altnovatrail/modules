@@ -35,3 +35,7 @@ skills:
     title: Knights and liars
     prerequisites: [logic-ordering, combinatorics-enumeration]
     assessability: verdict
+  algorithms-weighing-pouring:
+    title: Weighing and pouring
+    prerequisites: [combinatorics-enumeration, pigeonhole-basic]
+    assessability: verdict
