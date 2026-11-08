@@ -1,0 +1,34 @@
+# A lesson of E3 (T38; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# parity-alternation on the band of grades 3–4. Its texts are those of the page parity-and-alternation of
+# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
+# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+id: parity-alternation-grades-3-4
+title: "Parity and alternation: going further"
+skills: [parity-alternation]
+segments:
+  - explanation:
+      - text: "Can children stand in a ring, boy, girl, boy, girl, all the way round? In these tasks even and odd answer the question without counting everything or trying every way: which bank a ferry is at, whether a score is possible, who makes the last move. Parity is often the first thing you meet that stays the same however the moves go."
+      - text: "Even splits into pairs. An even number of things splits into pairs with none left over. An odd number always leaves one without a pair."
+      - text: "Only the odd ones matter. Even plus even is even, odd plus odd is even, and even plus odd is odd. So whether a sum is even depends only on how many odd numbers are in it."
+      - text: "Taking turns. When two things take turns, one stands in the odd places and the other in the even ones. A ring can take turns all the way round only when it has an even number of places."
+  - worked_example:
+      statement:
+        - text: "Ben throws 4 darts at a target whose rings are worth 1, 3, 5 and 7 points, and every dart hits it. Ben says he scored 15 points. Can that be true?"
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Every ring is worth an odd number of points."
+        - text: "Two odd numbers add up to an even one. 4 darts are two pairs, and each pair scores an even number, so the 4 darts together score an even number."
+        - text: "15 is odd, so Ben cannot have scored it."
+        - text: "Answer: No."
+  - explanation:
+      - text: "And with 3 darts? Three odd numbers add up to an odd one, and 15 can happen: 5 + 5 + 5, or 7 + 7 + 1."
+  - task: par-34-d1-1
+  - task: par-34-d3-1
+  - task: par-34-d5-2
+  - explanation:
+      - text: "How to solve: follow even and odd."
+      - text: "Find what is even or odd."
+      - text: "See what each step does to it."
+      - text: "Compare the start with the goal."
