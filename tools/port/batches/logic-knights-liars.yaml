@@ -1,0 +1,52 @@
+# The tasks of logic-knights-liars of standalone at 42b4408: all 40 of them (E3; T30). A task whose
+# answer counts knights has the units knight and knights; any other has none. standalone's site links
+# the topic to the technique opposite, which goes in the overlay of each task solved by supposing the
+# opposite; the tasks where knights and liars take turns have pattern, and the football one parity.
+standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+skills:
+  logic-knights-liars:
+    techniques: []
+tasks:
+  kl-34-d1-1: {}
+  kl-34-d1-2: {}
+  kl-34-d1-3: {}
+  kl-34-d1-4: {}
+  kl-34-d1-5: {}
+  kl-34-d2-1: {}
+  kl-34-d2-2: {}
+  kl-34-d2-3: {units: [knight, knights]}
+  kl-34-d2-4: {units: [knight, knights]}
+  kl-34-d2-5: {}
+  kl-34-d3-1: {units: [knight, knights]}
+  kl-34-d3-2: {units: [knight, knights]}
+  kl-34-d3-3: {units: [knight, knights]}
+  kl-34-d3-4: {}
+  kl-34-d3-5: {units: [knight, knights]}
+  kl-34-d4-1: {units: [knight, knights]}
+  kl-34-d4-2: {units: [knight, knights]}
+  kl-34-d4-3: {units: [knight, knights]}
+  kl-34-d4-4: {}
+  kl-34-d4-5: {units: [knight, knights]}
+  kl-34-d5-1: {units: [knight, knights]}
+  kl-34-d5-2: {units: [knight, knights]}
+  kl-34-d5-3: {units: [knight, knights]}
+  kl-34-d5-4: {}
+  kl-34-d5-5: {units: [knight, knights]}
+  kl-56-d1-1: {}
+  kl-56-d1-2: {}
+  kl-56-d1-3: {}
+  kl-56-d2-1: {}
+  kl-56-d2-2: {}
+  kl-56-d2-3: {units: [knight, knights]}
+  kl-56-d3-1: {}
+  kl-56-d3-2: {units: [knight, knights]}
+  kl-56-d3-3: {}
+  kl-56-d4-1: {units: [knight, knights]}
+  kl-56-d4-2: {}
+  kl-56-d4-3: {units: [knight, knights]}
+  kl-56-d5-1: {units: [knight, knights]}
+  kl-56-d5-2: {units: [knight, knights]}
+  kl-56-d5-3: {}

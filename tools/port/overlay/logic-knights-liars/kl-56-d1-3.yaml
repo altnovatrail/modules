@@ -1,0 +1,14 @@
+# What a person adds to kl-56-d1-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Knights always tell the truth, and liars always lie."
+  - "Every islander is a knight or a liar."
+  - "Five islanders stand in a row."
+  - "The first says at least one of the five is a knight, the second at least two, the third at least three, the fourth at least four, and the fifth all five."
+unknown: "How many knights there can be."
+simpler_case: "Try one islander who says: 'At least one of us is a knight', speaking of himself and a liar. Can he be a knight? Can he be a liar?"
+techniques: [opposite]
+trap_texts:
+  "None: the five sentences cannot all fit": "Try a number of knights and check whether the sentences fit."
+  "Exactly 5": "5 takes all five at their word. That fits, but try other numbers too."
+  "Exactly 0": "0 fits, since then every sentence is false, but try other numbers too."
+  "Exactly 3": "3 reads each 'at least' as 'at most'."

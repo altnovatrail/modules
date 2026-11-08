@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-34-d2-2.yaml, and the port writes this file again (R12).
+id: "kl-34-d2-2"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Ann says: 'Ben is a liar.' Ben says: 'I am a knight.' Who are Ann and Ben?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Ann says: 'Ben is a liar.'", "Ben says: 'I am a knight.'"]
+unknown: "Who Ann and Ben are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["It is impossible to tell", "Both are knights", "Both are liars", "Ann is a knight, Ben is a liar", "Ann is a liar, Ben is a knight"]
+        check:
+          kind: "choice"
+          key: "It is impossible to tell"
+          trap_values:
+            - value: "Both are knights"
+              trap: "ignored-condition"
+              text: "If both were knights, Ann's words 'Ben is a liar' would be false."
+            - value: "Both are liars"
+              trap: "ignored-condition"
+              text: "If both were liars, Ann's words 'Ben is a liar' would be true."
+            - value: "Ann is a knight, Ben is a liar"
+              trap: "missed-case"
+              text: "This works, but try the other case for Ann too."
+            - value: "Ann is a liar, Ben is a knight"
+              trap: "missed-case"
+              text: "This works, but try the other case for Ann too."
+    simpler_case: "Try Ann saying 'Ben is a liar', and Ben saying '2 + 2 = 4.' Who are they?"
+solution:
+  - text: "If Ann is a knight, Ben is a liar, and a liar can say 'I am a knight'. If Ann is a liar, Ben is a knight, and a knight can say it too. Both cases work, so it is impossible to tell."
+techniques: ["opposite"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-3-4"
+difficulty: 2

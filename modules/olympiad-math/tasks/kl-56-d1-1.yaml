@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-56-d1-1.yaml, and the port writes this file again (R12).
+id: "kl-56-d1-1"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Four knights and two liars meet. Which of these sentences could each of the six say to the other five?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Four knights and two liars meet.", "Each of the six speaks to the other five."]
+unknown: "Which sentence each of the six could say."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["'All of you are liars.'", "'Exactly four of us are knights.'", "'Exactly four of you are knights.'", "'Exactly three of you are knights.'", "'At least one of you is a liar.'"]
+        check:
+          kind: "choice"
+          key: "'Exactly three of you are knights.'"
+          trap_values:
+            - value: "'All of you are liars.'"
+              trap: "stopped-early"
+              text: "This sentence is false whoever says it. A liar could say it, but a knight could not, since a knight sees 3 knights among the other five."
+            - value: "'Exactly four of us are knights.'"
+              trap: "trusted-statement"
+              text: "This sentence is true whoever says it, so a liar could not say it."
+            - value: "'Exactly four of you are knights.'"
+              trap: "ignored-condition"
+              text: "This counts the speaker among 'you'. Count the knights a knight sees among the other five."
+            - value: "'At least one of you is a liar.'"
+              trap: "trusted-statement"
+              text: "This is true for everyone: a knight sees 2 liars, and a liar sees 1. So a liar could not say it."
+    simpler_case: "Try three islanders, two knights and a liar. Could each of them say 'At least one of you is a knight'?"
+solution:
+  - text: "A sentence each of the six could say has to be true when a knight says it and false when a liar says it. Among the other five, a knight sees 3 knights and 2 liars, and a liar sees 4 knights and 1 liar. So 'Exactly three of you are knights' is true for a knight and false for a liar, and it is the only one of the sentences that is."
+techniques: ["opposite"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-5-6"
+difficulty: 1

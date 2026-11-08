@@ -1,0 +1,11 @@
+# What a person adds to kl-34-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Knights always tell the truth, and liars always lie."
+  - "Every islander is a knight or a liar."
+  - "Five islanders sit at a round table."
+  - "Each says: 'Both my neighbours are liars.'"
+unknown: "How many knights are at the table."
+simpler_case: "Try three islanders at a round table, each saying 'Both my neighbours are liars.' How many knights are there?"
+techniques: [opposite]
+trap_texts:
+  "1": "With one knight, check the two liars who sit farthest from him."

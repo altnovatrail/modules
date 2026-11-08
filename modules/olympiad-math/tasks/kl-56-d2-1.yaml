@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-56-d2-1.yaml, and the port writes this file again (R12).
+id: "kl-56-d2-1"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Ada says: 'Ben is a liar.' Ben says: 'Cal is a knight.' Cal says: 'Ada and I are both knights or both liars.' Which of the three tell the truth?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Ada says: 'Ben is a liar.'", "Ben says: 'Cal is a knight.'", "Cal says: 'Ada and I are both knights or both liars.'"]
+unknown: "Which of the three tell the truth."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["Ben and Cal", "Only Ada", "Ada and Cal", "Nobody", "It is impossible to tell"]
+        check:
+          kind: "choice"
+          key: "Only Ada"
+          trap_values:
+            - value: "Ben and Cal"
+              trap: "trusted-statement"
+              text: "Believing Ben makes Cal a knight, but then Ada is a liar and Cal's words about Ada and himself are false."
+            - value: "Ada and Cal"
+              trap: "trusted-statement"
+              text: "If Ada and Cal were knights, Ben would be a liar, and yet his words 'Cal is a knight' would be true."
+            - value: "Nobody"
+              trap: "ignored-condition"
+              text: "If all three lied, Cal's words would be true: Ada and Cal would both be liars."
+            - value: "It is impossible to tell"
+              trap: "stopped-early"
+              text: "Only one mix of knights and liars fits all three sentences."
+    simpler_case: "Try two: Ada says 'Ben is a liar', and Ben says 'Ada is a liar.' Can both be knights?"
+solution:
+  - text: "If Ben is a knight, Cal is a knight, and if Ben is a liar, Cal is a liar too, so Ben and Cal are alike. If both were knights, Ada's words 'Ben is a liar' would be false and Ada a liar, and then Cal's words would be false although Cal is a knight. So Ben and Cal are both liars. Then Ada's words are true and she is a knight, and Cal's words are false, as a liar's must be. Only Ada is a knight."
+techniques: ["opposite"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-5-6"
+difficulty: 2

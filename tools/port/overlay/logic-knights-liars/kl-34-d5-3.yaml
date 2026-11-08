@@ -1,0 +1,11 @@
+# What a person adds to kl-34-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Knights always tell the truth, and liars always lie."
+  - "Every islander is a knight or a liar."
+  - "Six islanders stand in a row."
+  - "The first says at least 1 of them is a liar, the second at least 2, and so on up to the sixth, at least 6."
+unknown: "How many knights there are."
+simpler_case: "Try two islanders: the first says 'At least 1 of us is a liar', the second 'At least 2 of us are liars.' How many knights are there?"
+techniques: [opposite]
+picture_alt: "Six islanders in a row, numbered 1 to 6."
+leak_phrases: ["3 knights", "three knights"]

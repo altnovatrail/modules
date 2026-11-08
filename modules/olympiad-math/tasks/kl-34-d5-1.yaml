@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/logic-knights-liars/kl-34-d5-1.yaml, and the port writes this file again (R12).
+id: "kl-34-d5-1"
+statement:
+  - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Ten islanders sit at a round table. Each of them says: 'Both my neighbours are liars.' What is the largest number of knights that can be at the table?"
+givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Ten islanders sit at a round table.", "Each says: 'Both my neighbours are liars.'"]
+unknown: "The largest number of knights that can be at the table."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          units: ["knight", "knights"]
+          trap_values:
+            - value: "3"
+              trap: "stopped-early"
+              text: "More knights are possible."
+            - value: "4"
+              trap: "answered-other-question"
+              text: "4 is the smallest possible number of knights, not the largest."
+            - value: "6"
+              trap: "ignored-condition"
+              text: "With 6 knights, two of them would sit side by side."
+            - value: "10"
+              trap: "ignored-condition"
+              text: "If all were knights, their words would be false."
+    simpler_case: "Try six islanders at a round table, each saying 'Both my neighbours are liars.' What is the largest number of knights?"
+solution:
+  - text: "Two knights cannot sit side by side, so at most every second seat has a knight: 5 knights. And 5 works: knight, liar, knight, liar, and so on. Each liar then has knights next to him, so his words are false."
+techniques: ["opposite"]
+skills:
+  primary: ["logic-knights-liars"]
+band: "grades-3-4"
+difficulty: 5

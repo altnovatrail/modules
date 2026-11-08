@@ -1,0 +1,7 @@
+# What a person adds to kl-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "A team of 6 truth-tellers played a team of 6 liars, and the truth-tellers won 12 to 9."
+  - "Asked how many goals they scored, players said one, three or seven, and Misha alone said four."
+unknown: "Whether Misha is a liar."
+simpler_case: "Try three truth-tellers who scored 6 goals in all, each saying one, three or seven. Can that be?"
+techniques: [parity]

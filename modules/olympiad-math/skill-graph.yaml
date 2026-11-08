@@ -31,3 +31,7 @@ skills:
     title: Calendar and age
     prerequisites: [counting-gaps]
     assessability: verdict
+  logic-knights-liars:
+    title: Knights and liars
+    prerequisites: [logic-ordering, combinatorics-enumeration]
+    assessability: verdict
