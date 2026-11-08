@@ -1,0 +1,10 @@
+# What a person adds to pct-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "One coin buys a loaf and a bottle of milk."
+  - "After prices rise by 25%, it buys half a loaf and a bottle of milk."
+  - "Then prices rise by another 20%."
+unknown: "The part of the coin the milk alone then costs."
+simpler_case: "Try: one coin buys a loaf and a bottle of milk, and the loaf costs as much as the milk. What percentage of the coin does the milk cost?"
+answer_form: "Write the part of the coin as a percentage, like 50%."
+trap_texts:
+  "75": "75% is not the price after both rises."

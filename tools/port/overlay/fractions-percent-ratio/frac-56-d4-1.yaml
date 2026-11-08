@@ -1,0 +1,8 @@
+# What a person adds to frac-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "2/5 of the books are novels."
+  - "Half of the novels and 1/6 of the other books have hard covers."
+unknown: "The fraction of all the books with hard covers."
+simpler_case: "Try a library where half of the books are novels, half of the novels have hard covers, and no other book does. What fraction of all the books have hard covers?"
+trap_texts:
+  "7/10": "Check which cover 7/10 is the share of."

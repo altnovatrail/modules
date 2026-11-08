@@ -1,0 +1,9 @@
+# What a person adds to frac-56-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The box holds more than 20 but fewer than 40 sweets."
+  - "Exactly 1/3 are toffees and exactly 3/8 are mints; the rest are chocolates."
+unknown: "How many chocolates are in the box."
+simpler_case: "Try a box of fewer than 10 sweets with exactly 1/2 toffees and 1/3 mints. How many chocolates are there?"
+trap_texts:
+  "17": "17 is not the chocolates."
+  "7/24": "That is a share, and the question asks how many."

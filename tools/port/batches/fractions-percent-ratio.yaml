@@ -1,0 +1,63 @@
+# The tasks of fractions-parts, percent-basic and ratio-sharing of standalone at 42b4408: all 45 of
+# them (E3; T32). The units are the word a question counts, in the singular and the plural, a
+# measure with its abbreviation, and % for a percentage; a task whose answer is no number, a
+# fraction or a number by itself has none. standalone's site links no technique to the three topics.
+# A task of fractions-parts has the anchor skill core.fractions-of-a-whole as its support.
+standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+skills:
+  fractions-parts:
+    techniques: []
+    supporting: [core.fractions-of-a-whole]
+  percent-basic:
+    techniques: []
+  ratio-sharing:
+    techniques: []
+tasks:
+  frac-56-d1-1: {}
+  frac-56-d1-2: {units: [glass, glasses]}
+  frac-56-d1-3: {units: [minute, minutes]}
+  frac-56-d2-1: {}
+  frac-56-d2-2: {units: [crayon, crayons]}
+  frac-56-d2-3: {units: [fraction, fractions]}
+  frac-56-d3-1: {units: [coin, coins]}
+  frac-56-d3-2: {units: [g, gram, grams]}
+  frac-56-d3-3: {units: [car, cars]}
+  frac-56-d4-1: {}
+  frac-56-d4-2: {units: [chocolate, chocolates]}
+  frac-56-d4-3: {}
+  frac-56-d5-1: {units: [pupil, pupils]}
+  frac-56-d5-2: {}
+  frac-56-d5-3: {}
+  pct-56-d1-1: {units: [coin, coins]}
+  pct-56-d1-2: {units: [cm, centimetre, centimetres]}
+  pct-56-d1-3: {units: [coin, coins]}
+  pct-56-d2-1: {units: ["%"]}
+  pct-56-d2-2: {units: [guest, guests]}
+  pct-56-d2-3: {units: [coin, coins]}
+  pct-56-d3-1: {units: [coin, coins]}
+  pct-56-d3-2: {units: ["%"]}
+  pct-56-d3-3: {units: ["%"]}
+  pct-56-d4-1: {units: [apple, apples]}
+  pct-56-d4-2: {units: [stamp, stamps]}
+  pct-56-d4-3: {units: [adult, adults]}
+  pct-56-d5-1: {units: [coin, coins]}
+  pct-56-d5-2: {units: ["%"]}
+  pct-56-d5-3: {units: ["%"]}
+  ratio-56-d1-1: {}
+  ratio-56-d1-2: {units: ["km an hour", "km per hour", "km/h", "kilometres an hour"]}
+  ratio-56-d1-3: {units: [km, kilometre, kilometres]}
+  ratio-56-d2-1: {units: [egg, eggs]}
+  ratio-56-d2-2: {units: [shell, shells]}
+  ratio-56-d2-3: {units: [fish]}
+  ratio-56-d3-1: {units: [walnut, walnuts]}
+  ratio-56-d3-2: {units: [turn, turns]}
+  ratio-56-d3-3: {units: [g, gram, grams]}
+  ratio-56-d4-1: {units: [flower, flowers]}
+  ratio-56-d4-2: {units: [coin, coins]}
+  ratio-56-d4-3: {}
+  ratio-56-d5-1: {units: [cow, cows]}
+  ratio-56-d5-2: {}
+  ratio-56-d5-3: {}

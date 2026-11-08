@@ -1,0 +1,9 @@
+# What a person adds to frac-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Four friends ate a whole pot of honey."
+  - "Ben ate a third as much as Al, and Cy a third of what Al did not eat."
+  - "Dan ate a quarter of the pot."
+unknown: "The part of the pot Al ate."
+simpler_case: "Try three friends: Ben ate a third as much as Al, and Dan half of the pot. What part did Al eat?"
+trap_texts:
+  "5/36": "5/36 is not Al's part."

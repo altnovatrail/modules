@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/fractions.parts.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/frac-56-d2-3.yaml, and the port writes this file again (R12).
+id: "frac-56-d2-3"
+statement:
+  - text: "Tom writes the fractions 1/12, 2/12, 3/12 and so on, up to 12/12. How many of them are bigger than 1/3 but smaller than 3/4?"
+givens: ["The fractions are 1/12, 2/12, 3/12 and so on up to 12/12."]
+unknown: "How many of them are bigger than 1/3 but smaller than 3/4."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          units: ["fraction", "fractions"]
+          trap_values:
+            - value: "6"
+              trap: "ignored-condition"
+              text: "6 also counts the fractions equal to 1/3 and 3/4, which are not bigger or smaller."
+            - value: "5"
+              trap: "off-by-one"
+              text: "5 counts one of the two ends."
+            - value: "2"
+              trap: "missed-case"
+              text: "2 leaves out fractions that can be written in a shorter way."
+            - value: "8"
+              trap: "ignored-condition"
+              text: "8 keeps only one of the two limits: 1/12 to 8/12 are all smaller than 3/4, but the first four are not bigger than 1/3."
+    simpler_case: "Try the fractions 1/6 to 6/6. How many are bigger than 1/3 but smaller than 2/3?"
+solution:
+  - text: "A third of 12 is 4, so 1/3 is 4/12, and three quarters of 12 is 9, so 3/4 is 9/12. Between them lie 5/12, 6/12, 7/12 and 8/12, which makes 4 fractions."
+skills:
+  primary: ["fractions-parts"]
+  supporting: ["core.fractions-of-a-whole"]
+band: "grades-5-6"
+difficulty: 2

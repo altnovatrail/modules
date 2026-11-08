@@ -1,0 +1,36 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/fractions.parts.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/frac-56-d4-3.yaml, and the port writes this file again (R12).
+id: "frac-56-d4-3"
+statement:
+  - text: "Five friends share a pizza. The first eats half of it. Then each of the others in turn eats part of what is left: the second 1/3 of it, the third 1/4, the fourth 1/5 and the fifth 1/6. What fraction of the pizza is left?"
+givens: ["The first friend eats half of the pizza.", "Each of the other four in turn eats part of what is left: 1/3, then 1/4, then 1/5, then 1/6."]
+unknown: "The fraction of the pizza that is left."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "fraction"
+          key: "1/6"
+          trap_values:
+            - value: "1/5"
+              trap: "off-by-one"
+              text: "1/5 is not what is left at the end."
+            - value: "5/6"
+              trap: "answered-other-question"
+              text: "5/6 is not the part that is left."
+            - value: "1/30"
+              trap: "answered-other-question"
+              text: "1/30 is how much of the pizza the fifth friend eats, not how much is left."
+    simpler_case: "Try three friends: the first eats half, the second 1/3 of what is left, and the third 1/4 of what is left then. What fraction is left?"
+solution:
+  - text: "Cut the pizza into 60 equal slices. The first eats 30 and leaves 30. The second eats 10 and leaves 20, the third eats 5 and leaves 15, the fourth eats 3 and leaves 12, and the fifth eats 2 and leaves 10. So 10 of the 60 slices are left, which is 1/6."
+traps: ["part-whole-swap"]
+skills:
+  primary: ["fractions-parts"]
+  supporting: ["core.fractions-of-a-whole"]
+band: "grades-5-6"
+difficulty: 4

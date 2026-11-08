@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/percent.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/pct-56-d5-2.yaml, and the port writes this file again (R12).
+id: "pct-56-d5-2"
+statement:
+  - text: "All the members of a school's chess club like puzzles. Of the pupils who are not in the club, only 25% like puzzles. Of all the pupils in the school, 40% like puzzles. What percentage of the pupils are in the chess club?"
+givens: ["All the members of the chess club like puzzles.", "25% of the pupils outside the club like puzzles.", "40% of all the pupils like puzzles."]
+unknown: "The percentage of the pupils in the chess club."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "20"
+          units: ["%"]
+          trap_values:
+            - value: "15"
+              trap: "percent-wrong-base"
+              text: "15% takes 25% of all the pupils away from 40%. The 25% is of the pupils outside the club only."
+            - value: "40"
+              trap: "part-whole-swap"
+              text: "40% is the share of all the pupils who like puzzles. The club is only a part of them."
+            - value: "80"
+              trap: "answered-other-question"
+              text: "80% is not the share of the pupils in the club."
+            - value: "50"
+              trap: "percent-wrong-base"
+              text: "50% measures the club against the pupils who like puzzles. The question asks for its share of all the pupils."
+    simpler_case: "Try: all club members like puzzles, nobody outside the club does, and 10% of the pupils like puzzles. What percentage are in the club?"
+solution:
+  - text: "Take 100 pupils. If nobody were in the club, 25 of them would like puzzles. Every pupil in the club likes puzzles, where only one pupil in four does outside it, so each one in the club adds 3/4 of a pupil to that count. The count is 40, which is 15 more than 25, so 15 ÷ 3/4 = 20 pupils are in the club. That is 20%."
+skills:
+  primary: ["percent-basic"]
+band: "grades-5-6"
+difficulty: 5

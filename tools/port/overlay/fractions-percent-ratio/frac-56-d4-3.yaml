@@ -1,0 +1,9 @@
+# What a person adds to frac-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The first friend eats half of the pizza."
+  - "Each of the other four in turn eats part of what is left: 1/3, then 1/4, then 1/5, then 1/6."
+unknown: "The fraction of the pizza that is left."
+simpler_case: "Try three friends: the first eats half, the second 1/3 of what is left, and the third 1/4 of what is left then. What fraction is left?"
+trap_texts:
+  "1/5": "1/5 is not what is left at the end."
+  "5/6": "5/6 is not the part that is left."

@@ -1,0 +1,7 @@
+# What a person adds to ratio-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "All the peaches are under the juice."
+  - "Eating a quarter of the peaches lowers the level by a fifth."
+  - "Then Kim eats half of the peaches that are left."
+unknown: "By what part of the new level it falls."
+simpler_case: "Try a jar that holds only peaches. Kim eats half of them. By what part does the level fall?"

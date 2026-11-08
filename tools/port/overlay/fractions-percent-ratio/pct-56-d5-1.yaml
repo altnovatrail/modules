@@ -1,0 +1,11 @@
+# What a person adds to pct-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Wheels cost 150 coins and bolts 10 coins."
+  - "Once 320 coins or more are paid, everything after that is 20% cheaper."
+  - "Tom needs 3 wheels and 1 bolt, may pay in several goes and may buy more than he needs."
+unknown: "The least Tom can pay to get what he needs."
+simpler_case: "Try a shop with books of 90 coins and pens of 10 coins, where everything bought after 100 coins are paid is 20% cheaper. Tom needs 2 books and may buy more. What is the least he can pay?"
+trap_texts:
+  "430": "430 counts 2 wheels and 1 bolt as enough for the discount, but they cost less than 320 coins."
+  "458": "458 buys the 3 wheels first and then the bolt with the discount. Think which thing is best bought cheaper."
+  "460": "460 pays full price for everything. Think whether paying in several goes can help."

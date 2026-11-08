@@ -1,0 +1,11 @@
+# What a person adds to frac-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "There are 32 pupils."
+  - "All the boys and a quarter of the girls close their right eye."
+  - "All the girls and a quarter of the boys close their left eye."
+unknown: "How many pupils can still see with at least one eye."
+simpler_case: "Try a class of 8 boys only: all close their right eye, and a quarter also close their left. How many can still see?"
+trap_texts:
+  "8": "8 is not the number of pupils who can still see."
+  "16": "16 takes a quarter of the boys and a quarter of the girls as a quarter of the whole class each."
+  "32": "32 is the whole class, but some pupils closed both eyes."

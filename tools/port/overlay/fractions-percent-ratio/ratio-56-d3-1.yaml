@@ -1,0 +1,9 @@
+# What a person adds to ratio-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Baskets A, B and C hold 90 walnuts in the ratio 3 : 5 : 7."
+unknown: "How many more walnuts are in C than in A."
+simpler_case: "Try 30 walnuts in two baskets in the ratio 1 : 2. How many more are in the second basket?"
+picture_alt: "Three bars: A of 3, B of 5 and C of 7 equal parts, with the notes A + B + C = 90 and C - A = ?."
+trap_texts:
+  "4": "4 is not a number of walnuts."
+  "42": "42 is not how many more walnuts C has than A."
