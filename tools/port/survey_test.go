@@ -16,7 +16,7 @@ func surveySetUp(t *testing.T, refused bool) []string {
 	keyNamed.Question = "Which of these children is the slowest?"
 	keyNamed.Distractors["B"] = Distractor{Trap: "stopped_early", Text: "Ben is slower still."}
 	clock := example("lamps-4")
-	clock.Picture = json.RawMessage(`{"kind": "clock", "hours": 7}`)
+	clock.Picture = json.RawMessage(`{"kind": "lattice", "width": 2}`)
 	tasks := []Example{example("lamps-1"), example("lamps-2"), wordExample("race-1"), keyNamed, clock}
 	if refused {
 		twice := example("lamps-3")
@@ -40,11 +40,11 @@ func TestRunSurvey(t *testing.T) {
 		"port: race-1: written, choice by hand\n",
 		"port: race-2: written, choice tapped\n",
 		`port: race-2: the explanation of its option B names its key "Ben"`,
-		"port: lamps-4: waits for a picture of the kind clock\n",
+		"port: lamps-4: waits for a picture of the kind lattice\n",
 		"port: survey of the 4 tasks of standalone at ",
 		": 3 — number 1, fraction 0, choice by hand 1, choice tapped 1\n",
 		"port: explanations that name the key of a choice: 1, in 1 tasks\n",
-		"port: waiting for pictures: 1 — clock 1\n",
+		"port: waiting for pictures: 1 — lattice 1\n",
 		"port: refused: 0\n",
 	} {
 		if !strings.Contains(stdout, line) {
@@ -67,7 +67,7 @@ func TestRunSurvey(t *testing.T) {
 func TestRunSurveyRefusesATask(t *testing.T) {
 	status, stdout, _ := runPort(surveySetUp(t, true)...)
 	if status != statusDiffers || !strings.Contains(stdout, "port: refused: lamps-3: its option D, 14.0, is the value of option C too\n") ||
-		!strings.Contains(stdout, "port: refused: 1\n") || !strings.Contains(stdout, "waiting for pictures: 1 — clock 1") {
+		!strings.Contains(stdout, "port: refused: 1\n") || !strings.Contains(stdout, "waiting for pictures: 1 — lattice 1") {
 		t.Errorf("run() = %d, %s", status, stdout)
 	}
 }
