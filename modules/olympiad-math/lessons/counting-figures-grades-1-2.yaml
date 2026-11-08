@@ -1,0 +1,40 @@
+# A lesson of E3 (T41; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# counting-figures on the band of grades 1–2. Its texts are those of the page counting-figures of
+# mathtrail-standalone's site at 42b4408, put to the learner, with its cards and its worked example
+# rewritten so as to solve no task of the module (amendment T41 to R14), and its pictures are drawn
+# by the port from tools/port/pictures/olympiad-math/ (amendment T41 to R12). standalone's content
+# in this module carries the MIT notice of NOTICE.
+id: counting-figures-grades-1-2
+title: "Counting figures: first steps"
+skills: [counting-figures]
+segments:
+  - explanation:
+      - text: "A drawing of a few lines holds more triangles and squares than first meet the eye: small ones, and big ones made of several pieces. These tasks ask for all of them, or for the matches to take away to change a figure. Counting by size, smallest first, is the whole skill."
+      - text: "Big ones count too. A square split into small squares holds bigger squares made of several small ones, and they count as well."
+      - text: "Sides on the lines. A triangle counts only when each of its sides lies on a line of the drawing. Two small triangles side by side make a bigger one only when together they form a triangle again, with no bend in its sides."
+      - text: "A match is one side. Where two squares of matches touch, they share one match: count it once, not once for each square."
+  - worked_example:
+      statement:
+        - text: "Three lines go from the top corner of a triangle down to its base. How many triangles are there in the drawing?"
+        - picture: "lessons/counting-figures-grades-1-2.png"
+          alt: "A right triangle with its top corner at the top left and its base along the bottom. Three lines run from the top corner to points on the base."
+          width: 208
+          height: 208
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "The three lines cut the triangle into 4 small triangles."
+        - text: "Two small triangles side by side make a triangle: there are 3 such pairs. Three side by side make one too: there are 2 of them."
+        - text: "The whole triangle is 1 more. In all, 4 + 3 + 2 + 1 = 10."
+        - text: "Answer: 10 triangles."
+  - explanation:
+      - text: "A quick check. Every triangle here has its top at the corner and its base on the bottom line, between two of the points on it: count the pairs of points, and you count the triangles."
+  - task: fig-12-d1-1
+  - task: fig-12-d2-1
+  - task: fig-12-d5-1
+  - explanation:
+      - text: "How to solve: from the smallest up."
+      - text: "Find the smallest figures and count them."
+      - text: "Count the figures of each bigger size in turn."
+      - text: "Add the counts, and check that no size was left out."

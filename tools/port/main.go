@@ -24,6 +24,7 @@ const (
 
 const usage = `usage: port --standalone <clone> --batch <file> --overlay <folder> --module <folder> [--prove] [--check] [--go <command>] [--git <command>]
        port --standalone <clone> --survey --commit <sha> --except <folder> --module <folder> [--prove] [--go <command>] [--git <command>]
+       port --pictures <folder> --module <folder> [--check]
 
 Writes tasks/<id>.yaml and the pictures of media/pictures/ of the module for every task of the
 batch, from a clone of mathtrail-standalone at the batch's commit and the overlays. --prove first
@@ -33,7 +34,11 @@ nothing, and says which files of the module differ from what the port would writ
 --survey writes every task of the clone at the commit that no batch of the folder --except names,
 with no overlays, into a module of its own, and says what became of each: written, by the kind of
 its answer, waiting for a picture of a kind not drawn yet, or refused. --prove runs the bench on the
-tasks written.`
+tasks written.
+
+--pictures draws every picture of the folder, <name>.json in the schema of standalone's pictures,
+into media/lessons/<name>.png of the module, with no clone, and removes the module's other files of
+media/lessons/. --check writes nothing, and says which of them differ from what the port would draw.`
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdout, os.Stderr))
@@ -52,15 +57,21 @@ func run(args []string, stdout, stderr io.Writer) int {
 	surveying := flags.Bool("survey", false, "")
 	commitOf := flags.String("commit", "", "")
 	except := flags.String("except", "", "")
+	pictures := flags.String("pictures", "", "")
 	goCommand := flags.String("go", "go", "")
 	gitCommand := flags.String("git", "git", "")
 	err := flags.Parse(args)
-	ordinary := *batchFile != "" && *overlayDir != "" && *commitOf == "" && *except == ""
-	surveyed := *commitOf != "" && *except != "" && *batchFile == "" && *overlayDir == "" && !*check
-	if err != nil || flags.NArg() != 0 || *standalone == "" || *module == "" ||
-		(*surveying && !surveyed) || (!*surveying && !ordinary) {
+	ordinary := *batchFile != "" && *overlayDir != "" && *commitOf == "" && *except == "" && *pictures == ""
+	surveyed := *commitOf != "" && *except != "" && *batchFile == "" && *overlayDir == "" && !*check && *pictures == ""
+	drawing := *pictures != "" && *standalone == "" && *batchFile == "" && *overlayDir == "" && *commitOf == "" &&
+		*except == "" && !*surveying && !*proveFirst
+	if err != nil || flags.NArg() != 0 || *module == "" || (!drawing && (*standalone == "" ||
+		(*surveying && !surveyed) || (!*surveying && !ordinary))) {
 		fmt.Fprintln(stderr, usage)
 		return statusCannotRun
+	}
+	if drawing {
+		return runLessonPictures(*pictures, *module, *check, stdout, stderr)
 	}
 	if *surveying {
 		return runSurvey(survey{
@@ -171,13 +182,13 @@ func convertOf(clone string, ex Example, topics map[string]Topic, batch Batch, t
 	return convert(ex, batch, task, overlay, "content/examples/"+ex.Topic+".json")
 }
 
-// paths are the files of the converted tasks, by their paths from the module's folder, in order.
-func paths(converted []Converted) ([]string, map[string][]byte) {
+// paths are the files of the converted tasks, by their paths from the module's folder.
+func paths(converted []Converted) map[string][]byte {
 	files := map[string][]byte{}
 	for _, c := range converted {
 		maps.Copy(files, c.Files)
 	}
-	return slices.Sorted(maps.Keys(files)), files
+	return files
 }
 
 // owned are the files the port may write for a task: the task, and the pictures of its statement
@@ -210,12 +221,19 @@ func stale(module string, converted []Converted) ([]string, error) {
 // differing names the files of the module that are not what the port writes, missing and stale
 // ones too.
 func differing(module string, converted []Converted) ([]string, error) {
-	order, files := paths(converted)
-	differ, err := stale(module, converted)
+	old, err := stale(module, converted)
 	if err != nil {
 		return nil, err
 	}
-	for _, path := range order {
+	files := paths(converted)
+	return filesDiffer(module, files, old)
+}
+
+// filesDiffer names the files of the module that are not the files given, missing ones too, and the
+// stale ones, in order.
+func filesDiffer(module string, files map[string][]byte, old []string) ([]string, error) {
+	differ := slices.Clone(old)
+	for _, path := range slices.Sorted(maps.Keys(files)) {
 		have, err := os.ReadFile(filepath.Join(module, path))
 		if errors.Is(err, fs.ErrNotExist) {
 			differ = append(differ, path)
@@ -235,6 +253,19 @@ func differing(module string, converted []Converted) ([]string, error) {
 // write writes the files of the converted tasks into the module's folder, which must be there, and
 // removes the stale ones.
 func write(module string, converted []Converted) error {
+	if err := isFolder(module); err != nil {
+		return err
+	}
+	old, err := stale(module, converted)
+	if err != nil {
+		return err
+	}
+	files := paths(converted)
+	return placeFiles(module, files, old)
+}
+
+// isFolder refuses a module that is no folder.
+func isFolder(module string) error {
 	info, err := os.Stat(module)
 	if err != nil {
 		return err
@@ -242,17 +273,17 @@ func write(module string, converted []Converted) error {
 	if !info.IsDir() {
 		return fmt.Errorf("%s is no folder", module)
 	}
-	old, err := stale(module, converted)
-	if err != nil {
-		return err
-	}
+	return nil
+}
+
+// placeFiles removes the stale files of the module and writes the files given, with their folders.
+func placeFiles(module string, files map[string][]byte, old []string) error {
 	for _, path := range old {
 		if err := os.Remove(filepath.Join(module, path)); err != nil {
 			return err
 		}
 	}
-	order, files := paths(converted)
-	for _, path := range order {
+	for _, path := range slices.Sorted(maps.Keys(files)) {
 		target := filepath.Join(module, path)
 		if err := os.MkdirAll(filepath.Dir(target), 0o755); err != nil {
 			return err

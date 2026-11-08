@@ -1,0 +1,40 @@
+# A lesson of E3 (T41; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# geometry-cubes-paper on the band of grades 5–6. Its texts are those of the page cubes-and-paper of
+# mathtrail-standalone's site at 42b4408, put to the learner, with its cards and its worked example
+# rewritten so as to solve no task of the module (amendment T41 to R14), and its pictures are drawn
+# by the port from tools/port/pictures/olympiad-math/ (amendment T41 to R12). standalone's content
+# in this module carries the MIT notice of NOTICE.
+id: geometry-cubes-paper-grades-5-6
+title: "Cubes and paper: olympiad level"
+skills: [geometry-cubes-paper]
+segments:
+  - explanation:
+      - text: "A flat net of six squares folds into a cube; a folded sheet, punched once, opens with several holes; a die rolled along a row shows a number on top that can be worked out. These tasks are solved by picturing the folding, the rolling or the unfolding, one step at a time."
+      - text: "Opposite faces never touch. In a net, two squares in a row with one square between them become opposite faces of the cube."
+      - text: "A fold doubles the layers. Each fold doubles the layers where it lays the sheet, and a punch makes a hole in every layer it goes through."
+      - text: "A die makes 7. On a die the numbers on opposite faces add up to 7, so the top tells the bottom."
+  - worked_example:
+      statement:
+        - text: "A square sheet is folded in half along the dashed line down the middle, then in half again along the dashed line across it. A hole is punched right at the corner where the folds meet, through every layer. How many holes are there when the sheet is opened?"
+        - picture: "lessons/geometry-cubes-paper-grades-5-6.png"
+          alt: "A square sheet of squared paper. A dashed line runs down the middle and another across the middle, and a dot marks the point where they cross."
+          width: 208
+          height: 208
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "The folds cross at the centre of the sheet, so the corner of the folded sheet where they meet is that centre."
+        - text: "The punch cuts a piece from every layer at that corner, and every piece touches the centre."
+        - text: "When the sheet is opened, the pieces join round the centre into one hole."
+        - text: "Answer: 1 hole."
+  - explanation:
+      - text: "Why not more. Each layer does get a cut, but every cut touches the centre of the sheet, where the folds cross, so together they make one hole."
+  - task: cube-56-d1-1
+  - task: cube-56-d3-1
+  - task: cube-56-d5-1
+  - explanation:
+      - text: "How to solve: one fold at a time."
+      - text: "Pick the first square, fold or roll."
+      - text: "Say what it does to the faces or the layers."
+      - text: "Go on step by step, then check with paper or a die."

@@ -87,3 +87,5 @@ jobs:
         run: sh spec/tools/toolchain/toolchain.sh run just test
       - name: modules-check
         run: sh spec/tools/toolchain/toolchain.sh run just modules-check
+      - name: The pictures of the lessons
+        run: sh spec/tools/toolchain/toolchain.sh run just lesson-pictures modules/olympiad-math --check

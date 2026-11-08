@@ -2,8 +2,9 @@
 # stage of .devcontainer/Dockerfile, where module-kit's CLI is the binary that stage pins, at an
 # exact tag and sum: ci.yml runs them there by spec's tools/toolchain/toolchain.sh, and a person runs
 # them the same way in the devcontainer. Every recipe is bash, and its tests are in test/, run by
-# `just test`, with one test of content among them: test/templates.test.mjs builds olympiad-math
-# and checks each template against the task it came from (R22).
+# `just test`, with two tests of content among them: test/templates.test.mjs builds olympiad-math
+# and checks each template against the task it came from (R22), and test/lesson-pictures.test.mjs
+# checks the size of each picture of a lesson against its file (amendment T41 to R12).
 #
 # The calls of module-kit follow the forms that module-kit's docs/architecture.md gives at v0.2.3
 # (R102 spec) — check, build and index in section 3.6, diff in section 3.5:
@@ -632,6 +633,15 @@ port module *options:
     git clone --quiet --filter=blob:none --no-checkout https://github.com/mathtrail/mathtrail-standalone "$clone"
     git -C "$clone" checkout --quiet --detach "$commit"
     go run ./tools/port --standalone "$clone" --batch "$batch" --overlay "$overlay" --module "$module" --prove "${rest[@]}"
+
+# The pictures of the lessons of a module are tools/port/pictures/<the module's folder>/<name>.json,
+# in the schema of standalone's pictures, which the port draws into media/lessons/<name>.png of the
+# module, with no clone, as it draws a task's picture (amendment T41 to R12). CI runs it with
+# --check, which writes nothing and names every picture that differs from what the port draws.
+# Draw the pictures of the lessons into a module, or with --check compare them.
+[positional-arguments]
+lesson-pictures module *options:
+    go run ./tools/port --pictures "tools/port/pictures/$(basename "$1")" --module "$@"
 
 # A survey runs the port over every task of standalone that no batch of tools/port/batches/ names
 # yet, at a commit, 42b4408 unless another is given, before E3's batches are written (R20): the

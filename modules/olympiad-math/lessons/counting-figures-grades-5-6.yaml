@@ -1,0 +1,44 @@
+# A lesson of E3 (T41; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
+# counting-figures on the band of grades 5–6. Its texts are those of the page counting-figures of
+# mathtrail-standalone's site at 42b4408, put to the learner, with its cards and its worked example
+# rewritten so as to solve no task of the module (amendment T41 to R14), and its pictures are drawn
+# by the port from tools/port/pictures/olympiad-math/ (amendment T41 to R12). standalone's content
+# in this module carries the MIT notice of NOTICE.
+id: counting-figures-grades-5-6
+title: "Counting figures: olympiad level"
+skills: [counting-figures]
+segments:
+  - explanation:
+      - text: "A drawing of a few lines holds more triangles and squares than first meet the eye: small ones, and big ones made of several pieces. These tasks ask for all of them, or for the matches to take away to change a figure. Counting by size, smallest first, is the whole skill."
+      - text: "Big ones count too. A square split into small squares holds bigger squares made of several small ones, and they count as well."
+      - text: "Sides on the lines. A triangle counts only when each of its sides lies on a line of the drawing. Two small triangles side by side make a bigger one only when together they form a triangle again, with no bend in its sides."
+      - text: "A match is one side. Where two squares of matches touch, they share one match: count it once, not once for each square."
+  - worked_example:
+      statement:
+        - text: "17 matches make a rectangle of 2 by 3 cells. What is the least number of matches to take away so that no square of any size is left?"
+        - picture: "lessons/counting-figures-grades-5-6.png"
+          alt: "Matches laid as a rectangle of small squares, three across and two down."
+          width: 168
+          height: 128
+      canvas:
+        kind: handwriting_sheet
+        grid: squares
+      demo:
+        - text: "Besides the small square of each cell, there are 2 squares of 2 by 2, which share the middle column."
+        - text: "Take away the 3 matches of the middle line across: each is a side of 2 small squares, so no small square is left."
+        - text: "Both big squares are still whole, but the middle match of the top is a side of both: 1 more match, 4 in all."
+        - picture: "lessons/counting-figures-grades-5-6-taken.png"
+          alt: "The same matches, with four of them dashed: the three of the middle line across and the middle match of the top."
+          width: 168
+          height: 128
+        - text: "Answer: 4 matches."
+  - explanation:
+      - text: "Why not 3. A match is a side of 2 small squares at most, so 3 matches break all the small squares only if each lies between two of them and no small square has two of them. Of such matches, only those of the third upright line from the left are sides of the left big square, and only those of the second are sides of the right one. Taking one of each, in different rows so that no square has both, joins four small squares in pairs and leaves two at opposite corners, which do not touch: no third match breaks them both."
+  - task: fig-56-d1-1
+  - task: fig-56-d3-1
+  - task: fig-56-d5-1
+  - explanation:
+      - text: "How to solve: from the smallest up."
+      - text: "Find the smallest figures and count them."
+      - text: "Count the figures of each bigger size in turn."
+      - text: "Add the counts, and check that no size was left out."
