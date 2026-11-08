@@ -54,6 +54,8 @@ type Converted struct {
 	Notes []string
 	// KeyNamed counts the explanations that name the key of a choice, which only a survey writes.
 	KeyNamed int
+	// FromPicture says that the task's solver reads its picture (R21).
+	FromPicture bool
 }
 
 // surveyAlt is the alt of every picture of a survey, whose tasks have no overlays: the module of a
@@ -105,6 +107,13 @@ func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile
 	// one the task shows, and search for that key nowhere else (format/README.md, section 20).
 	if names(overlay.AnswerForm, given.key) {
 		return Converted{}, fmt.Errorf("%s: its overlay's answer_form names its key %q", ex.ID, given.key)
+	}
+	written, err := altOf(ex, overlay, given.key, batch.survey)
+	if err != nil {
+		return Converted{}, err
+	}
+	if written != "" {
+		notes = append(notes, written)
 	}
 	notes = append(notes, given.notes...)
 	traps := given.traps
@@ -172,8 +181,54 @@ func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile
 		fmt.Sprintf("tools/port/overlay/%s.yaml, and the port writes this file again (R12).", ex.ID),
 	}
 	files["tasks/"+ex.ID+".yaml"] = emit(comment, root)
-	return Converted{ID: ex.ID, Files: files, Answer: given.kind, Notes: notes, KeyNamed: given.keyNamed}, nil
+	return Converted{ID: ex.ID, Files: files, Answer: given.kind, Notes: notes, KeyNamed: given.keyNamed, FromPicture: ex.fromPicture}, nil
 }
+
+// altOf holds the alt of a task's picture to the rule of R20 for T21. The alt of a task solved
+// from the picture names every text the picture writes — a label, a number on a tile, a total —
+// since its facts stand on the picture alone, and a learner who cannot see it reads the alt; what
+// the picture draws, its lines, cells and steps, the alt says in words too, which only reading
+// holds. And no alt names the key unless the question does: the leak check takes a key in the alt
+// for one the task shows, and would search for it nowhere else (format/README.md, section 20). A
+// survey, whose alts stand in for none, is held to neither. A picture that writes the key itself
+// shows it, and its alt names it as it names every text: the leak check then searches the key
+// nowhere, and the note says so, for the overlay's leak_phrases to carry what gives it away.
+func altOf(ex Example, overlay Overlay, key string, survey bool) (string, error) {
+	if ex.Picture == nil {
+		return "", nil
+	}
+	written, err := writtenLabels(ex.ID, ex.Picture)
+	if err != nil {
+		return "", err
+	}
+	note := ""
+	if slices.Contains(written, key) {
+		note = fmt.Sprintf("its picture writes its key %q, so the leak check takes the key for shown and searches it nowhere: leak_phrases carry what gives it away", key)
+	}
+	if survey {
+		return note, nil
+	}
+	if names(overlay.PictureAlt, key) && !names(ex.Question, key) && !slices.Contains(written, key) {
+		return "", fmt.Errorf("%s: its picture_alt names its key %q, which neither its question nor its picture does", ex.ID, key)
+	}
+	if !ex.fromPicture {
+		return note, nil
+	}
+	for _, text := range written {
+		found := names(overlay.PictureAlt, text)
+		if capitals.MatchString(text) {
+			found = namesCased(overlay.PictureAlt, text)
+		}
+		if !found {
+			return "", fmt.Errorf("%s: it is solved from the picture, and its picture_alt does not name %q, which the picture writes", ex.ID, text)
+		}
+	}
+	return note, nil
+}
+
+// capitals is a label of Latin capitals, which the alt names as it is written: A, never a. An
+// article that opens a sentence, A, still passes for the label, and reading holds that.
+var capitals = regexp.MustCompile(`^[A-Z]+$`)
 
 // answer is the answer slot of a task, as answerOf gives it: the slot, its key, the traps of the
 // wrong options that become no trap value, a note of each such option, the kind of the answer, and

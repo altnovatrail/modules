@@ -45,6 +45,27 @@ type Example struct {
 	// Idea is the place of the task's idea in its topic's list of ideas, at 42b4408 on a task solved
 	// from the picture. It is not carried: the ideas are not (docs/architecture.md, section 3.5).
 	Idea int `json:"idea,omitempty"`
+	// fromPicture says that the task's solver reads its picture, solve(options, picture): its facts
+	// stand on the picture alone. It is read from content/examples/solvers/<id>.star.
+	fromPicture bool
+}
+
+// readsPicture is the head of a solver that reads its task's picture: solve with a second parameter,
+// solve(options, picture), however it is spaced or named.
+var readsPicture = regexp.MustCompile(`(?m)^def\s+solve\s*\(\s*\w+\s*,\s*\w+`)
+
+// solvedFromPicture says whether the solver of a task, content/examples/solvers/<id>.star of a
+// clone of standalone, reads the task's picture. A task with no such file reads none: the bench,
+// which runs the solver, says that the file is missing.
+func solvedFromPicture(clone, id string) (bool, error) {
+	data, err := os.ReadFile(filepath.Join(clone, "content", "examples", "solvers", id+".star"))
+	if errors.Is(err, os.ErrNotExist) {
+		return false, nil
+	}
+	if err != nil {
+		return false, err
+	}
+	return readsPicture.Match(data), nil
 }
 
 // Topic is a topic of standalone, as content/catalogs/topics.json holds it at the commit the batch

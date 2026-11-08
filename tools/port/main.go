@@ -133,7 +133,7 @@ func portAll(gitCommand, standalone, batchFile, overlayDir string) ([]Converted,
 		if !has {
 			return nil, fmt.Errorf("%s: %w", id, errNoExample)
 		}
-		c, err := convertOf(ex, topics, batch, batch.Tasks[id], overlays[id])
+		c, err := convertOf(standalone, ex, topics, batch, batch.Tasks[id], overlays[id])
 		if err != nil {
 			return nil, err
 		}
@@ -158,9 +158,13 @@ func readClone(gitCommand, standalone, commit string) (map[string]Example, map[s
 	return examples, topics, nil
 }
 
-// convertOf holds a task to its topic and converts it.
-func convertOf(ex Example, topics map[string]Topic, batch Batch, task BatchTask, overlay Overlay) (Converted, error) {
+// convertOf holds a task to its topic, reads whether its solver reads the picture, and converts it.
+func convertOf(clone string, ex Example, topics map[string]Topic, batch Batch, task BatchTask, overlay Overlay) (Converted, error) {
 	if err := ofTopic(ex, topics); err != nil {
+		return Converted{}, err
+	}
+	var err error
+	if ex.fromPicture, err = solvedFromPicture(clone, ex.ID); err != nil {
 		return Converted{}, err
 	}
 	return convert(ex, batch, task, overlay, "content/examples/"+ex.Topic+".json")

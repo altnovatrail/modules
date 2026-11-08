@@ -59,7 +59,7 @@ func runSurvey(s survey, stdout, stderr io.Writer) int {
 	ids := slices.Sorted(maps.Keys(examples))
 	ids = slices.DeleteFunc(ids, func(id string) bool { return named[id] })
 	for _, id := range ids {
-		c, err := convertOf(examples[id], topics, batch, BatchTask{}, Overlay{})
+		c, err := convertOf(s.standalone, examples[id], topics, batch, BatchTask{}, Overlay{})
 		var notYet notDrawn
 		switch {
 		case errors.As(err, &notYet):
@@ -94,8 +94,11 @@ func runSurvey(s survey, stdout, stderr io.Writer) int {
 // report writes what became of each task of a survey, and then the sums.
 func report(out io.Writer, s survey, total int, written []Converted, waiting map[string][]string, refused []string) {
 	answers := map[string]int{}
-	keyNamed, inTasks := 0, 0
+	keyNamed, inTasks, fromPicture := 0, 0, 0
 	for _, c := range written {
+		if c.FromPicture {
+			fromPicture++
+		}
 		fmt.Fprintf(out, "port: %s: written, %s\n", c.ID, c.Answer)
 		for _, note := range c.Notes {
 			fmt.Fprintf(out, "port: %s: %s\n", c.ID, note)
@@ -127,6 +130,7 @@ func report(out io.Writer, s survey, total int, written []Converted, waiting map
 		answerNumber, answers[answerNumber], answerFraction, answers[answerFraction],
 		answerByHand, answers[answerByHand], answerTapped, answers[answerTapped])
 	fmt.Fprintf(out, "port: explanations that name the key of a choice: %d, in %d tasks\n", keyNamed, inTasks)
+	fmt.Fprintf(out, "port: written tasks solved from the picture: %d\n", fromPicture)
 	fmt.Fprintf(out, "port: waiting for pictures: %d", waits)
 	if len(byKind) > 0 {
 		fmt.Fprintf(out, " — %s", strings.Join(byKind, ", "))
