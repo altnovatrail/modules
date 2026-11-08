@@ -1,0 +1,6 @@
+# What a person adds to par-56-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "A knight moves two squares in a line and then one to the side."
+unknown: "After which of the numbers of moves it can be back where it started."
+simpler_case: "Try one move and then two moves. Can the knight be back after either?"
+techniques: [parity]

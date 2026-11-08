@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d2-2.yaml, and the port writes this file again (R12).
+id: "par-34-d2-2"
+statement:
+  - text: "Anya adds up all the odd numbers from 1 to 20. Borya adds up all the even numbers from 1 to 20. How much bigger is Borya's sum?"
+givens: ["Anya adds the odd numbers from 1 to 20.", "Borya adds the even numbers from 1 to 20."]
+unknown: "How much bigger Borya's sum is."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "10"
+          trap_values:
+            - value: "0"
+              trap: "ignored-condition"
+              text: "Each even number is 1 more than the odd number before it, so the sums are not equal."
+            - value: "1"
+              trap: "stopped-early"
+              text: "Each even number is 1 more than the odd number before it. Count the pairs."
+            - value: "20"
+              trap: "wrong-operation"
+              text: "Each even number is only 1 more than the odd number before it."
+            - value: "110"
+              trap: "answered-other-question"
+              text: "110 is Borya's sum, not the difference."
+    simpler_case: "Try the numbers from 1 to 4 first. How much bigger is the sum of the even ones?"
+solution:
+  - text: "Pair the numbers: 2 is 1 more than 1, 4 is 1 more than 3, and so on up to 20 and 19. There are 10 pairs, so Borya's sum is 10 bigger."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 2

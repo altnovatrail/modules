@@ -1,0 +1,8 @@
+# What a person adds to par-34-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The numbers 1 to 20 are on the board."
+  - "In one step two numbers are rubbed out and their difference is written instead."
+  - "After 19 steps one number is left."
+unknown: "Which of the numbers it can be."
+simpler_case: "Try the numbers 1, 3 and 4 first. Which numbers can be left?"
+techniques: [parity]

@@ -1,0 +1,7 @@
+# What a person adds to par-12-d3-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "Ann throws to Ben, Ben to Kim, Kim to Ann, and so on."
+  - "Ann makes the 1st throw."
+unknown: "Who makes the 10th throw."
+simpler_case: "Try the 5th throw first. Write the throwers in order."
+techniques: [pattern]

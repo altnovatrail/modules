@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d1-2.yaml, and the port writes this file again (R12).
+id: "par-34-d1-2"
+statement:
+  - text: "How many odd numbers are there from 1 to 99, including 1 and 99?"
+givens: ["The numbers go from 1 to 99.", "1 and 99 are counted too."]
+unknown: "How many odd numbers there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "50"
+          units: ["number", "numbers", "odd number", "odd numbers"]
+          trap_values:
+            - value: "49"
+              trap: "off-by-one"
+              text: "Do not forget 99 itself."
+            - value: "51"
+              trap: "off-by-one"
+              text: "Count the odd numbers again: one in each pair of neighbours, and then 99."
+            - value: "98"
+              trap: "wrong-operation"
+              text: "98 is 99 - 1. Count the odd numbers instead."
+            - value: "99"
+              trap: "number-from-text"
+              text: "99 is the last number, not how many odd numbers there are."
+    simpler_case: "Try the numbers from 1 to 9 first. How many are odd?"
+solution:
+  - text: "The numbers from 1 to 98 make 49 pairs: 1 and 2, 3 and 4, ..., 97 and 98, each with one odd number. Then comes 99, which is odd too. 49 + 1 = 50."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 1

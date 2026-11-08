@@ -1,0 +1,10 @@
+# What a person adds to par-12-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "3 glasses stand upside down."
+  - "In one move exactly 2 of them are turned over."
+unknown: "The smallest number of moves that makes all three stand the right way up."
+simpler_case: "Try 2 glasses upside down first. How many moves does it take?"
+techniques: [parity]
+trap_texts:
+  "2": "Follow how many glasses are upside down after each move: can it ever reach 0?"
+  "4": "4 moves turn 8 glasses in all. Follow how many glasses are upside down after each move."

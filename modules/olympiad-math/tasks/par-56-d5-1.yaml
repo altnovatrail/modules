@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-56-d5-1.yaml, and the port writes this file again (R12).
+id: "par-56-d5-1"
+statement:
+  - text: "Mia writes the digits 1 to 7 in a row, each once. Then she counts the digits standing between 1 and 2, between 2 and 3, and so on up to between 6 and 7. At most how many of these six counts can be odd?"
+givens: ["The digits 1 to 7 are written in a row, each once.", "The digits between 1 and 2, between 2 and 3, and so on up to 6 and 7, are counted."]
+unknown: "At most how many of the six counts can be odd."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          units: ["count", "counts"]
+          trap_values:
+            - value: "6"
+              trap: "wrong-parity"
+              text: "Six odd counts would put all seven digits in places of one kind, all odd or all even, but a row of 7 has only four odd places and three even ones."
+            - value: "3"
+              trap: "stopped-early"
+              text: "3 counts only the odd counts among the digits in the odd places, but the digits in the even places add more."
+            - value: "7"
+              trap: "number-from-text"
+              text: "7 is the number of digits, but there are only six counts."
+            - value: "1"
+              trap: "answered-other-question"
+              text: "1 is how many times the digits must change from odd places to even ones, not how many counts are odd."
+    simpler_case: "Try the digits 1 to 3 in a row first. At most how many of the two counts can be odd?"
+solution:
+  - text: "Between two digits there is an odd number of others exactly when their places are both odd or both even. A row of 7 has four odd places and three even ones, so going from 1 to 7 the digits must change at least once from odd places to even ones or back, and the count at that change is even. So at most 5 of the six counts are odd, and 5 can be reached: 1 5 2 6 3 7 4 puts 1, 2, 3 and 4 in the odd places and 5, 6 and 7 in the even ones."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-5-6"
+difficulty: 5

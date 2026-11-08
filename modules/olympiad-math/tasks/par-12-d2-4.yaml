@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-12-d2-4.yaml, and the port writes this file again (R12).
+id: "par-12-d2-4"
+statement:
+  - text: "Masha has some sweets. She can share them equally between 2 friends, and also equally between 5 friends, with none left over. How many sweets can she have?"
+givens: ["The sweets can be shared equally between 2 friends.", "They can also be shared equally between 5 friends.", "None is left over either way."]
+unknown: "How many sweets Masha can have."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "20"
+          trap_values:
+            - value: "12"
+              trap: "ignored-condition"
+              text: "12 cannot be shared equally between 5 friends."
+            - value: "15"
+              trap: "wrong-parity"
+              text: "15 is odd, so it cannot be shared equally between 2 friends."
+            - value: "18"
+              trap: "ignored-condition"
+              text: "18 cannot be shared equally between 5 friends."
+            - value: "25"
+              trap: "wrong-parity"
+              text: "25 is odd, so it cannot be shared equally between 2 friends."
+    simpler_case: "Try sharing between 2 friends only. Which of the numbers can be shared?"
+solution:
+  - text: "The number must split into 2 equal parts, so it is even, and into 5 equal parts, so it ends in 0 or 5. Only 20 does both."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-1-2"
+difficulty: 2

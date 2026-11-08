@@ -1,0 +1,9 @@
+# What a person adds to par-56-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The ten tiles are all alike: each has the same five numbers in the same order round it."
+  - "Where two tiles touch, the numbers next to the shared side are equal."
+unknown: "The number in the triangle marked ?."
+simpler_case: "Try a ring of three tiles that each read 1, 2, 3 round them. Which number does the second tile start with?"
+techniques: [pattern]
+picture_alt: "A ring of ten pentagon tiles, each cut into five triangles. The first tile shows 1, 2, 3, 4 and 5 round it, starting from the side it shares with the last tile. The eighth tile has a question mark in its fourth triangle. The other triangles are empty."
+solution_picture_alt: "The same ring with every triangle filled."

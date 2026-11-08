@@ -1,0 +1,7 @@
+# What a person adds to par-34-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Every pupil has an odd number of friends in the class."
+  - "Friendship always goes both ways."
+unknown: "Which of the numbers can be the number of pupils."
+simpler_case: "Try 3 pupils who each have 1 friend. Can it be done?"
+techniques: [parity]

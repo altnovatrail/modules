@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-12-d3-5.yaml, and the port writes this file again (R12).
+id: "par-12-d3-5"
+statement:
+  - text: "Ann, Ben and Kim throw a ball to each other in turn: Ann to Ben, Ben to Kim, Kim to Ann, and so on. Ann makes the 1st throw. Who makes the 10th throw?"
+givens: ["Ann throws to Ben, Ben to Kim, Kim to Ann, and so on.", "Ann makes the 1st throw."]
+unknown: "Who makes the 10th throw."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "choice"
+          key: "Ann"
+          options: ["Ben", "Kim", "Ann", "Ann or Ben", "It is impossible to tell"]
+          trap_values:
+            - value: "Ben"
+              trap: "off-by-one"
+              text: "Ben makes the 2nd, 5th, 8th and 11th throws."
+            - value: "Kim"
+              trap: "off-by-one"
+              text: "Kim makes the 3rd, 6th and 9th throws."
+            - value: "Ann or Ben"
+              trap: "stopped-early"
+              text: "The order repeats every 3 throws, so the 10th thrower is known exactly."
+            - value: "It is impossible to tell"
+              trap: "ignored-condition"
+              text: "The order repeats every 3 throws."
+    simpler_case: "Try the 5th throw first. Write the throwers in order."
+solution:
+  - text: "The throwers go Ann, Ben, Kim, Ann, Ben, Kim, and so on. Ann makes the 1st, 4th, 7th and 10th throws."
+techniques: ["pattern"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-1-2"
+difficulty: 3

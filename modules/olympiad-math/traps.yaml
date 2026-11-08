@@ -1,6 +1,7 @@
-# The traps of this module's tasks: 11 of the 20 traps of mathtrail-standalone, as the format's
-# example of this module has them, each with its description and its advice. Each ID is the
-# trap's, with _ made -. standalone's content in this module carries the MIT notice of NOTICE.
+# The traps of this module's tasks: 12 of the 20 traps of mathtrail-standalone, as the format's
+# example of this module has them, each with its description and its advice, but the advice of
+# wrong-parity, which holds no number or parity word here (R13). Each ID is the trap's, with _
+# made -. standalone's content in this module carries the MIT notice of NOTICE.
 traps:
   off-by-one:
     description: Off by one when counting gaps, floors or saw cuts.
@@ -32,6 +33,9 @@ traps:
   number-from-text:
     description: Answered with a number from the question without computing anything.
     trap_advice: "Before writing a number down, say which calculation it comes from: a number copied from the question is rarely the answer."
+  wrong-parity:
+    description: Got the parity wrong, for example thought that odd plus odd is odd.
+    trap_advice: Check the rule on a few small sums first, then say it out loud.
   ignored-condition:
     description: Ignored one of the conditions, such as "different", "exactly once" or "at both ends".
     trap_advice: Reread the question and mark every condition, such as “different” or “exactly once”, then check the answer against each.

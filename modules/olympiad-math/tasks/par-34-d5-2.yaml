@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d5-2.yaml, and the port writes this file again (R12).
+id: "par-34-d5-2"
+statement:
+  - text: "In a class, every pupil has an odd number of friends in the class, and friendship always goes both ways. Which of these can be the number of pupils in the class?"
+givens: ["Every pupil has an odd number of friends in the class.", "Friendship always goes both ways."]
+unknown: "Which of the numbers can be the number of pupils."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["21", "23", "25", "26", "27"]
+        check:
+          kind: "choice"
+          key: "26"
+          trap_values:
+            - value: "21"
+              trap: "wrong-parity"
+              text: "21 odd numbers of friends add up to an odd total, but each friendship is counted twice, so the total must be even."
+            - value: "23"
+              trap: "wrong-parity"
+              text: "23 odd numbers of friends add up to an odd total, but the total must be even."
+            - value: "25"
+              trap: "wrong-parity"
+              text: "25 odd numbers of friends add up to an odd total, but the total must be even."
+            - value: "27"
+              trap: "wrong-parity"
+              text: "27 odd numbers of friends add up to an odd total, but the total must be even."
+    simpler_case: "Try 3 pupils who each have 1 friend. Can it be done?"
+solution:
+  - text: "Add up the numbers of friends of all pupils: each friendship is counted twice, so the total is even. An odd number of odd numbers adds up to an odd total, so the number of pupils must be even. Only 26 is even, and it works: the pupils can be friends in 13 pairs, one friend each."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 5

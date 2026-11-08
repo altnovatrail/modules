@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d3-2.yaml, and the port writes this file again (R12).
+id: "par-34-d3-2"
+statement:
+  - text: "25 children stand in a line. Boys and girls take turns, and there are more girls than boys. How many girls are there?"
+givens: ["25 children stand in a line.", "Boys and girls take turns.", "There are more girls than boys."]
+unknown: "How many girls there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "13"
+          units: ["girl", "girls"]
+          trap_values:
+            - value: "12"
+              trap: "reversed-relation"
+              text: "12 is the smaller group, but there are more girls than boys."
+            - value: "14"
+              trap: "off-by-one"
+              text: "Count the odd places from 1 to 25 again."
+            - value: "24"
+              trap: "wrong-operation"
+              text: "24 is 25 - 1. Count the places 1, 3, ..., 25 instead."
+            - value: "25"
+              trap: "number-from-text"
+              text: "25 is the number of all children."
+    simpler_case: "Try 5 children in a line first. How many girls are there, if there are more girls?"
+solution:
+  - text: "In a line of 25 children taking turns, the children in places 1, 3, ..., 25 are of one kind: 13 of them. The other 12 are of the other kind. There are more girls, so there are 13 girls."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 3

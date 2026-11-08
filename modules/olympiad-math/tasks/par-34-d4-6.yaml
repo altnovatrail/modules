@@ -1,0 +1,44 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-34-d4-6.yaml, and the port writes this file again (R12).
+id: "par-34-d4-6"
+statement:
+  - text: "The picture shows a row of tiles that are all alike. Each has the same four numbers in the same order round it, but only some are shown. Where two tiles touch, the numbers next to the shared side are equal. Which number is in the triangle marked ?"
+  - picture: "pictures/par-34-d4-6.png"
+    alt: "A row of five square tiles, each cut into four triangles. The first tile shows 1 in its left triangle and 2 in its top one. The second tile shows 6 in its top triangle. The third tile shows 7 in its right triangle. The fourth tile has a question mark in its left triangle. The other triangles are empty."
+    width: 360
+    height: 111
+givens: ["The tiles are all alike: each has the same four numbers in the same order round it.", "Where two tiles touch, the numbers next to the shared side are equal."]
+unknown: "The number in the triangle marked ?."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "7"
+          trap_values:
+            - value: "6"
+              trap: "off-by-one"
+              text: "That number is one triangle along."
+            - value: "1"
+              trap: "reversed-relation"
+              text: "The tile was read from the wrong side."
+            - value: "2"
+              trap: "ignored-condition"
+              text: "The tiles touch at their shared sides."
+    simpler_case: "Try two tiles of two triangles each, the numbers 1 and 2 on the first. Which number touches the second tile?"
+solution:
+  - text: "Each tile reads the same four numbers round it. The first tile shows 1 and 2, the third shows that 7 follows them, and the second shows the last number, 6. The fourth tile starts with the number the third has at its joint, 7, so its marked triangle holds 7."
+  - picture: "pictures/par-34-d4-6-solution.png"
+    alt: "The same row with every triangle filled: each tile reads 1, 2, 7 and 6 round it."
+    width: 360
+    height: 111
+techniques: ["pattern"]
+traps: ["missed-case"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-3-4"
+difficulty: 4

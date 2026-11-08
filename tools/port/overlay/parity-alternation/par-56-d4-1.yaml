@@ -1,0 +1,9 @@
+# What a person adds to par-56-d4-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Frog P is at 0, frog Q at 1 and frog R at 2."
+  - "In a move one frog jumps over another and lands as far on the other side."
+unknown: "Where the frogs can be after some moves."
+simpler_case: "Try one jump: Q jumps over R. Where does Q land?"
+techniques: [parity]
+picture_alt: "A number line from 0 to 6 with frog P marked at 0, frog Q at 1 and frog R at 2."
+solution_picture_alt: "A number line from 0 to 6 with frog P marked at 0, frog R at 4 and frog Q at 5."

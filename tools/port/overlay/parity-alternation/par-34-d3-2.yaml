@@ -1,0 +1,10 @@
+# What a person adds to par-34-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "25 children stand in a line."
+  - "Boys and girls take turns."
+  - "There are more girls than boys."
+unknown: "How many girls there are."
+simpler_case: "Try 5 children in a line first. How many girls are there, if there are more girls?"
+techniques: [parity]
+trap_texts:
+  "14": "Count the odd places from 1 to 25 again."

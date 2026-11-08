@@ -1,0 +1,79 @@
+# The tasks of parity-alternation of standalone at 42b4408: all 67 of them (E3; T26). The units are
+# the word a question counts, in the singular and the plural, and the endings of an ordinal; a task
+# whose answer is no number, or a number by itself, has none. standalone's site links the topic to the
+# techniques pattern and parity, which go in the overlay of each task they help.
+standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+skills:
+  parity-alternation:
+    techniques: []
+tasks:
+  par-12-d1-1: {}
+  par-12-d1-2: {}
+  par-12-d1-3: {units: [child, children]}
+  par-12-d1-4: {units: [th, nd]}
+  par-12-d1-5: {}
+  par-12-d2-1: {units: [number, numbers]}
+  par-12-d2-2: {units: [girl, girls]}
+  par-12-d2-3: {}
+  par-12-d2-4: {}
+  par-12-d2-5: {}
+  par-12-d3-1: {}
+  par-12-d3-2: {units: [boy, boys]}
+  par-12-d3-3: {units: [locker, lockers]}
+  par-12-d3-4: {}
+  par-12-d3-5: {}
+  par-12-d4-1: {}
+  par-12-d4-2: {units: [number, numbers, odd number, odd numbers]}
+  par-12-d4-3: {}
+  par-12-d4-4: {}
+  par-12-d4-5: {}
+  par-12-d5-1: {}
+  par-12-d5-2: {}
+  par-12-d5-3: {}
+  par-12-d5-4: {}
+  par-12-d5-5: {}
+  par-34-d1-1: {}
+  par-34-d1-2: {units: [number, numbers, odd number, odd numbers]}
+  par-34-d1-3: {}
+  par-34-d1-4: {}
+  par-34-d1-5: {}
+  par-34-d2-1: {}
+  par-34-d2-2: {}
+  par-34-d2-3: {}
+  par-34-d2-4: {}
+  par-34-d2-5: {}
+  par-34-d3-1: {}
+  par-34-d3-2: {units: [girl, girls]}
+  par-34-d3-3: {units: [card, cards]}
+  par-34-d3-4: {}
+  par-34-d3-5: {units: [lamp, lamps]}
+  par-34-d4-1: {}
+  par-34-d4-2: {units: [move, moves]}
+  par-34-d4-3: {}
+  par-34-d4-4: {units: [child, children]}
+  par-34-d4-5: {}
+  par-34-d4-6: {}
+  par-34-d5-1: {units: [move, moves]}
+  par-34-d5-2: {}
+  par-34-d5-3: {}
+  par-34-d5-4: {}
+  par-34-d5-5: {}
+  par-56-d1-1: {units: [child, children]}
+  par-56-d1-2: {units: [girl, girls]}
+  par-56-d1-3: {}
+  par-56-d2-1: {}
+  par-56-d2-2: {}
+  par-56-d2-3: {}
+  par-56-d3-1: {}
+  par-56-d3-2: {units: [domino, dominoes]}
+  par-56-d3-3: {units: [square, squares]}
+  par-56-d3-4: {}
+  par-56-d4-1: {}
+  par-56-d4-2: {}
+  par-56-d4-3: {units: [square, squares]}
+  par-56-d5-1: {units: [count, counts]}
+  par-56-d5-2: {}
+  par-56-d5-3: {units: [game, games]}

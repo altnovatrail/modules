@@ -1,0 +1,8 @@
+# What a person adds to par-56-d5-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Two of Ann, Ben and Cat play each game, and the third rests."
+  - "After each game the winner plays the one who rested."
+  - "Ann played 15 games and Ben 21."
+unknown: "At least how many games Cat played."
+simpler_case: "Try Ann with 2 games and Ben with 3. At least how many did Cat play?"
+techniques: [parity]

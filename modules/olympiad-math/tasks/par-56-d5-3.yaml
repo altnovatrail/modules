@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/parity-alternation/par-56-d5-3.yaml, and the port writes this file again (R12).
+id: "par-56-d5-3"
+statement:
+  - text: "Ann, Ben and Cat play table tennis. Two of them play each game while the third rests, and after each game the winner plays the next game against the one who rested. In the end Ann has played 15 games and Ben 21. At least how many games has Cat played?"
+givens: ["Two of Ann, Ben and Cat play each game, and the third rests.", "After each game the winner plays the one who rested.", "Ann played 15 games and Ben 21."]
+unknown: "At least how many games Cat played."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "12"
+          units: ["game", "games"]
+          trap_values:
+            - value: "6"
+              trap: "wrong-operation"
+              text: "6 is 21 − 15, but every game has two players, so the three numbers of games add up to twice the number of games."
+            - value: "11"
+              trap: "wrong-parity"
+              text: "15 + 21 + 11 = 47 is odd, but every game has two players, so the three numbers of games add up to an even number."
+            - value: "10"
+              trap: "ignored-condition"
+              text: "With 10 games Cat would rest in 13, but between 10 games there is room for only 11 rests, since nobody rests in two games running."
+            - value: "24"
+              trap: "answered-other-question"
+              text: "24 is the fewest games played in all, not the games Cat played."
+    simpler_case: "Try Ann with 2 games and Ben with 3. At least how many did Cat play?"
+solution:
+  - text: "The loser of a game rests in the next one and then plays again, so nobody rests in two games running. Every game has two players, so if there were n games, Cat played 2n − 15 − 21 = 2n − 36 of them and rested in 36 − n. Never resting twice running, Cat rested at most once more than Cat played: 36 − n ≤ 2n − 35, so n is at least 24. So Cat played at least 2 × 24 − 36 = 12 games, and 24 games can be played that way."
+techniques: ["parity"]
+skills:
+  primary: ["parity-alternation"]
+band: "grades-5-6"
+difficulty: 5
