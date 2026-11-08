@@ -1,0 +1,10 @@
+# What a person adds to frac-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Two thirds of a number N is 24."
+unknown: "Three quarters of N."
+simpler_case: "Try: half of a number is 10. What is a quarter of it?"
+picture_alt: "Two bars for N: the first cut into 3 parts, 2 of them shaded and braced as 24; the second cut into 4 parts, 3 of them shaded and braced as ?."
+solution_picture_alt: "The first bar cut into three parts of 12, two of them braced as 24; the second into four parts of 9, three of them braced as 27."
+trap_texts:
+  "9": "9 is not three quarters of the number."
+  "36": "36 is not three quarters of N."

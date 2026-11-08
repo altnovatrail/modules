@@ -1,0 +1,9 @@
+# What a person adds to pct-56-d2-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The bag holds 6 green and 14 yellow marbles."
+  - "Tom puts in 5 more green marbles."
+unknown: "The percentage of green marbles now."
+simpler_case: "Try a bag of 2 green and 3 yellow marbles. What percentage of them are green?"
+trap_texts:
+  "55": "55% compares the green marbles with the marbles there were before, not with those in the bag now."
+  "56": "56% is not the share of green marbles."

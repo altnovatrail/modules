@@ -1,0 +1,6 @@
+# What a person adds to ratio-56-d5-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The grass grows at the same rate every day."
+  - "24 cows would eat all of it in 10 days, and 14 cows in 20 days."
+unknown: "How many cows would eat all of it in 40 days."
+simpler_case: "Try a meadow where the grass does not grow and 10 cows eat it in 4 days. How many cows eat it in 8 days?"

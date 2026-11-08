@@ -1,0 +1,11 @@
+# What a person adds to pct-56-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "60% of the guests chose vanilla and 30% chocolate."
+  - "The other 3 guests chose strawberry."
+unknown: "How many guests were at the party."
+simpler_case: "Try a party where 50% chose vanilla and the other 4 guests chose chocolate. How many guests were there?"
+trap_texts:
+  "10": "10 is the strawberry share in per cent, not a number of guests."
+  "18": "18 is only part of the party."
+  "27": "27 is only part of the party."
+leak_phrases: ["30 guests", "thirty guests"]

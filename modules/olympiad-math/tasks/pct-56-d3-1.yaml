@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/percent.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/pct-56-d3-1.yaml, and the port writes this file again (R12).
+id: "pct-56-d3-1"
+statement:
+  - text: "After a 20% discount, a jacket costs 60 coins. What was its price before the discount?"
+givens: ["After a 20% discount the jacket costs 60 coins."]
+unknown: "Its price before the discount."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "75"
+          units: ["coin", "coins"]
+          trap_values:
+            - value: "72"
+              trap: "percent-wrong-base"
+              text: "72 adds 20% of the new price, 12 coins, but the discount was 20% of the old price."
+            - value: "80"
+              trap: "wrong-operation"
+              text: "80 adds 20 coins for the 20%, but 20% of the old price is not 20 coins."
+            - value: "48"
+              trap: "reversed-relation"
+              text: "48 takes a second 20% off, but the question goes back to the price before the discount."
+            - value: "15"
+              trap: "answered-other-question"
+              text: "15 is not the old price."
+    simpler_case: "Try a 50% discount that leaves a price of 30 coins. What was the price before?"
+solution:
+  - text: "After the discount the jacket costs 80% of its old price. 80% is four lots of 20%, so 20% is 60 ÷ 4 = 15 coins, and the old price is 5 × 15 = 75 coins."
+  - text: "60 ÷ 4 × 5 = 75"
+  - picture: "pictures/pct-56-d3-1-solution.png"
+    alt: "A bar of 75 cut into five parts of 15, four of them braced as 60."
+    width: 454
+    height: 82
+skills:
+  primary: ["percent-basic"]
+band: "grades-5-6"
+difficulty: 3

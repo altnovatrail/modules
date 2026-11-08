@@ -1,0 +1,10 @@
+# What a person adds to ratio-56-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "Bag A has 1 red bead for every 2 blue beads."
+  - "Bag B holds twice as many beads as bag A, with 3 red beads for every blue bead."
+  - "All the beads are tipped into one box."
+unknown: "The ratio of red beads to blue beads in the box."
+simpler_case: "Try bag A with 1 red bead for every blue bead, and bag B, twice as big, with only red beads. What is the ratio of red to blue in the box?"
+trap_texts:
+  "7 : 11": "Check which colour comes first in the question."
+  "11 : 18": "11 : 18 compares the red beads with all the beads."

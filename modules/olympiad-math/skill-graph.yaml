@@ -39,3 +39,15 @@ skills:
     title: Weighing and pouring
     prerequisites: [combinatorics-enumeration, pigeonhole-basic]
     assessability: verdict
+  fractions-parts:
+    title: Parts and shares
+    prerequisites: [arithmetic-tricks, core.fractions-of-a-whole]
+    assessability: verdict
+  percent-basic:
+    title: Percentages
+    prerequisites: [fractions-parts]
+    assessability: verdict
+  ratio-sharing:
+    title: Ratios and sharing
+    prerequisites: [fractions-parts]
+    assessability: verdict

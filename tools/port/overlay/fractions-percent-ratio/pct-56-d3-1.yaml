@@ -1,0 +1,9 @@
+# What a person adds to pct-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "After a 20% discount the jacket costs 60 coins."
+unknown: "Its price before the discount."
+simpler_case: "Try a 50% discount that leaves a price of 30 coins. What was the price before?"
+solution_picture_alt: "A bar of 75 cut into five parts of 15, four of them braced as 60."
+trap_texts:
+  "15": "15 is not the old price."
+  "80": "80 adds 20 coins for the 20%, but 20% of the old price is not 20 coins."

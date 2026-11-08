@@ -1,0 +1,6 @@
+# What a person adds to frac-56-d2-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "A pack holds 24 crayons."
+  - "Ben takes a quarter of the pack, and Lucy a third of the whole pack."
+unknown: "How many crayons are left."
+simpler_case: "Try a pack of 12 crayons, with Ben taking a quarter and Lucy a half of the whole pack. How many are left?"

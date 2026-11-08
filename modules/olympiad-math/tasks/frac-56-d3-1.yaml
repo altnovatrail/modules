@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/fractions.parts.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/frac-56-d3-1.yaml, and the port writes this file again (R12).
+id: "frac-56-d3-1"
+statement:
+  - text: "Oleg spends half of his coins on a book. Then he spends a quarter of the coins he has left on a pen. Now he has 30 coins. How many coins did he have at first?"
+givens: ["Oleg spends half of his coins on a book.", "Then he spends a quarter of what is left on a pen.", "Now he has 30 coins."]
+unknown: "How many coins he had at first."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "80"
+          units: ["coin", "coins"]
+          trap_values:
+            - value: "40"
+              trap: "stopped-early"
+              text: "40 is not what he had at first."
+            - value: "120"
+              trap: "part-whole-swap"
+              text: "120 takes the pen's quarter of all his coins, but it was a quarter of the coins he had left."
+            - value: "50"
+              trap: "answered-other-question"
+              text: "50 is how many coins he spent on the book and the pen together."
+            - value: "60"
+              trap: "ignored-condition"
+              text: "60 only doubles the 30 and forgets the pen, which he bought after the book."
+    simpler_case: "Try: he spends half of his coins and has 15 left. How many did he have?"
+solution:
+  - text: "After the pen he keeps three quarters of what he had, and that is 30 coins. So a quarter is 10, and he had 40 coins after the book. Those 40 are half of his coins, so at first he had 80."
+skills:
+  primary: ["fractions-parts"]
+  supporting: ["core.fractions-of-a-whole"]
+band: "grades-5-6"
+difficulty: 3

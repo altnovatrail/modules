@@ -1,0 +1,9 @@
+# What a person adds to frac-56-d3-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "Oleg spends half of his coins on a book."
+  - "Then he spends a quarter of what is left on a pen."
+  - "Now he has 30 coins."
+unknown: "How many coins he had at first."
+simpler_case: "Try: he spends half of his coins and has 15 left. How many did he have?"
+trap_texts:
+  "40": "40 is not what he had at first."

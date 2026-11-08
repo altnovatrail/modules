@@ -1,0 +1,8 @@
+# What a person adds to pct-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The game costs 200 coins."
+  - "Its price goes up by 10%, and a week later the new price goes down by 10%."
+unknown: "What the game costs now."
+simpler_case: "Try a price of 100 coins that goes up by 10%. What is it then?"
+trap_texts:
+  "200": "200 takes the fall as 10% of the old price, but it is 10% of the new one."

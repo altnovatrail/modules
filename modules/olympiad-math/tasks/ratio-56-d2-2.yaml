@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/ratio.sharing.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/ratio-56-d2-2.yaml, and the port writes this file again (R12).
+id: "ratio-56-d2-2"
+statement:
+  - text: "Two boxes, A and B, hold 56 shells between them. For every 3 shells in box A, there are 4 in box B. How many shells are in box A?"
+  - picture: "pictures/ratio-56-d2-2.png"
+    alt: "Two bars: A of 3 equal parts and B of 4 equal parts, with the notes A + B = 56 and A = ?."
+    width: 161
+    height: 140
+givens: ["Boxes A and B hold 56 shells between them.", "For every 3 shells in box A there are 4 in box B."]
+unknown: "How many shells are in box A."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "24"
+          units: ["shell", "shells"]
+          trap_values:
+            - value: "42"
+              trap: "ratio-total-confusion"
+              text: "42 takes box A as three quarters of all the shells, but 3 to 4 means 3 parts out of 7."
+            - value: "32"
+              trap: "answered-other-question"
+              text: "32 is not the number of shells in box A."
+            - value: "8"
+              trap: "stopped-early"
+              text: "8 is not the number of shells in box A."
+            - value: "28"
+              trap: "ignored-condition"
+              text: "28 shares the shells equally and forgets the 3 to 4."
+    simpler_case: "Try 20 shells, with 1 in box A for every 4 in box B. How many shells are in box A?"
+solution:
+  - text: "Box A has 3 parts and box B has 4, so the 56 shells make 7 equal parts of 8 shells each. Box A holds 3 × 8 = 24 shells."
+  - text: "56 ÷ 7 × 3 = 24"
+  - picture: "pictures/ratio-56-d2-2-solution.png"
+    alt: "A of three parts of 8 with the value 24, and B of four parts of 8 with the value 32; the note A + B = 56."
+    width: 471
+    height: 120
+skills:
+  primary: ["ratio-sharing"]
+band: "grades-5-6"
+difficulty: 2

@@ -1,0 +1,7 @@
+# What a person adds to ratio-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Nina and Omar ride the same road at steady speeds."
+  - "Nina takes 30 minutes and Omar 20 minutes."
+  - "Nina rides at 12 km an hour."
+unknown: "How fast Omar rides."
+simpler_case: "Try Nina taking 20 minutes and Omar 10 minutes on the same road, Nina at 12 km an hour. How fast does Omar ride?"

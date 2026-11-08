@@ -1,0 +1,9 @@
+# What a person adds to pct-56-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "All the members of the chess club like puzzles."
+  - "25% of the pupils outside the club like puzzles."
+  - "40% of all the pupils like puzzles."
+unknown: "The percentage of the pupils in the chess club."
+simpler_case: "Try: all club members like puzzles, nobody outside the club does, and 10% of the pupils like puzzles. What percentage are in the club?"
+trap_texts:
+  "80": "80% is not the share of the pupils in the club."

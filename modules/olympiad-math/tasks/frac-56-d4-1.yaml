@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/fractions.parts.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/frac-56-d4-1.yaml, and the port writes this file again (R12).
+id: "frac-56-d4-1"
+statement:
+  - text: "In a library, 2/5 of the books are novels. Half of the novels and 1/6 of the other books have hard covers. What fraction of all the books have hard covers?"
+givens: ["2/5 of the books are novels.", "Half of the novels and 1/6 of the other books have hard covers."]
+unknown: "The fraction of all the books with hard covers."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "fraction"
+          key: "3/10"
+          trap_values:
+            - value: "2/3"
+              trap: "part-whole-swap"
+              text: "2/3 adds 1/2 and 1/6, but those are shares of the novels and of the other books, not of the whole library."
+            - value: "1/5"
+              trap: "missed-case"
+              text: "1/5 counts only the hard-cover novels and leaves out the other books."
+            - value: "7/10"
+              trap: "answered-other-question"
+              text: "Check which cover 7/10 is the share of."
+            - value: "1/12"
+              trap: "wrong-operation"
+              text: "1/12 multiplies 1/2 by 1/6, but the two groups of hard-cover books have to be added."
+    simpler_case: "Try a library where half of the books are novels, half of the novels have hard covers, and no other book does. What fraction of all the books have hard covers?"
+solution:
+  - text: "Take 30 books: 12 are novels and 18 are other books. Half of the novels is 6 and a sixth of the others is 3, so 9 of the 30 books have hard covers, which is 9/30 = 3/10."
+skills:
+  primary: ["fractions-parts"]
+  supporting: ["core.fractions-of-a-whole"]
+band: "grades-5-6"
+difficulty: 4

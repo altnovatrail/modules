@@ -1,0 +1,9 @@
+# What a person adds to pct-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The tree was 40 cm tall."
+  - "In five years its height grew by 150%."
+unknown: "How tall the tree is now."
+simpler_case: "Try a tree of 20 cm that grew by 50%. How tall is it now?"
+trap_texts:
+  "60": "60 cm is not the height now."
+  "190": "190 adds 150 cm, as if 150% of the height were 150 cm."

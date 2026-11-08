@@ -1,0 +1,8 @@
+# What a person adds to ratio-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The ratio of boys to girls in the class is 2 : 3."
+unknown: "The fraction of the class that are boys."
+simpler_case: "Try a class with 1 boy for every 3 girls. What fraction of the class are boys?"
+trap_texts:
+  "2/3": "2/3 compares the boys with the girls, not with the whole class."
+  "3/5": "3/5 is not the fraction of boys."

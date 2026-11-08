@@ -1,0 +1,8 @@
+# What a person adds to ratio-56-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "Two gear wheels turn together, tooth by tooth."
+  - "The big wheel has 21 teeth and the small wheel 7."
+unknown: "How many turns the small wheel makes while the big wheel makes 6."
+simpler_case: "Try a big wheel of 10 teeth and a small one of 5. How many turns does the small wheel make while the big one makes 2?"
+trap_texts:
+  "126": "126 is not a number of turns."

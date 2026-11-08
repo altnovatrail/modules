@@ -1,0 +1,37 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/fractions.parts.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/frac-56-d4-2.yaml, and the port writes this file again (R12).
+id: "frac-56-d4-2"
+statement:
+  - text: "A box holds more than 20 but fewer than 40 sweets. Exactly 1/3 of them are toffees and exactly 3/8 are mints, and the rest are chocolates. How many chocolates are in the box?"
+givens: ["The box holds more than 20 but fewer than 40 sweets.", "Exactly 1/3 are toffees and exactly 3/8 are mints; the rest are chocolates."]
+unknown: "How many chocolates are in the box."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "7"
+          units: ["chocolate", "chocolates"]
+          trap_values:
+            - value: "24"
+              trap: "part-whole-swap"
+              text: "24 is the whole box; the chocolates are only part of it."
+            - value: "17"
+              trap: "answered-other-question"
+              text: "17 is not the chocolates."
+            - value: "7/24"
+              trap: "stopped-early"
+              text: "That is a share, and the question asks how many."
+    simpler_case: "Try a box of fewer than 10 sweets with exactly 1/2 toffees and 1/3 mints. How many chocolates are there?"
+solution:
+  - text: "A third and three eighths of the sweets must both be whole, so their number divides by 3 and by 8, that is, by 24. Between 20 and 40 only 24 does. Then there are 8 toffees and 9 mints, which leaves 24 - 8 - 9 = 7 chocolates."
+traps: ["ignored-condition"]
+skills:
+  primary: ["fractions-parts"]
+  supporting: ["core.fractions-of-a-whole"]
+band: "grades-5-6"
+difficulty: 4

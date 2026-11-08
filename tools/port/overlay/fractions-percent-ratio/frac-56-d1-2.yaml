@@ -1,0 +1,9 @@
+# What a person adds to frac-56-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The jug holds two and a half litres."
+  - "Each glass holds a quarter of a litre."
+unknown: "How many glasses the full jug fills."
+simpler_case: "Try a jug of one and a half litres. How many quarter-litre glasses does it fill?"
+trap_texts:
+  "8": "8 glasses do not hold all the juice."
+  "12": "12 counts the half litre as if it were a whole litre."

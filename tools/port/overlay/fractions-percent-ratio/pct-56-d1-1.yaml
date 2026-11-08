@@ -1,0 +1,9 @@
+# What a person adds to pct-56-d1-1 of standalone; the port writes the task from it (R12).
+givens:
+  - "The toy costs 50 coins."
+  - "The price was meant to go up by 20%, but went down by 20%."
+unknown: "How many coins less than the planned price the toy costs now."
+simpler_case: "Try a toy of 50 coins whose price was meant to rise by 10% but fell by 10%. How many coins less than planned does it cost?"
+trap_texts:
+  "10": "10 coins is 20% of 50, the change one way only."
+leak_phrases: ["20 coins", "twenty coins"]

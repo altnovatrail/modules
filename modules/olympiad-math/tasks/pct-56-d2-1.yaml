@@ -1,0 +1,38 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/percent.basic.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/fractions-percent-ratio/pct-56-d2-1.yaml, and the port writes this file again (R12).
+id: "pct-56-d2-1"
+statement:
+  - text: "A bag holds 6 green marbles and 14 yellow marbles. Tom puts 5 more green marbles into the bag. What percentage of the marbles in the bag are green now?"
+givens: ["The bag holds 6 green and 14 yellow marbles.", "Tom puts in 5 more green marbles."]
+unknown: "The percentage of green marbles now."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "44"
+          units: ["%"]
+          trap_values:
+            - value: "55"
+              trap: "percent-wrong-base"
+              text: "55% compares the green marbles with the marbles there were before, not with those in the bag now."
+            - value: "30"
+              trap: "ignored-condition"
+              text: "30% leaves out the 5 marbles Tom added: it is the green share before, 6 out of 20."
+            - value: "56"
+              trap: "answered-other-question"
+              text: "56% is not the share of green marbles."
+            - value: "5"
+              trap: "number-from-text"
+              text: "5 is the number of marbles Tom added, not a percentage."
+    simpler_case: "Try a bag of 2 green and 3 yellow marbles. What percentage of them are green?"
+solution:
+  - text: "Now there are 6 + 5 = 11 green marbles among 20 + 5 = 25 marbles. 11 out of 25 is the same as 44 out of 100, so 44% are green."
+skills:
+  primary: ["percent-basic"]
+band: "grades-5-6"
+difficulty: 2

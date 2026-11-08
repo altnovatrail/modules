@@ -1,0 +1,9 @@
+# What a person adds to frac-56-d2-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The fractions are 1/12, 2/12, 3/12 and so on up to 12/12."
+unknown: "How many of them are bigger than 1/3 but smaller than 3/4."
+simpler_case: "Try the fractions 1/6 to 6/6. How many are bigger than 1/3 but smaller than 2/3?"
+trap_texts:
+  "2": "2 leaves out fractions that can be written in a shorter way."
+  "5": "5 counts one of the two ends."
+  "6": "6 also counts the fractions equal to 1/3 and 3/4, which are not bigger or smaller."
