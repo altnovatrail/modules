@@ -1,0 +1,8 @@
+# What a person adds to gaps-34-d4-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The pages are numbered 1, 2, 3 and so on."
+  - "Exactly 39 digits were printed."
+unknown: "How many pages the book has."
+simpler_case: "How many digits do pages 1 to 9 use? See how many digits are left for the other pages."
+trap_texts:
+  "25": "Count the two-digit pages again: they start at page 10, so find the page they end on."

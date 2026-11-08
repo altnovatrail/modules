@@ -597,8 +597,9 @@ ci-licenses:
 # token and none of the caller's git settings. Standalone's bench proves the answer of each task
 # first, and the port writes nothing unless each passes (R05; R12). It is a step of the batch's
 # task, run by a person in the devcontainer, not of CI: the bench fetches standalone's Go modules.
-# After the module come the options: --batch <file> and --overlay <folder> in place of the first
-# batch and its overlays, and --check to compare the module with what the port writes.
+# After the module come the options: --batch <file> in place of the first batch, whose overlays are
+# then tools/port/overlay/<the batch's name>/ (T22), --overlay <folder> in place of those, and --check
+# to compare the module with what the port writes.
 # Write the tasks of a batch of standalone into a module, or with --check compare them.
 [positional-arguments]
 port module *options:
@@ -607,7 +608,7 @@ port module *options:
     module=$1
     shift
     batch=tools/port/batches/first.yaml
-    overlay=tools/port/overlay
+    overlay=""
     rest=()
     while [ "$#" -gt 0 ]; do
         case "$1" in
@@ -616,6 +617,9 @@ port module *options:
             *) rest+=("$1"); shift ;;
         esac
     done
+    if [ -z "$overlay" ]; then
+        overlay="tools/port/overlay/$(basename "$batch" .yaml)"
+    fi
     commit=$(sed -n 's/^standalone: \([0-9a-f]\{40\}\)$/\1/p' "$batch")
     if [ -z "$commit" ]; then
         echo "port: ${batch} has no line standalone: with the full SHA of a commit" >&2

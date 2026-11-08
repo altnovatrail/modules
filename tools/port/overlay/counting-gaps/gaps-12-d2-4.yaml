@@ -1,0 +1,6 @@
+# What a person adds to gaps-12-d2-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "From floor 1 to floor 2 there are 10 steps."
+  - "All the flights of stairs are the same."
+unknown: "How many steps it is from floor 1 to floor 3."
+simpler_case: "Draw the floors 1, 2 and 3 as dots in a column. How many flights of stairs join them?"

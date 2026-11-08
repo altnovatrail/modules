@@ -1,0 +1,8 @@
+# What a person adds to gaps-34-d3-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "The path has 21 square slabs in a row."
+  - "The boy starts on the first slab."
+  - "He always skips one slab: he lands on slabs 3, 5, 7 and so on."
+unknown: "How many jumps he needs to reach the last slab."
+simpler_case: "Try a path of 7 slabs first. Write the slabs he lands on and count the jumps."
+picture_alt: "Slabs numbered 1, 2, 3, 4 and 5 in a row, then a stretch left out, and slab 21 at the end."

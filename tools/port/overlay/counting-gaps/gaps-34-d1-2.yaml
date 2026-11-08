@@ -1,0 +1,8 @@
+# What a person adds to gaps-34-d1-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The log is 12 metres long."
+  - "Each piece is 2 metres long."
+unknown: "How many cuts are made."
+simpler_case: "Try a log 4 metres long first. How many 2-metre pieces, and how many cuts?"
+trap_texts:
+  "7": "There is one cut fewer than pieces, not one more."

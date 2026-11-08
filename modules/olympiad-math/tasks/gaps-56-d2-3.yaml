@@ -1,0 +1,44 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-56-d2-3.yaml, and the port writes this file again (R12).
+id: "gaps-56-d2-3"
+statement:
+  - text: "Children stand in a circle at equal distances from each other. They are numbered in turn, 1, 2, 3 and so on, all the way round. Child number 6 stands exactly opposite child number 17. How many children are in the circle?"
+givens: ["The children stand in a circle at equal distances.", "They are numbered 1, 2, 3 and so on, all the way round.", "Child 6 stands exactly opposite child 17."]
+unknown: "How many children are in the circle."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "22"
+          units: ["child", "children"]
+          trap_values:
+            - value: "24"
+              trap: "off-by-one"
+              text: "24 doubles the 12 children from number 6 to number 17, but half of the circle is the 11 steps between them."
+            - value: "20"
+              trap: "off-by-one"
+              text: "20 doubles the 10 children standing between them, but half of the circle is 11 steps."
+            - value: "23"
+              trap: "wrong-operation"
+              text: "23 adds the two numbers, 6 + 17, which says nothing about the size of the circle."
+            - value: "11"
+              trap: "answered-other-question"
+              text: "11 is half of the circle, the steps from child 6 to child 17."
+    simpler_case: "Try a circle where child 1 stands opposite child 3. Draw it and count."
+solution:
+  - text: "From child 6 to child 17 there are 11 steps from one child to the next, and that is half of the way round. The whole circle is 22 steps, and in a circle there are as many children as steps: 22."
+  - text: "11 × 2 = 22"
+  - picture: "pictures/gaps-56-d2-3-solution.png"
+    alt: "22 children in a circle, numbered from 1 at the top round clockwise, with child 6 marked."
+    width: 352
+    height: 352
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-5-6"
+difficulty: 2

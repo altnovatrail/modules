@@ -1,0 +1,43 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-34-d3-5.yaml, and the port writes this file again (R12).
+id: "gaps-34-d3-5"
+statement:
+  - text: "A path is made of 21 square slabs in a row. A boy stands on the first slab and jumps along the path, always skipping one slab: he lands on slabs 3, 5, 7 and so on. How many jumps does he need to reach the last slab?"
+  - picture: "pictures/gaps-34-d3-5.png"
+    alt: "Slabs numbered 1, 2, 3, 4 and 5 in a row, then a stretch left out, and slab 21 at the end."
+    width: 384
+    height: 74
+givens: ["The path has 21 square slabs in a row.", "The boy starts on the first slab.", "He always skips one slab: he lands on slabs 3, 5, 7 and so on."]
+unknown: "How many jumps he needs to reach the last slab."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "10"
+          units: ["jump", "jumps"]
+          trap_values:
+            - value: "9"
+              trap: "off-by-one"
+              text: "After 9 jumps he is on slab 19, not on the last one."
+            - value: "11"
+              trap: "answered-other-question"
+              text: "11 is the number of slabs he stands on, counting the first. Jumps are one fewer."
+            - value: "20"
+              trap: "ignored-condition"
+              text: "20 jumps are needed only without skipping slabs."
+            - value: "21"
+              trap: "number-from-text"
+              text: "21 is the number of slabs."
+    simpler_case: "Try a path of 7 slabs first. Write the slabs he lands on and count the jumps."
+solution:
+  - text: "He lands on slabs 3, 5, 7, ..., 21. From 3 to 21 in steps of 2 there are 10 slabs, so he makes 10 jumps."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-3-4"
+difficulty: 3

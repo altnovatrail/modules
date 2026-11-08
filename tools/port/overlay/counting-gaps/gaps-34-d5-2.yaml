@@ -1,0 +1,7 @@
+# What a person adds to gaps-34-d5-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "The cells of the strip are numbered from 1 to 50."
+  - "Tanya colours every third cell: 3, 6, 9 and so on."
+unknown: "How many uncoloured cells there are between the first coloured cell and the last one."
+simpler_case: "Try a strip of 12 cells first. Mark the coloured cells and count the others between them."
+picture_alt: "Cells numbered 1 to 6 in a row, then a stretch left out, and cell 50 at the end. Cells 3 and 6 are drawn filled, and cells 1, 2, 4, 5 and 50 are drawn as empty rings."

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/gaps-12-d3-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/gaps-12-d3-1.yaml, and the port writes this file again (R12).
 id: "gaps-12-d3-1"
 statement:
   - text: "Trees grow on both sides of a path. On each side there are 6 trees in a row. How many gaps between neighbouring trees are there in all?"

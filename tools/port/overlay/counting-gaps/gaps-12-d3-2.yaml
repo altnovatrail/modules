@@ -1,0 +1,10 @@
+# What a person adds to gaps-12-d3-2 of standalone; the port writes the task from it (R12).
+givens:
+  - "8 rose bushes grow around a round flowerbed."
+  - "The bushes are all the same distance apart."
+unknown: "How many gaps there are between neighbouring bushes."
+simpler_case: "Draw 3 bushes on a circle. How many gaps are there, counting the one from the last bush back to the first?"
+trap_texts:
+  "4": "You halved the number of bushes. Count the gaps round the circle one by one."
+  "9": "In a circle the last bush meets the first one, and no gap is left over. Count the gaps round the circle again."
+leak_phrases: ["as many gaps as bushes", "8 gaps"]

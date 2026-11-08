@@ -1,10 +1,11 @@
 # The manifest of the official module of olympiad mathematics for grades 1–6, carried over from
-# mathtrail-standalone (R05). Its first batch is three skills of standalone, by three bands of
-# difficulty, those of MathTrail: grades 1–2, 3–4 and 5–6 (R07). An adult learns with it too, as
-# the first application has its author do (R76 spec). Its skills need no anchor skill yet.
+# mathtrail-standalone (R05): the first batch of three skills (R07), and the rest of the port, E3,
+# task by task, by three bands of difficulty, those of MathTrail: grades 1–2, 3–4 and 5–6. An adult
+# learns with it too, as the first application has its author do (R76 spec). Its skills need no
+# anchor skill yet.
 module_format_version: "0.3"
 id: novatrail/olympiad-math
-version: "0.1.0"
+version: "0.1.1"
 title: Olympiad mathematics, grades 1–6
 subject: mathematics
 audience:

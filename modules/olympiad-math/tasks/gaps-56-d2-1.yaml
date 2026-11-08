@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-56-d2-1.yaml, and the port writes this file again (R12).
+id: "gaps-56-d2-1"
+statement:
+  - text: "A rectangular cake is cut straight through, from edge to edge, 3 times along its length and 4 times across. How many pieces are there?"
+givens: ["The cake is cut 3 times along its length.", "The cake is cut 4 times across.", "Each cut goes straight from edge to edge."]
+unknown: "How many pieces there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "20"
+          units: ["piece", "pieces"]
+          trap_values:
+            - value: "12"
+              trap: "off-by-one"
+              text: "12 multiplies the numbers of cuts, but 3 cuts make 4 strips and 4 cuts make 5 pieces of each."
+            - value: "7"
+              trap: "wrong-operation"
+              text: "7 adds the cuts, but each cut across goes through every strip."
+            - value: "9"
+              trap: "wrong-operation"
+              text: "9 adds the 4 strips and the 5 pieces of a strip, but every one of the 4 strips is cut into 5."
+            - value: "30"
+              trap: "off-by-one"
+              text: "30 takes one piece too many each way: 3 cuts make 4 strips, not 5, and 4 cuts make 5 pieces, not 6."
+    simpler_case: "Try 1 cut along and 1 cut across first. Draw it and count the pieces."
+solution:
+  - text: "3 cuts along the length make 4 strips. 4 cuts across split every strip into 5 pieces. So there are 4 × 5 = 20 pieces."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-5-6"
+difficulty: 2

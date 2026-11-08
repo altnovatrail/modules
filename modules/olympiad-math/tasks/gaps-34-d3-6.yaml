@@ -1,0 +1,47 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-34-d3-6.yaml, and the port writes this file again (R12).
+id: "gaps-34-d3-6"
+statement:
+  - text: "Kittens A and B walk on the stairs in the picture, both starting at once. With each move, A goes up and B goes down as far as their jumps show. On which step do they meet? The floor is step 0."
+  - picture: "pictures/gaps-34-d3-6.png"
+    alt: "A staircase of 10 steps above the floor. Kitten A sits on the floor and kitten B on the top step. One arrow shows A's jump up from the floor to step 2, and another shows B's jump down from step 10 to step 7."
+    width: 378
+    height: 246
+givens: ["Kitten A starts on the floor, step 0.", "Kitten B starts on the top step.", "With each move, each kitten goes as far as its jump in the picture shows: A up and B down."]
+unknown: "On which step the kittens meet."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "4"
+          trap_values:
+            - value: "5"
+              trap: "off-by-one"
+              text: "The floor is step 0, not step 1."
+            - value: "2"
+              trap: "stopped-early"
+              text: "They have not met after one move."
+            - value: "7"
+              trap: "stopped-early"
+              text: "That is B after one move."
+            - value: "10"
+              trap: "number-from-text"
+              text: "That is the top, where B starts."
+    simpler_case: "Write where each kitten is after one move, then after the next."
+solution:
+  - text: "After one move A is on step 2 and B on step 7. After two moves A is on step 4 and B on step 4, so they meet on step 4."
+  - text: "2 + 2 = 4"
+  - picture: "pictures/gaps-34-d3-6-solution.png"
+    alt: "The same staircase with kitten A on the step where the kittens meet, and the jumps of both kittens drawn."
+    width: 378
+    height: 246
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-3-4"
+difficulty: 3

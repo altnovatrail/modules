@@ -22,6 +22,9 @@ type Batch struct {
 	Canvas     Canvas                   `yaml:"canvas"`
 	Skills     map[string]SkillDefaults `yaml:"skills"`
 	Tasks      map[string]BatchTask     `yaml:"tasks"`
+	// overlays is the folder of the batch's overlays, as the command was given it, which the header of
+	// every task it writes names.
+	overlays string
 	// survey marks the batch that a survey makes, of every task no batch names: it is never read
 	// from a file, its pictures get surveyAlt, and an explanation that names the key of a choice is
 	// counted, not refused.
@@ -48,7 +51,7 @@ type BatchTask struct {
 	Units []string `yaml:"units,omitempty"`
 }
 
-// Overlay is what a person writes for a task, tools/port/overlay/<id>.yaml: none of it comes from
+// Overlay is what a person writes for a task, tools/port/overlay/<batch>/<id>.yaml: none of it comes from
 // standalone, and the port puts it into the task as it is (R12).
 type Overlay struct {
 	Givens      []string `yaml:"givens,omitempty"`
@@ -102,9 +105,10 @@ func readBatch(file string) (Batch, error) {
 	return batch, nil
 }
 
-// readOverlays reads the overlay of every task of a batch that has one. The folder must be there:
-// a mistyped path would drop every overlay unsaid. An overlay of a task the batch does not name is
-// an error too, since it would be left out.
+// readOverlays reads the overlay of every task of a batch that has one, from the batch's own
+// folder, tools/port/overlay/<batch>/ (T22). The folder must be there: a mistyped path would drop
+// every overlay unsaid. An overlay of a task the batch does not name is an error too, since it would
+// be left out, and so is a folder in it.
 func readOverlays(dir string, batch Batch) (map[string]Overlay, error) {
 	overlays := map[string]Overlay{}
 	entries, err := os.ReadDir(dir)

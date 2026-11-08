@@ -1,0 +1,10 @@
+# What a person adds to gaps-12-d4-5 of standalone; the port writes the task from it (R12).
+givens:
+  - "12 posts stand in a row."
+  - "The posts are 1 metre apart."
+  - "The cat walks from the 3rd post to the 10th post."
+unknown: "How many metres the cat walks."
+simpler_case: "Try walking from the 3rd post to the 4th post first. How many gaps is that?"
+picture_alt: "Posts in a row with a stretch of the row left out in the middle, and every gap drawn between two posts marked 1."
+trap_texts:
+  "8": "Count the gaps between post 3 and post 10 once more: there is one fewer gap than posts."

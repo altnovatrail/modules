@@ -1,0 +1,7 @@
+# What a person adds to gaps-34-d1-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The block has 9 floors."
+  - "Each flight between two floors has 18 steps."
+unknown: "How many steps there are from floor 1 to floor 9."
+simpler_case: "How many flights are there from floor 1 to floor 3?"
+picture_alt: "Floors 1, 2 and 3 in a row, then a stretch left out, and floor 9 at the end; every gap between two floors drawn is marked 18."

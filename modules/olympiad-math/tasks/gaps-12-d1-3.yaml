@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-12-d1-3.yaml, and the port writes this file again (R12).
+id: "gaps-12-d1-3"
+statement:
+  - text: "Flowers grow in a row. There are 4 gaps between them. How many flowers are there?"
+givens: ["The flowers grow in a row.", "There are 4 gaps between them."]
+unknown: "How many flowers there are."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "5"
+          units: ["flower", "flowers"]
+          trap_values:
+            - value: "3"
+              trap: "off-by-one"
+              text: "3 flowers have only 2 gaps between them."
+            - value: "4"
+              trap: "number-from-text"
+              text: "4 is the number of gaps, not flowers. Draw the gaps with a flower on each side and count the flowers."
+            - value: "6"
+              trap: "off-by-one"
+              text: "6 flowers would have more gaps than the question gives. Draw the flowers and count again."
+            - value: "8"
+              trap: "wrong-operation"
+              text: "You doubled the gaps. Draw the flowers with the gaps between them and count the flowers."
+    simpler_case: "Draw 2 flowers in a row. How many gaps are between them?"
+solution:
+  - text: "Every gap has a flower on its right, and there is one more flower at the very start. So there are 4 + 1 = 5 flowers."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 1

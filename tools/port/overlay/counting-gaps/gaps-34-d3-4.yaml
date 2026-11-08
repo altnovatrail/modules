@@ -1,0 +1,7 @@
+# What a person adds to gaps-34-d3-4 of standalone; the port writes the task from it (R12).
+givens:
+  - "The ribbon is 1 metre long."
+  - "Each piece is 10 centimetres long."
+  - "Each cut takes 3 seconds."
+unknown: "How many seconds the cutting takes."
+simpler_case: "Try a ribbon 30 centimetres long first. How many pieces, and how many cuts?"

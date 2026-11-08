@@ -1,0 +1,9 @@
+# What a person adds to gaps-34-d4-3 of standalone; the port writes the task from it (R12).
+givens:
+  - "The path is 90 metres long."
+  - "On each side there is a post every 10 metres."
+  - "There are posts at both ends of each side."
+unknown: "How many posts there are on both sides together."
+simpler_case: "Take one side first, and try a side 30 metres long. Draw it and count its posts."
+picture_alt: "Two rows of posts, one on each side of the path, each with a stretch left out in the middle; every gap drawn is marked 10 and each row is marked 90."
+solution_picture_alt: "The same two rows with their posts numbered 1, 2 and 3, a stretch left out, and post 10 at the end; every gap is 10 and each row is 90."

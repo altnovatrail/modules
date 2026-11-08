@@ -1,0 +1,8 @@
+# What a person adds to gaps-34-d2-6 of standalone; the port writes the task from it (R12).
+givens:
+  - "A fence runs along both sides of the path."
+  - "Each gap between two posts takes one rail."
+unknown: "How many rails both sides take together."
+simpler_case: "Take one side first. How many gaps are there between its posts?"
+picture_alt: "Two rows of fence posts, one along each side of a path, with 7 posts in each row."
+solution_picture_alt: "The same two rows of 7 posts, with every gap marked 1 and each row marked 6."

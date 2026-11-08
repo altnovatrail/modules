@@ -1,0 +1,39 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-12-d3-3.yaml, and the port writes this file again (R12).
+id: "gaps-12-d3-3"
+statement:
+  - text: "Kate is 4th in a line, counting from the front. There are 3 children behind her. How many children are in the line?"
+givens: ["Kate is 4th from the front.", "There are 3 children behind her."]
+unknown: "How many children are in the line."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "anywhere"
+        check:
+          kind: "number"
+          key: "7"
+          units: ["child", "children"]
+          trap_values:
+            - value: "3"
+              trap: "number-from-text"
+              text: "3 is the number of children behind Kate."
+            - value: "4"
+              trap: "number-from-text"
+              text: "4 is Kate's place in the line."
+            - value: "6"
+              trap: "off-by-one"
+              text: "You forgot to count Kate herself."
+            - value: "8"
+              trap: "double-count"
+              text: "Kate is already counted in \"4th\". Do not add her again."
+    simpler_case: "Try a line where Kate is 2nd from the front with 1 child behind her. How many children is that?"
+solution:
+  - text: "There are 3 children in front of Kate, then Kate, then 3 behind her: 3 + 1 + 3 = 7."
+techniques: ["draw", "small-numbers"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-1-2"
+difficulty: 3

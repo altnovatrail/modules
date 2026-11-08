@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/pig-34-d5-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/first/pig-34-d5-1.yaml, and the port writes this file again (R12).
 id: "pig-34-d5-1"
 statement:
   - text: "A box has 10 red, 8 blue, 6 green and 4 yellow balls. Without looking, how many balls must you take to be sure to have 5 balls of the same colour?"

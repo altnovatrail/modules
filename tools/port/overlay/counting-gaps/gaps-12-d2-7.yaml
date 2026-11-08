@@ -1,0 +1,8 @@
+# What a person adds to gaps-12-d2-7 of standalone; the port writes the task from it (R12).
+givens:
+  - "The fence has posts in a row."
+  - "The number under a gap is how many rails that gap takes."
+unknown: "How many rails the whole fence takes."
+simpler_case: "Try a fence of 2 posts first. How many gaps does it have?"
+picture_alt: "A fence of 5 posts in a row, with the number 3 under every gap between two posts."
+solution_picture_alt: "The same fence of 5 posts, with 3 under every gap and the whole fence marked 12."

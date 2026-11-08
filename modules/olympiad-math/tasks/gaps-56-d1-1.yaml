@@ -1,0 +1,40 @@
+# Written by tools/port from mathtrail-standalone at 42b4408, from
+# content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
+# tools/port/overlay/counting-gaps/gaps-56-d1-1.yaml, and the port writes this file again (R12).
+id: "gaps-56-d1-1"
+statement:
+  - text: "A frog is at the bottom of a well 12 metres deep. Each day it climbs 5 metres up, and each night it slips 3 metres back down. On which day does it get out of the well?"
+givens: ["The well is 12 metres deep.", "Each day the frog climbs 5 metres up.", "Each night it slips 3 metres back down."]
+unknown: "On which day the frog gets out of the well."
+canvas:
+  kind: "handwriting_sheet"
+  grid: "squares"
+items:
+  - answer_slots:
+      - binding: "choice"
+        options: ["On day 3", "On day 6", "On day 5", "On day 2", "On day 4"]
+        check:
+          kind: "choice"
+          key: "On day 5"
+          trap_values:
+            - value: "On day 3"
+              trap: "ignored-condition"
+              text: "Day 3 forgets the nights: after each day in the well, the frog slips back 3 metres."
+            - value: "On day 6"
+              trap: "off-by-one"
+              text: "Day 6 comes from 12 ÷ 2, as if the frog gained only 2 metres a day all the way to the top. On its last climb it goes up 5 metres and is out before night comes."
+            - value: "On day 2"
+              trap: "wrong-operation"
+              text: "Day 2 adds the climb and the slip, 5 + 3 = 8 metres a day, but the slip takes the frog down."
+            - value: "On day 4"
+              trap: "answered-other-question"
+              text: "4 is the number of nights the frog slips back. It gets out on the day after its last night."
+    simpler_case: "Make a table of how high the frog is after each day and after each night."
+solution:
+  - text: "A day and a night together lift the frog 5 − 3 = 2 metres. After 4 days and 4 nights it is 8 metres up. On day 5 it climbs 5 metres more, to 13 metres, and is out of the 12-metre well before it can slip back."
+techniques: ["draw", "small-numbers"]
+leak_phrases: ["day 5", "fifth day"]
+skills:
+  primary: ["counting-gaps"]
+band: "grades-5-6"
+difficulty: 1
