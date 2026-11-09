@@ -66,18 +66,25 @@ func TestConvertTimeByHand(t *testing.T) {
 	if !strings.Contains(got, want) {
 		t.Errorf("the time is not a choice written by hand:\n%s", got)
 	}
-	if c.Answer != answerByHand || strings.Contains(got, `binding: "choice"`) {
+	if c.Answer != answerByHand || strings.Contains(got, `binding: "choice"`) || strings.Contains(got, "notation:") {
 		t.Errorf("answer = %q:\n%s", c.Answer, got)
 	}
 }
 
+// A word written by hand takes notation word, right after the kind, as the format's example has
+// it: a word none of the options is a wrong answer, not one left unread (amendment T49 to R20).
 func TestConvertWordByHand(t *testing.T) {
 	got, c := convertOne(t, wordExample("race-1"), BatchTask{}, Overlay{})
-	for _, line := range []string{`binding: "anywhere"`, `kind: "choice"`, `key: "Ben"`, `options: ["Ann", "Kim", "Ben", "Lea", "Max"]`,
-		`value: "Max"`} {
-		if !strings.Contains(got, line) {
-			t.Errorf("the task lacks %s:\n%s", line, got)
-		}
+	want := `      - binding: "anywhere"
+        check:
+          kind: "choice"
+          notation: "word"
+          key: "Ben"
+          options: ["Ann", "Kim", "Ben", "Lea", "Max"]
+          trap_values:
+`
+	if !strings.Contains(got, want) || !strings.Contains(got, `value: "Max"`) {
+		t.Errorf("the word is not a choice written by hand with notation word:\n%s", got)
 	}
 	if c.Answer != answerByHand {
 		t.Errorf("answer = %q, want %q", c.Answer, answerByHand)
@@ -88,7 +95,7 @@ func TestConvertWordByHand(t *testing.T) {
 // reasons, not answers a learner writes.
 func TestConvertTappedByBatch(t *testing.T) {
 	got, c := convertOne(t, wordExample("race-12"), BatchTask{Tapped: true}, Overlay{})
-	if c.Answer != answerTapped || !strings.Contains(got, `binding: "choice"`) {
+	if c.Answer != answerTapped || !strings.Contains(got, `binding: "choice"`) || strings.Contains(got, "notation:") {
 		t.Errorf("answer = %q, want %q:\n%s", c.Answer, answerTapped, got)
 	}
 }
@@ -182,6 +189,19 @@ func TestConvertChoiceRefuses(t *testing.T) {
 	if _, err := convert(ex, testBatch(ex.ID), BatchTask{}, Overlay{}, "content/examples/x.json"); err == nil ||
 		!strings.Contains(err.Error(), `its option E, " ann ", is option A too`) {
 		t.Errorf("options alike once normalized: error = %v", err)
+	}
+	// notation word cuts ".", "!", "?" and spaces at the end of a word's options, so "Ann." is Ann,
+	// and "?" is blank; a choice tapped compares them as written.
+	for option, want := range map[string]string{"Ann.": `its option E, "Ann.", is option A too`, "?": `its option E, "?", is blank as notation word reads it`} {
+		ex = wordExample("race-7")
+		ex.Options["E"] = option
+		if _, err := convert(ex, testBatch(ex.ID), BatchTask{}, Overlay{}, "content/examples/x.json"); err == nil ||
+			!strings.Contains(err.Error(), want) {
+			t.Errorf("%q in notation word: error = %v", option, err)
+		}
+		if _, err := convert(ex, testBatch(ex.ID), BatchTask{Tapped: true}, Overlay{}, "content/examples/x.json"); err != nil {
+			t.Errorf("%q tapped: error = %v", option, err)
+		}
 	}
 	ex = wordExample("race-6")
 	if _, err := convert(ex, testBatch(ex.ID), BatchTask{}, Overlay{TrapTexts: map[string]string{"Eve": "x"}},

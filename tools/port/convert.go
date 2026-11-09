@@ -252,8 +252,10 @@ type answer struct {
 //     a simple fraction is checked as a fraction, and an integer or a decimal, with units of the
 //     batch, as a number, which takes a fraction too;
 //   - a time on a clock, and one word other than yes and no that the question holds, are a choice
-//     written by hand anywhere on the sheet, whose options are the check's and closed, unless the
-//     batch has the task tapped: its wrong options are reasons, not answers a learner writes;
+//     written by hand anywhere on the sheet, whose options are the check's. A batch may have a word
+//     tapped: its wrong options are reasons, not answers a learner writes. A time's options
+//     are closed, while a word's notation takes any one word, so that a word none of the options
+//     is a wrong answer, not one left unread (amendment T49 to R20);
 //   - any other answer — a word the question does not hold, yes or no, a phrase, a date, a
 //     quantity of more than one part, and a number with words after it that the batch gives no
 //     units for — is a choice tapped. The report names such an answer that begins with a digit.
@@ -263,19 +265,22 @@ func answerOf(ex Example, task BatchTask, overlay Overlay, lenient bool) (answer
 	right := ex.Options[ex.CorrectAnswer]
 	switch {
 	case pointsAtOptions.MatchString(ex.Question):
-		return chosen(ex, overlay, lenient, false)
+		return chosen(ex, overlay, lenient, tapping)
 	case clockTime.MatchString(right):
 		// A time reads as a number with words after it, 7 and :30, so it goes before valueOf.
-		return chosen(ex, overlay, lenient, true)
+		return chosen(ex, overlay, lenient, timeByHand)
 	}
 	kind, key, err := valueOf(right, task.Units)
 	if err != nil {
 		return answer{}, fmt.Errorf("%s: its answer %q: %w", ex.ID, right, err)
 	}
 	if kind == "" {
-		byHand := !task.Tapped && oneWord.MatchString(right) && !yesOrNo.MatchString(right) && names(ex.Question, right)
-		a, err := chosen(ex, overlay, lenient, byHand)
-		if err == nil && !byHand && leadingDigit.MatchString(right) {
+		how := tapping
+		if !task.Tapped && oneWord.MatchString(right) && !yesOrNo.MatchString(right) && names(ex.Question, right) {
+			how = wordByHand
+		}
+		a, err := chosen(ex, overlay, lenient, how)
+		if err == nil && how == tapping && leadingDigit.MatchString(right) {
 			a.notes = append(a.notes, fmt.Sprintf("its answer %q is no number in the notation of the checks, or one with words after it that the batch gives no units for: it is a choice tapped", right))
 		}
 		return a, err
@@ -335,6 +340,18 @@ func answerOf(ex Example, task BatchTask, overlay Overlay, lenient bool) (answer
 	return answer{slot: mapping{{"binding", "anywhere"}, {"check", check}}, key: key, traps: traps, notes: dropped, kind: kind}, nil
 }
 
+// writing is how a choice is answered: tapped, or written by hand, a time or a word (R20).
+type writing int
+
+const (
+	tapping writing = iota
+	// timeByHand is a time on a clock, whose options are closed: a value none of them is unread.
+	timeByHand
+	// wordByHand is one word, with notation word: any one word is read, and a word none of the
+	// options is a wrong answer (format/README.md, section 15; amendment T49 to R20).
+	wordByHand
+)
+
 // chosen is the answer slot of a choice: the five options as written, the right one the key and
 // each other a trap value. Tapped, the options are the answer slot's; written by hand, anywhere on
 // the sheet, they are the check's, which the learner does not see (format/README.md, section 15).
@@ -344,7 +361,7 @@ func answerOf(ex Example, task BatchTask, overlay Overlay, lenient bool) (answer
 // explanation that names the key is to be rewritten in the overlay, and the overlay's simpler case
 // is not to name it, nor its givens and unknown, but where they restate a question that names it.
 // A survey, lenient, has no overlay, and writes such an explanation, and counts it.
-func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
+func chosen(ex Example, overlay Overlay, lenient bool, how writing) (answer, error) {
 	key := ex.Options[ex.CorrectAnswer]
 	var options, values sequence
 	var notes []string
@@ -353,10 +370,19 @@ func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
 	seen := map[string]string{}
 	for _, letter := range letters {
 		option := ex.Options[letter]
-		if other, twice := seen[choiceForm(option)]; twice {
+		// A word's options are compared as notation word reads them, with their end cut, and none
+		// may be left blank (task.choice-options).
+		form := choiceForm(option)
+		if how == wordByHand {
+			form = wordForm(option)
+			if form == "" {
+				return answer{}, fmt.Errorf("%s: its option %s, %q, is blank as notation word reads it", ex.ID, letter, option)
+			}
+		}
+		if other, twice := seen[form]; twice {
 			return answer{}, fmt.Errorf("%s: its option %s, %q, is option %s too, as a choice compares them", ex.ID, letter, option, other)
 		}
-		seen[choiceForm(option)] = letter
+		seen[form] = letter
 		options = append(options, option)
 		if letter == ex.CorrectAnswer {
 			continue
@@ -391,8 +417,12 @@ func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
 		}
 		return answer{}, fmt.Errorf("%s: its overlay's text %q names its key %q", ex.ID, text, key)
 	}
-	if byHand {
-		check := mapping{{"kind", "choice"}, {"key", key}, {"options", options}, {"trap_values", values}}
+	if how != tapping {
+		check := mapping{{"kind", "choice"}}
+		if how == wordByHand {
+			check = append(check, pair{"notation", "word"})
+		}
+		check = append(check, pair{"key", key}, pair{"options", options}, pair{"trap_values", values})
 		return answer{slot: mapping{{"binding", "anywhere"}, {"check", check}}, key: key, notes: notes, kind: answerByHand, keyNamed: keyNamed}, nil
 	}
 	check := mapping{{"kind", "choice"}, {"key", key}, {"trap_values", values}}

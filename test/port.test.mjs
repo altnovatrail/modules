@@ -162,9 +162,10 @@ test("the port's tasks and its picture of a row pass module-kit check, with no w
 
   const task = readFileSync(join(module, "tasks", "flags-2.yaml"), "utf8");
   assert.match(task, /^traps: \["number-from-text"\]$/m, "a word among the wrong options becomes a trap of the task");
-  for (const [id, key] of [["flags-3", "8:30"], ["flags-4", "blue"]]) {
+  for (const [id, key, notation] of [["flags-3", "8:30", ""], ["flags-4", "blue", ' {10}notation: "word"\n']]) {
     const byHand = readFileSync(join(module, "tasks", `${id}.yaml`), "utf8");
-    assert.match(byHand, /binding: "anywhere"\n {8}check:\n {10}kind: "choice"\n/, `${id} is a choice written by hand`);
+    assert.match(byHand, new RegExp(`binding: "anywhere"\n {8}check:\n {10}kind: "choice"\n${notation} {10}key: "${key}"\n`),
+      `${id} is a choice written by hand${notation ? ", with notation word" : ""}`);
     assert.match(byHand, new RegExp(`key: "${key}"\n {10}options: \\[`), `${id} keeps its options in its check`);
   }
 

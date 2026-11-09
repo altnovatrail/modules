@@ -14,6 +14,7 @@ items:
       - binding: "anywhere"
         check:
           kind: "choice"
+          notation: "word"
           key: "Eva"
           options: ["Ann", "Ben", "Kim", "Eva", "Fay"]
           trap_values:
