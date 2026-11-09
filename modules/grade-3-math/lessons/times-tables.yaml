@@ -1,6 +1,8 @@
-# A lesson of the set of school mathematics for grade 3 (R15): an explanation and the three pages
-# of the skill, in the order of their difficulty. The lesson names no digit, since the keys of its
-# pages are small numbers, and lesson.no-leaks searches every text of the lesson for them. It has no worked example: in the format 0.3 one stands only on a sheet.
+# A lesson of the set of school mathematics for grade 3 (R15): an explanation and the three pages of
+# the skill, in the order of their difficulty. The lesson names no digit, since the keys of its
+# pages are small numbers, and lesson.no-leaks searches every text of the lesson for them. It has no
+# worked example yet: the format 0.3 put one only on a sheet, and the one on a workbook that 0.4
+# allows comes with epic E7.
 id: times-tables
 title: Times tables
 skills: [times-tables]

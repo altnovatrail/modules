@@ -157,7 +157,7 @@ test("the port's tasks and its picture of a row pass module-kit check, with no w
   assert.match(result.stdout, /port: 4 tasks written/);
 
   const checked = mustRun("module-kit", ["check", module]);
-  assert.match(checked.stdout, /the module breaks no rule of the format 0\.3/);
+  assert.match(checked.stdout, /the module breaks no rule of the format 0\.4/);
   assert.doesNotMatch(checked.stdout, /warning/);
 
   const task = readFileSync(join(module, "tasks", "flags-2.yaml"), "utf8");

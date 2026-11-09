@@ -1,7 +1,8 @@
-# A lesson of the set of school mathematics for grade 3 (R15): an explanation and the three pages
-# of the skill, in the order of their difficulty. It names no digit and no sign, since the keys of
-# its pages are fractions and signs, and has no worked example: in the format 0.3 one stands only
-# on a sheet. The skill graph puts it after the lesson of fractions of a whole.
+# A lesson of the set of school mathematics for grade 3 (R15): an explanation and the three pages of
+# the skill, in the order of their difficulty. It names no digit and no sign, since the keys of its
+# pages are fractions and signs, and has no worked example yet: the format 0.3 put one only on a
+# sheet, and the one on a workbook that 0.4 allows comes with epic E7. The skill graph puts it after
+# the lesson of fractions of a whole.
 id: comparing-fractions
 title: Comparing fractions
 skills: [comparing-fractions]

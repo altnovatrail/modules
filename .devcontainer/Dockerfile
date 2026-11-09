@@ -41,7 +41,7 @@ ARG BUF_VERSION=1.75.0
 # every run, `just module-kit-verify` (R10). This is how this container differs from spec's
 # (R10). Dependabot does not see it: the tag and both sums are raised by hand, together. The
 # Dockerfile is not among the release's paths, so raising them gives no release (R03).
-ARG MODULE_KIT_VERSION=v0.2.3
+ARG MODULE_KIT_VERSION=v0.3.0
 # The sha256 of every archive, per architecture, as its publisher lists it: SHASUMS256.txt of
 # the Node release, SHA256SUMS of the just release, the sha256 go.dev/dl lists for Go,
 # sha256.txt of the buf release, whose binary comes as it is, with no archive, and SHA256SUMS of
@@ -55,8 +55,8 @@ ARG GO_SHA256_AMD64=65efbc80fdc1fa2cd2631cad5b481777a68e8725f34e89f50fc6ac714e37
 ARG GO_SHA256_ARM64=a06e99309dbcbdca1a8ccd2282c3ee146e55930886e26b4f1193269587165f49
 ARG BUF_SHA256_AMD64=fad1e38d6909bbb583a4da81d8c02a01046e2cd663bde7e337dd24277393764b
 ARG BUF_SHA256_ARM64=00eb190aa82df17f393e05b04889cc60a0b13b3259d336e21a87d5f23ab4fd26
-ARG MODULE_KIT_SHA256_AMD64=12ff9aa5173cdb0ca5d22fb362f63349cf6e0bec06e5b3e735f54c24188ebc45
-ARG MODULE_KIT_SHA256_ARM64=3cbf68bf17af63840224d4fa00d434d9b5305aa70cf1b9b196c35a3a477f1dde
+ARG MODULE_KIT_SHA256_AMD64=2553cf3ced6f016581d463403388b868c02a9d4c883d99ef629167604f0a7823
+ARG MODULE_KIT_SHA256_ARM64=8e8d198e511ce9325f8580942dfa99db5c0e03501cf85bd15890fb0e7fb2f747
 
 # Every archive comes through one helper, so that every download is retried the same way and
 # checked against its sum before anything unpacks it. --retry-all-errors is the point of it: a
