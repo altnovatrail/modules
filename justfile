@@ -6,7 +6,7 @@
 # and checks each template against the task it came from (R22), and test/lesson-pictures.test.mjs
 # checks the size of each picture of a lesson against its file (amendment T41 to R12).
 #
-# The calls of module-kit follow the forms that module-kit's docs/architecture.md gives at v0.2.3
+# The calls of module-kit follow the forms that module-kit's docs/architecture.md gives at v0.3.0
 # (R102 spec) — check, build and index in section 3.6, diff in section 3.5:
 #
 #   module-kit check <module>

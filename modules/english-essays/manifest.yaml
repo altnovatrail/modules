@@ -3,9 +3,9 @@
 # language, so it has no target language. It is for learners of any age and names no grades, so
 # its bands name none either. Its one task with a key, the choice of a first sentence, has a
 # verdict, so it has the rung templates of a hint ladder.
-module_format_version: "0.3"
+module_format_version: "0.4"
 id: novatrail/english-essays
-version: "0.1.0"
+version: "0.2.0"
 title: Short essays in English
 subject: writing
 audience:
