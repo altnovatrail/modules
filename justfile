@@ -367,15 +367,15 @@ _modules-check published:
 # the eval set (section 13 there; amendment 2026-11-06 to R04). jq reads the ID alone, and holds it to
 # the name itself, so that no byte of it is lost on the way: the strict reading of a sample, the
 # rules of the sample file and those of an eval set are spec's sample-check's, and modules writes
-# none of them again (R93 spec). Until sample-check checks eval sets, the guard refuses every file
-# under eval/ whose name ends in .json, at any depth and named with a dot too, laid out right or not:
-# a file that is no part of the eval set is still published with the repository, so no sample enters
-# it unchecked (R25). Only the folders of modules/ are read: a file, a link or a name with a dot there
-# is modules-check's to refuse (R03). Every module is checked, and a breach in one does not stop the
+# none of them again (R93 spec). Until CI checks eval sets with sample-check --eval-set, the guard
+# refuses every file under eval/ whose name ends in .json, at any depth and named with a dot too,
+# laid out right or not: a file that is no part of the eval set is still published with the
+# repository, so no sample enters it unchecked (R25). Only the folders of modules/ are read: a
+# file, a link or a name with a dot there is modules-check's to refuse (R03). Every module is checked, and a breach in one does not stop the
 # rest; the status is 1 for any breach of the layout or any sample, and for modules that is no
 # folder, and 2 when jq is needed and cannot run. It needs no network and no key and writes nothing,
 # so a pull request from a fork runs it too.
-# Check the layout of each module's eval/, and refuse every sample until sample-check checks eval sets.
+# Check the layout of each module's eval/, and refuse every sample until CI checks eval sets.
 eval-check:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -440,11 +440,11 @@ eval-check:
                 breach "${file}: its sample's ID is ${id}, and a sample lies in eval/<its ID>.json (R04)"
             fi
         done
-        # The guard (R25): until the tag of spec whose sample-check checks a module's eval set, every
+        # The guard (R25): until CI runs spec's sample-check --eval-set, out since spec v0.9.13 (R27), every
         # file under eval/ whose name ends in .json is refused, at any depth, named with a dot too.
-        # E5 replaces this block with that check of the module's samples.
+        # The first task of E5 replaces this block with that check of the module's samples.
         while IFS= read -r -d '' file; do
-            breach "${file}: no sample enters an eval set until spec's sample-check checks eval sets (R25)"
+            breach "${file}: no sample enters an eval set until CI checks it with spec's sample-check --eval-set (R25)"
         done < <(find "$eval" -name '*.json' ! -type d -print0 | sort -z)
     done
     if [ "$failed" -eq 0 ]; then

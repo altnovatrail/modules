@@ -1,7 +1,8 @@
 // The tests of the recipe eval-check (R04, R25): the flat layout of each module's eval/, eval/<id>.json
 // with the name the sample's ID, and the guard, which refuses every file whose name ends in .json under
-// eval/ until spec's sample-check checks eval sets. The recipe calls no module-kit, so the modules here
-// are bare folders, and the sample is spec's own example of an eval set's sheet, a synthetic one.
+// eval/ until CI checks eval sets with spec's sample-check --eval-set. The recipe calls no module-kit,
+// so the modules here are bare folders, and the sample is spec's own example of an eval set's sheet, a
+// synthetic one.
 
 import assert from "node:assert/strict";
 import { cpSync, mkdirSync, readdirSync, symlinkSync, writeFileSync } from "node:fs";
@@ -13,7 +14,7 @@ import { ROOT, mustRun, repository, run } from "./helpers.mjs";
 const SAMPLE = join(ROOT, "spec", "contracts", "examples", "eval", "v1", "sheet-eval-set.json");
 const SAMPLE_ID = "synthetic-1104";
 
-const GUARD = /no sample enters an eval set until spec's sample-check checks eval sets \(R25\)$/;
+const GUARD = /no sample enters an eval set until CI checks it with spec's sample-check --eval-set \(R25\)$/;
 const NOT_NAMED = /: not eval\/<id>\.json, whose <id> is 1 to 64 lowercase Latin letters, digits and hyphens \(R04\)$/;
 
 // A repository with a bare module folder modules/<name>/ in it, and its eval/ when asked.
