@@ -110,7 +110,7 @@
 
 | Статус | ID | Задача | Кто | План | Зависит от |
 |---|---|---|---|---|---|
-| [ ] | T49 | Признак слова у 44 выборов от руки | Claude | — | — |
+| [x] | T49 | Признак слова у 44 выборов от руки | Claude | — | — |
 | [ ] | T50 | Вид `time` у 30 времён и ловушка 12-часового циферблата | Claude | да | T49 |
 | [ ] | T51 | Наводящие вопросы из подсказок standalone | Claude, проверяю я | да | T50 |
 | [ ] | T52 | Картинки экземпляров четырёх шаблонов и картинки решений `changes` и `groups` | Claude | да | T49 |
@@ -180,6 +180,15 @@
   - `just modules-check`: `module-kit diff` называет правку мажорной и пускает 0.3.0 после опубликованной 0.2.0;
   - `just -f spec/justfile docs-check-repo`; `/code-review high`, один круг.
 - **Разделы:** R12, R20, R28; R108 spec, R111 spec; [текст формата](spec/format/README.md), разделы 15 и 27.
+- **Сделано (2026-11-09):**
+  - правило 12 — до начала: после мержа #74 у SonarCloud и CodeQL находок нет, у Scorecard те же 6, их причины — в R33 spec. Правок нет;
+  - ветка `e7` — от `main` 757b07a, и `refs/heads/e7` стоит в `conditions.ref_name.include` ruleset `main` (25506537) рядом с `~DEFAULT_BRANCH`, с твоего подтверждения по правилу 4; правила и 14 обязательных проверок те же;
+  - `tools/port/convert.go` и `normal.go`: способ ответа `writing` — касанием, время от руки, слово от руки — на месте флага `byHand` у `chosen`; у слова от руки — `notation: "word"` сразу после `kind`, как в примере `who-is-shorter.yaml`. Тесты: `TestConvertWordByHand` — признак на своём месте, у времени и у выбора касанием его нет; `test/port.test.mjs` — `flags-4` с признаком, `flags-3` без;
+  - `just port` по 14 пачкам, каждая в своём клоне standalone и со стендом: 753 задачи записаны, а изменились ровно 44 файла — 34 `ord-*`, 7 `par-*` и 3 `cal-*`, — каждый одной строкой `notation: "word"`;
+  - `modules/olympiad-math/manifest.yaml` — 0.3.0; поправка 2026-11-09 к R20; [docs/architecture.md](docs/architecture.md), раздел 3.5;
+  - ревью — `/code-review high`, один круг, 8 находок. Исправлены шесть: конвертер сравнивал варианты слова формой выбора, а признак отрезает их конец — теперь он сравнивает их, как `notation: word`, и отказывает варианту, который стал пустым, с тестом; комментарий `answerOf` обещал `tapped` и времени — теперь только слову; проверки тестов ищут ключ `notation:`, а не слово; константа `tapped` — `tapping`, чтобы не путать с `BatchTask.Tapped`; раздел 2 [docs/architecture.md](docs/architecture.md) и README.md, Status, говорили о 0.2.0 — теперь о 0.3.0 на ветке `e7`; здесь — какой бинарник гонял проверки. Не исправлены две: перечисление `writing` вместо строки признака — T50 делает из времени свой вид, и три значения ему нужны; строка таблицы 3 о пересборке контейнера — это не вопрос и не долг: R28 уже велит пересобрать;
+  - проверено, с бинарником `module-kit` v0.3.0 первым на `PATH` — сумма amd64 из `.devcontainer/Dockerfile` совпала, — для всего, что зовёт `module-kit`: в контейнере ещё v0.2.3, он не пересобран после R28. `just ci-lint`; `just ci-test` — покрытие 99,1%; `just test` — 95 из 95; `just port --check` по 14 пачкам; `just modules-check` — 0, `module-kit diff`: «found: major», «0.3.0 raises: major», 44 правки «what decides the verdict or the trap»; `just eval-check`; `just lesson-pictures modules/olympiad-math --check`; `just -f spec/justfile docs-check-repo`.
+- **Открыто:** ничего. Контейнер стоит пересобрать (Rebuild Container), как велит R28: тесты и рецепты ждут `module-kit` v0.3.0.
 
 #### T50. Вид `time` у 30 времён и ловушка 12-часового циферблата
 

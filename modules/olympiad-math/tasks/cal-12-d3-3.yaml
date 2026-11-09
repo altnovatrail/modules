@@ -14,6 +14,7 @@ items:
       - binding: "anywhere"
         check:
           kind: "choice"
+          notation: "word"
           key: "Monday"
           options: ["Monday", "Sunday", "Tuesday", "Wednesday", "Friday"]
           trap_values:

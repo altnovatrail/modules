@@ -14,6 +14,7 @@ items:
       - binding: "anywhere"
         check:
           kind: "choice"
+          notation: "word"
           key: "even"
           options: ["odd", "sometimes even, sometimes odd", "even", "It is impossible to tell", "It is always 0"]
           trap_values:

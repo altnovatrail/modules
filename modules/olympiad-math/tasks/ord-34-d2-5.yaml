@@ -18,6 +18,7 @@ items:
       - binding: "anywhere"
         check:
           kind: "choice"
+          notation: "word"
           key: "Lea"
           options: ["Kim", "Mo", "Kim or Lea", "Lea", "It is impossible to tell"]
           trap_values:

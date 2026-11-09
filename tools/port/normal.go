@@ -18,6 +18,11 @@ import (
 // section 15, the white space of step 4, and each character to its simple lowercase mapping.
 func choiceForm(text string) string { return normalized(text, true) }
 
+// wordForm is a text as a choice with notation word normalizes it: the form of a choice, which
+// then loses each ".", "!", "?" and space at its end, so that "Kim." is "kim" and "?" is blank
+// (format/README.md, section 15; amendment T49 to R20).
+func wordForm(text string) string { return strings.TrimRight(choiceForm(text), ".!? ") }
+
 // normalized is a text after NFKC, the dashes and slashes of step 3 of section 15 and the white
 // space of step 4, and, where lower says so, each character to its simple lowercase mapping.
 func normalized(text string, lower bool) string {
