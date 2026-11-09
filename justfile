@@ -363,19 +363,24 @@ _modules-check published:
 # publishes with the repository, for good (R04; R62 spec). Its layout is flat: each sample is the
 # file eval/<id>.json, whose name is the sample's ID — the field id of its one JSON object, 1 to 64
 # lowercase Latin letters, digits and hyphens (contracts/README.md in spec, section 11) —, and eval/
-# holds no folder, no link and no other file, but for those named with a dot, which are no part of
-# the eval set (section 13 there; amendment 2026-11-06 to R04). jq reads the ID alone, and holds it to
-# the name itself, so that no byte of it is lost on the way: the strict reading of a sample, the
-# rules of the sample file and those of an eval set are spec's sample-check's, and modules writes
-# none of them again (R93 spec). Until CI checks eval sets with sample-check --eval-set, the guard
-# refuses every file under eval/ whose name ends in .json, at any depth and named with a dot too,
-# laid out right or not: a file that is no part of the eval set is still published with the
-# repository, so no sample enters it unchecked (R25). Only the folders of modules/ are read: a
-# file, a link or a name with a dot there is modules-check's to refuse (R03). Every module is checked, and a breach in one does not stop the
-# rest; the status is 1 for any breach of the layout or any sample, and for modules that is no
-# folder, and 2 when jq is needed and cannot run. It needs no network and no key and writes nothing,
-# so a pull request from a fork runs it too.
-# Check the layout of each module's eval/, and refuse every sample until CI checks eval sets.
+# holds nothing else: no folder, no link, no other file, and nothing named with a dot at any depth,
+# which the eval set would leave out and the repository would still publish unchecked (amendments
+# 2026-11-06 and 2026-11-09 to R04). jq reads the ID alone, and holds it to the name itself, so that
+# no byte of it is lost on the way. The rules of the sample file, and those of an eval set that need
+# neither the module's package nor a key, are spec's: sample-check --eval-set novatrail/<folder> on
+# the module's eval set as section 13 there has it — every regular file under eval/ whose name
+# ends in .json, at any depth, but under a name with a dot —, with no link, which the layout
+# refuses and which would stop sample-check. A module with no such file is not checked, since a
+# check of no file passes none (R93 spec; amendment 2026-11-09 to R25). Only the folders of
+# modules/ are read: a file, a link or a name with a dot there is modules-check's to refuse (R03).
+# Every module is checked, and a breach in one does not stop the rest; the status is the highest
+# of what failed: 1 for a breach of the layout, a sample that sample-check refuses and modules that
+# is no folder, and 2 when jq, spec's tools or sample-check could not do their work. A folder whose
+# name gives no module ID stops sample-check with 2, and modules-check refuses it in the same job.
+# It needs no key and writes nothing in the tree; before the first eval set, spec's _tools installs
+# spec/tools from its lock file, as docs-check-repo does — the only write, and the only use of the
+# network, which npm's registry gets —, so a pull request from a fork runs it too.
+# Check the layout of each module's eval/, and each module's eval set with spec's sample-check.
 eval-check:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -394,14 +399,20 @@ eval-check:
         echo "modules/: no modules yet"
         exit 0
     fi
-    failed=0
+    worst=0
+    fail() {
+        if [ "$1" -gt "$worst" ]; then worst=$1; fi
+    }
     breach() {
         echo "$1" >&2
-        failed=1
+        fail 1
     }
     jq_runs=""
+    tools=""
+    held=""
     for path in "${entries[@]}"; do
-        if [[ "${path#modules/}" == .* ]] || [ -L "$path" ] || [ ! -d "$path" ]; then
+        module=${path#modules/}
+        if [[ "$module" == .* ]] || [ -L "$path" ] || [ ! -d "$path" ]; then
             continue
         fi
         eval="${path}/eval"
@@ -412,6 +423,9 @@ eval-check:
             breach "${eval}: not a folder; eval/ is the folder of the module's eval set (R04)"
             continue
         fi
+        while IFS= read -r -d '' file; do
+            breach "${file}: named with a dot; eval/ holds the files eval/<id>.json alone, and nothing named with a dot (R04)"
+        done < <(find "$eval" -mindepth 1 -name '.*' -print0 | sort -z)
         for file in "$eval"/*; do
             name=${file##*/}
             if [[ "$name" == .* ]]; then
@@ -426,11 +440,16 @@ eval-check:
                 continue
             fi
             if [ -z "$jq_runs" ]; then
-                if ! jq --version > /dev/null 2>&1; then
+                if jq --version > /dev/null 2>&1; then
+                    jq_runs=yes
+                else
                     echo "eval-check: jq cannot be run; the toolchain stage has it" >&2
-                    exit 2
+                    jq_runs=no
                 fi
-                jq_runs=yes
+            fi
+            if [ "$jq_runs" = no ]; then
+                fail 2
+                continue
             fi
             # The ID comes out as JSON, quotes and escapes and all, and is compared in jq, so that a
             # newline or a NUL at its end, which the shell would drop, still makes it another ID.
@@ -440,18 +459,40 @@ eval-check:
                 breach "${file}: its sample's ID is ${id}, and a sample lies in eval/<its ID>.json (R04)"
             fi
         done
-        # The guard (R25): until CI runs spec's sample-check --eval-set, out since spec v0.9.13 (R27), every
-        # file under eval/ whose name ends in .json is refused, at any depth, named with a dot too.
-        # The first task of E5 replaces this block with that check of the module's samples.
+        files=()
         while IFS= read -r -d '' file; do
-            breach "${file}: no sample enters an eval set until CI checks it with spec's sample-check --eval-set (R25)"
-        done < <(find "$eval" -name '*.json' ! -type d -print0 | sort -z)
+            files+=("$file")
+        done < <(find "$eval" -mindepth 1 -name '.*' -prune -o -name '*.json' -type f -print0 | sort -z)
+        if [ "${#files[@]}" -eq 0 ]; then
+            continue
+        fi
+        held=yes
+        # spec's tools are installed first, by sample-check's own dependency _tools, so that npm,
+        # which fails with 1 as a refusal does, cannot pass for one: after it, sample-check gives 1
+        # when a file breaks a rule and 2 when it cannot check, and any status above 2 is that too.
+        if [ -z "$tools" ]; then
+            if {{quote(just_executable())}} -f spec/justfile _tools; then
+                tools=yes
+            else
+                echo "eval-check: the tools of spec's sample-check cannot be installed, so no eval set is checked" >&2
+                tools=no
+            fi
+        fi
+        if [ "$tools" = no ]; then
+            fail 2
+            continue
+        fi
+        status=0
+        {{quote(just_executable())}} -f spec/justfile sample-check --eval-set "novatrail/${module}" "${files[@]}" || status=$?
+        if [ "$status" -gt 2 ]; then status=2; fi
+        fail "$status"
     done
-    if [ "$failed" -eq 0 ]; then
+    if [ "$worst" -eq 0 ] && [ -z "$held" ]; then
         echo "eval-check: every eval/ is laid out as eval/<id>.json, and no module holds a sample"
+    elif [ "$worst" -eq 0 ]; then
+        echo "eval-check: every eval/ is laid out as eval/<id>.json, and sample-check holds the eval set of every module that has one"
     fi
-    exit "$failed"
-
+    exit "$worst"
 # What .github's shared release.yml runs to build a release's files, in the toolchain stage of the
 # commit it releases, on that commit's tree from git archive: no git, no submodule — spec/ is an
 # empty folder —, no token and no network (architecture 3.3 .github; R03; R17). version is the
@@ -635,7 +676,9 @@ _dockerfile-arg dockerfile name:
     fi
     sed -n "s/^ARG ${name}=//p" "$dockerfile"
 
-# The tests run this same just, and the module-kit on the PATH: the toolchain stage's.
+# The tests run this same just, and the module-kit on the PATH: the toolchain stage's. Those of
+# eval-check run spec's sample-check too, from the spec/ submodule, which installs its tools from
+# their lock file through npm once, as docs-check-repo does.
 # Run the tests of the recipes.
 test:
     JUST={{quote(just_executable())}} node --test 'test/*.test.mjs'

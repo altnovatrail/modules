@@ -1,10 +1,11 @@
 // What the tests of the recipes share: the just that runs them, made-up repositories in temporary
 // folders that hold a copy of the justfile and the Dockerfile, the modules of spec's format to fill
-// them with, published versions as _published writes them, and a stand-in for module-kit that writes
-// down how it was called.
+// them with, published versions as _published writes them, a stand-in for module-kit that writes
+// down how it was called, and spec for a made-up repository: a link to this repository's spec/, or a
+// stand-in for its justfile.
 
 import { spawnSync } from "node:child_process";
-import { chmodSync, cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -39,6 +40,41 @@ export function repository(t) {
   mkdirSync(join(folder, ".devcontainer"));
   cpSync(join(ROOT, ".devcontainer", "Dockerfile"), join(folder, ".devcontainer", "Dockerfile"));
   return folder;
+}
+
+// The spec of a made-up repository: a link to this repository's spec/, so that a recipe there runs
+// `just -f spec/justfile …` as it does here, from the submodule at its tag.
+export function withSpec(repo) {
+  symlinkSync(join(ROOT, "spec"), join(repo, "spec"));
+  return repo;
+}
+
+// A stand-in for spec's justfile in a made-up repository: its _tools exits with the status tools
+// gives, and its sample-check writes each call's arguments into the log it returns, a line of JSON,
+// and exits with the status given.
+export function stubSpec(repo, status = 0, tools = 0) {
+  const log = join(repo, "sample-check.jsonl");
+  mkdirSync(join(repo, "spec"));
+  writeFileSync(
+    join(repo, "spec", "justfile"),
+    `_tools:
+    exit ${tools}
+
+[positional-arguments]
+sample-check *args:
+    #!/usr/bin/env bash
+    node -e 'require("node:fs").appendFileSync(process.argv[1], JSON.stringify(process.argv.slice(2)) + "\\n")' ${JSON.stringify(log)} "$@"
+    exit ${status}
+`,
+  );
+  return () => {
+    try {
+      return readFileSync(log, "utf8").trim().split("\n").filter(Boolean).map((line) => JSON.parse(line));
+    } catch (error) {
+      if (error.code === "ENOENT") return [];
+      throw error;
+    }
+  };
 }
 
 // A module of the format copied into modules/<name>/ of a repository, with its manifest's ID made
