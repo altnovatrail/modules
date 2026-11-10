@@ -29,6 +29,7 @@ segments:
   - task: clk-34-d5-1
   - explanation:
       - text: "How to solve: a line of time."
-      - text: "Put the times on a line, the earlier first."
-      - text: "Step to the whole hour, then go on."
-      - text: "Add the steps up, and check the answer is earlier or later as it should be."
+      - numbered_list:
+          - "Put the times on a line, the earlier first."
+          - "Step to the whole hour, then go on."
+          - "Add the steps up, and check the answer is earlier or later as it should be."

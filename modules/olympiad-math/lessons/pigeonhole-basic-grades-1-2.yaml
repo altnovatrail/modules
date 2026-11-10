@@ -28,6 +28,7 @@ segments:
   - task: pig-12-d5-1
   - explanation:
       - text: "How to solve: the worst luck, then one more."
-      - text: "Find the holes and the pigeons."
-      - text: "Play the worst luck to the end."
-      - text: "Add one, and check that it settles it."
+      - numbered_list:
+          - "Find the holes and the pigeons."
+          - "Play the worst luck to the end."
+          - "Add one, and check that it settles it."

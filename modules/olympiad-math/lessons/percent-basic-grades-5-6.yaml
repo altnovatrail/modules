@@ -29,6 +29,7 @@ segments:
   - task: pct-56-d5-1
   - explanation:
       - text: "How to solve: name the hundred percent."
-      - text: "Name what is 100%."
-      - text: "Find 1% or 10% of it."
-      - text: "Take the percentage asked for, and check what it is of."
+      - numbered_list:
+          - "Name what is 100%."
+          - "Find 1% or 10% of it."
+          - "Take the percentage asked for, and check what it is of."
