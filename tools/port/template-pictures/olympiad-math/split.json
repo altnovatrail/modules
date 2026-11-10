@@ -1,0 +1,1 @@
+{"kind": "bars", "bars": [{"label": "A", "parts": 3, "shaded": 3}, {"label": "B", "parts": 5, "shaded": 5}, {"label": "C", "parts": 7, "shaded": 7}], "notes": ["A + B + C = {total}", "C - A = ?"]}

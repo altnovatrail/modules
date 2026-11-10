@@ -25,6 +25,7 @@ const (
 const usage = `usage: port --standalone <clone> --batch <file> --overlay <folder> --module <folder> [--prove] [--check] [--go <command>] [--git <command>]
        port --standalone <clone> --survey --commit <sha> --except <folder> --module <folder> [--prove] [--go <command>] [--git <command>]
        port --pictures <folder> --module <folder> [--check]
+       port --template-pictures <folder> --module <folder> [--check]
 
 Writes tasks/<id>.yaml and the pictures of media/pictures/ of the module for every task of the
 batch, from a clone of mathtrail-standalone at the batch's commit and the overlays. --prove first
@@ -38,7 +39,12 @@ tasks written.
 
 --pictures draws every picture of the folder, <name>.json in the schema of standalone's pictures,
 into media/lessons/<name>.png of the module, with no clone, and removes the module's other files of
-media/lessons/. --check writes nothing, and says which of them differ from what the port would draw.`
+media/lessons/. --check writes nothing, and says which of them differ from what the port would draw.
+
+--template-pictures draws the picture of every instance of every template of the module whose
+picture path holds placeholders, from the source <name>.json of the folder, the path without its
+placeholders, into media/pictures/ of the module, and removes the module's other files of those
+paths. --check writes nothing, and says which of them differ from what the port would draw.`
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdout, os.Stderr))
@@ -58,20 +64,25 @@ func run(args []string, stdout, stderr io.Writer) int {
 	commitOf := flags.String("commit", "", "")
 	except := flags.String("except", "", "")
 	pictures := flags.String("pictures", "", "")
+	templatePictures := flags.String("template-pictures", "", "")
 	goCommand := flags.String("go", "go", "")
 	gitCommand := flags.String("git", "git", "")
 	err := flags.Parse(args)
-	ordinary := *batchFile != "" && *overlayDir != "" && *commitOf == "" && *except == "" && *pictures == ""
-	surveyed := *commitOf != "" && *except != "" && *batchFile == "" && *overlayDir == "" && !*check && *pictures == ""
-	drawing := *pictures != "" && *standalone == "" && *batchFile == "" && *overlayDir == "" && *commitOf == "" &&
-		*except == "" && !*surveying && !*proveFirst
-	if err != nil || flags.NArg() != 0 || *module == "" || (!drawing && (*standalone == "" ||
+	ordinary := *batchFile != "" && *overlayDir != "" && *commitOf == "" && *except == "" && *pictures == "" && *templatePictures == ""
+	surveyed := *commitOf != "" && *except != "" && *batchFile == "" && *overlayDir == "" && !*check && *pictures == "" && *templatePictures == ""
+	alone := *standalone == "" && *batchFile == "" && *overlayDir == "" && *commitOf == "" && *except == "" && !*surveying && !*proveFirst
+	drawing := *pictures != "" && *templatePictures == "" && alone
+	drawingInstances := *templatePictures != "" && *pictures == "" && alone
+	if err != nil || flags.NArg() != 0 || *module == "" || (!drawing && !drawingInstances && (*standalone == "" ||
 		(*surveying && !surveyed) || (!*surveying && !ordinary))) {
 		fmt.Fprintln(stderr, usage)
 		return statusCannotRun
 	}
 	if drawing {
 		return runLessonPictures(*pictures, *module, *check, stdout, stderr)
+	}
+	if drawingInstances {
+		return runTemplatePictures(*templatePictures, *module, *check, stdout, stderr)
 	}
 	if *surveying {
 		return runSurvey(survey{

@@ -191,15 +191,33 @@ func pathOfPicture(part mapping) string {
 // px.
 func render(picture drawing) ([]byte, int, int, error) {
 	width, height := picture.size()
+	data, err := encodePNG(paintImage(picture))
+	return data, width, height, err
+}
+
+// paintImage draws a picture on a white opaque image of its size.
+func paintImage(picture drawing) *image.RGBA {
+	width, height := picture.size()
+	img := whiteImage(width, height)
+	picture.paint(canvas{img: img, raster: vector.NewRasterizer(width*scale, height*scale)})
+	return img
+}
+
+// whiteImage is a white opaque image of a size in CSS px, at the scale the port draws.
+func whiteImage(width, height int) *image.RGBA {
 	img := image.NewRGBA(image.Rect(0, 0, width*scale, height*scale))
 	draw.Draw(img, img.Bounds(), image.NewUniform(white), image.Point{}, draw.Src)
-	picture.paint(canvas{img: img, raster: vector.NewRasterizer(width*scale, height*scale)})
+	return img
+}
+
+// encodePNG is an image as the port writes every picture, at the best compression.
+func encodePNG(img image.Image) ([]byte, error) {
 	var out bytes.Buffer
 	encoder := png.Encoder{CompressionLevel: png.BestCompression}
 	if err := encoder.Encode(&out, img); err != nil {
-		return nil, 0, 0, err
+		return nil, err
 	}
-	return out.Bytes(), width, height, nil
+	return out.Bytes(), nil
 }
 
 // notDrawn is a picture of a kind the port does not draw yet, which a survey counts by kind.
