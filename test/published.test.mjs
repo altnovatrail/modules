@@ -3,8 +3,8 @@
 // here by the real module-kit — the same version with the same digest, the same version with another,
 // a new version, no package of a version the index names, a module the index does not name. The
 // signature is not tried: release-verify is spec's recipe, with tests of its own on files of real
-// releases (R77 spec), and _published runs it on the real index in CI. Neither is git ls-remote nor
-// the download: until the first release of modules, CI takes the path with no release, and the
+// releases (R77 spec), and _published runs it on the real index in CI. _newest-release is tried on
+// stand-ins of git and curl; the real git ls-remote and download are not: until the first release of modules, CI takes the path with no release, and the
 // first pull request after it takes the one with an index (RUN.md, T10, «Риски»).
 
 import assert from "node:assert/strict";
@@ -23,6 +23,7 @@ import {
   repository,
   run,
   stubModuleKit,
+  stubNetwork,
   temporaryFolder,
 } from "./helpers.mjs";
 
@@ -52,6 +53,47 @@ test("no tag at all is no release yet: nothing is printed", () => {
     assert.equal(result.status, 0, result.stderr);
     assert.equal(result.stdout, "");
   }
+});
+
+// _newest-release into a new file of a temporary folder, on the stand-ins of git and curl.
+function newest(t, network) {
+  const index = join(temporaryFolder(t), "module-index.json");
+  return { index, result: run(ROOT, "_newest-release", [index], stubNetwork(t, network).env) };
+}
+
+test("the newest release is the newest tag whose index is there: a tag whose release did not come out is passed over", (t) => {
+  const { index, result } = newest(t, { tags: ["v0.2.0", "v0.2.1", "v0.10.0", "latest"], indexes: { "v0.2.1": 200, "v0.2.0": 200 } });
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(result.stdout, "v0.2.1\n");
+  assert.match(result.stderr, /the tag v0\.10\.0 has no module-index\.json: its release did not come out, and the tag below it is taken/);
+  assert.equal(readFileSync(index, "utf8"), '{"modules":{}}\n');
+});
+
+test("with no release, nothing is printed and no index written", (t) => {
+  for (const network of [{ tags: [] }, { tags: ["v0.1.0"], indexes: {} }]) {
+    const { index, result } = newest(t, network);
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(result.stdout, "");
+    assert.equal(existsSync(index), false);
+  }
+});
+
+test("any other failure to read a tag or an index gives 2, never no release", (t) => {
+  for (const network of [{ tags: null }, { tags: ["v0.2.1"], indexes: { "v0.2.1": 500 } }, { tags: ["v0.2.1"], indexes: { "v0.2.1": "fail" } }]) {
+    const { result } = newest(t, network);
+    assert.equal(result.status, 2, JSON.stringify(network));
+    assert.equal(result.stdout, "");
+  }
+});
+
+test("_newest-release writes its index into a new file", (t) => {
+  const index = join(temporaryFolder(t), "module-index.json");
+  writeFileSync(index, "");
+  const network = stubNetwork(t, { tags: ["v0.2.1"], indexes: { "v0.2.1": 200 } });
+  const result = run(ROOT, "_newest-release", [index], network.env);
+  assert.equal(result.status, 2);
+  assert.match(result.stderr, /is there already; the index goes into a new file/);
+  assert.deepEqual(network.calls(), []);
 });
 
 const DIGEST = `sha256:${"a".repeat(64)}`;

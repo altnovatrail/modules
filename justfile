@@ -53,14 +53,9 @@ modules-check:
 # What modules-check compares with, written into a new folder: either module-index.json of the newest
 # release of modules, accepted by release-verify, and packages/sha256-<hex>/ for the package of each
 # version its entries name for the modules of modules/; or the file first, when modules has no
-# release yet. The releases are the tags vX.Y.Z that git ls-remote lists, read with no token and none
-# of the caller's git settings; tags v* only a release sets, and a ruleset keeps them (R31 spec;
-# R11). The newest of them whose module-index.json is there is the newest release: a tag whose
-# release did not come out — its index answers 404 — is named in the log and passed over, since such
-# a tag can be neither moved nor deleted, and its versions were never published. Any other failure
-# to read a file fails the recipe, rather than pass for no release. Each archive comes from the
-# public address the entry gives (architecture 3.3), and _unpack takes only the three files of the
-# package out of it.
+# release yet. The newest release and its index are _newest-release's to find. Each archive comes
+# from the public address the entry gives (architecture 3.3), and _unpack takes only the three files
+# of the package out of it.
 [private]
 _published dir:
     #!/usr/bin/env bash
@@ -71,24 +66,8 @@ _published dir:
         exit 2
     fi
     mkdir "$dir"
-    lines=$(GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_TERMINAL_PROMPT=0 \
-        git ls-remote --tags --refs https://github.com/altnovatrail/modules 'refs/tags/v*')
     releases=https://github.com/altnovatrail/modules/releases/download
-    tag=""
-    while read -r candidate; do
-        if [ -z "$candidate" ]; then continue; fi
-        status=0
-        {{quote(just_executable())}} _fetch "${releases}/${candidate}/module-index.json" "${dir}/module-index.json" || status=$?
-        if [ "$status" -eq 0 ]; then
-            tag=$candidate
-            break
-        fi
-        if [ "$status" -eq 1 ]; then
-            echo "_published: the tag ${candidate} has no module-index.json: its release did not come out, and the tag below it is taken"
-            continue
-        fi
-        exit 2
-    done <<< "$({{quote(just_executable())}} _release-tags <<< "$lines")"
+    tag=$({{quote(just_executable())}} _newest-release "${dir}/module-index.json")
     if [ -z "$tag" ]; then
         echo "modules has no release yet, so every version is a first one" > "${dir}/first"
         echo "_published: modules has no release yet; every version is a first one"
@@ -114,6 +93,45 @@ _published dir:
         done <<< "$entries"
     done
     rm -rf "${dir}/archives"
+
+# The tag of the newest release of modules, printed, with its module-index.json written into the
+# file index, which must not be there yet; nothing printed and no file when modules has no release
+# yet. The releases are the tags vX.Y.Z that git ls-remote lists, read with no token and none of the
+# caller's git settings; tags v* only a release sets, and a ruleset keeps them (R31 spec; R11). The
+# newest of them whose module-index.json is there is the newest release: a tag whose release did not
+# come out — its index answers 404 — is named on stderr and passed over, since such a tag can be
+# neither moved nor deleted, and its versions were never published. Any other failure to read a
+# file gives the status 2, rather than pass for no release. The index is not verified here: whoever
+# reads more of it than that it is there runs release-verify on it, as _published does.
+[private]
+_newest-release index:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    index={{quote(index)}}
+    if [ -e "$index" ] || [ -L "$index" ]; then
+        echo "_newest-release: ${index} is there already; the index goes into a new file" >&2
+        exit 2
+    fi
+    if ! lines=$(GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1 GIT_TERMINAL_PROMPT=0 \
+        git ls-remote --tags --refs https://github.com/altnovatrail/modules 'refs/tags/v*'); then
+        echo "_newest-release: the tags of modules cannot be read" >&2
+        exit 2
+    fi
+    releases=https://github.com/altnovatrail/modules/releases/download
+    while read -r candidate; do
+        if [ -z "$candidate" ]; then continue; fi
+        status=0
+        {{quote(just_executable())}} _fetch "${releases}/${candidate}/module-index.json" "$index" || status=$?
+        if [ "$status" -eq 0 ]; then
+            echo "$candidate"
+            exit 0
+        fi
+        if [ "$status" -eq 1 ]; then
+            echo "_newest-release: the tag ${candidate} has no module-index.json: its release did not come out, and the tag below it is taken" >&2
+            continue
+        fi
+        exit 2
+    done <<< "$({{quote(just_executable())}} _release-tags <<< "$lines")"
 
 # The entries of a module in an index, a line each: its version, the release that holds its package
 # and the package's digest, withdrawn versions too. A release that is no tag vX.Y.Z or a digest that
@@ -371,7 +389,11 @@ _modules-check published:
 # the module's eval set as section 13 there has it — every regular file under eval/ whose name
 # ends in .json, at any depth, but under a name with a dot —, with no link, which the layout
 # refuses and which would stop sample-check. A module with no such file is not checked, since a
-# check of no file passes none (R93 spec; amendment 2026-11-09 to R25). Only the folders of
+# check of no file passes none (R93 spec; amendment 2026-11-09 to R25). sample-check gets the files
+# 50 at a time, in their order: one call on some 600 of them stops Node with 134 (canvas, 2026-11-10).
+# The one rule it holds across files, that no two samples share an ID, needs no single call: the
+# layout already holds it, each ID being the name of a file of the one flat folder (amendment T58 to
+# R25). Only the folders of
 # modules/ are read: a file, a link or a name with a dot there is modules-check's to refuse (R03).
 # Every module is checked, and a breach in one does not stop the rest; the status is the highest
 # of what failed: 1 for a breach of the layout, a sample that sample-check refuses and modules that
@@ -399,6 +421,7 @@ eval-check:
         echo "modules/: no modules yet"
         exit 0
     fi
+    batch=50
     worst=0
     fail() {
         if [ "$1" -gt "$worst" ]; then worst=$1; fi
@@ -482,10 +505,12 @@ eval-check:
             fail 2
             continue
         fi
-        status=0
-        {{quote(just_executable())}} -f spec/justfile sample-check --eval-set "novatrail/${module}" "${files[@]}" || status=$?
-        if [ "$status" -gt 2 ]; then status=2; fi
-        fail "$status"
+        for ((start = 0; start < ${#files[@]}; start += batch)); do
+            status=0
+            {{quote(just_executable())}} -f spec/justfile sample-check --eval-set "novatrail/${module}" "${files[@]:start:batch}" || status=$?
+            if [ "$status" -gt 2 ]; then status=2; fi
+            fail "$status"
+        done
     done
     if [ "$worst" -eq 0 ] && [ -z "$held" ]; then
         echo "eval-check: every eval/ is laid out as eval/<id>.json, and no module holds a sample"
@@ -493,6 +518,115 @@ eval-check:
         echo "eval-check: every eval/ is laid out as eval/<id>.json, and sample-check holds the eval set of every module that has one"
     fi
     exit "$worst"
+
+# Where the toolchain stage installs canvas's generator, synthetic-module_<CANVAS_VERSION>.mjs; the
+# tests of the recipes put a stand-in elsewhere by CANVAS_LIB.
+canvas_lib := env("CANVAS_LIB", "/usr/local/lib/canvas")
+
+# A synthetic sample of a module's eval set is one of a task of that module, made on the package
+# of the commit it lies in (R110 spec; R29). The samples name the tag of the newest release of
+# modules, which _synthetic takes from _newest-release once nothing local stands in the way. It is a
+# step a person runs in the devcontainer, which writes into the module's eval/ and nothing else.
+# Write synthetic samples of a module's eval set, <task>:<seed> each, with canvas's generator.
+[positional-arguments]
+synthetic module *calls:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [ "$#" -lt 2 ]; then
+        echo "synthetic: name the module and the samples to write, <task>:<seed> each" >&2
+        exit 2
+    fi
+    module=$1
+    shift
+    {{quote(just_executable())}} _synthetic "$module" "" "$@"
+
+# The synthetic samples <task>:<seed> of modules/<module>/, written into its eval/ by canvas's
+# generator, on the package that module-kit build makes of the module into a temporary folder, for
+# the release tag, or, when the tag is empty, the newest release's, which _newest-release finds
+# after every check that needs no network (R110 spec; R29). The generator is the file of the release of canvas that the
+# Dockerfile pins, CANVAS_VERSION, held to CANVAS_SYNTHETIC_SHA256, as the module-kit on the PATH is
+# held to MODULE_KIT_VERSION, so that a container not rebuilt since a tag was raised writes no
+# sample CI would not make. The calls go to the generator as they are, in its form (R68 canvas):
+#
+#   node synthetic-module_<tag>.mjs --module <package> <tag> <folder> <task>:<seed>...
+#
+# It checks every call before it writes any file, and writes nothing when one fails; it never
+# writes over a person's sample. Its lines, a sample's ID, task and what it shows, and its reasons
+# for each call refused are the recipe's, and so is its status: 0 when it wrote them all, 1 when it
+# refused a call — a template, a task it does not draw, a seed named twice — and 2 when the call was
+# out of form. The recipe's own status is 1 when the package's ID is not novatrail/<module> (R03),
+# module-kit's when it refuses the module, and 2 when it cannot do its work.
+[private]
+[positional-arguments]
+_synthetic module tag *calls:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    module=$1 tag=$2
+    shift 2
+    if [ "$#" -eq 0 ]; then
+        echo "_synthetic: name the samples to write, <task>:<seed> each" >&2
+        exit 2
+    fi
+    path="modules/${module}"
+    if [ -z "$module" ] || [[ "$module" == */* || "$module" == .* ]] || [ -L "$path" ] || [ ! -d "$path" ]; then
+        echo "_synthetic: ${path} is no folder of a module in modules/ (R03)" >&2
+        exit 2
+    fi
+    # The generator writes into eval/ and makes it when it is not there; a link or a file there would
+    # take the samples elsewhere, which eval-check would refuse only once they were written.
+    if [ -L "${path}/eval" ] || { [ -e "${path}/eval" ] && [ ! -d "${path}/eval" ]; }; then
+        echo "_synthetic: ${path}/eval is a link or no folder; eval/ is the folder of the module's eval set (R04)" >&2
+        exit 2
+    fi
+    if [ -n "$tag" ] && ! [[ "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        echo "_synthetic: ${tag} is no tag vX.Y.Z of a release of modules" >&2
+        exit 2
+    fi
+    pinned=$({{quote(just_executable())}} _dockerfile-arg .devcontainer/Dockerfile MODULE_KIT_VERSION)
+    if ! version=$(module-kit --version | sed -n 1p); then
+        echo "_synthetic: module-kit cannot be run; the toolchain stage installs it" >&2
+        exit 2
+    fi
+    if [ "$version" != "module-kit ${pinned}" ]; then
+        echo "_synthetic: the module-kit on the PATH says \"${version}\", and .devcontainer/Dockerfile pins module-kit ${pinned}: rebuild the container" >&2
+        exit 2
+    fi
+    canvas=$({{quote(just_executable())}} _dockerfile-arg .devcontainer/Dockerfile CANVAS_VERSION)
+    wanted=$({{quote(just_executable())}} _dockerfile-arg .devcontainer/Dockerfile CANVAS_SYNTHETIC_SHA256)
+    generator={{quote(canvas_lib)}}"/synthetic-module_${canvas}.mjs"
+    if [ -L "$generator" ] || [ ! -f "$generator" ]; then
+        echo "_synthetic: ${generator} is not there; the toolchain stage installs canvas's generator ${canvas}: rebuild the container" >&2
+        exit 2
+    fi
+    sum=$(sha256sum < "$generator" | cut -d ' ' -f 1)
+    if [ "$sum" != "$wanted" ]; then
+        echo "_synthetic: ${generator} is ${sum}, and .devcontainer/Dockerfile pins ${wanted}: rebuild the container" >&2
+        exit 2
+    fi
+    package=$(mktemp -d)
+    trap 'rm -rf "$package"' EXIT
+    if [ -z "$tag" ]; then
+        tag=$({{quote(just_executable())}} _newest-release "${package}/module-index.json")
+        if [ -z "$tag" ]; then
+            echo "_synthetic: modules has no release yet, and a synthetic sample names the release its package is of" >&2
+            exit 2
+        fi
+    fi
+    status=0
+    module-kit build "$path" "${package}/package" || status=$?
+    if [ "$status" -ne 0 ]; then
+        exit "$status"
+    fi
+    if ! id=$(jq -er '.id | strings' "${package}/package/inventory.json"); then
+        echo "_synthetic: the package module-kit built names no ID in its inventory.json" >&2
+        exit 2
+    fi
+    if [ "$id" != "novatrail/${module}" ]; then
+        echo "_synthetic: the module's ID is ${id}, and the module in modules/${module}/ is novatrail/${module} (R03)" >&2
+        exit 1
+    fi
+    node "$generator" --module "${package}/package" "$tag" "${path}/eval" "$@"
+
 # What .github's shared release.yml runs to build a release's files, in the toolchain stage of the
 # commit it releases, on that commit's tree from git archive: no git, no submodule — spec/ is an
 # empty folder —, no token and no network (architecture 3.3 .github; R03; R17). version is the
@@ -657,6 +791,56 @@ _module-kit-sums sums dockerfile:
         echo "module-kit ${tag}: ${name} ${listed}"
     done
     exit "$failed"
+
+# The generator of canvas that the toolchain stage installs is held by its sum in
+# .devcontainer/Dockerfile, as module-kit's binary is (R29). Here the release's SHA256SUMS and its
+# bundle are read from the release's public address, with no token, the signature is checked by
+# spec's release-verify (R77 spec), and the sum of synthetic-module_<tag>.mjs is held to the
+# Dockerfile's. CI runs it on every pull request and push to main.
+# Verify the signature of the canvas release whose generator the Dockerfile pins, and its sum.
+canvas-verify:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    tag=$({{quote(just_executable())}} _dockerfile-arg .devcontainer/Dockerfile CANVAS_VERSION)
+    if ! [[ "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        echo "canvas-verify: CANVAS_VERSION is ${tag}, not a tag vX.Y.Z" >&2
+        exit 1
+    fi
+    release=$(mktemp -d)
+    trap 'rm -rf "$release"' EXIT
+    for file in SHA256SUMS SHA256SUMS.sigstore.json; do
+        {{quote(just_executable())}} _fetch "https://github.com/altnovatrail/canvas/releases/download/${tag}/${file}" "${release}/${file}"
+    done
+    {{quote(just_executable())}} -f spec/justfile release-verify canvas "$tag" "${release}/SHA256SUMS"
+    {{quote(just_executable())}} _canvas-sum "${release}/SHA256SUMS" .devcontainer/Dockerfile
+
+# The sum of synthetic-module_<tag>.mjs in a release's SHA256SUMS, listed once, against
+# CANVAS_SYNTHETIC_SHA256, for the tag CANVAS_VERSION, of a Dockerfile. Apart from the network, so
+# that its tests need none.
+[private]
+_canvas-sum sums dockerfile:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    sums={{quote(sums)}}
+    dockerfile={{quote(dockerfile)}}
+    tag=$({{quote(just_executable())}} _dockerfile-arg "$dockerfile" CANVAS_VERSION)
+    wanted=$({{quote(just_executable())}} _dockerfile-arg "$dockerfile" CANVAS_SYNTHETIC_SHA256)
+    name="synthetic-module_${tag}.mjs"
+    if ! [[ "$wanted" =~ ^[0-9a-f]{64}$ ]]; then
+        echo "_canvas-sum: CANVAS_SYNTHETIC_SHA256 is not a sha256 of 64 lowercase hexadecimal digits" >&2
+        exit 1
+    fi
+    listed=$(awk -v name="$name" '$2 == name { print $1 }' "$sums")
+    count=$(grep -c . <<< "$listed" || true)
+    if [ "$count" -ne 1 ]; then
+        echo "_canvas-sum: ${sums} lists ${name} not once but ${count} times" >&2
+        exit 1
+    fi
+    if [ "$listed" != "$wanted" ]; then
+        echo "_canvas-sum: ${name} is ${listed} in SHA256SUMS, and CANVAS_SYNTHETIC_SHA256 is ${wanted}" >&2
+        exit 1
+    fi
+    echo "canvas ${tag}: ${name} ${listed}"
 
 # The value of `ARG <name>=<value>` in a Dockerfile, which holds it once.
 [private]
