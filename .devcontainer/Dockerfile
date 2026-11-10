@@ -42,10 +42,21 @@ ARG BUF_VERSION=1.75.0
 # (R10). Dependabot does not see it: the tag and both sums are raised by hand, together. The
 # Dockerfile is not among the release's paths, so raising them gives no release (R03).
 ARG MODULE_KIT_VERSION=v0.3.0
+# canvas's generator of the synthetic samples of a module's eval set: `just synthetic` writes a
+# module's synthetic samples with it, on the package module-kit builds of the module (R110 spec;
+# R29). It is the file synthetic-module_<tag>.mjs of a release of canvas at an exact tag, one ES
+# module that the Node above runs with no package of npm beside it (R68 canvas), never a clone of
+# canvas: its sum below is the one the release's SHA256SUMS lists, a file that release-verify
+# accepted before it was written here, and CI checks that signature again on every run, `just
+# canvas-verify`. The file is the same on every architecture, so it has one sum. Like module-kit,
+# it is how this container differs from spec's (R29), Dependabot does not see it, and the tag and
+# the sum are raised by hand, together.
+ARG CANVAS_VERSION=v0.3.6
 # The sha256 of every archive, per architecture, as its publisher lists it: SHASUMS256.txt of
 # the Node release, SHA256SUMS of the just release, the sha256 go.dev/dl lists for Go,
-# sha256.txt of the buf release, whose binary comes as it is, with no archive, and SHA256SUMS of
-# the module-kit release, whose binary comes the same way. A sum written here keeps a download
+# sha256.txt of the buf release, whose binary comes as it is, with no archive, SHA256SUMS of the
+# module-kit release, whose binary comes the same way, and SHA256SUMS of the canvas release, whose
+# generator is one file for every architecture. A sum written here keeps a download
 # from being swapped once it has been read (R34 spec), and is raised together with its version.
 ARG NODE_SHA256_AMD64=6e1db87ef58b8819e5d5402eff1536491b18edd8eb7bee5ef7897876e88dc5ff
 ARG NODE_SHA256_ARM64=724282c3b43aec998aa9527380465b45d229e021b58035f5f4f63095eabfe5d5
@@ -57,6 +68,7 @@ ARG BUF_SHA256_AMD64=fad1e38d6909bbb583a4da81d8c02a01046e2cd663bde7e337dd2427739
 ARG BUF_SHA256_ARM64=00eb190aa82df17f393e05b04889cc60a0b13b3259d336e21a87d5f23ab4fd26
 ARG MODULE_KIT_SHA256_AMD64=2553cf3ced6f016581d463403388b868c02a9d4c883d99ef629167604f0a7823
 ARG MODULE_KIT_SHA256_ARM64=8e8d198e511ce9325f8580942dfa99db5c0e03501cf85bd15890fb0e7fb2f747
+ARG CANVAS_SYNTHETIC_SHA256=bc7ff50b1d007b9f0b45b059efae995a10efeed6b07a5222656358becfd540a8
 
 # Every archive comes through one helper, so that every download is retried the same way and
 # checked against its sum before anything unpacks it. --retry-all-errors is the point of it: a
@@ -112,6 +124,12 @@ RUN arch="$(dpkg --print-architecture)"; \
     if [ "$module_kit_version" != "module-kit ${MODULE_KIT_VERSION}" ]; then \
         echo "module-kit says \"${module_kit_version}\", not module-kit ${MODULE_KIT_VERSION}" >&2; exit 1; \
     fi; \
+    \
+    echo "canvas ${CANVAS_VERSION}: synthetic-module_${CANVAS_VERSION}.mjs"; \
+    mkdir -p /usr/local/lib/canvas; \
+    fetch "https://github.com/altnovatrail/canvas/releases/download/${CANVAS_VERSION}/synthetic-module_${CANVAS_VERSION}.mjs" \
+        "$workdir/synthetic-module_${CANVAS_VERSION}.mjs" "$CANVAS_SYNTHETIC_SHA256"; \
+    install -m 0644 "$workdir/synthetic-module_${CANVAS_VERSION}.mjs" /usr/local/lib/canvas/; \
     \
     rm -rf "$workdir"
 

@@ -65,17 +65,36 @@ jobs:
       - name: module-kit-verify
         run: sh spec/tools/toolchain/toolchain.sh run just module-kit-verify
 
+  # The signature of the canvas release whose generator of synthetic samples the stage installs, by
+  # spec's release-verify, and the Dockerfile's sum against that release's SHA256SUMS (R77 spec), on
+  # every run (R29).
+  canvas:
+    name: canvas signature
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: true
+          persist-credentials: false
+      - name: Toolchain image
+        run: sh spec/tools/toolchain/toolchain.sh build
+      - name: canvas-verify
+        run: sh spec/tools/toolchain/toolchain.sh run just canvas-verify
+
   # The tree of modules/ and every module in it, by module-kit check and build, and each against its
   # published versions by module-kit diff — the index of the newest release of modules, checked by
-  # release-verify, or --first before the first release (R11) —, once the binary's signature has
-  # passed; the tests of the recipes first. diff's status is the job's. Then the layout of each
+  # release-verify, or --first before the first release (R11) —, once the signatures of
+  # module-kit's binary and of canvas's generator have passed; the tests of the recipes first. diff's status is the job's. Then the layout of each
   # module's eval/, and each module's eval set by spec's sample-check --eval-set (R04, R25): no key,
   # and the network only for the tools of sample-check from their lock file, so a pull request from
   # a fork runs it too, and it runs even when a step before it failed, so that a refused sample
   # shows on the first run.
   modules:
     name: Modules
-    needs: module-kit
+    needs: [module-kit, canvas]
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:

@@ -51,8 +51,10 @@ export function withSpec(repo) {
 
 // A stand-in for spec's justfile in a made-up repository: its _tools exits with the status tools
 // gives, and its sample-check writes each call's arguments into the log it returns, a line of JSON,
-// and exits with the status given.
+// and exits with the status given, or, for a list of them, the n-th call with the n-th, and every
+// call after the list with its last.
 export function stubSpec(repo, status = 0, tools = 0) {
+  const statuses = [status].flat().join(" ");
   const log = join(repo, "sample-check.jsonl");
   mkdirSync(join(repo, "spec"));
   writeFileSync(
@@ -63,8 +65,13 @@ export function stubSpec(repo, status = 0, tools = 0) {
 [positional-arguments]
 sample-check *args:
     #!/usr/bin/env bash
-    node -e 'require("node:fs").appendFileSync(process.argv[1], JSON.stringify(process.argv.slice(2)) + "\\n")' ${JSON.stringify(log)} "$@"
-    exit ${status}
+    log=${JSON.stringify(log)}
+    n=0
+    if [ -f "$log" ]; then n=$(grep -c . "$log" || true); fi
+    node -e 'require("node:fs").appendFileSync(process.argv[1], JSON.stringify(process.argv.slice(2)) + "\\n")' "$log" "$@"
+    statuses=(${statuses})
+    if [ "$n" -ge "\${#statuses[@]}" ]; then n=$((\${#statuses[@]} - 1)); fi
+    exit "\${statuses[$n]}"
 `,
   );
   return () => {
@@ -191,6 +198,55 @@ process.exit(2);
   chmodSync(stub, 0o755);
   return {
     env: { PATH: `${bin}:${process.env.PATH}`, STUB_LOG: log, STUB_VERSION: PINNED },
+    calls: () => {
+      try {
+        return readFileSync(log, "utf8").trim().split("\n").filter(Boolean).map((line) => JSON.parse(line));
+      } catch (error) {
+        if (error.code === "ENOENT") return [];
+        throw error;
+      }
+    },
+  };
+}
+
+// Stand-ins for git and curl, first on the PATH they return, for what _newest-release reads with no
+// network: git ls-remote lists the tags given, or fails when tags is null, and curl answers for the
+// module-index.json of each tag with the code indexes gives it — 200 writes an index, any other
+// code is that answer, and "fail" fails the transfer —, 404 for a tag it does not name. Each call
+// of either goes into the log it returns, a line of JSON.
+export function stubNetwork(t, { tags = [], indexes = {} } = {}) {
+  const folder = temporaryFolder(t);
+  const bin = join(folder, "bin");
+  const log = join(folder, "calls.jsonl");
+  mkdirSync(bin);
+  writeFileSync(
+    join(bin, "git"),
+    `#!/usr/bin/env node
+const { appendFileSync } = require("node:fs");
+appendFileSync(${JSON.stringify(log)}, JSON.stringify(["git", ...process.argv.slice(2)]) + "\\n");
+const tags = ${JSON.stringify(tags)};
+if (tags === null) process.exit(128);
+for (const [i, tag] of tags.entries()) process.stdout.write(String(i).padStart(40, "0") + "\\trefs/tags/" + tag + "\\n");
+`,
+    { mode: 0o755 },
+  );
+  writeFileSync(
+    join(bin, "curl"),
+    `#!/usr/bin/env node
+const { appendFileSync, writeFileSync } = require("node:fs");
+const args = process.argv.slice(2);
+appendFileSync(${JSON.stringify(log)}, JSON.stringify(["curl", args[args.length - 1]]) + "\\n");
+const out = args[args.indexOf("-o") + 1];
+const tag = /\\/download\\/([^/]+)\\/module-index\\.json$/.exec(args[args.length - 1])?.[1];
+const answer = ${JSON.stringify(indexes)}[tag] ?? 404;
+if (answer === "fail") process.exit(6);
+writeFileSync(out, answer === 200 ? '{"modules":{}}\\n' : "Not Found");
+process.stdout.write(String(answer));
+`,
+    { mode: 0o755 },
+  );
+  return {
+    env: { PATH: `${bin}:${process.env.PATH}` },
     calls: () => {
       try {
         return readFileSync(log, "utf8").trim().split("\n").filter(Boolean).map((line) => JSON.parse(line));
