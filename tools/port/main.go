@@ -44,7 +44,9 @@ media/lessons/. --check writes nothing, and says which of them differ from what 
 --template-pictures draws the picture of every instance of every template of the module whose
 picture path holds placeholders, from the source <name>.json of the folder, the path without its
 placeholders, into media/pictures/ of the module, and removes the module's other files of those
-paths. --check writes nothing, and says which of them differ from what the port would draw.`
+paths. A source {"solver": "<function>"} is the picture that this function of the template's solver
+builds from the instance's numbers. --check writes nothing, and says which of them differ from what
+the port would draw.`
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdout, os.Stderr))

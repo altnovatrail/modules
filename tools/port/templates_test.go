@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"reflect"
 	"slices"
 	"strings"
 	"testing"
@@ -61,7 +62,7 @@ func pairsSize(t *testing.T) (int, int) {
 	t.Helper()
 	width, height := 0, 0
 	for _, numbers := range pairsInstances(t) {
-		picture, err := pictureFor("pairs", []variant{{Picture: []byte(pairsSource)}}, numbers)
+		picture, err := pictureFor("pairs", []variant{{Picture: []byte(pairsSource)}}, numbers, nil)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -196,7 +197,7 @@ func TestTemplatePicturesVariants(t *testing.T) {
 		0: strings.NewReplacer("{sum}", "1", "{a}", "0", "{b}", "1").Replace(other),
 		3: strings.NewReplacer("{sum}", "3", "{a}", "1", "{b}", "2").Replace(pairsSource),
 	} {
-		drawn, err := pictureFor("pairs", variants, instances[i])
+		drawn, err := pictureFor("pairs", variants, instances[i], nil)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -205,7 +206,7 @@ func TestTemplatePicturesVariants(t *testing.T) {
 			t.Errorf("the instance %v is not drawn from its variant", instances[i])
 		}
 	}
-	if _, err := pictureFor("pairs", []variant{{When: map[string]int64{"a": 9}, Picture: []byte(other)}}, instances[0]); err == nil ||
+	if _, err := pictureFor("pairs", []variant{{When: map[string]int64{"a": 9}, Picture: []byte(other)}}, instances[0], nil); err == nil ||
 		!strings.Contains(err.Error(), "no variant of its source is for the instance") {
 		t.Errorf("no variant: error = %v", err)
 	}
@@ -267,4 +268,123 @@ func TestTemplatePicturesTaskAndKeys(t *testing.T) {
 	if _, err := fillTree(map[string]any{"B{a}": 1, "B2": 2}, map[string]int64{"a": 2}); err == nil || !strings.Contains(err.Error(), `two members are "B2" once filled`) {
 		t.Errorf("two keys alike once filled: error = %v", err)
 	}
+}
+
+// pairsFigure is the solver of pairsTemplate whose figure builds the picture of pairsSource.
+const pairsFigure = `
+  solver:
+    program: |
+      print("print writes nothing")
+
+      def figure(numbers):
+          return {"kind": "venn", "total": str(numbers["a"] + numbers["b"]), "both": "?",
+                  "sets": [{"label": "A", "count": str(numbers["a"])}, {"label": "B", "count": str(numbers["b"])}]}
+
+      def solution(numbers):
+          return figure({"a": numbers["a"], "b": numbers["b"] + numbers["sum"] - numbers["sum"]})
+
+      def solve(numbers):
+          return {"row": numbers["a"]}
+    results: [row]
+`
+
+// solverTemplate is pairsTemplate with the solver given.
+func solverTemplate(width, height int, solver string) string {
+	return strings.Replace(pairsTemplate(width, height), "  constraint: a != b\n", "  constraint: a != b\n"+solver, 1)
+}
+
+// A source of solver is the picture that a function of the template's solver builds from the
+// instance's numbers, run under the dialect of the format (amendment T53 to R12).
+func TestTemplatePicturesSolver(t *testing.T) {
+	width, height := pairsSize(t)
+	task := readTemplate(t, solverTemplate(width, height, pairsFigure))
+	call := &solverCall{program: &solverProgram{id: "pairs", source: task.Template.Solver.Program}}
+	for _, numbers := range pairsInstances(t) {
+		built, err := pictureFor("pairs", []variant{{Solver: "figure"}}, numbers, call)
+		if err != nil {
+			t.Fatal(err)
+		}
+		filled, err := pictureFor("pairs", []variant{{Picture: []byte(pairsSource)}}, numbers, nil)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if !reflect.DeepEqual(built, filled) {
+			t.Errorf("the instance %v is not drawn from what figure builds", numbers)
+		}
+	}
+	// The whole run, on a line of squared paper, which draws faster than a venn: the statement's
+	// picture gets the numbers that solve gets, and the solution's every number, sum among them,
+	// which the statement does not show.
+	lines := strings.Replace(pairsFigure, "      def figure(numbers):\n", `      def line(numbers):
+          return {"kind": "lattice", "width": 5, "height": 1, "lines": [(0, 0, numbers["a"] + numbers["b"], 0)]}
+
+      def lines(numbers):
+          return {"kind": "lattice", "width": 5, "height": 1, "lines": [(0, 0, numbers["sum"], 0)]}
+
+      def figure(numbers):
+`, 1)
+	line, err := pictureFor("pairs", []variant{{Picture: []byte(`{"kind": "lattice", "width": 5, "height": 1, "lines": [[0, 0, 1, 0]]}`)}}, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	w, h := line.size()
+	solution := fmt.Sprintf("solution:\n  - picture: pictures/pairs-solution-{a}-{b}.png\n    width: %d\n    height: %d\n", w, h)
+	folder, module := templateModule(t, map[string]string{"pairs.yaml": solverTemplate(w, h, lines) + solution},
+		map[string]string{"pairs.json": `{"solver": "line"}`, "pairs-solution.json": `{"solver": "lines"}`})
+	if status, out, errs := runPictures(t, "--template-pictures", folder, "--module", module); status != statusDone || !strings.HasPrefix(out, "port: 14 pictures") || errs != "" {
+		t.Errorf("run() = %d, %q, %q", status, out, errs)
+	}
+}
+
+func TestTemplatePicturesSolverRefuses(t *testing.T) {
+	width, height := pairsSize(t)
+	program := func(body string) string {
+		return "\n  solver:\n    program: |\n" + indented(body) + "    results: [row]\n"
+	}
+	for name, c := range map[string]struct {
+		template string
+		source   string
+		want     string
+	}{
+		"no solver":                   {pairsTemplate(width, height), `{"solver": "figure"}`, "a source of its picture is the solver's figure, and its template has no solver"},
+		"no such function":            {solverTemplate(width, height, pairsFigure), `{"solver": "drawing"}`, "its solver defines no function drawing"},
+		"no function name":            {solverTemplate(width, height, pairsFigure), `{"solver": "a b"}`, `its solver, "a b", is no name of a function`},
+		"no string":                   {solverTemplate(width, height, pairsFigure), `{"solver": 5}`, "its solver, 5, is no name of a function"},
+		"a null":                      {solverTemplate(width, height, pairsFigure), `{"solver": null}`, "its solver, null, is no name of a function"},
+		"a number solve does not get": {solverTemplate(width, height, program("def figure(numbers):\n    return {\"kind\": \"venn\", \"total\": str(numbers[\"sum\"])}\n")), `{"solver": "figure"}`, `key "sum" not in dict`},
+		"another member":              {solverTemplate(width, height, pairsFigure), `{"solver": "figure", "when": {}}`, "a source of solver has no member but solver"},
+		"a member twice":              {solverTemplate(width, height, pairsFigure), `{"solver": "figure", "solver": "solve"}`, `the member "solver" is named in other letters than the schema's, or twice`},
+		"no picture":                  {solverTemplate(width, height, program("def figure(numbers):\n    return [1]\n")), `{"solver": "figure"}`, "its solver's figure gives a list, not a picture"},
+		"a member misnamed":           {solverTemplate(width, height, program("def figure(numbers):\n    return {\"Kind\": \"venn\"}\n")), `{"solver": "figure"}`, `its picture: the member "Kind" is named in other letters than the schema's, or twice, in the picture that its solver's figure builds`},
+		"no JSON":                     {solverTemplate(width, height, program("def figure(numbers):\n    return {\"kind\": figure}\n")), `{"solver": "figure"}`, "its solver's figure: json.encode"},
+		"a load":                      {solverTemplate(width, height, program("load(\"x.star\", \"y\")\n")), `{"solver": "figure"}`, "its solver: "},
+		"a changed number":            {solverTemplate(width, height, program("def figure(numbers):\n    numbers[\"a\"] = 1\n")), `{"solver": "figure"}`, "frozen"},
+		"a call of itself":            {solverTemplate(width, height, program("def figure(numbers):\n    return figure(numbers)\n")), `{"solver": "figure"}`, "called recursively"},
+	} {
+		folder, module := templateModule(t, map[string]string{"pairs.yaml": c.template}, map[string]string{"pairs.json": c.source})
+		status, _, errs := runPictures(t, "--template-pictures", folder, "--module", module)
+		if status != statusCannotRun || !strings.Contains(errs, c.want) {
+			t.Errorf("%s: run() = %d, %q", name, status, errs)
+		}
+	}
+	// The budget is the template's: a solver that runs past it is refused, not left to run.
+	defer func(steps uint64) { solverSteps = steps }(solverSteps)
+	solverSteps = 1000
+	folder, module := templateModule(t, map[string]string{"pairs.yaml": solverTemplate(width, height, program("while True:\n    pass\n"))},
+		map[string]string{"pairs.json": `{"solver": "figure"}`})
+	if status, _, errs := runPictures(t, "--template-pictures", folder, "--module", module); status != statusCannotRun || !strings.Contains(errs, "too many steps") {
+		t.Errorf("past the budget: run() = %d, %q", status, errs)
+	}
+	if _, err := pictureFor("pairs", []variant{{Solver: "figure"}}, pairsInstances(t)[0], nil); err == nil || !strings.Contains(err.Error(), "no solver is given") {
+		t.Errorf("a source of solver with no solver given: error = %v", err)
+	}
+}
+
+// indented indents each line of a program as a block scalar of the solver holds it.
+func indented(body string) string {
+	var lines []string
+	for line := range strings.Lines(body) {
+		lines = append(lines, "      "+line)
+	}
+	return strings.Join(lines, "")
 }

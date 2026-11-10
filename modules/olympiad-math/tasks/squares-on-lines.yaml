@@ -1,0 +1,151 @@
+# A template of counting-figures (T53; R22): the solver of mathtrail-standalone
+# content/solvers/counting.figures/squares-on-lines.star at 42b4408, made a solver of the template.
+# It came from reference task fig-56-d1-1, whose numbers are one of its instances.
+# The numbers of reference task fig-56-d1-1: width 4.
+# Its leading question is the hint of fig-56-d1-1, as it stands (amendment T51 to R22).
+# standalone's solver reads the lines of the picture, and the reference task's picture is a
+# rectangle of 4 by 3 cells with all its lines: its width is the number that the picture shows and
+# the template varies, from 3 to 7 cells, and its height stays 3, so that the solution counts three
+# sizes of square on every instance. figure builds the picture from the width, and solve counts on
+# it with standalone's code, so the picture that the port draws for each instance, from the source
+# {"solver": "figure"} of tools/port/template-pictures/olympiad-math/, is what the solver counts
+# (amendment T53 to R22). The trap values are derived numbers, the mistakes of the reference task.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: squares-on-lines
+template:
+  parameters:
+    width: {from: 3, to: 7}
+  derived:
+    ones: "3 * width"
+    twos: "2 * (width - 1)"
+    twos_in_row: width - 1
+    threes: width - 2
+    no_threes: "3 * width + 2 * (width - 1)"
+    no_twos: "3 * width + width - 2"
+    doubled: "6 * width"
+  solver:
+    program: |
+      # For "how many squares": the lines of the figure split into the sides of
+      # cells, and every square of every size whose four sides are all drawn is
+      # counted. The figure is a rectangle of the width of the instance and 3
+      # cells high, with all its lines.
+
+      height = 3  # the rows of the rectangle, which every instance keeps
+
+      def figure(numbers):
+          # The picture of the statement: the rectangle with all its lines.
+          width = numbers["width"]
+          lines = [(0, y, width, y) for y in range(height + 1)]
+          lines += [(x, 0, x, height) for x in range(width + 1)]
+          return {"kind": "lattice", "width": width, "height": height, "lines": lines}
+
+      def solution_figure(numbers):
+          # The picture of the solution: the counts of each size of square in the top row.
+          picture = dict(figure(numbers))
+          picture["marks"] = [{"at": (0, 0), "label": str(numbers["ones"])},
+                              {"at": (1, 0), "label": str(numbers["twos"])},
+                              {"at": (2, 0), "label": str(numbers["threes"])}]
+          return picture
+
+      def unit_edges(lines):
+          # Every line along the paper's lines, split into the sides of cells it covers.
+          edges = set()
+          for x1, y1, x2, y2 in lines:
+              if y1 == y2:
+                  for x in range(min(x1, x2), max(x1, x2)):
+                      edges.add((x, y1, "h"))
+              elif x1 == x2:
+                  for y in range(min(y1, y2), max(y1, y2)):
+                      edges.add((x1, y, "v"))
+          return edges
+
+      def whole(edges, x, y, size):
+          # Whether the square of this size at corner (x, y) has every side drawn.
+          for k in range(size):
+              if (x + k, y, "h") not in edges or (x + k, y + size, "h") not in edges:
+                  return False
+              if (x, y + k, "v") not in edges or (x + size, y + k, "v") not in edges:
+                  return False
+          return True
+
+      def squares(edges, width, height):
+          # The squares of every size whose four sides are all drawn.
+          found = []
+          for size in range(1, min(width, height) + 1):
+              for x in range(width - size + 1):
+                  for y in range(height - size + 1):
+                      if whole(edges, x, y, size):
+                          found.append((x, y, size))
+          return found
+
+      def solve(numbers):
+          picture = figure(numbers)
+          edges = unit_edges(picture["lines"])
+          return {"count": len(squares(edges, picture["width"], picture["height"]))}
+    results: [count]
+statement:
+  - text: The picture shows a rectangle of squared paper with all its lines. How many squares of every size can be found on its lines?
+  - picture: pictures/squares-on-lines-{width}.png
+    alt: A rectangle of squared paper {width} cells wide and 3 cells high, with all its lines.
+    width: 328
+    height: 168
+givens: [The rectangle of squared paper is drawn with all its lines.]
+unknown: How many squares of every size can be found on its lines.
+leading_question: How many squares of each size fit, one size at a time?
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{count}"
+          units: [square, squares]
+          trap_values:
+            - value: "{ones}"
+              trap: missed-case
+              text: Bigger squares count too.
+            - value: "{no_threes}"
+              trap: stopped-early
+              text: The three by three squares were missed.
+            - value: "{no_twos}"
+              trap: missed-case
+              text: The two by two squares were missed.
+            - value: "{doubled}"
+              trap: double-count
+              text: Some squares were counted twice.
+    simpler_case: Try a rectangle of 3 by 2 cells. How many squares of every size are there?
+solution:
+  - text: "Squares of one cell: {width} in a row and 3 rows, {ones}. Squares of two by two: {twos_in_row} in a row and 2 rows, {twos}. Squares of three by three: {threes} in a row and 1 row, {threes}. So there are {ones} + {twos} + {threes} = {count} squares."
+  - text: "{ones} + {twos} + {threes} = {count}"
+  - picture: pictures/squares-on-lines-solution-{width}.png
+    alt: The counts of each size of square written in the top row.
+    width: 328
+    height: 168
+techniques: [systematic]
+skills:
+  primary: [counting-figures]
+band: grades-5-6
+difficulty: 1
