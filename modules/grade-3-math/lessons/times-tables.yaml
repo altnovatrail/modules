@@ -1,8 +1,8 @@
-# A lesson of the set of school mathematics for grade 3 (R15): an explanation and the three pages of
-# the skill, in the order of their difficulty. The lesson names no digit, since the keys of its
-# pages are small numbers, and lesson.no-leaks searches every text of the lesson for them. It has no
-# worked example yet: the format 0.3 put one only on a sheet, and the one on a workbook that 0.4
-# allows comes with epic E7.
+# A lesson of the set of school mathematics for grade 3 (R15): an explanation, a worked example on
+# a workbook and the three pages of the skill, in the order of their difficulty. Its texts name no
+# digit, since the keys of its pages are small numbers, and lesson.no-leaks searches every text of
+# the lesson for them; the lines of the example and their values hold numbers, which the leak check
+# does not search, and none of its lines is a line of a page of the lesson (T55).
 id: times-tables
 title: Times tables
 skills: [times-tables]
@@ -12,6 +12,32 @@ segments:
       - text: The order does not matter. Three groups of five are as many as five groups of three, so each fact of the table is two facts at once.
       - text: A division undoes a multiplication. To share a number into equal groups, find the fact of the table whose product it is, and the missing number of that fact is the answer.
       - text: When a fact is slow to come, count up in steps from a fact you know, out loud, and stop at the one the line asks for.
+  - worked_example:
+      statement:
+        - text: Write the missing numbers.
+      canvas:
+        kind: workbook
+      lines:
+        - line:
+            - binding: box
+              value: "7"
+            - text: "× 3 = 21"
+        - line:
+            - text: "18 ÷ 2 ="
+            - binding: box
+              value: "9"
+        - line:
+            - text: "8 ×"
+            - binding: box
+              value: "5"
+            - text: "= 40"
+      demo:
+        - text: A missing number before the sign asks how many threes make twenty-one. Count in threes until you reach it.
+        - fill: {line: 1, box: 1}
+        - text: Dividing undoes multiplying. Which number times two makes eighteen?
+        - fill: {line: 2, box: 1}
+        - text: Count in eights up to forty, and count your steps.
+        - fill: {line: 3, box: 1}
   - task: times-tables-d1
   - task: times-tables-d3
   - task: times-tables-d5
