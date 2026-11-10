@@ -1,6 +1,9 @@
 package main
 
 import (
+	"fmt"
+	"regexp"
+	"strconv"
 	"strings"
 	"unicode"
 
@@ -22,6 +25,41 @@ func choiceForm(text string) string { return normalized(text, true) }
 // then loses each ".", "!", "?" and space at its end, so that "Kim." is "kim" and "?" is blank
 // (format/README.md, section 15; amendment T49 to R20).
 func wordForm(text string) string { return strings.TrimRight(choiceForm(text), ".!? ") }
+
+// timeValue is a value in the notation of a time read: hours of one or two digits, a colon, and
+// minutes of two digits, or of three that begin with no zero, so that 5:60 and 10:100 are times a
+// trap value may have (format/README.md, section 15).
+var timeValue = regexp.MustCompile(`^([0-9]{1,2}):([0-9]{2}|[1-9][0-9]{2})$`)
+
+// timeForm is a time as the kind time compares it, its hours and minutes as numbers: 07:30 is
+// 7:30, and 5:60 stays 5:60, since the kind never takes the sum of minutes. It is blank for a
+// value that is no time read.
+func timeForm(text string) string {
+	parts := timeValue.FindStringSubmatch(text)
+	if parts == nil {
+		return ""
+	}
+	hours, _ := strconv.Atoi(parts[1])
+	minutes, _ := strconv.Atoi(parts[2])
+	return fmt.Sprintf("%d:%02d", hours, minutes)
+}
+
+// twelveHoursOff is a time as a clock face shows it where that is not the time itself, 9:10 for
+// 21:10 and 12:15 for 0:15: the slip that the kind time, which counts hours to 24, leaves to a trap
+// value (R111 spec). It is blank from 1:00 to 12:59, which a clock face shows as it is.
+func twelveHoursOff(key string) string {
+	var hours, minutes int
+	if _, err := fmt.Sscanf(key, "%d:%d", &hours, &minutes); err != nil || hours > 23 {
+		return ""
+	}
+	switch {
+	case hours == 0:
+		return fmt.Sprintf("12:%02d", minutes)
+	case hours >= 13:
+		return fmt.Sprintf("%d:%02d", hours-12, minutes)
+	}
+	return ""
+}
 
 // normalized is a text after NFKC, the dashes and slashes of step 3 of section 15 and the white
 // space of step 4, and, where lower says so, each character to its simple lowercase mapping.

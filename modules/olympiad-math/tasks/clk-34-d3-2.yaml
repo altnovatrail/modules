@@ -18,9 +18,8 @@ items:
   - answer_slots:
       - binding: "anywhere"
         check:
-          kind: "choice"
+          kind: "time"
           key: "9:50"
-          options: ["9:55", "9:50", "9:57", "10:00", "10:14"]
           trap_values:
             - value: "9:55"
               trap: "stopped-early"

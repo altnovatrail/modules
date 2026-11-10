@@ -14,9 +14,8 @@ items:
   - answer_slots:
       - binding: "anywhere"
         check:
-          kind: "choice"
+          kind: "time"
           key: "10:40"
-          options: ["10:40", "10:00", "10:20", "11:06", "1:40"]
           trap_values:
             - value: "10:00"
               trap: "ignored-condition"

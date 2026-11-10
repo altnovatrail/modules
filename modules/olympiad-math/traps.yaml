@@ -1,7 +1,9 @@
 # The traps of this module's tasks: 20 of the 20 traps of mathtrail-standalone, as the format's
 # example of this module has them at spec v0.9.9, each with its description, its skills and its
 # advice (R13; R23). Each ID is the trap's, with _ made -. standalone's content in this module
-# carries the MIT notice of NOTICE.
+# carries the MIT notice of NOTICE. The last, twelve-hours-off, is the module's own, which the
+# example does not have yet: the trap value of a time of the afternoon or evening written as a
+# clock face shows it, which the kind time leaves to a trap (amendment T50 to R23).
 traps:
   off-by-one:
     description: Off by one when counting gaps, floors or saw cuts.
@@ -69,3 +71,7 @@ traps:
     description: Assumed that whoever moves first always wins, without checking the position.
     skills: [games-strategy]
     trap_advice: Play the game a few times from small positions and see who wins each one before deciding.
+  twelve-hours-off:
+    description: Wrote an afternoon or evening time as a clock face shows it, counting the hours again from noon.
+    skills: [time-clocks]
+    trap_advice: After noon the hours of the day go on counting, so add the hours from midnight to noon to the hour on the clock face.

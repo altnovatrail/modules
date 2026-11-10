@@ -14,9 +14,8 @@ items:
   - answer_slots:
       - binding: "anywhere"
         check:
-          kind: "choice"
+          kind: "time"
           key: "21:10"
-          options: ["19:30", "20:20", "20:90", "21:10", "21:40"]
           trap_values:
             - value: "19:30"
               trap: "stopped-early"
@@ -30,6 +29,9 @@ items:
             - value: "21:40"
               trap: "wrong-operation"
               text: "You added 3 hours, not 2 hours 30 minutes."
+            - value: "9:10"
+              trap: "twelve-hours-off"
+              text: "That is the time on a clock face, which starts its hours again at noon. Count the hours of the afternoon on from noon."
     simpler_case: "Try 2 candles of 30 minutes from 18:40. At what time does the last one go out?"
 solution:
   - text: "Three candles burn for 3 × 50 = 150 minutes, which is 2 hours 30 minutes. 18:40 + 2 hours 30 minutes = 21:10."

@@ -126,10 +126,10 @@ func report(out io.Writer, s survey, total int, written []Converted, waiting map
 	}
 
 	fmt.Fprintf(out, "port: survey of the %d tasks of standalone at %s that no batch of %s names\n", total, s.commit[:7], s.except)
-	fmt.Fprintf(out, "port: written into %s: %d — %s %d, %s %d, %s %d, %s %d\n", s.module, len(written),
-		answerNumber, answers[answerNumber], answerFraction, answers[answerFraction],
+	fmt.Fprintf(out, "port: written into %s: %d — %s %d, %s %d, %s %d, %s %d, %s %d\n", s.module, len(written),
+		answerNumber, answers[answerNumber], answerFraction, answers[answerFraction], answerTime, answers[answerTime],
 		answerByHand, answers[answerByHand], answerTapped, answers[answerTapped])
-	fmt.Fprintf(out, "port: explanations that name the key of a choice: %d, in %d tasks\n", keyNamed, inTasks)
+	fmt.Fprintf(out, "port: explanations that name the key of a choice or a time: %d, in %d tasks\n", keyNamed, inTasks)
 	fmt.Fprintf(out, "port: written tasks solved from the picture: %d\n", fromPicture)
 	fmt.Fprintf(out, "port: waiting for pictures: %d", waits)
 	if len(byKind) > 0 {
