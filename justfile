@@ -582,27 +582,8 @@ _synthetic module tag *calls:
         echo "_synthetic: ${tag} is no tag vX.Y.Z of a release of modules" >&2
         exit 2
     fi
-    pinned=$({{quote(just_executable())}} _dockerfile-arg .devcontainer/Dockerfile MODULE_KIT_VERSION)
-    if ! version=$(module-kit --version | sed -n 1p); then
-        echo "_synthetic: module-kit cannot be run; the toolchain stage installs it" >&2
-        exit 2
-    fi
-    if [ "$version" != "module-kit ${pinned}" ]; then
-        echo "_synthetic: the module-kit on the PATH says \"${version}\", and .devcontainer/Dockerfile pins module-kit ${pinned}: rebuild the container" >&2
-        exit 2
-    fi
-    canvas=$({{quote(just_executable())}} _dockerfile-arg .devcontainer/Dockerfile CANVAS_VERSION)
-    wanted=$({{quote(just_executable())}} _dockerfile-arg .devcontainer/Dockerfile CANVAS_SYNTHETIC_SHA256)
-    generator={{quote(canvas_lib)}}"/synthetic-module_${canvas}.mjs"
-    if [ -L "$generator" ] || [ ! -f "$generator" ]; then
-        echo "_synthetic: ${generator} is not there; the toolchain stage installs canvas's generator ${canvas}: rebuild the container" >&2
-        exit 2
-    fi
-    sum=$(sha256sum < "$generator" | cut -d ' ' -f 1)
-    if [ "$sum" != "$wanted" ]; then
-        echo "_synthetic: ${generator} is ${sum}, and .devcontainer/Dockerfile pins ${wanted}: rebuild the container" >&2
-        exit 2
-    fi
+    {{quote(just_executable())}} _pinned-module-kit
+    generator=$({{quote(just_executable())}} _generator)
     package=$(mktemp -d)
     trap 'rm -rf "$package"' EXIT
     if [ -z "$tag" ]; then
@@ -626,6 +607,329 @@ _synthetic module tag *calls:
         exit 1
     fi
     node "$generator" --module "${package}/package" "$tag" "${path}/eval" "$@"
+
+# The module-kit on the PATH is the one .devcontainer/Dockerfile pins, so that a container not
+# rebuilt since the tag was raised neither writes nor checks a sample with another CLI than CI's;
+# the status is 2 otherwise.
+[private]
+_pinned-module-kit:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    pinned=$({{quote(just_executable())}} _dockerfile-arg .devcontainer/Dockerfile MODULE_KIT_VERSION)
+    if ! version=$(module-kit --version | sed -n 1p); then
+        echo "_pinned-module-kit: module-kit cannot be run; the toolchain stage installs it" >&2
+        exit 2
+    fi
+    if [ "$version" != "module-kit ${pinned}" ]; then
+        echo "_pinned-module-kit: the module-kit on the PATH says \"${version}\", and .devcontainer/Dockerfile pins module-kit ${pinned}: rebuild the container" >&2
+        exit 2
+    fi
+
+# The path of canvas's generator, printed once it is the file the Dockerfile pins: the stage's
+# synthetic-module_<CANVAS_VERSION>.mjs, a regular file whose sum is CANVAS_SYNTHETIC_SHA256 (R29).
+# The status is 2 otherwise: a container not rebuilt since the tag was raised would draw samples
+# CI does not.
+[private]
+_generator:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    canvas=$({{quote(just_executable())}} _dockerfile-arg .devcontainer/Dockerfile CANVAS_VERSION)
+    wanted=$({{quote(just_executable())}} _dockerfile-arg .devcontainer/Dockerfile CANVAS_SYNTHETIC_SHA256)
+    generator={{quote(canvas_lib)}}"/synthetic-module_${canvas}.mjs"
+    if [ -L "$generator" ] || [ ! -f "$generator" ]; then
+        echo "_generator: ${generator} is not there; the toolchain stage installs canvas's generator ${canvas}: rebuild the container" >&2
+        exit 2
+    fi
+    sum=$(sha256sum < "$generator" | cut -d ' ' -f 1)
+    if [ "$sum" != "$wanted" ]; then
+        echo "_generator: ${generator} is ${sum}, and .devcontainer/Dockerfile pins ${wanted}: rebuild the container" >&2
+        exit 2
+    fi
+    echo "$generator"
+
+# Every sample of a module's eval set is one of the package of the commit it lies in: a pull request
+# that changes the open view of a task re-makes its synthetic samples and removes the samples of
+# people in the same pull request (amendment 2026-11-06 to R04; contracts/README.md in spec, section
+# 13; amendment T59 to R25). The eval set is the files eval-check gives sample-check, and of each
+# jq reads its origin, the source and ID of its task, its seed and the digest of its task's open
+# view, and nothing else: a person's sample is never printed. A module with no sample is not built;
+# the others are, by the pinned module-kit, and their samples are held to the package by
+# _match-synthetic and _match-people. A file outside the layout eval/<id>.json, of which those
+# fields cannot be read, or that names another module, is refused here too, as eval-check refuses
+# it, so that no sample passes unchecked. Every module is checked, a refusal in one does not stop
+# the rest, and the status is the highest of what failed: 1 for a sample that is not one of the
+# package, 2 for what could not do its work. No network and no key: a pull request from a fork runs
+# it too. The rows between the recipes are a line a sample, its fields split by U+001F, which no
+# field holds: a tab would let read merge an empty seed with the next field.
+# Hold each sample of every module's eval set to the package of this commit.
+eval-match:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    export LC_ALL=C
+    shopt -s nullglob dotglob
+    if [ -L modules ] || [ ! -d modules ]; then
+        echo "eval-match: no modules/, so no sample"
+        exit 0
+    fi
+    work=$(mktemp -d)
+    trap 'rm -rf "$work"' EXIT
+    us=$'\x1f'
+    worst=0
+    fail() {
+        if [ "$1" -gt "$worst" ]; then worst=$1; fi
+    }
+    breach() {
+        echo "$1" >&2
+        fail 1
+    }
+    pinned=""
+    jq_runs=""
+    held=""
+    for path in modules/*; do
+        module=${path#modules/}
+        if [[ "$module" == .* ]] || [ -L "$path" ] || [ ! -d "$path" ] || [ -L "${path}/eval" ] || [ ! -d "${path}/eval" ]; then
+            continue
+        fi
+        files=()
+        while IFS= read -r -d '' file; do
+            files+=("$file")
+        done < <(find "${path}/eval" -mindepth 1 -name '.*' -prune -o -name '*.json' -type f -print0 | sort -z)
+        if [ "${#files[@]}" -eq 0 ]; then
+            continue
+        fi
+        held=yes
+        if [ -z "$jq_runs" ]; then
+            if jq --version > /dev/null 2>&1; then jq_runs=yes; else jq_runs=no; fi
+        fi
+        if [ "$jq_runs" = no ]; then
+            echo "eval-match: jq cannot be run; the toolchain stage has it" >&2
+            fail 2
+            continue
+        fi
+        rows="${work}/${module}"
+        mkdir "$rows"
+        : > "${rows}/synthetic"
+        : > "${rows}/people"
+        for file in "${files[@]}"; do
+            if ! [[ "$file" =~ ^modules/[^/]+/eval/[a-z0-9-]{1,64}\.json$ ]]; then
+                breach "${file}: outside the layout eval/<id>.json, which eval-check refuses, so it is not held to the package"
+                continue
+            fi
+            if ! row=$(jq -e -r -s '
+                if length == 1 and (.[0] | type) == "object" and (.[0].task | type) == "object" and (.[0].task.modules | type) == "object" then
+                    .[0] as $s | [
+                        (if ($s.synthetic | type) == "object" then "synthetic" elif ($s.person | type) == "object" then "person" else "none" end),
+                        $s.task.modules.module, $s.task.task,
+                        (if ($s.synthetic | type) == "object" then $s.synthetic.seed else $s.task.seed end),
+                        $s.task.modules.tag, $s.task.open_view_digest
+                    ] | map(if type == "string" and (test("[\u0000-\u001f]") | not) then . else "" end) | join("\u001f")
+                else empty end' "$file" 2> /dev/null); then
+                breach "${file}: holds no sample whose task and origin can be read, so it cannot be held to the package"
+                continue
+            fi
+            IFS=$us read -r origin of task seed tag digest <<< "$row"
+            if [ "$of" != "novatrail/${module}" ]; then
+                breach "${file}: a sample of the eval set of novatrail/${module} is of a task of that module"
+                continue
+            fi
+            if ! [[ "$task" =~ ^[a-z0-9][a-z0-9-]*$ && "$seed" =~ ^(0|[1-9][0-9]*)?$ ]]; then
+                breach "${file}: names no task ID and seed that can be held to the package"
+                continue
+            fi
+            case "$origin" in
+                synthetic)
+                    if [ -z "$seed" ] || ! [[ "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+                        breach "${file}: a synthetic sample with no seed, or no tag vX.Y.Z of modules, cannot be drawn again"
+                        continue
+                    fi
+                    printf '%s\n' "${file}${us}${task}${us}${seed}${us}${tag}" >> "${rows}/synthetic"
+                    ;;
+                person)
+                    printf '%s\n' "${file}${us}${task}${us}${seed}${us}${digest}" >> "${rows}/people"
+                    ;;
+                *)
+                    breach "${file}: neither a person's sample nor a synthetic one, so it cannot be held to the package"
+                    ;;
+            esac
+        done
+        if [ ! -s "${rows}/synthetic" ] && [ ! -s "${rows}/people" ]; then
+            continue
+        fi
+        if [ -z "$pinned" ]; then
+            if {{quote(just_executable())}} _pinned-module-kit; then pinned=yes; else pinned=no; fi
+        fi
+        if [ "$pinned" = no ]; then
+            fail 2
+            continue
+        fi
+        status=0
+        module-kit build "$path" "${rows}/package" > /dev/null || status=$?
+        if [ "$status" -ne 0 ]; then
+            echo "eval-match: module-kit cannot build ${path}, so its samples are not held to its package" >&2
+            fail 2
+            continue
+        fi
+        if [ -s "${rows}/synthetic" ]; then
+            status=0
+            {{quote(just_executable())}} _match-synthetic "$module" "${rows}/package" "${rows}/synthetic" || status=$?
+            if [ "$status" -gt 2 ]; then status=2; fi
+            fail "$status"
+        fi
+        if [ -s "${rows}/people" ]; then
+            status=0
+            {{quote(just_executable())}} _match-people "novatrail/${module}" "${rows}/package" "${rows}/people" || status=$?
+            if [ "$status" -gt 2 ]; then status=2; fi
+            fail "$status"
+        fi
+    done
+    if [ "$worst" -eq 0 ] && [ -z "$held" ]; then
+        echo "eval-match: no module holds a sample"
+    elif [ "$worst" -eq 0 ]; then
+        echo "eval-match: every sample of every eval set is one of the package of this commit"
+    fi
+    exit "$worst"
+
+# The synthetic samples of modules/<module>/ in rows — the file, the task, the seed and the tag each
+# names —, drawn again by canvas's generator on the package, with the tag of each file, not the
+# newest: the tag says only what a sample was made on (contracts/README.md in spec, section 13).
+# Each is then compared with its file in all but task.modules.version and
+# task.modules.package_digest, which that section bars from the comparison, so that a change of
+# another task of the module, which changes the package's version and digest, re-makes none of
+# them; a change of the task's open view, of its picture or of the generator does. The generator is
+# called on 50 samples at a time, of one tag, into a new folder: it holds every sample of a call in
+# memory, and writes none when one call fails. A batch it refuses is then drawn again a sample at a
+# time, so that each sample is compared or refused with the generator's own reason, which it prints
+# on stderr. The status is 1 when a sample is not drawn again the same or the generator refuses it,
+# and 2 when it cannot do its work.
+[private]
+_match-synthetic module package rows:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    module={{quote(module)}}
+    package={{quote(package)}}
+    rows={{quote(rows)}}
+    us=$'\x1f'
+    generator=$({{quote(just_executable())}} _generator)
+    work=$(mktemp -d)
+    trap 'rm -rf "$work"' EXIT
+    batch=50
+    worst=0
+    fail() {
+        if [ "$1" -gt "$worst" ]; then worst=$1; fi
+    }
+    same=0
+    n=0
+    # Compare the file of calls[i] with the drawing of it in the folder given.
+    compare() {
+        local i=$1 out=$2 file=${files[$1]} left right
+        local again="${out}/${file##*/}" remake="re-make it: just synthetic ${module} ${calls[$1]}"
+        if [ ! -f "$again" ]; then
+            echo "${file}: canvas's generator draws ${calls[$i]} as another file, so this one is no sample it draws; ${remake}" >&2
+            fail 1
+        elif ! left=$(jq -cS 'del(.task.modules.version, .task.modules.package_digest)' "$file") \
+            || ! right=$(jq -cS 'del(.task.modules.version, .task.modules.package_digest)' "$again"); then
+            echo "_match-synthetic: jq cannot read ${file} or its drawing, so they are not compared" >&2
+            fail 2
+        elif [ "$left" != "$right" ]; then
+            echo "${file}: is not what canvas's generator draws of ${calls[$i]} on this commit's package, with the tag ${tag}; ${remake}" >&2
+            fail 1
+        else
+            same=$((same + 1))
+        fi
+    }
+    while IFS= read -r tag; do
+        files=()
+        calls=()
+        while IFS=$us read -r file task seed _; do
+            files+=("$file")
+            calls+=("${task}:${seed}")
+        done < <(awk -F "$us" -v tag="$tag" '$4 == tag' "$rows")
+        for ((start = 0; start < ${#calls[@]}; start += batch)); do
+            n=$((n + 1))
+            out="${work}/${n}"
+            status=0
+            node "$generator" --module "$package" "$tag" "$out" "${calls[@]:start:batch}" > /dev/null 2>&1 || status=$?
+            if [ "$status" -eq 0 ]; then
+                for ((i = start; i < start + batch && i < ${#calls[@]}; i++)); do compare "$i" "$out"; done
+                rm -rf "$out"
+                continue
+            fi
+            for ((i = start; i < start + batch && i < ${#calls[@]}; i++)); do
+                out="${work}/${n}-${i}"
+                status=0
+                node "$generator" --module "$package" "$tag" "$out" "${calls[$i]}" > /dev/null || status=$?
+                if [ "$status" -eq 0 ]; then
+                    compare "$i" "$out"
+                else
+                    if [ "$status" -gt 2 ]; then status=2; fi
+                    echo "${files[$i]}: canvas's generator draws ${calls[$i]} no more on this commit's package of novatrail/${module}, with the tag ${tag}, for the reason above; re-make or remove it" >&2
+                    fail "$status"
+                fi
+                rm -rf "$out"
+            done
+        done
+    done < <(cut -d "$us" -f 4 "$rows" | sort -u)
+    echo "_match-synthetic: ${same} synthetic samples of novatrail/${module} are drawn again the same on this commit's package"
+    exit "$worst"
+
+# The samples of people of a module in rows — the file, the task, the seed of its instance when the
+# task is a template, and the digest of the open view each names —, held to the open views of the
+# package. module-kit open, over the package and an index of it alone that module-kit index builds,
+# with the seeds of the samples — 0 when none has one, since open asks for a seed —, gives the
+# digest of each task's open view, and of an instance of a template by its seed, as the runner will
+# read the task (architecture 3.6 module-kit; R93 spec). A sample whose task is not in the package,
+# or not with that seed, or whose open view has another digest, is refused with 1: it was made on
+# another open view, and goes (amendment 2026-11-06 to R04). Nothing of a sample but its file, task
+# and seed is printed. The status is 2 when module-kit cannot open the package.
+[private]
+_match-people module package rows:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    module={{quote(module)}}
+    package={{quote(package)}}
+    rows={{quote(rows)}}
+    us=$'\x1f'
+    work=$(mktemp -d)
+    trap 'rm -rf "$work"' EXIT
+    seeds=()
+    while IFS= read -r seed; do
+        seeds+=(--seed "$seed")
+    done < <(cut -d "$us" -f 3 "$rows" | { grep . || true; } | sort -u)
+    if [ "${#seeds[@]}" -eq 0 ]; then seeds=(--seed 0); fi
+    if ! module-kit index --first --tag v0.0.0 --no-withdrawals --out "${work}/module-index.json" "$package" > /dev/null \
+        || ! module-kit open --index "${work}/module-index.json" --latest "${work}/module-index.json" "${seeds[@]}" \
+            --out "${work}/open" "$package" > /dev/null; then
+        echo "_match-people: module-kit cannot open the package of ${module}, so its samples of people are not held to it" >&2
+        exit 2
+    fi
+    # The views by task and seed, as strings: a seed is up to 2^64, past what awk holds as a number.
+    declare -A views=()
+    if ! listed=$(jq -r --arg id "$module" '.modules[] | select(.id == $id) | .tasks[] | [.task.id, (.seed // ""), .open_view_digest] | join("\u001f")' \
+        "${work}/open/open-views.json"); then
+        echo "_match-people: the open views module-kit wrote of ${module} cannot be read" >&2
+        exit 2
+    fi
+    while IFS=$us read -r id seed digest; do
+        if [ -n "$id" ]; then views["${id}${us}${seed}"]=$digest; fi
+    done <<< "$listed"
+    worst=0
+    held=0
+    while IFS=$us read -r file task seed digest; do
+        instance=$task
+        if [ -n "$seed" ]; then instance="${task} with the seed ${seed}"; fi
+        open=${views["${task}${us}${seed}"]:-}
+        if [ -z "$open" ]; then
+            echo "${file}: the package of this commit has no open view of ${instance}; remove the sample (amendment 2026-11-06 to R04)" >&2
+            worst=1
+        elif [ "$open" != "$digest" ]; then
+            echo "${file}: the open view of ${instance} is not the one the sample was made on; remove the sample (amendment 2026-11-06 to R04)" >&2
+            worst=1
+        else
+            held=$((held + 1))
+        fi
+    done < "$rows"
+    echo "_match-people: ${held} samples of people of ${module} are of open views of this commit's package"
+    exit "$worst"
 
 # What .github's shared release.yml runs to build a release's files, in the toolchain stage of the
 # commit it releases, on that commit's tree from git archive: no git, no submodule — spec/ is an

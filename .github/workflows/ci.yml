@@ -91,7 +91,9 @@ jobs:
   # module's eval/, and each module's eval set by spec's sample-check --eval-set (R04, R25): no key,
   # and the network only for the tools of sample-check from their lock file, so a pull request from
   # a fork runs it too, and it runs even when a step before it failed, so that a refused sample
-  # shows on the first run.
+  # shows on the first run. Then eval-match holds each sample to the package of the commit: a
+  # synthetic one drawn again by canvas's generator, a person's by the digest of its task's open
+  # view (amendment T59 to R25), with no network and no key, and as eval-check runs.
   modules:
     name: Modules
     needs: [module-kit, canvas]
@@ -114,6 +116,9 @@ jobs:
       - name: eval-check
         if: ${{ !cancelled() && steps.toolchain.outcome == 'success' }}
         run: sh spec/tools/toolchain/toolchain.sh run just eval-check
+      - name: eval-match
+        if: ${{ !cancelled() && steps.toolchain.outcome == 'success' }}
+        run: sh spec/tools/toolchain/toolchain.sh run just eval-match
       - name: The pictures of the lessons
         run: sh spec/tools/toolchain/toolchain.sh run just lesson-pictures modules/olympiad-math --check
       - name: The pictures of the instances of the templates

@@ -6,12 +6,11 @@
 // _newest-release on the stand-ins of git and curl: the network is no part of these tests.
 
 import assert from "node:assert/strict";
-import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 
-import { EXAMPLES, ROOT, addModule, repository, run, stubModuleKit, stubNetwork, temporaryFolder, withSpec } from "./helpers.mjs";
+import { EXAMPLES, ROOT, addModule, pinGenerator, repository, run, stubModuleKit, stubNetwork, temporaryFolder, withSpec } from "./helpers.mjs";
 
 // The tag of canvas that this repository's Dockerfile pins, whose generator the stage installs.
 const CANVAS = /^ARG CANVAS_VERSION=(.*)$/m.exec(readFileSync(join(ROOT, ".devcontainer", "Dockerfile"), "utf8"))[1];
@@ -29,19 +28,12 @@ if (process.env.STUB_GENERATOR_STDERR) console.error(process.env.STUB_GENERATOR_
 process.exitCode = Number(process.env.STUB_GENERATOR_STATUS || 0);
 `;
 
-function sha256(text) {
-  return createHash("sha256").update(text).digest("hex");
-}
-
 // A made-up repository with a module of the format in modules/maths/, the stand-ins of module-kit
-// and of the generator, and its Dockerfile pinning the stand-in's sum, or the sum given.
-function withGenerator(t, { pinned = sha256(STUB) } = {}) {
+// and of the generator, and its Dockerfile pinning the stand-in's sum, or another sum given.
+function withGenerator(t, { pinned } = {}) {
   const repo = repository(t);
   addModule(repo, firstExample(), "maths");
-  const dockerfile = join(repo, ".devcontainer", "Dockerfile");
-  writeFileSync(dockerfile, readFileSync(dockerfile, "utf8").replace(/^ARG CANVAS_SYNTHETIC_SHA256=.*$/m, `ARG CANVAS_SYNTHETIC_SHA256=${pinned}`));
-  const lib = temporaryFolder(t);
-  writeFileSync(join(lib, GENERATOR), STUB);
+  const lib = pinGenerator(t, repo, STUB, pinned);
   const log = join(lib, "calls.jsonl");
   const kit = stubModuleKit(t);
   return {

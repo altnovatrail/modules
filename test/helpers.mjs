@@ -5,6 +5,7 @@
 // stand-in for its justfile.
 
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { chmodSync, cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
@@ -256,4 +257,18 @@ process.stdout.write(String(answer));
       }
     },
   };
+}
+
+// A stand-in for canvas's generator, the text given, in a new folder for CANVAS_LIB that it
+// returns, under the name the Dockerfile's CANVAS_VERSION gives the file, and the Dockerfile of the
+// made-up repository pinning its sum, as the stage pins the real one's, or another sum given.
+export function pinGenerator(t, repo, text, pinned = undefined) {
+  const dockerfile = join(repo, ".devcontainer", "Dockerfile");
+  const current = readFileSync(dockerfile, "utf8");
+  const tag = /^ARG CANVAS_VERSION=(.*)$/m.exec(current)[1];
+  const sum = pinned ?? createHash("sha256").update(text).digest("hex");
+  writeFileSync(dockerfile, current.replace(/^ARG CANVAS_SYNTHETIC_SHA256=.*$/m, `ARG CANVAS_SYNTHETIC_SHA256=${sum}`));
+  const lib = temporaryFolder(t);
+  writeFileSync(join(lib, `synthetic-module_${tag}.mjs`), text);
+  return lib;
 }
