@@ -1,7 +1,8 @@
-# A lesson of the set of school mathematics for grade 3 (R15): an explanation and the three pages of
-# the skill, in the order of their difficulty. It names no digit, since the keys of its pages are
-# small numbers, and has no worked example yet: the format 0.3 put one only on a sheet, and the one
-# on a workbook that 0.4 allows comes with epic E7.
+# A lesson of the set of school mathematics for grade 3 (R15): an explanation, a worked example on
+# a workbook and the three pages of the skill, in the order of their difficulty. Its texts name no
+# digit, since the keys of its pages are small numbers; the lines of the example and their values
+# hold numbers, which the leak check does not search, and none of its lines is a line of a page of
+# the lesson (T55).
 id: division-with-remainder
 title: Division with a remainder
 skills: [division-with-remainder]
@@ -12,6 +13,34 @@ segments:
       - text: The remainder is always smaller than the number you divide by. If it is not, one more group still fits.
       - text: Check by multiplying back. The quotient times the number you divide by, and then the remainder added, give the number you began with.
       - text: In a story, ask what the remainder is. Sometimes it is what is left over, and sometimes it still needs a place of its own.
+  - worked_example:
+      statement:
+        - text: Divide, and write the quotient and the remainder.
+      canvas:
+        kind: workbook
+      lines:
+        - line:
+            - text: "26 ÷ 3 ="
+            - binding: box
+              value: "8"
+            - text: r
+            - binding: box
+              value: "2"
+        - line:
+            - text: "34 ÷ 6 ="
+            - binding: box
+              value: "5"
+            - text: r
+            - binding: box
+              value: "4"
+      demo:
+        - text: Find the greatest product of the table of three that is not more than twenty-six. Eight threes are twenty-four, and nine threes are too many.
+        - fill: {line: 1, box: 1}
+        - text: Twenty-six take away twenty-four leaves two. It is smaller than three, so it is the remainder.
+        - fill: {line: 1, box: 2}
+        - text: Five sixes are thirty, and six sixes are too many. Thirty-four take away thirty leaves four.
+        - fill: {line: 2, box: 1}
+        - fill: {line: 2, box: 2}
   - task: division-with-remainder-d1
   - task: division-with-remainder-d3
   - task: division-with-remainder-d5
