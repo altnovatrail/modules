@@ -42,8 +42,8 @@ func TestRunSurvey(t *testing.T) {
 		`port: race-2: the explanation of its option B names its key "Ben"`,
 		"port: lamps-4: waits for a picture of the kind flags\n",
 		"port: survey of the 4 tasks of standalone at ",
-		": 3 — number 1, fraction 0, choice by hand 1, choice tapped 1\n",
-		"port: explanations that name the key of a choice: 1, in 1 tasks\n",
+		": 3 — number 1, fraction 0, time 0, choice by hand 1, choice tapped 1\n",
+		"port: explanations that name the key of a choice or a time: 1, in 1 tasks\n",
 		"port: waiting for pictures: 1 — flags 1\n",
 		"port: refused: 0\n",
 	} {

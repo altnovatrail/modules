@@ -14,7 +14,10 @@ import (
 // solver is run — its sandbox, its dialect and helpers, two runs under rotated letters — and holds
 // it to the task's correct answer: a subtest each, named by the task's ID (content/solver_test.go
 // of standalone). The runs must agree on exactly one letter, so the solver proves the key and that
-// no other option, none of the trap values, is right (R05; R12).
+// no other option, none of the trap values, is right (R05; R12). The one trap value that is no
+// option of standalone, the time a clock face shows for a key of the afternoon, evening or first
+// hour after midnight, no solver sees: it is twelve hours off the key, so never right (amendment
+// T50 to R20).
 const bench = "TestEveryReferenceTaskProvesItsOwnAnswer"
 
 // prove runs the bench of a clone of standalone on the tasks given, with the go command named, and

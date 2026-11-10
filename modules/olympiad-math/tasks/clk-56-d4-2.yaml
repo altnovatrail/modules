@@ -18,9 +18,8 @@ items:
   - answer_slots:
       - binding: "anywhere"
         check:
-          kind: "choice"
+          kind: "time"
           key: "23:00"
-          options: ["0:00", "17:00", "23:00", "20:00", "22:55"]
           trap_values:
             - value: "0:00"
               trap: "ignored-condition"
@@ -34,6 +33,9 @@ items:
             - value: "22:55"
               trap: "wrong-operation"
               text: "22:55 takes off 5 minutes for each hour the watch counted, but the watch gains 5 minutes in each real hour."
+            - value: "11:00"
+              trap: "twelve-hours-off"
+              text: "That is the time on a clock face, which starts its hours again at noon. Count the hours of the afternoon on from noon."
     simpler_case: "Try a watch that is always right: it shows 21:00 when she lands in a city whose clocks show 1 hour more. What is the local time there?"
 solution:
   - text: "The watch moved on 13 hours, which is 780 minutes. In each real hour it moves 65 minutes, so 780 ÷ 65 = 12 real hours passed, and the time at home is 20:00. The clocks in the city show 3 hours more: 23:00."

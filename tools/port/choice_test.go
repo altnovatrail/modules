@@ -7,8 +7,9 @@ import (
 	"testing"
 )
 
-// The answers that are not numbers (R20): a time on a clock and one word that the question holds
-// are written by hand, a choice whose options are the check's; any other is a choice tapped.
+// The answers that are not numbers (R20): a time on a clock is written by hand and checked as a
+// time, and one word that the question holds is written by hand, a choice whose options are the
+// check's; any other is a choice tapped.
 
 // clockExample is a task whose answer is a time on a clock.
 func clockExample(id string) Example {
@@ -55,19 +56,75 @@ func TestConvertTimeByHand(t *testing.T) {
 	}
 	want = `      - binding: "anywhere"
         check:
-          kind: "choice"
+          kind: "time"
           key: "7:30"
-          options: ["7:30", "7:00", "8:00", "6:30", "7:20"]
           trap_values:
             - value: "7:00"
               trap: "stopped-early"
               text: "That is when it starts."
+            - value: "8:00"
 `
-	if !strings.Contains(got, want) {
-		t.Errorf("the time is not a choice written by hand:\n%s", got)
+	if !strings.Contains(got, want) || !strings.Contains(got, `value: "7:20"`) {
+		t.Errorf("the time is not checked as a time:\n%s", got)
 	}
-	if c.Answer != answerByHand || strings.Contains(got, `binding: "choice"`) || strings.Contains(got, "notation:") {
+	if c.Answer != answerTime || strings.Contains(got, "options:") || strings.Contains(got, "notation:") ||
+		strings.Contains(got, "twelve-hours-off") {
 		t.Errorf("answer = %q:\n%s", c.Answer, got)
+	}
+}
+
+// A time of the afternoon, evening or first hour has one trap value more, as a clock face shows it,
+// unless an option is that time as the kind time compares them; a key with a leading zero loses it
+// (amendment T50 to R20).
+func TestConvertTimeTwelveHours(t *testing.T) {
+	ex := clockExample("clock-4")
+	ex.Options = map[string]string{"A": "19:40", "B": "19:20", "C": "19:80", "D": "20:40", "E": "23:20"}
+	got, _ := convertOne(t, ex, BatchTask{}, Overlay{})
+	want := `            - value: "7:40"
+              trap: "twelve-hours-off"
+              text: "` + twelveHoursText + `"
+`
+	if !strings.Contains(got, `key: "19:40"`) || !strings.HasSuffix(strings.Split(got, "solution:")[0], want) {
+		t.Errorf("the last trap value is not the time on a clock face:\n%s", got)
+	}
+
+	ex.Options["E"] = "07:40"
+	if got, _ = convertOne(t, ex, BatchTask{}, Overlay{}); strings.Contains(got, "twelve-hours-off") {
+		t.Errorf("an option is the time on a clock face already:\n%s", got)
+	}
+
+	for key, twelve := range map[string]string{"12:20": "", "13:05": "1:05", "23:00": "11:00", "07:30": "", "0:15": "12:15"} {
+		ex = clockExample("clock-5")
+		ex.Options["A"] = key
+		got, _ = convertOne(t, ex, BatchTask{}, Overlay{})
+		if !strings.Contains(got, `key: "`+timeForm(key)+`"`) || strings.Contains(got, "twelve-hours-off") != (twelve != "") ||
+			twelve != "" && !strings.Contains(got, `value: "`+twelve+`"`) {
+			t.Errorf("key %s:\n%s", key, got)
+		}
+	}
+}
+
+// A wrong option that is no time read is no trap value: its trap goes to the task's traps. Two
+// options that are one time as the kind time compares them are refused.
+func TestConvertTimeOptions(t *testing.T) {
+	ex := clockExample("clock-6")
+	ex.Options["E"] = "7:2"
+	got, c := convertOne(t, ex, BatchTask{}, Overlay{})
+	if strings.Contains(got, `value: "7:2"`) || !strings.Contains(got, `traps: ["off-by-one"]`) ||
+		len(c.Notes) != 1 || !strings.Contains(c.Notes[0], `its option E, "7:2", is no value of the check time`) {
+		t.Errorf("notes = %v:\n%s", c.Notes, got)
+	}
+	ex.Options["E"] = "07:00"
+	if _, err := convert(ex, testBatch(ex.ID), BatchTask{}, Overlay{}, "content/examples/x.json"); err == nil ||
+		!strings.Contains(err.Error(), `its option E, "07:00", is option B too, as the kind time compares them`) {
+		t.Errorf("error = %v", err)
+	}
+	// The leak check finds a time's key with a leading zero too, and so does the port.
+	ex = clockExample("clock-7")
+	ex.Distractors["B"] = Distractor{Trap: "stopped_early", Text: "It ends at 07:30, not then."}
+	if _, err := convert(ex, testBatch(ex.ID), BatchTask{}, Overlay{}, "content/examples/x.json"); err == nil ||
+		!strings.Contains(err.Error(), `the explanation of its option B names its key "7:30"`) {
+		t.Errorf("a key with a leading zero: error = %v", err)
 	}
 }
 
@@ -322,9 +379,9 @@ func TestConvertOverlayNamesTheKey(t *testing.T) {
 	}
 }
 
-// A time is a choice by hand even when the batch gives the task units: it is no number with them.
+// A time is a time even when the batch gives the task units: it is no number with them.
 func TestConvertTimeWithUnits(t *testing.T) {
-	if _, c := convertOne(t, clockExample("clock-3"), metres, Overlay{}); c.Answer != answerByHand {
+	if _, c := convertOne(t, clockExample("clock-3"), metres, Overlay{}); c.Answer != answerTime {
 		t.Errorf("answer = %q", c.Answer)
 	}
 }

@@ -69,8 +69,8 @@ type Overlay struct {
 	PictureAlt         string `yaml:"picture_alt,omitempty"`
 	SolutionPictureAlt string `yaml:"solution_picture_alt,omitempty"`
 	// AnswerForm is a paragraph of the statement after the question and its picture, which says what
-	// form the answer takes, such as "Write the time as on the clock, like 7:30.": a choice written
-	// by hand keeps its options closed (format/README.md, section 15).
+	// form the answer takes, such as "Write the time as hours and minutes, like 9:15.", as a statement
+	// SHOULD say (format/README.md, section 15).
 	AnswerForm string `yaml:"answer_form,omitempty"`
 	// TrapTexts are explanations written anew, by the trap value they explain, as the module
 	// writes it: "5", not "5 m".

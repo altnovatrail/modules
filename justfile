@@ -796,12 +796,14 @@ port-survey module commit="42b4408225e4163d8efbdfb93c299f3fc4b70afa":
     git -C "$clone" checkout --quiet --detach "$2"
     {{quote(just_executable())}} _port-survey "$clone" "$2" "$1" --prove
 
-# The module of a survey is the format's examples of olympiad-math — manifest, skill graph, traps,
-# techniques and solving steps — with the root's LICENSE, as in test/port.test.mjs, and the tasks
-# the port writes into it. The example's graph has the 17 topics of standalone at c6cbeb2, so the
-# survey adds the two topics of 42b4408 where the clone has them and the graph does not, with no
-# prerequisites, as their builds_on is empty, and the topics' names for titles (docs/architecture.md,
-# section 3.5; R21). They go at the graph's end, under skills:, which must be its last key. module-kit check then reads it: a breach of task.no-leaks is what E3's
+# The module of a survey is the format's examples of olympiad-math — manifest, skill graph,
+# techniques and solving steps — with the traps of modules/olympiad-math, whose IDs the port writes,
+# one of them its own until the example has it (amendment T50 to R23), the root's LICENSE, as in
+# test/port.test.mjs, and the tasks the port writes into it. The example's graph has the 17 topics
+# of standalone at c6cbeb2, so the survey adds the two topics of 42b4408 where the clone has them
+# and the graph does not, with no prerequisites, as their builds_on is empty, and the topics' names
+# for titles (docs/architecture.md, section 3.5; R21). They go at the graph's end, under skills:,
+# which must be its last key. module-kit check then reads it: a breach of task.no-leaks is what E3's
 # overlays are to mend, and the recipe counts them; any other breach, and any warning, fails it.
 # The exit status is the port's — 1 when it refused a task, 2 when it could not run — or 1 when the
 # check found more than task.no-leaks. The port is built first, rather than run by go run, which
@@ -819,9 +821,10 @@ _port-survey clone commit module *options:
         exit 2
     fi
     mkdir -p "$module"
-    for part in manifest skill-graph traps techniques solving-steps; do
+    for part in manifest skill-graph techniques solving-steps; do
         cp "spec/format/examples/${part}/valid/olympiad-math.yaml" "${module}/${part}.yaml"
     done
+    cp modules/olympiad-math/traps.yaml "${module}/traps.yaml"
     cp LICENSE "${module}/LICENSE"
     graph="${module}/skill-graph.yaml"
     if [ "$(awk '/^[a-z_]+:/ { key = $1 } END { print key }' "$graph")" != "skills:" ]; then

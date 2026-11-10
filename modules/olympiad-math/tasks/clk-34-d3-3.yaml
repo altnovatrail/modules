@@ -14,9 +14,8 @@ items:
   - answer_slots:
       - binding: "anywhere"
         check:
-          kind: "choice"
+          kind: "time"
           key: "19:40"
-          options: ["19:20", "19:80", "19:40", "20:40", "23:20"]
           trap_values:
             - value: "19:20"
               trap: "wrong-operation"
@@ -30,6 +29,9 @@ items:
             - value: "23:20"
               trap: "reversed-relation"
               text: "The film starts before it ends, so count back."
+            - value: "7:40"
+              trap: "twelve-hours-off"
+              text: "That is the time on a clock face, which starts its hours again at noon. Count the hours of the afternoon on from noon."
     simpler_case: "Try a film of 30 minutes that must end by 21:30. What is the latest time it can start?"
 solution:
   - text: "Going back 1 hour from 21:30 gives 20:30. Going back 50 more minutes: 30 minutes to 20:00 and 20 more to 19:40."

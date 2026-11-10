@@ -14,9 +14,8 @@ items:
   - answer_slots:
       - binding: "anywhere"
         check:
-          kind: "choice"
+          kind: "time"
           key: "13:30"
-          options: ["13:50", "13:45", "14:30", "13:30", "13:00"]
           trap_values:
             - value: "13:50"
               trap: "time-unit-mixup"
@@ -30,6 +29,9 @@ items:
             - value: "13:00"
               trap: "ignored-condition"
               text: "13:00 has Zoe packing from the start, but then the four would have packed 60 + 30 = 90 boxes."
+            - value: "1:30"
+              trap: "twelve-hours-off"
+              text: "That is the time on a clock face, which starts its hours again at noon. Count the hours of the afternoon on from noon."
     simpler_case: "Try Ann alone from 13:00, packing 1 box every 3 minutes. How many boxes has she packed at 14:00?"
 solution:
   - text: "In the hour from 13:00 to 14:00, each of the three packs 60 ÷ 3 = 20 boxes, so together they pack 60. The other 75 − 60 = 15 boxes are Zoe's, and at 1 box every 2 minutes they take her 30 minutes. So she joined at 13:30."
