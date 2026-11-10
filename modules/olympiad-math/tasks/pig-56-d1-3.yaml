@@ -6,6 +6,7 @@ statement:
   - text: "The scent of a lily-of-the-valley bush reaches 25 metres all round it. Bushes are planted along a straight path 300 metres long, so that the scent reaches every point of the path. At least how many bushes are needed?"
 givens: ["The scent of a bush reaches 25 metres all round it.", "The path is straight and 300 metres long.", "The scent must reach every point of the path."]
 unknown: "At least how many bushes are needed."
+leading_question: "How much of the path can the scent of one bush cover?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

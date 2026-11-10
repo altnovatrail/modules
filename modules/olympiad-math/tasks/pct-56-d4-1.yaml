@@ -6,6 +6,7 @@ statement:
   - text: "In a basket, 25% of the apples are red. After 6 red apples are eaten, 10% of the apples left are red. How many apples were in the basket at first?"
 givens: ["25% of the apples are red.", "After 6 red apples are eaten, 10% of the apples left are red."]
 unknown: "How many apples were in the basket at first."
+leading_question: "The apples that are not red stay in the basket. What share of it are they before and after?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

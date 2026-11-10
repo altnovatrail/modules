@@ -6,6 +6,7 @@ statement:
   - text: "Two purses hold four coins in all, and one purse holds twice as many coins as the other. How many coins does the purse that holds more have inside it?"
 givens: ["Two purses hold four coins in all.", "One purse holds twice as many coins as the other."]
 unknown: "How many coins the purse that holds more has inside it."
+leading_question: "Must the two purses lie side by side?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

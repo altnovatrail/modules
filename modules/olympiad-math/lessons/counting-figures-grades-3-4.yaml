@@ -35,6 +35,7 @@ segments:
   - task: fig-34-d5-1
   - explanation:
       - text: "How to solve: from the smallest up."
-      - text: "Find the smallest figures and count them."
-      - text: "Count the figures of each bigger size in turn."
-      - text: "Add the counts, and check that no size was left out."
+      - numbered_list:
+          - "Find the smallest figures and count them."
+          - "Count the figures of each bigger size in turn."
+          - "Add the counts, and check that no size was left out."

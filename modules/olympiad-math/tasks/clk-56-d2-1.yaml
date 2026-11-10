@@ -6,6 +6,7 @@ statement:
   - text: "A night guard's shift starts at 22:40 and ends at 7:10. During the shift he takes two breaks of 25 minutes each. How long does he work?"
 givens: ["The shift starts at 22:40 and ends at 7:10.", "He takes two breaks of 25 minutes each."]
 unknown: "How long he works."
+leading_question: "How long is it from 22:40 to midnight, and from midnight to 7:10?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

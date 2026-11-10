@@ -6,6 +6,7 @@ statement:
   - text: "Five whole numbers in a row, such as 8, 9, 10, 11 and 12, always hold a number that divides by 2. They also hold one that divides by 3. What is the largest number sure to divide one of any five whole numbers in a row?"
 givens: ["Five whole numbers in a row always hold one that divides by 2, and one that divides by 3."]
 unknown: "The largest number sure to divide one of any five whole numbers in a row."
+leading_question: "Try five numbers in a row that start at 7. Which of them divides by 6?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

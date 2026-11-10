@@ -6,6 +6,7 @@ statement:
   - text: "Six children perform one after another at a school concert: Abby, Bob, Cora, Dean, Emma and Finn. Emma performs first or third. Finn performs just before or just after Emma. Bob performs after Cora. Dean performs second or last. There is exactly one act between Abby's act and Bob's. Who performs third?"
 givens: ["Abby, Bob, Cora, Dean, Emma and Finn perform one after another.", "Emma performs first or third, and Finn just before or just after Emma.", "Bob performs after Cora, and Dean second or last.", "Exactly one act comes between Abby's and Bob's."]
 unknown: "Who performs third."
+leading_question: "Try Emma third. Where can Finn and Dean go then, and is there room for the two children with exactly one act between them?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"
@@ -14,6 +15,7 @@ items:
       - binding: "anywhere"
         check:
           kind: "choice"
+          notation: "word"
           key: "Abby"
           options: ["Abby", "Bob", "Emma", "Cora", "Dean"]
           trap_values:

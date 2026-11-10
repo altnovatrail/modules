@@ -4,6 +4,7 @@ givens:
   - "A move takes away a divisor smaller than the number, 1 included."
   - "A player who cannot move loses, and Paul plays as well as he can."
 unknown: "How many of Ivy's first moves let her be sure to win."
+leading_question: "Who wins when the board shows the smallest numbers? Go up one number at a time."
 simpler_case: "Try the number 4 on the board. How many of Ivy's first moves let her be sure to win?"
 techniques: [backwards]
 trap_texts:

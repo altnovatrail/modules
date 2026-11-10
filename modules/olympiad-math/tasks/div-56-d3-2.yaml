@@ -6,6 +6,7 @@ statement:
   - text: "When the lemons in a crate are counted out in twos, threes, fours, fives or sixes, one lemon is always left over. There is more than one lemon. What is the smallest number of lemons the crate can hold?"
 givens: ["Counted out in twos, threes, fours, fives or sixes, the lemons always leave one over.", "There is more than one lemon."]
 unknown: "The smallest number of lemons."
+leading_question: "What would the smallest number be if nothing were left over?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

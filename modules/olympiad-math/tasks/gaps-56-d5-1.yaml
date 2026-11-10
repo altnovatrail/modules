@@ -6,6 +6,7 @@ statement:
   - text: "Nine parallels and twelve meridians are drawn on a globe. A parallel is a circle that goes all the way round the globe from west to east. A meridian is a line from the North Pole to the South Pole. Into how many parts do these lines cut the surface of the globe?"
 givens: ["Nine parallels are drawn on the globe, each a circle all the way round it from west to east.", "Twelve meridians are drawn, each a line from the North Pole to the South Pole."]
 unknown: "Into how many parts the lines cut the surface of the globe."
+leading_question: "Into how many bands do the parallels cut the globe? Then think of each band as a ring cut across by the meridians."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

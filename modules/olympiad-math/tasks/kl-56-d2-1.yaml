@@ -6,6 +6,7 @@ statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Ada says: 'Ben is a liar.' Ben says: 'Cal is a knight.' Cal says: 'Ada and I are both knights or both liars.' Which of the three tell the truth?"
 givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Ada says: 'Ben is a liar.'", "Ben says: 'Cal is a knight.'", "Cal says: 'Ada and I are both knights or both liars.'"]
 unknown: "Which of the three tell the truth."
+leading_question: "What does Ben's sentence tell you about Ben and Cal together?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

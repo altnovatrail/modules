@@ -10,6 +10,7 @@ statement:
     height: 328
 givens: ["The three shapes have six cells each."]
 unknown: "How many of them can be folded into a cube."
+leading_question: "Try to fold each shape round a cube, one cell after another."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

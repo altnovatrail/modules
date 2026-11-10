@@ -6,6 +6,7 @@ statement:
   - text: "Think of any number. Add 5. Double the result. Take 4 away. Halve the result. Finally, take away the number you thought of. What do you get?"
 givens: ["Think of any number, add 5, double it, take 4 away, halve it.", "Then take away the number you thought of."]
 unknown: "What you get."
+leading_question: "Try two different numbers. Then follow the steps with a box standing for the number."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

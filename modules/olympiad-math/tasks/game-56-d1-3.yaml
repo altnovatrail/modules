@@ -10,6 +10,7 @@ statement:
     height: 74
 givens: ["The numbers 1 to 6 are on the board.", "A move rubs out two numbers and writes their sum, Ann first.", "Ann wins if the last number is even, Ben if it is odd."]
 unknown: "Who wins."
+leading_question: "What happens to the sum of all the numbers on the board after a move?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

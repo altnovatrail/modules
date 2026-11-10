@@ -10,6 +10,7 @@ statement:
     height: 190
 givens: ["The board is 4 by 4 squares, rows A to D from the top and columns 1 to 4 from the left.", "The robot goes from A1 to D4, one square right or down at a time.", "Square B2 is blocked."]
 unknown: "How many different routes the robot can take."
+leading_question: "How many routes reach each square? A square can be reached only from the square above it or the square to its left."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

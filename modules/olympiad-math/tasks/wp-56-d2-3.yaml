@@ -6,6 +6,7 @@ statement:
   - text: "A toy balance has room for at most two marbles on each pan. One of 12 marbles is a fake that is lighter than the others, which all weigh the same. What is the smallest number of weighings that is sure to find the fake marble?"
 givens: ["The balance holds at most two marbles on each pan.", "One of 12 marbles is a lighter fake, and the others all weigh the same."]
 unknown: "The smallest number of weighings that is sure to find the fake."
+leading_question: "What does one weighing of two marbles against two tell you, whichever way it goes?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

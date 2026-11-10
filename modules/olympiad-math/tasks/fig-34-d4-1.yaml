@@ -10,6 +10,7 @@ statement:
     height: 128
 givens: ["Each line in the picture is a match."]
 unknown: "How many squares of any size the matches make."
+leading_question: "Which squares have a match on each of their four sides?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -10,6 +10,7 @@ statement:
     height: 212
 givens: ["The group has 20 children.", "12 have a dog and 10 have a cat."]
 unknown: "The smallest number who could have both."
+leading_question: "Try to keep the dog owners and the cat owners apart. How many children would you need for that?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

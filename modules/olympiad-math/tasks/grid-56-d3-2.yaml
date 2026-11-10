@@ -10,6 +10,7 @@ statement:
     height: 154
 givens: ["A domino covers two squares of a 3 by 3 board that share a side.", "Placements are different when they cover different squares."]
 unknown: "In how many ways the domino can be placed."
+leading_question: "Count the places for a domino lying across first, then for one standing up."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

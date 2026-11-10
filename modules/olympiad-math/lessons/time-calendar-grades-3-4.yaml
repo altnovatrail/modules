@@ -27,6 +27,7 @@ segments:
   - task: cal-34-d5-1
   - explanation:
       - text: "How to solve: find what does not change."
-      - text: "Find what repeats or stays the same."
-      - text: "Drop the whole weeks, or work with the difference of ages."
-      - text: "Count what is left, and check whether both ends count."
+      - numbered_list:
+          - "Find what repeats or stays the same."
+          - "Drop the whole weeks, or work with the difference of ages."
+          - "Count what is left, and check whether both ends count."

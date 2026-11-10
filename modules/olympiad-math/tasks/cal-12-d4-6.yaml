@@ -6,6 +6,7 @@ statement:
   - text: "Omar goes to school from Sunday to Thursday. In some year, 1 April is a Sunday, and April has 30 days. How many school days are there in that April?"
 givens: ["Omar has school from Sunday to Thursday.", "1 April is a Sunday, and April has 30 days."]
 unknown: "How many school days that April has."
+leading_question: "Which dates of April fall on a Friday or a Saturday? Omar goes to school on all the other days."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

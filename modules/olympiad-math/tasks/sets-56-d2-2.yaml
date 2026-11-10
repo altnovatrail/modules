@@ -10,6 +10,7 @@ statement:
     height: 212
 givens: ["Every child likes apples, pears or both.", "18 like apples, 14 like pears, and 7 like both."]
 unknown: "How many children are in the group."
+leading_question: "Which children were counted with the apples and again with the pears?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

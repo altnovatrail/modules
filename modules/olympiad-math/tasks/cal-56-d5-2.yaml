@@ -6,6 +6,7 @@ statement:
   - text: "A date written in numbers, such as 6.8.2026, is called even when all its digits are even, with 0 counting as even. February 2026 has 28 days. How many even dates does the year 2026 have?"
 givens: ["A date such as 6.8.2026 is even when all its digits are even, 0 counting as even.", "February 2026 has 28 days."]
 unknown: "How many even dates the year 2026 has."
+leading_question: "Which days, from 1 to 31, have only even digits? And which months?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

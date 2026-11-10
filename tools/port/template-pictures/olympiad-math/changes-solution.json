@@ -1,0 +1,4 @@
+[
+  {"when": {"pct": 20}, "picture": {"kind": "bars", "bars": [{"segments": [{"size": 15, "label": "{discount}"}, {"size": 15, "label": "{discount}"}, {"size": 15, "label": "{discount}"}, {"size": 15, "label": "{discount}"}, {"size": 15, "label": "{discount}"}], "braces": [{"from": 0, "to": 4, "label": "{end}"}], "value": "{old_price}"}]}},
+  {"when": {"pct": 25}, "picture": {"kind": "bars", "bars": [{"segments": [{"size": 15, "label": "{discount}"}, {"size": 15, "label": "{discount}"}, {"size": 15, "label": "{discount}"}, {"size": 15, "label": "{discount}"}], "braces": [{"from": 0, "to": 3, "label": "{end}"}], "value": "{old_price}"}]}}
+]

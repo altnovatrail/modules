@@ -6,6 +6,7 @@ statement:
   - text: "Each of 50 pupils got a mark from 1 to 5 in maths and a mark from 1 to 5 in reading. At least how many pupils must have got exactly the same pair of marks?"
 givens: ["There are 50 pupils.", "Each got a mark from 1 to 5 in maths and a mark from 1 to 5 in reading."]
 unknown: "At least how many pupils got exactly the same pair of marks."
+leading_question: "How many different pairs of marks are there? Could every pair belong to one pupil only?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

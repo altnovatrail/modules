@@ -6,6 +6,7 @@ statement:
   - text: "Nina has a bag of 15 marbles and plays a game with Oscar. They move in turn, starting with Nina, and each move removes 1, 3 or 4 marbles from the bag. Whoever empties the bag is the winner. If Oscar always makes his best move, how many marbles must Nina remove at the start to win for certain?"
 givens: ["The bag holds 15 marbles, and Nina moves first.", "A move removes 1, 3 or 4 marbles, and emptying the bag wins.", "Oscar always makes his best move."]
 unknown: "How many marbles Nina must remove first to win for certain."
+leading_question: "Start from an empty bag and mark each small bag as a win or a loss for the player about to move."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

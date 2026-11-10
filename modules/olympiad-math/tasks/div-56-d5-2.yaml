@@ -6,6 +6,7 @@ statement:
   - text: "Multiply the two digits of a two-digit number. For how many two-digit numbers does the number itself divide by what you get?"
 givens: ["The two digits of a two-digit number are multiplied."]
 unknown: "For how many two-digit numbers the number divides by that product."
+leading_question: "A number that divides by the product of its digits also divides by each digit. Which two-digit numbers do that?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

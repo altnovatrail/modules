@@ -6,6 +6,7 @@ statement:
   - text: "A drawer holds socks of 3 colours, and each colour comes in 2 sizes, many of each kind, all mixed up. In the dark, how many socks must you take to be sure of 2 socks of the same colour and the same size?"
 givens: ["The socks come in 3 colours.", "Each colour comes in 2 sizes, many of each kind, all mixed up.", "You take socks in the dark."]
 unknown: "How many socks you must take to be sure of 2 socks of the same colour and the same size."
+leading_question: "How many different kinds of sock are there, if a kind means one colour and one size?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

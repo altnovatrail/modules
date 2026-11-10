@@ -6,6 +6,7 @@ statement:
   - text: "Bag A has 1 red bead for every 2 blue beads. Bag B holds twice as many beads as bag A, with 3 red beads for every 1 blue bead. All the beads are tipped into one box. What is the ratio of red beads to blue beads in the box?"
 givens: ["Bag A has 1 red bead for every 2 blue beads.", "Bag B holds twice as many beads as bag A, with 3 red beads for every blue bead.", "All the beads are tipped into one box."]
 unknown: "The ratio of red beads to blue beads in the box."
+leading_question: "Choose a size for bag A, such as 12 beads, and count."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "In Europe the date 3/5 means 3 May, with the day first, but in the USA it means 5 March, with the month first. Ann writes every date from 1 January to 30 June the European way. For how many of these dates would a reader from the USA get a different real date?"
 givens: ["In Europe 3/5 means 3 May, and in the USA it means 5 March.", "Ann writes every date from 1 January to 30 June the European way."]
 unknown: "How many of these dates a reader from the USA takes for a different real date."
+leading_question: "Which days of a month can also be read as a month? And when does the other reading give the same date?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

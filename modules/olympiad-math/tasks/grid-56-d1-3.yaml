@@ -10,6 +10,7 @@ statement:
     height: 154
 givens: ["Cell A1 of a 3 by 3 board is painted.", "The board must look the same after a quarter turn about its centre."]
 unknown: "At least how many cells must be painted, A1 among them."
+leading_question: "Where does a quarter turn take A1? Where does the next quarter turn take that cell?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

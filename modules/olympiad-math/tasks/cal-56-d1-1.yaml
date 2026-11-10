@@ -6,6 +6,7 @@ statement:
   - text: "Leo writes dates in numbers, such as 5.3.2024 for 5 March 2024. On that date the digits of the day and the month add up to 5 + 3 = 8. The digits of the year add up to 8 too: 2 + 0 + 2 + 4 = 8. On which date of 2024 does this happen for the last time?"
 givens: ["Leo writes dates in numbers, such as 5.3.2024.", "On that date the digits of the day and the month add up to 8, as the digits of the year do."]
 unknown: "The last date of 2024 when this happens."
+leading_question: "December's digits add up to 1 + 2 = 3. What must the digits of the day add up to?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

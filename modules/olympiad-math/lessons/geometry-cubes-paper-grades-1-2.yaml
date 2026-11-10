@@ -35,6 +35,7 @@ segments:
   - task: cube-12-d4-1
   - explanation:
       - text: "How to solve: one fold at a time."
-      - text: "Pick the first square, fold or roll."
-      - text: "Say what it does to the faces or the layers."
-      - text: "Go on step by step, then check with paper or a die."
+      - numbered_list:
+          - "Pick the first square, fold or roll."
+          - "Say what it does to the faces or the layers."
+          - "Go on step by step, then check with paper or a die."

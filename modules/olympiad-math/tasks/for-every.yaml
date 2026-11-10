@@ -2,11 +2,14 @@
 # content/solvers/ratio.sharing/for-every.star at 42b4408, made a solver of the template. It came from
 # reference task ratio-56-d4-1, whose numbers are one of its instances.
 # The numbers of reference task ratio-56-d4-1: daisies 30.
+# Its leading question is the hint of ratio-56-d4-1, as it stands (amendment T51 to R22).
 # Its capital START, the daisies, is the number that the statement shows, a multiple of 15 from 15
 # to 60, so that every link, 4 tulips for every 5 daisies and 2 roses for every 3 tulips,
 # gives a whole number. standalone's sandbox gives it sum, which the dialect of the format has not
-# (format/README.md, section 24), so a loop adds the chain. The reference task's picture is left out:
-# one picture for every instance would show its 30 daisies. The trap values are derived numbers.
+# (format/README.md, section 24), so a loop adds the chain. The picture of the reference task is the
+# picture of each instance, with its daisies, which the port draws for every instance from
+# tools/port/template-pictures/olympiad-math/ (amendment T52 to R22). The trap values are derived
+# numbers.
 # The solver carries this notice:
 # MIT License
 #
@@ -68,11 +71,16 @@ template:
     results: [flowers]
 statement:
   - text: A flower stall sells only roses, tulips and daisies. It has 2 roses for every 3 tulips, and 4 tulips for every 5 daisies. There are {daisies} daisies. How many flowers does the stall have?
+  - picture: pictures/for-every-{daisies}.png
+    alt: "Four bars: R of 2 parts, T of 3 parts, T of 4 parts and D of 5 parts, with the notes D = {daisies} and R + T + D = ?."
+    width: 329
+    height: 224
 givens:
   - The stall sells only roses, tulips and daisies.
   - There are 2 roses for every 3 tulips, and 4 tulips for every 5 daisies.
   - There are {daisies} daisies.
 unknown: How many flowers the stall has.
+leading_question: Find the tulips first, then the roses.
 canvas:
   kind: handwriting_sheet
   grid: squares

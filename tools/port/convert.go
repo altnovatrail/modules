@@ -38,21 +38,27 @@ const maxValue = 16
 const (
 	answerNumber   = "number"
 	answerFraction = "fraction"
+	answerTime     = "time"
 	answerByHand   = "choice by hand"
 	answerTapped   = "choice tapped"
 )
+
+// twelveHoursText is the text of the trap value that twelveHoursOff gives a time a clock face shows
+// otherwise: it names no number, as it is the same in every task (amendment T50 to R20).
+const twelveHoursText = "That is the time on a clock face, which starts its hours again at noon. Count the hours of the afternoon on from noon."
 
 // Converted is a task of the module as the port writes it: the file tasks/<id>.yaml and the
 // pictures it shows, by their paths from the module's folder.
 type Converted struct {
 	ID    string
 	Files map[string][]byte
-	// Answer is the kind of its answer: one of answerNumber, answerFraction, answerByHand and
-	// answerTapped.
+	// Answer is the kind of its answer: one of answerNumber, answerFraction, answerTime, answerByHand
+	// and answerTapped.
 	Answer string
 	// Notes are what the port left out, for the person who reads its report.
 	Notes []string
-	// KeyNamed counts the explanations that name the key of a choice, which only a survey writes.
+	// KeyNamed counts the explanations and the leading question that name the key of a choice or a
+	// time, which only a survey writes.
 	KeyNamed int
 	// FromPicture says that the task's solver reads its picture (R21).
 	FromPicture bool
@@ -72,9 +78,10 @@ func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile
 	}
 	files := map[string][]byte{}
 	var notes []string
-	if ex.Hint != "" {
-		notes = append(notes, "its hint is not carried: the format has no field for it")
+	if ex.Hint == "" && overlay.LeadingQuestion != "" {
+		return Converted{}, fmt.Errorf("%s: its overlay has leading_question, and the task has no hint", ex.ID)
 	}
+	leading := leadingOf(ex, overlay)
 
 	if ex.Picture == nil && overlay.PictureAlt != "" {
 		return Converted{}, fmt.Errorf("%s: its overlay has picture_alt, and the task has no picture", ex.ID)
@@ -141,6 +148,9 @@ func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile
 	}
 	if overlay.Unknown != "" {
 		root = append(root, pair{"unknown", overlay.Unknown})
+	}
+	if leading != "" {
+		root = append(root, pair{"leading_question", leading})
 	}
 	canvas := mapping{{"kind", batch.Canvas.Kind}}
 	if batch.Canvas.Grid != "" {
@@ -236,7 +246,8 @@ var capitals = regexp.MustCompile(`^[A-Z]+$`)
 
 // answer is the answer slot of a task, as answerOf gives it: the slot, its key, the traps of the
 // wrong options that become no trap value, a note of each such option, the kind of the answer, and
-// how many explanations name the key of a choice, which only a survey lets through.
+// how many explanations and leading questions name the key of a choice or a time, which only a
+// survey lets through.
 type answer struct {
 	slot     mapping
 	key      string
@@ -251,9 +262,15 @@ type answer struct {
 //   - an answer in the notation of the checks of numbers is written by hand anywhere on the sheet:
 //     a simple fraction is checked as a fraction, and an integer or a decimal, with units of the
 //     batch, as a number, which takes a fraction too;
-//   - a time on a clock, and one word other than yes and no that the question holds, are a choice
-//     written by hand anywhere on the sheet, whose options are the check's and closed, unless the
-//     batch has the task tapped: its wrong options are reasons, not answers a learner writes;
+//   - a time on a clock is written by hand anywhere on the sheet and checked as a time, with no
+//     options: the kind reads any time, compares its hours and minutes, and has each wrong option
+//     for a trap value; a time of the afternoon or evening has one more, as a clock face shows it
+//     (amendment T50 to R20);
+//   - one word other than yes and no that the question holds is a choice written by hand anywhere
+//     on the sheet, whose options are the check's and whose notation word reads any one word, so
+//     that a word none of the options is a wrong answer, not one left unread (amendment T49 to R20).
+//     A batch may have such a word tapped: its wrong options are reasons, not answers a learner
+//     writes;
 //   - any other answer — a word the question does not hold, yes or no, a phrase, a date, a
 //     quantity of more than one part, and a number with words after it that the batch gives no
 //     units for — is a choice tapped. The report names such an answer that begins with a digit.
@@ -263,19 +280,22 @@ func answerOf(ex Example, task BatchTask, overlay Overlay, lenient bool) (answer
 	right := ex.Options[ex.CorrectAnswer]
 	switch {
 	case pointsAtOptions.MatchString(ex.Question):
-		return chosen(ex, overlay, lenient, false)
+		return chosen(ex, overlay, lenient, tapping)
 	case clockTime.MatchString(right):
 		// A time reads as a number with words after it, 7 and :30, so it goes before valueOf.
-		return chosen(ex, overlay, lenient, true)
+		return chosen(ex, overlay, lenient, timeByHand)
 	}
 	kind, key, err := valueOf(right, task.Units)
 	if err != nil {
 		return answer{}, fmt.Errorf("%s: its answer %q: %w", ex.ID, right, err)
 	}
 	if kind == "" {
-		byHand := !task.Tapped && oneWord.MatchString(right) && !yesOrNo.MatchString(right) && names(ex.Question, right)
-		a, err := chosen(ex, overlay, lenient, byHand)
-		if err == nil && !byHand && leadingDigit.MatchString(right) {
+		how := tapping
+		if !task.Tapped && oneWord.MatchString(right) && !yesOrNo.MatchString(right) && names(ex.Question, right) {
+			how = wordByHand
+		}
+		a, err := chosen(ex, overlay, lenient, how)
+		if err == nil && how == tapping && leadingDigit.MatchString(right) {
 			a.notes = append(a.notes, fmt.Sprintf("its answer %q is no number in the notation of the checks, or one with words after it that the batch gives no units for: it is a choice tapped", right))
 		}
 		return a, err
@@ -301,13 +321,9 @@ func answerOf(ex Example, task BatchTask, overlay Overlay, lenient bool) (answer
 		// learner who writes it gets no explanation of it, rather than the port one of another value.
 		wrongKind, value, unitErr := valueOf(ex.Options[letter], task.Units)
 		if unitErr != nil || wrongKind == "" || (kind == "fraction" && wrongKind != "fraction") {
-			// A wrong option that is no value of the check cannot be a trap value: its trap goes
-			// to the task's traps, for AI to suggest, and its text is left out (docs/architecture.md,
-			// section 3.5).
-			if !slices.Contains(traps, trap) {
-				traps = append(traps, trap)
-			}
-			dropped = append(dropped, fmt.Sprintf("its option %s, %q, is no value of the check %s: its trap %s goes to the task's traps, and its text is not carried", letter, ex.Options[letter], kind, trap))
+			var note string
+			traps, note = notCarried(traps, letter, ex.Options[letter], kind, trap)
+			dropped = append(dropped, note)
 			continue
 		}
 		if len(value) > maxValue {
@@ -335,29 +351,72 @@ func answerOf(ex Example, task BatchTask, overlay Overlay, lenient bool) (answer
 	return answer{slot: mapping{{"binding", "anywhere"}, {"check", check}}, key: key, traps: traps, notes: dropped, kind: kind}, nil
 }
 
-// chosen is the answer slot of a choice: the five options as written, the right one the key and
-// each other a trap value. Tapped, the options are the answer slot's; written by hand, anywhere on
-// the sheet, they are the check's, which the learner does not see (format/README.md, section 15).
-// No two options may be alike in the normal form of a choice. The leak check of the format searches
-// neither the key of a choice tapped nor one that the statement holds (R05; R20), so the port
-// searches it in the texts it writes that the learner sees before the task is solved: an
-// explanation that names the key is to be rewritten in the overlay, and the overlay's simpler case
-// is not to name it, nor its givens and unknown, but where they restate a question that names it.
-// A survey, lenient, has no overlay, and writes such an explanation, and counts it.
-func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
+// writing is how an answer that is no number is given: a choice tapped, or written by hand, a time
+// or a word (R20).
+type writing int
+
+const (
+	tapping writing = iota
+	// timeByHand is a time on a clock, checked as a time with no options: any time is read, and
+	// one none of the options is a wrong answer (format/README.md, section 15; amendment T50 to R20).
+	timeByHand
+	// wordByHand is one word, with notation word: any one word is read, and a word none of the
+	// options is a wrong answer (format/README.md, section 15; amendment T49 to R20).
+	wordByHand
+)
+
+// chosen is the answer slot of an answer given among five options: the right one the key and each
+// other a trap value. Tapped, the options are the answer slot's; a word written by hand, anywhere on
+// the sheet, has them in the check, which the learner does not see; a time is checked as a time,
+// with no options at all, and a time that a clock face shows otherwise has one trap value more
+// (format/README.md, section 15). No two options may be alike as the check compares them. The leak
+// check of the format searches neither the key of a choice tapped nor one that the statement holds
+// (R05; R20), so the port searches it in the texts it writes that the learner sees before the task
+// is solved: an explanation that names the key is to be rewritten in the overlay, and the overlay's
+// simpler case is not to name it, nor its givens and unknown, but where they restate a question
+// that names it. A survey, lenient, has no overlay, and writes such an explanation, and counts it.
+func chosen(ex Example, overlay Overlay, lenient bool, how writing) (answer, error) {
 	key := ex.Options[ex.CorrectAnswer]
+	namesKey := func(text string) bool { return names(text, key) }
+	if how == timeByHand {
+		// The key of a time has hours with no leading zero, and the leak check finds it with one
+		// too, 07:30 for 7:30 (format/README.md, section 20).
+		key = timeForm(key)
+		namesKey = func(text string) bool { return names(text, key) || len(key) == len("7:30") && names(text, "0"+key) }
+	}
 	var options, values sequence
-	var notes []string
+	var traps, notes []string
 	keyNamed := 0
 	used := map[string]bool{}
 	seen := map[string]string{}
 	for _, letter := range letters {
 		option := ex.Options[letter]
-		if other, twice := seen[choiceForm(option)]; twice {
-			return answer{}, fmt.Errorf("%s: its option %s, %q, is option %s too, as a choice compares them", ex.ID, letter, option, other)
+		// A word's options are compared as notation word reads them, with their end cut, and none
+		// may be left blank (task.choice-options); a time's, as the kind time reads them, by hours
+		// and minutes.
+		form, compared := choiceForm(option), "a choice"
+		switch how {
+		case wordByHand:
+			form = wordForm(option)
+			if form == "" {
+				return answer{}, fmt.Errorf("%s: its option %s, %q, is blank as notation word reads it", ex.ID, letter, option)
+			}
+		case timeByHand:
+			form, compared = timeForm(option), "the kind time"
+			if form == "" {
+				var note string
+				traps, note = notCarried(traps, letter, option, "time", idOf(ex.Distractors[letter].Trap))
+				notes = append(notes, note)
+				continue
+			}
 		}
-		seen[choiceForm(option)] = letter
-		options = append(options, option)
+		if other, twice := seen[form]; twice {
+			return answer{}, fmt.Errorf("%s: its option %s, %q, is option %s too, as %s compares them", ex.ID, letter, option, other, compared)
+		}
+		seen[form] = letter
+		if how != timeByHand {
+			options = append(options, option)
+		}
 		if letter == ex.CorrectAnswer {
 			continue
 		}
@@ -367,7 +426,7 @@ func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
 			text = rewritten
 			used[option] = true
 		}
-		if names(text, key) {
+		if namesKey(text) {
 			if !lenient {
 				return answer{}, fmt.Errorf("%s: the explanation of its option %s names its key %q: rewrite it in the trap_texts of its overlay (R05)", ex.ID, letter, key)
 			}
@@ -379,6 +438,16 @@ func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
 	if err := unusedTexts(ex.ID, overlay, used); err != nil {
 		return answer{}, err
 	}
+	// The leading question comes before the first wrong answer and hints more than a technique, so,
+	// like the simpler case, it never names the key, which the leak check of the format searches
+	// neither in a choice nor where the statement shows it (amendment T51 to R12).
+	if leading := leadingOf(ex, overlay); namesKey(leading) {
+		if !lenient {
+			return answer{}, fmt.Errorf("%s: its leading question names its key %q: rewrite it in the leading_question of its overlay (amendment T51 to R12)", ex.ID, key)
+		}
+		keyNamed++
+		notes = append(notes, fmt.Sprintf("its leading question names its key %q", key))
+	}
 	// The givens and the unknown restate the statement, so they may name a key that the question
 	// names too, as a word written by hand always is, but only beside another option or where they
 	// quote the question: else the key there is the answer. Only the question counts, not the
@@ -386,13 +455,25 @@ func chosen(ex Example, overlay Overlay, lenient, byHand bool) (answer, error) {
 	// The simpler case never names the key.
 	restated := append([]string{overlay.Unknown}, overlay.Givens...)
 	for i, text := range append(restated, overlay.SimplerCase) {
-		if !names(text, key) || i < len(restated) && names(ex.Question, key) && (namesAnother(text, ex) || quotes(ex.Question, text, key)) {
+		if !namesKey(text) || i < len(restated) && namesKey(ex.Question) && (namesAnother(text, ex) || quotes(ex.Question, text, key)) {
 			continue
 		}
 		return answer{}, fmt.Errorf("%s: its overlay's text %q names its key %q", ex.ID, text, key)
 	}
-	if byHand {
-		check := mapping{{"kind", "choice"}, {"key", key}, {"options", options}, {"trap_values", values}}
+	switch how {
+	case timeByHand:
+		// A time that a clock face shows otherwise, which the statement counts to 24, has a trap value
+		// more: the time as a clock face shows it, unless an option is that time (R111 spec).
+		if twelve := twelveHoursOff(key); twelve != "" && seen[twelve] == "" {
+			values = append(values, mapping{{"value", twelve}, {"trap", "twelve-hours-off"}, {"text", twelveHoursText}})
+		}
+		check := mapping{{"kind", "time"}, {"key", key}}
+		if len(values) > 0 {
+			check = append(check, pair{"trap_values", values})
+		}
+		return answer{slot: mapping{{"binding", "anywhere"}, {"check", check}}, key: key, traps: traps, notes: notes, kind: answerTime, keyNamed: keyNamed}, nil
+	case wordByHand:
+		check := mapping{{"kind", "choice"}, {"notation", "word"}, {"key", key}, {"options", options}, {"trap_values", values}}
 		return answer{slot: mapping{{"binding", "anywhere"}, {"check", check}}, key: key, notes: notes, kind: answerByHand, keyNamed: keyNamed}, nil
 	}
 	check := mapping{{"kind", "choice"}, {"key", key}, {"trap_values", values}}
@@ -432,6 +513,25 @@ func namesAnother(text string, ex Example) bool {
 
 // unusedTexts refuses an overlay that rewrites the explanation of a value the task does not have:
 // the text would be lost unsaid.
+// notCarried is the rule of a wrong option that is no value of its check, a number's or a time's:
+// it cannot be a trap value, so its trap goes to the task's traps, for AI to suggest, and its text
+// is left out, which the note says (docs/architecture.md, section 3.5).
+func notCarried(traps []string, letter, option, kind, trap string) ([]string, string) {
+	if !slices.Contains(traps, trap) {
+		traps = append(traps, trap)
+	}
+	return traps, fmt.Sprintf("its option %s, %q, is no value of the check %s: its trap %s goes to the task's traps, and its text is not carried", letter, option, kind, trap)
+}
+
+// leadingOf is the leading question of a task: the hint of standalone, or the overlay's question
+// written in its place (amendment T51 to R12).
+func leadingOf(ex Example, overlay Overlay) string {
+	if overlay.LeadingQuestion != "" {
+		return overlay.LeadingQuestion
+	}
+	return ex.Hint
+}
+
 func unusedTexts(id string, overlay Overlay, used map[string]bool) error {
 	var unused []string
 	for value := range overlay.TrapTexts {

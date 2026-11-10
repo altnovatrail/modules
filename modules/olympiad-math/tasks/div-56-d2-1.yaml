@@ -6,6 +6,7 @@ statement:
   - text: "Kim reads a book from page 40 to page 100, and both of those pages count. Every page whose number can be divided by 4 with nothing left over has a picture. How many pages with pictures does Kim read?"
 givens: ["Kim reads from page 40 to page 100, both counted.", "Every page whose number divides by 4 has a picture."]
 unknown: "How many pages with pictures Kim reads."
+leading_question: "Which is the first page with a picture, and which is the last?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

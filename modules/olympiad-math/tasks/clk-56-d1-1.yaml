@@ -7,6 +7,7 @@ statement:
   - text: "Write the time as hours and minutes, like 9:15."
 givens: ["The shop opens at 7:00.", "Mixing takes 20 minutes, rising 2 hours, baking 40 minutes and cooling 15 minutes.", "The oven needs 30 minutes to heat up and can heat while the dough rises."]
 unknown: "The latest time the baker can start."
+leading_question: "Work back from 7:00, one step at a time. Does heating the oven add any time?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"
@@ -14,9 +15,8 @@ items:
   - answer_slots:
       - binding: "anywhere"
         check:
-          kind: "choice"
+          kind: "time"
           key: "3:45"
-          options: ["4:00", "3:15", "10:15", "3:45", "3:35"]
           trap_values:
             - value: "4:00"
               trap: "stopped-early"

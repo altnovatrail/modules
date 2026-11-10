@@ -26,8 +26,8 @@ type Batch struct {
 	// every task it writes names.
 	overlays string
 	// survey marks the batch that a survey makes, of every task no batch names: it is never read
-	// from a file, its pictures get surveyAlt, and an explanation that names the key of a choice is
-	// counted, not refused.
+	// from a file, its pictures get surveyAlt, and an explanation or a leading question that names the
+	// key of a choice is counted, not refused.
 	survey bool
 }
 
@@ -56,9 +56,12 @@ type BatchTask struct {
 // Overlay is what a person writes for a task, tools/port/overlay/<batch>/<id>.yaml: none of it comes from
 // standalone, and the port puts it into the task as it is (R12).
 type Overlay struct {
-	Givens      []string `yaml:"givens,omitempty"`
-	Unknown     string   `yaml:"unknown,omitempty"`
-	SimplerCase string   `yaml:"simpler_case,omitempty"`
+	Givens  []string `yaml:"givens,omitempty"`
+	Unknown string   `yaml:"unknown,omitempty"`
+	// LeadingQuestion, when given, stands in place of the hint of standalone, as the task's leading
+	// question: written anew where the hint names the key (amendment T51 to R12).
+	LeadingQuestion string `yaml:"leading_question,omitempty"`
+	SimplerCase     string `yaml:"simpler_case,omitempty"`
 	// Techniques, when given, stand in place of those of the task's skill.
 	Techniques []string `yaml:"techniques,omitempty"`
 	// Traps are added to those of the wrong options that become no trap value.
@@ -69,8 +72,8 @@ type Overlay struct {
 	PictureAlt         string `yaml:"picture_alt,omitempty"`
 	SolutionPictureAlt string `yaml:"solution_picture_alt,omitempty"`
 	// AnswerForm is a paragraph of the statement after the question and its picture, which says what
-	// form the answer takes, such as "Write the time as on the clock, like 7:30.": a choice written
-	// by hand keeps its options closed (format/README.md, section 15).
+	// form the answer takes, such as "Write the time as hours and minutes, like 9:15.", as a statement
+	// SHOULD say (format/README.md, section 15).
 	AnswerForm string `yaml:"answer_form,omitempty"`
 	// TrapTexts are explanations written anew, by the trap value they explain, as the module
 	// writes it: "5", not "5 m".

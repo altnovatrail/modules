@@ -6,6 +6,7 @@ statement:
   - text: "Eva and Dan share a bowl of 12 sweets. They eat in turn, Eva first, and each time a player eats 1 or 2 sweets. This time the one who eats the last sweet loses. Dan never makes a mistake. How many sweets must Eva eat at the start so that she wins whatever he does?"
 givens: ["The bowl holds 12 sweets, and Eva eats first.", "Each eats 1 or 2 sweets in turn, and the one who eats the last sweet loses.", "Dan never makes a mistake."]
 unknown: "How many sweets Eva must eat first to win whatever he does."
+leading_question: "Which bowl would you like to hand Dan: 1 sweet, 2 sweets or 3 sweets?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

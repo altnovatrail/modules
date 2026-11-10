@@ -6,6 +6,7 @@ statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Ivy says: 'Exactly one of Jay and Kit is a knight.' Jay says: 'Ivy is a knight.' Kit says: 'Ivy is a knight.' How many knights are among the three?"
 givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Ivy says: 'Exactly one of Jay and Kit is a knight.'", "Jay and Kit both say: 'Ivy is a knight.'"]
 unknown: "How many knights are among the three."
+leading_question: "Jay and Kit say the same thing. What does that tell you about the two of them?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

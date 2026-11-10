@@ -6,6 +6,7 @@ statement:
   - text: "A square garden is 12 metres on each side. Its fence has a post every 3 metres, one in each corner. Two straight fences cross the garden through its middle, one parallel to each side, and split it into four square beds. They have a post every 3 metres too. Where fences meet, one post serves both. How many posts are there?"
 givens: ["The garden is a square, 12 metres on each side.", "Its fence has a post every 3 metres, one in each corner.", "Two straight fences cross the garden through its middle, with a post every 3 metres.", "Where fences meet, one post serves both."]
 unknown: "How many posts there are."
+leading_question: "Count the posts on the outer fence first. Which posts of the two inner fences are new?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

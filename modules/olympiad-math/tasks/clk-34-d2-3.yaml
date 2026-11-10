@@ -14,9 +14,8 @@ items:
   - answer_slots:
       - binding: "anywhere"
         check:
-          kind: "choice"
+          kind: "time"
           key: "5:45"
-          options: ["5:15", "5:45", "5:85", "6:45", "11:35"]
           trap_values:
             - value: "5:15"
               trap: "wrong-operation"

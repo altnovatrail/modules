@@ -6,6 +6,7 @@ statement:
   - text: "There are five sisters: Amy, Beth, Cleo, Dora and Gwen. Amy is older than exactly one of the others. Beth is younger than exactly one of the others. Cleo is older than Amy but younger than Gwen. Who is the eldest?"
 givens: ["Amy, Beth, Cleo, Dora and Gwen are sisters.", "Amy is older than exactly one of the others.", "Beth is younger than exactly one of the others.", "Cleo is older than Amy but younger than Gwen."]
 unknown: "Who is the eldest."
+leading_question: "Line the sisters up from the eldest to the youngest. Which places do Amy and Beth take?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"
@@ -14,6 +15,7 @@ items:
       - binding: "anywhere"
         check:
           kind: "choice"
+          notation: "word"
           key: "Gwen"
           options: ["Cleo", "Beth", "Gwen", "Dora", "It is impossible to tell"]
           trap_values:

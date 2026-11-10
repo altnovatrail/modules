@@ -6,6 +6,7 @@ statement:
   - text: "A shop sells wheels for 150 coins each and bolts for 10 coins each. Once a customer has paid 320 coins or more in the shop, everything they buy after that is 20% cheaper. Tom needs 3 wheels and 1 bolt. He may pay in several goes and may buy more than he needs. What is the least he can pay to get what he needs?"
 givens: ["Wheels cost 150 coins and bolts 10 coins.", "Once 320 coins or more are paid, everything after that is 20% cheaper.", "Tom needs 3 wheels and 1 bolt, may pay in several goes and may buy more than he needs."]
 unknown: "The least Tom can pay to get what he needs."
+leading_question: "Which thing would Tom most like to buy with the discount? How can he pay 320 coins before he buys it?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

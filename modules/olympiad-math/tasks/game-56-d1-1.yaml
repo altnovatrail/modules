@@ -10,6 +10,7 @@ statement:
     height: 74
 givens: ["Five cards, numbered 1 to 5, lie face up.", "Ben and Ann take turns to pick up a card, Ben first, until one card is left.", "Ann wins if its number is odd, Ben if it is even."]
 unknown: "Who can make sure to win, and how."
+leading_question: "Four cards are picked up. Who picks up the last of them?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

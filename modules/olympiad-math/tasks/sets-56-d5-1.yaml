@@ -6,6 +6,7 @@ statement:
   - text: "Each of the 30 pupils of a class goes to exactly two of three clubs: chess, music and drama. 20 pupils go to chess and 18 go to music. How many pupils go to drama?"
 givens: ["Each of 30 pupils goes to exactly two of three clubs: chess, music and drama.", "20 go to chess and 18 to music."]
 unknown: "How many go to drama."
+leading_question: "Count the places in the clubs. How many places does each pupil take?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

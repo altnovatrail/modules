@@ -6,6 +6,7 @@ statement:
   - text: "At 10:40 a motor boat sets off up a river, and at that moment a ball falls from it into the water and floats away with the current. At 11:05 the boat turns round and goes back down the river. Through the water, it always goes at the same speed. At what time does it reach the ball?"
 givens: ["At 10:40 the boat sets off up the river, and a ball falls into the water.", "At 11:05 the boat turns round.", "Through the water the boat always goes at the same speed."]
 unknown: "The time when the boat reaches the ball."
+leading_question: "Look at the boat and the ball from the water, which carries them both along."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

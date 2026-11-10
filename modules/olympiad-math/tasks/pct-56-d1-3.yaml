@@ -6,6 +6,7 @@ statement:
   - text: "Sam puts 500 coins in a bank. Every year the bank adds 20% of the 500 coins he first put in. How many coins does Sam have after 3 years?"
 givens: ["Sam puts 500 coins in a bank.", "Every year the bank adds 20% of the first 500 coins."]
 unknown: "How many coins Sam has after 3 years."
+leading_question: "How many coins does the bank add in one year? Does that number change from year to year?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

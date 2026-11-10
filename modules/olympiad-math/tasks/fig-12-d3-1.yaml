@@ -10,6 +10,7 @@ statement:
     height: 88
 givens: ["Each line in the picture is a match."]
 unknown: "How many matches there are."
+leading_question: "Is a side two squares share one match or two?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

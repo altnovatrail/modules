@@ -10,6 +10,7 @@ statement:
     height: 208
 givens: ["The seven filled cells are one cell too many for a cube."]
 unknown: "How many of the cells could be cut away so that the other six fold into a cube."
+leading_question: "Cut away one cell at a time, and try to fold the six left."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

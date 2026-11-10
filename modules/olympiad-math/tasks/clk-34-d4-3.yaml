@@ -14,9 +14,8 @@ items:
   - answer_slots:
       - binding: "anywhere"
         check:
-          kind: "choice"
+          kind: "time"
           key: "16:05"
-          options: ["15:05", "15:25", "15:65", "16:05", "16:25"]
           trap_values:
             - value: "15:05"
               trap: "wrong-operation"
@@ -30,6 +29,9 @@ items:
             - value: "16:25"
               trap: "wrong-operation"
               text: "You added 2 hours, not 1 hour 40 minutes."
+            - value: "4:05"
+              trap: "twelve-hours-off"
+              text: "That is the time on a clock face, which starts its hours again at noon. Count the hours of the afternoon on from noon."
     simpler_case: "Try 50 minutes first. What time will it be?"
 solution:
   - text: "100 minutes is 1 hour 40 minutes. 14:25 + 1 hour = 15:25. 35 more minutes give 16:00, and 5 more give 16:05."

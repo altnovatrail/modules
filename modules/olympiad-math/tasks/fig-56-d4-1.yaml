@@ -10,6 +10,7 @@ statement:
     height: 128
 givens: ["Each line in the picture is a match."]
 unknown: "The least number of matches to take away so that no square of any size is left."
+leading_question: "How many squares can one match break at most?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

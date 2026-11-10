@@ -6,6 +6,7 @@ statement:
   - text: "Nina and Omar cycle the same road from the school to the park, each at a steady speed. Nina takes 30 minutes and Omar takes 20 minutes. Nina rides at 12 km an hour. How fast does Omar ride?"
 givens: ["Nina and Omar ride the same road at steady speeds.", "Nina takes 30 minutes and Omar 20 minutes.", "Nina rides at 12 km an hour."]
 unknown: "How fast Omar rides."
+leading_question: "How long is the road? Nina rides at 12 km an hour for half an hour."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

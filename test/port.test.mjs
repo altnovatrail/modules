@@ -1,10 +1,11 @@
 // The test of the port's output against the format (R12; R20): tools/port, run by go, writes tasks
-// of a made-up standalone — with a picture of a row, and with answers that are a time and a word,
-// a choice written by hand — into a module made of the format's examples of olympiad-math, and
-// module-kit check accepts it, with no warning about the picture. A survey of the same standalone,
-// by the recipe _port-survey, writes all its tasks and counts the breaches of task.no-leaks. The tests of
-// tools/port itself are Go's, in "Go / test", which reads nothing of spec; this one needs the
-// format's examples and module-kit, so it runs in the job Modules.
+// of a made-up standalone — with a picture of a row, and with answers that are a time, checked as
+// a time, and a word, a choice written by hand — into a module made of the format's examples of
+// olympiad-math with the module's traps, and module-kit check accepts it, with no warning about the
+// picture. A survey of the same standalone, by the recipe _port-survey, writes all its tasks and
+// counts the breaches of task.no-leaks. The tests of tools/port itself are Go's, in "Go / test",
+// which reads nothing of spec; this one needs the format's examples and module-kit, so it runs in
+// the job Modules.
 
 import assert from "node:assert/strict";
 import { cpSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -15,29 +16,31 @@ import { ROOT, mustRun, run, temporaryFolder } from "./helpers.mjs";
 
 const PARTS = join(ROOT, "spec", "format", "examples");
 
-// A module of the format's examples of olympiad-math: manifest, skill graph, catalogs and solving
-// steps, and the repository's LICENSE.
+// A module of the format's examples of olympiad-math — manifest, skill graph, techniques and solving
+// steps — with the traps of modules/olympiad-math, whose IDs the port writes, one of them its own
+// until the example has it (amendment T50 to R23), as _port-survey makes it, and the repository's
+// LICENSE.
 function exampleModule(t) {
   const module = join(temporaryFolder(t), "olympiad-math");
   mkdirSync(module);
   for (const [part, file] of [
     ["manifest", "manifest.yaml"],
     ["skill-graph", "skill-graph.yaml"],
-    ["traps", "traps.yaml"],
     ["techniques", "techniques.yaml"],
     ["solving-steps", "solving-steps.yaml"],
   ]) {
     cpSync(join(PARTS, part, "valid", "olympiad-math.yaml"), join(module, file));
   }
+  cpSync(join(ROOT, "modules", "olympiad-math", "traps.yaml"), join(module, "traps.yaml"));
   cpSync(join(ROOT, "LICENSE"), join(module, "LICENSE"));
   return module;
 }
 
 // A made-up standalone with tasks of counting.gaps in its form, texts of their own: one with a
-// picture of a row, one whose wrong option is a word, one whose answer is a time and one whose
-// answer is a word of its question, and one whose explanation names its key, which no batch names.
-// It is a git repository with one commit, as a clone is, and the port holds it to the batch's
-// commit.
+// picture of a row and a hint, one whose wrong option is a word, one whose answer is a time and
+// one whose answer is a word of its question, and one whose explanation names its key, which no
+// batch names. It is a git repository with one commit, as a clone is, and the port holds it to the
+// batch's commit.
 function madeUpStandalone(t) {
   const clone = temporaryFolder(t);
   const task = (id, extra) => ({
@@ -61,12 +64,15 @@ function madeUpStandalone(t) {
   writeFileSync(
     join(clone, "content", "examples", "counting.gaps.json"),
     JSON.stringify([
-      task("flags-1", { picture: { kind: "row", items: [{}, {}, {}, { skip: true }, {}], gaps: "3" } }),
+      task("flags-1", {
+        picture: { kind: "row", items: [{}, {}, {}, { skip: true }, {}], gaps: "3" },
+        hint: "How many gaps lie between the first flag and the last?",
+      }),
       task("flags-2", { options: { A: "33", B: "30", C: "none", D: "36", E: "27" } }),
       task("flags-3", {
-        question: "The first flag goes up at 8:00, and a flag goes up every 10 minutes. When does the fourth go up?",
-        options: { A: "8:40", B: "8:30", C: "8:00", D: "8:10", E: "9:00" },
-        solution: "The fourth flag goes up 3 gaps of 10 minutes after the first: 30 minutes after 8:00.",
+        question: "The first flag goes up at 20:00, and a flag goes up every 10 minutes. When does the fourth go up?",
+        options: { A: "20:40", B: "20:30", C: "20:00", D: "20:10", E: "21:00" },
+        solution: "The fourth flag goes up 3 gaps of 10 minutes after the first: 30 minutes after 20:00.",
         distractors: {
           A: { trap: "off_by_one", text: "Four flags have 3 gaps, not 4." },
           C: { trap: "number_from_text", text: "That is when the first goes up." },
@@ -160,13 +166,17 @@ test("the port's tasks and its picture of a row pass module-kit check, with no w
   assert.match(checked.stdout, /the module breaks no rule of the format 0\.4/);
   assert.doesNotMatch(checked.stdout, /warning/);
 
+  assert.match(readFileSync(join(module, "tasks", "flags-1.yaml"), "utf8"), /^unknown: "How long the rope is between the first flag and the last\."\nleading_question: "How many gaps lie between the first flag and the last\?"\ncanvas:/m,
+    "the hint of standalone is the leading question, after the unknown");
   const task = readFileSync(join(module, "tasks", "flags-2.yaml"), "utf8");
   assert.match(task, /^traps: \["number-from-text"\]$/m, "a word among the wrong options becomes a trap of the task");
-  for (const [id, key] of [["flags-3", "8:30"], ["flags-4", "blue"]]) {
-    const byHand = readFileSync(join(module, "tasks", `${id}.yaml`), "utf8");
-    assert.match(byHand, /binding: "anywhere"\n {8}check:\n {10}kind: "choice"\n/, `${id} is a choice written by hand`);
-    assert.match(byHand, new RegExp(`key: "${key}"\n {10}options: \\[`), `${id} keeps its options in its check`);
-  }
+  const time = readFileSync(join(module, "tasks", "flags-3.yaml"), "utf8");
+  assert.match(time, /binding: "anywhere"\n {8}check:\n {10}kind: "time"\n {10}key: "20:30"\n {10}trap_values:\n/, "flags-3 is checked as a time");
+  assert.doesNotMatch(time, /options:/, "a time has no options");
+  assert.match(time, /- value: "8:30"\n {14}trap: "twelve-hours-off"\n/, "an evening time has the trap value of a clock face");
+  const word = readFileSync(join(module, "tasks", "flags-4.yaml"), "utf8");
+  assert.match(word, /binding: "anywhere"\n {8}check:\n {10}kind: "choice"\n {10}notation: "word"\n {10}key: "blue"\n {10}options: \[/,
+    "flags-4 is a choice written by hand, with notation word and its options in its check");
 
   const again = mustRun("go", [...args, "--check"], { cwd: ROOT });
   assert.match(again.stdout, /are what the port writes/);
@@ -177,7 +187,7 @@ test("a survey writes every task no batch names, and counts the breaches of task
   const module = join(temporaryFolder(t), "survey");
   const result = run(ROOT, "_port-survey", [clone, commit, module]);
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /: 5 — number 3, fraction 0, choice by hand 2, choice tapped 0\n/);
+  assert.match(result.stdout, /: 5 — number 3, fraction 0, time 1, choice by hand 1, choice tapped 0\n/);
   assert.match(result.stdout, /port: refused: 0\n/);
   assert.match(result.stdout, /: task\.no-leaks 1, for the overlays to mend\n/);
   assert.match(readFileSync(join(module, "tasks", "flags-1.yaml"), "utf8"), /alt: "Survey: a picture of standalone, with no alt written\."/);

@@ -10,6 +10,7 @@ statement:
     height: 88
 givens: ["The die starts on the first cell of the path with that cell's number on top.", "It rolls over its edge from cell to cell, without turning, to cell E.", "Opposite faces of a die add up to 7."]
 unknown: "The number on top at E."
+leading_question: "After two rolls straight on, which face of the die is on top?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

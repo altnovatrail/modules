@@ -6,6 +6,7 @@ statement:
   - text: "On a planet, a year has 366 days. It is split into months of 29, 30 and 31 days, with at least one month of each length. How many months does the year have?"
 givens: ["A year has 366 days.", "Its months have 29, 30 and 31 days, with at least one month of each length."]
 unknown: "How many months the year has."
+leading_question: "If every month had 30 days, how many days would n months have? How much can the months of 29 and 31 days change that?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

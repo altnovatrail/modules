@@ -6,6 +6,7 @@ statement:
   - text: "Five children stand in a queue: Ali, Bea, Cal, Dina and Eli. Bea stands somewhere in front of Dina, and Dina somewhere in front of Ali. Cal stands right behind Ali. Eli is not last, and Eli does not stand next to Bea. Who stands third?"
 givens: ["Ali, Bea, Cal, Dina and Eli stand in a queue.", "Bea stands somewhere in front of Dina, and Dina somewhere in front of Ali.", "Cal stands right behind Ali.", "Eli is not last, and Eli does not stand next to Bea."]
 unknown: "Who stands third."
+leading_question: "Ali and Cal stand together, and both are behind Bea and Dina. Who can be last?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"
@@ -14,6 +15,7 @@ items:
       - binding: "anywhere"
         check:
           kind: "choice"
+          notation: "word"
           key: "Eli"
           options: ["Cal", "Ali", "Dina", "Eli", "Bea"]
           trap_values:

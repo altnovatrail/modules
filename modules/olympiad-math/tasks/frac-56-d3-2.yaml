@@ -6,6 +6,7 @@ statement:
   - text: "A jug full of juice weighs 1500 g, jug and juice together. When only 1/3 of the juice is left in it, the jug weighs 700 g. How many grams of juice does the full jug hold?"
 givens: ["The full jug weighs 1500 g.", "With 1/3 of the juice left in it, it weighs 700 g."]
 unknown: "How many grams of juice the full jug holds."
+leading_question: "What does the difference between 1500 g and 700 g weigh?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

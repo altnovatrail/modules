@@ -10,6 +10,7 @@ statement:
     height: 84
 givens: ["One row has 2 counters and the other 4, and Rosa goes first.", "A turn takes any number from one row, or the same number from both.", "Taking the last counter wins, and Jack plays as well as he can."]
 unknown: "The first move that lets Rosa be sure to win."
+leading_question: "Some positions can be cleared in a single turn. Look for a small position from which every move leads to one of those."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

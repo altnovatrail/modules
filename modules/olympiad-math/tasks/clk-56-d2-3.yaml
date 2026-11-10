@@ -11,6 +11,7 @@ statement:
   - text: "Write the time as hours and minutes, like 9:15."
 givens: ["The plane takes off at 10:00 local time and flies for 3 hours.", "Where it lands, the clocks show 4 hours less."]
 unknown: "The local time when it lands."
+leading_question: "What time is it where the plane took off when it lands? What do the clocks in the other city show at that moment?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"
@@ -18,9 +19,8 @@ items:
   - answer_slots:
       - binding: "anywhere"
         check:
-          kind: "choice"
+          kind: "time"
           key: "9:00"
-          options: ["13:00", "9:00", "17:00", "6:00", "3:00"]
           trap_values:
             - value: "13:00"
               trap: "stopped-early"

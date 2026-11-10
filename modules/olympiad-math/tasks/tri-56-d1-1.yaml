@@ -6,6 +6,7 @@ statement:
   - text: "Work out 1 + 2 + 3 + ... + 40 + 41, the sum of all the whole numbers from 1 to 41."
 givens: ["All the whole numbers from 1 to 41 are added."]
 unknown: "The sum."
+leading_question: "Pair 1 with 41, 2 with 40, and so on. Which number is left without a pair?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

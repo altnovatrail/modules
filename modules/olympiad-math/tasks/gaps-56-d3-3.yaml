@@ -6,6 +6,7 @@ statement:
   - text: "Two round running tracks touch at one point, like the figure 8. The small track is 60 metres round and the big one is 100 metres round. Flags stand every 10 metres along both tracks, and one flag stands at the point where they touch. How many flags are there?"
 givens: ["The small track is 60 metres round.", "The big track is 100 metres round.", "Flags stand every 10 metres along both tracks.", "One flag stands at the point where the tracks touch."]
 unknown: "How many flags there are."
+leading_question: "On a closed track, are there more flags or more gaps between them? Which flag belongs to both tracks?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

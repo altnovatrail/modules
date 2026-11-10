@@ -6,6 +6,7 @@ statement:
   - text: "Work out 2 × 4 × 8 × 125 × 25 × 5 in a clever order."
 givens: ["The product is 2 × 4 × 8 × 125 × 25 × 5."]
 unknown: "The product."
+leading_question: "Which of the numbers make 10, 100 or 1000 together?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

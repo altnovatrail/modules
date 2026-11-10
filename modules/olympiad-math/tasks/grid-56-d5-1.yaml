@@ -6,6 +6,7 @@ statement:
   - text: "A rectangle is drawn along the lines of squared paper, and it is not a square. The number of cells inside it equals the number of cell sides around its edge. How many cells long are its sides?"
 givens: ["The rectangle is drawn along the lines of squared paper, and it is not a square.", "The cells inside it are as many as the cell sides round its edge."]
 unknown: "How many cells long its sides are."
+leading_question: "Write the number of cells and the number of sides around the edge in terms of the two sides. Then try the shorter side as 1, 2, 3 and so on."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

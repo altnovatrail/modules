@@ -10,6 +10,7 @@ statement:
     height: 226
 givens: ["The board has 5 by 5 cells, rows A to E from the top and columns 1 to 5 from the left.", "A bishop on C3 moves any number of cells along a diagonal."]
 unknown: "How many cells the bishop can move to in one move."
+leading_question: "Two diagonals cross at C3. How many other cells lie on each of them?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

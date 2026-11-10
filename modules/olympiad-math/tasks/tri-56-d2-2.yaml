@@ -6,6 +6,7 @@ statement:
   - text: "Tom thought of a number. He multiplied it by 3, added 7, divided the result by 2 and took 4 away. He got 10. What number did Tom think of?"
 givens: ["Tom multiplied by 3, added 7, halved the result and took 4 away.", "He got 10."]
 unknown: "The number Tom thought of."
+leading_question: "Go back from 10 and undo the steps, the last one first. What undoes each step?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

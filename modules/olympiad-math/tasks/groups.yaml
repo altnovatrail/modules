@@ -2,10 +2,14 @@
 # content/solvers/number.divisibility/groups.star at 42b4408, made a solver of the template. It came from
 # reference task div-56-d3-1, whose numbers are one of its instances.
 # The numbers of reference task div-56-d3-1: seat 97, size 18.
+# Its leading question is the hint of div-56-d3-1, with its seat a placeholder (amendment T51 to R22).
 # Its capitals NUMBER and SIZE are the numbers that the statement shows: a seat from 60 to 120 and
 # rows of 12 to 20 seats. The constraint keeps the seat off the end of a row, at least third in its
-# row, and the row from 4 to 10, so that no trap value nor the row equals a number of the statement. The reference task's
-# picture is left out: one picture for every instance would show its seat 97.
+# row, and the row from 4 to 10, so that no trap value nor the row equals a number of the statement.
+# The pictures of the reference task, of its statement and of its solution, are the pictures of each
+# instance, which the port draws for every instance from tools/port/template-pictures/olympiad-math/;
+# the derived numbers from row2_second on are the seats that the pictures show (amendment T52 to
+# R22).
 # The solver carries this notice:
 # MIT License
 #
@@ -39,6 +43,14 @@ template:
     last_full: seat // size * size
     second_row: size + 1
     second_end: "2 * size"
+    row2_second: size + 2
+    row2_third: size + 3
+    row2_place: size + seat % size
+    full_first: (seat // size - 1) * size + 1
+    full_place: (seat // size - 1) * size + seat % size
+    next_row: seat // size + 1
+    next_first: seat // size * size + 1
+    next_end: (seat // size + 1) * size
   constraint: seat % size >= 3 and seat // size + 1 >= 4 and seat // size + 1 <= 10 and seat % size != seat // size and seat % size != seat // size + 1
   solver:
     program: |
@@ -57,10 +69,15 @@ template:
     results: [row]
 statement:
   - text: The seats in a hall are numbered row by row, with {size} seats in each row. Row 1 has seats 1 to {size}, row 2 has seats {second_row} to {second_end}, and so on. In which row is seat {seat}?
+  - picture: pictures/groups-{seat}-{size}.png
+    alt: "A table of the seats: row 1 has seats 1 to {size}, row 2 seats {second_row} to {second_end}, and a row marked ? holds seat {seat}."
+    width: 242
+    height: 136
 givens:
   - Each row has {size} seats, numbered row by row.
   - Row 1 has seats 1 to {size}, row 2 seats {second_row} to {second_end}, and so on.
 unknown: The row of seat {seat}.
+leading_question: How many full rows come before seat {seat}?
 canvas:
   kind: handwriting_sheet
   grid: squares
@@ -86,6 +103,11 @@ items:
     simpler_case: Try rows of three seats. In which row is the seventh seat?
 solution:
   - text: "{seat} = {full} × {size} + {place}, so {full} full rows end at seat {last_full}, and seat {seat} is in the next row, row {row}."
+  - text: "{last_full} ÷ {size} + 1 = {row}"
+  - picture: pictures/groups-solution-{seat}-{size}.png
+    alt: "The table on to row {next_row}: row {full} ends at seat {last_full}, and row {next_row} holds seats {next_first} to {next_end}, seat {seat} among them."
+    width: 245
+    height: 164
 leak_phrases: ["row {row}"]
 skills:
   primary: [number-divisibility]

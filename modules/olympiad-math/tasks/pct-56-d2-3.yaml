@@ -6,6 +6,7 @@ statement:
   - text: "A board game costs 200 coins. Its price goes up by 10%. A week later, the new price goes down by 10%. What does the game cost now?"
 givens: ["The game costs 200 coins.", "Its price goes up by 10%, and a week later the new price goes down by 10%."]
 unknown: "What the game costs now."
+leading_question: "The second 10% is taken of which price?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

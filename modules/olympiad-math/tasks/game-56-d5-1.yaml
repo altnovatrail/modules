@@ -6,6 +6,7 @@ statement:
   - text: "Ann, Ben and 8 other children stand in a circle, with 3 children between Ann and Ben on one side and 5 on the other. Ann and Ben take turns, Ann first. On each turn a player sends home one of the two children next to them. Whoever sends the other player home wins. Who wins if both play as well as they can?"
 givens: ["Ann, Ben and 8 other children stand in a circle.", "3 children between Ann and Ben on one side and 5 on the other.", "In turn, Ann first, each sends home one of the two children next to them, and sending the other player home wins."]
 unknown: "Who wins if both play as well as they can."
+leading_question: "Whoever sends home the last child between them on one side ends up next to the other player. When does a player have to do it?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "Zoe and Max share a box of 12 matches. Zoe starts, and they go one after the other, each time picking up 1, 2 or 3 matches. Picking up the last match wins. Both of them play perfectly. Who wins?"
 givens: ["Zoe and Max share 12 matches, Zoe first.", "Each picks up 1, 2 or 3 matches in turn, and picking up the last match wins.", "Both play perfectly."]
 unknown: "Who wins."
+leading_question: "Try a smaller box first: who wins with 4 matches? And with 5?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

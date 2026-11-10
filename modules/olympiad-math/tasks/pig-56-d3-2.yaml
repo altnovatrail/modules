@@ -6,6 +6,7 @@ statement:
   - text: "Every pupil in a group writes a two-digit number and adds up its two digits. How many pupils must the group have to be sure that two of them get the same sum?"
 givens: ["Every pupil writes a two-digit number.", "Every pupil adds up the two digits of that number."]
 unknown: "How many pupils the group must have to be sure that two of them get the same sum."
+leading_question: "What sums can the two digits of a two-digit number add up to?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

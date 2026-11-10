@@ -6,6 +6,7 @@ statement:
   - text: "A tile is made of 4 square cells, joined along whole sides into one piece. Two tiles have the same shape if one can be turned or flipped over to lie exactly on the other. How many different shapes can such a tile have?"
 givens: ["A tile is 4 square cells joined along whole sides.", "Shapes are the same when one can be turned or flipped onto the other."]
 unknown: "How many different shapes such a tile can have."
+leading_question: "Start with four cells in a row and move one cell at a time. Which of the shapes you get are one shape turned or flipped?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

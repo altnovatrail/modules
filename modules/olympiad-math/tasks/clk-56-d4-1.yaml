@@ -6,6 +6,7 @@ statement:
   - text: "A plane flies from Alpha to Beta. It takes off at 10:00 Alpha time and lands at 15:00 Beta time. On the way back it takes off at 17:00 Beta time and lands at 18:00 Alpha time. All of this happens on one day, and both flights take the same time. By how many hours are Beta's clocks ahead of Alpha's, or behind them?"
 givens: ["Out, the plane takes off at 10:00 Alpha time and lands at 15:00 Beta time.", "Back, it takes off at 17:00 Beta time and lands at 18:00 Alpha time.", "All of it happens on one day, and both flights take the same time."]
 unknown: "By how many hours Beta's clocks are ahead of Alpha's, or behind them."
+leading_question: "By the clocks, the flight there seems to take 5 hours and the flight back 1 hour. What makes the same flight look longer one way?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

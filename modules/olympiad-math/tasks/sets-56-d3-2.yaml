@@ -10,6 +10,7 @@ statement:
     height: 212
 givens: ["The class has 30 pupils.", "18 like maths and 21 like art."]
 unknown: "At most how many could like neither."
+leading_question: "When are the most pupils left out of both groups: when the groups overlap a little, or a lot?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

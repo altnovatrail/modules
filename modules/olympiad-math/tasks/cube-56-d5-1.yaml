@@ -10,6 +10,7 @@ statement:
     height: 88
 givens: ["The die starts on the first cell with its number on top, and rolls straight along the row, one edge for each cell.", "Opposite faces of a die add up to 7."]
 unknown: "In how many cells, the first too, you can tell which number is on top."
+leading_question: "After how many rolls is the top face known again?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -97,3 +97,6 @@ jobs:
         run: sh spec/tools/toolchain/toolchain.sh run just eval-check
       - name: The pictures of the lessons
         run: sh spec/tools/toolchain/toolchain.sh run just lesson-pictures modules/olympiad-math --check
+      - name: The pictures of the instances of the templates
+        if: ${{ !cancelled() && steps.toolchain.outcome == 'success' }}
+        run: sh spec/tools/toolchain/toolchain.sh run just template-pictures modules/olympiad-math --check

@@ -29,6 +29,7 @@ segments:
   - task: frac-56-d5-2
   - explanation:
       - text: "How to solve: draw a strip."
-      - text: "Draw the whole as a strip."
-      - text: "Cut it into equal parts, and the rest again if needed."
-      - text: "Find one part, then the parts the question asks for."
+      - numbered_list:
+          - "Draw the whole as a strip."
+          - "Cut it into equal parts, and the rest again if needed."
+          - "Find one part, then the parts the question asks for."

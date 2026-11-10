@@ -6,6 +6,7 @@ statement:
   - text: "A die has the numbers 1 to 6 on its faces. How many times must you roll it to be sure that some number comes up three times?"
 givens: ["The die has the numbers 1 to 6.", "Some number must come up three times."]
 unknown: "How many times you must roll it to be sure of it."
+leading_question: "What is the unluckiest way the rolls could go?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "Oleg spends half of his coins on a book. Then he spends a quarter of the coins he has left on a pen. Now he has 30 coins. How many coins did he have at first?"
 givens: ["Oleg spends half of his coins on a book.", "Then he spends a quarter of what is left on a pen.", "Now he has 30 coins."]
 unknown: "How many coins he had at first."
+leading_question: "Work backwards. The 30 coins are what part of the coins he had after the book?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

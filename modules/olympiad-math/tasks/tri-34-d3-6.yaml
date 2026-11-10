@@ -10,6 +10,7 @@ statement:
     height: 184
 givens: ["Each shape stands for a number, the same number every time.", "The number beside a row is the sum of its shapes."]
 unknown: "The number that the question mark stands for."
+leading_question: "What do the first three rows add up to together?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

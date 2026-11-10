@@ -6,6 +6,7 @@ statement:
   - text: "Some children ate sweets, each child the same number. Each child ate 5 fewer sweets than all the other children together, but more than one sweet. How many sweets did the children eat in all?"
 givens: ["Each child ate the same number of sweets, more than one.", "Each child ate 5 fewer sweets than all the other children together."]
 unknown: "How many sweets the children ate in all."
+leading_question: "Say each child ate k sweets and there were n children. How many did the others eat together?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

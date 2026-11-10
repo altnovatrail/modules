@@ -6,6 +6,7 @@ statement:
   - text: "Tom and Ann walk at steady speeds. In the time Tom walks 3 km, Ann walks 2 km. How far has Ann walked when Tom has walked 12 km?"
 givens: ["Tom and Ann walk at steady speeds.", "While Tom walks 3 km, Ann walks 2 km."]
 unknown: "How far Ann has walked when Tom has walked 12 km."
+leading_question: "How many times as far as 3 km is 12 km?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

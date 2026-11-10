@@ -10,6 +10,7 @@ statement:
     height: 154
 givens: ["Tiles of 1 cm cover cells A1, B1, C1 and C2 of a 3 by 3 grid."]
 unknown: "The perimeter of the shape in centimetres."
+leading_question: "Walk around the shape and count every tile side on the outside."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

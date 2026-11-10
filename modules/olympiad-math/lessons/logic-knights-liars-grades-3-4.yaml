@@ -28,6 +28,7 @@ segments:
   - task: kl-34-d5-2
   - explanation:
       - text: "How to solve: “suppose that…”."
-      - text: "Suppose."
-      - text: "Work out what follows."
-      - text: "Find a contradiction, or check the answer."
+      - numbered_list:
+          - "Suppose."
+          - "Work out what follows."
+          - "Find a contradiction, or check the answer."

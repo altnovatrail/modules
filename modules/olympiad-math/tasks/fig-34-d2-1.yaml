@@ -10,6 +10,7 @@ statement:
     height: 168
 givens: ["Cell X is in the picture.", "Squares of filled cells, small or big, are counted."]
 unknown: "How many of them have X inside them."
+leading_question: "Which squares of four cells reach cell X?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

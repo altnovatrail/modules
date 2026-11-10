@@ -6,6 +6,7 @@ statement:
   - text: "13 February 2026 is a Friday, and February 2026 has 28 days. On which day of the week is 13 March 2026?"
 givens: ["13 February 2026 is a Friday.", "February 2026 has 28 days."]
 unknown: "The day of the week of 13 March 2026."
+leading_question: "How many days are there from 13 February to 13 March? How many weeks is that?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"
@@ -14,6 +15,7 @@ items:
       - binding: "anywhere"
         check:
           kind: "choice"
+          notation: "word"
           key: "Friday"
           options: ["Saturday", "Monday", "Sunday", "Friday", "Thursday"]
           trap_values:

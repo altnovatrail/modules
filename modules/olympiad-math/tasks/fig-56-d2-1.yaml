@@ -10,6 +10,7 @@ statement:
     height: 128
 givens: ["The points are drawn in the picture.", "Tilted squares count too."]
 unknown: "How many squares have all four corners at the points."
+leading_question: "Can four of the points make a square standing on its corner?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

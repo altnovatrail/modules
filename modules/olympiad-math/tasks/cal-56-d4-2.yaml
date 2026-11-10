@@ -6,6 +6,7 @@ statement:
   - text: "5 June 2026 is a Friday. In which year after 2026 will 5 June next be a Friday?"
 givens: ["5 June 2026 is a Friday."]
 unknown: "The next year after 2026 in which 5 June is a Friday."
+leading_question: "By how many days does 5 June move on from one year to the next? When does the February in between have 29 days?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

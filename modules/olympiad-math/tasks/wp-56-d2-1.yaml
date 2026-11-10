@@ -10,6 +10,7 @@ statement:
     height: 161
 givens: ["There are three empty buckets of 3, 5 and 8 litres, and a tap.", "A step fills a bucket from the tap or pours from one bucket into another until one is empty or the other is full."]
 unknown: "The smallest number of steps after which the 8-litre bucket holds exactly 2 litres."
+leading_question: "What amounts can you measure with the 3-litre and the 5-litre bucket alone?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

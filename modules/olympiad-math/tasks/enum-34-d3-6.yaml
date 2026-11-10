@@ -10,6 +10,7 @@ statement:
     height: 248
 givens: ["Lin lays all the sticks in the picture end to end.", "They make one square.", "The side of a cell is 1."]
 unknown: "How long each side of the square is."
+leading_question: "How long are all the sticks together?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

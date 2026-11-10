@@ -6,6 +6,7 @@ statement:
   - text: "A recipe for 6 people uses 9 eggs. How many eggs does the same recipe need for 20 people?"
 givens: ["The recipe for 6 people uses 9 eggs."]
 unknown: "How many eggs it needs for 20 people."
+leading_question: "How many eggs do 2 people need?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

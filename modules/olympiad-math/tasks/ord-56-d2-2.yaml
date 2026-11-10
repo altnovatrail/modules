@@ -6,6 +6,7 @@ statement:
   - text: "Seven children stand in a queue. Nina is fourth from the front. There are exactly two children between Nina and Owen. Pablo stands right in front of Owen. In which place from the front does Pablo stand?"
 givens: ["Seven children stand in a queue, and Nina is fourth from the front.", "Exactly two children stand between Nina and Owen.", "Pablo stands right in front of Owen."]
 unknown: "In which place from the front Pablo stands."
+leading_question: "Where can Owen stand with exactly two children between him and Nina? Which of those places leaves room for Pablo?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -3,7 +3,7 @@
 # teach anchor skills of the shared taxonomy and need none, so it has no dependencies.
 module_format_version: "0.4"
 id: novatrail/grade-3-math
-version: "0.2.0"
+version: "0.3.0"
 title: School mathematics, grade 3
 subject: mathematics
 audience:

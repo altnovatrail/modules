@@ -6,6 +6,7 @@ statement:
   - text: "Mia ate three quarters of a chocolate bar with 20 squares. Leo ate two thirds of a bar with 24 squares. Who ate more squares, and how many squares did that child eat?"
 givens: ["Mia ate three quarters of a bar of 20 squares.", "Leo ate two thirds of a bar of 24 squares."]
 unknown: "Who ate more squares, and how many that child ate."
+leading_question: "Find how many squares each child ate. How many squares make one quarter of Mia's bar?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

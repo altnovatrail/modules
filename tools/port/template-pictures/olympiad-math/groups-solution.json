@@ -1,0 +1,4 @@
+[
+  {"when": {"full": 3}, "picture": {"kind": "table", "rows": [["1", "1", "…", "{place}", "…", "{size}"], ["2", "{second_row}", "…", "{row2_place}", "…", "{second_end}"], ["{full}", "{full_first}", "…", "{full_place}", "…", "{last_full}"], ["{next_row}", "{next_first}", "…", "{seat}", "…", "{next_end}"]]}},
+  {"picture": {"kind": "table", "rows": [["1", "1", "…", "{place}", "…", "{size}"], ["2", "{second_row}", "…", "{row2_place}", "…", "{second_end}"], ["…", "…", "…", "…", "…", "…"], ["{full}", "{full_first}", "…", "{full_place}", "…", "{last_full}"], ["{next_row}", "{next_first}", "…", "{seat}", "…", "{next_end}"]]}}
+]

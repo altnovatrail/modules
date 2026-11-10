@@ -6,6 +6,7 @@ statement:
   - text: "A set of dominoes uses the numbers 0 to 4. Each tile shows two numbers, such as 1–3 or 4–4, and no two tiles show the same two numbers. The set has every possible tile. How many tiles are there?"
 givens: ["The numbers go from 0 to 4.", "Each tile shows two numbers, such as 1–3 or 4–4.", "No two tiles show the same two numbers, and every possible tile is there."]
 unknown: "How many tiles there are."
+leading_question: "List the tiles that have a 0, then the new ones that have a 1, and so on, without writing any tile twice."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "A café makes sandwiches from white or brown bread, with one of three fillings: cheese, ham or egg. A sandwich also gets one of two sauces, or no sauce at all. How many different sandwiches can the café make?"
 givens: ["The bread is white or brown.", "The filling is cheese, ham or egg.", "The sauce is one of two sauces, or none."]
 unknown: "How many different sandwiches the café can make."
+leading_question: "Choose the bread, then the filling, then what goes on top. How many choices are there at each step?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

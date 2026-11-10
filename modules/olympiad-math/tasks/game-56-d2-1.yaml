@@ -10,6 +10,7 @@ statement:
     height: 48
 givens: ["There are 10 stones, and Ann goes first.", "A turn takes 1 or 2 stones, and taking the last stone wins.", "Ben plays as well as he can."]
 unknown: "How many stones Ann should take first to be sure to win."
+leading_question: "Which pile would you hate to face on your turn: 1, 2 or 3 stones?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

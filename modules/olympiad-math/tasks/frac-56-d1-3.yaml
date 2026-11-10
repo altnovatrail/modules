@@ -6,6 +6,7 @@ statement:
   - text: "Max and his sister Lily walk to a concert at the same steady speed. After a fifth of the way, Max goes back home for his ticket, grabs it at once and walks to the concert. Lily gets there 50 minutes after they left home. How many minutes after Lily does Max get there?"
 givens: ["Max and Lily walk at the same steady speed.", "After a fifth of the way, Max goes back home, and then walks to the concert.", "Lily gets there 50 minutes after they left."]
 unknown: "How many minutes after Lily Max gets there."
+leading_question: "How many minutes does a fifth of the way take?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -18,9 +18,8 @@ items:
   - answer_slots:
       - binding: "anywhere"
         check:
-          kind: "choice"
+          kind: "time"
           key: "6:15"
-          options: ["3:25", "5:15", "5:75", "6:25", "6:15"]
           trap_values:
             - value: "3:25"
               trap: "reversed-relation"

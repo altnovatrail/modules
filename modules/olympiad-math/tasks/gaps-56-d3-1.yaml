@@ -6,6 +6,7 @@ statement:
   - text: "A sheet of stamps has 5 rows of 8 stamps. You tear it along the lines of holes into single stamps. Each tear splits one piece into two. How many tears are needed?"
 givens: ["The sheet has 5 rows of 8 stamps.", "Each tear splits one piece into two."]
 unknown: "How many tears it takes to get every stamp on its own."
+leading_question: "Each tear turns one piece into two. How many pieces are there at the start, and how many at the end?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

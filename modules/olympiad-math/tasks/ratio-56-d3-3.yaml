@@ -6,6 +6,7 @@ statement:
   - text: "A dough is made of flour and sugar only, in the ratio 5 : 2 by weight. A baker has 1000 g of flour and 300 g of sugar and makes as much dough as she can. How many grams of flour are left over?"
 givens: ["The dough is flour and sugar in the ratio 5 : 2 by weight.", "The baker has 1000 g of flour and 300 g of sugar and makes as much dough as she can."]
 unknown: "How many grams of flour are left over."
+leading_question: "Which runs out first, the flour or the sugar?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

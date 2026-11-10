@@ -6,6 +6,7 @@ statement:
   - text: "Five friends sit on a bench in a row: Nora, Owen, Pia, Raj and Sam. Nora wants to sit next to Owen, and Sam does not want to sit at either end. In how many ways can the five sit?"
 givens: ["Nora, Owen, Pia, Raj and Sam sit on a bench in a row.", "Nora sits next to Owen.", "Sam does not sit at either end."]
 unknown: "In how many ways the five can sit."
+leading_question: "Put Sam in each seat that is not at an end, one at a time. Where can Nora and Owen sit then?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

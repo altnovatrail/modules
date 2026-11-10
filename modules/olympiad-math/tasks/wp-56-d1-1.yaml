@@ -6,6 +6,7 @@ statement:
   - text: "A bag holds 10 coins, and one of them is a fake that weighs more than a real coin. All the real coins weigh the same. What is the smallest number of weighings on a balance with no weights that always finds the fake?"
 givens: ["A bag holds 10 coins, and one of them is a heavier fake.", "The real coins weigh the same, and the balance has no weights."]
 unknown: "The smallest number of weighings that always finds the fake."
+leading_question: "A weighing ends in one of three ways: the left pan sinks, the right pan sinks, or they balance. How many coins can two weighings tell apart?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

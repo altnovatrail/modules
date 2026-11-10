@@ -6,6 +6,7 @@ statement:
   - text: "A zoo may or may not keep lions, zebras and camels, so there are 8 kinds of zoo. Three rules hold. A zoo with lions keeps zebras too. A zoo with camels keeps zebras too. A zoo with zebras keeps lions too. How many of the 8 kinds of zoo do the rules allow?"
 givens: ["A zoo may or may not keep lions, zebras and camels: 8 kinds of zoo.", "A zoo with lions keeps zebras, a zoo with camels keeps zebras, and a zoo with zebras keeps lions."]
 unknown: "How many of the 8 kinds the rules allow."
+leading_question: "Write down the 8 kinds and cross out each one that a rule forbids."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

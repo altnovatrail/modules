@@ -6,6 +6,7 @@ statement:
   - text: "A chess club meets every 4 days: on 3 May, on 7 May, and so on. On which date is its fifth meeting?"
 givens: ["The club meets every 4 days: on 3 May, on 7 May and so on."]
 unknown: "The date of the fifth meeting."
+leading_question: "Write down the dates of the meetings one after another, adding 4 days each time."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

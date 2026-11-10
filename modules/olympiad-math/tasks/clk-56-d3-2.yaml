@@ -6,6 +6,7 @@ statement:
   - text: "A ship leaves port P at 8:00 local time on Monday. It reaches port Q at 20:00 local time on Tuesday. The clocks in Q show 5 hours more than the clocks in P. How many hours does the voyage last?"
 givens: ["The ship leaves P at 8:00 local time on Monday.", "It reaches Q at 20:00 local time on Tuesday.", "The clocks in Q show 5 hours more than in P."]
 unknown: "How many hours the voyage lasts."
+leading_question: "What time is it in P when the ship reaches Q?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

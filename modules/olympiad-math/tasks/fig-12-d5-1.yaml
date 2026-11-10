@@ -10,6 +10,7 @@ statement:
     height: 208
 givens: ["Lines go from the top of the big triangle to its base."]
 unknown: "How many triangles there are, small and big."
+leading_question: "How many triangles are there of one piece, of two pieces and of three?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

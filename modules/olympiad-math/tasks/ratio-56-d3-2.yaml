@@ -6,6 +6,7 @@ statement:
   - text: "Two gear wheels turn together: each time a tooth of the big wheel moves past, one tooth of the small wheel moves past too. The big wheel has 21 teeth and the small wheel has 7. How many turns does the small wheel make while the big wheel makes 6 turns?"
 givens: ["Two gear wheels turn together, tooth by tooth.", "The big wheel has 21 teeth and the small wheel 7."]
 unknown: "How many turns the small wheel makes while the big wheel makes 6."
+leading_question: "How many teeth move past while the big wheel turns 6 times?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

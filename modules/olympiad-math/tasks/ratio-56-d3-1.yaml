@@ -10,6 +10,7 @@ statement:
     height: 182
 givens: ["Baskets A, B and C hold 90 walnuts in the ratio 3 : 5 : 7."]
 unknown: "How many more walnuts are in C than in A."
+leading_question: "How many equal parts are there in all three baskets together?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

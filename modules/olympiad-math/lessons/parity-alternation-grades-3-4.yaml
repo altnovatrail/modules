@@ -29,6 +29,7 @@ segments:
   - task: par-34-d5-2
   - explanation:
       - text: "How to solve: follow even and odd."
-      - text: "Find what is even or odd."
-      - text: "See what each step does to it."
-      - text: "Compare the start with the goal."
+      - numbered_list:
+          - "Find what is even or odd."
+          - "See what each step does to it."
+          - "Compare the start with the goal."

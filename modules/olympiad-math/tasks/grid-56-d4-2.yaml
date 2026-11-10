@@ -10,6 +10,7 @@ statement:
     height: 154
 givens: ["A pond fills the middle square of a 3 by 3 grid, and the other 8 are slabs.", "Two gardeners take 4 slabs each, and each gardener's slabs stay joined by whole sides."]
 unknown: "How many splits are possible."
+leading_question: "The slabs make a ring around the pond. What must a group of 4 joined slabs look like?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

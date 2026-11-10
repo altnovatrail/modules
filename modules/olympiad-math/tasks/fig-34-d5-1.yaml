@@ -10,6 +10,7 @@ statement:
     height: 128
 givens: ["Each line is a match, and squares of every size count."]
 unknown: "How many matches are a side of two squares at once."
+leading_question: "Is a match on the outside a side of the big square too?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

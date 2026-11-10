@@ -6,6 +6,7 @@ statement:
   - text: "Eight weights of 10, 20, 30, 40, 50, 60, 70 and 80 g lie on the two pans of a balance, and one pan is heavier. Seven children take the weights away one at a time. Every time a child takes a weight, the other pan becomes the heavier one. Which weight can be left on the balance at the end?"
 givens: ["Weights of 10, 20, 30, 40, 50, 60, 70 and 80 g lie on the two pans, and one pan is heavier.", "Seven children take weights away one at a time, and each time the other pan becomes the heavier."]
 unknown: "Which weight can be left at the end."
+leading_question: "The weights are all whole tens of grams, and the pans never balance. By how much at least does the heavier pan outweigh the other? How heavy must a weight be, for taking it to tip the balance the other way?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -29,6 +29,7 @@ segments:
   - task: ratio-56-d5-2
   - explanation:
       - text: "How to solve: a box for every part."
-      - text: "Draw a box for every part."
-      - text: "Find what one box holds."
-      - text: "Fill in the shares, and check the total."
+      - numbered_list:
+          - "Draw a box for every part."
+          - "Find what one box holds."
+          - "Fill in the shares, and check the total."

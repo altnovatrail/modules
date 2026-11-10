@@ -10,6 +10,7 @@ statement:
     height: 168
 givens: ["The robot goes from cell S to cell F.", "It moves one cell at a time, only to the right or down.", "It must pass through cell M."]
 unknown: "How many different routes it can take."
+leading_question: "How many routes lead from S to M, and how many from M on to F?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -10,6 +10,7 @@ statement:
     height: 94
 givens: ["A fence runs along both sides of the path.", "Each gap between two posts takes one rail."]
 unknown: "How many rails both sides take together."
+leading_question: "How many gaps does one side have?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

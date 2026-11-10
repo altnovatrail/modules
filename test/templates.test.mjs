@@ -1,12 +1,12 @@
 // The test of the module's templates against the tasks they came from (R22): module-kit builds the
 // module, as the release does, and for each template the instance with the numbers of its reference
-// task, which a line of its header gives, has that task's key, its band and its difficulty. So the
-// solver of a template still proves the answer of the task that standalone's template came from, as
-// standalone's own check of its templates does. It runs the real module-kit, so it runs in the job
-// Modules.
+// task, which a line of its header gives, has that task's key, its band, its difficulty and its
+// leading question. So the solver of a template still proves the answer of the task that
+// standalone's template came from, as standalone's own check of its templates does. It runs the
+// real module-kit, so it runs in the job Modules.
 
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 
@@ -17,6 +17,15 @@ const MODULE = join(ROOT, "modules", "olympiad-math");
 // The line of a template's header that names its reference task and that task's numbers, as in
 // "# The numbers of reference task gaps-34-d4-4: flight 18, told_to 3, asked_from 3, asked_to 7."
 const REFERENCE = /^# The numbers of reference task (\S+): (.+)\.$/m;
+
+// A placeholder of a template, which an instance fills in with its number (format/README.md,
+// section 23).
+const PLACEHOLDER = /\{[a-z][a-z0-9_]*\}/;
+
+// A text of a template with the numbers of an instance in place of its placeholders.
+function fillIn(text, instance) {
+  return text.replace(new RegExp(PLACEHOLDER.source, "g"), (found) => String(instance[found.slice(1, -1)]));
+}
 
 // The key of a task's first check of a number or a fraction, as the package holds it.
 function keyOf(task) {
@@ -42,10 +51,40 @@ test("the instance of each template with its reference task's numbers has that t
     const numbers = list.split(", ").map((pair) => pair.split(" "));
     const instance = server.instances[id].find((each) => numbers.every(([name, value]) => each[name] === Number(value)));
     assert.ok(instance, `${id}: no instance has the numbers of ${reference}`);
-    const key = keyOf(server.tasks[id]).replace(/\{([a-z][a-z0-9_]*)\}/g, (_, name) => String(instance[name]));
+    const key = fillIn(keyOf(server.tasks[id]), instance);
     assert.equal(key, keyOf(server.tasks[reference]), `${id}: the key of the instance of ${reference}`);
     for (const field of ["band", "difficulty"]) {
       assert.equal(server.tasks[id][field], server.tasks[reference][field], `${id}: its ${field} and that of ${reference}`);
     }
+    // A template whose reference task has a leading question has it too, with placeholders for
+    // the reference task's numbers (amendment T51 to R22).
+    const question = server.tasks[id].leading_question && fillIn(server.tasks[id].leading_question, instance);
+    assert.equal(question, server.tasks[reference].leading_question, `${id}: the leading question of the instance of ${reference}`);
   }
+});
+
+// The picture of every instance of a template is in the module, and no other picture of its path
+// (amendment T52 to R22): the instances are module-kit's, which the port counted on its own when it
+// drew them, so the two counts must agree.
+test("each template's picture path has a file for every instance and for nothing else", (t) => {
+  const out = join(temporaryFolder(t), "package");
+  mustRun("module-kit", ["build", MODULE, out]);
+  const server = JSON.parse(readFileSync(join(out, "server.json"), "utf8"));
+  const media = readdirSync(join(MODULE, "media", "pictures"));
+  let paths = 0;
+  for (const [id, instances] of Object.entries(server.instances)) {
+    const task = server.tasks[id];
+    for (const part of [...task.statement, ...(task.solution ?? [])]) {
+      if (!part.picture?.includes("{")) continue;
+      paths++;
+      for (const instance of instances) {
+        const path = fillIn(part.picture, instance);
+        assert.ok(existsSync(join(MODULE, "media", path)), `${id}: ${path} is not in the module`);
+      }
+      const name = part.picture.replace(/^pictures\//, "").split(PLACEHOLDER).map((piece) => piece.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+      const pattern = new RegExp(`^${name.join("[0-9]+")}$`);
+      assert.equal(media.filter((file) => pattern.test(file)).length, instances.length, `${id}: the files of ${part.picture}`);
+    }
+  }
+  assert.ok(paths > 0, "no template has a picture path with placeholders");
 });

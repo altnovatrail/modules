@@ -6,6 +6,7 @@ statement:
   - text: "Nine coins lie in a circle, numbered 1 to 9 round it. Five of them, next to each other, are fakes, lighter than the real coins. The real coins all weigh the same, and so do the fakes. Which one weighing on a balance without weights is sure to show two of the fakes?"
 givens: ["Nine coins lie in a circle, numbered 1 to 9 round it.", "Five of them, next to each other, are lighter fakes; the real coins weigh the same, and so do the fakes."]
 unknown: "The one weighing that is sure to show two of the fakes."
+leading_question: "Try each weighing when the pans balance. Which runs of five fakes are still possible then, and do they share two coins?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

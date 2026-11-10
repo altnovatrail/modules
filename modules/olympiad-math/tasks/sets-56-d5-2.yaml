@@ -6,6 +6,7 @@ statement:
   - text: "Ann writes the numbers 5, 11, 17, 23 and so on, adding 6 each time, as long as they are at most 100. Ben writes 2, 7, 12, 17 and so on, adding 5 each time, also up to 100. How many numbers are on both lists?"
 givens: ["Ann writes 5, 11, 17 and so on, adding 6, up to 100.", "Ben writes 2, 7, 12, 17 and so on, adding 5, up to 100."]
 unknown: "How many numbers are on both lists."
+leading_question: "17 is on both lists. Which number after 17 is the next one on both?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

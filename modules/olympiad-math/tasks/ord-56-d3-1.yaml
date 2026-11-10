@@ -6,6 +6,7 @@ statement:
   - text: "Six girls swam a race: Lara, Maya, Nell, Olive, Paula and Rosa. Olive finished after Maya. Rosa and Nell both finished before Maya. Paula finished after Olive, but not right after her. Who finished fifth?"
 givens: ["Lara, Maya, Nell, Olive, Paula and Rosa swam a race.", "Olive finished after Maya, and Rosa and Nell before Maya.", "Paula finished after Olive, but not right after her."]
 unknown: "Who finished fifth."
+leading_question: "How many girls finished before Maya at the least? Then look for room for Olive and Paula."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"
@@ -14,6 +15,7 @@ items:
       - binding: "anywhere"
         check:
           kind: "choice"
+          notation: "word"
           key: "Lara"
           options: ["Paula", "Olive", "Lara", "It is impossible to tell", "Rosa"]
           trap_values:

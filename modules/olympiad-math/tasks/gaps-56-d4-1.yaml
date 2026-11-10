@@ -6,6 +6,7 @@ statement:
   - text: "A circular path is 360 metres round. Lamps stand along it every 15 metres. They are replaced by new lamps every 40 metres, and the first new lamp stands where an old one stood. Where a new lamp stands at the place of an old one, it uses the old lamp's hole; everywhere else a new hole is dug. How many new holes are dug?"
 givens: ["The circular path is 360 metres round.", "The old lamps stood every 15 metres.", "The new lamps stand every 40 metres, the first one where an old one stood.", "A new lamp at an old lamp's place uses the old hole."]
 unknown: "How many new holes are dug."
+leading_question: "At which places along the path do an old lamp and a new lamp stand together?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

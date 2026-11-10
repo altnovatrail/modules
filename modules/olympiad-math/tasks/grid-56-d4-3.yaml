@@ -6,6 +6,7 @@ statement:
   - text: "Pasha lays 4 square tiles with sides of 1 cm on a table to make one shape, each tile touching another along a whole side. What is the largest perimeter the shape can have, in centimetres?"
 givens: ["4 square tiles with sides of 1 cm make one shape.", "Each tile touches another along a whole side."]
 unknown: "The largest perimeter the shape can have, in centimetres."
+leading_question: "Each time two tiles share a side, how much of the perimeter disappears?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -39,6 +39,7 @@ statement:
   - text: "A path has 8 lamps in a row, 2 metres apart. How far is it from the first lamp to the last?"
 givens: ["8 lamps are in a row.", "They are 2 metres apart."]
 unknown: "How far the first lamp is from the last."
+leading_question: "How many gaps?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"
@@ -76,11 +77,58 @@ difficulty: 2
 	if got != want {
 		t.Errorf("the task is\n%s\nwant\n%s", got, want)
 	}
-	if len(c.Notes) != 1 || !strings.Contains(c.Notes[0], "hint is not carried") {
-		t.Errorf("notes = %v, want the hint named", c.Notes)
+	if len(c.Notes) != 0 {
+		t.Errorf("notes = %v, want none: the hint is the leading question", c.Notes)
 	}
 	if again, _ := convertOne(t, ex, metres, overlay); again != got {
 		t.Error("a second run writes other bytes")
+	}
+}
+
+// The hint of standalone is the task's leading question, which the overlay's leading_question
+// writes anew; an overlay may not give one to a task with no hint. The key of a choice, which the
+// leak check of the format does not search, the port searches there itself, and a survey writes
+// the question and says so (amendment T51 to R12).
+func TestConvertLeadingQuestion(t *testing.T) {
+	ex := example("lamps-5")
+	got, _ := convertOne(t, ex, metres, Overlay{})
+	if strings.Contains(got, "leading_question") {
+		t.Errorf("a task with no hint has a leading question:\n%s", got)
+	}
+	if _, err := convert(ex, testBatch(ex.ID), metres, Overlay{LeadingQuestion: "How many gaps?"}, "content/examples/x.json"); err == nil ||
+		!strings.Contains(err.Error(), "its overlay has leading_question, and the task has no hint") {
+		t.Errorf("an overlay's question for a task with no hint: error = %v", err)
+	}
+	ex.Hint = "How many gaps are there between 8 lamps?"
+	if got, _ = convertOne(t, ex, metres, Overlay{LeadingQuestion: "How many gaps lie between the lamps?"}); !strings.Contains(got,
+		"leading_question: \"How many gaps lie between the lamps?\"\ncanvas:") {
+		t.Errorf("the overlay's question does not stand in place of the hint, before the canvas:\n%s", got)
+	}
+
+	for name, how := range map[string]BatchTask{"by hand": {}, "tapped": {Tapped: true}} {
+		ex := wordExample("race-9")
+		ex.Hint = "Who is slower than Kim, and is anyone slower than Ben?"
+		if _, err := convert(ex, testBatch(ex.ID), how, Overlay{}, "content/examples/x.json"); err == nil ||
+			!strings.Contains(err.Error(), `its leading question names its key "Ben": rewrite it in the leading_question of its overlay`) {
+			t.Errorf("%s: error = %v", name, err)
+		}
+		if _, err := convert(ex, testBatch(ex.ID), how, Overlay{LeadingQuestion: "Who is slower than Kim?"}, "content/examples/x.json"); err != nil {
+			t.Errorf("%s, rewritten: error = %v", name, err)
+		}
+		batch := testBatch(ex.ID)
+		batch.survey = true
+		c, err := convert(ex, batch, how, Overlay{}, "content/examples/x.json")
+		if err != nil || c.KeyNamed != 1 || !strings.Contains(strings.Join(c.Notes, "\n"), `its leading question names its key "Ben"`) {
+			t.Errorf("%s: a survey: %v, %d, %v", name, err, c.KeyNamed, c.Notes)
+		}
+	}
+
+	// A time's key, which the statement may show, is searched with a leading zero too.
+	clock := clockExample("clock-8")
+	clock.Hint = "Does it end at 07:30, or later?"
+	if _, err := convert(clock, testBatch(clock.ID), BatchTask{}, Overlay{}, "content/examples/x.json"); err == nil ||
+		!strings.Contains(err.Error(), `its leading question names its key "7:30"`) {
+		t.Errorf("a time: error = %v", err)
 	}
 }
 
