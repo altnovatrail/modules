@@ -29,6 +29,7 @@ segments:
   - task: tri-56-d5-1
   - explanation:
       - text: "How to solve: look for round numbers."
-      - text: "Look at the whole task first."
-      - text: "Regroup into round numbers, or undo from the end."
-      - text: "Check the answer another way."
+      - numbered_list:
+          - "Look at the whole task first."
+          - "Regroup into round numbers, or undo from the end."
+          - "Check the answer another way."

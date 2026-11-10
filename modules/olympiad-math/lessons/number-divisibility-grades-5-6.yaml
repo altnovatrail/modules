@@ -29,6 +29,7 @@ segments:
   - task: div-56-d5-1
   - explanation:
       - text: "How to solve: full groups and a remainder."
-      - text: "Split into full groups and a remainder."
-      - text: "Decide what the question asks for."
-      - text: "Check the answer against the words."
+      - numbered_list:
+          - "Split into full groups and a remainder."
+          - "Decide what the question asks for."
+          - "Check the answer against the words."

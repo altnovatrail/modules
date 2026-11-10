@@ -115,7 +115,7 @@
 | [x] | T51 | Наводящие вопросы из подсказок standalone | Claude, проверяю я | да | T50 |
 | [x] | T52 | Картинки экземпляров четырёх шаблонов и картинки решений `changes` и `groups` | Claude | да | T49 |
 | [x] | T53 | Шаблоны по картинке, которых R22 не перенёс | Claude | да | T52 |
-| [ ] | T54 | Списки шагов в 41 уроке и описания шагов решения | Claude | — | T49 |
+| [x] | T54 | Списки шагов в 41 уроке и описания шагов решения | Claude | — | T49 |
 | [ ] | T55 | Разобранный пример на тетради в четырёх уроках `grade-3-math` | Claude, проверяю я | — | T49 |
 | [ ] | T56 | Релиз `v0.2.1`: мерж `e7` в `main` | я + Claude | — | T50–T55 |
 | [ ] | T57 | Итог эпика и архив | Claude | — | T56 |
@@ -347,6 +347,13 @@
 - **Не делать:** тексты шагов не менять: поиск утечки ищет в списке то же, что в абзацах, — «100%» `percent-basic-grades-5-6` его проходил и пройдёт.
 - **Как проверить:** `just modules-check`; `just lesson-pictures modules/olympiad-math --check`; ни одного абзаца шага вне списка (`grep`); `just -f spec/justfile docs-check-repo`.
 - **Разделы:** R13, R14 и его поправки T38, T39 и T41; R111 spec; [текст формата](spec/format/README.md), разделы 18, 20 и 21.
+- **Сделано (2026-11-10):**
+  - правило 12 — до начала: у SonarCloud и CodeQL находок нет, у Scorecard те же 6, их причины — в R33 spec. Правок нет;
+  - 41 файл `modules/olympiad-math/lessons/`: три абзаца шагов после «How to solve: …» — одна часть `numbered_list`, тексты те же — 123 строки шагов и по строке `numbered_list` на урок;
+  - `solving-steps.yaml` — описания «Understand the task» и «Check the answer» из примера формата дословно, шапка — с его словами об описаниях;
+  - поправки T54 к R13 и R14; [docs/architecture.md](docs/architecture.md), разделы 3.5 и 3.6; README.md, Status;
+  - проверено: `just modules-check` — 0, без предупреждений, `module-kit diff` называет правки уроков и шагов патчем, версия остаётся 0.3.0; `just lesson-pictures modules/olympiad-math --check`; `just test` — 96 из 96; после каждого «How to solve» идёт `numbered_list` — 41 из 41, `grep`; `just -f spec/justfile docs-check-repo`.
+- **Открыто:** ничего.
 
 #### T55. Разобранный пример на тетради в четырёх уроках `grade-3-math`
 

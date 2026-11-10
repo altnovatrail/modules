@@ -29,6 +29,7 @@ segments:
   - task: ord-34-d5-2
   - explanation:
       - text: "How to solve: draw the line."
-      - text: "Turn every clue the same way."
-      - text: "Put the clues on the line, the certain ones first."
-      - text: "Read the answer, and check every clue against it."
+      - numbered_list:
+          - "Turn every clue the same way."
+          - "Put the clues on the line, the certain ones first."
+          - "Read the answer, and check every clue against it."

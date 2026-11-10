@@ -29,6 +29,7 @@ segments:
   - task: wp-34-d5-2
   - explanation:
       - text: "How to solve: a table of states."
-      - text: "Write down the state, what each jug or pan holds."
-      - text: "Try every allowed step from it."
-      - text: "Stop at the goal, and count the steps."
+      - numbered_list:
+          - "Write down the state, what each jug or pan holds."
+          - "Try every allowed step from it."
+          - "Stop at the goal, and count the steps."

@@ -27,6 +27,7 @@ segments:
   - task: sets-56-d5-1
   - explanation:
       - text: "How to solve: from the middle out."
-      - text: "Draw the circles."
-      - text: "Fill the middle, then the rest."
-      - text: "Check that the parts add up to everyone."
+      - numbered_list:
+          - "Draw the circles."
+          - "Fill the middle, then the rest."
+          - "Check that the parts add up to everyone."

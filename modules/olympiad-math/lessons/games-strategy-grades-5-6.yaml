@@ -29,6 +29,7 @@ segments:
   - task: game-56-d5-2
   - explanation:
       - text: "How to solve: from the end of the game."
-      - text: "Start from the positions at the end."
-      - text: "Mark each one winning or losing, from the smallest up."
-      - text: "Find the move that leaves the other player a losing one."
+      - numbered_list:
+          - "Start from the positions at the end."
+          - "Mark each one winning or losing, from the smallest up."
+          - "Find the move that leaves the other player a losing one."

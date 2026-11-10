@@ -29,6 +29,7 @@ segments:
   - task: gaps-12-d5-5
   - explanation:
       - text: "How to solve: draw a small case."
-      - text: "Draw the things and the gaps."
-      - text: "Find which of them the question counts."
-      - text: "Work it out, and check the rule on a small case."
+      - numbered_list:
+          - "Draw the things and the gaps."
+          - "Find which of them the question counts."
+          - "Work it out, and check the rule on a small case."

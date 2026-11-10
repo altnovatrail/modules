@@ -30,6 +30,7 @@ segments:
   - task: enum-56-d5-2
   - explanation:
       - text: "How to solve: a list by a rule."
-      - text: "Decide what makes two cases different."
-      - text: "List the cases by a rule."
-      - text: "Count them, or multiply when choices are made one after another."
+      - numbered_list:
+          - "Decide what makes two cases different."
+          - "List the cases by a rule."
+          - "Count them, or multiply when choices are made one after another."

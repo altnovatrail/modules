@@ -29,6 +29,7 @@ segments:
   - task: grid-56-d5-1
   - explanation:
       - text: "How to solve: walk round the border."
-      - text: "Draw the figure on squared paper."
-      - text: "Count cells for the area, outside sides for the perimeter."
-      - text: "Check with a second way of counting."
+      - numbered_list:
+          - "Draw the figure on squared paper."
+          - "Count cells for the area, outside sides for the perimeter."
+          - "Check with a second way of counting."
