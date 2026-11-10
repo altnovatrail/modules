@@ -779,6 +779,16 @@ port module *options:
 lesson-pictures module *options:
     go run ./tools/port --pictures "tools/port/pictures/$(basename "$1")" --module "$@"
 
+# The pictures of the instances of a module's templates: a template whose picture path holds
+# placeholders has a source, tools/port/template-pictures/<the module's folder>/<the path without
+# its placeholders>.json, in the schema of standalone's pictures with placeholders among its
+# strings, and the port draws it for every instance into media/pictures/ of the module, as the
+# format asks (amendment T52 to R12). CI runs it with --check.
+# Draw the pictures of the instances of a module's templates, or with --check compare them.
+[positional-arguments]
+template-pictures module *options:
+    go run ./tools/port --template-pictures "tools/port/template-pictures/$(basename "$1")" --module "$@"
+
 # A survey runs the port over every task of standalone that no batch of tools/port/batches/ names
 # yet, at a commit, 42b4408 unless another is given, before E3's batches are written (R20): the
 # clone as port makes it, then _port-survey with standalone's bench. The module is a folder that is

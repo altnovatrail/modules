@@ -6,7 +6,10 @@
 # Its capitals CHANGES, one fall of a whole number of per cent, and END are the numbers that the
 # statement shows: a discount of 20 or 25 per cent and a price from 30 to 90 coins. The
 # constraint keeps every price in the story a whole number of coins and the trap values, the mistakes
-# of the reference task, apart from the key.
+# of the reference task, apart from the key. The last line and the picture of the reference task's
+# solution are those of each instance: the port draws the picture for every instance from
+# tools/port/template-pictures/olympiad-math/, a bar of five parts for 20 per cent and of four for 25,
+# and the derived numbers from old_price on are the numbers it shows (amendment T52 to R22).
 # The solver carries this notice:
 # MIT License
 #
@@ -41,6 +44,9 @@ template:
     plus_pct: end + pct
     minus_again: end - end * pct // 100
     discount: end * pct // (100 - pct)
+    old_price: end * 100 // (100 - pct)
+    parts_all: "100 // pct"
+    parts_left: (100 - pct) // pct
   constraint: (pct == 20 or pct == 25) and end * 100 % (100 - pct) == 0 and end * pct % 100 == 0 and end + pct != end * 100 // (100 - pct)
   solver:
     program: |
@@ -91,6 +97,11 @@ items:
     simpler_case: Try a half-price sale that leaves a price of 12 coins. What was the price before?
 solution:
   - text: After the discount the jacket costs {rest}% of its old price, and that is {end} coins. So {pct}% of the old price is {discount} coins, and the old price is {end} + {discount} = {price} coins.
+  - text: "{end} ÷ {parts_left} × {parts_all} = {price}"
+  - picture: pictures/changes-solution-{pct}-{end}.png
+    alt: A bar of {old_price} cut into {parts_all} parts of {discount}, {parts_left} of them braced as {end}.
+    width: 462
+    height: 82
 leak_phrases: ["{price} coins before"]
 skills:
   primary: [percent-basic]

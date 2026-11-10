@@ -5,8 +5,10 @@
 # Its leading question is the hint of sets-56-d3-1, as it stands (amendment T51 to R22).
 # Its capitals TOTAL, FIRST and SECOND are the numbers that the statement shows: a group of 20 to
 # 30 children, more with a dog than with a cat, that must overlap in 2 to 4 children; fits says
-# nothing more, as in the reference task. The reference task's picture is left out: one picture for
-# every instance would show its numbers. The trap values are derived numbers, its mistakes, and 0.
+# nothing more, as in the reference task. The picture of the reference task is the picture of each
+# instance, with its numbers, which the port draws for every instance from
+# tools/port/template-pictures/olympiad-math/ (amendment T52 to R22). The trap values are derived
+# numbers, its mistakes, and 0.
 # The solver carries this notice:
 # MIT License
 #
@@ -60,6 +62,10 @@ template:
     results: [both]
 statement:
   - text: In a group of {total} children, {dog} have a dog and {cat} have a cat. What is the smallest number of children who could have both a dog and a cat?
+  - picture: pictures/two-groups-{total}-{dog}-{cat}.png
+    alt: Two overlapping circles, D of {dog} and C of {cat}, inside a box of {total}, with the overlap marked ?.
+    width: 256
+    height: 212
 givens:
   - The group has {total} children.
   - "{dog} have a dog and {cat} have a cat."

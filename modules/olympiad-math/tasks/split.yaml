@@ -7,8 +7,9 @@
 # statement shows and the template varies: a multiple of 30 from 60 to 150, so that a part of the
 # ratio and the trap that takes 10 parts for 15 are whole; the ratio stays 3 : 5 : 7. standalone's sandbox
 # gives it sum, which the dialect of the format has not (format/README.md, section 24), so a loop
-# adds the shares. The reference task's picture is left out: one picture for every instance would
-# show its 90 walnuts. The trap values are derived numbers, its mistakes, and the number 4.
+# adds the shares. The picture of the reference task is the picture of each instance, with its
+# total, which the port draws for every instance from tools/port/template-pictures/olympiad-math/
+# (amendment T52 to R22). The trap values are derived numbers, its mistakes, and the number 4.
 # The solver carries this notice:
 # MIT License
 #
@@ -64,6 +65,10 @@ template:
     results: [more]
 statement:
   - text: "Three baskets, A, B and C, hold {total} walnuts in the ratio 3 : 5 : 7. How many more walnuts are in basket C than in basket A?"
+  - picture: pictures/split-{total}.png
+    alt: "Three bars: A of 3, B of 5 and C of 7 equal parts, with the notes A + B + C = {total} and C - A = ?."
+    width: 245
+    height: 182
 givens:
   - "Baskets A, B and C hold {total} walnuts in the ratio 3 : 5 : 7."
 unknown: How many more walnuts are in C than in A.
