@@ -6,6 +6,7 @@ statement:
   - text: "Six children compared their heights in pairs and wrote down what they found. Ann is taller than Dan. Dan is taller than Ben and taller than Eve. Kim is shorter than Ben and shorter than Eve. Fay is shorter than Kim. Which two children cannot be put in order of height from these results?"
 givens: ["Ann is taller than Dan.", "Dan is taller than Ben and taller than Eve.", "Kim is shorter than Ben and shorter than Eve.", "Fay is shorter than Kim."]
 unknown: "Which two children cannot be put in order of height."
+leading_question: "Draw an arrow from each child to each child known to be shorter. Which two are joined by no chain of arrows?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

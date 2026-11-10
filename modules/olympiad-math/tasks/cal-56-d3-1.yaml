@@ -6,6 +6,7 @@ statement:
   - text: "Ten years ago, Mum was 4 times as old as her son. In ten years, she will be twice as old as he will be. How old is the son now?"
 givens: ["Ten years ago Mum was 4 times as old as her son.", "In ten years she will be twice as old as he will be."]
 unknown: "The son's age now."
+leading_question: "The difference between their ages never changes. What was it ten years ago, and what will it be in ten years, compared with the son's age then?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

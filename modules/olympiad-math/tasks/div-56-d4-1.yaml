@@ -6,6 +6,7 @@ statement:
   - text: "Some nuts are shared among 9 squirrels. Each squirrel gets the same number of nuts, as many as possible, and the nuts left over are exactly as many as each squirrel got. What is the largest number of nuts there could be?"
 givens: ["Nuts are shared among 9 squirrels, each as many as possible.", "The nuts left over are exactly as many as each squirrel got."]
 unknown: "The largest number of nuts there could be."
+leading_question: "What is the largest number of nuts that can be left over when they are shared among 9?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

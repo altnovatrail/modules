@@ -6,6 +6,7 @@ statement:
   - text: "In four years Anya will be 3 times as old as she was eight years ago. How old is Anya now?"
 givens: ["In four years Anya will be 3 times as old as she was eight years ago."]
 unknown: "Anya's age now."
+leading_question: "From eight years ago to four years from now is 12 years. By how much does her age grow in that time, compared with her age eight years ago?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

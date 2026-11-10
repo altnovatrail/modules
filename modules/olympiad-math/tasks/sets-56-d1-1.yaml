@@ -6,6 +6,7 @@ statement:
   - text: "In a yard there are cats and other animals, and some of the animals are called Vaska. Who are more: the cats, leaving out the cats that are not called Vaska, or the animals called Vaska, leaving out those that are not cats?"
 givens: ["Some of the animals in the yard are called Vaska.", "One group is the cats, leaving out the cats not called Vaska.", "The other is the animals called Vaska, leaving out those that are not cats."]
 unknown: "Which group is bigger."
+leading_question: "Which animals are left in the first group once some are left out? And in the second?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

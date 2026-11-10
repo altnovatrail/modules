@@ -6,6 +6,7 @@ statement:
   - text: "Mia writes the digits 1 to 7 in a row, each once. Then she counts the digits standing between 1 and 2, between 2 and 3, and so on up to between 6 and 7. At most how many of these six counts can be odd?"
 givens: ["The digits 1 to 7 are written in a row, each once.", "The digits between 1 and 2, between 2 and 3, and so on up to 6 and 7, are counted."]
 unknown: "At most how many of the six counts can be odd."
+leading_question: "The count between two digits is odd when both stand in odd places or both in even places. How many odd places does a row of 7 have?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

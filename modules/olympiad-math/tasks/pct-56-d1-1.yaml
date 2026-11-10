@@ -6,6 +6,7 @@ statement:
   - text: "A toy costs 50 coins. The shop meant to raise its price by 20%, but by mistake it lowered the price by 20%. How many coins less than the planned price does the toy cost now?"
 givens: ["The toy costs 50 coins.", "The price was meant to go up by 20%, but went down by 20%."]
 unknown: "How many coins less than the planned price the toy costs now."
+leading_question: "Find the planned price and the price now. What is 20% of 50 coins?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

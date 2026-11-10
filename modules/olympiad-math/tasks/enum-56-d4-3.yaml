@@ -6,6 +6,7 @@ statement:
   - text: "A teacher picks 3 of 6 pupils for a quiz team: Ella, Finn, Gia, Hugo, Ivy and Jack. Gia must be in the team, and Ella and Finn refuse to be in it together. How many different teams can the teacher pick?"
 givens: ["The teacher picks 3 of 6 pupils: Ella, Finn, Gia, Hugo, Ivy and Jack.", "Gia must be in the team.", "Ella and Finn are not in it together."]
 unknown: "How many different teams the teacher can pick."
+leading_question: "Gia is already in. How many ways are there to pick the other two, and which of those pairs is not allowed?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

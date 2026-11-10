@@ -6,6 +6,7 @@ statement:
   - text: "A number has four digits, all of them odd and no two the same. It divides by 11. What is the largest such number?"
 givens: ["The number has four digits, all odd and no two the same.", "It divides by 11."]
 unknown: "The largest such number."
+leading_question: "Start from the largest number of four different odd digits and go down. Which is the first one that divides by 11?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

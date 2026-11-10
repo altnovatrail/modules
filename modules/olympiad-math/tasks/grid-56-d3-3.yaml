@@ -10,6 +10,7 @@ statement:
     height: 154
 givens: ["The cake is 3 by 3 pieces with sides of 2 cm.", "One corner piece is eaten."]
 unknown: "The perimeter of the cake left, in centimetres."
+leading_question: "Which sides of the cake does the eaten piece take away, and which new sides appear?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

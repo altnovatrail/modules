@@ -6,6 +6,7 @@ statement:
   - text: "Maya rolls a red die and a blue die. Each die shows a number from 1 to 6. In how many ways can the two dice show a total of 8? Red 2 with blue 6 is a different way from red 6 with blue 2."
 givens: ["Maya rolls a red die and a blue die, each showing 1 to 6.", "The two dice show a total of 8.", "Red 2 with blue 6 is a different way from red 6 with blue 2."]
 unknown: "In how many ways the dice can show a total of 8."
+leading_question: "Go through what the red die can show, from 1 to 6. What must the blue die show each time?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

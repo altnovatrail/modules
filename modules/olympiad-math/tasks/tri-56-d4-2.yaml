@@ -6,6 +6,7 @@ statement:
   - text: "In XYZ + XYZ + XYZ = ZZZ, each letter stands for a digit, and different letters stand for different digits. What number is XYZ?"
 givens: ["XYZ + XYZ + XYZ = ZZZ.", "Each letter is a digit, and different letters are different digits."]
 unknown: "The number XYZ."
+leading_question: "Three times XYZ is one of 111, 222, …, 999. Divide each of them by 3. Which result can be XYZ?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

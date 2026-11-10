@@ -6,6 +6,7 @@ statement:
   - text: "It is August now. A new library will open in 20 months. In which month will it open?"
 givens: ["It is August now.", "The library opens in 20 months."]
 unknown: "The month it opens."
+leading_question: "Which month will it be 12 months from now? How many months are still left after that?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

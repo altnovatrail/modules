@@ -6,6 +6,7 @@ statement:
   - text: "Kim divides a number by 7 and gets 5 with 3 left over. Then she divides four times that number by four times 7. What does she get this time?"
 givens: ["A number divided by 7 gives 5 with 3 left over.", "Four times that number is divided by four times 7."]
 unknown: "What the second division gives."
+leading_question: "The number is 7 × 5 + 3. What is four times it?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

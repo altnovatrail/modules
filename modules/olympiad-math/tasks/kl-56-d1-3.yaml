@@ -6,6 +6,7 @@ statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Five islanders stand in a row. The first says: 'At least one of us five is a knight.' The second says: 'At least two of us are knights,' the third 'At least three,' the fourth 'At least four,' and the fifth 'All five of us are knights.' How many knights can there be among the five?"
 givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Five islanders stand in a row.", "The first says at least one of the five is a knight, the second at least two, the third at least three, the fourth at least four, and the fifth all five."]
 unknown: "How many knights there can be."
+leading_question: "Try two knights. Who would they have to be, and would the other three then lie?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

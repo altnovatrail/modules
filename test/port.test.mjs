@@ -2,10 +2,10 @@
 // of a made-up standalone — with a picture of a row, and with answers that are a time, checked as
 // a time, and a word, a choice written by hand — into a module made of the format's examples of
 // olympiad-math with the module's traps, and module-kit check accepts it, with no warning about the
-// picture. A survey of the same standalone,
-// by the recipe _port-survey, writes all its tasks and counts the breaches of task.no-leaks. The tests of
-// tools/port itself are Go's, in "Go / test", which reads nothing of spec; this one needs the
-// format's examples and module-kit, so it runs in the job Modules.
+// picture. A survey of the same standalone, by the recipe _port-survey, writes all its tasks and
+// counts the breaches of task.no-leaks. The tests of tools/port itself are Go's, in "Go / test",
+// which reads nothing of spec; this one needs the format's examples and module-kit, so it runs in
+// the job Modules.
 
 import assert from "node:assert/strict";
 import { cpSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -37,10 +37,10 @@ function exampleModule(t) {
 }
 
 // A made-up standalone with tasks of counting.gaps in its form, texts of their own: one with a
-// picture of a row, one whose wrong option is a word, one whose answer is a time and one whose
-// answer is a word of its question, and one whose explanation names its key, which no batch names.
-// It is a git repository with one commit, as a clone is, and the port holds it to the batch's
-// commit.
+// picture of a row and a hint, one whose wrong option is a word, one whose answer is a time and
+// one whose answer is a word of its question, and one whose explanation names its key, which no
+// batch names. It is a git repository with one commit, as a clone is, and the port holds it to the
+// batch's commit.
 function madeUpStandalone(t) {
   const clone = temporaryFolder(t);
   const task = (id, extra) => ({
@@ -64,7 +64,10 @@ function madeUpStandalone(t) {
   writeFileSync(
     join(clone, "content", "examples", "counting.gaps.json"),
     JSON.stringify([
-      task("flags-1", { picture: { kind: "row", items: [{}, {}, {}, { skip: true }, {}], gaps: "3" } }),
+      task("flags-1", {
+        picture: { kind: "row", items: [{}, {}, {}, { skip: true }, {}], gaps: "3" },
+        hint: "How many gaps lie between the first flag and the last?",
+      }),
       task("flags-2", { options: { A: "33", B: "30", C: "none", D: "36", E: "27" } }),
       task("flags-3", {
         question: "The first flag goes up at 20:00, and a flag goes up every 10 minutes. When does the fourth go up?",
@@ -163,6 +166,8 @@ test("the port's tasks and its picture of a row pass module-kit check, with no w
   assert.match(checked.stdout, /the module breaks no rule of the format 0\.4/);
   assert.doesNotMatch(checked.stdout, /warning/);
 
+  assert.match(readFileSync(join(module, "tasks", "flags-1.yaml"), "utf8"), /^unknown: "How long the rope is between the first flag and the last\."\nleading_question: "How many gaps lie between the first flag and the last\?"\ncanvas:/m,
+    "the hint of standalone is the leading question, after the unknown");
   const task = readFileSync(join(module, "tasks", "flags-2.yaml"), "utf8");
   assert.match(task, /^traps: \["number-from-text"\]$/m, "a word among the wrong options becomes a trap of the task");
   const time = readFileSync(join(module, "tasks", "flags-3.yaml"), "utf8");

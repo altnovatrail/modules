@@ -6,6 +6,7 @@ statement:
   - text: "The grass in a meadow grows at the same rate every day. 24 cows would eat all of it in 10 days, and 14 cows in 20 days. How many cows would eat all of it in 40 days?"
 givens: ["The grass grows at the same rate every day.", "24 cows would eat all of it in 10 days, and 14 cows in 20 days."]
 unknown: "How many cows would eat all of it in 40 days."
+leading_question: "14 cows in 20 days eat more grass than 24 cows in 10 days. Where does the extra grass come from?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

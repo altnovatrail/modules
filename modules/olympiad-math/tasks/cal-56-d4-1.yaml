@@ -6,6 +6,7 @@ statement:
   - text: "A family has a mother, a father and two children. Now their four ages add up to 73 years. Five years ago their ages added up to 54 years. How old is the younger child now?"
 givens: ["The family is a mother, a father and two children.", "Their four ages now add up to 73.", "Five years ago their ages added up to 54."]
 unknown: "The younger child's age now."
+leading_question: "By how much does the sum of four ages grow in five years? Compare that with how much this sum grew."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

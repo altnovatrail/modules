@@ -6,6 +6,7 @@ statement:
   - text: "It is November now. Which month will it be in 2 months?"
 givens: ["It is November now."]
 unknown: "The month in 2 months."
+leading_question: "Name the months that come after November, one at a time."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -10,6 +10,7 @@ statement:
     height: 92
 givens: ["Frog P is at 0, frog Q at 1 and frog R at 2.", "In a move one frog jumps over another and lands as far on the other side."]
 unknown: "Where the frogs can be after some moves."
+leading_question: "Follow one frog: what do all the points it lands on have in common?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

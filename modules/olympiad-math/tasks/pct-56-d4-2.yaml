@@ -6,6 +6,7 @@ statement:
   - text: "20% of Mia's stamps is the same number of stamps as 30% of Sam's. Together they have 200 stamps. How many stamps does Mia have?"
 givens: ["20% of Mia's stamps is as many as 30% of Sam's.", "Together they have 200 stamps."]
 unknown: "How many stamps Mia has."
+leading_question: "Who has more stamps, Mia or Sam? Try a few ways of splitting 200."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

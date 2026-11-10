@@ -6,6 +6,7 @@ statement:
   - text: "There are 32 pupils in Year 6. 15 sing in the choir, 13 act in the drama group and 12 paint in the art group. 5 are in both choir and drama, 4 in both choir and art, and 3 in both drama and art. These numbers include the 2 pupils who are in all three groups. How many pupils are in none of the groups?"
 givens: ["Year 6 has 32 pupils.", "15 sing in the choir, 13 act in drama and 12 paint in art.", "5 are in choir and drama, 4 in choir and art, and 3 in drama and art, counting the 2 who are in all three."]
 unknown: "How many pupils are in none of the groups."
+leading_question: "Add the three groups, then deal with the pupils counted more than once. How many times is a pupil in all three groups counted by the end?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

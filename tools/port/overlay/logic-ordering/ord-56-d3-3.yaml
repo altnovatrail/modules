@@ -4,6 +4,7 @@ givens:
   - "Kira and Dev do not stand next to each other, nor Dev and Ella."
   - "Kira stands somewhere to the left of Dev."
 unknown: "Who stands last on the right."
+leading_question: "Which friend may stand next to the fewest of the others? Where in the row can a friend with only one possible neighbour stand?"
 simpler_case: "Try four friends, Alice, Ben, Gil and Kira: Alice stands first on the left, Kira and Gil do not stand next to each other, and Kira stands to the left of Gil. Who stands second?"
 picture_alt: "Five places in a row, the first on the left marked A."
 trap_texts:

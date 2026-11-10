@@ -10,6 +10,7 @@ statement:
     height: 217
 givens: ["A 12-litre churn is full of milk, and jugs of 7 and 5 litres are empty.", "A step pours from one of the three into another until the first is empty or the second is full."]
 unknown: "The smallest number of steps that leaves exactly 4 litres in one of them."
+leading_question: "Keep a table of how much each container holds after every step, and try the two ways of starting."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

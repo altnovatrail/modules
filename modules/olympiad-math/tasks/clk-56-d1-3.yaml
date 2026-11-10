@@ -10,6 +10,7 @@ statement:
     height: 200
 givens: ["A tale takes 7 minutes and a song 4 minutes.", "The cat tells a tale, sings a song, tells a tale again, and so on, with no breaks.", "It starts its first tale at 9:00."]
 unknown: "How many minutes after 10:00 it starts its next song."
+leading_question: "How long do a tale and the song after it take? What is the cat doing at 10:00?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

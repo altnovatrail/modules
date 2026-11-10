@@ -6,6 +6,7 @@ statement:
   - text: "30 lamps stand round the edge of a rectangular ice rink, with a lamp in each corner. Each short side has 6 lamps, counting its corners. How many lamps does each long side have, counting its corners?"
 givens: ["30 lamps stand round the edge of a rectangular rink.", "There is a lamp in each corner.", "Each short side has 6 lamps, counting its corners."]
 unknown: "How many lamps each long side has, counting its corners."
+leading_question: "Each corner lamp belongs to two sides. How many lamps are counted twice if you add up the lamps of all four sides?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

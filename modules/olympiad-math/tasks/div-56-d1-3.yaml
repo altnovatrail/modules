@@ -6,6 +6,7 @@ statement:
   - text: "When Ann's number is divided by 9, the remainder is 5. When Ben's number is divided by 9, the remainder is 7. What is the remainder when the sum of their two numbers is divided by 9?"
 givens: ["Ann's number divided by 9 leaves 5.", "Ben's number divided by 9 leaves 7."]
 unknown: "The remainder of the sum of their numbers divided by 9."
+leading_question: "Add the two remainders. Is what you get less than 9?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

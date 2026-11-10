@@ -39,8 +39,9 @@ type Example struct {
 	SolutionTotal   string                `json:"solution_total,omitempty"`
 	SolutionPicture json.RawMessage       `json:"solution_picture,omitempty"`
 	Distractors     map[string]Distractor `json:"distractors"`
-	// Hint is not carried: the format has no field for it, and the ladder of hints is built from
-	// the traps, the givens, the techniques and the simpler case (format/README.md, section 19).
+	// Hint is a question or a step that breaks the task down: the task's leading question, which a
+	// hint asked for gives before the first wrong answer (format/README.md, section 14; amendment
+	// T51 to R12).
 	Hint string `json:"hint,omitempty"`
 	// Idea is the place of the task's idea in its topic's list of ideas, at 42b4408 on a task solved
 	// from the picture. It is not carried: the ideas are not (docs/architecture.md, section 3.5).

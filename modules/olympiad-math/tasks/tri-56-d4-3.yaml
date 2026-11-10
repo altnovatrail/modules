@@ -6,6 +6,7 @@ statement:
   - text: "A traveller went into three shops, one after another. In each shop he spent half of the coins he had and then 2 coins more. After the third shop he had no coins left. How many coins did he have at first?"
 givens: ["In each of three shops the traveller spent half of his coins and then 2 coins more.", "After the third shop he had no coins left."]
 unknown: "How many coins he had at first."
+leading_question: "Start from the end. Before the last 2 coins in the third shop, how many did he have? And before he spent half?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "Kim starts with the number 1. In each step she either adds 4 or multiplies by 3. Which of these numbers can she get?"
 givens: ["Kim starts with 1.", "Each step adds 4 or multiplies by 3."]
 unknown: "Which of the numbers she can get."
+leading_question: "Try a few steps. What do all the numbers Kim gets have in common?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

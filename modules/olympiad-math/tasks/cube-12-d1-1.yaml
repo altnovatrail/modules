@@ -10,6 +10,7 @@ statement:
     height: 88
 givens: ["The die stands on the cell with the number in it on top.", "Opposite faces of a die add up to 7."]
 unknown: "The number on its bottom."
+leading_question: "Which number makes 7 with the number on top?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

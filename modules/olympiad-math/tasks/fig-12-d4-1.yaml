@@ -10,6 +10,7 @@ statement:
     height: 128
 givens: ["Each line is a match, and the dashed matches are taken away."]
 unknown: "How many squares, small or big, are still whole."
+leading_question: "Which squares lose a side when the dashed matches go?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

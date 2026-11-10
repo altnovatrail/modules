@@ -7,6 +7,7 @@ statement:
   - text: "Write the part of the coin as a percentage, like 50%."
 givens: ["One coin buys a loaf and a bottle of milk.", "After prices rise by 25%, it buys half a loaf and a bottle of milk.", "Then prices rise by another 20%."]
 unknown: "The part of the coin the milk alone then costs."
+leading_question: "Before the rise, what part of the coin did half a loaf and a bottle of milk cost?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

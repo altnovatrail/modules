@@ -6,6 +6,7 @@ statement:
   - text: "Ilya always tells the truth. One day he was asked the same question twice and gave two different answers. Which of these questions could it have been?"
 givens: ["Ilya always tells the truth.", "He was asked the same question twice and gave two different answers."]
 unknown: "Which question it could have been."
+leading_question: "Ilya told the truth both times. What could have changed between the first time he was asked and the second?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

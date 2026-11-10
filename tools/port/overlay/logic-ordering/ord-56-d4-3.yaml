@@ -5,6 +5,7 @@ givens:
   - "Bob performs after Cora, and Dean second or last."
   - "Exactly one act comes between Abby's and Bob's."
 unknown: "Who performs third."
+leading_question: "Try Emma third. Where can Finn and Dean go then, and is there room for the two children with exactly one act between them?"
 simpler_case: "Try four children, Bob, Cora, Emma and Finn: Emma performs first, Finn right after her, and Bob after Cora. Who performs third?"
 techniques: [table]
 trap_texts:

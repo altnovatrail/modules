@@ -6,6 +6,7 @@ statement:
   - text: "A mosaic is a square of 3 by 3 tiles, each 1 cm by 1 cm. The artist takes away the four corner tiles. What area do the tiles that are left cover, in square centimetres?"
 givens: ["A square of 3 by 3 tiles of 1 cm by 1 cm loses its four corner tiles."]
 unknown: "The area the tiles left cover, in square centimetres."
+leading_question: "How many tiles were there before any were taken away?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

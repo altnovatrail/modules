@@ -6,6 +6,7 @@ statement:
   - text: "Nine people stand in a queue in the rain, each under an open umbrella, so close that the umbrellas of neighbours touch. Take each person as a point and each umbrella as a circle of radius 40 cm round them. When the rain stops, they close their umbrellas and stand 60 cm apart. A queue's length runs from its very front to its very back. By how many metres is the queue now shorter?"
 givens: ["Nine people stand in a queue.", "Each umbrella is a circle of radius 40 cm round its person, and neighbours' umbrellas touch.", "After the rain, the people stand 60 cm apart.", "The queue runs from its very front to its very back."]
 unknown: "By how many metres the queue is now shorter."
+leading_question: "How long is the queue under the umbrellas, from the front of the first umbrella to the back of the last?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

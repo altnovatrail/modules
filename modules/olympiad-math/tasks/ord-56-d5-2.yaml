@@ -10,6 +10,7 @@ statement:
     height: 74
 givens: ["Five houses in a row are numbered 1 to 5 from the left.", "Each is red, blue, green, yellow or white, and in each lives a cat, a dog, a fish, a bird or a horse.", "The blue house is house 3, and the green house stands just to the left of the white one.", "The dog lives in the red house, and the cat next door to the dog.", "The fish lives in house 5, and the bird next door to the yellow house."]
 unknown: "Which pet lives in the green house."
+leading_question: "The blue house is in the middle. Where can the green and white houses stand side by side?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

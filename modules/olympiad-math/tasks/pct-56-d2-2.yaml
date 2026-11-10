@@ -6,6 +6,7 @@ statement:
   - text: "At a party, 60% of the guests chose vanilla ice cream and 30% chose chocolate. The other 3 guests chose strawberry. How many guests were at the party?"
 givens: ["60% of the guests chose vanilla and 30% chocolate.", "The other 3 guests chose strawberry."]
 unknown: "How many guests were at the party."
+leading_question: "What percentage of the guests chose strawberry?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

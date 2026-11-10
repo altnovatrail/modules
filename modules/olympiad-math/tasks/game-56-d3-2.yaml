@@ -10,6 +10,7 @@ statement:
     height: 84
 givens: ["One jar holds 3 coins and the other 5, and Lily moves first.", "A move takes one or more coins out of one jar, and taking the last coin wins.", "Sam makes no mistakes."]
 unknown: "The opening move that lets Lily win for sure."
+leading_question: "Suppose both jars hold the same number of coins and it is your turn. What can the other player do after each of your moves?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

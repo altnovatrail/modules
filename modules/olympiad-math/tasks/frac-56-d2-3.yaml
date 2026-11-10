@@ -6,6 +6,7 @@ statement:
   - text: "Tom writes the fractions 1/12, 2/12, 3/12 and so on, up to 12/12. How many of them are bigger than 1/3 but smaller than 3/4?"
 givens: ["The fractions are 1/12, 2/12, 3/12 and so on up to 12/12."]
 unknown: "How many of them are bigger than 1/3 but smaller than 3/4."
+leading_question: "How many twelfths make one third, and how many make three quarters?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

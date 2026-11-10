@@ -6,6 +6,7 @@ statement:
   - text: "Three roads lead from a village to a town, and two roads lead from the town to a city. Lena travels from the village to the city and back to the village, through the town both ways. She never uses the same road twice. How many different trips can she make?"
 givens: ["Three roads lead from the village to the town.", "Two roads lead from the town to the city.", "Lena goes there and back through the town, and never uses the same road twice."]
 unknown: "How many different trips she can make."
+leading_question: "Count the ways there first. Then, for the way back, how many roads are still unused on each part?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

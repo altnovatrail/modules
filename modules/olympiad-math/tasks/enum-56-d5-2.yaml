@@ -6,6 +6,7 @@ statement:
   - text: "Four points are marked on one straight line, and three points on another straight line parallel to it. How many triangles have all three corners at marked points?"
 givens: ["Four points are marked on one straight line.", "Three points are marked on another straight line parallel to it."]
 unknown: "How many triangles have all three corners at marked points."
+leading_question: "Three points on one line make no triangle. So how many corners can a triangle have on each line?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

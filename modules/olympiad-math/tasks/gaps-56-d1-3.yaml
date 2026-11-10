@@ -6,6 +6,7 @@ statement:
   - text: "Sam has a long liquorice lace. Again and again, he bites 3 cm out of a piece, never at its end, so that the piece splits in two. At the end he has five pieces, 2, 4, 6, 8 and 10 cm long. How long was the lace?"
 givens: ["Each bite takes 3 cm out of a piece and splits it in two.", "At the end there are five pieces: 2, 4, 6, 8 and 10 cm long."]
 unknown: "How long the lace was."
+leading_question: "Each bite turns one piece into two. How many bites does it take to get 5 pieces from one?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

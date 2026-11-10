@@ -6,6 +6,7 @@ statement:
   - text: "Ann and Ben each have 6 stickers and 4 badges, and no two of these 20 things are alike. In a fair swap, each gives the other one thing of the same kind: a sticker for a sticker, or a badge for a badge. How many different fair swaps can they make?"
 givens: ["Ann and Ben each have 6 stickers and 4 badges, and no two of the things are alike.", "In a fair swap each gives the other one thing of the same kind."]
 unknown: "How many different fair swaps they can make."
+leading_question: "Count the sticker swaps and the badge swaps on their own, then put them together."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

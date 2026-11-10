@@ -6,6 +6,7 @@ statement:
   - text: "In a car park, 5/8 of the cars are red and the rest are blue. There are 6 more red cars than blue cars. How many cars are in the car park?"
 givens: ["5/8 of the cars are red, and the rest are blue.", "There are 6 more red cars than blue cars."]
 unknown: "How many cars are in the car park."
+leading_question: "What fraction of the cars are blue, and how big is the gap between the two fractions?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

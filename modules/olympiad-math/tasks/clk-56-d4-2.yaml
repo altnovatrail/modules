@@ -11,6 +11,7 @@ statement:
   - text: "Write the time as hours and minutes, like 9:15."
 givens: ["Lena sets her watch right at 8:00 at home.", "The watch gains 5 minutes in every hour of real time.", "The city's clocks show 3 hours more than at home.", "When she lands, her watch shows 21:00."]
 unknown: "The local time in the city."
+leading_question: "Her watch counted 13 hours. How many real hours is that, if the watch goes on 65 minutes in each real hour?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -10,6 +10,7 @@ statement:
     height: 147
 givens: ["A cook has an empty 4-litre pot, an empty 7-litre pot and a tap.", "A step fills a pot or pours from one pot into the other until it is empty or the other is full.", "No water may go down the sink."]
 unknown: "The smallest number of steps after which a pot holds exactly 6 litres."
+leading_question: "Write down how much each pot holds after every step. Do new amounts keep coming?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

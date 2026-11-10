@@ -112,7 +112,7 @@
 |---|---|---|---|---|---|
 | [x] | T49 | Признак слова у 44 выборов от руки | Claude | — | — |
 | [x] | T50 | Вид `time` у 30 времён и ловушка 12-часового циферблата | Claude | да | T49 |
-| [ ] | T51 | Наводящие вопросы из подсказок standalone | Claude, проверяю я | да | T50 |
+| [x] | T51 | Наводящие вопросы из подсказок standalone | Claude, проверяю я | да | T50 |
 | [ ] | T52 | Картинки экземпляров четырёх шаблонов и картинки решений `changes` и `groups` | Claude | да | T49 |
 | [ ] | T53 | Шаблоны по картинке, которых R22 не перенёс | Claude | да | T52 |
 | [ ] | T54 | Списки шагов в 41 уроке и описания шагов решения | Claude | — | T49 |
@@ -244,6 +244,31 @@
 - **Как проверить:** как T49; `just modules-check` — ни одного отказа `task.no-leaks`; счёт вопросов в «Сделано» сходится со счётом подсказок минус снятые.
 - **Разделы:** R07, R12, R20; R82 spec и его поправки 2026-11-08 и 2026-11-09, R108 spec; [текст формата](spec/format/README.md), разделы 14, 19 и 20.
 - **Риски:** `api` пишет в свидетельство, что ученик получил вопрос, только после релиза `learner-model` с этим полем (поправка 2026-11-09 к R82 spec). Модуль от этого не ждёт: поле необязательно для читателя.
+- **Выяснилось при планировании** (2026-11-10, `gh api` по standalone на 42b4408 и 89986bc, без клона):
+  - подсказка есть у 311 задач из 753 — 22 на полосе 1–2, 17 на 3–4 и 272 на 5–6; среди них девять задач первой пачки, с тем же текстом на 89986bc. Длина — до 206 знаков, язык — английский;
+  - 258 кончаются «?», 53 — указания, как «Look only at the remainder each number leaves when it is divided by 3.»;
+  - у 8 из 22 эталонных задач 19 шаблонов есть подсказка; тест шаблонов уже подставляет числа эталона в ключ;
+  - в схеме задачи `leading_question` идёт после `unknown`, так же в примере `heads-and-legs-template.yaml`.
+- **Решено автором (2026-11-10)** — три ответа, все по рекомендациям:
+  1. дословно все 311, указания тоже: они разбивают задачу, а «question» — имя поля. Отвергнуто: переписать 53 указания в вопросы; не брать их;
+  2. шаблоны — тоже, в T51: восемь, с подстановками. Отвергнуто: только задачи;
+  3. вычитываю я только правки и вопросы шаблонов. Отвергнуто: все 311 построчно.
+- **Решено при планировании** — исполнителем, по рекомендациям (решение 2 эпика E7): поле правки `leading_question` заменяет подсказку, у задачи без подсказки — отказ, а снять вопрос нельзя; ключ выбора в вопросе ищет конвертер и отказывает, а ключ числа, дроби и времени — `task.no-leaks`.
+- **Сделано (2026-11-10):**
+  - правило 12 — до начала: у SonarCloud и CodeQL находок нет, у Scorecard те же 6, их причины — в R33 spec. Правок нет;
+  - `tools/port/convert.go`: `leading_question` — подсказка или поле правки — в корне задачи после `unknown`; ключ выбора в нём — отказ, а в прогоне — пометка; пометки «hint is not carried» нет. `batch.go` — поле `LeadingQuestion`; `standalone.go` — комментарий `Hint`. Тесты: `TestConvertWholeNumber` — вопрос на своём месте и без пометки; `TestConvertLeadingQuestion` — задача без подсказки, правка без подсказки — отказ, правка на месте подсказки, ключ выбора от руки и касанием — отказ, переписанный — принят, прогон — пометка; `test/port.test.mjs` — подсказка у `flags-1`, которую `module-kit check` принимает; `test/templates.test.mjs` — вопрос экземпляра эталона;
+  - `just port` по 14 пачкам: `leading_question` у 311 задач. Переписаны правками пять — тебе на вычитку:
+    - `ord-56-d3-3`, ключ «Dev»: было «Who can stand next to Dev at all? Think about where Dev can stand if he has only one possible neighbour.» → «Which friend may stand next to the fewest of the others? Where in the row can a friend with only one possible neighbour stand?»;
+    - `ord-56-d4-3`, ключ «Abby»: было «Try Emma third. Where can Finn and Dean go then, and is there room for Abby and Bob?» → «Try Emma third. Where can Finn and Dean go then, and is there room for the two children with exactly one act between them?»;
+    - `game-56-d3-1`, ключ 2: было «Find out who wins when the stack has 1, 2, 3 or 4 cards. What do you notice?» → «Find out who wins with the smallest stacks first, one card more each time. What do you notice?»;
+    - `game-56-d4-3`, ключ 2: было «Who wins when the board shows 1? And 2, 3 or 4?» → «Who wins when the board shows the smallest numbers? Go up one number at a time.»;
+    - `par-56-d5-2`, ключ 4: было «Which places are left after each round? Look at the places 2, 4, 6 and so on, and then at the places 4, 8, 12.» → «Which places are left after each round? Write down the places left after the first round, and then after the second.»;
+  - восемь шаблонов — тебе на вычитку: `changes` «What percentage of the old price does the jacket cost now?», `counts` «The apples that are not red stay in the basket. What share of it are they before and after?», `for-every` «Find the tulips first, then the roses.», `groups` «How many full rows come before seat {seat}?», `split` «How many equal parts are there in all three baskets together?», `three-groups` «Count the pupils who cannot do each thing. How many of them can there be at most?», `two-groups` «Try to keep the dog owners and the cat owners apart. How many children would you need for that?», `what-is-left` «Work backwards. The {left} coins are what part of the coins he had after the book?»;
+  - вопрос стоит в 319 файлах `modules/olympiad-math/tasks/` — 311 задач и 8 шаблонов, `grep -l '^leading_question:'`; кроме пяти правок, тексты задач — подсказки standalone дословно, и списка всех 311 здесь нет, хотя план его обещал: 311 строк ничего не добавили бы к самим файлам;
+  - поправки 2026-11-10 к R07, R12 и R22; [docs/architecture.md](docs/architecture.md), разделы 3.5 и 3.6; README.md, Status;
+  - ревью — `/code-review high`, один круг, 8 находок. Исправлены семь: конвертер не искал в вопросе ключ-время — теперь проверка вопроса стоит в `chosen`, рядом с пояснениями, тем же поиском, время и с ведущим нулём, с тестом; прогон только помечал вопрос с ключом, а теперь и считает его в сводке — «explanations and leading questions that name the key»; поправка к R12 и раздел 3.5 говорили, что ключ числа ищет `task.no-leaks`, а формат не ищет ключ, который показывает условие, — теперь сказано, и названы пять вопросов, что остались дословными по этой причине; причина пяти правок — точно: два ключа-слова нашёл конвертер, три числа без условия — `task.no-leaks`; у поправки к R07 не было отвергнутого — теперь есть; проверка `test/port.test.mjs` ловит и порядок `unknown`, `leading_question`, `canvas`; здесь не хватало проверок и «Открыто». Не исправлена одна: вопрос, как `givens`, пускал бы ключ рядом с другим вариантом, — но он не пересказывает условие, а ведёт к ответу, и правило для него строже (поправка T51 к R12, «Отвергнуто»);
+  - проверено: `just ci-lint`; `just ci-test` — покрытие 99,0%; `just test` — 95 из 95; `just port --check` по 14 пачкам; `just modules-check` — 0, без предупреждений и без `task.no-leaks`, `module-kit diff` — «0.3.0 raises: major» и 319 патч-правок `leading_question`; `just eval-check`; `just lesson-pictures modules/olympiad-math --check`; `just -f spec/justfile docs-check-repo`.
+- **Открыто:** твоя вычитка пяти переписанных вопросов и восьми вопросов шаблонов — списки выше. До неё T56 не сливает `e7` в `main`.
 
 #### T52. Картинки экземпляров четырёх шаблонов и картинки решений `changes` и `groups`
 

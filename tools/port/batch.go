@@ -26,8 +26,8 @@ type Batch struct {
 	// every task it writes names.
 	overlays string
 	// survey marks the batch that a survey makes, of every task no batch names: it is never read
-	// from a file, its pictures get surveyAlt, and an explanation that names the key of a choice is
-	// counted, not refused.
+	// from a file, its pictures get surveyAlt, and an explanation or a leading question that names the
+	// key of a choice is counted, not refused.
 	survey bool
 }
 
@@ -56,9 +56,12 @@ type BatchTask struct {
 // Overlay is what a person writes for a task, tools/port/overlay/<batch>/<id>.yaml: none of it comes from
 // standalone, and the port puts it into the task as it is (R12).
 type Overlay struct {
-	Givens      []string `yaml:"givens,omitempty"`
-	Unknown     string   `yaml:"unknown,omitempty"`
-	SimplerCase string   `yaml:"simpler_case,omitempty"`
+	Givens  []string `yaml:"givens,omitempty"`
+	Unknown string   `yaml:"unknown,omitempty"`
+	// LeadingQuestion, when given, stands in place of the hint of standalone, as the task's leading
+	// question: written anew where the hint names the key (amendment T51 to R12).
+	LeadingQuestion string `yaml:"leading_question,omitempty"`
+	SimplerCase     string `yaml:"simpler_case,omitempty"`
 	// Techniques, when given, stand in place of those of the task's skill.
 	Techniques []string `yaml:"techniques,omitempty"`
 	// Traps are added to those of the wrong options that become no trap value.

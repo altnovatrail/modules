@@ -6,6 +6,7 @@ statement:
   - text: "Five friends compared their heights. Max is shorter than Lily. Paul is taller than Lily. Rita is taller than Olga but shorter than Max. The friends line up from the shortest to the tallest. Who stands second?"
 givens: ["Max is shorter than Lily, and Paul taller than Lily.", "Rita is taller than Olga but shorter than Max.", "The friends line up from the shortest to the tallest."]
 unknown: "Who stands second."
+leading_question: "Link the comparisons into one chain. Who is taller than whom?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

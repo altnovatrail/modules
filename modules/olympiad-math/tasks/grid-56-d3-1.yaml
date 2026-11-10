@@ -10,6 +10,7 @@ statement:
     height: 154
 givens: ["The squares have sides of 1 m.", "The playground takes up A1, B1, C1, C2, C3, B3 and A3."]
 unknown: "How many metres of fence go round it."
+leading_question: "Does the fence also have to run down into the gap in the middle?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

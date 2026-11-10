@@ -6,6 +6,7 @@ statement:
   - text: "What is the sum of all the digits of all the numbers from 1 to 100?"
 givens: ["The numbers go from 1 to 100.", "All the digits of all the numbers are added."]
 unknown: "The sum of all the digits."
+leading_question: "Look at the units digits of the numbers from 1 to 99 on their own, then at their tens digits."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -10,6 +10,7 @@ statement:
     height: 168
 givens: ["Each line in the picture is a match.", "A big square of three by three small squares is to be finished."]
 unknown: "How many more matches are needed."
+leading_question: "Which sides of the big square are missing?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

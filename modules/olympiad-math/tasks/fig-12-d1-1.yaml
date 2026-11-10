@@ -10,6 +10,7 @@ statement:
     height: 128
 givens: ["The picture shows small squares and one big one."]
 unknown: "How many squares there are."
+leading_question: "How many small squares are there, and is there a bigger one?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

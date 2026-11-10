@@ -6,6 +6,7 @@ statement:
   - text: "In a darts game, each dart scores either 3 points or 8 points, and a player can throw as many darts as she likes. What is the largest total that cannot be scored?"
 givens: ["Each dart scores 3 points or 8 points.", "A player can throw as many darts as she likes."]
 unknown: "The largest total that cannot be scored."
+leading_question: "Which totals from 1 to 20 can be scored?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

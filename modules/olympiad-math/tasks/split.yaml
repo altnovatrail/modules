@@ -2,6 +2,7 @@
 # content/solvers/ratio.sharing/split.star at 42b4408, made a solver of the template. It came from
 # reference task ratio-56-d3-1, whose numbers are one of its instances.
 # The numbers of reference task ratio-56-d3-1: total 90.
+# Its leading question is the hint of ratio-56-d3-1, as it stands (amendment T51 to R22).
 # The total of the baskets, which the reference task writes into fits, is the number that the
 # statement shows and the template varies: a multiple of 30 from 60 to 150, so that a part of the
 # ratio and the trap that takes 10 parts for 15 are whole; the ratio stays 3 : 5 : 7. standalone's sandbox
@@ -66,6 +67,7 @@ statement:
 givens:
   - "Baskets A, B and C hold {total} walnuts in the ratio 3 : 5 : 7."
 unknown: How many more walnuts are in C than in A.
+leading_question: How many equal parts are there in all three baskets together?
 canvas:
   kind: handwriting_sheet
   grid: squares

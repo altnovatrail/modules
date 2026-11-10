@@ -10,6 +10,7 @@ statement:
     height: 128
 givens: ["Triangles of any size whose sides are lines of the figure are counted."]
 unknown: "How many triangles there are."
+leading_question: "How many triangles does the long line make with the sides of the rectangle?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

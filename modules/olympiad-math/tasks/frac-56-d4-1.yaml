@@ -6,6 +6,7 @@ statement:
   - text: "In a library, 2/5 of the books are novels. Half of the novels and 1/6 of the other books have hard covers. What fraction of all the books have hard covers?"
 givens: ["2/5 of the books are novels.", "Half of the novels and 1/6 of the other books have hard covers."]
 unknown: "The fraction of all the books with hard covers."
+leading_question: "Pick a number of books that splits into fifths and into sixths, and count."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

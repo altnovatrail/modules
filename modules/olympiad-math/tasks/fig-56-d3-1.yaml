@@ -10,6 +10,7 @@ statement:
     height: 208
 givens: ["Triangles of any size whose sides are lines of the figure are counted."]
 unknown: "How many triangles there are."
+leading_question: "How many small triangles are there, and which of them join into bigger ones?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

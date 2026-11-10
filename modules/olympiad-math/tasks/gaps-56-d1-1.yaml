@@ -6,6 +6,7 @@ statement:
   - text: "A frog is at the bottom of a well 12 metres deep. Each day it climbs 5 metres up, and each night it slips 3 metres back down. On which day does it get out of the well?"
 givens: ["The well is 12 metres deep.", "Each day the frog climbs 5 metres up.", "Each night it slips 3 metres back down."]
 unknown: "On which day the frog gets out of the well."
+leading_question: "How high is the frog each morning? On its last day it gets out before night comes."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "A knight stands on a chessboard. In one move it goes two squares in a straight line and then one square to the side. After which of these numbers of moves can it be back on the square it started from?"
 givens: ["A knight moves two squares in a line and then one to the side."]
 unknown: "After which of the numbers of moves it can be back where it started."
+leading_question: "What colour is the square the knight lands on after one move? After two moves?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "Tom writes different whole numbers on the board, one after another. How many numbers must he write to be sure that two of them differ by 7, by 14 or by some other number of the 7 times table?"
 givens: ["Tom writes different whole numbers.", "Two of them must differ by a number of the 7 times table."]
 unknown: "How many numbers he must write to be sure of it."
+leading_question: "Try pairs such as 3 and 17, or 5 and 26. What do they have in common when you divide them by 7?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

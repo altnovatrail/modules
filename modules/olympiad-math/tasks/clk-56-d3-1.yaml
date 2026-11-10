@@ -10,6 +10,7 @@ statement:
     height: 80
 givens: ["Train A leaves at 22:35 and arrives at 6:10.", "Train B leaves at 23:50 and arrives at 7:05."]
 unknown: "Which trip is longer, and by how many minutes."
+leading_question: "Work out each trip on its own: count up to midnight, then on from midnight."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

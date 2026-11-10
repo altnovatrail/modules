@@ -2,6 +2,7 @@
 # content/solvers/logic.sets/two-groups.star at 42b4408, made a solver of the template. It came from
 # reference task sets-56-d3-1, whose numbers are one of its instances.
 # The numbers of reference task sets-56-d3-1: total 20, dog 12, cat 10.
+# Its leading question is the hint of sets-56-d3-1, as it stands (amendment T51 to R22).
 # Its capitals TOTAL, FIRST and SECOND are the numbers that the statement shows: a group of 20 to
 # 30 children, more with a dog than with a cat, that must overlap in 2 to 4 children; fits says
 # nothing more, as in the reference task. The reference task's picture is left out: one picture for
@@ -63,6 +64,7 @@ givens:
   - The group has {total} children.
   - "{dog} have a dog and {cat} have a cat."
 unknown: The smallest number who could have both.
+leading_question: Try to keep the dog owners and the cat owners apart. How many children would you need for that?
 canvas:
   kind: handwriting_sheet
   grid: squares

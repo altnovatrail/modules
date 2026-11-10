@@ -7,6 +7,7 @@ statement:
   - text: "Write the time as hours and minutes, like 9:15."
 givens: ["Ann, Ben and Cal start at 13:00, each packing 1 box every 3 minutes.", "Zoe joins later and packs 1 box every 2 minutes.", "At 14:00 they have packed 75 boxes in all."]
 unknown: "The time when Zoe joined."
+leading_question: "How many boxes do Ann, Ben and Cal pack between 13:00 and 14:00? How many are left for Zoe?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

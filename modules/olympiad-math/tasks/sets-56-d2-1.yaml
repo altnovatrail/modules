@@ -10,6 +10,7 @@ statement:
     height: 212
 givens: ["The class has 25 pupils.", "15 are in the football club, 12 in the chess club, and 5 in both."]
 unknown: "How many pupils are in neither club."
+leading_question: "Count the pupils who are in at least one club. Is anybody counted twice?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

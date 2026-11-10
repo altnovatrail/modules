@@ -6,6 +6,7 @@ statement:
   - text: "Anya thought of a number. She added half of the number to it, and then she added 5. She got 50. What number did Anya think of?"
 givens: ["Anya added half of her number to it, and then added 5.", "She got 50."]
 unknown: "The number Anya thought of."
+leading_question: "Take the 5 away first. The number and its half together make how many halves of the number?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

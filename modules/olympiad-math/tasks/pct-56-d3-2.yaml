@@ -6,6 +6,7 @@ statement:
   - text: "On a farm, 60% of the birds are hens, and 25% of the hens are brown. What percentage of all the birds on the farm are brown hens?"
 givens: ["60% of the birds are hens.", "25% of the hens are brown."]
 unknown: "The percentage of all the birds that are brown hens."
+leading_question: "Imagine the farm has 100 birds. How many of them are hens?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "In a shooting contest, the first shooter scores 40 points and the second scores 70. Each later shooter scores the average of all the scores before theirs. So the third scores the average of the first two, and the fourth the average of the first three. How many points does the tenth shooter score?"
 givens: ["The first shooter scores 40 and the second 70.", "Each later shooter scores the average of all the scores before theirs."]
 unknown: "How many points the tenth shooter scores."
+leading_question: "Work out what the third and the fourth shooter score. What do you notice?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

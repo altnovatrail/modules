@@ -6,6 +6,7 @@ statement:
   - text: "A bag holds 6 green marbles and 14 yellow marbles. Tom puts 5 more green marbles into the bag. What percentage of the marbles in the bag are green now?"
 givens: ["The bag holds 6 green and 14 yellow marbles.", "Tom puts in 5 more green marbles."]
 unknown: "The percentage of green marbles now."
+leading_question: "How many marbles are in the bag now, and how many of them are green?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

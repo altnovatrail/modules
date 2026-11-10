@@ -6,6 +6,7 @@ statement:
   - text: "Two TV channels start showing the same film at the same moment. The first channel cuts the whole film into parts of exactly 30 minutes each, with a 6-minute advert between every two parts. The second cuts it into parts of exactly 15 minutes each, with a 3-minute advert between every two parts. Which channel ends the film first, and how much sooner?"
 givens: ["The first channel shows parts of 30 minutes, with a 6-minute advert between every two parts.", "The second channel shows parts of 15 minutes, with a 3-minute advert between every two parts.", "Both start the same film at the same moment."]
 unknown: "Which channel ends the film first, and how much sooner."
+leading_question: "Try a film of 60 minutes: how many parts and adverts does each channel show? Then try 90 minutes."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

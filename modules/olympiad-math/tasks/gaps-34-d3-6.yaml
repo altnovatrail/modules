@@ -10,6 +10,7 @@ statement:
     height: 246
 givens: ["Kitten A starts on the floor, step 0.", "Kitten B starts on the top step.", "With each move, each kitten goes as far as its jump in the picture shows: A up and B down."]
 unknown: "On which step the kittens meet."
+leading_question: "Where is each kitten after one move, and after two?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

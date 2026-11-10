@@ -10,6 +10,7 @@ statement:
     height: 190
 givens: ["The garden is a 4 by 4 grid of beds, rows A to D and columns 1 to 4.", "Roses grow in B2, B3, C2 and C3."]
 unknown: "How many other beds share a whole side with a rose bed."
+leading_question: "Look at each side of the rose square: which beds touch it there?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "XY is a two-digit number with tens digit X and units digit Y, and YX is the number with its two digits swapped. XY + YX = 99 and XY − YX = 45. What is the number XY?"
 givens: ["XY has tens digit X and units digit Y; YX has the digits swapped.", "XY + YX = 99.", "XY − YX = 45."]
 unknown: "The number XY."
+leading_question: "What do XY + YX and XY − YX tell you about the digits X and Y?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

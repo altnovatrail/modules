@@ -6,6 +6,7 @@ statement:
   - text: "Two shepherds share their bread with a hunter: one shepherd has 5 loaves and the other has 3. The three of them eat all 8 loaves in equal shares. The hunter pays 8 coins, and each shepherd is paid for the bread he gave the hunter, at the same price. How many coins should the shepherd with 5 loaves get?"
 givens: ["One shepherd has 5 loaves and the other 3.", "The two shepherds and a hunter eat all 8 loaves in equal shares.", "The hunter pays 8 coins, shared for the bread each shepherd gave him."]
 unknown: "How many coins the shepherd with 5 loaves gets."
+leading_question: "Cut every loaf into 3 equal pieces. How many pieces does each person eat?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

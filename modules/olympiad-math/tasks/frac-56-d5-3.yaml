@@ -6,6 +6,7 @@ statement:
   - text: "Owen had a box of biscuits. He ate some of them, and then his friend Zoe came. They shared the biscuits that were left equally. In the end Owen had eaten 4 times as many biscuits as Zoe. What part of all the biscuits did Owen eat before Zoe came?"
 givens: ["Owen ate some biscuits, and then shared the rest equally with Zoe.", "In the end Owen had eaten 4 times as many biscuits as Zoe."]
 unknown: "The part of all the biscuits Owen ate before Zoe came."
+leading_question: "Call Zoe's share one part. How many such parts did Owen eat in all, and how many of them before Zoe came?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

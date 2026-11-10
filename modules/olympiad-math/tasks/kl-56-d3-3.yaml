@@ -6,6 +6,7 @@ statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Olly says: 'Rex and I are both knights or both liars.' Pam says: 'One of Olly and Sue is a knight and the other is a liar.' Rex says: 'At least one of Pam and Sue is a knight.' Sue says: 'Exactly three of us four are knights.' Who is certainly a knight?"
 givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Olly says: 'Rex and I are both knights or both liars.'", "Pam says: 'One of Olly and Sue is a knight and the other is a liar.'", "Rex says: 'At least one of Pam and Sue is a knight.'", "Sue says: 'Exactly three of us four are knights.'"]
 unknown: "Who is certainly a knight."
+leading_question: "Whatever Olly is, what can you say about Rex? Then try Sue as a liar."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "20 birds fly into a photo studio: 9 sparrows, 6 robins and 5 finches. Each time the photographer takes a picture, one of the birds flies away for good. At most how many pictures can be taken to be sure that at least 4 birds of one kind and 3 of another stay?"
 givens: ["20 birds fly in: 9 sparrows, 6 robins and 5 finches.", "With each picture, one bird flies away for good.", "At least 4 birds of one kind and 3 of another must stay."]
 unknown: "At most how many pictures can be taken to be sure of it."
+leading_question: "If the photographer is as unlucky as possible, which birds fly away first? How many birds can stay with no 4 of one kind and 3 of another?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

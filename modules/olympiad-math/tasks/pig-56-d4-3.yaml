@@ -6,6 +6,7 @@ statement:
   - text: "You choose different numbers from 1 to 10. How many must you choose to be sure that one of them divides another?"
 givens: ["You choose different numbers from 1 to 10.", "One of them must divide another."]
 unknown: "How many numbers you must choose to be sure of it."
+leading_question: "Try to choose as many numbers as you can with no one dividing another."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

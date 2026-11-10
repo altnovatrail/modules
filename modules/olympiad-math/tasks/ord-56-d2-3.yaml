@@ -10,6 +10,7 @@ statement:
     height: 74
 givens: ["Five stalls stand in a row, numbered 1 to 5 from the gate.", "The toy stall is number 4.", "The candy stall is right next to the cake stall.", "The cake stall is further from the gate than the popcorn stall."]
 unknown: "The number of the popcorn stall."
+leading_question: "The candy stall and the cake stall stand side by side. Which two free stalls next to each other are left for them?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

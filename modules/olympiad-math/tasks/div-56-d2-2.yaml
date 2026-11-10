@@ -6,6 +6,7 @@ statement:
   - text: "When Tom divides his number by 7, the answer is 12 with 5 left over. What is Tom's number?"
 givens: ["Tom's number divided by 7 gives 12 with 5 left over."]
 unknown: "Tom's number."
+leading_question: "How many is 12 groups of 7, and what is left over?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

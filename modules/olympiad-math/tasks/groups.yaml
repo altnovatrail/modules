@@ -2,6 +2,7 @@
 # content/solvers/number.divisibility/groups.star at 42b4408, made a solver of the template. It came from
 # reference task div-56-d3-1, whose numbers are one of its instances.
 # The numbers of reference task div-56-d3-1: seat 97, size 18.
+# Its leading question is the hint of div-56-d3-1, with its seat a placeholder (amendment T51 to R22).
 # Its capitals NUMBER and SIZE are the numbers that the statement shows: a seat from 60 to 120 and
 # rows of 12 to 20 seats. The constraint keeps the seat off the end of a row, at least third in its
 # row, and the row from 4 to 10, so that no trap value nor the row equals a number of the statement. The reference task's
@@ -61,6 +62,7 @@ givens:
   - Each row has {size} seats, numbered row by row.
   - Row 1 has seats 1 to {size}, row 2 seats {second_row} to {second_end}, and so on.
 unknown: The row of seat {seat}.
+leading_question: How many full rows come before seat {seat}?
 canvas:
   kind: handwriting_sheet
   grid: squares

@@ -10,6 +10,7 @@ statement:
     height: 168
 givens: ["The net is folded into a paper cube, with a number on each square."]
 unknown: "The largest sum of the numbers on two opposite faces."
+leading_question: "Fold the long row round in your mind: which of its squares end up facing each other?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

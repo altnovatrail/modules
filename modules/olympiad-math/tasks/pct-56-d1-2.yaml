@@ -6,6 +6,7 @@ statement:
   - text: "A young tree was 40 cm tall. In five years its height grew by 150%. How tall is the tree now?"
 givens: ["The tree was 40 cm tall.", "In five years its height grew by 150%."]
 unknown: "How tall the tree is now."
+leading_question: "What is 150% of 40 cm? Is that the height now, or how much the tree grew?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"
