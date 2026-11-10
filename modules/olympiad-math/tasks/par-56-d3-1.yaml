@@ -6,6 +6,7 @@ statement:
   - text: "The numbers 1 to 10 are written on the board. In one step you add 1 to any two of the numbers. What is the smallest number of steps after which all ten numbers are equal?"
 givens: ["The numbers 1 to 10 are on the board.", "In one step 1 is added to any two of the numbers."]
 unknown: "The smallest number of steps after which all ten numbers are equal."
+leading_question: "What happens to the sum of all the numbers in one step?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

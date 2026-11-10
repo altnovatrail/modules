@@ -10,6 +10,7 @@ statement:
     height: 118
 givens: ["The bar has 2 rows of 3 squares.", "It breaks into two pieces of 3 squares, each holding together by whole sides."]
 unknown: "How many ways there are."
+leading_question: "After the straight break, look for pieces shaped like a corner."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

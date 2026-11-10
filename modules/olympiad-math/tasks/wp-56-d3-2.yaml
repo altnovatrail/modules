@@ -6,6 +6,7 @@ statement:
   - text: "Two of four coins are fake. The fakes are lighter than the real coins, which all weigh the same. How many weighings on a balance without weights are needed, at the least, to be sure which two coins are fake?"
 givens: ["Two of four coins are lighter fakes.", "The real coins all weigh the same, and the balance has no weights."]
 unknown: "The smallest number of weighings to be sure which two coins are fake."
+leading_question: "Weigh one coin against another. What can each result tell you?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

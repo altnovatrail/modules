@@ -6,6 +6,7 @@ statement:
   - text: "Ten machines make bolts. Nine of them make bolts of 10 g each, but one machine is faulty and makes bolts of 11 g. You may take any number of bolts from each machine and weigh them all together, once, on a scale that shows the weight. What is the smallest number of bolts you must take to be sure of finding the faulty machine?"
 givens: ["Nine machines make bolts of 10 g, and one faulty machine bolts of 11 g.", "You may take any number of bolts from each machine and weigh them all together, once."]
 unknown: "The smallest number of bolts that is sure to show the faulty machine."
+leading_question: "How can the weight show which machine made the heavier bolts?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

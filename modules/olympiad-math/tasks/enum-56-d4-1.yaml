@@ -6,6 +6,7 @@ statement:
   - text: "Tom writes three-digit numbers using only the digits 0, 1, 2, 3 and 4. In each number the three digits are all different. How many of the numbers he can write are even?"
 givens: ["The digits are 0, 1, 2, 3 and 4.", "The three digits of a number are all different.", "The number must be even."]
 unknown: "How many even three-digit numbers Tom can write."
+leading_question: "A number that ends in 0 and one that ends in 2 or 4 are counted differently. Why?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

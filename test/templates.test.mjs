@@ -1,9 +1,9 @@
 // The test of the module's templates against the tasks they came from (R22): module-kit builds the
 // module, as the release does, and for each template the instance with the numbers of its reference
-// task, which a line of its header gives, has that task's key, its band and its difficulty. So the
-// solver of a template still proves the answer of the task that standalone's template came from, as
-// standalone's own check of its templates does. It runs the real module-kit, so it runs in the job
-// Modules.
+// task, which a line of its header gives, has that task's key, its band, its difficulty and its
+// leading question. So the solver of a template still proves the answer of the task that
+// standalone's template came from, as standalone's own check of its templates does. It runs the
+// real module-kit, so it runs in the job Modules.
 
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -47,5 +47,9 @@ test("the instance of each template with its reference task's numbers has that t
     for (const field of ["band", "difficulty"]) {
       assert.equal(server.tasks[id][field], server.tasks[reference][field], `${id}: its ${field} and that of ${reference}`);
     }
+    // A template whose reference task has a leading question has it too, with placeholders for
+    // the reference task's numbers (amendment T51 to R22).
+    const question = server.tasks[id].leading_question?.replace(/\{([a-z][a-z0-9_]*)\}/g, (_, name) => String(instance[name]));
+    assert.equal(question, server.tasks[reference].leading_question, `${id}: the leading question of the instance of ${reference}`);
   }
 });

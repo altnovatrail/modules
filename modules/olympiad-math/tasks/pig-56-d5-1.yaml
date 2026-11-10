@@ -6,6 +6,7 @@ statement:
   - text: "A class has 21 pupils, boys and girls. No two girls of the class have the same number of friends among the boys of the class. At most how many girls can the class have?"
 givens: ["The class has 21 pupils, boys and girls.", "No two girls have the same number of friends among the boys."]
 unknown: "At most how many girls the class can have."
+leading_question: "If there are g girls, how many boys are there? How many different numbers of friends among the boys can a girl have?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

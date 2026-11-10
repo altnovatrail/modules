@@ -6,6 +6,7 @@ statement:
   - text: "Four monkeys, Mo, Kiki, Lulu and Pip, ate 20 bowls of porridge between them, and each ate at least two bowls. Kiki and Lulu ate 11 bowls together. Mo ate more bowls than each of the other three. How many bowls did Pip eat?"
 givens: ["Mo, Kiki, Lulu and Pip ate 20 bowls between them, each at least two.", "Kiki and Lulu ate 11 bowls together.", "Mo ate more bowls than each of the other three."]
 unknown: "How many bowls Pip ate."
+leading_question: "Kiki and Lulu ate 11 bowls together. At least how many did one of them eat?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

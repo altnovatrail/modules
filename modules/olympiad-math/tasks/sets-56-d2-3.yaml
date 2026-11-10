@@ -10,6 +10,7 @@ statement:
     height: 212
 givens: ["Each of 30 children went to the museum, the zoo or both.", "20 went to the museum and 16 to the zoo."]
 unknown: "How many went to both places."
+leading_question: "What does adding the two visits give you, and why is it more than 30?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

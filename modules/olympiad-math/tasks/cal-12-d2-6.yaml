@@ -6,6 +6,7 @@ statement:
   - text: "Lena stays at her grandma's for 4 nights. The day she goes and the day she comes back both count. How many days is she away from home?"
 givens: ["Lena stays 4 nights.", "The day she goes and the day she comes back both count."]
 unknown: "How many days she is away."
+leading_question: "Draw the days as dots and put a night between each two dots. How many dots do 4 nights need?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

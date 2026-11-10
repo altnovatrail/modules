@@ -6,6 +6,7 @@ statement:
   - text: "Five friends ran a race: Kim, Leo, Max, Nina and Olga. Leo finished right after Nina. Olga finished before Kim, and Max finished after Kim but was not last. In which place did Max finish?"
 givens: ["Kim, Leo, Max, Nina and Olga ran a race.", "Leo finished right after Nina.", "Olga finished before Kim, and Max after Kim but not last."]
 unknown: "In which place Max finished."
+leading_question: "Nina and Leo finished one right after the other. Where is there room for the two of them?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

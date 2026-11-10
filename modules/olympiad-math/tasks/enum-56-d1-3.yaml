@@ -6,6 +6,7 @@ statement:
   - text: "A football card lists 5 matches. For each match you tick one of three boxes: the home team wins, the away team wins, or a draw. In how many different ways can the card be filled in?"
 givens: ["The card lists 5 matches.", "For each match one of three boxes is ticked: home win, away win or draw."]
 unknown: "In how many different ways the card can be filled in."
+leading_question: "In how many ways can one match be ticked? And two matches?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

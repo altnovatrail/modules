@@ -6,6 +6,7 @@ statement:
   - text: "Sam picks two different whole numbers greater than 0, multiplies them, and multiplies the result by the difference of the two numbers. Which of these numbers can he get?"
 givens: ["Sam picks two different whole numbers greater than 0.", "He multiplies them and multiplies the result by their difference."]
 unknown: "Which of the numbers he can get."
+leading_question: "If both numbers are odd, what kind of number is their difference?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

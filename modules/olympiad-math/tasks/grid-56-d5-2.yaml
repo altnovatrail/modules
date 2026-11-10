@@ -10,6 +10,7 @@ statement:
     height: 190
 givens: ["Cell A1 of a 4 by 4 square is painted.", "A fold along a line of the grid paints every cell that lands on a painted one."]
 unknown: "The fewest folds that paint the whole square."
+leading_question: "At most how many new cells can one fold paint?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

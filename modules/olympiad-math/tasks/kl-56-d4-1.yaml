@@ -10,6 +10,7 @@ statement:
     height: 74
 givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Four islanders were asked how many knights are among them.", "The answers were 1, 2, 3 and 3.", "At least one of the four is a knight."]
 unknown: "How many knights there are."
+leading_question: "All the knights give the same true answer. How many islanders gave each answer?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

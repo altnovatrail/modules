@@ -6,6 +6,7 @@ statement:
   - text: "Lily writes down every four-digit number that uses each of the digits 1, 3, 5 and 7 exactly once. What do all these numbers add up to?"
 givens: ["Each number uses each of the digits 1, 3, 5 and 7 exactly once.", "Lily writes down all such four-digit numbers."]
 unknown: "What all the numbers add up to."
+leading_question: "In how many of the numbers does the digit 7 stand in the thousands place? And in each of the other places?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

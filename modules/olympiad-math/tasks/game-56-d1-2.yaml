@@ -6,6 +6,7 @@ statement:
   - text: "Ann cuts a strip of 12 squares into two pieces along a line between squares. Then Ben takes the piece he likes better, and Ann gets the other one. What is the largest number of squares Ann can be sure to get?"
 givens: ["Ann cuts a strip of 12 squares into two pieces.", "Ben takes the piece he likes better, and Ann gets the other."]
 unknown: "The largest number of squares Ann can be sure to get."
+leading_question: "Whichever way Ann cuts, which piece will Ben take?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

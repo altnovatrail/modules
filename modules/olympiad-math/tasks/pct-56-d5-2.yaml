@@ -6,6 +6,7 @@ statement:
   - text: "All the members of a school's chess club like puzzles. Of the pupils who are not in the club, only 25% like puzzles. Of all the pupils in the school, 40% like puzzles. What percentage of the pupils are in the chess club?"
 givens: ["All the members of the chess club like puzzles.", "25% of the pupils outside the club like puzzles.", "40% of all the pupils like puzzles."]
 unknown: "The percentage of the pupils in the chess club."
+leading_question: "Take a school of 100 pupils. If some of them are in the club, how many of the others like puzzles?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

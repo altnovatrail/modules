@@ -6,6 +6,7 @@ statement:
   - text: "A bus carries fewer than 40 passengers, and exactly 35% of the passengers are children. How many adults are on the bus?"
 givens: ["The bus carries fewer than 40 passengers.", "Exactly 35% of them are children."]
 unknown: "How many adults are on the bus."
+leading_question: "For which numbers of passengers is 35% of them a whole number?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

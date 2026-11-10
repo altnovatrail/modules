@@ -2,6 +2,7 @@
 # content/solvers/fractions.parts/what-is-left.star at 42b4408, made a solver of the template. It came from
 # reference task frac-56-d3-1, whose numbers are one of its instances.
 # The numbers of reference task frac-56-d3-1: left 30.
+# Its leading question is the hint of frac-56-d3-1, with its coins left a placeholder (amendment T51 to R22).
 # Its capital LEFT is the number that the statement shows, a multiple of 3 from 12 to 45, so that the
 # quarter of what is left after the book is whole; shares stay those of the reference task, half and
 # then a quarter of the rest. The trap values are derived numbers, the mistakes of the reference task.
@@ -67,6 +68,7 @@ givens:
   - Then he spends a quarter of what is left on a pen.
   - Now he has {left} coins.
 unknown: How many coins he had at first.
+leading_question: Work backwards. The {left} coins are what part of the coins he had after the book?
 canvas:
   kind: handwriting_sheet
   grid: squares

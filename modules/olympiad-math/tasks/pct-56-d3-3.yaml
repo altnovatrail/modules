@@ -6,6 +6,7 @@ statement:
   - text: "Lena has 15 more stickers than Max, and that is 25% more than Max has. By what percentage does Max have fewer stickers than Lena?"
 givens: ["Lena has 15 more stickers than Max.", "That is 25% more than Max has."]
 unknown: "By what percentage Max has fewer stickers than Lena."
+leading_question: "How many stickers does Max have, and how many does Lena have?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

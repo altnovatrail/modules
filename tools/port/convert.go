@@ -57,8 +57,8 @@ type Converted struct {
 	Answer string
 	// Notes are what the port left out, for the person who reads its report.
 	Notes []string
-	// KeyNamed counts the explanations that name the key of a choice or a time, which only a survey
-	// writes.
+	// KeyNamed counts the explanations and the leading question that name the key of a choice or a
+	// time, which only a survey writes.
 	KeyNamed int
 	// FromPicture says that the task's solver reads its picture (R21).
 	FromPicture bool
@@ -78,9 +78,10 @@ func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile
 	}
 	files := map[string][]byte{}
 	var notes []string
-	if ex.Hint != "" {
-		notes = append(notes, "its hint is not carried: the format has no field for it")
+	if ex.Hint == "" && overlay.LeadingQuestion != "" {
+		return Converted{}, fmt.Errorf("%s: its overlay has leading_question, and the task has no hint", ex.ID)
 	}
+	leading := leadingOf(ex, overlay)
 
 	if ex.Picture == nil && overlay.PictureAlt != "" {
 		return Converted{}, fmt.Errorf("%s: its overlay has picture_alt, and the task has no picture", ex.ID)
@@ -147,6 +148,9 @@ func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile
 	}
 	if overlay.Unknown != "" {
 		root = append(root, pair{"unknown", overlay.Unknown})
+	}
+	if leading != "" {
+		root = append(root, pair{"leading_question", leading})
 	}
 	canvas := mapping{{"kind", batch.Canvas.Kind}}
 	if batch.Canvas.Grid != "" {
@@ -242,7 +246,8 @@ var capitals = regexp.MustCompile(`^[A-Z]+$`)
 
 // answer is the answer slot of a task, as answerOf gives it: the slot, its key, the traps of the
 // wrong options that become no trap value, a note of each such option, the kind of the answer, and
-// how many explanations name the key of a choice or a time, which only a survey lets through.
+// how many explanations and leading questions name the key of a choice or a time, which only a
+// survey lets through.
 type answer struct {
 	slot     mapping
 	key      string
@@ -433,6 +438,16 @@ func chosen(ex Example, overlay Overlay, lenient bool, how writing) (answer, err
 	if err := unusedTexts(ex.ID, overlay, used); err != nil {
 		return answer{}, err
 	}
+	// The leading question comes before the first wrong answer and hints more than a technique, so,
+	// like the simpler case, it never names the key, which the leak check of the format searches
+	// neither in a choice nor where the statement shows it (amendment T51 to R12).
+	if leading := leadingOf(ex, overlay); namesKey(leading) {
+		if !lenient {
+			return answer{}, fmt.Errorf("%s: its leading question names its key %q: rewrite it in the leading_question of its overlay (amendment T51 to R12)", ex.ID, key)
+		}
+		keyNamed++
+		notes = append(notes, fmt.Sprintf("its leading question names its key %q", key))
+	}
 	// The givens and the unknown restate the statement, so they may name a key that the question
 	// names too, as a word written by hand always is, but only beside another option or where they
 	// quote the question: else the key there is the answer. Only the question counts, not the
@@ -506,6 +521,15 @@ func notCarried(traps []string, letter, option, kind, trap string) ([]string, st
 		traps = append(traps, trap)
 	}
 	return traps, fmt.Sprintf("its option %s, %q, is no value of the check %s: its trap %s goes to the task's traps, and its text is not carried", letter, option, kind, trap)
+}
+
+// leadingOf is the leading question of a task: the hint of standalone, or the overlay's question
+// written in its place (amendment T51 to R12).
+func leadingOf(ex Example, overlay Overlay) string {
+	if overlay.LeadingQuestion != "" {
+		return overlay.LeadingQuestion
+	}
+	return ex.Hint
 }
 
 func unusedTexts(id string, overlay Overlay, used map[string]bool) error {

@@ -6,6 +6,7 @@ statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Four islanders talk about a cake. Ann says: 'Ben and Kim both ate some of it.' Ben says: 'Neither Ann nor Kim ate any of it.' Kim says: 'Ann and Ben are both liars.' Dan says: 'Exactly two of Ann, Ben and Kim are knights.' How many of the four are knights?"
 givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Ann says Ben and Kim both ate some of the cake.", "Ben says neither Ann nor Kim ate any.", "Kim says: 'Ann and Ben are both liars.'", "Dan says: 'Exactly two of Ann, Ben and Kim are knights.'"]
 unknown: "How many of the four are knights."
+leading_question: "Can Ann and Ben both be knights? Try each of them as a knight, and then neither."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

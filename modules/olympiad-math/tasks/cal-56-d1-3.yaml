@@ -6,6 +6,7 @@ statement:
   - text: "Ben was born on 20 November 2013 and Kim on 5 March 2014. How old is each of them, in whole years, on 1 June 2026?"
 givens: ["Ben was born on 20 November 2013.", "Kim was born on 5 March 2014."]
 unknown: "The age of each in whole years on 1 June 2026."
+leading_question: "By 1 June 2026, has each of them had a birthday that year?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

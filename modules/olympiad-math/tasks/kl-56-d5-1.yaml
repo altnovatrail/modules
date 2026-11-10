@@ -6,6 +6,7 @@ statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. 24 islanders sit on 24 chairs, some blue and some red. Each of them says: 'I sit on a blue chair.' Then they all change seats, and now 8 of them say 'I sit on a red chair', while the other 16 say 'I sit on a blue chair.' How many knights sit on red chairs now?"
 givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "24 islanders sit on 24 chairs, some blue and some red, and each says 'I sit on a blue chair.'", "They change seats, and now 8 say 'I sit on a red chair' and 16 say 'I sit on a blue chair.'"]
 unknown: "How many knights sit on red chairs now."
+leading_question: "Before they changed seats, where did the knights sit, and where did the liars sit?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "Four stones look alike, but each has a different weight. A balance compares two stones at a time. What is the smallest number of weighings that is sure to put all four stones in order from the lightest to the heaviest?"
 givens: ["Four stones look alike, but each has a different weight.", "A balance compares two stones at a time."]
 unknown: "The smallest number of weighings that is sure to put the stones in order."
+leading_question: "In how many different orders can four stones lie from the lightest to the heaviest?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

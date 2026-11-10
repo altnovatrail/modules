@@ -10,6 +10,7 @@ statement:
     height: 200
 givens: ["The clock calls once at every half hour and, at every full hour, as many times as the hour.", "Its hands show 4:20.", "The minute hand is turned forward 3 whole turns, and the hour hand moves along."]
 unknown: "How many times the cuckoo calls."
+leading_question: "One whole turn of the minute hand takes the clock on by an hour. Which full hours and half hours does it pass?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

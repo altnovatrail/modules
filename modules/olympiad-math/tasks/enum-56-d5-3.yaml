@@ -6,6 +6,7 @@ statement:
   - text: "Mia has 9 balls: 4 red, 3 blue and 2 green. Balls of one colour are all alike. She puts them into three bags, 3 balls in each, and the bags are all alike too. In how many different ways can she do it?"
 givens: ["Mia has 4 red, 3 blue and 2 green balls; balls of one colour are alike.", "She puts them into three bags, 3 balls in each.", "The bags are alike too."]
 unknown: "In how many different ways she can do it."
+leading_question: "Do the two green balls go into one bag or into two bags? Count each case on its own."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "How many whole numbers must you choose to be sure that three of them have a sum that can be divided by 3?"
 givens: ["You choose whole numbers.", "Three of them must have a sum that can be divided by 3."]
 unknown: "How many numbers you must choose to be sure of it."
+leading_question: "Look only at the remainder each number leaves when it is divided by 3."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

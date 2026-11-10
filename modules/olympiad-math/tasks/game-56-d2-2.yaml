@@ -10,6 +10,7 @@ statement:
     height: 74
 givens: ["Kate and Leo count up to 22, Kate first.", "Each says the last number plus 1, 2 or 3, and nobody may go past 22.", "Whoever says 22 wins, and Leo plays as well as he can."]
 unknown: "The number Kate should say first."
+leading_question: "To say 22 yourself, which number would you like to have said on your turn before?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

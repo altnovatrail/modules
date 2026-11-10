@@ -10,6 +10,7 @@ statement:
     height: 288
 givens: ["The lines of the garden are walls.", "The beetle starts in cell S.", "It moves to the cell next to it, never through a wall."]
 unknown: "How many cells the beetle can reach, counting S."
+leading_question: "Which part of the garden do the walls close off from S?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

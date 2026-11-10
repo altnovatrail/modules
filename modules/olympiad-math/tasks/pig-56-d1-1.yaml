@@ -6,6 +6,7 @@ statement:
   - text: "A town has 7,310 people. A birthday is a day of the year, such as 5 May, and 29 February counts as one too. At least how many people of the town are sure to share one birthday?"
 givens: ["The town has 7,310 people.", "A birthday is a day of the year, and 29 February counts as one too."]
 unknown: "At least how many people of the town are sure to share one birthday."
+leading_question: "If no birthday had more than 19 people, at most how many people could the town have?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

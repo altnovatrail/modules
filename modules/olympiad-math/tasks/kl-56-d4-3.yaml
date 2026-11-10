@@ -6,6 +6,7 @@ statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Eight islanders have dinner round a table, so everyone sits between two neighbours. All eight say: 'At least one of my neighbours is a liar.' How many knights can there be at most?"
 givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Eight islanders sit round a table, each between two neighbours.", "All say: 'At least one of my neighbours is a liar.'"]
 unknown: "How many knights there can be at most."
+leading_question: "Who can sit next to a liar? And how many knights can one liar sit beside?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

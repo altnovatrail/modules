@@ -6,6 +6,7 @@ statement:
   - text: "Trees grow on both sides of a straight road, one every 5 metres along each side, with a tree at each end of both rows. There are 22 trees in all. How long is the road?"
 givens: ["Trees grow on both sides of a straight road.", "Along each side there is a tree every 5 metres, with a tree at each end.", "There are 22 trees in all."]
 unknown: "How long the road is."
+leading_question: "How many trees stand on one side? How many gaps lie between them?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

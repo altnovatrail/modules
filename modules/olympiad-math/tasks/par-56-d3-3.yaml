@@ -6,6 +6,7 @@ statement:
   - text: "A robot walks on a board of 3 by 3 squares. Each step takes it to a square that shares a side with the one it is on. It comes back to the square it started from and visits no other square twice. How many squares can such a route visit?"
 givens: ["The board is 3 by 3 squares.", "Each step goes to a square that shares a side.", "The robot comes back to its first square and visits no other square twice."]
 unknown: "How many squares such a route can visit."
+leading_question: "Try to draw a few such routes. What do their numbers of squares have in common?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

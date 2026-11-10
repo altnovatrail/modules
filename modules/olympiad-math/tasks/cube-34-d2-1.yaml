@@ -10,6 +10,7 @@ statement:
     height: 168
 givens: ["The net is folded into a cube."]
 unknown: "The number on the face opposite 1."
+leading_question: "Fold the net one cell at a time from 1."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

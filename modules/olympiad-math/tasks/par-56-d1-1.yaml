@@ -6,6 +6,7 @@ statement:
   - text: "Nine children each have two balloons, a red one and a yellow one. They swap balloons with each other so that as many children as possible end up holding two balloons of the same colour. At most how many children can do so?"
 givens: ["Nine children each have a red balloon and a yellow balloon.", "They swap so that as many as possible hold two of the same colour."]
 unknown: "At most how many children can do so."
+leading_question: "How many children can hold two red balloons? What happens to the red balloon left over?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "In a football match, a team of 6 truth-tellers, who always tell the truth, played a team of 6 liars, who always lie. The truth-tellers won 12 to 9. Afterwards every player was asked: 'How many goals did you score?' Some said 'one', some 'three' and some 'seven', and Misha alone said 'four'. Is Misha a liar?"
 givens: ["A team of 6 truth-tellers played a team of 6 liars, and the truth-tellers won 12 to 9.", "Asked how many goals they scored, players said one, three or seven, and Misha alone said four."]
 unknown: "Whether Misha is a liar."
+leading_question: "If Misha were a truth-teller, what kind of number would the six truth-tellers' answers add up to?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

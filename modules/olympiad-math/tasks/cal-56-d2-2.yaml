@@ -6,6 +6,7 @@ statement:
   - text: "2028 is a leap year: its February has 29 days. What is the date 100 days after 1 January 2028?"
 givens: ["2028 is a leap year: its February has 29 days."]
 unknown: "The date 100 days after 1 January 2028."
+leading_question: "Count the days left in January, then February and March. How many of the 100 days are still left after that?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

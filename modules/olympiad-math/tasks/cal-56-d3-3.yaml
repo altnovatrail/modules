@@ -6,6 +6,7 @@ statement:
   - text: "Grandpa, Dad and the son are 110 years old together. When the son was born, Dad was 26 and Grandpa was 51. How old is the son now?"
 givens: ["Grandpa, Dad and the son are 110 years old together.", "When the son was born, Dad was 26 and Grandpa 51."]
 unknown: "The son's age now."
+leading_question: "If the son is some age now, how old are Dad and Grandpa? All three ages add up to 110."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

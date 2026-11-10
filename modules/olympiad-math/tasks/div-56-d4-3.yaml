@@ -6,6 +6,7 @@ statement:
   - text: "A number leaves a remainder of 22 when it is divided by 24. What remainder does the same number leave when it is divided by 3?"
 givens: ["The number leaves 22 when divided by 24."]
 unknown: "Its remainder when divided by 3."
+leading_question: "What remainder does a multiple of 24 leave when it is divided by 3?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

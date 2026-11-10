@@ -10,6 +10,7 @@ statement:
     height: 140
 givens: ["Boxes A and B hold 56 shells between them.", "For every 3 shells in box A there are 4 in box B."]
 unknown: "How many shells are in box A."
+leading_question: "How many equal parts do the 56 shells make altogether?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

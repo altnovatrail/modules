@@ -6,6 +6,7 @@ statement:
   - text: "In a music club, one in every 3 pupils who sing also plays the drum. One in every 5 pupils who play the drum also sings. 12 pupils of the club sing. How many pupils of the club play the drum?"
 givens: ["One in every 3 pupils who sing also plays the drum.", "One in every 5 pupils who play the drum also sings.", "12 pupils sing."]
 unknown: "How many pupils play the drum."
+leading_question: "How many pupils both sing and play the drum?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "A jug holds two and a half litres of juice. Each glass holds a quarter of a litre. How many glasses can be filled from the full jug?"
 givens: ["The jug holds two and a half litres.", "Each glass holds a quarter of a litre."]
 unknown: "How many glasses the full jug fills."
+leading_question: "How many glasses does one litre fill? And how many does half a litre fill?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

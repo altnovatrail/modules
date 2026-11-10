@@ -3,6 +3,7 @@ givens:
   - "The number repeats 1234567 nine times: 63 digits."
   - "Again and again the digits in odd places are crossed out."
 unknown: "Which digit is crossed out last."
+leading_question: "Which places are left after each round? Write down the places left after the first round, and then after the second."
 simpler_case: "Try the number 1234 first. Which digit is crossed out last?"
 techniques: [pattern]
 trap_texts:

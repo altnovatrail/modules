@@ -7,6 +7,7 @@ statement:
   - text: "Write the time as hours and minutes, like 9:15."
 givens: ["One bus leaves A at 8:00 and gets to B at 14:00.", "Another leaves B at 9:00 and gets to A at 12:00.", "Both go along the same road, each at its own steady speed."]
 unknown: "The time when they meet."
+leading_question: "What part of the road does each bus cover in an hour? Where is the first bus at 9:00?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

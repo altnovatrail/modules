@@ -6,6 +6,7 @@ statement:
   - text: "After a 20% discount, a jacket costs 60 coins. What was its price before the discount?"
 givens: ["After a 20% discount the jacket costs 60 coins."]
 unknown: "Its price before the discount."
+leading_question: "What percentage of the old price does the jacket cost now?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

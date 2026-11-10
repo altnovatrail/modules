@@ -10,6 +10,7 @@ statement:
     height: 88
 givens: ["The die rolls straight along the row from S to the last cell, tipping over one edge for each cell.", "In the last cell it shows the number drawn there on top.", "Opposite faces of a die add up to 7."]
 unknown: "The number on top at S."
+leading_question: "How many rolls bring the bottom of a die up to the top?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

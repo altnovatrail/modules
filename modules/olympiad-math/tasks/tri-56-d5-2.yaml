@@ -6,6 +6,7 @@ statement:
   - text: "The number 96 is written as a sum of two or more whole numbers, and the same numbers multiplied together also make 96. What is the fewest numbers such a sum can have?"
 givens: ["The numbers of the sum, multiplied together, make 96 too.", "The sum has two or more whole numbers and makes 96."]
 unknown: "The fewest numbers such a sum can have."
+leading_question: "Ones change the sum but not the product. Which numbers other than ones multiply to 96?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

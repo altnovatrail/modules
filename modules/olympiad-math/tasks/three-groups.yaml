@@ -2,6 +2,7 @@
 # content/solvers/logic.sets/three-groups.star at 42b4408, made a solver of the template. It came from
 # reference task sets-56-d4-2, whose numbers are one of its instances.
 # The numbers of reference task sets-56-d4-2: total 10, swim 7, skate 8, bike 9.
+# Its leading question is the hint of sets-56-d4-2, as it stands (amendment T51 to R22).
 # Its capitals TOTAL and GROUPS are the numbers that the statement shows: a team of 10 to 12 and
 # three groups, each smaller than the next and than the team, that must overlap in at least two
 # pupils; PAIRS and ALL_THREE stay unknown, as in the reference task, and fits says nothing more.
@@ -81,6 +82,7 @@ givens:
   - The team has {total} pupils.
   - "{swim} can swim, {skate} can skate and {bike} can ride a bike."
 unknown: At least how many can do all three.
+leading_question: Count the pupils who cannot do each thing. How many of them can there be at most?
 canvas:
   kind: handwriting_sheet
   grid: squares

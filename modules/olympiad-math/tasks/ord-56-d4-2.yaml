@@ -6,6 +6,7 @@ statement:
   - text: "Tess, Ugo, Vera and Walt took the first four places in a quiz. Afterwards three of them spoke. Tess said: 'I was first, and Ugo was second.' Ugo said: 'I was first, and Tess was third.' Vera said: 'I was second, and Walt was first.' Walt said nothing. Each of the three said one true thing and one false thing. Who won the quiz?"
 givens: ["Tess, Ugo, Vera and Walt took the first four places in a quiz.", "Tess said she was first and Ugo second; Ugo said he was first and Tess third; Vera said she was second and Walt first.", "Each of the three said one true thing and one false thing."]
 unknown: "Who won the quiz."
+leading_question: "Suppose Tess really was first. What does that make true or false in what Ugo said?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

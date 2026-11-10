@@ -6,6 +6,7 @@ statement:
   - text: "Today is 25 May. May has 31 days, and June has 30. What date will it be in 40 days?"
 givens: ["Today is 25 May.", "May has 31 days, and June has 30."]
 unknown: "The date in 40 days."
+leading_question: "How many days are left in May after the 25th? Then go through the whole of June."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

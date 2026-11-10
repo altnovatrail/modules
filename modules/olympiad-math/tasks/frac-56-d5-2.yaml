@@ -6,6 +6,7 @@ statement:
   - text: "Four friends ate a whole pot of honey. Ben ate a third as much as Al. Cy ate a third of what Al did not eat. Dan got only a quarter of the pot. What part of the pot did Al eat?"
 givens: ["Four friends ate a whole pot of honey.", "Ben ate a third as much as Al, and Cy a third of what Al did not eat.", "Dan ate a quarter of the pot."]
 unknown: "The part of the pot Al ate."
+leading_question: "Add up what Ben and Cy ate: a third of what Al ate and a third of what he did not eat."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

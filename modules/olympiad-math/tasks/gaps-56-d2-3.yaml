@@ -6,6 +6,7 @@ statement:
   - text: "Children stand in a circle at equal distances from each other. They are numbered in turn, 1, 2, 3 and so on, all the way round. Child number 6 stands exactly opposite child number 17. How many children are in the circle?"
 givens: ["The children stand in a circle at equal distances.", "They are numbered 1, 2, 3 and so on, all the way round.", "Child 6 stands exactly opposite child 17."]
 unknown: "How many children are in the circle."
+leading_question: "How many steps from one child to the next lead from child 6 to child 17? That is half of the circle."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

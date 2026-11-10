@@ -6,6 +6,7 @@ statement:
   - text: "Every member of a hiking club is from 11 to 16 years old, in whole years. At least how many members must the club have to be sure that two of them are the same age?"
 givens: ["Every member is from 11 to 16 years old, in whole years."]
 unknown: "At least how many members the club must have to be sure that two of them are the same age."
+leading_question: "How many different ages can the members have? Can that many members all be of different ages?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

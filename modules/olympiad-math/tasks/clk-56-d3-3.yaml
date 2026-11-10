@@ -6,6 +6,7 @@ statement:
   - text: "In winter, when it is noon in London, it is 15:00 in Moscow. When it is 15:00 in Moscow, it is 20:00 in Beijing. It is 1:00 on Saturday in Beijing. What day and time is it in London?"
 givens: ["When it is noon in London, it is 15:00 in Moscow.", "When it is 15:00 in Moscow, it is 20:00 in Beijing.", "It is 1:00 on Saturday in Beijing."]
 unknown: "The day and time in London."
+leading_question: "How many hours ahead of London is Beijing? Going back past midnight changes the day."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

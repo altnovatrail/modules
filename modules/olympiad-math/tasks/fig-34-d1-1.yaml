@@ -10,6 +10,7 @@ statement:
     height: 168
 givens: ["The filled cells make a figure."]
 unknown: "How many squares of any size are made only of filled cells."
+leading_question: "How many squares of four cells fit with no empty cell?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

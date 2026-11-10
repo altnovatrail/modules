@@ -6,6 +6,7 @@ statement:
   - text: "Among nine rings that look alike, one is fake and lighter than the others, which all weigh the same. Kim puts 4 rings on each pan of a balance for her first weighing. Counting that one, what is the smallest number of weighings that is now sure to find the fake ring?"
 givens: ["Of nine rings, one is a lighter fake, and the others weigh the same.", "Kim puts 4 rings on each pan for the first weighing."]
 unknown: "The smallest number of weighings, the first one counted, that is now sure to find the fake."
+leading_question: "What does Kim know if the pans balance, and what if one pan rises?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "Children stand in a circle, holding hands. Each child holds the hands of two boys or the hands of two girls. There are 7 boys in the circle and at least one girl. How many girls are there?"
 givens: ["Each child holds the hands of two boys or of two girls.", "There are 7 boys and at least one girl."]
 unknown: "How many girls there are."
+leading_question: "Look at a child and the next but one round the circle. Are they the same, both boys or both girls?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

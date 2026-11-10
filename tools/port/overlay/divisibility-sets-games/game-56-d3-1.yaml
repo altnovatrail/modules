@@ -4,6 +4,7 @@ givens:
   - "Both play as well as they can."
   - "The stack may start with 10, 11, 12, 13 or 14 cards."
 unknown: "For how many of these starts Mia can be sure to win."
+leading_question: "Find out who wins with the smallest stacks first, one card more each time. What do you notice?"
 simpler_case: "Try stacks of 4, 5 and 6 cards with the same rules. For how many can Mia be sure to win?"
 techniques: [backwards]
 trap_texts:

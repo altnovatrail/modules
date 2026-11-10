@@ -6,6 +6,7 @@ statement:
   - text: "On a board of 3 by 3 squares there is a bug on every square. At the same moment every bug crawls to a square that shares a side with its own square. At least how many squares must be empty?"
 givens: ["The board is 3 by 3 squares with a bug on every square.", "At once every bug crawls to a square that shares a side with its own."]
 unknown: "At least how many squares must be empty."
+leading_question: "Where can the bugs from the middles of the four sides go?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

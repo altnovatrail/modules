@@ -6,6 +6,7 @@ statement:
   - text: "A rectangular cake is cut straight through, from edge to edge, 3 times along its length and 4 times across. How many pieces are there?"
 givens: ["The cake is cut 3 times along its length.", "The cake is cut 4 times across.", "Each cut goes straight from edge to edge."]
 unknown: "How many pieces there are."
+leading_question: "How many strips do the 3 cuts along the length make? Into how many pieces do the 4 cuts across split each strip?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

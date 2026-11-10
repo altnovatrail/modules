@@ -6,6 +6,7 @@ statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Tom says: 'Uma is lying.' Uma says: 'Val is lying.' Val says: 'Tom and Uma are both lying.' Wes says: 'Exactly one of Tom, Uma and Val is telling the truth.' Who are the knights among the four?"
 givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Tom says: 'Uma is lying.'", "Uma says: 'Val is lying.'", "Val says: 'Tom and Uma are both lying.'", "Wes says: 'Exactly one of Tom, Uma and Val is telling the truth.'"]
 unknown: "Who the knights are."
+leading_question: "Suppose Val tells the truth. What does that say about Tom and Uma, and does it hold together?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "A window has 3 rows of 4 square panes. A wooden strip as long as one pane runs along each side of each pane, and two panes next to each other share the strip between them. How many strips are there, counting those around the edge of the window?"
 givens: ["The window has 3 rows of 4 square panes.", "A strip runs along each side of each pane.", "Two panes next to each other share the strip between them."]
 unknown: "How many strips there are, counting those around the edge."
+leading_question: "Count the strips lying across and the strips standing upright separately."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

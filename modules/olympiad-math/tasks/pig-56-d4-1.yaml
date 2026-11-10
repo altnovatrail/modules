@@ -6,6 +6,7 @@ statement:
   - text: "Every pupil was born in one of the four seasons, and every pupil is a boy or a girl. How many pupils must a group have to be sure that 3 of them were born in the same season and are all boys or all girls?"
 givens: ["Every pupil was born in one of the four seasons.", "Every pupil is a boy or a girl."]
 unknown: "How many pupils a group must have to be sure that 3 of them were born in the same season and are all boys or all girls."
+leading_question: "How many kinds of pupil does the question tell apart?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

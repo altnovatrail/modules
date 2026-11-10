@@ -6,6 +6,7 @@ statement:
   - text: "There are 32 pupils in a class. The teacher asks them to close their eyes. All the boys and a quarter of the girls close their right eye. All the girls and a quarter of the boys close their left eye. How many pupils can still see with at least one eye?"
 givens: ["There are 32 pupils.", "All the boys and a quarter of the girls close their right eye.", "All the girls and a quarter of the boys close their left eye."]
 unknown: "How many pupils can still see with at least one eye."
+leading_question: "Think about the boys first. Which of the boys still have an eye open?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

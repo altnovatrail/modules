@@ -6,6 +6,7 @@ statement:
   - text: "Four shapes lie in a row: a circle, a square, a star and a heart. Each is a different colour: red, blue, green or yellow. The circle is at the left end and the heart at the right end. The red shape lies right after the circle. The star is yellow, and the green shape lies next to the star. What colour is the circle?"
 givens: ["A circle, a square, a star and a heart lie in a row, each red, blue, green or yellow.", "The circle is at the left end and the heart at the right end.", "The red shape lies right after the circle.", "The star is yellow, and the green shape lies next to the star."]
 unknown: "The colour of the circle."
+leading_question: "Which shape lies right after the circle, and so is red?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -10,6 +10,7 @@ statement:
     height: 133
 givens: ["Tim has an empty 4-litre jug, an empty 6-litre jug and a tap.", "He may fill a jug, empty a jug, or pour from one into the other until one is empty or the other is full."]
 unknown: "Which amount he can end up with in one jug."
+leading_question: "What amounts can each step make, starting from two empty jugs? Are they even or odd?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

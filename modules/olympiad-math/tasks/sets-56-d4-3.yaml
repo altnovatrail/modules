@@ -10,6 +10,7 @@ statement:
     height: 212
 givens: ["The year has 50 pupils.", "32 read comics and 25 read magazines.", "Twice as many read both as read neither."]
 unknown: "How many read neither."
+leading_question: "Try a number for those who read neither, and check whether the total comes out as 50."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

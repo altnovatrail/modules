@@ -10,6 +10,7 @@ statement:
     height: 168
 givens: ["The five cells fold up into a box with no lid."]
 unknown: "The number on the bottom of the box."
+leading_question: "Which cell has four cells round it once the box is folded?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -6,6 +6,7 @@ statement:
   - text: "A board of 4 by 4 squares has two opposite corner squares cut off. A domino covers two squares that share a side. At most how many dominoes can be placed on the board without overlapping?"
 givens: ["The board is 4 by 4 squares, with two opposite corners cut off.", "A domino covers two squares that share a side."]
 unknown: "At most how many dominoes fit without overlapping."
+leading_question: "Colour the board like a chessboard. What does each domino always cover?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

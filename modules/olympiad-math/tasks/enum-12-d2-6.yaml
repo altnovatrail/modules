@@ -10,6 +10,7 @@ statement:
     height: 84
 givens: ["Each round mark in the picture is a flavour.", "Each square mark is a topping.", "A cone has one flavour and one topping."]
 unknown: "How many different cones can be made."
+leading_question: "Pick one flavour. How many toppings can go with it?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

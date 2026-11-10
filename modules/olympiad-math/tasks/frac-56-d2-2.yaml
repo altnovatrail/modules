@@ -6,6 +6,7 @@ statement:
   - text: "A pack holds 24 crayons. Ben takes a quarter of the pack, and Lucy takes a third of the whole pack. How many crayons are left in the pack?"
 givens: ["A pack holds 24 crayons.", "Ben takes a quarter of the pack, and Lucy a third of the whole pack."]
 unknown: "How many crayons are left."
+leading_question: "Work out each child's share of the full pack before taking anything away."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

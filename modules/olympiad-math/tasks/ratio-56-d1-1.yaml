@@ -6,6 +6,7 @@ statement:
   - text: "In a class, the ratio of boys to girls is 2 : 3. What fraction of the class are boys?"
 givens: ["The ratio of boys to girls in the class is 2 : 3."]
 unknown: "The fraction of the class that are boys."
+leading_question: "For every 2 boys there are 3 girls. How many children make up one such group?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

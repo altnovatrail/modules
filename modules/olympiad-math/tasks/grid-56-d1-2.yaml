@@ -6,6 +6,7 @@ statement:
   - text: "A square sheet of 4 by 4 cells is folded in half along a line of its grid. Then it is folded in half again along a line at right angles to the first. Now it is a square of 2 by 2 cells, four sheets thick. One cell of this square is cut out through all four sheets. How many cells are missing when the sheet is opened out?"
 givens: ["A square sheet of 4 by 4 cells is folded in half, and then in half again at right angles.", "One cell of the folded square is cut out through all four sheets."]
 unknown: "How many cells are missing when the sheet is opened."
+leading_question: "How many layers of the sheet lie under each cell of the folded square?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

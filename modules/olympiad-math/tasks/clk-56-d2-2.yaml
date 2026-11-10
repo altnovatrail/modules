@@ -6,6 +6,7 @@ statement:
   - text: "On Tuesday at 20:30 Moscow time, Nina phones her grandfather in Vladivostok, where the clocks show 7 hours more than in Moscow. They talk for 45 minutes. What day and time is it in Vladivostok when the call ends?"
 givens: ["Nina phones at 20:30 on Tuesday, Moscow time.", "In Vladivostok the clocks show 7 hours more than in Moscow.", "They talk for 45 minutes."]
 unknown: "The day and time in Vladivostok when the call ends."
+leading_question: "When does the call end in Moscow? Then move the clock 7 hours on. Does it pass midnight?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

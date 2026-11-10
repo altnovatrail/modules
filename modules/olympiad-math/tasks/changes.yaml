@@ -2,6 +2,7 @@
 # content/solvers/percent.basic/changes.star at 42b4408, made a solver of the template. It came from
 # reference task pct-56-d3-1, whose numbers are one of its instances.
 # The numbers of reference task pct-56-d3-1: pct 20, end 60.
+# Its leading question is the hint of pct-56-d3-1, as it stands (amendment T51 to R22).
 # Its capitals CHANGES, one fall of a whole number of per cent, and END are the numbers that the
 # statement shows: a discount of 20 or 25 per cent and a price from 30 to 90 coins. The
 # constraint keeps every price in the story a whole number of coins and the trap values, the mistakes
@@ -63,6 +64,7 @@ statement:
 givens:
   - After a {pct}% discount the jacket costs {end} coins.
 unknown: Its price before the discount.
+leading_question: What percentage of the old price does the jacket cost now?
 canvas:
   kind: handwriting_sheet
   grid: squares

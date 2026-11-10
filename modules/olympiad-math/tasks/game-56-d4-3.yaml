@@ -6,6 +6,7 @@ statement:
   - text: "The number 12 is written on a board. Ivy and Paul take turns, and Ivy goes first. On each turn a player picks a divisor of the number on the board that is smaller than that number, and takes it away from the number. The number 1 counts as a divisor. A player who cannot move loses. Paul plays as well as he can. How many of Ivy's possible first moves let her be sure to win?"
 givens: ["The number 12 is on the board, and Ivy goes first.", "A move takes away a divisor smaller than the number, 1 included.", "A player who cannot move loses, and Paul plays as well as he can."]
 unknown: "How many of Ivy's first moves let her be sure to win."
+leading_question: "Who wins when the board shows the smallest numbers? Go up one number at a time."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

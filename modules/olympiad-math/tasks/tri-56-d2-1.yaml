@@ -6,6 +6,7 @@ statement:
   - text: "What is 1 + 11 + 111 + 1111 + 11111?"
 givens: ["The sum is 1 + 11 + 111 + 1111 + 11111."]
 unknown: "The sum."
+leading_question: "Add the numbers column by column, starting with the units. How many ones are there in each column?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

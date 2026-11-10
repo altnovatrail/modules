@@ -6,6 +6,7 @@ statement:
   - text: "A jar holds peaches in juice, and all the peaches are under the juice. Kim eats a quarter of the peaches, and the level in the jar falls by a fifth. By what part of the new level will it fall if Kim then eats half of the peaches that are left?"
 givens: ["All the peaches are under the juice.", "Eating a quarter of the peaches lowers the level by a fifth.", "Then Kim eats half of the peaches that are left."]
 unknown: "By what part of the new level it falls."
+leading_question: "Taking out a quarter of the peaches lowered the level by a fifth. What part of the jar's contents were all the peaches?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

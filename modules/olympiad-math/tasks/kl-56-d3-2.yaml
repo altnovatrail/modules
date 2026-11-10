@@ -6,6 +6,7 @@ statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Seven islanders stand in a line, one behind another. Each of them says: 'In front of me there are more liars than knights.' The first in the line has nobody in front. How many knights are in the line?"
 givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Seven islanders stand in a line, one behind another.", "Each says: 'In front of me there are more liars than knights.'", "The first has nobody in front."]
 unknown: "How many knights are in the line."
+leading_question: "Start with the first in the line. Are the words true when nobody stands in front?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

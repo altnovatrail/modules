@@ -6,6 +6,7 @@ statement:
   - text: "Sam has a balance, one 1 kg weight and a bag of 11 kg of rice. He wants to split the rice into a part of 3 kg and a part of 8 kg. At least how many weighings does he need?"
 givens: ["Sam has a balance, one 1 kg weight and 11 kg of rice.", "He wants a part of 3 kg and a part of 8 kg."]
 unknown: "The smallest number of weighings he needs."
+leading_question: "Put the weight on one pan and share the rice between the two pans until they balance. How much rice is on each pan?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

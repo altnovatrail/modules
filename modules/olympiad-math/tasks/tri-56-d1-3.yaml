@@ -6,6 +6,7 @@ statement:
   - text: "Tom adds the digits 1 to 6 in turn, again and again. He writes 1 + 2 + 3 + 4 + 5 + 6 + 1 + 2 and so on. He stops when the total is exactly 120. Which digit does he add last?"
 givens: ["Tom adds the digits 1 to 6 in turn, again and again.", "He stops when the total is exactly 120."]
 unknown: "Which digit he adds last."
+leading_question: "How much does one round of the digits 1 to 6 add? How much is left after the last whole round?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

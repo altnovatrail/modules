@@ -6,6 +6,7 @@ statement:
   - text: "Six runners finished a race: Ann, Ben, Cat, Dan, Eve and Fay. Dan finished after Cat but before Eve. Ann finished right after Dan, and Ben right after Eve. Eve did not finish next to Ann. Who finished fourth?"
 givens: ["Ann, Ben, Cat, Dan, Eve and Fay ran a race.", "Dan finished after Cat but before Eve.", "Ann finished right after Dan, and Ben right after Eve.", "Eve did not finish next to Ann."]
 unknown: "Who finished fourth."
+leading_question: "Dan and Ann finished side by side, and so did Eve and Ben. Who can stand between Ann and Eve?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

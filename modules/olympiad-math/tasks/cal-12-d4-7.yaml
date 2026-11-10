@@ -6,6 +6,7 @@ statement:
   - text: "A family spends 3 nights in a hotel and the next 2 nights at grandma's. The day they leave home and the day they come back both count. How many days does the trip take?"
 givens: ["The family spends 3 nights in a hotel and the next 2 nights at grandma's.", "The day they leave home and the day they come back both count."]
 unknown: "How many days the trip takes."
+leading_question: "How many nights does the whole trip have? Each night lies between two days."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

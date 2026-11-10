@@ -6,6 +6,7 @@ statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Lou says: 'If you asked Meg, she would say that Ned is a liar.' Meg says: 'Ned is a knight.' Ned says: 'Lou is a liar.' Who is lying?"
 givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Lou says: 'If you asked Meg, she would say that Ned is a liar.'", "Meg says: 'Ned is a knight.'", "Ned says: 'Lou is a liar.'"]
 unknown: "Who is lying."
+leading_question: "Meg has already said what she thinks of Ned. Would she say something else if you asked her?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

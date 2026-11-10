@@ -6,6 +6,7 @@ statement:
   - text: "Mark makes every number he can from the digit cards 1, 3, 7 and 8, using all four cards each time. He lists the numbers from the smallest to the largest. What is the largest difference between two numbers next to each other in his list?"
 givens: ["The digit cards are 1, 3, 7 and 8, all four used each time.", "The numbers are listed from the smallest to the largest."]
 unknown: "The largest difference between two numbers next to each other."
+leading_question: "Where in the list does the first digit change? Which two numbers stand on either side of each change?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

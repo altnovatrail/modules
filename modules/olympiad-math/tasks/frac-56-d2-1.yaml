@@ -10,6 +10,7 @@ statement:
     height: 154
 givens: ["Two thirds of a number N is 24."]
 unknown: "Three quarters of N."
+leading_question: "First find the whole number. How much is one third of it?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

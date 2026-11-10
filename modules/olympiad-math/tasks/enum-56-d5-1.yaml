@@ -6,6 +6,7 @@ statement:
   - text: "A necklace has 8 beads on a closed loop of thread: 6 red beads and 2 blue ones. Beads of one colour look alike. Two necklaces count as the same if one can be turned round or turned over to look like the other. How many different necklaces can be made?"
 givens: ["The necklace has 8 beads on a closed loop: 6 red and 2 blue.", "Beads of one colour look alike.", "Two necklaces are the same if one can be turned round or over to look like the other."]
 unknown: "How many different necklaces can be made."
+leading_question: "Turn the necklace so that a blue bead is at the top. What can still be different?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

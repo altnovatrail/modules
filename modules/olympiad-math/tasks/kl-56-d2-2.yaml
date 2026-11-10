@@ -6,6 +6,7 @@ statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Fay says: 'At least one of us three is a liar.' Gus says: 'Fay is a liar.' Hal says: 'Gus is a liar.' Who among them lies?"
 givens: ["Knights always tell the truth, and liars always lie.", "Every islander is a knight or a liar.", "Fay says: 'At least one of us three is a liar.'", "Gus says: 'Fay is a liar.'", "Hal says: 'Gus is a liar.'"]
 unknown: "Who among them lies."
+leading_question: "Could Fay be a liar? What would her words mean then?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

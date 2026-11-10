@@ -6,6 +6,7 @@ statement:
   - text: "At noon Sam sets two clocks with hands to the right time. One clock gains 2 minutes every hour, and the other loses 3 minutes every hour. After how many days will the two clocks first show the same time again?"
 givens: ["Both clocks are set right at noon.", "One gains 2 minutes every hour, and the other loses 3 minutes every hour."]
 unknown: "After how many days they first show the same time again."
+leading_question: "By how many minutes do the clocks drift apart each hour? How big must the gap be for two clocks with hands to show the same time?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

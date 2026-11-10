@@ -6,6 +6,7 @@ statement:
   - text: "A post office has four parcels that look alike, but no two of them weigh the same. The clerk has a balance without weights that compares two parcels at a time. What is the smallest number of weighings that is sure to find the heaviest parcel?"
 givens: ["Four parcels look alike, but no two weigh the same.", "A balance without weights compares two parcels at a time."]
 unknown: "The smallest number of weighings that is sure to find the heaviest parcel."
+leading_question: "After each weighing, how many parcels can you be sure are not the heaviest?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

@@ -10,6 +10,7 @@ statement:
     height: 208
 givens: ["The sheet is folded along line 1, then along line 2: left over right, or top over bottom.", "A hole is punched at cell O."]
 unknown: "How many holes there are in the open sheet."
+leading_question: "How many layers does each fold make at cell O?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

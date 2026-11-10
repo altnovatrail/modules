@@ -6,6 +6,7 @@ statement:
   - text: "Ann, Ben and Cat play table tennis. Two of them play each game while the third rests, and after each game the winner plays the next game against the one who rested. In the end Ann has played 15 games and Ben 21. At least how many games has Cat played?"
 givens: ["Two of Ann, Ben and Cat play each game, and the third rests.", "After each game the winner plays the one who rested.", "Ann played 15 games and Ben 21."]
 unknown: "At least how many games Cat played."
+leading_question: "Who rests in the game after a loss? Can anyone rest in two games running?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

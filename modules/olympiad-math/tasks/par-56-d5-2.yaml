@@ -6,6 +6,7 @@ statement:
   - text: "A 63-digit number is written by repeating 1234567 nine times: 12345671234567 and so on. First all the digits in odd places are crossed out. In what is left, the digits in odd places are crossed out again, and so on until nothing is left. Which digit is crossed out last?"
 givens: ["The number repeats 1234567 nine times: 63 digits.", "Again and again the digits in odd places are crossed out."]
 unknown: "Which digit is crossed out last."
+leading_question: "Which places are left after each round? Write down the places left after the first round, and then after the second."
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

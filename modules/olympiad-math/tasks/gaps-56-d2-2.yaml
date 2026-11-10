@@ -6,6 +6,7 @@ statement:
   - text: "An orchard is a rectangle 20 metres wide and 30 metres long. Apple trees grow in straight rows 5 metres apart, and in every row the trees are 5 metres apart. There are trees along all four edges, one in each corner. How many trees are there?"
 givens: ["The orchard is 20 metres wide and 30 metres long.", "The rows are 5 metres apart, and in a row the trees are 5 metres apart.", "There are trees along all four edges, one in each corner."]
 unknown: "How many trees there are."
+leading_question: "How many trees stand along the 20-metre side? And along the 30-metre side?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"

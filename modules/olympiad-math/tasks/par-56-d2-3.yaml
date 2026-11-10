@@ -6,6 +6,7 @@ statement:
   - text: "The sum of 20 whole numbers is odd, and more than half of the numbers are even. How many of the numbers can be even?"
 givens: ["The sum of 20 whole numbers is odd.", "More than half of the numbers are even."]
 unknown: "How many of the numbers can be even."
+leading_question: "Which numbers decide whether a sum is odd: the even ones or the odd ones?"
 canvas:
   kind: "handwriting_sheet"
   grid: "squares"
