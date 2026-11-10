@@ -1,0 +1,190 @@
+# A template of arithmetic-tricks (T53; R22): the solver of mathtrail-standalone
+# content/solvers/arithmetic.tricks/shapes-rows.star at 42b4408, made a solver of the template. It
+# came from reference task tri-34-d3-6, whose numbers are one of its instances.
+# The numbers of reference task tri-34-d3-6: first 9, second 7, third 8.
+# Its leading question is the hint of tri-34-d3-6, as it stands (amendment T51 to R22).
+# standalone's solver reads the rows of the picture, and the numbers beside the first three rows of
+# the reference task's picture, 9, 7 and 8, are the numbers that the template varies: from 7 to 11,
+# from 5 to 9 and from 6 to 10. The constraint keeps their sum even and the three shapes whole,
+# above 0 and unlike, so that no trap value equals the key or another. figure builds the picture
+# from them, and solve reads its rows with standalone's code, so the picture that the port draws
+# for each instance, from the source {"solver": "figure"} of
+# tools/port/template-pictures/olympiad-math/, is what the solver reads (amendment T53 to R22).
+# standalone's sandbox gives it sum, which the dialect of the format has not (format/README.md,
+# section 24), so loops add. The trap values are derived numbers, the mistakes of the reference
+# task.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: shapes-rows
+template:
+  parameters:
+    first: {from: 7, to: 11}
+    second: {from: 5, to: 9}
+    third: {from: 6, to: 10}
+  derived:
+    sums: first + second + third
+    two_rows: second + third
+    triangle: (first + third - second) // 2
+    square: (first + second - third) // 2
+    circle: (second + third - first) // 2
+  constraint: "(first + second + third) % 2 == 0 and first + third > second and first + second > third and second + third > first and first != second and second != third and first != third"
+  solver:
+    program: |
+      # For "each shape stands for a number": rows of shapes on the picture, the
+      # number beside a row the sum of its shapes, and the row asked about marked ?.
+      # Trying every shape from 0 to 20 runs out of steps at four shapes, so the
+      # rows are read first: a row with one kind of shape left unknown says what it
+      # is. Only where the rows say nothing more is a shape tried, from 0 to the most
+      # a row it stands in allows, and the rows read again. Every way the rows allow
+      # is followed, so a picture whose rows allow two answers is told apart.
+
+      def figure(numbers):
+          # The picture of the statement: three rows with their sums, and the row asked about.
+          return {"kind": "shapes", "rows": [
+              {"shapes": ["triangle", "square"], "total": str(numbers["first"])},
+              {"shapes": ["square", "circle"], "total": str(numbers["second"])},
+              {"shapes": ["triangle", "circle"], "total": str(numbers["third"])},
+              {"shapes": ["triangle", "square", "circle"], "total": "?"},
+          ]}
+
+      def solution_figure(numbers):
+          # The picture of the solution: each shape with its number.
+          return {"kind": "shapes", "rows": [
+              {"shapes": ["triangle"], "total": str(numbers["triangle"])},
+              {"shapes": ["square"], "total": str(numbers["square"])},
+              {"shapes": ["circle"], "total": str(numbers["circle"])},
+          ]}
+
+      def added(values):
+          # The sum of the values: the dialect has no sum.
+          total = 0
+          for value in values:
+              total += value
+          return total
+
+      def most(rows, shape):
+          # The largest value a shape can take: a row's total shared by its copies.
+          least = None
+          for row in rows:
+              copies = len([drawn for drawn in row["shapes"] if drawn == shape])
+              if row["total"] != "?" and copies > 0:
+                  share = int(row["total"]) // copies
+                  if least == None or share < least:
+                      least = share
+          return least
+
+      def settled(rows, known):
+          # Every shape the rows give away, or None when they contradict what is known.
+          known = dict(known)
+          changed = True
+          while changed:
+              changed = False
+              for row in rows:
+                  if row["total"] == "?":
+                      continue
+                  left = [drawn for drawn in row["shapes"] if drawn not in known]
+                  rest = int(row["total"]) - added([known[drawn] for drawn in row["shapes"] if drawn in known])
+                  if not left:
+                      if rest != 0:
+                          return None
+                  elif len(set(left)) == 1:
+                      if rest < 0 or rest % len(left) != 0:
+                          return None
+                      known[left[0]] = rest // len(left)
+                      changed = True
+          return known
+
+      def solve(numbers):
+          rows = figure(numbers)["rows"]
+          shapes = []
+          for row in rows:
+              for drawn in row["shapes"]:
+                  if drawn not in shapes:
+                      shapes.append(drawn)
+          asked = [row for row in rows if row["total"] == "?"][0]
+          answers = []
+          ways = [{}]
+          while ways:
+              known = settled(rows, ways.pop())
+              if known == None:
+                  continue
+              unknown = [shape for shape in shapes if shape not in known]
+              if not unknown:
+                  answer = added([known[drawn] for drawn in asked["shapes"]])
+                  if answer not in answers:
+                      answers.append(answer)
+                  continue
+              largest = most(rows, unknown[0])
+              if largest == None:
+                  fail("a shape that stands in no row with a total can be any number")
+              for value in range(largest + 1):
+                  tried = dict(known)
+                  tried[unknown[0]] = value
+                  ways.append(tried)
+          if len(answers) != 1:
+              fail("the rows allow %d answers" % len(answers))
+          return {"asked": answers[0]}
+    results: [asked]
+statement:
+  - text: In the picture, each shape stands for a number, the same number every time. The number beside a row is the sum of its shapes. What number is the question mark?
+  - picture: pictures/shapes-rows-{first}-{second}-{third}.png
+    alt: Four rows of shapes. The first row has a triangle and a square, with {first} beside it. The second row has a square and a circle, with {second} beside it. The third row has a triangle and a circle, with {third} beside it. The fourth row has a triangle, a square and a circle, with a question mark beside it.
+    width: 206
+    height: 184
+givens: [Each shape stands for a number, the same number every time., The number beside a row is the sum of its shapes.]
+unknown: The number that the question mark stands for.
+leading_question: What do the first three rows add up to together?
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{asked}"
+          trap_values:
+            - value: "{two_rows}"
+              trap: missed-case
+              text: That adds two rows and leaves one out.
+            - value: "{sums}"
+              trap: stopped-early
+              text: The three rows count each shape twice.
+            - value: "{third}"
+              trap: number-from-text
+              text: That is one of the sums.
+            - value: "{first}"
+              trap: answered-other-question
+              text: That is the first row only.
+    simpler_case: Try a triangle and a square that make 5, and two triangles that make 4. What is the square?
+solution:
+  - text: The first three rows together hold each shape twice, and they add up to {first} plus {second} plus {third}, which is {sums}. So one of each shape is half of {sums}, which is {asked}.
+  - text: "{sums} ÷ 2 = {asked}"
+  - picture: pictures/shapes-rows-solution-{first}-{second}-{third}.png
+    alt: One triangle with {triangle} beside it, one square with {square} and one circle with {circle}.
+    width: 119
+    height: 144
+skills:
+  primary: [arithmetic-tricks]
+band: grades-3-4
+difficulty: 3

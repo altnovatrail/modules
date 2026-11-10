@@ -1,0 +1,174 @@
+# A template of combinatorics-enumeration (T53; R22): the solver of mathtrail-standalone
+# content/solvers/combinatorics.enumeration/sticks-square.star at 42b4408, made a solver of the
+# template. It came from reference task enum-34-d3-6, whose numbers are one of its instances.
+# The numbers of reference task enum-34-d3-6: long 3, short 1.
+# Its leading question is the hint of enum-34-d3-6, as it stands (amendment T51 to R22).
+# standalone's solver reads the sticks of the picture, and the reference task's picture has four
+# sticks 3 cells long and four 1 cell long: their lengths are the numbers that the picture shows
+# and the template varies, the long one from 3 to 5 and the short one shorter, from 1, so that no
+# instance is the simpler case of four sticks 2 long and four 1 long. figure lays sticks of 3 as the
+# reference task's picture does, two to a row, and the short ones below; a lattice of standalone is
+# at most 8 cells across, so longer sticks lie one to a row, with the short ones in two columns on
+# the right. solve counts on them with standalone's code, so the picture that the port draws for
+# each instance, from the source {"solver": "figure"} of tools/port/template-pictures/olympiad-math/,
+# is what the solver counts (amendment T53 to R22). standalone's sandbox gives it product, which the
+# dialect of the format has not (format/README.md, section 24), so an odometer turns, and loops add.
+# The trap values are derived numbers, the mistakes of the reference task, and the long stick.
+# The solver carries this notice:
+# MIT License
+#
+# Copyright (c) 2026 MathTrail
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+id: sticks-square
+template:
+  parameters:
+    long: {from: 3, to: 5}
+    short: {from: 1, to: 3}
+  derived:
+    all_sides: "4 * (long + short)"
+    halved: "2 * (long + short)"
+  constraint: short < long
+  solver:
+    program: |
+      # For "lay every stick end to end along the sides of a square": sticks drawn
+      # as lines along the lines of squared paper, each as long as the cells it
+      # spans. Placing each stick on one of four sides asks for four to the power
+      # of the sticks, past a million at ten, so the sticks are counted by their
+      # length instead: sticks of one length are alike, and a side is how many of
+      # each length it takes. Four sides that together take every stick make the
+      # square.
+
+      def figure(numbers):
+          # The picture of the statement, on paper of at most 8 by 8 cells. Long sticks of
+          # 3 lie two to a row, and the short ones below them, four to a row when they fit
+          # in the width of the long ones and else two; longer sticks lie one to a row,
+          # and the short ones stand in two columns on the right.
+          long, short = numbers["long"], numbers["short"]
+          lines = []
+          if 2 * long + 2 <= 8:
+              for y in (0, 2):
+                  lines += [(0, y, long, y), (long + 1, y, 2 * long + 1, y)]
+              if 4 * short + 3 <= 2 * long + 1:
+                  lines += [(k * (short + 1), 4, k * (short + 1) + short, 4) for k in range(4)]
+                  return {"kind": "lattice", "width": 2 * long + 2, "height": 5, "lines": lines}
+              for y in (4, 6):
+                  lines += [(0, y, short, y), (short + 1, y, 2 * short + 1, y)]
+              return {"kind": "lattice", "width": 2 * long + 2, "height": 7, "lines": lines}
+          lines += [(0, y, long, y) for y in (0, 2, 4, 6)]
+          for x in (6, 8):
+              lines += [(x, 0, x, short), (x, short + 1, x, 2 * short + 1)]
+          return {"kind": "lattice", "width": 8, "height": 7, "lines": lines}
+
+      def solution_figure(numbers):
+          # The picture of the solution: the square, each side a long stick and a short one.
+          long, short = numbers["long"], numbers["short"]
+          side = long + short
+          lines = [(0, 0, long, 0), (long, 0, side, 0), (side, 0, side, long), (side, long, side, side),
+                   (side, side, short, side), (short, side, 0, side), (0, side, 0, short), (0, short, 0, 0)]
+          return {"kind": "lattice", "width": side, "height": side, "lines": lines}
+
+      def product(ranges, repeat):
+          # Every way to take one of each range, repeat times over: the dialect has no product.
+          ranges = [list(each) for each in ranges] * repeat
+          if [each for each in ranges if not each]:
+              return []
+          ways = []
+          at = [0] * len(ranges)
+          for _ in range(1000000):
+              ways.append(tuple([ranges[i][at[i]] for i in range(len(ranges))]))
+              i = len(ranges) - 1
+              while i >= 0 and at[i] == len(ranges[i]) - 1:
+                  at[i] = 0
+                  i -= 1
+              if i < 0:
+                  return ways
+              at[i] += 1
+          fail("too many ways")
+
+      def added(values):
+          # The sum of the values: the dialect has no sum.
+          total = 0
+          for value in values:
+              total += value
+          return total
+
+      def solve(numbers):
+          counts = {}
+          for x1, y1, x2, y2 in figure(numbers)["lines"]:
+              if (x1 != x2 and y1 != y2) or (x1 == x2 and y1 == y2):
+                  fail("a stick lies along a line of the paper and is at least a cell long")
+              length = abs(x2 - x1) + abs(y2 - y1)
+              counts[length] = counts.get(length, 0) + 1
+          lengths = sorted(counts.keys())
+          total = added([length * counts[length] for length in lengths])
+          if total % 4 != 0:
+              fail("the sticks make no square")
+          side = total // 4
+          sides = []
+          for taken in product([range(min(counts[length], side // length) + 1) for length in lengths], 1):
+              if added([taken[i] * lengths[i] for i in range(len(lengths))]) == side:
+                  sides.append(taken)
+          for square in product([sides], 4):
+              if all([added([taken[i] for taken in square]) == counts[lengths[i]] for i in range(len(lengths))]):
+                  return {"side": side}
+          fail("the sticks make no square")
+    results: [side]
+statement:
+  - text: Lin lays all the sticks in the picture end to end to make one square. The side of a cell is 1. How long is each side of the square?
+  - picture: pictures/sticks-square-{long}-{short}.png
+    alt: "Eight sticks on squared paper: four sticks {long} long and four sticks {short} long."
+    width: 368
+    height: 328
+givens: [Lin lays all the sticks in the picture end to end., They make one square., The side of a cell is 1.]
+unknown: How long each side of the square is.
+leading_question: How long are all the sticks together?
+canvas:
+  kind: handwriting_sheet
+  grid: squares
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "{side}"
+          trap_values:
+            - value: "{all_sides}"
+              trap: stopped-early
+              text: That is all four sides together.
+            - value: "{long}"
+              trap: number-from-text
+              text: That is one long stick.
+            - value: "{halved}"
+              trap: wrong-operation
+              text: The total was halved, not split in four.
+    simpler_case: Try four sticks 2 long and four sticks 1 long, laid into one square. How long is each side?
+solution:
+  - text: "Four sticks are {long} long and four are {short} long, {all_sides} in all. A square has four equal sides, so each side is {side}: a long stick and a short one."
+  - text: "{all_sides} ÷ 4 = {side}"
+  - picture: pictures/sticks-square-solution-{long}-{short}.png
+    alt: A square on squared paper made of the eight sticks, each side a long stick and a short one.
+    width: 368
+    height: 368
+techniques: [systematic]
+traps: [missed-case]
+skills:
+  primary: [combinatorics-enumeration]
+band: grades-3-4
+difficulty: 3

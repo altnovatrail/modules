@@ -16,6 +16,7 @@ import (
 	"strconv"
 	"strings"
 
+	starlarkjson "go.starlark.net/lib/json"
 	"go.starlark.net/starlark"
 	"go.starlark.net/syntax"
 	"go.yaml.in/yaml/v4"
@@ -25,7 +26,9 @@ import (
 // holds placeholders, and the module ships a file for every instance, which task.known-pictures
 // holds (format/README.md, section 23). Each such path has a source in a folder of its own, in the
 // schema of standalone's pictures with placeholders among its strings, which the port fills in for
-// each instance and draws as it draws a task's picture, into media/pictures/ of the module.
+// each instance and draws as it draws a task's picture, into media/pictures/ of the module; or the
+// source names a function of the template's solver, which builds the picture that the solver reads
+// from the instance's numbers (amendment T53 to R12).
 const templatePictureFolder = "media/pictures"
 
 // placeholder is a placeholder of a parameter or a derived number, in a string of a source or in a
@@ -36,12 +39,15 @@ var placeholder = regexp.MustCompile(`\{([a-z][a-z0-9_]*)\}`)
 // holds one (format/README.md, section 23).
 var namedPlaceholder = regexp.MustCompile(`-\{[a-z][a-z0-9_]*\}`)
 
+// functionName is a name of a function of Starlark, which a source of solver names.
+var functionName = regexp.MustCompile(`^[A-Za-z_][A-Za-z0-9_]*$`)
+
 // maxCombinations is the most combinations of parameters that a template may have
 // (task.template-instances).
 const maxCombinations = 10000
 
-// templateTask is what the port reads of a task of the module that is a template: its numbers and
-// the picture parts of its statement and solution. module-kit holds the rest to the format.
+// templateTask is what the port reads of a task of the module that is a template: its numbers, the
+// program of its solver, and the picture parts of its statement and solution. module-kit holds the rest to the format.
 type templateTask struct {
 	ID       string `yaml:"id"`
 	Template *struct {
@@ -51,6 +57,9 @@ type templateTask struct {
 		} `yaml:"parameters"`
 		Derived    map[string]string `yaml:"derived"`
 		Constraint string            `yaml:"constraint"`
+		Solver     struct {
+			Program string `yaml:"program"`
+		} `yaml:"solver"`
 	} `yaml:"template"`
 	Statement []picturePart `yaml:"statement"`
 	Solution  []picturePart `yaml:"solution"`
@@ -68,7 +77,7 @@ type picturePart struct {
 // the order of their names, the first changing slowest and each through its domain upwards, and
 // those for which the constraint holds (format/README.md, section 23). The expressions are
 // evaluated by go.starlark.net at the version of the format's dialect, as module-kit does. The
-// results of the solver are not among the numbers: the port runs no solver.
+// results of the solver are not among the numbers: the port does not call solve.
 func instancesOf(task templateTask) ([]map[string]int64, error) {
 	t := task.Template
 	names := slices.Sorted(maps.Keys(t.Parameters))
@@ -91,7 +100,6 @@ func instancesOf(task templateTask) ([]map[string]int64, error) {
 		}
 	}
 	thread := &starlark.Thread{Name: task.ID}
-	options := &syntax.FileOptions{}
 	var instances []map[string]int64
 	values := make([]int64, len(names))
 	for i, name := range names {
@@ -106,7 +114,7 @@ func instancesOf(task templateTask) ([]map[string]int64, error) {
 		}
 		derivedEnv := maps.Clone(env)
 		for _, name := range slices.Sorted(maps.Keys(t.Derived)) {
-			value, err := starlark.EvalOptions(options, thread, task.ID, t.Derived[name], env)
+			value, err := starlark.EvalOptions(dialect, thread, task.ID, t.Derived[name], env)
 			if err != nil {
 				return nil, fmt.Errorf("%s: its derived number %s: %w", task.ID, name, err)
 			}
@@ -124,7 +132,7 @@ func instancesOf(task templateTask) ([]map[string]int64, error) {
 		}
 		holds := true
 		if t.Constraint != "" {
-			value, err := starlark.EvalOptions(options, thread, task.ID, t.Constraint, derivedEnv)
+			value, err := starlark.EvalOptions(dialect, thread, task.ID, t.Constraint, derivedEnv)
 			if err != nil {
 				return nil, fmt.Errorf("%s: its constraint: %w", task.ID, err)
 			}
@@ -208,17 +216,37 @@ func pathPattern(path string) *regexp.Regexp {
 }
 
 // variant is a source with a picture for some instances: when names the numbers they have, and a
-// variant with no when is for every instance.
+// variant with no when is for every instance. A variant of solver has no picture of its own: it is
+// what that function of the template's solver gives on the instance's numbers (amendment T53 to
+// R12).
 type variant struct {
 	When    map[string]int64 `json:"when"`
 	Picture json.RawMessage  `json:"picture"`
+	Solver  string           `json:"-"`
 }
 
-// readSource reads a source of a template's picture: one picture, or a list of variants.
+// readSource reads a source of a template's picture: one picture, a list of variants, or
+// {"solver": "<function>"}, the function of the template's solver that builds the picture.
 func readSource(file string) ([]variant, error) {
 	raw, err := os.ReadFile(file)
 	if err != nil {
 		return nil, err
+	}
+	// A source of solver is told by its member, whatever its value, so that a value of the wrong
+	// type is refused as such and not read as a picture.
+	var members map[string]json.RawMessage
+	if json.Unmarshal(raw, &members) == nil && members["solver"] != nil {
+		if err := exactKeys(raw, ""); err != nil {
+			return nil, fmt.Errorf("%s: %w", file, err)
+		}
+		var function string
+		if len(members) != 1 {
+			return nil, fmt.Errorf("%s: a source of solver has no member but solver", file)
+		}
+		if err := json.Unmarshal(members["solver"], &function); err != nil || !functionName.MatchString(function) {
+			return nil, fmt.Errorf("%s: its solver, %s, is no name of a function", file, members["solver"])
+		}
+		return []variant{{Solver: function}}, nil
 	}
 	if trimmed := strings.TrimSpace(string(raw)); strings.HasPrefix(trimmed, "[") {
 		var variants []variant
@@ -256,10 +284,97 @@ func sourceKeys(raw json.RawMessage) error {
 	return exactKeys(raw, keyedByData[kind.Kind])
 }
 
+// solverSteps is the budget of steps of a template's solver, the top level and every call together
+// (format/README.md, section 24).
+var solverSteps uint64 = 100000000
+
+// solverProgram is the solver of a template, as the port runs it to build its pictures: once, on one
+// thread under the dialect of the format, and then a function of it on each instance, as module-kit
+// runs solve (format/README.md, section 24).
+type solverProgram struct {
+	id      string
+	source  string
+	thread  *starlark.Thread
+	globals starlark.StringDict
+	err     error
+}
+
+// dialect are the options of the format's dialect: those that standalone's solvers run with
+// (format/README.md, section 24).
+var dialect = &syntax.FileOptions{Set: true, While: true, TopLevelControl: true, GlobalReassign: true}
+
+// solverCall is a function of a template's solver to call for a picture: on the numbers named shown,
+// or on all the instance's numbers when shown is nil.
+type solverCall struct {
+	program *solverProgram
+	shown   map[string]bool
+}
+
+// figure is what the function of the solver gives on an instance's numbers, those named shown or
+// all its parameters and derived numbers when shown is nil, in a frozen dict by their names in
+// order, as JSON: a picture in the schema of standalone's pictures, as the solver reads it.
+func (p *solverProgram) figure(function string, numbers map[string]int64, shown map[string]bool) (json.RawMessage, error) {
+	if p.thread == nil {
+		p.thread = &starlark.Thread{Name: p.id}
+		// print writes nothing in the dialect of the format (format/README.md, section 24).
+		p.thread.Print = func(*starlark.Thread, string) {}
+		p.thread.SetMaxExecutionSteps(solverSteps)
+		if p.source == "" {
+			p.err = fmt.Errorf("%s: a source of its picture is the solver's %s, and its template has no solver", p.id, function)
+		} else if p.globals, p.err = starlark.ExecFileOptions(dialect, p.thread, p.id, p.source, nil); p.err != nil {
+			p.err = fmt.Errorf("%s: its solver: %w", p.id, p.err)
+		}
+	}
+	if p.err != nil {
+		return nil, p.err
+	}
+	fn, isFunction := p.globals[function].(*starlark.Function)
+	if !isFunction {
+		return nil, fmt.Errorf("%s: its solver defines no function %s", p.id, function)
+	}
+	dict := starlark.NewDict(len(numbers))
+	for _, name := range slices.Sorted(maps.Keys(numbers)) {
+		if shown != nil && !shown[name] {
+			continue
+		}
+		if err := dict.SetKey(starlark.String(name), starlark.MakeInt64(numbers[name])); err != nil {
+			return nil, err
+		}
+	}
+	dict.Freeze()
+	value, err := starlark.Call(p.thread, fn, starlark.Tuple{dict}, nil)
+	if err != nil {
+		return nil, fmt.Errorf("%s: its solver's %s on %v: %w", p.id, function, numbers, err)
+	}
+	if _, isDict := value.(*starlark.Dict); !isDict {
+		return nil, fmt.Errorf("%s: its solver's %s gives a %s, not a picture", p.id, function, value.Type())
+	}
+	encoded, err := starlark.Call(p.thread, starlarkjson.Module.Members["encode"], starlark.Tuple{value}, nil)
+	if err != nil {
+		return nil, fmt.Errorf("%s: its solver's %s: %w", p.id, function, err)
+	}
+	return json.RawMessage(encoded.(starlark.String)), nil
+}
+
 // pictureFor is the picture of a source for an instance: the first variant whose when the instance's
-// numbers have, with the numbers in place of the placeholders of its strings.
-func pictureFor(id string, variants []variant, numbers map[string]int64) (drawing, error) {
+// numbers have, with the numbers in place of the placeholders of its strings; or what the function
+// of the solver that the source names gives on them.
+func pictureFor(id string, variants []variant, numbers map[string]int64, call *solverCall) (drawing, error) {
 	for _, v := range variants {
+		if v.Solver != "" {
+			if call == nil {
+				return nil, fmt.Errorf("%s: a source of its picture is the solver's %s, and no solver is given", id, v.Solver)
+			}
+			raw, err := call.program.figure(v.Solver, numbers, call.shown)
+			if err != nil {
+				return nil, err
+			}
+			picture, err := readPicture(id, raw)
+			if err != nil {
+				return nil, fmt.Errorf("%w, in the picture that its solver's %s builds", err, v.Solver)
+			}
+			return picture, nil
+		}
 		matches := true
 		for name, want := range v.When {
 			have, known := numbers[name]
@@ -354,9 +469,11 @@ func drawTemplatePictures(folder, module string) (map[string][]byte, []*regexp.R
 			continue
 		}
 		var parts []picturePart
-		for _, part := range slices.Concat(task.Statement, task.Solution) {
+		inStatement := map[string]bool{}
+		for i, part := range slices.Concat(task.Statement, task.Solution) {
 			if _, has := sourceName(part.Picture); has {
 				parts = append(parts, part)
+				inStatement[part.Picture] = i < len(task.Statement)
 			}
 		}
 		if len(parts) == 0 {
@@ -367,6 +484,11 @@ func drawTemplatePictures(folder, module string) (map[string][]byte, []*regexp.R
 		if err != nil {
 			return nil, nil, 0, err
 		}
+		program := &solverProgram{id: task.ID, source: task.Template.Solver.Program}
+		shown, err := shownNames(data)
+		if err != nil {
+			return nil, nil, 0, fmt.Errorf("%s: %w", file, err)
+		}
 		for _, part := range parts {
 			name, _ := sourceName(part.Picture)
 			variants, err := readSource(filepath.Join(folder, name+".json"))
@@ -374,7 +496,13 @@ func drawTemplatePictures(folder, module string) (map[string][]byte, []*regexp.R
 				return nil, nil, 0, fmt.Errorf("%s: its picture %s: %w", task.ID, part.Picture, err)
 			}
 			used[name+".json"] = true
-			drawn, err := drawInstances(task.ID, part, variants, instances)
+			// The picture of the statement is built from the numbers that solve gets, so that it is
+			// the picture that solve reads; that of the solution, which solve does not read, from all.
+			call := &solverCall{program: program}
+			if inStatement[part.Picture] {
+				call.shown = shown
+			}
+			drawn, err := drawInstances(task.ID, part, variants, instances, call)
 			if err != nil {
 				return nil, nil, 0, err
 			}
@@ -401,7 +529,7 @@ func drawTemplatePictures(folder, module string) (map[string][]byte, []*regexp.R
 // drawing, which the part's width and height must give, each drawing in the middle of a white
 // image of that size. Each instance names a path of its own: a path that leaves out a number the
 // picture shows would put two instances in one file.
-func drawInstances(id string, part picturePart, variants []variant, instances []map[string]int64) (map[string][]byte, error) {
+func drawInstances(id string, part picturePart, variants []variant, instances []map[string]int64, call *solverCall) (map[string][]byte, error) {
 	drawings := map[string]drawing{}
 	var paths []string
 	width, height := 0, 0
@@ -413,7 +541,7 @@ func drawInstances(id string, part picturePart, variants []variant, instances []
 		if _, twice := drawings[path]; twice {
 			return nil, fmt.Errorf("%s: two of its instances name the picture %s: its path names too few of their numbers", id, path)
 		}
-		picture, err := pictureFor(id, variants, numbers)
+		picture, err := pictureFor(id, variants, numbers, call)
 		if err != nil {
 			return nil, err
 		}
@@ -508,4 +636,63 @@ func runTemplatePictures(folder, module string, check bool, stdout, stderr io.Wr
 	}
 	fmt.Fprintf(stdout, "port: the %d pictures of the instances of %d templates of %s are what the port draws\n", len(files), templates, module)
 	return statusDone
+}
+
+// shownNames are the names of the numbers that solve of a template gets: those whose placeholder
+// stands in the open fields that the format names — the statement, its paragraphs and pictures,
+// the givens, the unknown, the text of an item, the text pieces of its line and the options of its
+// answer slots bound choice (format/README.md, section 24).
+func shownNames(data []byte) (map[string]bool, error) {
+	var task struct {
+		Statement any `yaml:"statement"`
+		Givens    any `yaml:"givens"`
+		Unknown   any `yaml:"unknown"`
+		Items     []struct {
+			Text any `yaml:"text"`
+			Line []struct {
+				Text any `yaml:"text"`
+			} `yaml:"line"`
+			AnswerSlots []struct {
+				Binding string `yaml:"binding"`
+				Options any    `yaml:"options"`
+			} `yaml:"answer_slots"`
+		} `yaml:"items"`
+	}
+	if err := yaml.Unmarshal(data, &task); err != nil {
+		return nil, err
+	}
+	open := []any{task.Statement, task.Givens, task.Unknown}
+	for _, item := range task.Items {
+		open = append(open, item.Text)
+		for _, piece := range item.Line {
+			open = append(open, piece.Text)
+		}
+		for _, slot := range item.AnswerSlots {
+			if slot.Binding == "choice" {
+				open = append(open, slot.Options)
+			}
+		}
+	}
+	shown := map[string]bool{}
+	var walk func(node any)
+	walk = func(node any) {
+		switch node := node.(type) {
+		case string:
+			for _, found := range substitution.FindAllString(node, -1) {
+				if found != "{{" && found != "}}" {
+					shown[found[1:len(found)-1]] = true
+				}
+			}
+		case []any:
+			for _, each := range node {
+				walk(each)
+			}
+		case map[string]any:
+			for _, each := range node {
+				walk(each)
+			}
+		}
+	}
+	walk(open)
+	return shown, nil
 }
