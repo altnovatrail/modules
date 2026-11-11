@@ -1,0 +1,176 @@
+{
+  "protocol": "novatrail.eval.v1",
+  "id": "synthetic-4",
+  "purpose": "PURPOSE_EVAL_SET",
+  "writer": "WRITER_ADULT",
+  "synthetic": {
+    "seed": "4"
+  },
+  "text_set_version": "none",
+  "canvas_version": "0.0.0",
+  "license": "Apache-2.0",
+  "task": {
+    "modules": {
+      "tag": "v0.2.3",
+      "module": "novatrail/grade-3-math",
+      "version": "0.3.0",
+      "package_digest": "sha256:dd2c6eb21511deadb9dce0d8fc5d8b6c29d92426d5a9807e361fc05cf3d8dac6"
+    },
+    "task": "times-tables-d1",
+    "open_view_digest": "sha256:fe02d3c41f49f2a4ffccc4b80fd385b6a2c492888f839c83154f8cb8ce0513fc"
+  },
+  "geometry": {
+    "strokes": []
+  },
+  "workbook": {
+    "width": 1000,
+    "height": 1400,
+    "digit_height": 24,
+    "boxes": [
+      {
+        "answer_slot": {
+          "item": 1,
+          "slot": 1
+        },
+        "left": 201,
+        "top": 40,
+        "width": 100,
+        "height": 100
+      },
+      {
+        "answer_slot": {
+          "item": 2,
+          "slot": 1
+        },
+        "left": 681,
+        "top": 40,
+        "width": 100,
+        "height": 100
+      },
+      {
+        "answer_slot": {
+          "item": 3,
+          "slot": 1
+        },
+        "left": 201,
+        "top": 172,
+        "width": 100,
+        "height": 100
+      },
+      {
+        "answer_slot": {
+          "item": 4,
+          "slot": 1
+        },
+        "left": 681,
+        "top": 172,
+        "width": 100,
+        "height": 100
+      },
+      {
+        "answer_slot": {
+          "item": 5,
+          "slot": 1
+        },
+        "left": 217,
+        "top": 304,
+        "width": 100,
+        "height": 100
+      },
+      {
+        "answer_slot": {
+          "item": 6,
+          "slot": 1
+        },
+        "left": 681,
+        "top": 304,
+        "width": 100,
+        "height": 100
+      },
+      {
+        "answer_slot": {
+          "item": 7,
+          "slot": 1
+        },
+        "left": 201,
+        "top": 436,
+        "width": 100,
+        "height": 100
+      },
+      {
+        "answer_slot": {
+          "item": 8,
+          "slot": 1
+        },
+        "left": 681,
+        "top": 436,
+        "width": 100,
+        "height": 100
+      }
+    ],
+    "filled_boxes": []
+  },
+  "markup": {
+    "truth": {
+      "answer_slots": [
+        {
+          "answer_slot": {
+            "item": 1,
+            "slot": 1
+          },
+          "unreadable": "UNREADABLE_BLANK"
+        },
+        {
+          "answer_slot": {
+            "item": 2,
+            "slot": 1
+          },
+          "unreadable": "UNREADABLE_BLANK"
+        },
+        {
+          "answer_slot": {
+            "item": 3,
+            "slot": 1
+          },
+          "unreadable": "UNREADABLE_BLANK"
+        },
+        {
+          "answer_slot": {
+            "item": 4,
+            "slot": 1
+          },
+          "unreadable": "UNREADABLE_BLANK"
+        },
+        {
+          "answer_slot": {
+            "item": 5,
+            "slot": 1
+          },
+          "unreadable": "UNREADABLE_BLANK"
+        },
+        {
+          "answer_slot": {
+            "item": 6,
+            "slot": 1
+          },
+          "unreadable": "UNREADABLE_BLANK"
+        },
+        {
+          "answer_slot": {
+            "item": 7,
+            "slot": 1
+          },
+          "unreadable": "UNREADABLE_BLANK"
+        },
+        {
+          "answer_slot": {
+            "item": 8,
+            "slot": 1
+          },
+          "unreadable": "UNREADABLE_BLANK"
+        }
+      ]
+    },
+    "notes": []
+  }
+}
