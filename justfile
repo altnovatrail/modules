@@ -745,6 +745,12 @@ eval-match:
                     printf '%s\n' "${file}${us}${task}${us}${seed}${us}${tag}" >> "${rows}/synthetic"
                     ;;
                 person)
+                    # A Claude Code session may read eval/synthetic-*.json alone (.claude/settings.json),
+                    # so a person's sample never takes that name (amendment T61 to R04).
+                    if [[ "${file##*/}" == synthetic-* ]]; then
+                        breach "${file}: the ID of a person's sample begins with synthetic-, which only a synthetic sample's does, and such a file a Claude Code session may read (amendment T61 to R04)"
+                        continue
+                    fi
                     printf '%s\n' "${file}${us}${task}${us}${seed}${us}${digest}" >> "${rows}/people"
                     ;;
                 *)

@@ -134,6 +134,7 @@ test("a file whose sample cannot be held to the package is refused, and nothing 
   write(join(folder, "untagged.json"), { id: "untagged", synthetic: { seed: "1" }, task: task({ modules: { module: "novatrail/maths" } }) });
   write(join(folder, "bad-task.json"), { id: "bad-task", person: {}, task: task({ task: "A task" }) });
   write(join(folder, "deep", "nested.json"), { id: "nested", person: {}, task: task() });
+  write(join(folder, "synthetic-9.json"), { id: "synthetic-9", person: {}, task: task() });
   writeFileSync(join(folder, "two.json"), "{}\n{}\n");
   const result = evalMatch(repo, kit.env);
   assert.equal(result.status, 1, result.stdout + result.stderr);
@@ -144,6 +145,7 @@ test("a file whose sample cannot be held to the package is refused, and nothing 
     "modules/maths/eval/nobody.json: neither a person's sample nor a synthetic one, so it cannot be held to the package",
     "modules/maths/eval/other.json: a sample of the eval set of novatrail/maths is of a task of that module",
     "modules/maths/eval/seedless.json: a synthetic sample with no seed, or no tag vX.Y.Z of modules, cannot be drawn again",
+    "modules/maths/eval/synthetic-9.json: the ID of a person's sample begins with synthetic-, which only a synthetic sample's does, and such a file a Claude Code session may read (amendment T61 to R04)",
     "modules/maths/eval/two.json: holds no sample whose task and origin can be read, so it cannot be held to the package",
     "modules/maths/eval/untagged.json: a synthetic sample with no seed, or no tag vX.Y.Z of modules, cannot be drawn again",
   ]);
