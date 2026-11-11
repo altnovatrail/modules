@@ -181,7 +181,8 @@ test("synthetic with no sample to write is out of form before it asks the networ
 test("the generator of the stage writes a sample of grade-3-math that sample-check holds, and the same bytes again", (t) => {
   const repo = withSpec(repository(t));
   mkdirSync(join(repo, "modules"));
-  addModule(repo, join(ROOT, "modules", "grade-3-math"), "grade-3-math");
+  // The module without its own eval set, whose samples would meet the test's.
+  rmSync(join(addModule(repo, join(ROOT, "modules", "grade-3-math"), "grade-3-math"), "eval"), { recursive: true, force: true });
   const env = process.env.CANVAS_LIB ? { CANVAS_LIB: process.env.CANVAS_LIB } : {};
   const first = synthetic(repo, ["grade-3-math", "v0.2.1", "times-tables-d1:5"], env);
   assert.equal(first.status, 0, first.stderr);

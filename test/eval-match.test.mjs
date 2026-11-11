@@ -6,7 +6,7 @@
 // fields alone: no sample of a person is ever read (П-12).
 
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 
@@ -43,7 +43,8 @@ function refusals(result) {
 function withGrade3(t) {
   const repo = withSpec(repository(t));
   mkdirSync(join(repo, "modules"));
-  addModule(repo, join(ROOT, "modules", "grade-3-math"), "grade-3-math");
+  // The module without its own eval set, whose samples would meet the test's.
+  rmSync(join(addModule(repo, join(ROOT, "modules", "grade-3-math"), "grade-3-math"), "eval"), { recursive: true, force: true });
   const made = run(repo, "_synthetic", ["grade-3-math", "v0.2.1", "times-tables-d1:1", "comparing-fractions-d1:2"], STAGE);
   assert.equal(made.status, 0, made.stderr);
   return { repo, eval: join(repo, "modules", "grade-3-math", "eval") };
