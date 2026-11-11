@@ -1,0 +1,48 @@
+{
+  "protocol": "novatrail.eval.v1",
+  "id": "synthetic-41",
+  "purpose": "PURPOSE_EVAL_SET",
+  "writer": "WRITER_ADULT_AS_CHILD",
+  "synthetic": {
+    "seed": "41"
+  },
+  "text_set_version": "none",
+  "canvas_version": "0.0.0",
+  "license": "Apache-2.0",
+  "task": {
+    "modules": {
+      "tag": "v0.2.3",
+      "module": "novatrail/olympiad-math",
+      "version": "0.3.0",
+      "package_digest": "sha256:e4de172e77b7cde20386b07c1cafbbf08babb41a164d623c62135659eec45786"
+    },
+    "task": "clk-56-d1-1",
+    "open_view_digest": "sha256:0b66debaf9312d2e7c8ba31b2528673efca6be7ffedda194fa9bdce449319fe7"
+  },
+  "geometry": {
+    "strokes": []
+  },
+  "sheet": {
+    "width": 1000,
+    "height": 1400,
+    "digit_height": 24,
+    "groups": []
+  },
+  "markup": {
+    "truth": {
+      "answer_slots": [
+        {
+          "answer_slot": {
+            "item": 1,
+            "slot": 1
+          },
+          "unreadable": "UNREADABLE_BLANK"
+        }
+      ]
+    },
+    "notes": [],
+    "parts": {
+      "parts": []
+    }
+  }
+}
