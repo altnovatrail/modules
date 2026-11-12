@@ -1,10 +1,10 @@
 // Command port carries tasks of mathtrail-standalone into a module of the format 0.4 (R05, R07,
-// R12): each task of a batch becomes the file tasks/<id>.yaml of the module, by the table «что во
-// что» of docs/architecture.md, section 3.5, and a picture of the kind row a PNG in media/. What a
-// person writes — the givens, the unknown, the simpler case, the alt of a picture, explanations
-// written anew — comes from an overlay file beside this code, so that a run writes the same bytes
-// again and loses nothing. The key and the trap values are held to the solver of each task by
-// standalone's own bench, run in a clone of standalone: no solver goes into the module.
+// R12): each task of a batch becomes the file tasks/<id>.yaml of the module, by the table "What
+// becomes what" of docs/architecture.md, section 3.5, and a picture of the kind row a PNG in
+// media/. What a person writes — the givens, the unknown, the simpler case, the alt of a picture,
+// explanations written anew — comes from an overlay file beside this code, so that a run writes the
+// same bytes again and loses nothing. The key and the trap values are held to the solver of each
+// task by standalone's own bench, run in a clone of standalone: no solver goes into the module.
 package main
 
 import (
