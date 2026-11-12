@@ -68,8 +68,8 @@ type Converted struct {
 // survey is a folder of its own, which no batch writes and the repository never holds.
 const surveyAlt = "Survey: a picture of standalone, with no alt written."
 
-// convert carries one task of standalone into a task of the module, by the table «что во что»
-// (docs/architecture.md, section 3.5).
+// convert carries one task of standalone into a task of the module, by the table "What becomes
+// what" (docs/architecture.md, section 3.5).
 func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile string) (Converted, error) {
 	skill := idOf(ex.Topic)
 	defaults, known := batch.Skills[skill]
