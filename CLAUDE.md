@@ -14,7 +14,7 @@ Its card in spec is architecture 3.10 spec. The card is the summary and this rep
 
 ## Documents
 
-The documents under `docs/` are in English, but for the epic archives `docs/plan/`, which stay in Russian with RUN.md and DEBT.md (R143 spec); `docs/decisions.md` is still in Russian until T66 and T67 translate it (R31). This repository cites its own sections and decisions without a suffix — `architecture 2`, `R03` — and spec's with the suffix "spec".
+The documents under `docs/` are in English, but for the epic archives `docs/plan/`, which stay in Russian with RUN.md and DEBT.md (R143 spec); `docs/decisions.md` is in English up to R12 and still in Russian from R13 until T67 translates the rest (R31). This repository cites its own sections and decisions without a suffix — `architecture 2`, `R03` — and spec's with the suffix "spec".
 
 - [docs/architecture.md](docs/architecture.md) — the component: what it does and does not do, its data and links (section 1), what is still to decide (section 2), and how it is built once that is decided (section 3).
 - [docs/decisions.md](docs/decisions.md) — this repository's decision log, `R01`…: read it before proposing a change. Other repositories cite its entries as `R03 modules`.
