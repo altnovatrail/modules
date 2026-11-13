@@ -22,7 +22,7 @@ Detailing is done: the first epic of [RUN.md](RUN.md) decided what the component
 
 ## Documents
 
-The documents are in English, but for the work plan, its technical debt and the archives of its epics, which are in Russian; the decision log is in English up to R12, and the rest is being translated from Russian (RUN.md, T67).
+The documents are in English, but for the work plan, its technical debt and the archives of its epics, which are in Russian.
 
 - [docs/architecture.md](docs/architecture.md) — the component: what it does and does not do, its data and links, and what is still to decide.
 - [docs/decisions.md](docs/decisions.md) — the decision log: what was decided, why, and what was rejected.

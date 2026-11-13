@@ -9,9 +9,11 @@ The recipe is spec's: `just -f spec/justfile tokens-report --since … --until �
 | Project | Window, UTC | Sessions | Calls, main / subagents | Context of a call, k, main / subagents | Compactions | Cost at API prices |
 |---|---|---|---|---|---|---|
 | `-workspaces-modules` — before R143 spec, from measurements 1.9 spec | 2026-10-13T00:00 … 2026-11-12T14:27 | 16 | 3,976 / 2,287 | 351.0 / 91.7 | 6 | $586.03 |
+| `-workspaces-modules` — after: the sessions of T64–T67 | 2026-11-12T20:29 … 2026-11-13T03:58 | 4 | 432 / 590 | 157.2 / 112.7 | 0 | $59.42 |
 
 - The row before is spec's measurement of 2026-11-12, of every session of `modules` on this machine until then: E1–E8, the moves to tags of spec and the debts.
-- The reference of `modules`, against which the threshold of R145 spec is measured, is its measurement after, which T124 spec takes on the sessions after the task of row 7.9 of COORDINATION.md spec, T64–T67 (measurements 1.9 spec). T67 adds the row of the task's own sessions.
+- The reference of `modules`, against which the threshold of R145 spec is measured, is its measurement after, which T124 spec takes on the sessions after the task of row 7.9 of COORDINATION.md spec, T64–T67 (measurements 1.9 spec).
+- The row after is the four sessions of the task of row 7.9, one for each of T64–T67, from the start of T64 to T67's own session, which was still running when the row was taken. T64 put in the hook of the session and turned off the connectors of claude.ai, and T65–T67 began with them (R31).
 
 ## 2. The corridor of `engine` on `grade-3-math`, 2026-11-11
 
