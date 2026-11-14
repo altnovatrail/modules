@@ -4,7 +4,7 @@
 >
 > **Rule:** do not re-propose what was rejected without new facts. If a decision has to change, ask the author and update this file. An entry is never rewritten: an amendment with its date at the end of the entry corrects it, or a new entry replaces it, and the old one stays where it is, marked "Superseded".
 >
-> The repository was created on 2026-10-19 from the template of `spec` v0.1.0 (R21 spec), moved on 2026-10-20 to `spec` v0.2.9 (R01), on 2026-11-02 to v0.6.3 (R02) and v0.6.5 (R06), on 2026-11-06 to v0.9.3 (R09), on 2026-11-07 to v0.9.5 (R18), on 2026-11-08 to v0.9.8 (R19), v0.9.9 (R23), v0.9.10 (R24), v0.9.16 (R27) and v0.12.0 (R28), on 2026-11-11 to v0.15.0 (R30), on 2026-11-12 to v0.16.3 (R31), and on 2026-11-14 to v0.17.2 (R32). How it comes to differ from the template over time — by the tools in the devcontainer, by the rules in RUN.md — is recorded here as a decision, as R46 canvas-api recorded how it differs from its pattern: the CLI of `module-kit` in the `toolchain` stage — R10, the generator of synthetic samples of `canvas` there too — R29. Next number — R33.
+> The repository was created on 2026-10-19 from the template of `spec` v0.1.0 (R21 spec), moved on 2026-10-20 to `spec` v0.2.9 (R01), on 2026-11-02 to v0.6.3 (R02) and v0.6.5 (R06), on 2026-11-06 to v0.9.3 (R09), on 2026-11-07 to v0.9.5 (R18), on 2026-11-08 to v0.9.8 (R19), v0.9.9 (R23), v0.9.10 (R24), v0.9.16 (R27) and v0.12.0 (R28), on 2026-11-11 to v0.15.0 (R30), on 2026-11-12 to v0.16.3 (R31), and on 2026-11-14 to v0.17.2 (R32). How it comes to differ from the template over time — by the tools in the devcontainer, by the rules in RUN.md — is recorded here as a decision, as R46 canvas-api recorded how it differs from its pattern: the CLI of `module-kit` in the `toolchain` stage — R10, the generator of synthetic samples of `canvas` there too — R29. Next number — R34.
 >
 > Here entries are cited as `R03`, in other repositories as `R03 modules`. The decisions of `spec` are cited as "R18 spec", MathTrail's decisions as "R37 canvas-api", and in a list as "canvas-api: R37, R38". Each log has its own numbers.
 >
@@ -225,6 +225,8 @@
 *Rejected* (together with `spec`, by the recommendation of В23): the transition waits for a tag of `sim` that reads the new format version and goes with the simulator — each format transition would stand still until that tag; review holds only the graph, as it was — the argument above.
 
 — R19; [architecture.md](architecture.md), section 3.2.
+
+— *Amendment 2026-11-14 (T69), by the author's answers in the planning of T69:* **the fourth folder is `modules/check-board/`, the module `novatrail/check-board` of the check board of `tutor` (R33). Its name names the board whose tasks it holds, not the subject and the audience: the rule of the names is for the modules of the slice, and this module stands beside them, not among them (the 2026-11-14 amendment to R76 spec).** It is in Russian and has no twin in another explanation language, so its name has no suffix of a language. CI and the release take the folder as they take every folder of `modules/` (R17). — RUN.md, T69; [architecture.md](architecture.md), sections 3.1 and 3.10.
 
 ## Samples in the eval set
 
@@ -1491,3 +1493,48 @@ The recipe needs the network only for `sample-check`: it installs the tools of `
 - the alias by a task of its own — Д195 asks every repository for it with its move to a tag with T115.
 
 — *Consequence:* T69 builds the board module on v0.17.2. After the merge one has to rebuild the container (Rebuild Container): `runArgs` apply only when the container is created, and the Dockerfile is the same. The merge will put out the release `v0.2.6` of `modules` without new archives. — RUN.md, rules 4 and 9, T68; `DEBT.md`; CLAUDE.md; README.md; `.devcontainer/devcontainer.json`; `justfile`; [architecture.md](architecture.md), sections 1, 3.2 and 3.4; [measurements.md](measurements.md), section 3; the R32 amendments to R25 and R31.
+
+## The module of the check board
+
+**R33. The module of the check board of `tutor` is `novatrail/check-board` 0.1.0 in `modules/check-board/`, on a sheet: the eleven tasks of the board in its order, from the banks of `tutor` at `v0.1.35`, each as `internal/task.Sheet` builds it (R68 tutor); three skills by the kinds of the banks and a fourth that is not assessed, 22 traps, one lesson of all eleven tasks and three synthetic samples. The explanation language is Russian, the audience `adult` alone, one band without grades; no skill teaches an anchor skill. There is no `NOTICE`.** The author's answers 2026-11-14 in the planning of T69 (RUN.md, T69, «Решено автором»), all eight by the recommendations, and the rest by the plan that the author approved. The make-up is in [architecture.md](architecture.md), section 3.10.
+- **The source.** The banks `eval/bank.json` and `eval/free-bank.json` of `tutor` at `v0.1.35`, its latest tag on 2026-11-14; the board, the banks and `internal/task` are as at `v0.1.34`. A script writes the tasks from the banks, not a hand, and the open view of each of the eleven, which `module-kit open` gives, is the JSON of the task in `eval/open-tasks.json` of `tutor` at that tag.
+- **The tasks.** A paragraph of the statement; a handwriting sheet of the default grid; one answer slot `anywhere` with the check `number` and the value of the bank's key, as `sample.KeyOf` of `tutor` takes it (`x = 2` is `2`); the solution a paragraph per line; the bank's traps in `traps`, without trap values; the bank's leak phrases but those in English, and after them the key in words — in `posts`, whose statement frees the key, also «5 столбов». The closed fields that `Sheet` fills with stand-ins are the module's: the skill by the kind of the bank, the band `board` and a difficulty by the number of actions of the bank's solution — `houses` 1, `chain-1` and `pages` 3, `album` 4, the other seven 2.
+- **Skills** — `linear-equation`, `calculation` and `free-solution`, of the assessability `verdict`, the kinds of the banks as `Sheet` names them; and `writing-on-a-sheet`, «Решение на листе», `none`, a supporting skill of every task and a skill of the lesson. No prerequisites, no `teaches`, no `dependencies`.
+- **Traps** — 22, those that the tasks name, with the bank's ID, and the bank's description in impersonal words, which name no gender; the advice is the module's own: for the learner, addressed with «ты», with no verb in the past tense singular and no digit.
+- **The lesson** — one, `board`, «Задачи доски по порядку»: the eleven tasks in the order of `internal/board/tasks.go` of `tutor`, without an explanation.
+- **The eval set** — three synthetic samples by the rule of T60, a pair of a primary skill and the band, the task first by ID: `chain-1:1`, `album:2` and `equation-1:3`. They name `v0.2.6`, the newest release when they were drawn (R110 spec), whose index does not hold the module: of a module's eval set the runner takes the task from the commit's package, and the tag is not compared ([the text of the contracts](../spec/contracts/README.md), section 13).
+- **The name** `check-board` names the board whose tasks the module holds, not the subject and the audience, as R03 asks of the names of the slice: the module is of no slice, and its ID tells what it is for (the T69 amendment to R03).
+- **The manifest**: the title «Задачи на листе», `mathematics`, the band «Задачи доски», the authors «Авторы NovaTrail», and the rung templates of the other three modules in Russian, without digits.
+- **Version** — `0.1.0`, by the argument of R13.
+
+— *Why:*
+- **Tasks as `Sheet` builds them**: the board is the same thing on every try (R19 tutor), and the eval set is to check a tag of `tutor` on the tasks that it measured. The same open view lets `tutor` take its tasks from the package later, by a task of its own.
+- **Russian**: the statements, the solutions and the leak phrases of the banks are Russian, and the measurements of `tutor` are on them; a translation would be other tasks. `tutor` admits the tutor's words in Russian, 30 words a hint (R70 spec; `words/words.go` of `tutor`), and its reading gives the number of the final answer without the unknown and without the words after it (`internal/reading/reading.go` of `tutor`), so the keys need no `units`.
+- **The English leak phrases left out**: every text of a module is in its explanation language ([format text](../spec/format/README.md), section 10), and the tutor's words in this module are Russian. **The key in words added**: a Russian text writes numbers so, and the leak check reads no number in words ([format text](../spec/format/README.md), section 20); the tutor's words are checked by it too (R54 spec).
+- **`adult` alone**: the board is the author's, and its tasks and traps come from the measurement of an adult. Adding an age category later is a minor version ([format text](../spec/format/README.md), section 27).
+- **No anchor skill**: the module stands beside the first slice, not in it, and nothing builds on `core.linear-equations`, which v1 keeps only if a module of the slice names it (R50 spec).
+- **The skill that is not assessed**: the engine adds no segment to a lesson whose skills are not all `verdict`, and skips none ([format text](../spec/format/README.md), section 21). The engine of the first slice changes no lesson anyway (architecture 3.8 spec), but epic E7 of `engine` would give a task of consolidation at the end of a segment of a lesson whose skills are all `verdict` (row 4.14 of [COORDINATION.md](../spec/COORDINATION.md)), and the board is to be the same path every try.
+- **No explanation**: the board has none, and one would be a step more on every run and more text to keep from leaks.
+- **The difficulty by actions**: a rule that anyone can check on the bank's solution, and it spreads the tasks over the scale.
+- **Three synthetic samples**: the rule of T60, by which the other eval sets were chosen. On a sheet the generator writes sums of its own, not the task's solution, so a sample per task would add size and nothing of the task.
+- **The advice of the traps the module's own**: the banks give none, and the trap catalog requires it ([format text](../spec/format/README.md), section 16). **The description in impersonal words**: the learner's progress shows it ([format text](../spec/format/README.md), section 16), and the bank's names a gender — «перенёс», «ошибся».
+
+— *Rejected:*
+- the IDs `board-math` and `sheet-math-adults`;
+- a translation into English; the audience of every age;
+- `teaches: [core.linear-equations]`, with a row «в реестр spec»;
+- a lesson of the three skills with a verdict alone; an explanation before the tasks;
+- the difficulty 3 for all, and the difficulty 1 of `Sheet` for all;
+- a synthetic sample for each task;
+- trap values from the bank's `false_keys`: the bank does not say which trap a false key shows, and `Sheet` takes none;
+- `units` for the answers with words: the reading of `tutor` gives the number alone, and `Sheet` has none;
+- the English leak phrases kept; the leak phrases of the bank alone, without the key in words;
+- the bank's descriptions word for word, in the past tense of one gender.
+
+— *Consequence:*
+- `module-kit check` passes without violations or warnings, and so does `just modules-check`, `check-board` 0.1.0 as a first version; `just eval-check` and `just eval-match` hold its three samples. On a copy of the module, «на один больше» in the advice of `gaps-for-posts` breaks `task.no-leaks` for `posts`, and a number in the lesson's title breaks `lesson.no-leaks`;
+- [architecture.md](architecture.md): sections 1, 3, 3.1, 3.4, 3.7 and the new 3.10; README.md — the list of the modules and the status; CLAUDE.md — the role;
+- RUN.md, table 3 — the row В40 «в реестр spec»: the card architecture 3.10 spec names the three modules of the slice alone;
+- the merge puts out the release `v0.2.7` of `modules` with the one new archive, `check-board` 0.1.0 (R17), which rows 5.10 and 6.17 of [COORDINATION.md](../spec/COORDINATION.md) wait for. The author's samples are T70.
+
+— RUN.md, T69; [architecture.md](architecture.md), section 3.10; `modules/check-board/`; the T69 amendment to R03.

@@ -1,0 +1,29 @@
+# The check board's task backwards of tutor (R33), from its eval/free-bank.json at v0.1.35, as
+# internal/task.Sheet builds it (R68 tutor): the statement, a handwriting sheet of the default
+# grid, one answer slot anywhere with the number of the bank's key "20", the solution a
+# paragraph to a line, the bank's traps with no trap values, and its leak phrases, with the key in
+# words after them.
+# Its leak phrase in English, "add 12 to 15", is left out: the module is in Russian.
+id: backwards
+statement:
+  - text: "Задумали число. К нему прибавили 7, потом вычли 12 и получили 15. Какое число задумали?"
+canvas:
+  kind: handwriting_sheet
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "20"
+solution:
+  - text: "числовая прямая, с конца: прыжок вправо 15 → 27 и прыжок влево 27 → 20"
+  - text: "15 + 12 = 27"
+  - text: "27 − 7 = 20"
+  - text: "Ответ: 20"
+traps: [not-inverted, jump-length]
+leak_phrases: ["27 − 7", "к 15 прибавить 12", "двадцать"]
+skills:
+  primary: [free-solution]
+  supporting: [writing-on-a-sheet]
+band: board
+difficulty: 2

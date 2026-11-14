@@ -1,0 +1,28 @@
+# The check board's task posts of tutor (R33), from its eval/bank.json at v0.1.35, as
+# internal/task.Sheet builds it (R68 tutor): the statement, a handwriting sheet of the default
+# grid, one answer slot anywhere with the number of the bank's key "5", the solution a
+# paragraph to a line, the bank's traps with no trap values, and its leak phrases, with the key in
+# words after them and the key with its noun, which the statement frees.
+# Its leak phrase in English, "one more post than gaps", is left out: the module is in Russian.
+id: posts
+statement:
+  - text: "Вдоль дорожки длиной 20 м через каждые 5 м стоят столбы, первый — в начале, последний — в конце. Сколько всего столбов?"
+canvas:
+  kind: handwriting_sheet
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "5"
+solution:
+  - text: "20 : 5 = 4 — столько промежутков"
+  - text: "4 + 1 = 5 — столбов на один больше, чем промежутков"
+  - text: "Ответ: 5 столбов"
+traps: [gaps-for-posts, both-ends-added]
+leak_phrases: ["4 + 1", "на один больше", "5 столбов", "пять"]
+skills:
+  primary: [free-solution]
+  supporting: [writing-on-a-sheet]
+band: board
+difficulty: 2

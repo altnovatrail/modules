@@ -1,0 +1,22 @@
+# The skill graph of the module of tutor's check board (R33): a skill for each kind of task of
+# tutor's banks, as internal/task.Sheet names a task's skill by its kind (R68 tutor), and one that
+# is practised and not assessed, a supporting skill of every task: with it among the lesson's
+# skills, the engine adds no segment to the lesson and skips none (format 21). No skill needs
+# another, and none teaches an anchor skill.
+skills:
+  linear-equation:
+    title: Линейное уравнение
+    description: Решить уравнение первой степени с одним неизвестным.
+    assessability: verdict
+  calculation:
+    title: Цепочка вычислений
+    description: Найти значение выражения в несколько действий, соблюдая порядок действий.
+    assessability: verdict
+  free-solution:
+    title: Свободное решение
+    description: Решить текстовую олимпиадную задачу в свободной записи — числовой прямой, рисунком, схемой или вычислениями.
+    assessability: verdict
+  writing-on-a-sheet:
+    title: Решение на листе
+    description: Записать решение на листе по шагу на строку, а ответ — последней строкой.
+    assessability: none

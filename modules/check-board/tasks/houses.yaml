@@ -1,0 +1,28 @@
+# The check board's task houses of tutor (R33), from its eval/free-bank.json at v0.1.35, as
+# internal/task.Sheet builds it (R68 tutor): the statement, a handwriting sheet of the default
+# grid, one answer slot anywhere with the number of the bank's key "9", the solution a
+# paragraph to a line, the bank's traps with no trap values, and its leak phrases, with the key in
+# words after them.
+# Its leak phrase in English, "counted twice", is left out: the module is in Russian.
+id: houses
+statement:
+  - text: "В ряд стоят домики. Домик с флажком — четвёртый слева и шестой справа. Сколько домиков в ряду?"
+canvas:
+  kind: handwriting_sheet
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "9"
+solution:
+  - text: "рисунок: ряд домиков — 3 слева от домика с флажком, он сам и 5 справа"
+  - text: "3 + 1 + 5 = 9"
+  - text: "Ответ: 9 домиков"
+traps: [counted-twice, place-for-count, self-forgotten]
+leak_phrases: ["4 + 6 − 1", "посчитан дважды", "девять"]
+skills:
+  primary: [free-solution]
+  supporting: [writing-on-a-sheet]
+band: board
+difficulty: 1

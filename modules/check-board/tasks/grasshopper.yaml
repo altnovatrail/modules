@@ -1,0 +1,29 @@
+# The check board's task grasshopper of tutor (R33), from its eval/free-bank.json at v0.1.35, as
+# internal/task.Sheet builds it (R68 tutor): the statement, a handwriting sheet of the default
+# grid, one answer slot anywhere with the number of the bank's key "10", the solution a
+# paragraph to a line, the bank's traps with no trap values, and its leak phrases, with the key in
+# words after them.
+# Its leak phrase in English, "at 15", is left out: the module is in Russian.
+id: grasshopper
+statement:
+  - text: "Кузнечик сидит на числовой прямой в точке 3. Он прыгнул три раза вправо, каждый раз на 4, а потом один раз влево на 5. В какой точке он оказался?"
+canvas:
+  kind: handwriting_sheet
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "10"
+solution:
+  - text: "числовая прямая: прыжки вправо 3 → 7 → 11 → 15 и прыжок влево 15 → 10"
+  - text: "3 + 4 + 4 + 4 = 15"
+  - text: "15 − 5 = 10"
+  - text: "Ответ: в точке 10"
+traps: [jump-count, jump-length, jump-direction]
+leak_phrases: ["15 − 5", "в точке 15", "десять"]
+skills:
+  primary: [free-solution]
+  supporting: [writing-on-a-sheet]
+band: board
+difficulty: 2

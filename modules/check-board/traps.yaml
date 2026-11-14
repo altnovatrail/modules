@@ -1,0 +1,94 @@
+# The trap catalog of the module of tutor's check board (R33): the traps of tutor's banks that its
+# eleven tasks name, each once, as the banks keep one ID and one description for a mistake. The
+# description is the bank's in impersonal words, which name no gender: AI reads it to suggest the
+# trap from the work, and the learner's progress shows it. The advice is the module's own, for the
+# learner, with no digit, since task.no-leaks searches it for the keys of the tasks that name the trap.
+traps:
+  sign-on-transfer:
+    description: "слагаемое перенесено в другую часть уравнения без смены знака"
+    skills: [linear-equation]
+    trap_advice: "Слагаемое, которое переходит в другую часть уравнения, меняет знак. Проверь знак у каждого перенесённого слагаемого."
+  one-side-division:
+    description: "на коэффициент разделена только одна часть уравнения"
+    skills: [linear-equation]
+    trap_advice: "Обе части уравнения делятся на одно и то же число. Проверь, что разделена и левая часть, и правая."
+  bracket-first-term:
+    description: "при раскрытии скобок на число перед ними умножено только первое слагаемое"
+    skills: [linear-equation]
+    trap_advice: "Число перед скобками умножается на каждое слагаемое в скобках, а не только на первое."
+  order-of-operations:
+    description: "действия выполнены слева направо, без порядка действий"
+    skills: [calculation]
+    trap_advice: "Сначала умножение и деление, потом сложение и вычитание. Отметь, какое действие идёт первым."
+  carry:
+    description: "ошибка при сложении с переходом через десяток"
+    skills: [calculation]
+    trap_advice: "Складывай по разрядам: когда в разряде единиц набирается десяток, он переходит в разряд десятков."
+  arithmetic:
+    description: "ошибка в вычислении"
+    skills: [calculation, free-solution]
+    trap_advice: "Проверь каждое действие обратным: сложение — вычитанием, умножение — делением."
+  gaps-for-posts:
+    description: "посчитаны промежутки вместо столбов"
+    skills: [free-solution]
+    trap_advice: "Промежуток — это место между двумя соседними столбами. Нарисуй короткую дорожку и посчитай на рисунке и промежутки, и столбы."
+  both-ends-added:
+    description: "к промежуткам прибавлены два столба — в начале и в конце, — а столбов только на один больше, чем промежутков"
+    skills: [free-solution]
+    trap_advice: "Нарисуй короткую дорожку со столбами в начале и в конце и сравни, сколько на ней столбов и сколько промежутков."
+  jump-count:
+    description: "прыжков сделано больше или меньше, чем сказано в условии"
+    skills: [free-solution]
+    trap_advice: "Прочитай в условии, сколько прыжков и в какую сторону, и отметь на прямой каждый прыжок."
+  jump-length:
+    description: "на числовой прямой отложен прыжок не той длины"
+    skills: [free-solution]
+    trap_advice: "Отсчитывай длину каждого прыжка по делениям прямой, от той точки, где прыжок начинается."
+  jump-direction:
+    description: "прыжок сделан не в ту сторону, которая названа в условии"
+    skills: [free-solution]
+    trap_advice: "Вправо по прямой — к большим числам, влево — к меньшим. Сверь направление каждого прыжка с условием."
+  not-inverted:
+    description: "при решении с конца действие не заменено обратным"
+    skills: [free-solution]
+    trap_advice: "Идя с конца, делай обратное действие: где прибавляли — вычитай, где вычитали — прибавляй."
+  counted-twice:
+    description: "отмеченный предмет учтён дважды: сложены его места слева и справа"
+    skills: [free-solution]
+    trap_advice: "Отмеченный предмет входит и в счёт слева, и в счёт справа. Нарисуй ряд и посчитай каждый предмет один раз."
+  place-for-count:
+    description: "место отмеченного предмета в ряду принято за число предметов по ту же сторону от него"
+    skills: [free-solution]
+    trap_advice: "Место предмета в ряду считает и его самого. Нарисуй ряд и отметь, сколько предметов стоит по каждую сторону от него."
+  self-forgotten:
+    description: "не посчитан сам отмеченный предмет"
+    skills: [free-solution]
+    trap_advice: "Сложив предметы слева и справа, не забудь сам отмеченный предмет."
+  halved-total:
+    description: "сумма разделена пополам, а разница не убрана"
+    skills: [free-solution]
+    trap_advice: "Сначала убери из суммы разницу — тогда остаток делится поровну на две одинаковые части."
+  difference-added:
+    description: "разница прибавлена к сумме, а не вычтена из неё"
+    skills: [free-solution]
+    trap_advice: "Разницу из суммы вычитают: без неё два отрезка становятся одинаковыми."
+  longer-segment:
+    description: "на схеме длиннее сделан не тот отрезок"
+    skills: [free-solution]
+    trap_advice: "Прочитай, у кого больше, и сделай длиннее отрезок того, у кого больше."
+  count-from-to:
+    description: "при счёте чисел подряд от одного до другого из большего вычтено меньшее, и одно число потеряно"
+    skills: [free-solution]
+    trap_advice: "Разность крайних чисел на одно меньше, чем чисел в ряду подряд. Проверь это на коротком ряду."
+  all-two-digit:
+    description: "все номера посчитаны двузначными"
+    skills: [free-solution]
+    trap_advice: "У первых страниц номера однозначные. Посчитай отдельно страницы с однозначными номерами и с двузначными."
+  times-as-more:
+    description: "«в несколько раз больше» спутано с «на несколько больше»"
+    skills: [free-solution]
+    trap_advice: "«В несколько раз больше» — это умножить, а «на несколько больше» — прибавить. Прочитай условие ещё раз."
+  swapped-counts:
+    description: "перепутано, сколько взяли предметов каждого вида"
+    skills: [free-solution]
+    trap_advice: "Выпиши, сколько предметов каждого вида взяли, и умножь цену каждого вида на его количество."
