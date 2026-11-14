@@ -321,19 +321,24 @@ test("sample-check is called on each module's eval set, with its ID and its file
   assert.match(result.stdout, HELD);
 });
 
-test("an eval set of more than 50 files is checked 50 at a time, in order, and the status is the highest of the calls", (t) => {
+test("an eval set of many files is checked by one call, in order, with no batches", (t) => {
   const repo = repository(t);
-  const calls = stubSpec(repo, [0, 1, 0]);
+  const calls = stubSpec(repo);
   const ids = Array.from({ length: 120 }, (_, i) => `s${String(i).padStart(3, "0")}`);
   for (const id of ids) put(repo, "maths", `${id}.json`, { id });
   const result = evalCheck(repo);
+  assert.equal(result.status, 0, result.stdout + result.stderr);
+  assert.deepEqual(calls(), [["--eval-set", "novatrail/maths", ...ids.map((id) => `modules/maths/eval/${id}.json`)]]);
+  assert.match(result.stdout, HELD);
+});
+
+test("the status is the highest of the calls, module by module: a module that passes after one refused does not clear it", (t) => {
+  const repo = repository(t);
+  const calls = stubSpec(repo, [0, 1, 0]);
+  for (const module of ["alpha", "beta", "gamma"]) put(repo, module, "a.json", { id: "a" });
+  const result = evalCheck(repo);
   assert.equal(result.status, 1, result.stdout + result.stderr);
-  const files = ids.map((id) => `modules/maths/eval/${id}.json`);
-  assert.deepEqual(calls(), [
-    ["--eval-set", "novatrail/maths", ...files.slice(0, 50)],
-    ["--eval-set", "novatrail/maths", ...files.slice(50, 100)],
-    ["--eval-set", "novatrail/maths", ...files.slice(100)],
-  ]);
+  assert.deepEqual(calls().map((call) => call[1]), ["novatrail/alpha", "novatrail/beta", "novatrail/gamma"]);
   assert.doesNotMatch(result.stdout, /^eval-check: every eval/m);
 });
 

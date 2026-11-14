@@ -389,11 +389,11 @@ _modules-check published:
 # the module's eval set as section 13 there has it — every regular file under eval/ whose name
 # ends in .json, at any depth, but under a name with a dot —, with no link, which the layout
 # refuses and which would stop sample-check. A module with no such file is not checked, since a
-# check of no file passes none (R93 spec; amendment 2026-11-09 to R25). sample-check gets the files
-# 50 at a time, in their order: one call on some 600 of them stops Node with 134 (canvas, 2026-11-10).
-# The one rule it holds across files, that no two samples share an ID, needs no single call: the
-# layout already holds it, each ID being the name of a file of the one flat folder (amendment T58 to
-# R25). Only the folders of
+# check of no file passes none (R93 spec; amendment 2026-11-09 to R25). sample-check gets all of a
+# module's files in one call, in their order: since T116 spec it holds whole only the file it reads,
+# so that one call checks hundreds of large samples with no batches (contracts/README.md in spec,
+# section 11), and it holds the one rule across files, that no two samples share an ID, itself, as
+# the layout does too (amendment R32 to R25). Only the folders of
 # modules/ are read: a file, a link or a name with a dot there is modules-check's to refuse (R03).
 # Every module is checked, and a breach in one does not stop the rest; the status is the highest
 # of what failed: 1 for a breach of the layout, a sample that sample-check refuses and modules that
@@ -421,7 +421,6 @@ eval-check:
         echo "modules/: no modules yet"
         exit 0
     fi
-    batch=50
     worst=0
     fail() {
         if [ "$1" -gt "$worst" ]; then worst=$1; fi
@@ -505,12 +504,10 @@ eval-check:
             fail 2
             continue
         fi
-        for ((start = 0; start < ${#files[@]}; start += batch)); do
-            status=0
-            {{quote(just_executable())}} -f spec/justfile sample-check --eval-set "novatrail/${module}" "${files[@]:start:batch}" || status=$?
-            if [ "$status" -gt 2 ]; then status=2; fi
-            fail "$status"
-        done
+        status=0
+        {{quote(just_executable())}} -f spec/justfile sample-check --eval-set "novatrail/${module}" "${files[@]}" || status=$?
+        if [ "$status" -gt 2 ]; then status=2; fi
+        fail "$status"
     done
     if [ "$worst" -eq 0 ] && [ -z "$held" ]; then
         echo "eval-check: every eval/ is laid out as eval/<id>.json, and no module holds a sample"
