@@ -14,7 +14,7 @@
 
 The official NovaTrail modules of the first slice: olympiad maths for grades 1–6, carried over from MathTrail, school maths for grade 3 on a workbook, and short essays in English for any age. A module is data, not code and not instructions to a model: a folder whose layout spec's module format sets, with its skill graph, lessons, tasks, traps and techniques in YAML, its media, its license's text, and an eval set: synthetic samples and samples that adult volunteers and authors made for eval, never learners' work. This repository's CI checks each module with the authors' CLI from module-kit, and its releases carry the signed module packages and the module index that the platform reads.
 
-A component of [NovaTrail](https://github.com/altnovatrail/spec/tree/v0.16.3), a universal open platform for adaptive learning, interactive lessons and AI tutoring. It belongs to stage 1, Format and core, with spec, module-kit, learner-model, engine and sim; together with module-kit it tries the module format v0 on three modules of two unlike subjects at once.
+A component of [NovaTrail](https://github.com/altnovatrail/spec/tree/v0.17.2), a universal open platform for adaptive learning, interactive lessons and AI tutoring. It belongs to stage 1, Format and core, with spec, module-kit, learner-model, engine and sim; together with module-kit it tries the module format v0 on three modules of two unlike subjects at once.
 
 ## Status
 
@@ -31,7 +31,7 @@ The documents are in English, but for the work plan, its technical debt and the 
 - [RUN.md](RUN.md) — the work plan, in epics.
 - [DEBT.md](DEBT.md) — the technical debt, in Russian: table 4 of the work plan.
 
-The working rules, for people and coding agents alike, are in [CLAUDE.md](CLAUDE.md) and [AGENTS.md](AGENTS.md). The platform's shared vocabulary, formats, contracts and decisions are in [spec](https://github.com/altnovatrail/spec/tree/v0.16.3), checked out here as a git submodule at `v0.16.3`: clone this repository with `git clone --recurse-submodules`.
+The working rules, for people and coding agents alike, are in [CLAUDE.md](CLAUDE.md) and [AGENTS.md](AGENTS.md). The platform's shared vocabulary, formats, contracts and decisions are in [spec](https://github.com/altnovatrail/spec/tree/v0.17.2), checked out here as a git submodule at `v0.17.2`: clone this repository with `git clone --recurse-submodules`.
 
 ## License
 

@@ -33,3 +33,19 @@ Whether more pages of `grade-3-math` would raise the share of the items in the c
 
 - **What it showed.** Easy pages help `G0` and hinder `G2-half`, and the full ladder gives what the module gives now: the corridor is held not by the pool but by the model's estimate — Г4 of architecture 2.9 engine, the lag `M3.lag`. The author decided on 2026-11-11 to write no pages, and spec took the request back by its answer to В39 (Д170 spec; R31).
 - **What it did not measure.** `olympiad-math` was not in it: `sim` v0.1.8 did not translate the check kind `time` (Д5 in [DEBT.md](../DEBT.md)), so `M4` and the cell `A-linked` were not read. The same measurement with both maths, on `sim` v0.1.9 or newer, is what Д8 still waits for.
+
+## 3. One call of `sample-check` on a large eval set, 2026-11-14
+
+Whether `eval-check` can call `sample-check --eval-set` once on a module's eval set, with no chunks of 50, since T116 `spec` (Д7, closed by R32).
+
+- **How.** A model of the case of 2026-11-10, when one call on 631 synthetic samples of `olympiad-math`, 322 MB, stopped Node with 134 (the T58 amendment to R25). In a temporary folder the 41 synthetic samples of `olympiad-math` were copied in turn into 631 files, 323 MB, each with an ID of its own by `jq --arg id … '.id = $id'`, indented as the originals. On it ran the recipe `eval-check` of T68 with `spec` v0.17.2, and `sample-check` of `spec` v0.16.3, from an archive of its tag, called once on the same files. Node v24.21.0, in the devcontainer.
+- **The numbers:**
+
+  | `sample-check` | Calls | Result | Time |
+  |---|---|---|---|
+  | `spec` v0.16.3 | one, 631 files | 134: "JavaScript heap out of memory" | 81 s, to the crash |
+  | `spec` v0.17.2, in `eval-check` | one, 631 files | ok — 631 samples | 97 s, the whole recipe |
+
+  On 2026-11-10, `eval-check` with chunks of 50 took 2 min 48 s on the 631 real synthetic samples (the T59 amendment to R25).
+- **What it showed.** The model gives the crash of 2026-11-10 on the old tag, and T116 holds on the samples of `modules`, not only on the model of `spec`, 631 copies of an example essay (Д197 spec). One call is enough.
+- **What it did not measure.** The synthetic samples of every task: the model repeats 41 of them. The heap limit of CI's runner either, which may differ from the devcontainer's.
