@@ -1,0 +1,27 @@
+# The check board's task chain-1 of tutor (R33), from its eval/bank.json at v0.1.35, as
+# internal/task.Sheet builds it (R68 tutor): the statement, a handwriting sheet of the default
+# grid, one answer slot anywhere with the number of the bank's key "38", the solution a
+# paragraph to a line, the bank's traps with no trap values, and its leak phrases, with the key in
+# words after them.
+id: chain-1
+statement:
+  - text: "Вычисли 17 + 49 − 14 × 2."
+canvas:
+  kind: handwriting_sheet
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "38"
+solution:
+  - text: "14 × 2 = 28"
+  - text: "17 + 49 = 66"
+  - text: "66 − 28 = 38"
+traps: [order-of-operations, carry]
+leak_phrases: ["14 × 2 = 28", "66 − 28", "тридцать восемь"]
+skills:
+  primary: [calculation]
+  supporting: [writing-on-a-sheet]
+band: board
+difficulty: 3

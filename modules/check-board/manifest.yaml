@@ -1,0 +1,23 @@
+# The manifest of the module of tutor's check board (R33; the 2026-11-14 amendment to R76 spec):
+# the eleven tasks of the board, so that the author solves them in the app on the path a learner
+# takes. It is in Russian, as the tasks are, and for adults alone, with no grades and one band. Its
+# tasks have a verdict, so it has the rung templates of a hint ladder; they hold no digit, since
+# task.no-leaks searches them for the keys of every task.
+module_format_version: "0.4"
+id: novatrail/check-board
+version: "0.1.0"
+title: Задачи на листе
+subject: mathematics
+audience:
+  age_categories: [adult]
+bands:
+  - id: board
+    title: Задачи доски
+languages:
+  explanation: ru
+authors:
+  - name: Авторы NovaTrail
+license: Apache-2.0
+rung_templates:
+  - Какой шаг твоей работы дал этот ответ?
+  - Прочитай условие ещё раз, медленно. Есть ли в нём то, чего твоя работа ещё не использует?

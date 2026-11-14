@@ -1,0 +1,19 @@
+# The lesson of the module of tutor's check board (R33): the eleven tasks in the board's order, as
+# internal/board/tasks.go of tutor lists them, with no explanation. One of its skills is not
+# assessed, so the engine adds no segment to it and skips none (format 21): every run goes through
+# the same eleven tasks. Its title holds no digit, since lesson.no-leaks searches it.
+id: board
+title: Задачи доски по порядку
+skills: [linear-equation, calculation, free-solution, writing-on-a-sheet]
+segments:
+  - task: equation-1
+  - task: equation-2
+  - task: chain-1
+  - task: chain-2
+  - task: posts
+  - task: grasshopper
+  - task: backwards
+  - task: houses
+  - task: stamps
+  - task: pages
+  - task: album

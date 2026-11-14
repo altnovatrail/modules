@@ -1,0 +1,30 @@
+# The check board's task pages of tutor (R33), from its eval/free-bank.json at v0.1.35, as
+# internal/task.Sheet builds it (R68 tutor): the statement, a handwriting sheet of the default
+# grid, one answer slot anywhere with the number of the bank's key "141", the solution a
+# paragraph to a line, the bank's traps with no trap values, and its leak phrases, with the key in
+# words after them.
+# Its leak phrase in English, "66 two-digit pages", is left out: the module is in Russian.
+id: pages
+statement:
+  - text: "Страницы книги пронумеровали подряд, с 1 по 75. Сколько всего цифр написали?"
+canvas:
+  kind: handwriting_sheet
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "141"
+solution:
+  - text: "с 1 по 9 — 9 страниц по одной цифре"
+  - text: "с 10 по 75 — 75 − 9 = 66 страниц по две цифры"
+  - text: "66 × 2 = 132"
+  - text: "9 + 132 = 141"
+  - text: "Ответ: 141 цифра"
+traps: [count-from-to, all-two-digit, arithmetic]
+leak_phrases: ["66 × 2", "66 страниц", "сто сорок один", "сто сорок одна"]
+skills:
+  primary: [free-solution]
+  supporting: [writing-on-a-sheet]
+band: board
+difficulty: 3

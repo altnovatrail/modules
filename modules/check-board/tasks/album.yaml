@@ -1,0 +1,30 @@
+# The check board's task album of tutor (R33), from its eval/free-bank.json at v0.1.35, as
+# internal/task.Sheet builds it (R68 tutor): the statement, a handwriting sheet of the default
+# grid, one answer slot anywhere with the number of the bank's key "154", the solution a
+# paragraph to a line, the bank's traps with no trap values, and its leak phrases, with the key in
+# words after them.
+# Its leak phrase in English, "the album costs 42", is left out: the module is in Russian.
+id: album
+statement:
+  - text: "Тетрадь стоит 14 рублей, а альбом — в 3 раза дороже. Сколько стоят вместе 2 альбома и 5 тетрадей?"
+canvas:
+  kind: handwriting_sheet
+items:
+  - answer_slots:
+      - binding: anywhere
+        check:
+          kind: number
+          key: "154"
+solution:
+  - text: "14 × 3 = 42 — стоит альбом"
+  - text: "42 × 2 = 84 — стоят 2 альбома"
+  - text: "14 × 5 = 70 — стоят 5 тетрадей"
+  - text: "84 + 70 = 154"
+  - text: "Ответ: 154 рубля"
+traps: [times-as-more, swapped-counts, arithmetic]
+leak_phrases: ["84 + 70", "альбом стоит 42", "сто пятьдесят четыре"]
+skills:
+  primary: [free-solution]
+  supporting: [writing-on-a-sheet]
+band: board
+difficulty: 4
