@@ -317,7 +317,7 @@ _modules-check published:
     fi
     pinned=$({{quote(just_executable())}} _dockerfile-arg .devcontainer/Dockerfile MODULE_KIT_VERSION)
     if ! version=$(module-kit --version | sed -n 1p); then
-        echo "modules-check: module-kit cannot be run; the toolchain stage installs it" >&2
+        echo "modules-check: module-kit cannot be run; the stage toolchain-core installs it" >&2
         exit 2
     fi
     if [ "$version" != "module-kit ${pinned}" ]; then
@@ -697,7 +697,7 @@ _pinned-module-kit:
     set -euo pipefail
     pinned=$({{quote(just_executable())}} _dockerfile-arg .devcontainer/Dockerfile MODULE_KIT_VERSION)
     if ! version=$(module-kit --version | sed -n 1p); then
-        echo "_pinned-module-kit: module-kit cannot be run; the toolchain stage installs it" >&2
+        echo "_pinned-module-kit: module-kit cannot be run; the stage toolchain-core installs it" >&2
         exit 2
     fi
     if [ "$version" != "module-kit ${pinned}" ]; then
@@ -1017,9 +1017,9 @@ _match-people module package rows:
     echo "_match-people: ${held} samples of people of ${module} are of open views of this commit's package"
     exit "$worst"
 
-# What .github's shared release.yml runs to build a release's files, in the toolchain stage of the
-# commit it releases, on that commit's tree from git archive: no git, no submodule — spec/ is an
-# empty folder —, no token and no network (architecture 3.3 .github; R03; R17). version is the
+# What .github's shared release.yml runs to build a release's files, in the stage toolchain-core of
+# the commit it releases (R38), on that commit's tree from git archive: no git, no submodule —
+# spec/ is an empty folder —, no token and no network (architecture 3.3 .github; R03; R17). version is the
 # release's tag, vX.Y.Z; previous the path of module-index.json of the newest release, which the
 # shared release downloaded and release-verify accepted before the build, read-only, or an empty
 # string for the first release, which the recipe tells module-kit index by --first; and no
@@ -1125,7 +1125,7 @@ release-files version previous:
     mv "${work}/dist" dist
     echo "release-files: the files of ${version} are in dist/"
 
-# The binary of module-kit that the toolchain stage installs is held by its sums in
+# The binary of module-kit that the stage toolchain-core installs is held by its sums in
 # .devcontainer/Dockerfile. Here the release's SHA256SUMS and its bundle are read from the release's
 # public address, with no token, the signature is checked by spec's release-verify (R77 spec), and
 # the sums of both linux binaries are held to the Dockerfile's: the chain of digests then runs from a
@@ -1259,8 +1259,9 @@ test:
 
 # The Go code of this repository is tools/port, the port of standalone's tasks (R12), one module
 # with its go.mod at the root; spec/ is a module of its own, which ./... does not reach. The ci-
-# recipes are what .github's shared go.yml runs, one job each, in the toolchain stage, with no spec
-# submodule: "Go / lint", "Go / test", "Go / vuln" and "Go / licenses" (R16 .github; R48 spec). The
+# recipes are what .github's shared go.yml runs, one job each, with no spec submodule: "Go / lint",
+# "Go / test", "Go / vuln" and "Go / licenses" (R16 .github; R48 spec) — lint, vuln and licenses in
+# the stage toolchain-core, test in toolchain (R47 .github; R38). The
 # tools only these checks need run straight from their modules at exact versions, as spec's and
 # module-kit's justfiles run them; Dependabot does not see them, so they are raised by hand.
 GOVULNCHECK := "golang.org/x/vuln/cmd/govulncheck@v1.9.0"

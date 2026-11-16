@@ -132,8 +132,8 @@ ENV PATH="/usr/local/node/bin:/usr/local/go/bin:/home/vscode/.local/bin:${PATH}"
 # -- toolchain: the core, plus what the repository's tests need ---------------
 #
 # The kind go adds nothing here (repo-template/kinds.json spec). What this stage adds is canvas's
-# generator, which `just eval-match` and the tests of the recipes run, and nothing a release or a
-# check of the core runs: a release never builds it (R38).
+# generator, which `just synthetic`, `just eval-match` and the tests of the recipes run, and nothing
+# a release or a check of the core runs: a release never builds it (R38).
 
 FROM toolchain-core AS toolchain
 

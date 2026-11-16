@@ -120,5 +120,26 @@ What `.github` v0.1.30 and the cache of Go of "Modules" across runs gave the job
 
 What the stage `toolchain-core` and `.github` v0.1.31 gave the jobs T76 changes (R38).
 
-- **How.** The times of the jobs and of their steps from the GitHub API, `actions/runs/<id>/jobs`, read only, each on `ubuntu-24.04`: before — run 43859371391 of CI and run 43860304299 of Release, of the push to `main` at 694480f, the merge of T75, whose Dockerfile the cache held.
-- **The numbers before:** "module-kit signature" 51 s, its "Toolchain image" 32 s; "canvas signature" 49 s, 31 s; "Gate" 80 s, 30 s; "Modules" 100 s, 29 s; "Documents / docs-check-repo" 41 s, 14 s; "Go / lint" 48 s, "Go / vuln" 61 s, "Go / licenses" 56 s, their "Toolchain image" 12–21 s; "Release / release" 70 s, "Work out the version" 24 s, "Build the files" 5 s.
+- **How.** The times of the jobs and of their steps from the GitHub API, `actions/runs/<id>/jobs`, read only, each on `ubuntu-24.04`: before — run 43859371391 of CI and run 43860304299 of Release, of the push to `main` at 694480f, the merge of T75, whose Dockerfile the cache held; after — run 43906415932 of CI and run 43906416263 of Release, of pull request #114 at 946fcee, whose new Dockerfile no entry held, so that every job built its stage. Which stage each job took, from its log: "The checks without a browser run in the stage toolchain-core." in "Documents", "ci-lint runs in the stage toolchain-core." in "Go / lint", `TOOLCHAIN_STAGE: toolchain-core` in the signatures and "Gate", the `RUN` of the generator of `canvas` in the build of "Modules" alone, and none in that of "Release".
+- **The numbers:**
+
+  | Job or step | Before, `main`, hit, s | After, pull request, miss, s |
+  |---|---|---|
+  | "module-kit signature" | 51 | 38 |
+  | — its image | 32 | 22 |
+  | "canvas signature" | 49 | 39 |
+  | — its image | 31 | 19 |
+  | "Gate" | 80 | 74 |
+  | — its image | 30 | 22 |
+  | "Modules", in `toolchain` | 100 | 89 |
+  | — its image | 29 | 24 |
+  | "Documents / docs-check-repo" | 41 | 42 |
+  | "Go / lint", "Go / vuln", "Go / licenses" | 48, 61, 56 | 63, 67, 61 |
+  | "Go / toolchain" | 10 | 88 |
+  | "Go / test", in `toolchain` | 186 | 232 |
+  | "Release / release" | 70 | 71 |
+  | — "Work out the version" | 24 | 34 |
+  | — "Build the files" | 5 | 5 |
+
+- **What it showed.** The stages are where R38 puts them, and every check passed in its stage. The time a job spends on its image is the runner's disk and network either way, 19–34 s: the core is the same downloads as `toolchain` but for one file of 412 KiB, the generator of `canvas` (422,240 bytes), so here the core saves no measurable time, unlike the browsers of the kind `typescript` (measurements 3.1 spec). "Go / toolchain" builds both stages on a miss and hands each on as an artifact, 88 s against 10 s of a hit.
+- **What it did not measure.** The hit of both entries on `main`: the first push to `main` after the merge saves `toolchain-…` and `toolchain-core-…`, and the runs after it read them. One run each, not the medians of three of measurements 3.1 spec.
