@@ -2,7 +2,7 @@
 
 Open tasks outside the current epic, each as its body, in Russian (R154 spec, R155 spec).
 
-- Never read whole: a session reads only its own task — `grep -n '^#### T' run/TASKS.md` lists them, `awk '/^#### T73\./{p=1;print;next} /^#### /{p=0} p' run/TASKS.md` gives one body.
+- Never read whole: a session reads only its own task — `grep -n '^#### T' run/TASKS.md` lists them, `awk '/^#### T75\./{p=1;print;next} /^#### /{p=0} p' run/TASKS.md` gives one body.
 - A new task outside an epic goes here as a body, its number the one free when it is written down (RUN.md, Citations). When done, the body leaves for the archive (RUN.md rule 9).
 
 ## Tasks outside an epic
@@ -14,7 +14,7 @@ Open tasks outside the current epic, each as its body, in Russian (R154 spec, R1
 - **Зависит от:** релиз `.github` строки 7.13. Пока его нет — задача ждёт.
 - **Сделать:**
   1. `gh release verify <тег> -R altnovatrail/.github`; SHA тега. `uses:` в `ci.yml`, `codeql.yml`, `scorecard.yml` и `release.yml` — на этот SHA с комментарием версии, как T73 (R35). Входы и права общих workflow от v0.1.24 до этого тега — по README `.github` и architecture 3.3 .github на нём; что изменилось, — в вызовы.
-  2. Job «Modules»: `.cache/go/` — в кеш GitHub Actions по правилам кеша Go `go.yml` этого релиза (строка 7.13): ключ — Dockerfile и `go.sum`, pull request только читает, сохраняет push в `main`, после восстановления — `go mod verify`; `release.yml` кеша не берёт. Если релиз даёт для этого общий шаг или action — взять его, а не свои шаги.
+  2. Job «Modules»: `.cache/go/` — в кеш GitHub Actions по правилам кеша Go `go.yml` этого релиза (строка 7.13): ключ — Dockerfile и `go.sum`, pull request только читает, сохраняет push в `main`, после восстановления — `go mod verify`; `release.yml` кеша не берёт. Go пишет `GOMODCACHE` только для чтения: если папку чистит checkout или шаг, — `GOFLAGS=-modcacherw`. Если релиз даёт для этого общий шаг или action — взять его, а не свои шаги.
   3. Если вызовы этого релиза требуют от Dockerfile стадии `toolchain-core` (строка 7.14), они остаются T76 — `.devcontainer/` эта задача не меняет; остальное — здесь.
   4. Поправки к R35 и R36 — что взято и почему; правило `ci`; [docs/architecture.md](../docs/architecture.md), разделы 3.2 и 3.3.
 - **Как проверить:** CI pull request зелёный, все обязательные проверки и `codecov/patch`; в логе job «Modules» и «Go / test» — кеш Go из кеша; время изменённых job до и после — в отчёте, по прогонам `main` и pull request; проверки части `ci` — [.claude/rules/ci.md](../.claude/rules/ci.md); `just -f spec/justfile docs-check-repo`; `/code-review high`, один круг.
