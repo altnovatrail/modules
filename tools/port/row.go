@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-
-	"golang.org/x/image/font"
 )
 
 // rowPicture is a picture of the kind row, as the schema of standalone's tasks has it: 2 to 12
@@ -155,8 +153,8 @@ func (r *rowPicture) paint(c canvas) {
 	}
 	if r.Span != "" {
 		y := height - margin/2 - spanBand/2
-		advance := float64(font.MeasureString(faceAt(fontSize), r.Span).Round()) / scale
-		c.span(x(0), x(len(r.Items)-1), y, r.Span, advance/2+4, band/2)
+		wide := float64(advance(r.Span, fontSize).Round()) / scale
+		c.span(x(0), x(len(r.Items)-1), y, r.Span, wide/2+4, band/2)
 	}
 }
 

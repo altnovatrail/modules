@@ -1,19 +1,17 @@
 package main
 
 import (
-	"bytes"
 	"encoding/json"
-	"image/png"
 	"os"
 	"path/filepath"
-	"slices"
 	"strings"
 	"testing"
 )
 
 // The kinds of T21 draw as every kind does: opaque, deterministic, of the size their part names.
 func TestKinds21Draw(t *testing.T) {
-	for _, raw := range []string{
+	t.Parallel()
+	drawsAsEveryKind(t,
 		`{"kind": "lattice", "width": 1, "height": 1, "lines": [[0, 0, 1, 0]]}`,
 		`{"kind": "lattice", "width": 4, "height": 4, "lines": [[1, 0, 1, 3], [2, 1, 2, 4], [3, 0, 3, 3]],
 			"marks": [{"at": [0, 0], "label": "S"}, {"at": [3, 3], "label": "E"}]}`,
@@ -36,30 +34,7 @@ func TestKinds21Draw(t *testing.T) {
 		`{"kind": "stairs", "steps": 3}`,
 		`{"kind": "stairs", "steps": 16, "marks": [{"step": 0, "label": "A"}, {"step": 16, "label": "B"}, {"step": 8, "label": "?"}],
 			"jumps": [{"from": 0, "to": 16}, {"from": 16, "to": 0}, {"from": 3, "to": 5}, {"from": 8, "to": 7}]}`,
-	} {
-		part, data, err := pictureOf("pic-1", json.RawMessage(raw), "A picture.", "")
-		if err != nil {
-			t.Errorf("%s: pictureOf() error = %v", raw, err)
-			continue
-		}
-		img, err := png.Decode(bytes.NewReader(data))
-		if err != nil {
-			t.Fatalf("%s: png.Decode() error = %v", raw, err)
-		}
-		width, height := part[2].value.(int), part[3].value.(int)
-		if b := img.Bounds(); b.Dx() != width*scale || b.Dy() != height*scale {
-			t.Errorf("%s: the PNG is %v, the part says %d × %d CSS px", raw, b, width, height)
-		}
-		if !opaque(img) || !inked(img) {
-			t.Errorf("%s: a pixel is transparent, or nothing is drawn", raw)
-		}
-		if got := strings.Join(slices.Compact(chunks(t, data)), " "); got != "IHDR IDAT IEND" {
-			t.Errorf("%s: the chunks are %s", raw, got)
-		}
-		if _, again, _ := pictureOf("pic-1", json.RawMessage(raw), "A picture.", ""); !bytes.Equal(again, data) {
-			t.Errorf("%s: a second run draws other bytes", raw)
-		}
-	}
+	)
 }
 
 // A row of tiles runs straight on, and a ring goes round once and closes, its last tile against its

@@ -1,17 +1,15 @@
 package main
 
 import (
-	"bytes"
 	"encoding/json"
-	"image/png"
-	"slices"
 	"strings"
 	"testing"
 )
 
 // The kinds of T20 draw as every kind does: opaque, deterministic, of the size their part names.
 func TestKinds20Draw(t *testing.T) {
-	for _, raw := range []string{
+	t.Parallel()
+	drawsAsEveryKind(t,
 		`{"kind": "containers", "items": [{"capacity": 3, "amount": 0}, {"capacity": 5, "amount": 5, "label": "A"}]}`,
 		`{"kind": "containers", "items": [{"capacity": 20, "amount": 1}, {"capacity": 1, "amount": 1}, {"capacity": 1, "amount": 0},
 			{"capacity": 10, "amount": 9}]}`,
@@ -31,30 +29,7 @@ func TestKinds20Draw(t *testing.T) {
 		`{"kind": "ring", "count": 3}`,
 		`{"kind": "ring", "count": 24, "start": {"at": 24, "label": "S"}}`,
 		`{"kind": "ring", "count": 7, "start": {"at": 3}}`,
-	} {
-		part, data, err := pictureOf("pic-1", json.RawMessage(raw), "A picture.", "")
-		if err != nil {
-			t.Errorf("%s: pictureOf() error = %v", raw, err)
-			continue
-		}
-		img, err := png.Decode(bytes.NewReader(data))
-		if err != nil {
-			t.Fatalf("%s: png.Decode() error = %v", raw, err)
-		}
-		width, height := part[2].value.(int), part[3].value.(int)
-		if b := img.Bounds(); b.Dx() != width*scale || b.Dy() != height*scale {
-			t.Errorf("%s: the PNG is %v, the part says %d × %d CSS px", raw, b, width, height)
-		}
-		if !opaque(img) || !inked(img) {
-			t.Errorf("%s: a pixel is transparent, or nothing is drawn", raw)
-		}
-		if got := strings.Join(slices.Compact(chunks(t, data)), " "); got != "IHDR IDAT IEND" {
-			t.Errorf("%s: the chunks are %s", raw, got)
-		}
-		if _, again, _ := pictureOf("pic-1", json.RawMessage(raw), "A picture.", ""); !bytes.Equal(again, data) {
-			t.Errorf("%s: a second run draws other bytes", raw)
-		}
-	}
+	)
 }
 
 // A pile's counters: cut short to half before an ellipsis and half after, a heap of no stated size

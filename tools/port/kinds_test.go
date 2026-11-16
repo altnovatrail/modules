@@ -1,10 +1,7 @@
 package main
 
 import (
-	"bytes"
 	"encoding/json"
-	"image/png"
-	"slices"
 	"strings"
 	"testing"
 
@@ -15,7 +12,8 @@ import (
 // of the size its part names, twice as many pixels each way, with IHDR, IDAT and IEND alone, the
 // same bytes again, and something inked (T19).
 func TestKindsDraw(t *testing.T) {
-	for _, raw := range []string{
+	t.Parallel()
+	drawsAsEveryKind(t,
 		`{"kind": "clock", "time": "3:00"}`,
 		`{"kind": "clock", "time": "23:59"}`,
 		`{"kind": "clock", "time": "0:05", "hour_label": "A", "minute_label": "B"}`,
@@ -39,30 +37,7 @@ func TestKindsDraw(t *testing.T) {
 		`{"kind": "calendar", "first": 1, "days": 28, "week_starts": "sunday"}`,
 		`{"kind": "calendar", "first": 6, "days": 31, "week_starts": "monday", "marks": {"31": "?"}}`,
 		`{"kind": "calendar", "first": 7, "days": 31, "week_starts": "sunday", "marks": {"1": "A"}}`,
-	} {
-		part, data, err := pictureOf("pic-1", json.RawMessage(raw), "A picture.", "")
-		if err != nil {
-			t.Errorf("%s: pictureOf() error = %v", raw, err)
-			continue
-		}
-		img, err := png.Decode(bytes.NewReader(data))
-		if err != nil {
-			t.Fatalf("%s: png.Decode() error = %v", raw, err)
-		}
-		width, height := part[2].value.(int), part[3].value.(int)
-		if b := img.Bounds(); b.Dx() != width*scale || b.Dy() != height*scale {
-			t.Errorf("%s: the PNG is %v, the part says %d × %d CSS px", raw, b, width, height)
-		}
-		if !opaque(img) || !inked(img) {
-			t.Errorf("%s: a pixel is transparent, or nothing is drawn", raw)
-		}
-		if got := strings.Join(slices.Compact(chunks(t, data)), " "); got != "IHDR IDAT IEND" {
-			t.Errorf("%s: the chunks are %s", raw, got)
-		}
-		if _, again, _ := pictureOf("pic-1", json.RawMessage(raw), "A picture.", ""); !bytes.Equal(again, data) {
-			t.Errorf("%s: a second run draws other bytes", raw)
-		}
-	}
+	)
 }
 
 // The hands of a clock stand where the time puts them: the hour hand moved on by the minutes, and
@@ -98,13 +73,14 @@ func TestCalendarWeeks(t *testing.T) {
 
 // Every character a picture writes is in Go Regular: no label falls back to a missing glyph.
 func TestGlyphs(t *testing.T) {
-	face := faceAt(fontSize)
-	for _, r := range "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ?.,−-+×÷=<>()…MonTuesWdhFriSat" {
-		if _, ok := face.GlyphAdvance(r); !ok {
-			t.Errorf("Go Regular has no glyph %q", r)
+	withFace(fontSize, func(face font.Face) {
+		for _, r := range "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ?.,−-+×÷=<>()…MonTuesWdhFriSat" {
+			if _, ok := face.GlyphAdvance(r); !ok {
+				t.Errorf("Go Regular has no glyph %q", r)
+			}
 		}
-	}
-	if measure("12", fontSize) <= 0 || font.MeasureString(face, "12") <= 0 {
+	})
+	if measure("12", fontSize) <= 0 || advance("12", fontSize) <= 0 {
 		t.Error("a label measures nothing")
 	}
 }

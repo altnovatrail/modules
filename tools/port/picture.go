@@ -249,7 +249,8 @@ var (
 )
 
 // goRegular is the font of the labels, Go Regular, BSD-3-Clause, parsed once; faces holds a face
-// of it at each size, in CSS px.
+// of it at each size, in CSS px. A face is not safe for concurrent use (golang.org/x/image/font),
+// and template-pictures draws on several goroutines, so facesMu is held for each use of one.
 var (
 	goRegular = sync.OnceValue(func() *opentype.Font {
 		parsed, err := opentype.Parse(goregular.TTF)
@@ -262,24 +263,32 @@ var (
 	faces   = map[float64]font.Face{}
 )
 
-// faceAt is the face of the labels at a size in CSS px.
-func faceAt(size float64) font.Face {
+// withFace calls use with the face of the labels at a size in CSS px, holding facesMu.
+func withFace(size float64, use func(font.Face)) {
 	facesMu.Lock()
 	defer facesMu.Unlock()
-	if face, made := faces[size]; made {
-		return face
+	face, made := faces[size]
+	if !made {
+		var err error
+		face, err = opentype.NewFace(goRegular(), &opentype.FaceOptions{Size: size * scale, DPI: 72, Hinting: font.HintingNone})
+		if err != nil {
+			panic(err) // the options are constant: a face is always made
+		}
+		faces[size] = face
 	}
-	face, err := opentype.NewFace(goRegular(), &opentype.FaceOptions{Size: size * scale, DPI: 72, Hinting: font.HintingNone})
-	if err != nil {
-		panic(err) // the options are constant: a face is always made
-	}
-	faces[size] = face
-	return face
+	use(face)
+}
+
+// advance is how wide a text is drawn at a size, in 26.6 fixed point at the scale the port draws.
+func advance(text string, size float64) fixed.Int26_6 {
+	var wide fixed.Int26_6
+	withFace(size, func(face font.Face) { wide = font.MeasureString(face, text) })
+	return wide
 }
 
 // measure is how wide a text is drawn at a size, in CSS px.
 func measure(text string, size float64) float64 {
-	return float64(font.MeasureString(faceAt(size), text)) / 64 / scale
+	return float64(advance(text, size)) / 64 / scale
 }
 
 // canvas draws on the image in CSS px, anti-aliased, always over the opaque background, so that no
@@ -371,15 +380,16 @@ func (c canvas) text(s string, cx, cy float64) { c.textAt(s, cx, cy, fontSize) }
 
 // textAt draws a text centred on (cx, cy), at a size in CSS px.
 func (c canvas) textAt(s string, cx, cy, size float64) {
-	face := faceAt(size)
-	metrics := face.Metrics()
-	advance := font.MeasureString(face, s)
-	d := font.Drawer{Dst: c.img, Src: image.NewUniform(ink), Face: face}
-	d.Dot = fixed.Point26_6{
-		X: fixed.I(int(math.Round(cx*scale))) - advance/2,
-		Y: fixed.I(int(math.Round(cy*scale))) + (metrics.Ascent-metrics.Descent)/2,
-	}
-	d.DrawString(s)
+	withFace(size, func(face font.Face) {
+		metrics := face.Metrics()
+		wide := font.MeasureString(face, s)
+		d := font.Drawer{Dst: c.img, Src: image.NewUniform(ink), Face: face}
+		d.Dot = fixed.Point26_6{
+			X: fixed.I(int(math.Round(cx*scale))) - wide/2,
+			Y: fixed.I(int(math.Round(cy*scale))) + (metrics.Ascent-metrics.Descent)/2,
+		}
+		d.DrawString(s)
+	})
 }
 
 // plate draws a text centred on (cx, cy) on a white plate a little wider than it, so that it reads
