@@ -386,7 +386,7 @@ _modules-check published:
 gate-inputs dir:
     #!/usr/bin/env bash
     set -euo pipefail
-    shopt -s nullglob
+    shopt -s nullglob dotglob
     dir={{quote(dir)}}
     if [ -e "$dir" ] || [ -L "$dir" ]; then
         echo "gate-inputs: ${dir} is there already; the inputs of the gate go into a new folder" >&2
@@ -430,7 +430,7 @@ gate-inputs dir:
 _gate-args dir:
     #!/usr/bin/env bash
     set -euo pipefail
-    shopt -s nullglob
+    shopt -s nullglob dotglob
     dir={{quote(dir)}}
     published="${dir}/published"
     if [ -f "${published}/first" ] && [ ! -e "${published}/module-index.json" ]; then

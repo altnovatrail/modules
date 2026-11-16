@@ -34,7 +34,7 @@ Whether more pages of `grade-3-math` would raise the share of the items in the c
   | two pages for each difficulty from 1 to 5, 32 pages | 0.197 | 0.202 |
 
 - **What it showed.** Easy pages help `G0` and hinder `G2-half`, and the full ladder gives what the module gives now: the corridor is held not by the pool but by the model's estimate — Г4 of architecture 2.9 engine, the lag `M3.lag`. The author decided on 2026-11-11 to write no pages, and spec took the request back by its answer to В39 (Д170 spec; R31).
-- **What it did not measure.** `olympiad-math` was not in it: `sim` v0.1.8 did not translate the check kind `time` (Д5 in [run/DEBT.md](../run/DEBT.md)), so `M4` and the cell `A-linked` were not read. The same measurement with both maths, on `sim` v0.1.9 or newer, was done on 2026-11-16, section 5, and Д8 is closed.
+- **What it did not measure.** `olympiad-math` was not in it: `sim` v0.1.8 did not translate the check kind `time` (Д5, closed by R37), so `M4` and the cell `A-linked` were not read. The same measurement with both maths, on `sim` v0.1.9 or newer, was done on 2026-11-16, section 5, and Д8 is closed.
 
 ## 3. One call of `sample-check` on a large eval set, 2026-11-14
 

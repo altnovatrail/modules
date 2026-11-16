@@ -326,10 +326,14 @@ jobs:
           path: ${{ runner.temp }}/go
           key: gate-modules-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.cache/sim/go.sum', '.cache/sim/.devcontainer/Dockerfile') }}
           restore-keys: gate-modules-${{ runner.os }}-${{ runner.arch }}-
-      - name: Gate
+      # ran says whether the gate built and ran the bench, so that only such a run fills the caches
+      # of Go: a run with nothing to gate builds sim alone, and its entry would stand for good.
+      - id: gate
+        name: Gate
         env:
           ALL: ${{ steps.moved.outputs.all }}
         run: |
+          echo "ran=false" >> "$GITHUB_OUTPUT"
           mapfile -t inputs < .cache/gate/args
           if [ "${#inputs[@]}" -eq 0 ]; then
               echo "No module yet, so the gate has nothing to run." | tee -a "$GITHUB_STEP_SUMMARY"
@@ -344,9 +348,12 @@ jobs:
           docker run --rm --user "$(id -u):$(id -g)" --env HOME=/tmp \
               --env GOCACHE=/go/build --env GOMODCACHE=/go/mod \
               --volume "$RUNNER_TEMP/go:/go" --volume "$PWD:/work" --workdir /work \
-              sim-toolchain just -f .cache/sim/justfile gate modules ${all[@]+"${all[@]}"} "${inputs[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+              sim-toolchain just -f .cache/sim/justfile gate modules ${all[@]+"${all[@]}"} "${inputs[@]}" | tee -a "$GITHUB_STEP_SUMMARY" "$RUNNER_TEMP/gate.txt"
+          if ! grep -q '^gate: nothing the bench reads changed' "$RUNNER_TEMP/gate.txt"; then
+              echo "ran=true" >> "$GITHUB_OUTPUT"
+          fi
       - name: The caches of Go of the gate to the cache
-        if: ${{ github.event_name != 'pull_request' && steps.go.outputs.cache-hit != 'true' && !cancelled() }}
+        if: ${{ github.event_name != 'pull_request' && steps.go.outputs.cache-hit != 'true' && steps.gate.outputs.ran == 'true' }}
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ runner.temp }}/go
