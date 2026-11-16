@@ -92,3 +92,26 @@ The measurement of section 2 again, on a tag of `sim` that translates the check 
   In every run the cells of `olympiad-math` and of `A-linked` were the same to the bit. `olympiad-math` had a corridor of 0.257 on `G0` and 0.265 on `G2-half`, and `M4` 0.023 on `G0`. On `A-linked` the gate of `modules` reads only its invariants, `E2.stuck` and `E2.nothing`, both 0 in every run.
 - **What it showed.** The finding of section 2 holds with both maths. Easy pages help `G0` and hinder `G2-half`. A partial ladder lowers the corridor of the main population below the gate's threshold. The full ladder, more than three times the pages, leaves `G0` where it was and raises `G2-half` by 1.7 points, to 0.211: about two half-widths of `gate.json`. The corridor is held by the model's estimate, not by the pool, and the set of 12 pages stays. A new page of `grade-3-math` is also a matter for the gate: every set of pages but the module's own made the gate of `modules` red here (Д5).
 - **What it did not measure.** `olympiad-math` with other pages, and `E1` on `A-linked`, which the gate does not read. The full ladder of section 2 had 32 pages and this one 40: section 2 does not say how its pages were spread, so the two ladders are compared each with its own "now", not with each other.
+
+## 6. The CI of `modules` before and after T75, 2026-11-16
+
+What `.github` v0.1.30 and the cache of Go of "Modules" across runs gave the jobs T75 changes (the T75 amendments to R35 and R36).
+
+- **How.** The times of the jobs and of their steps from the GitHub API, `actions/runs/<id>/jobs`, read only, each on `ubuntu-24.04`: run 43828584293 of `main` at d829b71, before; run 43855989803 of pull request #113, after — its first attempt at e228c8c, a miss of the cache of Go, and a second attempt of "Modules" alone, a hit. For the hit, the trial commit e228c8c let the pull request save the entry, which only a push to `main` saves; the next commit reverted it, and the entry was deleted (`gh cache delete`).
+- **The numbers:**
+
+  | Job or step | Before, `main`, s | After, miss, s | After, hit, s |
+  |---|---|---|---|
+  | "Modules" | 96 | 102 | 90 |
+  | — "Toolchain image" | 27 | 30 | 13 |
+  | — "Go caches from the cache" and "Go caches" | — | 0 | 7 |
+  | — "Tests of the recipes and of the templates" | 22 | 22 | 13 |
+  | — "The pictures of the instances of the templates" | 10 | 11 | 13 |
+  | — "Go caches into the cache" | — | 3 | 0 |
+  | "Go / test" | 271 | 161 | — |
+  | — its step `ci-test` | 234 | 119 | — |
+  | "Go / toolchain", new | — | 12 | — |
+
+  The entry of "Modules" is 47.34 MiB. Before the change, `gh cache list` of `modules` on 2026-11-16 showed four entries of the key `toolchain-Linux-X64-c3e120a…`, 392.55–392.95 MiB each, saved from `main` and from pull requests, of 3.02 GB of the cache in all (`actions/cache/usage`). On the hit the log reads "all modules verified" and "Go caches: go-Linux-X64-modules-c3e120a…-7d612fa…, its modules verified."
+- **What it showed.** With a hit, the tests' step no longer compiles the port and its modules cold: 22 s to 13 s; the restore and `go mod verify` cost 7 s, so "Modules" gains about 6 s net. "Toolchain image" loads the same entry in all three, and its 13–30 s is the runner's disk. "Go / test" missed on the pull request, as `main` holds no entry of `go.yml` yet: its 271 s against 161 s is the spread of runners, not the cache, as T74's 170 s on pull request #110 shows (measurements 4).
+- **What it did not measure.** The hit of `go.yml`'s caches and of "Modules" on `main`: the first push to `main` after the merge saves them, and the runs after it read them. One run each, not the medians of three of measurements 3.1 spec.

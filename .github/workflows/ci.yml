@@ -18,17 +18,17 @@ concurrency:
 jobs:
   secrets:
     name: Secrets
-    uses: altnovatrail/.github/.github/workflows/secrets.yml@fab102d8bbb4659575e107ee488e072aaaa71821 # v0.1.24
+    uses: altnovatrail/.github/.github/workflows/secrets.yml@8311cbfc01082e9b196c0af8d7b49192115cc84c # v0.1.30
 
   # A pull request's commits are what it checks; a push to main has been checked as one.
   dco:
     name: DCO
     if: github.event_name == 'pull_request'
-    uses: altnovatrail/.github/.github/workflows/dco.yml@fab102d8bbb4659575e107ee488e072aaaa71821 # v0.1.24
+    uses: altnovatrail/.github/.github/workflows/dco.yml@8311cbfc01082e9b196c0af8d7b49192115cc84c # v0.1.30
 
   documents:
     name: Documents
-    uses: altnovatrail/.github/.github/workflows/documents.yml@fab102d8bbb4659575e107ee488e072aaaa71821 # v0.1.24
+    uses: altnovatrail/.github/.github/workflows/documents.yml@8311cbfc01082e9b196c0af8d7b49192115cc84c # v0.1.30
 
   # The Go code of tools/port, the port of standalone's tasks (R12), by the recipes ci-lint, ci-test,
   # ci-vuln and ci-licenses of the justfile: "Go / lint", "Go / test", "Go / vuln" and "Go /
@@ -39,7 +39,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    uses: altnovatrail/.github/.github/workflows/go.yml@fab102d8bbb4659575e107ee488e072aaaa71821 # v0.1.24
+    uses: altnovatrail/.github/.github/workflows/go.yml@8311cbfc01082e9b196c0af8d7b49192115cc84c # v0.1.30
 
   # The repository's own jobs run in the toolchain stage of .devcontainer/Dockerfile, as the shared
   # checks do, by spec's toolchain.sh from the submodule at the tag it pins: the stage, and the
@@ -50,10 +50,13 @@ jobs:
   # documents.yml do (R31 spec; R35): a file of docker save by the sha256 of the Dockerfile, which
   # pins everything it fetches, so that on a hit the Dockerfile does not run and an outage of
   # nodejs.org, GitHub or the Ubuntu snapshot fails no check. The path is documents.yml's, so that
-  # the three jobs and "Documents" share one entry. toolchain.sh loads the file, or builds the
-  # stage and writes it; the file is saved only on a miss, since an entry never changes, and a
-  # broken entry stays until it is deleted (gh cache delete): toolchain.sh warns of it and builds.
-  # The scope of main is filled by the runs on main. The release takes no cache (R31 spec).
+  # the own jobs, "Documents" and the jobs of "Go" share one entry, as .github's go.yml names its
+  # file and image as toolchain.sh does from v0.1.30 (R42 .github). toolchain.sh loads the file, or
+  # builds the stage and writes it; only a push to main saves the file, on a miss, since an entry
+  # never changes: an entry of a pull request is read by that pull request's re-runs alone, so a
+  # run that saves nothing hands the script no file to write, and on a miss each job builds the
+  # stage for itself. A broken entry stays until it is deleted (gh cache delete): toolchain.sh
+  # warns of it and builds. The release takes no cache (R31 spec).
 
   # The signature of the module-kit release whose binary the stage installs, by spec's
   # release-verify, and the Dockerfile's sums against that release's SHA256SUMS (R77 spec), on
@@ -79,9 +82,14 @@ jobs:
         name: Toolchain image
         env:
           TOOLCHAIN_IMAGE_FILE: ${{ runner.temp }}/novatrail-toolchain.tar
-        run: sh spec/tools/toolchain/toolchain.sh build
+          SAVE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          if [ "$SAVE" != true ] && [ ! -f "$TOOLCHAIN_IMAGE_FILE" ]; then
+              unset TOOLCHAIN_IMAGE_FILE
+          fi
+          sh spec/tools/toolchain/toolchain.sh build
       - name: Toolchain image to the cache
-        if: ${{ steps.toolchain.outcome == 'success' && steps.cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.toolchain.outcome == 'success' && steps.cache.outputs.cache-hit != 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ runner.temp }}/novatrail-toolchain.tar
@@ -116,9 +124,14 @@ jobs:
         name: Toolchain image
         env:
           TOOLCHAIN_IMAGE_FILE: ${{ runner.temp }}/novatrail-toolchain.tar
-        run: sh spec/tools/toolchain/toolchain.sh build
+          SAVE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          if [ "$SAVE" != true ] && [ ! -f "$TOOLCHAIN_IMAGE_FILE" ]; then
+              unset TOOLCHAIN_IMAGE_FILE
+          fi
+          sh spec/tools/toolchain/toolchain.sh build
       - name: Toolchain image to the cache
-        if: ${{ steps.toolchain.outcome == 'success' && steps.cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.toolchain.outcome == 'success' && steps.cache.outputs.cache-hit != 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ runner.temp }}/novatrail-toolchain.tar
@@ -141,9 +154,12 @@ jobs:
   # view (amendment T59 to R25), with no network and no key, and as eval-check runs.
   #
   # Each step is a container of its own, whose home toolchain.sh throws away, so the steps share
-  # one cache of Go, a folder of the checkout that toolchain.sh mounts at /work: the port is
-  # compiled once, by the tests, and the pictures' steps reuse it (R36). The folder lives for the
-  # run only, and git ignores it.
+  # one cache of Go, a folder of the checkout that toolchain.sh mounts at /work, which git ignores:
+  # the port is compiled once, by the tests, and the pictures' steps reuse it (R36). Across runs the
+  # folder lives in the cache of GitHub Actions by the rules of the caches of .github's go.yml
+  # (R36; R41 .github): the key is the runner's OS and architecture, the Dockerfile, which pins the
+  # Go, and go.sum, which pins the modules, with no restore key; what the cache gave passes go mod
+  # verify before any step builds from it, or is deleted with a warning; only a push to main saves.
   modules:
     name: Modules
     needs: [module-kit, canvas]
@@ -169,9 +185,14 @@ jobs:
         name: Toolchain image
         env:
           TOOLCHAIN_IMAGE_FILE: ${{ runner.temp }}/novatrail-toolchain.tar
-        run: sh spec/tools/toolchain/toolchain.sh build
+          SAVE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          if [ "$SAVE" != true ] && [ ! -f "$TOOLCHAIN_IMAGE_FILE" ]; then
+              unset TOOLCHAIN_IMAGE_FILE
+          fi
+          sh spec/tools/toolchain/toolchain.sh build
       - name: Toolchain image to the cache
-        if: ${{ steps.toolchain.outcome == 'success' && steps.cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.toolchain.outcome == 'success' && steps.cache.outputs.cache-hit != 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ runner.temp }}/novatrail-toolchain.tar
@@ -179,6 +200,42 @@ jobs:
       - name: Free the file of the toolchain image
         if: ${{ !cancelled() }}
         run: rm -f -- "$RUNNER_TEMP/novatrail-toolchain.tar"
+      # The cache of Go from the cache of GitHub Actions, by the key above, into the folder the
+      # steps share. It comes after the checkout, so nothing cleans the folder once it is there, and
+      # the modules go writes read-only need no -modcacherw.
+      - id: go-cache
+        name: Go caches from the cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/go
+          key: go-${{ runner.os }}-${{ runner.arch }}-modules-${{ hashFiles('.devcontainer/Dockerfile') }}-${{ hashFiles('go.sum') }}
+      # What the cache gave is checked first by go mod verify in the root module, the one module the
+      # steps build — .devcontainer/gopls/ is gopls's lock file, which the stage builds —: each
+      # module of its build is hashed again against the hash it was downloaded with, which go
+      # checks against go.sum whenever it takes it. A check that fails or cannot run costs the run
+      # its cache and not its verdict: it is deleted with a warning, and the steps download and
+      # build as with none. A verified cache has its builds touched: go deletes a build it has not
+      # used for five days, by its time, at the end of a command, and an entry keeps the times of
+      # its save, so the first step would delete what the next ones need (R41 .github).
+      - name: Go caches
+        env:
+          RESTORED: ${{ steps.go-cache.outputs.cache-matched-key }}
+        run: |
+          cache=.cache/go
+          mkdir -p -- "$cache/mod" "$cache/build"
+          if [ -z "$RESTORED" ]; then
+              echo "Go caches: none in the cache; the job starts with empty ones."
+              exit 0
+          fi
+          if sh spec/tools/toolchain/toolchain.sh run env "$GO_CACHE" "$GO_MODULES" go mod verify; then
+              echo "Go caches: ${RESTORED}, its modules verified."
+              find "$cache/build" -type f -exec touch -c -- {} +
+              exit 0
+          fi
+          echo "::warning::The Go caches of ${RESTORED} did not pass go mod verify: they are deleted, and the job downloads and builds without them. An entry that fails on every run stays until it is deleted (gh cache delete) or go.sum or the Dockerfile changes."
+          chmod -R u+w -- "$cache"
+          rm -rf -- "$cache"
+          mkdir -p -- "$cache/mod" "$cache/build"
       - name: Tests of the recipes and of the templates
         run: sh spec/tools/toolchain/toolchain.sh run env "$GO_CACHE" "$GO_MODULES" just test
       - name: modules-check
@@ -194,6 +251,16 @@ jobs:
       - name: The pictures of the instances of the templates
         if: ${{ !cancelled() && steps.toolchain.outcome == 'success' }}
         run: sh spec/tools/toolchain/toolchain.sh run env "$GO_CACHE" "$GO_MODULES" just template-pictures modules/olympiad-math --check
+      # A push to main saves the cache, once every step has passed, under a key no entry holds yet:
+      # an entry is never replaced, and one a pull request saved would be read by its own re-runs
+      # alone, so a pull request only reads main's (R41 .github). A save that fails costs the next
+      # run its speed, not this one its verdict. The release takes no cache.
+      - name: Go caches into the cache
+        if: ${{ steps.go-cache.outputs.cache-hit != 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/go
+          key: ${{ steps.go-cache.outputs.cache-primary-key }}
 
   # The gate of sim (R37; R103 spec; architecture 3.2): sim at the tag and the SHA of its commit
   # below, as its README has a caller of the gate of modules take it, from git. The inputs come from
@@ -205,10 +272,10 @@ jobs:
   # run whose base cannot be read, rather than run too little.
   #
   # sim's image is in the cache of GitHub Actions by the sha256 of sim's Dockerfile, under its own
-  # key, as the image of this repository's stage is; the caches of Go of the gate, by sim's go.sum
-  # and Dockerfile, as sim's gate.yml keeps them: a pull request only reads them, a push to main
-  # saves them. Both checkouts lie under .cache/ of this one, which git ignores, so that the
-  # container of either stage sees them at /work.
+  # key, as the image of this repository's stage is, and only a push to main saves it; the caches
+  # of Go of the gate, by sim's go.sum and Dockerfile, as sim's gate.yml keeps them: a pull request
+  # only reads them, a push to main saves them. Both checkouts lie under .cache/ of this one, which
+  # git ignores, so that the container of either stage sees them at /work.
   gate:
     name: Gate
     needs: [module-kit]
@@ -271,9 +338,14 @@ jobs:
         name: Toolchain image
         env:
           TOOLCHAIN_IMAGE_FILE: ${{ runner.temp }}/novatrail-toolchain.tar
-        run: sh spec/tools/toolchain/toolchain.sh build
+          SAVE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          if [ "$SAVE" != true ] && [ ! -f "$TOOLCHAIN_IMAGE_FILE" ]; then
+              unset TOOLCHAIN_IMAGE_FILE
+          fi
+          sh spec/tools/toolchain/toolchain.sh build
       - name: Toolchain image to the cache
-        if: ${{ steps.toolchain.outcome == 'success' && steps.cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.toolchain.outcome == 'success' && steps.cache.outputs.cache-hit != 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ runner.temp }}/novatrail-toolchain.tar
@@ -291,6 +363,8 @@ jobs:
           key: sim-toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.cache/sim/.devcontainer/Dockerfile') }}
       - id: sim-toolchain
         name: sim's toolchain image
+        env:
+          SAVE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: |
           tar=$RUNNER_TEMP/sim-toolchain.tar
           restored=false
@@ -305,13 +379,14 @@ jobs:
               rm -f -- "$tar"
           fi
           docker build --target toolchain --tag sim-toolchain - < .cache/sim/.devcontainer/Dockerfile
-          # A file the cache gave has its entry already, which no save replaces.
-          if [ "$restored" = false ] && ! docker save --output "$tar" sim-toolchain; then
+          # Only a run that saves writes the file. A file the cache gave has its entry already, which
+          # no save replaces.
+          if [ "$SAVE" = true ] && [ "$restored" = false ] && ! docker save --output "$tar" sim-toolchain; then
               echo "::warning::sim's toolchain image could not be saved for the cache: the next run builds it again."
               rm -f -- "$tar"
           fi
       - name: sim's toolchain image to the cache
-        if: ${{ steps.sim-toolchain.outcome == 'success' && steps.sim-cache.outputs.cache-hit != 'true' }}
+        if: ${{ steps.sim-toolchain.outcome == 'success' && steps.sim-cache.outputs.cache-hit != 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ runner.temp }}/sim-toolchain.tar
