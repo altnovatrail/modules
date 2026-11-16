@@ -72,3 +72,23 @@ What row 7.17 of COORDINATION.md spec gave the jobs it changes, "Go / test" and 
   The profile before the pool: of 33.2 s of samples, `drawInstances` 32.1 s — `encodePNG` 17.2 s and `paintImage` 14.8 s —, and no text function among the nodes above 0.17 s. Under `-race`, the longest subtest is `TestKinds21Draw/11`, the stairs of 16 steps: 80 s alone, 6.7 s without `-race`, 95% of it in `vector.Rasterizer.Draw`, since each line, disc and rectangle of the canvas is composited over the whole image.
 - **What it showed.** "Go / test" halves, and is no longer the longest path of the run: "module-kit signature" and "Modules" after it took about 185 s. The steps that run the port after the tests no longer compile it; the tests' step compiles it once, cold.
 - **What it did not measure.** The whole run: in pull request #110 the jobs waited for runners up to about 3 minutes, as the orchestrator ran other repositories at the same time. One run each, not the medians of three of measurements 3.1 spec.
+
+## 5. The corridor of `engine` on `grade-3-math`, with both maths, 2026-11-16
+
+The measurement of section 2 again, on a tag of `sim` that translates the check kind `time`, so that `olympiad-math` runs beside `grade-3-math`, with `M4` and the cell `A-linked` (Д8, closed by T77; R30).
+
+- **How.** The gate of `sim` v0.1.23, commit 61ed988 (its release checked by `gh release verify`, 2026-11-16), on `learner-model` v0.1.8 and `engine` v0.1.6, the commits of its `gate.json`. It was built from a checkout of its tag in a temporary folder and run as `just gate modules -first <olympiad-math> <grade-3-math>`, 250 learners a cell. It ran on the package of `olympiad-math` 0.3.0 that `module-kit build` makes of `main` at 98429a0 and on trial copies of `grade-3-math` 0.3.0 in that folder, without `eval/`. A new page is a copy of the module's page of difficulty 1 (for d1 and d2), 3 (for d3 and d4) or 5 (for d5) of the same skill, with another ID and difficulty. No page was written into `modules/`. A run took 8 to 9 minutes on the 20 cores of the devcontainer.
+- **What.** The share of the items in the corridor, `E1.corridor`, on `G0` and `G2-half`; the share of items too hard, `E1.hard`, and false "mastered", `M4.false.all`, on `G0`; the cells of `olympiad-math` and `A-linked`. The thresholds are those of the gate of `modules` (architecture 3.9 `sim`): `E1.corridor` at least 0.184, `E1.hard` at most 0.495, `M4` at most 0.20. In `gate.json` of this tag the module as it is has `E1.corridor` 0.194 ± 0.019 on `G0` and 0.194 ± 0.009 on `G2-half`.
+- **The numbers:**
+
+  | Pages of `grade-3-math` | `G0` corridor | `G2-half` corridor | `G0` too hard | `G0` `M4` | Gate |
+  |---|---|---|---|---|---|
+  | now: 12 pages of difficulty 1, 3 and 5 | 0.194 | 0.194 | 0.485 | 0.059 | green |
+  | with d2, 16 | 0.210 | 0.182 | 0.444 | 0.045 | red: `G2-half` corridor |
+  | with d2 and d4, 20 | 0.165 | 0.166 | 0.553 | 0.054 | red: both corridors, too hard |
+  | with a second d1, 16 | 0.232 | 0.160 | 0.378 | 0.067 | red: `G2-half` corridor |
+  | two pages for each difficulty from 1 to 5, 40 | 0.193 | 0.211 | 0.496 | 0.029 | red: too hard, by 0.0003 |
+
+  In every run the cells of `olympiad-math` and of `A-linked` were the same to the bit. `olympiad-math` had a corridor of 0.257 on `G0` and 0.265 on `G2-half`, and `M4` 0.023 on `G0`. On `A-linked` the gate of `modules` reads only its invariants, `E2.stuck` and `E2.nothing`, both 0 in every run.
+- **What it showed.** The finding of section 2 holds with both maths. Easy pages help `G0` and hinder `G2-half`. A partial ladder lowers the corridor of the main population below the gate's threshold. The full ladder, more than three times the pages, leaves `G0` where it was and raises `G2-half` by 1.7 points, to 0.211: about two half-widths of `gate.json`. The corridor is held by the model's estimate, not by the pool, and the set of 12 pages stays. A new page of `grade-3-math` is also a matter for the gate: every set of pages but the module's own made the gate of `modules` red here (Д5).
+- **What it did not measure.** `olympiad-math` with other pages, and `E1` on `A-linked`, which the gate does not read. The full ladder of section 2 had 32 pages and this one 40: section 2 does not say how its pages were spread, so the two ladders are compared each with its own "now", not with each other.
