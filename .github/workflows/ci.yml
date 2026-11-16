@@ -274,8 +274,8 @@ jobs:
   # sim's image is in the cache of GitHub Actions by the sha256 of sim's Dockerfile, under its own
   # key, as the image of this repository's stage is, and only a push to main saves it; the caches
   # of Go of the gate, by sim's go.sum and Dockerfile, as sim's gate.yml keeps them: a pull request
-  # only reads them, a push to main saves them. Both checkouts lie under .cache/ of this one, which git ignores, so that the
-  # container of either stage sees them at /work.
+  # only reads them, a push to main saves them. Both checkouts lie under .cache/ of this one, which
+  # git ignores, so that the container of either stage sees them at /work.
   gate:
     name: Gate
     needs: [module-kit]
