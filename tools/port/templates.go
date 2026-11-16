@@ -12,9 +12,11 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"runtime"
 	"slices"
 	"strconv"
 	"strings"
+	"sync"
 
 	starlarkjson "go.starlark.net/lib/json"
 	"go.starlark.net/starlark"
@@ -553,19 +555,41 @@ func drawInstances(id string, part picturePart, variants []variant, instances []
 	if part.Width != width || part.Height != height {
 		return nil, fmt.Errorf("%s: its picture %s is %d by %d, the largest of its instances, and the template gives %d by %d", id, part.Picture, width, height, part.Width, part.Height)
 	}
+	encoded := make([][]byte, len(paths))
+	failed := make([]error, len(paths))
+	next := make(chan int)
+	var pool sync.WaitGroup
+	for range min(runtime.GOMAXPROCS(0), len(paths)) {
+		pool.Go(func() {
+			for i := range next {
+				encoded[i], failed[i] = paintPadded(drawings[paths[i]], width, height)
+			}
+		})
+	}
+	for i := range paths {
+		next <- i
+	}
+	close(next)
+	pool.Wait()
 	files := map[string][]byte{}
-	for _, path := range paths {
-		img := paintImage(drawings[path])
-		padded := whiteImage(width, height)
-		offset := image.Pt((padded.Bounds().Dx()-img.Bounds().Dx())/2, (padded.Bounds().Dy()-img.Bounds().Dy())/2)
-		draw.Draw(padded, img.Bounds().Add(offset), img, image.Point{}, draw.Src)
-		data, err := encodePNG(padded)
-		if err != nil {
-			return nil, err
+	for i, path := range paths {
+		if failed[i] != nil {
+			return nil, failed[i]
 		}
-		files["media/"+path] = data
+		files["media/"+path] = encoded[i]
 	}
 	return files, nil
+}
+
+// paintPadded is a drawing painted in the middle of a white image of a size in CSS px, as a PNG.
+// drawInstances calls it on a pool of as many goroutines as Go runs at once, one per core: nearly
+// all the time of template-pictures is painting and compressing, and each instance is its own.
+func paintPadded(picture drawing, width, height int) ([]byte, error) {
+	img := paintImage(picture)
+	padded := whiteImage(width, height)
+	offset := image.Pt((padded.Bounds().Dx()-img.Bounds().Dx())/2, (padded.Bounds().Dy()-img.Bounds().Dy())/2)
+	draw.Draw(padded, img.Bounds().Add(offset), img, image.Point{}, draw.Src)
+	return encodePNG(padded)
 }
 
 // staleTemplatePictures names the files of the module's media/pictures/ that are named as a

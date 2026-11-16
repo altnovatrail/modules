@@ -6,6 +6,8 @@ import (
 	"encoding/json"
 	"image"
 	"image/png"
+	"slices"
+	"strconv"
 	"strings"
 	"testing"
 )
@@ -24,6 +26,41 @@ func chunks(t *testing.T, data []byte) []string {
 		rest = rest[12+length:]
 	}
 	return types
+}
+
+// drawsAsEveryKind holds each picture to what every kind draws: an opaque, inked PNG of the size
+// its part names, twice as many pixels each way, with the chunks IHDR, IDAT and IEND alone, and the
+// same bytes again. Each picture is a subtest of its own, run in parallel with the others: they
+// are most of the time of the tests under -race, and the race detector sees them drawn at once, as
+// the pool of template-pictures draws them (R36).
+func drawsAsEveryKind(t *testing.T, raws ...string) {
+	t.Helper()
+	for i, raw := range raws {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
+			t.Parallel()
+			part, data, err := pictureOf("pic-1", json.RawMessage(raw), "A picture.", "")
+			if err != nil {
+				t.Fatalf("%s: pictureOf() error = %v", raw, err)
+			}
+			img, err := png.Decode(bytes.NewReader(data))
+			if err != nil {
+				t.Fatalf("%s: png.Decode() error = %v", raw, err)
+			}
+			width, height := part[2].value.(int), part[3].value.(int)
+			if b := img.Bounds(); b.Dx() != width*scale || b.Dy() != height*scale {
+				t.Errorf("%s: the PNG is %v, the part says %d × %d CSS px", raw, b, width, height)
+			}
+			if !opaque(img) || !inked(img) {
+				t.Errorf("%s: a pixel is transparent, or nothing is drawn", raw)
+			}
+			if got := strings.Join(slices.Compact(chunks(t, data)), " "); got != "IHDR IDAT IEND" {
+				t.Errorf("%s: the chunks are %s", raw, got)
+			}
+			if _, again, _ := pictureOf("pic-1", json.RawMessage(raw), "A picture.", ""); !bytes.Equal(again, data) {
+				t.Errorf("%s: a second run draws other bytes", raw)
+			}
+		})
+	}
 }
 
 func drawRow(t *testing.T, raw string) ([]byte, mapping) {

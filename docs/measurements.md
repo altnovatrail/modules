@@ -51,3 +51,24 @@ Whether `eval-check` can call `sample-check --eval-set` once on a module's eval 
   On 2026-11-10, `eval-check` with chunks of 50 took 2 min 48 s on the 631 real synthetic samples (the T59 amendment to R25).
 - **What it showed.** The model gives the crash of 2026-11-10 on the old tag, and T116 holds on the samples of `modules`, not only on the model of `spec`, 631 copies of an example essay (Д197 spec). One call is enough.
 - **What it did not measure.** The synthetic samples of every task: the model repeats 41 of them. The heap limit of CI's runner either, which may differ from the devcontainer's.
+
+## 4. The CI of `modules` before and after T74, 2026-11-16
+
+What row 7.17 of COORDINATION.md spec gave the jobs it changes, "Go / test" and "Modules" (R36).
+
+- **How.** The times of the jobs and of their steps from the GitHub API, `actions/runs/<id>/jobs`, read only: run 43808095168 of `main` at 84a0098, before, and run 43812154856 of pull request #110 at 338b57e, after, each one run on `ubuntu-24.04`. Locally, in the devcontainer — 20 cores, of them 4 fast and 16 slow, so a local time is only a direction —: a CPU profile of `drawTemplatePictures` on `olympiad-math` by `go test -cpuprofile`, and `go test -race ./tools/port` pinned to the 4 fast cores by `taskset -c 0-3`.
+- **The numbers:**
+
+  | Job or step | Before, s | After, s |
+  |---|---|---|
+  | "Go / test" | 342 | 170 |
+  | — its step `ci-test` | 295 | 138 |
+  | "Modules" | 152 | 119 |
+  | — "Tests of the recipes and of the templates" | 27 | 33 |
+  | — "The pictures of the lessons" | 10 | 0 |
+  | — "The pictures of the instances of the templates" | 41 | 18 |
+  | `go test -race ./tools/port`, locally on 4 cores | 379 | 214 |
+
+  The profile before the pool: of 33.2 s of samples, `drawInstances` 32.1 s — `encodePNG` 17.2 s and `paintImage` 14.8 s —, and no text function among the nodes above 0.17 s. Under `-race`, the longest subtest is `TestKinds21Draw/11`, the stairs of 16 steps: 80 s alone, 6.7 s without `-race`, 95% of it in `vector.Rasterizer.Draw`, since each line, disc and rectangle of the canvas is composited over the whole image.
+- **What it showed.** "Go / test" halves, and is no longer the longest path of the run: "module-kit signature" and "Modules" after it took about 185 s. The steps that run the port after the tests no longer compile it; the tests' step compiles it once, cold.
+- **What it did not measure.** The whole run: in pull request #110 the jobs waited for runners up to about 3 minutes, as the orchestrator ran other repositories at the same time. One run each, not the medians of three of measurements 3.1 spec.

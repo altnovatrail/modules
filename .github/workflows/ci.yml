@@ -139,6 +139,11 @@ jobs:
   # shows on the first run. Then eval-match holds each sample to the package of the commit: a
   # synthetic one drawn again by canvas's generator, a person's by the digest of its task's open
   # view (amendment T59 to R25), with no network and no key, and as eval-check runs.
+  #
+  # Each step is a container of its own, whose home toolchain.sh throws away, so the steps share
+  # one cache of Go, a folder of the checkout that toolchain.sh mounts at /work: the port is
+  # compiled once, by the tests, and the pictures' steps reuse it (R36). The folder lives for the
+  # run only, and git ignores it.
   modules:
     name: Modules
     needs: [module-kit, canvas]
@@ -146,6 +151,9 @@ jobs:
     timeout-minutes: 20
     permissions:
       contents: read
+    env:
+      GO_CACHE: GOCACHE=/work/.cache/go/build
+      GO_MODULES: GOMODCACHE=/work/.cache/go/mod
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -172,17 +180,17 @@ jobs:
         if: ${{ !cancelled() }}
         run: rm -f -- "$RUNNER_TEMP/novatrail-toolchain.tar"
       - name: Tests of the recipes and of the templates
-        run: sh spec/tools/toolchain/toolchain.sh run just test
+        run: sh spec/tools/toolchain/toolchain.sh run env "$GO_CACHE" "$GO_MODULES" just test
       - name: modules-check
-        run: sh spec/tools/toolchain/toolchain.sh run just modules-check
+        run: sh spec/tools/toolchain/toolchain.sh run env "$GO_CACHE" "$GO_MODULES" just modules-check
       - name: eval-check
         if: ${{ !cancelled() && steps.toolchain.outcome == 'success' }}
-        run: sh spec/tools/toolchain/toolchain.sh run just eval-check
+        run: sh spec/tools/toolchain/toolchain.sh run env "$GO_CACHE" "$GO_MODULES" just eval-check
       - name: eval-match
         if: ${{ !cancelled() && steps.toolchain.outcome == 'success' }}
-        run: sh spec/tools/toolchain/toolchain.sh run just eval-match
+        run: sh spec/tools/toolchain/toolchain.sh run env "$GO_CACHE" "$GO_MODULES" just eval-match
       - name: The pictures of the lessons
-        run: sh spec/tools/toolchain/toolchain.sh run just lesson-pictures modules/olympiad-math --check
+        run: sh spec/tools/toolchain/toolchain.sh run env "$GO_CACHE" "$GO_MODULES" just lesson-pictures modules/olympiad-math --check
       - name: The pictures of the instances of the templates
         if: ${{ !cancelled() && steps.toolchain.outcome == 'success' }}
-        run: sh spec/tools/toolchain/toolchain.sh run just template-pictures modules/olympiad-math --check
+        run: sh spec/tools/toolchain/toolchain.sh run env "$GO_CACHE" "$GO_MODULES" just template-pictures modules/olympiad-math --check
