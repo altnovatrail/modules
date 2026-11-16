@@ -4,18 +4,22 @@
 # detected at RUN time via dpkg instead. A host that has Docker can build this, and that is the
 # whole requirement.
 #
-# Two stages. `toolchain` holds what it takes to check the repository — its documents, its
-# modules, and its code where it has any — and is the stage the automated checks run inside.
+# Three stages. `toolchain-core` holds Node, just, Go and buf: what a release needs — its version
+# and its files — and every check that runs no browser, and a release builds it alone (R31 spec).
+# Here it holds module-kit's CLI too, which the release's files are built with (R10; R38).
+# `toolchain` is the core with what the repository's tests need on top — in a copy, what its kind
+# adds at the end of the stage, such as the browsers of the kind typescript —, and is the stage
+# the automated checks run inside; here, canvas's generator of synthetic samples (R29; R38).
 # `devcontainer` adds what a person needs on top of that, and devcontainer.json names it as its
-# target. spec's own file ends with a third, `orchestrator`, the devcontainer with the Docker CLI
+# target. spec's own file ends with a fourth, `orchestrator`, the devcontainer with the Docker CLI
 # (R156 spec), which `just new-repo` leaves out of a copy: in a copy `devcontainer` is the last
 # stage, the one a build with no target gives, and in spec every build names its stage. A builder
 # that builds every stage before its target builds `orchestrator` for the ordinary configuration
 # too, and the stage builds there as well, without the file only its own configuration writes.
 
-# -- toolchain: checks the repository ----------------------------------------
+# -- toolchain-core: releases the repository, checks it without a browser -----
 
-FROM mcr.microsoft.com/devcontainers/base:3.0.13-noble@sha256:48be4adec1c1ecbe030064700aef85382f5205786a8f82937fc44a7473717eae AS toolchain
+FROM mcr.microsoft.com/devcontainers/base:3.0.13-noble@sha256:48be4adec1c1ecbe030064700aef85382f5205786a8f82937fc44a7473717eae AS toolchain-core
 
 SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
 
@@ -44,23 +48,13 @@ ARG BUF_VERSION=1.75.0
 # release-verify accepted before they were written here, and CI checks that signature again on
 # every run, `just module-kit-verify` (R10). This is how this container differs from spec's
 # (R10). Dependabot does not see it: the tag and both sums are raised by hand, together. The
-# Dockerfile is not among the release's paths, so raising them gives no release (R03).
+# Dockerfile is not among the release's paths, so raising them gives no release (R03). It is in
+# this stage, the core, since `release-files` runs it, and so do the checks the core runs (R38).
 ARG MODULE_KIT_VERSION=v0.3.0
-# canvas's generator of the synthetic samples of a module's eval set: `just synthetic` writes a
-# module's synthetic samples with it, on the package module-kit builds of the module (R110 spec;
-# R29). It is the file synthetic-module_<tag>.mjs of a release of canvas at an exact tag, one ES
-# module that the Node above runs with no package of npm beside it (R68 canvas), never a clone of
-# canvas: its sum below is the one the release's SHA256SUMS lists, a file that release-verify
-# accepted before it was written here, and CI checks that signature again on every run, `just
-# canvas-verify`. The file is the same on every architecture, so it has one sum. Like module-kit,
-# it is how this container differs from spec's (R29), Dependabot does not see it, and the tag and
-# the sum are raised by hand, together.
-ARG CANVAS_VERSION=v0.3.6
 # The sha256 of every archive, per architecture, as its publisher lists it: SHASUMS256.txt of
 # the Node release, SHA256SUMS of the just release, the sha256 go.dev/dl lists for Go,
-# sha256.txt of the buf release, whose binary comes as it is, with no archive, SHA256SUMS of the
-# module-kit release, whose binary comes the same way, and SHA256SUMS of the canvas release, whose
-# generator is one file for every architecture. A sum written here keeps a download
+# sha256.txt of the buf release, whose binary comes as it is, with no archive, and SHA256SUMS of
+# the module-kit release, whose binary comes the same way. A sum written here keeps a download
 # from being swapped once it has been read (R34 spec), and is raised together with its version.
 ARG NODE_SHA256_AMD64=6e1db87ef58b8819e5d5402eff1536491b18edd8eb7bee5ef7897876e88dc5ff
 ARG NODE_SHA256_ARM64=724282c3b43aec998aa9527380465b45d229e021b58035f5f4f63095eabfe5d5
@@ -72,7 +66,6 @@ ARG BUF_SHA256_AMD64=fad1e38d6909bbb583a4da81d8c02a01046e2cd663bde7e337dd2427739
 ARG BUF_SHA256_ARM64=00eb190aa82df17f393e05b04889cc60a0b13b3259d336e21a87d5f23ab4fd26
 ARG MODULE_KIT_SHA256_AMD64=2553cf3ced6f016581d463403388b868c02a9d4c883d99ef629167604f0a7823
 ARG MODULE_KIT_SHA256_ARM64=8e8d198e511ce9325f8580942dfa99db5c0e03501cf85bd15890fb0e7fb2f747
-ARG CANVAS_SYNTHETIC_SHA256=bc7ff50b1d007b9f0b45b059efae995a10efeed6b07a5222656358becfd540a8
 
 # Every archive comes through one helper, so that every download is retried the same way and
 # checked against its sum before anything unpacks it. --retry-all-errors is the point of it: a
@@ -129,6 +122,46 @@ RUN arch="$(dpkg --print-architecture)"; \
         echo "module-kit says \"${module_kit_version}\", not module-kit ${MODULE_KIT_VERSION}" >&2; exit 1; \
     fi; \
     \
+    rm -rf "$workdir"
+
+# GOTOOLCHAIN=local: the Go above runs every go command, and none downloads another Go because a
+# go.mod asks for a newer one: a go.mod that does fails, which is the signal to raise GO_VERSION.
+ENV PATH="/usr/local/node/bin:/usr/local/go/bin:/home/vscode/.local/bin:${PATH}" \
+    GOTOOLCHAIN=local
+
+# -- toolchain: the core, plus what the repository's tests need ---------------
+#
+# The kind go adds nothing here (repo-template/kinds.json spec). What this stage adds is canvas's
+# generator, which `just eval-match` and the tests of the recipes run, and nothing a release or a
+# check of the core runs: a release never builds it (R38).
+
+FROM toolchain-core AS toolchain
+
+SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
+
+# canvas's generator of the synthetic samples of a module's eval set: `just synthetic` writes a
+# module's synthetic samples with it, on the package module-kit builds of the module (R110 spec;
+# R29). It is the file synthetic-module_<tag>.mjs of a release of canvas at an exact tag, one ES
+# module that the Node above runs with no package of npm beside it (R68 canvas), never a clone of
+# canvas: its sum below is the one the release's SHA256SUMS lists, a file that release-verify
+# accepted before it was written here, and CI checks that signature again on every run, `just
+# canvas-verify`. The file is the same on every architecture, so it has one sum. Like module-kit,
+# it is how this container differs from spec's (R29), Dependabot does not see it, and the tag and
+# the sum are raised by hand, together.
+ARG CANVAS_VERSION=v0.3.6
+# The sum, as above: the one SHA256SUMS of the canvas release lists for the generator, one file for
+# every architecture. The helper below is the toolchain-core stage's, written again as the
+# devcontainer stage writes it: a change to one is a change to all three.
+ARG CANVAS_SYNTHETIC_SHA256=bc7ff50b1d007b9f0b45b059efae995a10efeed6b07a5222656358becfd540a8
+
+RUN workdir="$(mktemp -d)"; \
+    fetch() { \
+        local url="$1" out="$2" sha256="$3"; \
+        curl -fsSL --proto "=https" --proto-redir "=https" --retry 3 --retry-all-errors \
+            -o "$out" "$url"; \
+        echo "${sha256}  ${out}" | sha256sum --check --strict -; \
+    }; \
+    \
     echo "canvas ${CANVAS_VERSION}: synthetic-module_${CANVAS_VERSION}.mjs"; \
     mkdir -p /usr/local/lib/canvas; \
     fetch "https://github.com/altnovatrail/canvas/releases/download/${CANVAS_VERSION}/synthetic-module_${CANVAS_VERSION}.mjs" \
@@ -136,11 +169,6 @@ RUN arch="$(dpkg --print-architecture)"; \
     install -m 0644 "$workdir/synthetic-module_${CANVAS_VERSION}.mjs" /usr/local/lib/canvas/; \
     \
     rm -rf "$workdir"
-
-# GOTOOLCHAIN=local: the Go above runs every go command, and none downloads another Go because a
-# go.mod asks for a newer one: a go.mod that does fails, which is the signal to raise GO_VERSION.
-ENV PATH="/usr/local/node/bin:/usr/local/go/bin:/home/vscode/.local/bin:${PATH}" \
-    GOTOOLCHAIN=local
 
 # -- devcontainer: the toolchain, plus what a person works with --------------
 
@@ -157,8 +185,8 @@ ARG JUST_LSP_VERSION=0.10.0
 # Claude Code CLI. The VS Code extension in devcontainer.json must have the same version.
 ARG CLAUDE_CODE_VERSION=2.1.280
 # The sums, as above: gh_<version>_checksums.txt of the gh release, SHA256SUMS of just-lsp's.
-# The helper below is the toolchain stage's, written again rather than left in that image as a
-# script: the toolchain image is the one the checks run in, and nothing there needs it.
+# The helper below is the toolchain-core stage's, written again rather than left in that image as
+# a script: the toolchain images are the ones the checks run in, and nothing there needs it.
 ARG GH_SHA256_AMD64=9bca2d1c16825f109907a23307628a2f0698fbf99662b73a5cf0b020293072b8
 ARG GH_SHA256_ARM64=b57e8063f18862647c9d22727c32e9da1b963f8bf9db648fe123a6975695640f
 ARG JUST_LSP_SHA256_AMD64=3c35e10e76db6cc1931495bb3abdaef02576eaeb406c217420f4fd37e1ebe22c

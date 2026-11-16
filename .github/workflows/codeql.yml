@@ -20,7 +20,7 @@ jobs:
     permissions:
       contents: read
       security-events: write
-    uses: altnovatrail/.github/.github/workflows/codeql.yml@8311cbfc01082e9b196c0af8d7b49192115cc84c # v0.1.30
+    uses: altnovatrail/.github/.github/workflows/codeql.yml@93c848fb51a10a245968cf730b99cc709a7748bf # v0.1.31
     # The tests of the recipes, test/*.mjs, are JavaScript, and the recipes themselves bash, which
     # CodeQL does not read (R10); the port of standalone's tasks, tools/port, is Go (R12).
     with:
