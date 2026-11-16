@@ -194,3 +194,167 @@ jobs:
       - name: The pictures of the instances of the templates
         if: ${{ !cancelled() && steps.toolchain.outcome == 'success' }}
         run: sh spec/tools/toolchain/toolchain.sh run env "$GO_CACHE" "$GO_MODULES" just template-pictures modules/olympiad-math --check
+
+  # The gate of sim (R37; R103 spec; architecture 3.2): sim at the tag and the SHA of its commit
+  # below, as its README has a caller of the gate of modules take it, from git. The inputs come from
+  # just gate-inputs in this repository's toolchain stage — the published versions, checked by
+  # release-verify, and the package of every module —, and the gate runs from the root of sim's
+  # checkout, in the toolchain stage of sim's own devcontainer at that commit. sim says what of each
+  # package changed and runs only that, or nothing; it holds invariants and absolute thresholds, so
+  # its exit is the job's. A pull request that moves SIM_COMMIT runs every package, -all; so does a
+  # run whose base cannot be read, rather than run too little.
+  #
+  # sim's image is in the cache of GitHub Actions by the sha256 of sim's Dockerfile, under its own
+  # key, as the image of this repository's stage is; the caches of Go of the gate, by sim's go.sum
+  # and Dockerfile, as sim's gate.yml keeps them: a pull request only reads them, a push to main
+  # saves them. Both checkouts lie under .cache/ of this one, which git ignores, so that the
+  # container of either stage sees them at /work.
+  gate:
+    name: Gate
+    needs: [module-kit]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    env:
+      SIM_TAG: v0.1.24
+      SIM_COMMIT: 33d70f288682d95e12f6072c4e9ff09253417497
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: true
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: altnovatrail/sim
+          ref: ${{ env.SIM_COMMIT }}
+          path: .cache/sim
+          persist-credentials: false
+      # The tag is on the commit, as sim's gate.yml holds a caller's: an annotated tag points at its
+      # commit through ^{}. A tag moved or a SHA mistyped stops the gate.
+      - name: sim's tag
+        run: |
+          tags="$(git ls-remote https://github.com/altnovatrail/sim "refs/tags/$SIM_TAG" "refs/tags/$SIM_TAG^{}")"
+          tagged="$(printf '%s\n' "$tags" | awk -v ref="refs/tags/$SIM_TAG^{}" '$2 == ref { print $1 }')"
+          if [ -z "$tagged" ]; then
+              tagged="$(printf '%s\n' "$tags" | awk '{ print $1 }')"
+          fi
+          if [ "$tagged" != "$SIM_COMMIT" ]; then
+              echo "::error::sim $SIM_TAG is on ${tagged:-no commit}, and SIM_COMMIT is $SIM_COMMIT"
+              exit 1
+          fi
+      # -all when the commit this run is checked against — the pull request's base, or the push's
+      # before — pins another sim, or none, or cannot be read.
+      - name: Whether sim moved
+        id: moved
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          base=""
+          if [[ "$BASE" =~ ^[0-9a-f]{40}$ ]] && git fetch --quiet --no-tags --depth=1 origin "$BASE"; then
+              base="$(git show "$BASE:.github/workflows/ci.yml" | sed -n 's/^[[:space:]]*SIM_COMMIT:[[:space:]]*\([0-9a-f]\{40\}\)[[:space:]]*$/\1/p' || true)"
+          fi
+          if [ "$base" = "$SIM_COMMIT" ]; then
+              echo "all=" >> "$GITHUB_OUTPUT"
+              echo "sim is $SIM_TAG at $BASE too: the gate runs what changed."
+          else
+              echo "all=-all" >> "$GITHUB_OUTPUT"
+              echo "sim moves from ${base:-nothing that can be read} to $SIM_COMMIT: the gate runs every package."
+          fi
+      - id: cache
+        name: Toolchain image from the cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/novatrail-toolchain.tar
+          key: toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.devcontainer/Dockerfile') }}
+      - id: toolchain
+        name: Toolchain image
+        env:
+          TOOLCHAIN_IMAGE_FILE: ${{ runner.temp }}/novatrail-toolchain.tar
+        run: sh spec/tools/toolchain/toolchain.sh build
+      - name: Toolchain image to the cache
+        if: ${{ steps.toolchain.outcome == 'success' && steps.cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/novatrail-toolchain.tar
+          key: ${{ steps.cache.outputs.cache-primary-key }}
+      - name: Free the file of the toolchain image
+        if: ${{ !cancelled() }}
+        run: rm -f -- "$RUNNER_TEMP/novatrail-toolchain.tar"
+      - name: gate-inputs
+        run: sh spec/tools/toolchain/toolchain.sh run just gate-inputs .cache/gate
+      - id: sim-cache
+        name: sim's toolchain image from the cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/sim-toolchain.tar
+          key: sim-toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.cache/sim/.devcontainer/Dockerfile') }}
+      - id: sim-toolchain
+        name: sim's toolchain image
+        run: |
+          tar=$RUNNER_TEMP/sim-toolchain.tar
+          restored=false
+          if [ -f "$tar" ]; then
+              restored=true
+              if docker load --quiet --input "$tar" && docker image inspect sim-toolchain > /dev/null; then
+                  rm -f -- "$tar"
+                  echo "sim's toolchain image: loaded from the cache."
+                  exit 0
+              fi
+              echo "::warning::The cache's file of sim's toolchain stage does not load as the image sim-toolchain: it is built from sim's Dockerfile, on every run until the entry is deleted (gh cache delete) or the Dockerfile changes."
+              rm -f -- "$tar"
+          fi
+          docker build --target toolchain --tag sim-toolchain - < .cache/sim/.devcontainer/Dockerfile
+          # A file the cache gave has its entry already, which no save replaces.
+          if [ "$restored" = false ] && ! docker save --output "$tar" sim-toolchain; then
+              echo "::warning::sim's toolchain image could not be saved for the cache: the next run builds it again."
+              rm -f -- "$tar"
+          fi
+      - name: sim's toolchain image to the cache
+        if: ${{ steps.sim-toolchain.outcome == 'success' && steps.sim-cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/sim-toolchain.tar
+          key: ${{ steps.sim-cache.outputs.cache-primary-key }}
+      - name: Free the file of sim's toolchain image
+        if: ${{ !cancelled() }}
+        run: rm -f -- "$RUNNER_TEMP/sim-toolchain.tar"
+      - id: go
+        name: The caches of Go of the gate
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/go
+          key: gate-modules-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.cache/sim/go.sum', '.cache/sim/.devcontainer/Dockerfile') }}
+          restore-keys: gate-modules-${{ runner.os }}-${{ runner.arch }}-
+      # ran says whether the gate built and ran the bench, so that only such a run fills the caches
+      # of Go: a run with nothing to gate builds sim alone, and its entry would stand for good.
+      - id: gate
+        name: Gate
+        env:
+          ALL: ${{ steps.moved.outputs.all }}
+        run: |
+          echo "ran=false" >> "$GITHUB_OUTPUT"
+          mapfile -t inputs < .cache/gate/args
+          if [ "${#inputs[@]}" -eq 0 ]; then
+              echo "No module yet, so the gate has nothing to run." | tee -a "$GITHUB_STEP_SUMMARY"
+              exit 0
+          fi
+          all=()
+          if [ -n "$ALL" ]; then
+              all=("$ALL")
+          fi
+          mkdir -p "$RUNNER_TEMP/go"
+          set -o pipefail
+          docker run --rm --user "$(id -u):$(id -g)" --env HOME=/tmp \
+              --env GOCACHE=/go/build --env GOMODCACHE=/go/mod \
+              --volume "$RUNNER_TEMP/go:/go" --volume "$PWD:/work" --workdir /work \
+              sim-toolchain just -f .cache/sim/justfile gate modules ${all[@]+"${all[@]}"} "${inputs[@]}" | tee -a "$GITHUB_STEP_SUMMARY" "$RUNNER_TEMP/gate.txt"
+          if ! grep -q '^gate: nothing the bench reads changed' "$RUNNER_TEMP/gate.txt"; then
+              echo "ran=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: The caches of Go of the gate to the cache
+        if: ${{ github.event_name != 'pull_request' && steps.go.outputs.cache-hit != 'true' && steps.gate.outputs.ran == 'true' }}
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/go
+          key: ${{ steps.go.outputs.cache-primary-key }}

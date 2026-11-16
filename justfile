@@ -377,6 +377,89 @@ _modules-check published:
     done
     exit "$worst"
 
+# What the gate of sim reads, written into a new folder for the job "Gate" of ci.yml (R37): the
+# published versions as _published writes them, in published/, and then what _gate-args writes —
+# the package of every module and the arguments of sim's gate. With no module there is nothing for
+# the gate, the network is not asked, and args is empty. A failure to read the published versions
+# gives the status 2, and no args.
+# Write what the gate of sim reads, the published versions and every module's package, into a new folder.
+gate-inputs dir:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    shopt -s nullglob dotglob
+    dir={{quote(dir)}}
+    if [ -e "$dir" ] || [ -L "$dir" ]; then
+        echo "gate-inputs: ${dir} is there already; the inputs of the gate go into a new folder" >&2
+        exit 2
+    fi
+    mkdir -p "$dir"
+    found=false
+    for path in modules/*/; do
+        name=$(basename "$path")
+        if [ ! -L "${path%/}" ] && [[ "$name" != .* ]]; then
+            found=true
+        fi
+    done
+    if [ "$found" = false ]; then
+        : > "${dir}/args"
+        echo "gate-inputs: no modules yet, so the gate has nothing to read"
+        exit 0
+    fi
+    if ! {{quote(just_executable())}} _published "${dir}/published"; then
+        echo "gate-inputs: the published versions of the modules cannot be read, so the gate has no input" >&2
+        exit 2
+    fi
+    {{quote(just_executable())}} _gate-args "$dir"
+
+# The package module-kit build makes of every module of modules/, in <dir>/packages/<folder>/, and
+# the file <dir>/args, one argument a line, of `just gate modules` at the tag of sim that ci.yml
+# pins, by the call form of its README:
+#
+#   just gate modules (-index <module-index.json> | -first) [-published <folder>]... [-all] <package folder>...
+#
+# against the published versions in <dir>/published/, as _published writes them: -index and a
+# -published for each package it unpacked, or -first when it holds the file first; then every
+# package, not only the changed ones, since a cell on two modules runs on both. -all is the job's to
+# put first, when the pull request moves the tag of sim. The paths are dir and what lies under it,
+# as given, so that they hold from the folder the recipe was called in, where the job calls sim's
+# gate too. What sim reads of each package and whether it changed is sim's to say: the recipe
+# passes every module and decides nothing. A folder, a link or a name with a dot in modules/ is
+# modules-check's to refuse, and is left out here, as _published leaves it. args is written last,
+# whole or not at all: a package that module-kit cannot build gives the status 2.
+[private]
+_gate-args dir:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    shopt -s nullglob dotglob
+    dir={{quote(dir)}}
+    published="${dir}/published"
+    if [ -f "${published}/first" ] && [ ! -e "${published}/module-index.json" ]; then
+        args=(-first)
+    elif [ -f "${published}/module-index.json" ] && [ ! -e "${published}/first" ]; then
+        args=(-index "${published}/module-index.json")
+        for package in "${published}"/packages/*/; do
+            args+=(-published "${package%/}")
+        done
+    else
+        echo "_gate-args: ${published} holds neither module-index.json alone nor first alone: what the gate compares with is unsaid" >&2
+        exit 2
+    fi
+    mkdir "${dir}/packages"
+    for path in modules/*/; do
+        name=$(basename "$path")
+        if [ -L "${path%/}" ] || [[ "$name" == .* ]]; then
+            continue
+        fi
+        if ! module-kit build "modules/${name}" "${dir}/packages/${name}" > /dev/null; then
+            echo "_gate-args: module-kit could not build modules/${name}, so the gate has no input" >&2
+            exit 2
+        fi
+        args+=("${dir}/packages/${name}")
+    done
+    printf '%s\n' "${args[@]}" > "${dir}/args.part"
+    mv "${dir}/args.part" "${dir}/args"
+    echo "_gate-args: ${#args[@]} arguments of the gate in ${dir}/args"
+
 # A module's eval set is its folder eval/, which its package does not carry and which modules
 # publishes with the repository, for good (R04; R62 spec). Its layout is flat: each sample is the
 # file eval/<id>.json, whose name is the sample's ID — the field id of its one JSON object, 1 to 64
