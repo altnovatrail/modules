@@ -208,6 +208,18 @@ For architecture 3.8; R15.
 - `vectors/pages.json`: the font size 30, a box 100 × 100, margins 40, and a short item is "no wider than the column (440) less the indent (56)". A long item fills lines of 864, and a row below 1400 − 40 is a refusal `task.items[i]`;
 - `pageOf` in the temporary folder with Node 24.21: all 19 cases of `vectors/pages.json` matched. The 12 pages of the set have no refusal, and the longest ends at 932 of 1360.
 
+### 4.20. The shared workflows of `.github` v0.1.24
+
+For architecture 3.2 and 3.3; R35.
+
+[altnovatrail/.github, release v0.1.24](https://github.com/altnovatrail/.github/releases/tag/v0.1.24), the tag on commit fab102d, the latest release on 2026-11-16, read 2026-11-16, a clone in the session's temporary folder. `gh release verify v0.1.24 -R altnovatrail/.github`: "Release v0.1.24 verified!". `git diff` of `.github/workflows/` against v0.1.10, f3addb7, and v0.1.15, 89d3cee:
+- `secrets.yml` and `dco.yml` — no difference from either;
+- `codeql.yml` and `scorecard.yml` — `github/codeql-action` v4.39.3 in place of v4.39.0, and a comment;
+- `release.yml` against v0.1.15 — `timeout-minutes: 45` in place of 30, and the wait for the npm registry; its inputs are as they were;
+- `documents.yml` — the image from the cache: "The image of the stage comes from the caller's cache of GitHub Actions, by the key go.yml's jobs use, and is built only on a miss"; its file is `${{ runner.temp }}/novatrail-toolchain.tar`, its key `toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.devcontainer/Dockerfile') }}`, and it is still "Called from a job that gives it `contents: read`";
+- `go.yml` — "Each job that runs in the toolchain stage takes its image from the caller's cache of GitHub Actions and builds it from the Dockerfile only on a miss"; the one input is `same-bits`, `type: boolean`, `default: false`, and "Without the input the workflow is what it was"; it is "Called from a job that gives it `contents: read` and `id-token: write`";
+- architecture 3.3 .github, the text of `dependabot.yml`: the group `shared-workflows` with `patterns: ["altnovatrail/.github/*"]` under `github-actions`, "all in one pull request, to one release, not a pull request per file".
+
 ## 5. MathTrail: standalone and its prototype
 
 ### 5.1. The license of standalone
