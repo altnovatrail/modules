@@ -218,7 +218,9 @@ For architecture 3.2 and 3.3; R35.
 - `release.yml` against v0.1.15 — `timeout-minutes: 45` in place of 30, and the wait for the npm registry; its inputs are as they were;
 - `documents.yml` — the image from the cache: "The image of the stage comes from the caller's cache of GitHub Actions, by the key go.yml's jobs use, and is built only on a miss"; its file is `${{ runner.temp }}/novatrail-toolchain.tar`, its key `toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.devcontainer/Dockerfile') }}`, and it is still "Called from a job that gives it `contents: read`";
 - `go.yml` — "Each job that runs in the toolchain stage takes its image from the caller's cache of GitHub Actions and builds it from the Dockerfile only on a miss"; the one input is `same-bits`, `type: boolean`, `default: false`, and "Without the input the workflow is what it was"; it is "Called from a job that gives it `contents: read` and `id-token: write`";
-- architecture 3.3 .github, the text of `dependabot.yml`: the group `shared-workflows` with `patterns: ["altnovatrail/.github/*"]` under `github-actions`, "all in one pull request, to one release, not a pull request per file".
+- architecture 3.3 .github, the text of `dependabot.yml`: the group `shared-workflows` with `patterns: ["altnovatrail/.github/*"]` under `github-actions`, "all in one pull request, to one release, not a pull request per file";
+- `.github/workflows/` holds `codeql.yml`, `dco.yml`, `documents.yml`, `go.yml`, `release.yml`, `scorecard.yml`, `secrets.yml`, `typescript.yml` and the `self-` workflows of `.github` itself: `documents.yml` runs `docs-check-repo`, `go.yml` and `typescript.yml` the caller's `ci-lint`, `ci-test`, `ci-vuln` and `ci-licenses`, and none runs recipes of the caller's choice, as at v0.1.15 (sources 4.5);
+- `gh pr list` of `modules`, read 2026-11-16: two pull requests of Dependabot open since 2026-11-06, #22 "Bump altnovatrail/.github/.github/workflows/codeql.yml from 0.1.10 to 0.1.19" and #23, the same of `documents.yml`; each changes one line, to `982ffe6… # v0.1.19`, while their branches still end in `-0.1.15`.
 
 ## 5. MathTrail: standalone and its prototype
 
