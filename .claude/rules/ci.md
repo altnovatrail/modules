@@ -19,7 +19,7 @@ The container is spec's, and differs from it by two files of NovaTrail releases 
 - module-kit's CLI, the binary of a release, `MODULE_KIT_VERSION` and its two sums, which every module is checked with (R10); `just module-kit-verify` checks that release's signature;
 - canvas's generator of synthetic samples, `synthetic-module_<tag>.mjs`, `CANVAS_VERSION` and `CANVAS_SYNTHETIC_SHA256` (R29); `just canvas-verify` checks its signature.
 
-Dependabot sees neither: a tag and its sums are raised by hand, together, and the container is rebuilt. The rest of the Dockerfile is spec's, and a move to a tag of spec takes its changes — Go, Node.js, just — by hand (R31).
+Dependabot sees neither: a tag and its sums are raised by hand, together, and the container is rebuilt. The rest of the Dockerfile is spec's, with what the go kind of its repo-template adds in the `devcontainer` stage: gopls, built from the lock file `.devcontainer/gopls/` at `GOPLS_VERSION`, which `test/gopls.test.mjs` holds to the template's at the pinned tag (R34). A move to a tag of spec takes its changes — Go, Node.js, just, gopls — by hand (R31).
 
 ## The release
 
