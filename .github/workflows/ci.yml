@@ -18,17 +18,17 @@ concurrency:
 jobs:
   secrets:
     name: Secrets
-    uses: altnovatrail/.github/.github/workflows/secrets.yml@89d3ceee0b9977b3334488a4133d084d76474e0d # v0.1.15
+    uses: altnovatrail/.github/.github/workflows/secrets.yml@fab102d8bbb4659575e107ee488e072aaaa71821 # v0.1.24
 
   # A pull request's commits are what it checks; a push to main has been checked as one.
   dco:
     name: DCO
     if: github.event_name == 'pull_request'
-    uses: altnovatrail/.github/.github/workflows/dco.yml@89d3ceee0b9977b3334488a4133d084d76474e0d # v0.1.15
+    uses: altnovatrail/.github/.github/workflows/dco.yml@fab102d8bbb4659575e107ee488e072aaaa71821 # v0.1.24
 
   documents:
     name: Documents
-    uses: altnovatrail/.github/.github/workflows/documents.yml@f3addb7403d084c560c61481e217b93f8e7ee1f3 # v0.1.10
+    uses: altnovatrail/.github/.github/workflows/documents.yml@fab102d8bbb4659575e107ee488e072aaaa71821 # v0.1.24
 
   # The Go code of tools/port, the port of standalone's tasks (R12), by the recipes ci-lint, ci-test,
   # ci-vuln and ci-licenses of the justfile: "Go / lint", "Go / test", "Go / vuln" and "Go /
@@ -39,12 +39,21 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    uses: altnovatrail/.github/.github/workflows/go.yml@89d3ceee0b9977b3334488a4133d084d76474e0d # v0.1.15
+    uses: altnovatrail/.github/.github/workflows/go.yml@fab102d8bbb4659575e107ee488e072aaaa71821 # v0.1.24
 
   # The repository's own jobs run in the toolchain stage of .devcontainer/Dockerfile, as the shared
   # checks do, by spec's toolchain.sh from the submodule at the tag it pins: the stage, and the
   # recipes of the justfile in it (R10). What to run each job decides itself, with no paths filter
   # on the workflow: a required check of a skipped workflow stays "Pending" (R03).
+  #
+  # Each job takes the image from the cache of GitHub Actions, as spec's own CI and .github's
+  # documents.yml do (R31 spec; R35): a file of docker save by the sha256 of the Dockerfile, which
+  # pins everything it fetches, so that on a hit the Dockerfile does not run and an outage of
+  # nodejs.org, GitHub or the Ubuntu snapshot fails no check. The path is documents.yml's, so that
+  # the three jobs and "Documents" share one entry. toolchain.sh loads the file, or builds the
+  # stage and writes it; the file is saved only on a miss, since an entry never changes, and a
+  # broken entry stays until it is deleted (gh cache delete): toolchain.sh warns of it and builds.
+  # The scope of main is filled by the runs on main. The release takes no cache (R31 spec).
 
   # The signature of the module-kit release whose binary the stage installs, by spec's
   # release-verify, and the Dockerfile's sums against that release's SHA256SUMS (R77 spec), on
@@ -60,8 +69,26 @@ jobs:
         with:
           submodules: true
           persist-credentials: false
-      - name: Toolchain image
+      - id: cache
+        name: Toolchain image from the cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/novatrail-toolchain.tar
+          key: toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.devcontainer/Dockerfile') }}
+      - id: toolchain
+        name: Toolchain image
+        env:
+          TOOLCHAIN_IMAGE_FILE: ${{ runner.temp }}/novatrail-toolchain.tar
         run: sh spec/tools/toolchain/toolchain.sh build
+      - name: Toolchain image to the cache
+        if: ${{ steps.toolchain.outcome == 'success' && steps.cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/novatrail-toolchain.tar
+          key: ${{ steps.cache.outputs.cache-primary-key }}
+      - name: Free the file of the toolchain image
+        if: ${{ !cancelled() }}
+        run: rm -f -- "$RUNNER_TEMP/novatrail-toolchain.tar"
       - name: module-kit-verify
         run: sh spec/tools/toolchain/toolchain.sh run just module-kit-verify
 
@@ -79,8 +106,26 @@ jobs:
         with:
           submodules: true
           persist-credentials: false
-      - name: Toolchain image
+      - id: cache
+        name: Toolchain image from the cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/novatrail-toolchain.tar
+          key: toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.devcontainer/Dockerfile') }}
+      - id: toolchain
+        name: Toolchain image
+        env:
+          TOOLCHAIN_IMAGE_FILE: ${{ runner.temp }}/novatrail-toolchain.tar
         run: sh spec/tools/toolchain/toolchain.sh build
+      - name: Toolchain image to the cache
+        if: ${{ steps.toolchain.outcome == 'success' && steps.cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/novatrail-toolchain.tar
+          key: ${{ steps.cache.outputs.cache-primary-key }}
+      - name: Free the file of the toolchain image
+        if: ${{ !cancelled() }}
+        run: rm -f -- "$RUNNER_TEMP/novatrail-toolchain.tar"
       - name: canvas-verify
         run: sh spec/tools/toolchain/toolchain.sh run just canvas-verify
 
@@ -106,9 +151,26 @@ jobs:
         with:
           submodules: true
           persist-credentials: false
-      - name: Toolchain image
-        id: toolchain
+      - id: cache
+        name: Toolchain image from the cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/novatrail-toolchain.tar
+          key: toolchain-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.devcontainer/Dockerfile') }}
+      - id: toolchain
+        name: Toolchain image
+        env:
+          TOOLCHAIN_IMAGE_FILE: ${{ runner.temp }}/novatrail-toolchain.tar
         run: sh spec/tools/toolchain/toolchain.sh build
+      - name: Toolchain image to the cache
+        if: ${{ steps.toolchain.outcome == 'success' && steps.cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/novatrail-toolchain.tar
+          key: ${{ steps.cache.outputs.cache-primary-key }}
+      - name: Free the file of the toolchain image
+        if: ${{ !cancelled() }}
+        run: rm -f -- "$RUNNER_TEMP/novatrail-toolchain.tar"
       - name: Tests of the recipes and of the templates
         run: sh spec/tools/toolchain/toolchain.sh run just test
       - name: modules-check
