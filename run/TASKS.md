@@ -35,16 +35,3 @@ Open tasks outside the current epic, each as its body, in Russian (R154 spec, R1
 - **Мой шаг:** задача меняет `.devcontainer/`: после мержа автор пересобирает контейнер, и оркестратор ждёт этого перед следующей задачей.
 - **Разделы:** строки 7.14 и 7.17 COORDINATION.md spec; R156 spec, R76 spec; RULES.md spec; repositories 2.2 spec; R10, R29, R34, R36.
 
-
-#### T78. Гейт `sim` в CI — Д5
-
-- **Цель:** закрыть Д5 таблицы 4: job «Gate» в `ci.yml` запускает гейт `sim` на пакетах pull request — `just gate modules` по форме вызова README `sim` на его последнем теге, из клона `sim` по тегу и SHA, в стадии `toolchain` его devcontainer (R103 spec; architecture 3.2).
-- **Почему:** слово автора 2026-11-16 (прогон оркестратора T171 spec): ночью, когда задач таблицы 1 и `run/TASKS.md` для «Claude» нет — T75 и T76 ждут релиза `.github` строки 7.13 и тега `spec` строки 7.14, — закрыть строку таблицы 4 целиком внутри репозитория. Д5 ждал только своей задачи: `sim` с v0.1.9 переводит `time` (R31), а условие автора 2026-11-11 — без job, красного всегда, — проверяется пробным прогоном до правки CI.
-- **Сделать:**
-  1. `gh release verify` последнего тега `sim`; клон тега во временной папке; пробный прогон `just gate modules -index … -published … -all` на пакетах `module-kit build` всех четырёх модулей против опубликованных версий. Красный — строка таблицы 3 и ожидание автора, CI не меняется.
-  2. Рецепт `gate-inputs` в `justfile`: опубликованные версии — как `_published`, пакет каждого модуля, файл аргументов гейта; его тесты в `test/`.
-  3. Job «Gate» в `ci.yml`: `sim` по тегу и SHA, проверка, что тег на этом коммите; `-all`, когда pull request меняет SHA `sim`; образ стадии `sim` и кеш Go гейта — в кеше GitHub Actions.
-  4. Решение журнала, поправки к записям, которые оно меняет; [docs/architecture.md](../docs/architecture.md), разделы 2, 3.2 и 3.7; правило `ci`; строка Д5 — в архив.
-- **Как проверить:** `just test`; `just -f spec/justfile docs-check-repo`; CI pull request зелёный, «Gate» — с `-all` на всех модулях; `/code-review high`, один круг.
-- **Риски:** `justfile` — путь релиза: мерж выпускает следующий релиз `modules` без новых архивов (R17), pull request и отчёт его называют. «Gate» — обязательная проверка ruleset `main` только по шагу автора: настройки GitHub вне репозитория (правило 4 RUN.md).
-- **Разделы:** Д5 в [run/DEBT.md](../run/DEBT.md); architecture 3.2, 3.7; R03, R31; R76 spec, R103 spec; README `sim`, «Gate in the CI of modules».
