@@ -9,8 +9,8 @@
 # of the newest release, which the shared release downloads and checks before release-files gets it
 # (R63 spec). A run after CI on main, and the button, publish the release; a pull request from a
 # branch of this repository tries it, publishing nothing: it builds the files from git archive in the
-# toolchain stage, signs them and checks them (R17). A pull request from a fork gets no id-token to
-# sign with, so the job below skips its trial.
+# stage toolchain-core of the Dockerfile, which holds module-kit (R38), signs them and checks them
+# (R17). A pull request from a fork gets no id-token to sign with, so the job below skips its trial.
 
 name: Release
 
@@ -41,7 +41,7 @@ jobs:
       contents: write
       id-token: write
       actions: read
-    uses: altnovatrail/.github/.github/workflows/release.yml@8311cbfc01082e9b196c0af8d7b49192115cc84c # v0.1.30
+    uses: altnovatrail/.github/.github/workflows/release.yml@93c848fb51a10a245968cf730b99cc709a7748bf # v0.1.31
     with:
       paths: |
         :(glob)modules/**

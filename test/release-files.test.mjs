@@ -4,7 +4,7 @@
 // new version, the archive's layout and bytes, and what the recipe refuses. Each archive goes back
 // through _unpack and module-kit diff, as modules-check reads a published version (R11). Neither the
 // signature nor the shared release itself is tried here: the release signs the files, and its trial
-// on each pull request builds them from git archive in the toolchain stage (R17).
+// on each pull request builds them from git archive in the stage toolchain-core (R17; R38).
 
 import assert from "node:assert/strict";
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, utimesSync, writeFileSync } from "node:fs";

@@ -234,6 +234,18 @@ For architecture 3.2 and 3.3; the T75 amendments to R10, R12, R17 and R35–R37.
 - `release.yml`: "The files are signed AT_ONCE at a time, by xargs -P", with `AT_ONCE: "8"` in the step's `env` (R44 .github), and the release is checked by one `gh release verify`; its inputs `paths`, `publish`, `npm-package` and `previous-file` are as they were;
 - RUN.md of `.github` at the tag: T66, "Стадия `toolchain-core` в релизе и проверках", still `[ ]`, waits for row 7.14 of COORDINATION.md spec.
 
+### 4.22. The shared workflows of `.github` v0.1.31
+
+For architecture 3.2 and 3.3; R38.
+
+[altnovatrail/.github, release v0.1.31](https://github.com/altnovatrail/.github/releases/tag/v0.1.31), the tag on commit 93c848f, published 2026-11-16, the release of T66 `.github`, the last part of row 7.13 of COORDINATION.md spec, read 2026-11-16, a clone in the session's temporary folder. `gh release verify v0.1.31 -R altnovatrail/.github`: "Release v0.1.31 verified!". `git diff v0.1.30 v0.1.31 -- .github/workflows/`, R47 `.github`, its row В40 and its record 13.8 of the sources:
+- no `workflow_call` input, `type`, `default` or permission changes in `go.yml`, `codeql.yml`, `release.yml`, `scorecard.yml`, `secrets.yml`, `dco.yml` and `documents.yml`; only `documents.yml`, `go.yml`, `release.yml`, `self-release.yml` and `typescript.yml` change;
+- R47 `.github`: "The shared `release.yml` and `self-release.yml` build the stage `toolchain-core` of the caller's `.devcontainer/Dockerfile` — Node, just, Go and buf", and "The checks that start no browser and run no test — "Go / lint", "Go / vuln" and "Go / licenses", the same three of `typescript.yml`, and `documents.yml` — run in `toolchain-core` where the Dockerfile has the stage and its stage `toolchain` holds more than it, and in `toolchain` otherwise, as before: the workflow reads it in the Dockerfile, with no input";
+- R47 `.github`: "The core keeps its image in a file, an entry of the cache and an artifact of its own — `${{ runner.temp }}/novatrail-toolchain-core.tar`, by the key `toolchain-core-<OS>-<architecture>-<hash of the Dockerfile>`", "beside those of `toolchain`", R42 .github, "which keep their path and key";
+- `go.yml` and `documents.yml` find the core by `awk` over the Dockerfile: a stage `toolchain-core`, and a stage `toolchain` with "an instruction but SHELL, or another base than toolchain-core"; `release.yml` passes `TOOLCHAIN_STAGE: toolchain-core` to `toolchain.sh build` and builds "toolchain-core where the tree's Dockerfile has it, by the FROM line spec's toolchain.sh finds it by, and toolchain otherwise";
+- row В40 `.github`, «В реестр spec»: a caller's move "has to keep in the core what its release and those checks need — `module-kit` of `modules`, which its `release-files` runs", "and put in `toolchain` only what its tests need";
+- the record 13.8 of the sources of `.github`: "`modules`: `module-kit` at `ARG MODULE_KIT_VERSION=v0.3.0`, by the `RUN` that installs Node, just, Go and buf, and its `release-files` runs `_modules-check`, which stops with "module-kit cannot be run; the toolchain stage installs it" without it".
+
 ## 5. MathTrail: standalone and its prototype
 
 ### 5.1. The license of standalone
