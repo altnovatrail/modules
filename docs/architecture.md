@@ -682,7 +682,7 @@ The first application waited from `modules` only for epic E2 — the batch, its 
 | a lesson's skill that is itself a prerequisite of another of its skills does not put the lesson in order | `english-essays` (R16) | [the format text](../spec/format/README.md), section 21, and the example `essays-for-adults.yaml` with `skills: [endings]`, since `spec` v0.9.8: a lesson that must come after the lesson of a skill names only the skills that wait for it (В20) |
 | a lesson's explanation has no headings, lists or tables, and a step's number is read as a number | `olympiad-math` (R14) | epic E6 of `spec`: an optional part "list of steps", by a minor edit; until it, the steps of a method are paragraphs (В21) |
 | the presentation style by age: one text serves both a child and an adult | `english-essays` (R16), `olympiad-math` (R14) | О-23, supplemented on 2026-11-07: a module asks for no texts of its own by style yet (В22) |
-| a place for a reminder not to write names before the work is submitted | `english-essays` (R16) | П-20, supplemented on 2026-11-07 (В18) |
+| a place for a reminder not to write names before the work is submitted | `english-essays` (R16) | П-20, supplemented on 2026-11-07 (В18); since the 2026-11-17 amendment to R127 spec `app` shows it, and 0.2.1 dropped it from the statements (R40) |
 | the explanation languages of the slice's modules | all three (R15) | О-2, supplemented on 2026-11-07 (В17) |
 
 The options and recommendations were in the rows of table 3; the rows left with the moves to `spec` v0.9.5 (R18) and v0.9.8 (R19), and their text remains in the git history of RUN.md.
