@@ -780,7 +780,7 @@ The set `novatrail/english-essays` is a small module of writing on a handwriting
 
   - A choice task has `solution`, `leak_phrases` with the key, and a trap value on each wrong option. The trap value has a text everywhere but `announcing-the-topic` in `best-first-sentence-1`, the option written word for word as in the example: after it the learner reads the trap advice.
   - An essay has `binding: sheet` and a rubric of three criteria on structure and content, without capital letters, spelling and punctuation (R71 spec).
-  - The statement of each essay ends with the reminder "Do not write your name or the real name of anyone you know." (П-20). Whether the platform shows it itself is decided together with П-20, before the beta with children, and until the answer the reminder stands in the statements (the 2026-11-07 supplement to П-20; R18).
+  - No statement holds the reminder "Do not write your name or the real name of anyone you know.": `app` shows it above "Check" of every handwriting sheet whose work goes to AI whole (R127 spec, its 2026-11-17 amendment), and the statements of the five essays lost it with version `0.2.1` (R40). Up to `0.2.0` each of them ended with it (R16).
   - The topics for those under 18 are made up and general, without family, friends, home and school; a topic about the learner's life is only in the task for adults (П-20; privacy 3.2 spec).
   - There are no pictures.
 - **Lessons** — six, `lessons/<id>.yaml`:

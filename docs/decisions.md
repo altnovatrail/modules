@@ -4,7 +4,7 @@
 >
 > **Rule:** do not re-propose what was rejected without new facts. If a decision has to change, ask the author and update this file. An entry is never rewritten: an amendment with its date at the end of the entry corrects it, or a new entry replaces it, and the old one stays where it is, marked "Superseded".
 >
-> The repository was created on 2026-10-19 from the template of `spec` v0.1.0 (R21 spec), moved on 2026-10-20 to `spec` v0.2.9 (R01), on 2026-11-02 to v0.6.3 (R02) and v0.6.5 (R06), on 2026-11-06 to v0.9.3 (R09), on 2026-11-07 to v0.9.5 (R18), on 2026-11-08 to v0.9.8 (R19), v0.9.9 (R23), v0.9.10 (R24), v0.9.16 (R27) and v0.12.0 (R28), on 2026-11-11 to v0.15.0 (R30), on 2026-11-12 to v0.16.3 (R31), on 2026-11-14 to v0.17.2 (R32), on 2026-11-16 to v0.18.3 (R34) and v0.18.4 (R38), and on 2026-11-17 to v0.18.14 (R39). How it comes to differ from the template over time — by the tools in the devcontainer, by the rules in RUN.md — is recorded here as a decision, as R46 canvas-api recorded how it differs from its pattern: the CLI of `module-kit` in the stage `toolchain-core` — R10, the generator of synthetic samples of `canvas` in the stage `toolchain` over it — R29, both by R38. Next number — R40.
+> The repository was created on 2026-10-19 from the template of `spec` v0.1.0 (R21 spec), moved on 2026-10-20 to `spec` v0.2.9 (R01), on 2026-11-02 to v0.6.3 (R02) and v0.6.5 (R06), on 2026-11-06 to v0.9.3 (R09), on 2026-11-07 to v0.9.5 (R18), on 2026-11-08 to v0.9.8 (R19), v0.9.9 (R23), v0.9.10 (R24), v0.9.16 (R27) and v0.12.0 (R28), on 2026-11-11 to v0.15.0 (R30), on 2026-11-12 to v0.16.3 (R31), on 2026-11-14 to v0.17.2 (R32), on 2026-11-16 to v0.18.3 (R34) and v0.18.4 (R38), and on 2026-11-17 to v0.18.14 (R39). How it comes to differ from the template over time — by the tools in the devcontainer, by the rules in RUN.md — is recorded here as a decision, as R46 canvas-api recorded how it differs from its pattern: the CLI of `module-kit` in the stage `toolchain-core` — R10, the generator of synthetic samples of `canvas` in the stage `toolchain` over it — R29, both by R38. Next number — R41.
 >
 > Here entries are cited as `R03`, in other repositories as `R03 modules`. The decisions of `spec` are cited as "R18 spec", MathTrail's decisions as "R37 canvas-api", and in a list as "canvas-api: R37, R38". Each log has its own numbers.
 >
@@ -959,6 +959,8 @@ Rejected: leaving the pages as they are — the lesson would solve the module's 
 
 — RUN.md, T15; [architecture.md](architecture.md), section 3.9; `modules/english-essays/`.
 
+— *Amendment 2026-11-17 (R40):* **the statements of the five essays no longer end with the reminder "Do not write your name or the real name of anyone you know.": `app` shows it above "Check" of every handwriting sheet whose work goes to AI whole, and `english-essays` 0.2.1 dropped it (Д152 spec; R127 spec, its 2026-11-17 amendment). "The statement of each essay ends with a reminder not to write names", "with the reminder" of `undiscovered-island-1` and `a-day-you-remember-1` and the item "The reminder in the statement" above held up to 0.2.0.** — R40.
+
 ## The first release
 
 **R17. The releases of `modules` go in the line `0.1`, and the first is `v0.1.0`. Its own `release.yml` calls the shared `release.yml` of `.github` v0.1.15 by SHA with `previous-file: module-index.json` and makes a dry run of the release on every pull request from a branch of the repository, publishing nothing. The recipe `release-files VERSION PREVIOUS` builds all the modules, builds the index with the command `module-kit index` and puts an archive only for a package whose entry names this release; the archive is the same byte for byte on any runner. Д3 is closed when `release-verify` accepts the files of the first release.** The author's answers 2026-11-07 in the planning of T16 (RUN.md, T16, «Решено автором»), all four by the recommendations. The task carries out R03: what the release carries and what its files are called was decided there.
@@ -1028,6 +1030,8 @@ Rejected: leaving the pages as they are — the lesson would solve the module's 
 - a row in table 1 under a new number: there is no current epic, and the task is the author's instruction, recorded by this decision, as with R09.
 
 — *Consequence:* in table 3 of RUN.md — В19–В22, the requests of the first content to the format, and В23. Д5 waits for the first tag of `sim` and the form of the call of its command "has it changed", and Д6 for a tag of `spec` with the eval-set mode. — RUN.md, tables 2–4; CLAUDE.md; README.md; [architecture.md](architecture.md); R03.
+
+— *Amendment 2026-11-17 (R40):* **"until the answer the reminder stands in the statements of `english-essays`" of В18 held up to 0.2.0: `app` shows the reminder itself, and 0.2.1 dropped it from the statements (R127 spec, its 2026-11-17 amendment).** — R40.
 
 ## The tag `spec` v0.9.8
 
@@ -1451,6 +1455,8 @@ The recipe needs the network only for `sample-check`: it installs the tools of `
 
 — *Amendment 2026-11-16 (T77):* **the measurement with both maths is done, and Д8 is closed: the set of 12 pages of `grade-3-math` stays.** On `sim` v0.1.23, with `olympiad-math` beside it, a partial ladder of pages lowered the corridor of `G2-half` below the threshold of the gate of `modules`. The full ladder of 40 pages raised it by 1.7 points and left `G0` where it was, but made `E1.hard` of `G0` too high by 0.00035: every set of pages but the module's own turned the gate red. The corridor is held by the model's estimate, as `spec` answered to В39, and no row «в реестр spec» is needed — measurements 5; [architecture.md](architecture.md), section 3.8. The row Д8 is in the archive of E9, [docs/plan/E9.md](plan/E9.md).
 
+— *Amendment 2026-11-17 (R40):* **Д152 spec is done here, and Д9 is closed: `english-essays` 0.2.1 has no reminder in its statements, since `app` shows it itself.** — R40.
+
 ## The tag `spec` v0.16.3 and the token savings
 
 **R31. `modules` stands on `spec` v0.16.3, the latest release of `spec`, through v0.15.1–v0.16.2. The move is the first of four tasks of row 7.9 of COORDINATION.md of `spec`, T64: it takes the order of work and the structure of the documents of R143 spec and R145 spec by the common text of T123 `spec`. The session hook, the compaction at 400 thousand and the turned-off connectors are in `.claude/settings.json`. The paragraph Environment of CLAUDE.md is in four part rules of `.claude/rules/`. Table 4 is in `DEBT.md`, "Sources" of architecture 4 in `docs/sources.md`, the measurements in `docs/measurements.md`, the budgets in `docs-budgets.json`. The translation of `docs/` into English is T65–T67. The move does not change the versions of the modules and does not touch the release's paths: the merge puts out no release.** The author's instruction 2026-11-12: «переходи на spec последней версии». The author's answer the same day: the whole task of row 7.9 — now, without waiting for the pilot of `module-kit` (row 7.1), split by rule 11, and the executor brings it to the merge into `main` themselves.
@@ -1726,3 +1732,17 @@ The recipe needs the network only for `sample-check`: it installs the tools of `
 — *Rejected:* the draft's comment of the stage `toolchain` instead of this repository's — it speaks of a copy in general, and this one names what the stage holds here (R38).
 
 — *Consequence:* after the merge the author rebuilds the container (Rebuild Container), and the orchestrator waits for it before this repository's next task. — run/TASKS.md, T80; the R39 amendment to R38.
+
+— *Amendment 2026-11-17 (R40):* **"both stay open" of the R127 spec amendment above no longer holds: the release of `app` with T47 `app` is deployed, `english-essays` 0.2.1 dropped the reminder, and row Д9 is closed.** — R40.
+
+## The reminder leaves `english-essays`
+
+**R40. `novatrail/english-essays` 0.2.1 is 0.2.0 without the paragraph "Do not write your name or the real name of anyone you know." at the end of the statements of its five essays — `a-day-you-remember-1`, `dragon-draft-1`, `talking-umbrella-1`, `undiscovered-island-1` and `weather-shop-1`; all else is as it was, and the comments of the five tasks name `app` as the one who shows the reminder. `module-kit diff` calls the change a patch, which in 0.y.z is the next z ([format text](../spec/format/README.md), section 27). The merge puts out the next release of the line 0.2, v0.2.12, whose index adds the entry of 0.2.1 and whose one new archive is its package (R17). This closes Д9, and Д152 spec with it.** T81, a task outside an epic while none is current, in the orchestrator's run (R156 spec): its prompt is the author's word on the new version (the rule of the part `modules`). The condition of Д152 spec, by the 2026-11-17 amendment to R127 spec, is the deployment of the release of `app` with T47 `app` — the reminder above "Check" of every handwriting sheet whose work goes to AI whole —, and that is `app` v0.1.19 on `novatrail`, T73 `infra`, 2026-11-17, by the task's prompt.
+- **The version** — 0.2.1: five paragraphs of a statement removed are "other words" of the same entries, checks and path, a patch, and `diff` names `server.json #/tasks/<id>/statement/<n>: patch: is removed` for each, against 0.2.0 of the newest index, v0.2.11.
+- **What changed here:** the five tasks and the manifest of `modules/english-essays/`; [architecture.md](architecture.md), section 3.9; the amendments of R40 to R16, R18, R30 and R39; row Д9 of [run/DEBT.md](../run/DEBT.md) leaves. The module has no eval set, and `just eval-match` holds the other sets to the package as before.
+
+— *Why now:* the reminder is shown before each submission by `app` on the site, and keeping it in the statements too would have the learner read it twice (the 2026-11-17 amendment to R127 spec).
+
+— *Rejected:* 0.3.0 — a major part, while nothing a learner had is gone or means something else; keeping the reminder in the statement of `a-day-you-remember-1` for adults — `app` shows the reminder to adults too, and R127 spec names all five.
+
+— *Consequence:* the release v0.2.12 carries `english-essays` 0.2.1, and `api` from stage 2 pins it by digest in its configuration (architecture 3.10 spec). — run/TASKS.md, T81.

@@ -1,10 +1,9 @@
 # A task of the module of short essays on an invented topic (R16): a short essay in parts, one
-# paragraph for each part of a day, which gets feedback by the rubric as one work. Its statement
-# ends with the module's reminder to write no names (П-20).
+# paragraph for each part of a day, which gets feedback by the rubric as one work. The reminder
+# to write no names is `app`'s, above "Check", not the statement's (П-20; R40).
 id: weather-shop-1
 statement:
   - text: "Imagine a shop that sells the weather: a jar of sunshine, a box of fog, a bag of wind. Write a short essay about one day in that shop. Give the morning, the middle of the day and the evening a paragraph each."
-  - text: Do not write your name or the real name of anyone you know.
 canvas:
   kind: handwriting_sheet
   grid: lines
