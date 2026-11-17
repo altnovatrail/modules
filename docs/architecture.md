@@ -682,7 +682,7 @@ The first application waited from `modules` only for epic E2 — the batch, its 
 | a lesson's skill that is itself a prerequisite of another of its skills does not put the lesson in order | `english-essays` (R16) | [the format text](../spec/format/README.md), section 21, and the example `essays-for-adults.yaml` with `skills: [endings]`, since `spec` v0.9.8: a lesson that must come after the lesson of a skill names only the skills that wait for it (В20) |
 | a lesson's explanation has no headings, lists or tables, and a step's number is read as a number | `olympiad-math` (R14) | epic E6 of `spec`: an optional part "list of steps", by a minor edit; until it, the steps of a method are paragraphs (В21) |
 | the presentation style by age: one text serves both a child and an adult | `english-essays` (R16), `olympiad-math` (R14) | О-23, supplemented on 2026-11-07: a module asks for no texts of its own by style yet (В22) |
-| a place for a reminder not to write names before the work is submitted | `english-essays` (R16) | П-20, supplemented on 2026-11-07 (В18) |
+| a place for a reminder not to write names before the work is submitted | `english-essays` (R16) | П-20, supplemented on 2026-11-07 (В18); since the 2026-11-17 amendment to R127 spec `app` shows it, and 0.2.1 dropped it from the statements (R40) |
 | the explanation languages of the slice's modules | all three (R15) | О-2, supplemented on 2026-11-07 (В17) |
 
 The options and recommendations were in the rows of table 3; the rows left with the moves to `spec` v0.9.5 (R18) and v0.9.8 (R19), and their text remains in the git history of RUN.md.
@@ -780,7 +780,7 @@ The set `novatrail/english-essays` is a small module of writing on a handwriting
 
   - A choice task has `solution`, `leak_phrases` with the key, and a trap value on each wrong option. The trap value has a text everywhere but `announcing-the-topic` in `best-first-sentence-1`, the option written word for word as in the example: after it the learner reads the trap advice.
   - An essay has `binding: sheet` and a rubric of three criteria on structure and content, without capital letters, spelling and punctuation (R71 spec).
-  - The statement of each essay ends with the reminder "Do not write your name or the real name of anyone you know." (П-20). Whether the platform shows it itself is decided together with П-20, before the beta with children, and until the answer the reminder stands in the statements (the 2026-11-07 supplement to П-20; R18).
+  - No statement holds the reminder "Do not write your name or the real name of anyone you know.": `app` shows it above "Check" of every handwriting sheet whose work goes to AI whole (R127 spec, its 2026-11-17 amendment), and the statements of the five essays lost it with version `0.2.1` (R40). Up to `0.2.0` each of them ended with it (R16).
   - The topics for those under 18 are made up and general, without family, friends, home and school; a topic about the learner's life is only in the task for adults (П-20; privacy 3.2 spec).
   - There are no pictures.
 - **Lessons** — six, `lessons/<id>.yaml`:
