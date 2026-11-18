@@ -18,22 +18,6 @@ Open tasks outside the current epic, each as its body, in Russian (R154 spec, R1
 - **Как проверить:** проверки pull request зелёные, «Modules» — с действием; правило `ci`: `just test`; `just -f spec/justfile docs-check-repo`; `/code-review high`, один круг.
 - **Разделы:** R36, R41; R49 `.github`, поправка T75 к R41 `.github`; sources 4.23.
 
-#### T85. Документы без истории (R160 spec)
-
-- **Цель:** документы `docs/`, README.md, CLAUDE.md и правила `.claude/rules/` держат текущее состояние, а не историю (R160 spec, «One home», «A done task»).
-- **Почему:** вторая часть T84 (строка 7.28 COORDINATION.md `spec`), отделённая по правилу 11 RUN.md: `docs/architecture.md` — 173 КБ; её абзац «Status», хронику тегов, T84 уже убрала.
-- **Зависит от:** T84.
-- **Сделать:**
-  - `docs/architecture.md`: без хроник версий, статусов и повышений; документ называет файл, где задано значение — подмодуль `spec`, `ARG` Dockerfile, `uses:` workflow, `version` манифеста, — а не значение; устройство описано как есть, решение — номером, без пересказа.
-  - README.md, `docs/README.md`, CLAUDE.md, `.claude/rules/` — так же; строки CLAUDE.md и RUN.md с тегом `spec` остаются (R160 spec, «Decisions»).
-  - Ссылка на поправку записи `spec`, которую тег переписал на месте (R143, R145, R154, R155 spec и другие — по журналу `spec` на теге подмодуля), — на запись.
-  - Журнал: переписать на месте только записи, которые эта задача меняет (R160 spec); их свой предел в `entries` `docs-budgets.json` — убрать, если запись стала не длиннее 12 КБ.
-  - Вне правила: `docs/sources.md`, `docs/measurements.md`, архивы `docs/plan/`.
-  - Больше одного ревью — разделить по правилу 11 RUN.md.
-- **Как проверить:** `just -f spec/justfile docs-check-repo`; `/code-review high`.
-- **Разделы:** R160 spec, R21 spec, R145 spec; RULES.md spec — The bar.
-- **Решено при планировании (2026-11-18, исполнитель, по правилу 11):** T85 — README.md, `docs/README.md`, CLAUDE.md, `.claude/rules/`, разделы 1–3.3 и 4 `docs/architecture.md` и блоки «How it was decided» в 3.3–3.5, которые R08 держала, — R08 переписана на месте; разделы 3.4–3.6 — T88, 3.7–3.10 — T89.
-
 #### T88. `docs/architecture.md`, разделы 3.4–3.6, без истории (R160 spec)
 
 - **Цель:** разделы 3.4 «Samples in the eval set», 3.5 «The port of standalone» и 3.6 «The first batch» `docs/architecture.md` держат текущее устройство, а не историю (R160 spec, «One home», «A done task»).
