@@ -482,13 +482,14 @@
 
 **R08. The detailing of `modules` is finished: items 2.1–2.3 of [architecture.md](architecture.md) are decided (R03–R05, R07), and 2.4 by R09. Section 2 names only what is deliberately deferred and keeps each decided subsection under its number, its gist and the entry that decided it; section 3 is how it is built, and section 3.7 what to build.** The author's answer 2026-11-02 in the course of T04; the rest is by the task itself, and the architecture without what was known and the options is by R160 spec.
 - **Section 2.** Subsections 2.1–2.4 stand under their numbers: this log and the archives of `docs/plan/` cite them. What was known and what was chosen from is the entry that decided each — what it rejected and why —, and the external facts in it are records of [sources.md](sources.md). A new item is the next free subsection; once decided, it names its entry, and the decision moves to section 3.
-- **Section 3.7** is the table "what to build": the part, its section, the epic and what it waits for.
+- **Section 3.7** is the table of what is still to build: the part, its section, the epic and what it waits for; what is built is the rest of section 3, and a done epic leaves the table.
 - **The card.** Sections 1 and 3 of [architecture.md](architecture.md) repeat or unfold what architecture 3.10 spec says about `modules`, the port of standalone and the authors' samples in the eval set included; a change of them that changes the card goes to `spec` (RULES.md, Across repositories).
 - **The epics** after it are the first content (E2), the rest of the port (E3) and the eval sets (E4), in this order (R76 spec): [plan/E2.md](plan/E2.md), [plan/E3.md](plan/E3.md), [plan/E4.md](plan/E4.md).
 
 — *Why:*
 - The goal of the detailing is a section 2 that is empty or names what is deferred; the subsections' numbers are needed by the log and the archives.
 - What was known and the options, kept word for word in the architecture, were a second copy of what each entry says it rejected and why, which every change drags after it; the external facts in them have their records in [sources.md](sources.md) (R160 spec).
+- A done row in section 3.7 is a chronicle: what is built is the rest of section 3, and how it came about the archives of `docs/plan/` (R160 spec).
 - The first content is everything the first application waits for (R76 spec); the rest of the port goes after the first batch, and the eval sets wait for the eval protocol, the volunteer's form and stage 2.
 
 — *Rejected:*
@@ -496,6 +497,7 @@
 - what was known and the options of each subsection, word for word, at the end of sections 3.3–3.5: a second copy of the entries;
 - deleting subsections 2.1–2.4: the links of the log and the archives would break;
 - one epic for the first content and the port: R76 spec puts the first batch before the rest of the port;
+- section 3.7 as a table of every epic with its done rows: a second copy of section 3 and of the archives;
 - the eval sets inside the first content: neither the protocol, nor the form, nor the runner was there.
 
 — [architecture.md](architecture.md), sections 2, 3 and 3.7; [docs/plan/E1.md](plan/E1.md), T04; R03–R07, R09.
