@@ -1,4 +1,18 @@
 {
+  "entry": 12,
+  "comments": true,
+  "entries": {
+    "R02": 14,
+    "R03": 32,
+    "R04": 20,
+    "R05": 14,
+    "R12": 32,
+    "R14": 16,
+    "R20": 17,
+    "R22": 16,
+    "R25": 16,
+    "R31": 14
+  },
   "sections": {
     "architecture 3.4": 35,
     "architecture 3.5": 27
