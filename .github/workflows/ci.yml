@@ -163,10 +163,12 @@ jobs:
   # Each step is a container of its own, whose home toolchain.sh throws away, so the steps share
   # one cache of Go, a folder of the checkout that toolchain.sh mounts at /work, which git ignores:
   # the port is compiled once, by the tests, and the pictures' steps reuse it (R36). Across runs the
-  # folder lives in the cache of GitHub Actions by the rules of the caches of .github's go.yml
-  # (R36; R41 .github): the key is the runner's OS and architecture, the Dockerfile, which pins the
+  # folder lives in the cache of GitHub Actions by the rules of the caches of .github's go.yml of
+  # v0.1.31 (R36; R41 .github): the key is the runner's OS and architecture, the Dockerfile, which pins the
   # Go, and go.sum, which pins the modules, with no restore key; what the cache gave passes go mod
   # verify before any step builds from it, or is deleted with a warning; only a push to main saves.
+  # go.yml of v0.1.33 restores by the prefix without go.sum, and this job does not, until T83 moves
+  # it onto .github's action toolchain (R41).
   modules:
     name: Modules
     needs: [module-kit, canvas]

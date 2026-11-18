@@ -120,13 +120,14 @@ modules/                     the repository root
 ├── tools/port/              the converter of standalone tasks: code, batches batches/, overlay files overlay/,
 │                            lesson pictures pictures/ and the sources of instance pictures template-pictures/
 ├── .gitattributes           modules/** -text
-├── docs/                    the component documents; the language of each is in CLAUDE.md
+├── docs/                    the component documents; the language of each is in CLAUDE.md;
+│                            docs/README.md — their index, for people (R41)
 ├── spec/                    the submodule spec at a tag
 ├── .github/                 CI: calls of the shared workflows, own jobs, release.yml
 ├── .devcontainer/           the spec container of the kind go; in the stage toolchain-core — the CLI
 │                            module-kit, in toolchain — the generator of canvas (R38)
 ├── run/                     the work plan's tables 2–4 and its open tasks outside an epic (R34)
-├── README.md, LICENSE       the README and the license of the repository
+├── README.md, LICENSE       the README, a description alone (R41), and the license of the repository
 └── CLAUDE.md, AGENTS.md, RUN.md
 ```
 
