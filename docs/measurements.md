@@ -6,12 +6,13 @@
 
 The recipe is spec's: `just -f spec/justfile tokens-report --since … --until … --row` reads the transcripts that Claude Code keeps on this machine of this repository's sessions and prints one row of the table below, in the columns of measurements 1.9 spec; it prints numbers, paths and names alone, never what a transcript says. A row goes here at the archive of each epic, for the epic's window (RUN.md, Epics), and once a month from spec, by R145 spec. A new analysis comes by the threshold of R145 spec, measured against this repository's reference.
 
-| Project | Window, UTC | Sessions | Calls, main / subagents | Context of a call, k, main / subagents | Compactions | Cost at API prices |
-|---|---|---|---|---|---|---|
-| `-workspaces-modules` — before R143 spec, from measurements 1.9 spec | 2026-10-13T00:00 … 2026-11-12T14:27 | 16 | 3,976 / 2,287 | 351.0 / 91.7 | 6 | $586.03 |
-| `-workspaces-modules` — after: the sessions of T64–T67 | 2026-11-12T20:29 … 2026-11-13T03:58 | 4 | 432 / 590 | 157.2 / 112.7 | 0 | $59.42 |
-| `-workspaces-modules` — epic E9: its breakdown and T68–T71 | 2026-11-14T00:00 … 2026-11-14T19:41 | 5 | 326 / 215 | 187.4 / 120.6 | 0 | $34.22 |
+| Project | Window, UTC | Sessions | Calls, main / subagents | Context of a call, k, main / subagents | Compactions | Cost at API prices | Context of a main call among its session's first 80, k |
+|---|---|---|---|---|---|---|---|
+| `-workspaces-modules` — before R143 spec, from measurements 1.9 spec | 2026-10-13T00:00 … 2026-11-12T14:27 | 16 | 3,976 / 2,287 | 351.0 / 91.7 | 6 | $586.03 | — |
+| `-workspaces-modules` — after: the sessions of T64–T67 | 2026-11-12T20:29 … 2026-11-13T03:58 | 4 | 432 / 590 | 157.2 / 112.7 | 0 | $59.42 | — |
+| `-workspaces-modules` — epic E9: its breakdown and T68–T71 | 2026-11-14T00:00 … 2026-11-14T19:41 | 5 | 326 / 215 | 187.4 / 120.6 | 0 | $34.22 | — |
 
+- The last column, the context of a main call among the first 80 of its session, came with T199 spec, 2026-11-18, and the rows before it have "—" there (measurements 1.9 spec; R41).
 - The row before is spec's measurement of 2026-11-12, of every session of `modules` on this machine until then: E1–E8, the moves to tags of spec and the debts.
 - The reference of `modules`, against which the threshold of R145 spec is measured, is its measurement after, which T124 spec takes on the sessions after the task of row 7.9 of COORDINATION.md spec, T64–T67 (measurements 1.9 spec).
 - The row after is the four sessions of the task of row 7.9, one for each of T64–T67, from the start of T64 to T67's own session, which was still running when the row was taken. T64 put in the hook of the session and turned off the connectors of claude.ai, and T65–T67 began with them (R31).
