@@ -1,14 +1,15 @@
 # A template of number-divisibility (R22): the solver of mathtrail-standalone
-# content/solvers/number.divisibility/groups.star at 42b4408, made a solver of the template. It came from
-# reference task div-56-d3-1, whose numbers are one of its instances.
+# content/solvers/number.divisibility/groups.star at 42b4408, made a solver of the template. It came
+# from reference task div-56-d3-1, whose numbers are one of its instances.
 # The numbers of reference task div-56-d3-1: seat 97, size 18.
 # Its leading question is the hint of div-56-d3-1, with its seat a placeholder (R22).
 # Its capitals NUMBER and SIZE are the numbers that the statement shows: a seat from 60 to 120 and
 # rows of 12 to 20 seats. The constraint keeps the seat off the end of a row, at least third in its
 # row, and the row from 4 to 10, so that no trap value nor the row equals a number of the statement.
 # The pictures of the reference task, of its statement and of its solution, are the pictures of each
-# instance, which the port draws for every instance from tools/port/template-pictures/olympiad-math/;
-# the derived numbers from row2_second on are the seats that the pictures show (R22).
+# instance, which the port draws for every instance from
+# tools/port/template-pictures/olympiad-math/; the derived numbers from row2_second on are the seats
+# that the pictures show (R22).
 # The solver carries this notice:
 # MIT License
 #

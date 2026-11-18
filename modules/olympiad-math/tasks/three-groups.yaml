@@ -1,6 +1,6 @@
 # A template of logic-sets (R22): the solver of mathtrail-standalone
-# content/solvers/logic.sets/three-groups.star at 42b4408, made a solver of the template. It came from
-# reference task sets-56-d4-2, whose numbers are one of its instances.
+# content/solvers/logic.sets/three-groups.star at 42b4408, made a solver of the template. It came
+# from reference task sets-56-d4-2, whose numbers are one of its instances.
 # The numbers of reference task sets-56-d4-2: total 10, swim 7, skate 8, bike 9.
 # Its leading question is the hint of sets-56-d4-2, as it stands (R22).
 # Its capitals TOTAL and GROUPS are the numbers that the statement shows: a team of 10 to 12 and

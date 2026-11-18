@@ -4,15 +4,15 @@
 # The numbers of reference task enum-34-d3-6: long 3, short 1.
 # Its leading question is the hint of enum-34-d3-6, as it stands (R22).
 # standalone's solver reads the sticks of the picture, and the reference task's picture has four
-# sticks 3 cells long and four 1 cell long: their lengths are the numbers that the picture shows
-# and the template varies, the long one from 3 to 5 and the short one shorter, from 1, so that no
+# sticks 3 cells long and four 1 cell long: their lengths are the numbers that the picture shows and
+# the template varies, the long one from 3 to 5 and the short one shorter, from 1, so that no
 # instance is the simpler case of four sticks 2 long and four 1 long. figure lays sticks of 3 as the
 # reference task's picture does, two to a row, and the short ones below; a lattice of standalone is
 # at most 8 cells across, so longer sticks lie one to a row, with the short ones in two columns on
 # the right. solve counts on them with standalone's code, so the picture that the port draws for
-# each instance, from the source {"solver": "figure"} of tools/port/template-pictures/olympiad-math/,
-# is what the solver counts (R22). standalone's sandbox gives it product, which the
-# dialect of the format has not, so an odometer turns, and loops add.
+# each instance, from the source {"solver": "figure"} of
+# tools/port/template-pictures/olympiad-math/, is what the solver counts (R22). standalone's sandbox
+# gives it product, which the dialect of the format has not, so an odometer turns, and loops add.
 # The trap values are derived numbers, the mistakes of the reference task, and the long stick.
 # The solver carries this notice:
 # MIT License

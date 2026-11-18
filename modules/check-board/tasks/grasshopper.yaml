@@ -1,6 +1,5 @@
 # The check board's task grasshopper of tutor's eval/free-bank.json, as internal/task.Sheet builds
-# it (R68 tutor). Its leak phrases end with the key in words, since the leak check reads no number
-# in words (R33). Its leak phrase in English, "at 15", is left out: the module is in Russian.
+# it (R68 tutor). Its leak phrase in English, "at 15", is left out: the module is in Russian.
 id: grasshopper
 statement:
   - text: "Кузнечик сидит на числовой прямой в точке 3. Он прыгнул три раза вправо, каждый раз на 4, а потом один раз влево на 5. В какой точке он оказался?"

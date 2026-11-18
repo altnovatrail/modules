@@ -1,6 +1,5 @@
 # The check board's task equation-1 of tutor's eval/bank.json, as internal/task.Sheet builds it
-# (R68 tutor). Its leak phrases end with the key in words, since the leak check reads no number in
-# words (R33).
+# (R68 tutor).
 id: equation-1
 statement:
   - text: "Реши уравнение 3x + 1 = 7."
