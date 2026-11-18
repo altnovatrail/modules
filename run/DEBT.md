@@ -7,7 +7,8 @@ Table 4 of [RUN.md](../RUN.md): what was put off on purpose, its risk, when to r
 
 ## Table 4. Technical debt
 
-Numbers are not reused: next — Д10.
+Numbers are not reused: next — Д11.
 
 | ID | Debt | From | Risk while open | When to return |
 |---|---|---|---|---|
+| Д10 | `docs-budgets.json` keeps its own limits for architecture 3.4, 35 KB, and 3.5, 27 KB, though both fit the 24 KB of the block `repository`; R31 records them | T88 | small: the two sections may grow past 24 KB unnoticed | a task that rewrites R31 whole (R160 spec): drop both limits with it |

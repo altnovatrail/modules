@@ -18,18 +18,6 @@ Open tasks outside the current epic, each as its body, in Russian (R154 spec, R1
 - **Как проверить:** проверки pull request зелёные, «Modules» — с действием; правило `ci`: `just test`; `just -f spec/justfile docs-check-repo`; `/code-review high`, один круг.
 - **Разделы:** R36, R41; R49 `.github`, поправка T75 к R41 `.github`; sources 4.23.
 
-#### T88. `docs/architecture.md`, разделы 3.4–3.6, без истории (R160 spec)
-
-- **Цель:** разделы 3.4 «Samples in the eval set», 3.5 «The port of standalone» и 3.6 «The first batch» `docs/architecture.md` держат текущее устройство, а не историю (R160 spec, «One home», «A done task»).
-- **Почему:** часть T85, отделённая по правилу 11 RUN.md: T85 переписала README, CLAUDE.md, правила и разделы 1–3.3 и 4 и убрала блоки «How it was decided» (R08); 3.4–3.6 — около 57 КБ.
-- **Зависит от:** T85.
-- **Сделать:**
-  - без хроник версий, статусов, задач («since T…», «done on …», «came out in v…»); документ называет файл, где задано значение, а не значение; решение — номером, без пересказа;
-  - ссылка на поправку записи `spec`, которую тег переписал на месте, — на запись; закрытый вопрос реестра `spec` или закрытый долг — его решением или ничем;
-  - журнал — только записи, которые задача меняет, каждую целиком, с её поправками (R160 spec).
-- **Как проверить:** `just -f spec/justfile docs-check-repo`; `/code-review high`, один круг.
-- **Разделы:** architecture 3.4–3.6; R160 spec; R04, R05, R07, R25.
-
 #### T89. `docs/architecture.md`, разделы 3.7–3.10, без истории (R160 spec)
 
 - **Цель:** разделы 3.7 «What to build», 3.8–3.10 — наборы и модуль доски — `docs/architecture.md` держат текущее устройство, а не историю (R160 spec).
