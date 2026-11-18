@@ -7,14 +7,12 @@ import (
 	"strconv"
 )
 
-// The texts a picture writes, as a description gives them: what the alt of a task solved from the
-// picture names, so that a learner who cannot see the picture reads its facts (R20; T21). The
+// The texts a picture writes, as a description gives them, are what the alt of a task solved from
+// the picture names, so that a learner who cannot see the picture reads its facts (R21). The
 // numbers a picture numbers itself — a clock's 1 to 12, a line's ticks, a calendar's days, a ring's
-// places — are not given by the description, and are left out, and so are ? and the empty text,
-// which say nothing.
+// places — are left out, and so are ? and the empty text, which say nothing.
 
-// writtenLabels are the texts a picture writes, in order, once each: the picture read and held as
-// pictureOf reads it.
+// writtenLabels are the texts a picture writes, in order, once each.
 func writtenLabels(id string, raw json.RawMessage) ([]string, error) {
 	picture, err := readPicture(id, raw)
 	if err != nil {

@@ -18,8 +18,7 @@ const MODULE = join(ROOT, "modules", "olympiad-math");
 // "# The numbers of reference task gaps-34-d4-4: flight 18, told_to 3, asked_from 3, asked_to 7."
 const REFERENCE = /^# The numbers of reference task (\S+): (.+)\.$/m;
 
-// A placeholder of a template, which an instance fills in with its number (format/README.md,
-// section 23).
+// A placeholder of a template, which an instance fills in with its number.
 const PLACEHOLDER = /\{[a-z][a-z0-9_]*\}/;
 
 // A text of a template with the numbers of an instance in place of its placeholders.
@@ -57,15 +56,15 @@ test("the instance of each template with its reference task's numbers has that t
       assert.equal(server.tasks[id][field], server.tasks[reference][field], `${id}: its ${field} and that of ${reference}`);
     }
     // A template whose reference task has a leading question has it too, with placeholders for
-    // the reference task's numbers (amendment T51 to R22).
+    // the reference task's numbers (R22).
     const question = server.tasks[id].leading_question && fillIn(server.tasks[id].leading_question, instance);
     assert.equal(question, server.tasks[reference].leading_question, `${id}: the leading question of the instance of ${reference}`);
   }
 });
 
 // The picture of every instance of a template is in the module, and no other picture of its path
-// (amendment T52 to R22): the instances are module-kit's, which the port counted on its own when it
-// drew them, so the two counts must agree.
+// (R22): the instances are module-kit's, which the port counted on its own when it drew them, so
+// the two counts must agree.
 test("each template's picture path has a file for every instance and for nothing else", (t) => {
   const out = join(temporaryFolder(t), "package");
   mustRun("module-kit", ["build", MODULE, out]);

@@ -53,7 +53,6 @@ const (
 	pageEdge   = 12
 )
 
-// weekdays are the names of the weekdays, from Monday.
 var weekdays = []string{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"}
 
 // offset is the column of the 1st, from 0.

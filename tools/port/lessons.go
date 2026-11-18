@@ -11,18 +11,17 @@ import (
 	"strings"
 )
 
-// The pictures of the lessons (amendment T41 to R12): a folder of pictures in the schema of
-// standalone's tasks, one <name>.json each, which the port draws as it draws a task's picture, into
-// media/lessons/<name>.png of the module. They come from no clone: a lesson is written by hand, and
-// its pictures with it, from the data of the drawings of standalone's site where the lesson keeps
-// them (amendment T41 to R14).
+// The pictures of the lessons: a folder of pictures in the schema of standalone's tasks, one
+// <name>.json each, which the port draws into media/lessons/<name>.png of the module (R12). They
+// come from no clone: a lesson is written by hand, and its pictures with it, from the data of the
+// drawings of standalone's site (R14).
 const lessonFolder = "media/lessons"
 
 // pictureName is the name of a picture of a lesson: lowercase letters and digits in words joined by
 // hyphens, as a local ID is.
 var pictureName = regexp.MustCompile(`^[a-z0-9]+(-[a-z0-9]+)*$`)
 
-// drawLessonPictures draws every picture of the folder, by the path of its file in the module.
+// drawLessonPictures gives every picture of the folder by the path of its file in the module.
 func drawLessonPictures(folder string) (map[string][]byte, error) {
 	entries, err := os.ReadDir(folder)
 	if err != nil {
@@ -54,8 +53,8 @@ func drawLessonPictures(folder string) (map[string][]byte, error) {
 	return files, nil
 }
 
-// staleLessonPictures names the files of the module's media/lessons/ that the port does not draw
-// now, from the module's folder, which must be there.
+// staleLessonPictures names the files of the module's media/lessons/ that the port does not draw;
+// the module's folder must be there.
 func staleLessonPictures(module string, files map[string][]byte) ([]string, error) {
 	if err := isFolder(module); err != nil {
 		return nil, err

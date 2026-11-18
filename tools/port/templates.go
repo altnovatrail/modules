@@ -24,21 +24,20 @@ import (
 	"go.yaml.in/yaml/v4"
 )
 
-// The pictures of the instances of templates (amendment T52 to R12): a template's picture path
-// holds placeholders, and the module ships a file for every instance, which task.known-pictures
-// holds (format/README.md, section 23). Each such path has a source in a folder of its own, in the
-// schema of standalone's pictures with placeholders among its strings, which the port fills in for
-// each instance and draws as it draws a task's picture, into media/pictures/ of the module; or the
-// source names a function of the template's solver, which builds the picture that the solver reads
-// from the instance's numbers (amendment T53 to R12).
+// The pictures of the instances of templates (R12): a template's picture path holds placeholders,
+// and the module ships a file for every instance, which task.known-pictures holds. Each such path
+// has a source in a folder of its own, in the schema of standalone's pictures with placeholders
+// among its strings, which the port fills in for each instance and draws as it draws a task's
+// picture; or the source names a function of the template's solver, which builds the picture that
+// the solver reads from the instance's numbers.
 const templatePictureFolder = "media/pictures"
 
 // placeholder is a placeholder of a parameter or a derived number, in a string of a source or in a
-// picture path (format/README.md, section 23).
+// picture path.
 var placeholder = regexp.MustCompile(`\{([a-z][a-z0-9_]*)\}`)
 
 // namedPlaceholder is a placeholder that is a whole part of a name after a -, as a picture path
-// holds one (format/README.md, section 23).
+// holds one.
 var namedPlaceholder = regexp.MustCompile(`-\{[a-z][a-z0-9_]*\}`)
 
 // functionName is a name of a function of Starlark, which a source of solver names.
@@ -48,8 +47,8 @@ var functionName = regexp.MustCompile(`^[A-Za-z_][A-Za-z0-9_]*$`)
 // (task.template-instances).
 const maxCombinations = 10000
 
-// templateTask is what the port reads of a task of the module that is a template: its numbers, the
-// program of its solver, and the picture parts of its statement and solution. module-kit holds the rest to the format.
+// templateTask is what the port reads of a task of the module that is a template; module-kit holds
+// the rest to the format.
 type templateTask struct {
 	ID       string `yaml:"id"`
 	Template *struct {
@@ -75,11 +74,10 @@ type picturePart struct {
 }
 
 // instancesOf are the numbers of every instance of a template, parameters and derived numbers, in
-// the order of the format: the combinations of the parameters as an odometer, the parameters in
-// the order of their names, the first changing slowest and each through its domain upwards, and
-// those for which the constraint holds (format/README.md, section 23). The expressions are
-// evaluated by go.starlark.net at the version of the format's dialect, as module-kit does. The
-// results of the solver are not among the numbers: the port does not call solve.
+// the order of the format: the combinations of the parameters as an odometer over the names in
+// order, the first slowest and each through its domain upwards, and those for which the constraint
+// holds. The expressions are evaluated by go.starlark.net at the version of the format's dialect,
+// as module-kit does, so that no second dialect can diverge from the format (R12). The results of the solver are not among the numbers: the port does not call solve.
 func instancesOf(task templateTask) ([]map[string]int64, error) {
 	t := task.Template
 	names := slices.Sorted(maps.Keys(t.Parameters))
@@ -147,7 +145,6 @@ func instancesOf(task templateTask) ([]map[string]int64, error) {
 		if holds {
 			instances = append(instances, numbers)
 		}
-		// The odometer: the last parameter turns fastest.
 		i := len(names) - 1
 		for ; i >= 0; i-- {
 			if values[i] < *t.Parameters[names[i]].To {
@@ -167,7 +164,7 @@ func instancesOf(task templateTask) ([]map[string]int64, error) {
 }
 
 // substitution is what the format's substitution reads from left to right in a single pass: a
-// doubled brace, which is one brace, or a placeholder (format/README.md, section 23).
+// doubled brace, which is one brace, or a placeholder.
 var substitution = regexp.MustCompile(`\{\{|\}\}|\{[a-z][a-z0-9_]*\}`)
 
 // fill puts an instance's numbers in place of the placeholders of a text, and one brace in place of
@@ -206,8 +203,7 @@ func sourceName(path string) (string, bool) {
 	return namedPlaceholder.ReplaceAllString(name, ""), true
 }
 
-// pathPattern is the pattern of the names of a template's pictures in media/pictures/: the path
-// with a number in place of each placeholder.
+// pathPattern is the pattern of the names of a template's pictures in media/pictures/.
 func pathPattern(path string) *regexp.Regexp {
 	name := strings.TrimPrefix(path, "pictures/")
 	parts := placeholder.Split(name, -1)
@@ -219,8 +215,7 @@ func pathPattern(path string) *regexp.Regexp {
 
 // variant is a source with a picture for some instances: when names the numbers they have, and a
 // variant with no when is for every instance. A variant of solver has no picture of its own: it is
-// what that function of the template's solver gives on the instance's numbers (amendment T53 to
-// R12).
+// what that function of the template's solver gives on the instance's numbers (R12).
 type variant struct {
 	When    map[string]int64 `json:"when"`
 	Picture json.RawMessage  `json:"picture"`
@@ -286,13 +281,13 @@ func sourceKeys(raw json.RawMessage) error {
 	return exactKeys(raw, keyedByData[kind.Kind])
 }
 
-// solverSteps is the budget of steps of a template's solver, the top level and every call together
-// (format/README.md, section 24).
+// solverSteps is the format's budget of steps of a template's solver, the top level and every call
+// together.
 var solverSteps uint64 = 100000000
 
 // solverProgram is the solver of a template, as the port runs it to build its pictures: once, on one
 // thread under the dialect of the format, and then a function of it on each instance, as module-kit
-// runs solve (format/README.md, section 24).
+// runs solve.
 type solverProgram struct {
 	id      string
 	source  string
@@ -301,8 +296,7 @@ type solverProgram struct {
 	err     error
 }
 
-// dialect are the options of the format's dialect: those that standalone's solvers run with
-// (format/README.md, section 24).
+// dialect are the options of the format's dialect: those that standalone's solvers run with.
 var dialect = &syntax.FileOptions{Set: true, While: true, TopLevelControl: true, GlobalReassign: true}
 
 // solverCall is a function of a template's solver to call for a picture: on the numbers named shown,
@@ -318,7 +312,7 @@ type solverCall struct {
 func (p *solverProgram) figure(function string, numbers map[string]int64, shown map[string]bool) (json.RawMessage, error) {
 	if p.thread == nil {
 		p.thread = &starlark.Thread{Name: p.id}
-		// print writes nothing in the dialect of the format (format/README.md, section 24).
+		// print writes nothing in the dialect of the format.
 		p.thread.Print = func(*starlark.Thread, string) {}
 		p.thread.SetMaxExecutionSteps(solverSteps)
 		if p.source == "" {
@@ -358,9 +352,8 @@ func (p *solverProgram) figure(function string, numbers map[string]int64, shown 
 	return json.RawMessage(encoded.(starlark.String)), nil
 }
 
-// pictureFor is the picture of a source for an instance: the first variant whose when the instance's
-// numbers have, with the numbers in place of the placeholders of its strings; or what the function
-// of the solver that the source names gives on them.
+// pictureFor is the picture of a source for an instance: of the first variant whose when the
+// instance's numbers have, or of the solver's function that the source names.
 func pictureFor(id string, variants []variant, numbers map[string]int64, call *solverCall) (drawing, error) {
 	for _, v := range variants {
 		if v.Solver != "" {
@@ -446,9 +439,8 @@ func fillTree(tree any, numbers map[string]int64) (any, error) {
 
 // drawTemplatePictures draws the picture of every instance of every template of the module whose
 // picture path holds placeholders, from the sources of the folder, by the path of each file in the
-// module; and gives the pattern of the names of each such picture, to find the stale ones. Every
-// instance of a picture is drawn at the size the template gives it, the largest drawing of them
-// all, each on white in the middle; a source no template names is an error.
+// module; and gives the pattern of the names of each such picture, to find the stale ones. A source
+// no template names is an error (R12).
 func drawTemplatePictures(folder, module string) (map[string][]byte, []*regexp.Regexp, int, error) {
 	tasks, err := filepath.Glob(filepath.Join(module, "tasks", "*.yaml"))
 	if err != nil {
@@ -582,8 +574,8 @@ func drawInstances(id string, part picturePart, variants []variant, instances []
 }
 
 // paintPadded is a drawing painted in the middle of a white image of a size in CSS px, as a PNG.
-// drawInstances calls it on a pool of as many goroutines as Go runs at once, one per core: nearly
-// all the time of template-pictures is painting and compressing, and each instance is its own.
+// drawInstances calls it on a pool of goroutines, one per core: nearly all the time of
+// template-pictures is painting and compressing, and each instance is its own (R36).
 func paintPadded(picture drawing, width, height int) ([]byte, error) {
 	img := paintImage(picture)
 	padded := whiteImage(width, height)
@@ -665,7 +657,7 @@ func runTemplatePictures(folder, module string, check bool, stdout, stderr io.Wr
 // shownNames are the names of the numbers that solve of a template gets: those whose placeholder
 // stands in the open fields that the format names — the statement, its paragraphs and pictures,
 // the givens, the unknown, the text of an item, the text pieces of its line and the options of its
-// answer slots bound choice (format/README.md, section 24).
+// answer slots bound choice.
 func shownNames(data []byte) (map[string]bool, error) {
 	var task struct {
 		Statement any `yaml:"statement"`

@@ -38,7 +38,7 @@ statement:
 const pairsSource = `{"kind": "venn", "total": "{sum}", "sets": [{"label": "A", "count": "{a}"}, {"label": "B", "count": "{b}"}], "both": "?"}`
 
 // templateModule is a module with the tasks given, and a folder of sources of template pictures
-// with the files given, beside it.
+// beside it.
 func templateModule(t *testing.T, tasks, sources map[string]string) (folder, module string) {
 	t.Helper()
 	root := t.TempDir()
@@ -97,7 +97,7 @@ func readTemplate(t *testing.T, text string) templateTask {
 
 // The instances come as an odometer, the parameters in the order of their names, the first
 // slowest; the derived numbers are Starlark's, with floored division and remainder; and the
-// constraint leaves out the combinations it does not hold for (format/README.md, section 23).
+// constraint leaves out the combinations it does not hold for, as the format's templates have it.
 func TestInstancesOf(t *testing.T) {
 	instances := pairsInstances(t)
 	var got []string
@@ -288,13 +288,12 @@ const pairsFigure = `
     results: [row]
 `
 
-// solverTemplate is pairsTemplate with the solver given.
 func solverTemplate(width, height int, solver string) string {
 	return strings.Replace(pairsTemplate(width, height), "  constraint: a != b\n", "  constraint: a != b\n"+solver, 1)
 }
 
 // A source of solver is the picture that a function of the template's solver builds from the
-// instance's numbers, run under the dialect of the format (amendment T53 to R12).
+// instance's numbers, run under the dialect of the format (R12).
 func TestTemplatePicturesSolver(t *testing.T) {
 	width, height := pairsSize(t)
 	task := readTemplate(t, solverTemplate(width, height, pairsFigure))
@@ -380,7 +379,7 @@ func TestTemplatePicturesSolverRefuses(t *testing.T) {
 	}
 }
 
-// indented indents each line of a program as a block scalar of the solver holds it.
+// indented indents a program as a block scalar of the solver holds it.
 func indented(body string) string {
 	var lines []string
 	for line := range strings.Lines(body) {

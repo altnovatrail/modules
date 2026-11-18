@@ -17,9 +17,8 @@ import { ROOT, mustRun, run, temporaryFolder } from "./helpers.mjs";
 const PARTS = join(ROOT, "spec", "format", "examples");
 
 // A module of the format's examples of olympiad-math — manifest, skill graph, techniques and solving
-// steps — with the traps of modules/olympiad-math, whose IDs the port writes, one of them its own
-// until the example has it (amendment T50 to R23), as _port-survey makes it, and the repository's
-// LICENSE.
+// steps — with the traps of modules/olympiad-math, whose IDs the port writes, as _port-survey makes
+// it, and the repository's LICENSE.
 function exampleModule(t) {
   const module = join(temporaryFolder(t), "olympiad-math");
   mkdirSync(module);

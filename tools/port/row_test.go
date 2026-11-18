@@ -30,9 +30,8 @@ func chunks(t *testing.T, data []byte) []string {
 
 // drawsAsEveryKind holds each picture to what every kind draws: an opaque, inked PNG of the size
 // its part names, twice as many pixels each way, with the chunks IHDR, IDAT and IEND alone, and the
-// same bytes again. Each picture is a subtest of its own, run in parallel with the others: they
-// are most of the time of the tests under -race, and the race detector sees them drawn at once, as
-// the pool of template-pictures draws them (R36).
+// same bytes again. The pictures are parallel subtests, so that the race detector sees them drawn
+// at once, as the pool of template-pictures draws them (R36).
 func drawsAsEveryKind(t *testing.T, raws ...string) {
 	t.Helper()
 	for i, raw := range raws {
@@ -72,8 +71,8 @@ func drawRow(t *testing.T, raw string) ([]byte, mapping) {
 	return data, part
 }
 
-// Every form of a row draws: an opaque PNG of the size the part names, twice as many pixels each
-// way, with the chunks IHDR, IDAT and IEND alone, and the same bytes again.
+// Every form of a row draws: an opaque PNG of the size the part names, with the chunks IHDR, IDAT
+// and IEND alone, and the same bytes again.
 func TestRowDraws(t *testing.T) {
 	for _, raw := range []string{
 		rowJSON,

@@ -8,7 +8,7 @@ import (
 	"testing"
 )
 
-// The kinds of T21 draw as every kind does: opaque, deterministic, of the size their part names.
+// A lattice, tiles, rows of shapes and stairs draw as every kind does.
 func TestKinds21Draw(t *testing.T) {
 	t.Parallel()
 	drawsAsEveryKind(t,
@@ -160,7 +160,7 @@ func TestWrittenLabels(t *testing.T) {
 }
 
 // The alt of a task solved from the picture names every text the picture writes, and no alt names
-// the key unless the question does (R20; T21).
+// the key unless the question does (R21).
 func TestConvertAltOfPicture(t *testing.T) {
 	ex := example("fig-1")
 	ex.Picture = json.RawMessage(`{"kind": "lattice", "width": 4, "height": 4, "lines": [[1, 0, 1, 3]],
@@ -216,8 +216,8 @@ func TestSolvedFromPicture(t *testing.T) {
 	}
 }
 
-// The review of T21: a picture that writes its key lets the alt name it, with a note; a label of
-// capitals is named as written; a solver reads the picture whatever its head's spacing.
+// A picture that writes its key lets the alt name it, with a note; a label of capitals is named as
+// written; a solver reads the picture whatever its head's spacing (R21).
 func TestAltAfterReview(t *testing.T) {
 	ex := example("tiles-1")
 	ex.Picture = json.RawMessage(`{"kind": "tiles", "sides": 4, "layout": "row", "tiles": [["14", "", "", ""], ["", "", "", ""]]}`)

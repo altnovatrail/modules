@@ -1,4 +1,4 @@
-// The tests of the recipe eval-check (R04, R25): the flat layout of each module's eval/, eval/<id>.json
+// The tests of the recipe eval-check (R04; R25): the flat layout of each module's eval/, eval/<id>.json
 // with the name the sample's ID and nothing named with a dot, and each module's eval set held by spec's
 // sample-check --eval-set — the real one, from the spec/ of this repository at its tag, and a stand-in
 // where a test holds the form of the call or a status sample-check gives. The recipe calls no
@@ -153,8 +153,8 @@ test("nothing in eval/ is named with a dot, at any depth: the repository publish
     `modules/maths/eval/.gitkeep: ${DOT}`,
     `modules/maths/eval/.${SAMPLE_ID}.json: ${DOT}`,
   ]);
-  // What is named with a dot is no part of the eval set (contracts/README.md in spec, section 13),
-  // so sample-check does not get it.
+  // What is named with a dot is no part of the eval set, by the layout of an eval set of spec's
+  // contracts, so sample-check does not get it.
   assert.deepEqual(checked(result).verdicts, []);
 });
 
@@ -273,8 +273,8 @@ test("a name that is no ID breaks the layout", (t) => {
     const lines = refusals(result);
     assert.equal(lines.length, 1, result.stderr);
     assert.match(lines[0], NOT_NAMED);
-    // A name that does not end in .json, letter case and all, is no sample (contracts/README.md in
-    // spec, section 13), so sample-check does not get it; one that does, it holds.
+    // A name that does not end in .json, letter case and all, is no sample by the layout of an eval
+    // set of spec's contracts, so sample-check does not get it; one that does, it holds.
     assert.deepEqual(checked(result).verdicts, name.endsWith(".json") ? ["sample-check: ok — 1 sample of the eval set of novatrail/maths"] : []);
   }
 });

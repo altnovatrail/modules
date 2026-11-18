@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-// The kinds of T20 draw as every kind does: opaque, deterministic, of the size their part names.
+// Containers, a grid, piles, two groups, a balance and a ring draw as every kind does.
 func TestKinds20Draw(t *testing.T) {
 	t.Parallel()
 	drawsAsEveryKind(t,

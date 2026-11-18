@@ -12,13 +12,12 @@ import (
 	"strings"
 )
 
-// A survey runs the port over every task of standalone that no batch names yet, before the batches
-// of E3 are written: which tasks it writes, by the kind of their answer, which wait for a picture of
-// a kind it does not draw yet, and which it refuses (R20). It reads no overlays, so it writes into a
-// module of its own, which the recipe port-survey makes of the format's examples, and which never
-// enters the repository: its pictures have surveyAlt, an explanation that names the key of a choice
-// is counted rather than refused, and a number with words after it, which no batch gives units for,
-// is a choice tapped.
+// A survey runs the port over every task of standalone that no batch names: which tasks it writes,
+// by the kind of their answer, which wait for a picture of a kind it does not draw, and which it
+// refuses (R20). It reads no overlays, so it writes into a module of its own, which the recipe
+// port-survey makes of the format's examples and which never enters the repository: its pictures
+// have surveyAlt, an explanation that names the key of a choice is counted rather than refused, and
+// a number with words after it, which no batch gives units for, is a choice tapped.
 type survey struct {
 	gitCommand, goCommand string
 	standalone, commit    string
@@ -26,7 +25,6 @@ type survey struct {
 	prove                 bool
 }
 
-// runSurvey is the survey, as run calls it, with its exit status.
 func runSurvey(s survey, stdout, stderr io.Writer) int {
 	fail := func(err error) int {
 		fmt.Fprintf(stderr, "port: %v\n", err)
@@ -138,7 +136,7 @@ func report(out io.Writer, s survey, total int, written []Converted, waiting map
 	fmt.Fprintf(out, "\nport: refused: %d\n", len(refused))
 }
 
-// batchedTasks are the tasks that the batches of a folder name, every file <name>.yaml of it.
+// batchedTasks are the tasks that the batches of a folder, its files <name>.yaml, name.
 func batchedTasks(dir string) (map[string]bool, error) {
 	entries, err := os.ReadDir(dir)
 	if err != nil {

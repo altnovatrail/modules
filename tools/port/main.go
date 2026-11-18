@@ -14,8 +14,8 @@ import (
 )
 
 // The exit statuses: 0 when the port wrote the tasks or found them as it would write them, 1 when
-// --check found a file of the module other than the port would write, or a survey refused a task,
-// and 2 when it could not do its work.
+// --check found a file other than the port would write, or a survey refused a task, and 2 when it
+// could not do its work (R12).
 const (
 	statusDone      = 0
 	statusDiffers   = 1
@@ -52,7 +52,7 @@ func main() {
 	os.Exit(run(os.Args[1:], os.Stdout, os.Stderr))
 }
 
-// run is the command, apart from the process: its arguments, and where it writes.
+// run is the command apart from the process, so that the tests call it.
 func run(args []string, stdout, stderr io.Writer) int {
 	flags := flag.NewFlagSet("port", flag.ContinueOnError)
 	flags.SetOutput(io.Discard)
@@ -136,8 +136,7 @@ func run(args []string, stdout, stderr io.Writer) int {
 	return statusDone
 }
 
-// portAll converts every task of a batch, in the order of their IDs, or fails on the first that
-// cannot be.
+// portAll converts every task of a batch, in the order of their IDs, or fails on the first.
 func portAll(gitCommand, standalone, batchFile, overlayDir string) ([]Converted, error) {
 	batch, err := readBatch(batchFile)
 	if err != nil {
@@ -195,7 +194,7 @@ func convertOf(clone string, ex Example, topics map[string]Topic, batch Batch, t
 	return convert(ex, batch, task, overlay, "content/examples/"+ex.Topic+".json")
 }
 
-// paths are the files of the converted tasks, by their paths from the module's folder.
+// paths are the files of the converted tasks, by their paths in the module.
 func paths(converted []Converted) map[string][]byte {
 	files := map[string][]byte{}
 	for _, c := range converted {
@@ -210,9 +209,8 @@ func owned(id string) []string {
 	return []string{"tasks/" + id + ".yaml", "media/pictures/" + id + ".png", "media/pictures/" + id + "-solution.png"}
 }
 
-// stale names the files of the module that the port wrote for a task of the batch once, and would
-// not write now: a picture the task no longer has. Tasks of other batches are not the port's to
-// judge here.
+// stale names the files of the module that the port may write for a task of the batch and does
+// not write now, such as a picture the task does not have. The files of other batches' tasks are left alone (R12).
 func stale(module string, converted []Converted) ([]string, error) {
 	var old []string
 	for _, c := range converted {
@@ -277,7 +275,6 @@ func write(module string, converted []Converted) error {
 	return placeFiles(module, files, old)
 }
 
-// isFolder refuses a module that is no folder.
 func isFolder(module string) error {
 	info, err := os.Stat(module)
 	if err != nil {

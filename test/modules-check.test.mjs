@@ -1,7 +1,7 @@
 // The tests of the recipe _modules-check (R03, R10, R11) before the first release: the tree of
 // modules/, and every module in it checked, built and compared by module-kit — the real one of the
-// toolchain stage on the PATH, and a stand-in where the test holds the calls to the forms of
-// module-kit's architecture 3.5 and 3.6 (R102 spec). Against published versions — published.test.mjs.
+// toolchain stage on the PATH, and a stand-in where the test holds the calls to the call forms of
+// module-kit's own documents (R102 spec). Against published versions — published.test.mjs.
 
 import assert from "node:assert/strict";
 import { mkdirSync, readdirSync, renameSync, symlinkSync, writeFileSync } from "node:fs";

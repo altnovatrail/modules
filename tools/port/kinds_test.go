@@ -8,9 +8,8 @@ import (
 	"golang.org/x/image/font"
 )
 
-// Every kind the port draws, in every form the tests give it, draws as a row does: an opaque PNG
-// of the size its part names, twice as many pixels each way, with IHDR, IDAT and IEND alone, the
-// same bytes again, and something inked (T19).
+// A clock, a table, bars, a number line and a calendar, in every form the tests give them, draw as
+// every kind does.
 func TestKindsDraw(t *testing.T) {
 	t.Parallel()
 	drawsAsEveryKind(t,

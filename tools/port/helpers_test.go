@@ -11,9 +11,8 @@ import (
 	"testing"
 )
 
-// The tests make up their own standalone: a folder with content/examples/<topic>.json, and tasks
-// in its form with texts of their own, so that they read nothing of a clone, and nothing of spec,
-// which the shared go.yml does not check out.
+// The tests make up their own standalone, with texts of their own, so that they read nothing of a
+// clone, and nothing of spec, which the shared go.yml does not check out (R12).
 
 const testCommit = "89986bc01a12ff3188cf08194677bfae0464568a"
 
@@ -49,8 +48,8 @@ func git(t *testing.T, dir string, args ...string) string {
 	return strings.TrimSpace(string(out))
 }
 
-// standaloneWith writes a made-up clone of standalone holding the tasks given, by topic file, and
-// commits them, and gives the clone and its commit.
+// standaloneWith commits a made-up clone of standalone holding the tasks given, by topic file, and
+// gives the clone and its commit.
 func standaloneWith(t *testing.T, files map[string][]Example) (string, string) {
 	t.Helper()
 	clone := t.TempDir()
@@ -107,7 +106,6 @@ func testBatch(ids ...string) Batch {
 	return batch
 }
 
-// batchFile writes a batch file of the tasks given, of the commit given.
 func batchFile(t *testing.T, commit string, ids ...string) string {
 	t.Helper()
 	text := "standalone: " + commit + "\ncanvas: {kind: handwriting_sheet, grid: squares}\n" +

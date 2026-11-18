@@ -81,9 +81,8 @@ func skipsPlaced(skips []bool) error {
 	return nil
 }
 
-// The geometry of piles, in CSS px: a counter's radius, how far apart two counters stand, the gap
-// between groups, how wide an ellipsis is, how tall a line of counters is, the room between piles,
-// the room around what stands beside a pile, the room inside a box, and how wide a pile across is.
+// The geometry of piles, in CSS px: pileAside is the room around what stands beside a pile, and
+// columnWide how wide a pile across is.
 const (
 	counterRadius = 7
 	counterPitch  = 18
@@ -104,11 +103,11 @@ type token struct {
 	line     int
 }
 
-// tokens are a pile's counters and ellipses laid out in lines no wider than given, from 0: a pile
-// cut short shows half its counters, an ellipsis and the other half; a heap of no stated size shows
-// a counter, an ellipsis and a counter; any other pile every counter, with a gap after every group.
-// A line breaks before a group that would pass the width, and within a group wider than a line
-// before a counter that would. It gives how many lines they take and how far the widest reaches.
+// tokens are a pile's counters and ellipses laid out in lines no wider than given: a pile cut short
+// shows half its counters, an ellipsis and the other half; a heap of no stated size a counter, an
+// ellipsis and a counter; any other pile every counter, with a gap after every group. A line breaks
+// before a group that would pass the width, and within a group wider than a line before a counter
+// that would. It gives how many lines they take and how far the widest reaches.
 func (pile pileItem) tokens(width float64) ([]token, int, float64) {
 	var kinds []bool // true for an ellipsis
 	var gaps []bool  // a gap before the token
@@ -156,7 +155,6 @@ func (pile pileItem) tokens(width float64) ([]token, int, float64) {
 // emptyWide is how wide the place of a pile of no counters is.
 const emptyWide = 40
 
-// pileBox is how a pile is laid out: its counters, how many lines they take, how wide they reach.
 type pileBox struct {
 	tokens []token
 	lines  int
@@ -226,7 +224,7 @@ func (p *pilesPicture) size() (int, int) {
 	return 2*margin/2 + int(labels+width+values+2*room+0.5), 2*margin/2 + int(height+2*room+0.5)
 }
 
-// ownRoom is the room inside a pile's own box, where any pile has one.
+// ownRoom is the room inside a pile's own box, where any pile has one: then every pile keeps it.
 func (p *pilesPicture) ownRoom() float64 {
 	for _, pile := range p.Piles {
 		if pile.Boxed {
@@ -317,7 +315,7 @@ func (pile pileItem) draw(c canvas, b pileBox, left, top, own float64) {
 	}
 }
 
-// counter draws one counter centred on (x, y): a dot or a square, dark or, light, an outline.
+// counter draws one counter centred on (x, y): dark, or light as an outline.
 func (pile pileItem) counter(c canvas, x, y float64) {
 	light := pile.Fill == "light"
 	if pile.Shape == "square" {

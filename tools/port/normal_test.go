@@ -18,7 +18,7 @@ func TestChoiceForm(t *testing.T) {
 	}
 }
 
-// The search of a phrase, by the examples of format/README.md, section 20.
+// The search of a phrase, by the examples the format gives of it.
 func TestNames(t *testing.T) {
 	for _, test := range []struct {
 		text, phrase string
