@@ -14,7 +14,7 @@ Open tasks outside the current epic, each as its body, in Russian (R154 spec, R1
 - **Сделать:**
   1. «Modules»: шаги образа и кешей Go — двумя вызовами действия, `altnovatrail/.github/.github/actions/toolchain@<sha> # vX.Y.Z` по SHA релиза, с `check: modules`: до работы и после неё с `save: "true"`; Dependabot поднимает его группой `shared-workflows`.
   2. Шаги рецептов: `toolchain.sh` монтирует `RUNNER_TEMP` только на чтение, а кеши Go действия лежат в `${{ runner.temp }}/go-cache` — каждый шаг запускает `docker run` с этой папкой на `/go-cache` и `GOMODCACHE`, `GOCACHE`, как в комментарии `action.yml`, или другой способ, который сессия выберет и запишет; `.cache/go/` уходит.
-  3. Поправка к R36 и к R41; правило `ci`, `docs/architecture.md`, раздел 3.2; запись источника о действии, если её не хватает.
+  3. R36 и R41 — переписать на месте, каждую целиком, с её поправками (R160 spec); правило `ci`, `docs/architecture.md`, раздел 3.2; запись источника о действии, если её не хватает.
 - **Как проверить:** проверки pull request зелёные, «Modules» — с действием; правило `ci`: `just test`; `just -f spec/justfile docs-check-repo`; `/code-review high`, один круг.
 - **Разделы:** R36, R41; R49 `.github`, поправка T75 к R41 `.github`; sources 4.23.
 
@@ -36,10 +36,10 @@ Open tasks outside the current epic, each as its body, in Russian (R154 spec, R1
 #### T85. Документы без истории (R160 spec)
 
 - **Цель:** документы `docs/`, README.md, CLAUDE.md и правила `.claude/rules/` держат текущее состояние, а не историю (R160 spec, «One home», «A done task»).
-- **Почему:** вторая часть T84 (строка 7.28 COORDINATION.md `spec`), отделённая по правилу 11 RUN.md: `docs/architecture.md` — 173 КБ, и её абзац «Status» — хроника тегов от v0.2.9 до v0.18.27.
+- **Почему:** вторая часть T84 (строка 7.28 COORDINATION.md `spec`), отделённая по правилу 11 RUN.md: `docs/architecture.md` — 173 КБ; её абзац «Status», хронику тегов, T84 уже убрала.
 - **Зависит от:** T84.
 - **Сделать:**
-  - `docs/architecture.md`: без абзаца «Status» и других хроник версий, статусов и повышений; документ называет файл, где задано значение — подмодуль `spec`, `ARG` Dockerfile, `uses:` workflow, `version` манифеста, — а не значение; устройство описано как есть, решение — номером, без пересказа.
+  - `docs/architecture.md`: без хроник версий, статусов и повышений; документ называет файл, где задано значение — подмодуль `spec`, `ARG` Dockerfile, `uses:` workflow, `version` манифеста, — а не значение; устройство описано как есть, решение — номером, без пересказа.
   - README.md, `docs/README.md`, CLAUDE.md, `.claude/rules/` — так же; строки CLAUDE.md и RUN.md с тегом `spec` остаются (R160 spec, «Decisions»).
   - Ссылка на поправку записи `spec`, которую тег переписал на месте (R143, R145, R154, R155 spec и другие — по журналу `spec` на теге подмодуля), — на запись.
   - Журнал: переписать на месте только записи, которые эта задача меняет (R160 spec); их свой предел в `entries` `docs-budgets.json` — убрать, если запись стала не длиннее 12 КБ.
