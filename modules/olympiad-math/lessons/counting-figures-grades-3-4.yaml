@@ -1,9 +1,8 @@
-# A lesson of E3 (T41; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
-# counting-figures on the band of grades 3–4. Its texts are those of the page counting-figures of
-# mathtrail-standalone's site at 42b4408, put to the learner, with its cards and its worked example
-# rewritten so as to solve no task of the module (amendment T41 to R14), and its pictures are drawn
-# by the port from tools/port/pictures/olympiad-math/ (amendment T41 to R12). standalone's content
-# in this module carries the MIT notice of NOTICE.
+# The texts of this lesson are those of the page counting-figures of mathtrail-standalone's site at
+# 42b4408, put to the learner, with its cards and its worked example rewritten so as to solve no
+# task of the module (R14), and its pictures are drawn by the port from
+# tools/port/pictures/olympiad-math/ (R12). standalone's content in this module carries the MIT
+# notice of NOTICE.
 id: counting-figures-grades-3-4
 title: "Counting figures: going further"
 skills: [counting-figures]

@@ -1,18 +1,17 @@
-# A template of arithmetic-tricks (T53; R22): the solver of mathtrail-standalone
+# A template of arithmetic-tricks (R22): the solver of mathtrail-standalone
 # content/solvers/arithmetic.tricks/shapes-rows.star at 42b4408, made a solver of the template. It
 # came from reference task tri-34-d3-6, whose numbers are one of its instances.
 # The numbers of reference task tri-34-d3-6: first 9, second 7, third 8.
-# Its leading question is the hint of tri-34-d3-6, as it stands (amendment T51 to R22).
+# Its leading question is the hint of tri-34-d3-6, as it stands (R22).
 # standalone's solver reads the rows of the picture, and the numbers beside the first three rows of
 # the reference task's picture, 9, 7 and 8, are the numbers that the template varies: from 7 to 11,
 # from 5 to 9 and from 6 to 10. The constraint keeps their sum even and the three shapes whole,
 # above 0 and unlike, so that no trap value equals the key or another. figure builds the picture
-# from them, and solve reads its rows with standalone's code, so the picture that the port draws
-# for each instance, from the source {"solver": "figure"} of
-# tools/port/template-pictures/olympiad-math/, is what the solver reads (amendment T53 to R22).
-# standalone's sandbox gives it sum, which the dialect of the format has not (format/README.md,
-# section 24), so loops add. The trap values are derived numbers, the mistakes of the reference
-# task.
+# from them, and solve reads its rows with standalone's code, so the picture that the port draws for
+# each instance, from the source {"solver": "figure"} of
+# tools/port/template-pictures/olympiad-math/, is what the solver reads (R22). standalone's sandbox
+# gives it sum, which the dialect of the format has not, so loops add. The trap values are derived
+# numbers, the mistakes of the reference task.
 # The solver carries this notice:
 # MIT License
 #

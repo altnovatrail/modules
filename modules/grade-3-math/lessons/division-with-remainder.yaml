@@ -2,7 +2,7 @@
 # a workbook and the three pages of the skill, in the order of their difficulty. Its texts name no
 # digit, since the keys of its pages are small numbers; the lines of the example and their values
 # hold numbers, which the leak check does not search, and none of its lines is a line of a page of
-# the lesson (T55).
+# the lesson (R15).
 id: division-with-remainder
 title: Division with a remainder
 skills: [division-with-remainder]

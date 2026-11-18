@@ -1,6 +1,6 @@
-# A template of combinatorics-enumeration (T35; R22): the solver of mathtrail-standalone
-# content/solvers/combinatorics.enumeration/digits.star at 42b4408, made a solver of the template. It
-# came from reference task enum-34-d5-1, whose numbers are one of its instances.
+# A template of combinatorics-enumeration (R22): the solver of mathtrail-standalone
+# content/solvers/combinatorics.enumeration/digits.star at 42b4408, made a solver of the template.
+# It came from reference task enum-34-d5-1, whose numbers are one of its instances.
 # The numbers of reference task enum-34-d5-1: digit_sum 5.
 # Its capital DIGIT_SUM is the number that the statement shows; SMALLEST and LARGEST stay the
 # three-digit numbers, as in the reference task. The sums from 3 to 7 keep the count small enough to

@@ -1,11 +1,11 @@
-# A template of arithmetic-tricks (T36; R22): the solver of mathtrail-standalone
+# A template of arithmetic-tricks (R22): the solver of mathtrail-standalone
 # content/solvers/arithmetic.tricks/long-way.star at 42b4408, made a solver of the template. It came
 # from reference task tri-12-d5-5, whose numbers are one of its instances.
 # The numbers of reference task tri-12-d5-5: first 100.
 # Its capital FIRST is the number that the statement shows, even and from 20 to 100. standalone's
-# sandbox gives it sum, which the dialect of the format has not (format/README.md, section 24), so
-# a loop adds the terms. The trap values are the mistakes of the reference task: two of them are
-# numbers of their own, 0 and 1, and two are derived numbers.
+# sandbox gives it sum, which the dialect of the format has not, so a loop adds the terms. The trap
+# values are the mistakes of the reference task: two of them are numbers of their own, 0 and 1, and
+# two are derived numbers.
 # The solver carries this notice:
 # MIT License
 #

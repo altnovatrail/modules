@@ -1,10 +1,9 @@
-# The skill graph of olympiad mathematics (R07; E3; docs/architecture.md, section 3.5 of modules):
-# the topics of mathtrail-standalone that the module's tasks train and their links, builds_on, each
-# entry verbatim as the format's example of this module has it, but counting-figures and
-# geometry-cubes-paper, which the example lacks: they come from standalone's
-# content/catalogs/topics.json at 42b4408, with its name and description. Their tiers come from the
-# graph, and the names of the tiers are those standalone gives the layers of its map. standalone's
-# content in this module carries the MIT notice of NOTICE.
+# The skill graph of olympiad mathematics (R05): the topics of mathtrail-standalone that the
+# module's tasks train and their links, builds_on, each entry verbatim as the format's example of
+# this module has it, but counting-figures and geometry-cubes-paper, which the example lacks: they
+# come from standalone's content/catalogs/topics.json at 42b4408, with its name and description.
+# Their tiers come from the graph, and the names of the tiers are those standalone gives the layers
+# of its map. standalone's content in this module carries the MIT notice of NOTICE.
 tiers: [Foundations, Rules, Hard problems]
 skills:
   counting-gaps:

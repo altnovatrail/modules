@@ -2,7 +2,7 @@
 # a workbook and the three pages of the skill, in the order of their difficulty. Its texts name no
 # digit and no sign, since the keys of its pages are fractions and signs; the lines of the example
 # and their values hold them, which the leak check does not search, and none of its lines is a line
-# of a page of the lesson (T55). The skill graph puts it after the lesson of fractions of a whole.
+# of a page of the lesson (R15). The skill graph puts it after the lesson of fractions of a whole.
 id: comparing-fractions
 title: Comparing fractions
 skills: [comparing-fractions]

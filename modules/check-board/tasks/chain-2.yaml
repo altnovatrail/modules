@@ -1,8 +1,5 @@
-# The check board's task chain-2 of tutor (R33), from its eval/bank.json at v0.1.35, as
-# internal/task.Sheet builds it (R68 tutor): the statement, a handwriting sheet of the default
-# grid, one answer slot anywhere with the number of the bank's key "11", the solution a
-# paragraph to a line, the bank's traps with no trap values, and its leak phrases, with the key in
-# words after them.
+# The check board's task chain-2 of tutor's eval/bank.json, as internal/task.Sheet builds it
+# (R68 tutor).
 id: chain-2
 statement:
   - text: "Вычисли (47 + 19) : 6."

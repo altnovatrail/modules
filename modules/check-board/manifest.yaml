@@ -1,8 +1,9 @@
-# The manifest of the module of tutor's check board (R33; the 2026-11-14 amendment to R76 spec):
-# the eleven tasks of the board, so that the author solves them in the app on the path a learner
-# takes. It is in Russian, as the tasks are, and for adults alone, with no grades and one band. Its
-# tasks have a verdict, so it has the rung templates of a hint ladder; they hold no digit, since
-# task.no-leaks searches them for the keys of every task.
+# The manifest of the module of tutor's check board (R33; R76 spec): the eleven tasks of the board,
+# so that the author solves them in the app on the path a learner takes. It is in Russian, as the
+# tasks are, and for adults alone, with no grades and one band. Its tasks have a verdict, so it has
+# the rung templates of a hint ladder; they hold no digit, since task.no-leaks searches them for the
+# keys of every task. The leak phrases of each task end with its key in words, since the leak check
+# reads no number in words (R33).
 module_format_version: "0.4"
 id: novatrail/check-board
 version: "0.1.0"

@@ -1,9 +1,6 @@
-# The check board's task pages of tutor (R33), from its eval/free-bank.json at v0.1.35, as
-# internal/task.Sheet builds it (R68 tutor): the statement, a handwriting sheet of the default
-# grid, one answer slot anywhere with the number of the bank's key "141", the solution a
-# paragraph to a line, the bank's traps with no trap values, and its leak phrases, with the key in
-# words after them.
-# Its leak phrase in English, "66 two-digit pages", is left out: the module is in Russian.
+# The check board's task pages of tutor's eval/free-bank.json, as internal/task.Sheet builds it
+# (R68 tutor). Its leak phrase in English, "66 two-digit pages", is left out: the module is in
+# Russian.
 id: pages
 statement:
   - text: "Страницы книги пронумеровали подряд, с 1 по 75. Сколько всего цифр написали?"
