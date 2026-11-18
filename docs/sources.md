@@ -246,6 +246,16 @@ For architecture 3.2 and 3.3; R38.
 - row В40 `.github`, «В реестр spec»: a caller's move "has to keep in the core what its release and those checks need — `module-kit` of `modules`, which its `release-files` runs", "and put in `toolchain` only what its tests need";
 - the record 13.8 of the sources of `.github`: "`modules`: `module-kit` at `ARG MODULE_KIT_VERSION=v0.3.0`, by the `RUN` that installs Node, just, Go and buf, and its `release-files` runs `_modules-check`, which stops with "module-kit cannot be run; the toolchain stage installs it" without it".
 
+### 4.23. The shared workflows and the action `toolchain` of `.github` v0.1.33
+
+For architecture 3.2 and 3.3; R41.
+
+[altnovatrail/.github, release v0.1.33](https://github.com/altnovatrail/.github/releases/tag/v0.1.33), the tag on commit f1c7e9e, published 2026-11-18, immutable, the release of T75 `.github` after v0.1.32 of T69 `.github`, read 2026-11-18, a clone in the session's temporary folder. `gh release verify v0.1.33 -R altnovatrail/.github`: "Release v0.1.33 verified!". `git diff v0.1.31 v0.1.33 -- .github/`:
+- of the shared workflows only `go.yml`, `self-ci.yml` and `self-release.yml` change, and `go.yml` with no `workflow_call` input, `type`, `default` or permission changed; `codeql.yml`, `documents.yml`, `release.yml`, `scorecard.yml`, `secrets.yml` and `dco.yml` are as at v0.1.31;
+- the T75 amendment to R41 `.github`: "on a miss of the exact key every restore of the Go caches — in `check`, `target`, `fma-diff` and `rules`, and in the composite action [of R49 `.github`] — takes the newest entry of the same check and Dockerfile by the restore key `go-<OS>-<architecture>-<check>-<hash of .devcontainer/Dockerfile>-`, the key without the hash of `go.sum`. Of an entry restored so, `cache-matched-key` other than `cache-primary-key`, the step "Go caches" deletes `mod` and runs no `go mod verify`; it keeps `build` and `lint`", and "The save is as before: on a push to `main` and a miss of the exact key";
+- R49 `.github`: "`.github` has a composite action, `.github/actions/toolchain`, "Toolchain image and Go caches": the image of the caller's stage `toolchain` and the caches of Go for a job of the caller's own that runs Go in that stage", "A caller takes it as `altnovatrail/.github/.github/actions/toolchain@<sha> # vX.Y.Z`, by the SHA of a release, and Dependabot moves it with the shared workflows, in the group `shared-workflows`"; the comment of `action.yml`: "the Go caches lie in ${{ runner.temp }}/go-cache, outside the checkout. Each docker run of the job's work mounts that folder at /go-cache and points Go into it", and its step "Toolchain image" builds `STAGES: toolchain` alone;
+- `tools/toolchain/toolchain.sh` of `spec` v0.18.27, by which this repository's own jobs run their recipes, mounts "the repository at /work, and RUNNER_TEMP read-only at its own path".
+
 ## 5. MathTrail: standalone and its prototype
 
 ### 5.1. The license of standalone
