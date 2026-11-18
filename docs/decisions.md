@@ -480,48 +480,25 @@
 
 ## The outcome of the detailing
 
-**R08. The detailing of `modules` is finished: items 2.1–2.3 of [architecture.md](architecture.md) are decided (R03–R05, R07). Section 2 names only what is deliberately deferred, and section 3.7 what to build. The next epics are the first content (E2), the rest of the port (E3) and the eval sets (E4). T04 goes at `spec` v0.6.5, and the move to v0.6.6, which answered В2–В9, is put off — Д4 in table 4 of RUN.md.** The author's answer 2026-11-02 in the course of T04 (RUN.md, T04, «Решено автором»). The rest is by the task itself. There is no code.
-- **Section 2.** Subsections 2.1–2.3 stand under their former numbers: this log and the tasks of RUN.md refer to them. Of each, what remains is the gist, the decision and the task, and "What is known" and "Options" are moved word for word to the end of sections 3.3, 3.4 and 3.5, as in `tutor`. The section's opening names what is deferred and who will decide it, and how a new item enters the section.
-- **Section 3.7** is the table "what to build": the part, its section, the epic and what it waits for. The first application waits from `modules` only for epic E2 (R76 spec).
-- **The check against the card** (architecture 3.10 spec, at v0.6.5):
-  - the four items of "To decide when detailed" are decided by R03 and R04. Two of them, which the card has named since v0.6.5, — the name of the package's file and where CI takes the earlier versions from, — are carried by В12. On `main` of `spec` — v0.6.6 — the card already names the package's archive, its make-up and its address, and writes that all four items are decided: this is the answer to В4. So no row is needed for the layout and the samples, and В12 is closed by the move — Д4;
-  - the gate of `sim` "if the graph has changed" — В5. `spec` recorded it: what the gate includes is decided by T03 of `sim`. The change of CI for the gate is Д5 in table 4 of RUN.md;
-  - the card does not name the port of standalone, and at v0.6.6 it is the card's only remaining item. R05 and R07 decided it: the card is changed for it by the outcome of the detailing (architecture 3 spec) — a new row В15 of table 3 of RUN.md, «в реестр spec». Into the same row go the authors' samples in the eval set: the card names only the synthetic samples and the volunteers' samples, and the authors' samples are part of the eval set (concepts 3 spec; R04);
-  - the language of the module of olympiad maths is not the card but product 10 spec: В13;
-  - [architecture.md](architecture.md), sections 1 and 3 repeat or unfold the rest of what the card says about `modules`.
-- **The rows «в реестр spec»:**
-  - `spec` recorded В2–В9 on 2026-11-02, all by the recommendations, and В3, В5 and В8 with refinements (`Д80` in table 4 of the RUN.md of `spec` on `main`, in v0.6.6). For В3 a comparison with the newest published version is enough, not one with each published version, which the 2026-11-02 amendment to R03 requires. They are closed by the move to v0.6.6 by the list of `Д80` — Д4;
-  - В10–В14 stand on `main` of this repository, and the recipe `inbox` of `spec` v0.6.5 finds them. They are not yet in table 5 of the RUN.md of `spec` on `main`;
-  - В15 is new.
-- **The next epics**, in the order of table 2 of RUN.md:
-  - **E2 — the first content**, row 3.6 of [COORDINATION.md](../spec/COORDINATION.md). In it:
-    - the first batch by R07 and small sets of school maths for grade 3 and of essays (R41 spec; T38 of `spec`);
-    - CI with the binary of `module-kit` with a checked signature (R77 spec), without the gate of `sim` until its first tag (R76 spec);
-    - the first release — the packages and the index (R62, R63 spec).
-
-    The epic's first task is the move to v0.6.6, with the closing of В2–В9 and В12. The epic waits for the first release of `module-kit` with code, row 3.3, and the epic's own first release is Д3;
-  - **E3 — the rest of the port**, row 3.7: 678 tasks, templates and solvers, 14 skills and the pictures of the other kinds, by R05. It waits for E2;
-  - **E4 — the eval sets**: the checks of samples in CI and the eval runner of `tutor` by R04. It waits for the eval protocol and the form — epics E3 and E4 in the RUN.md of `spec` — and for stage 2.
+**R08. The detailing of `modules` is finished: items 2.1–2.3 of [architecture.md](architecture.md) are decided (R03–R05, R07), and 2.4 by R09. Section 2 names only what is deliberately deferred and keeps each decided subsection under its number, its gist and the entry that decided it; section 3 is how it is built, and section 3.7 what to build.** The author's answer 2026-11-02 in the course of T04; the rest is by the task itself, and the architecture without what was known and the options is by R160 spec.
+- **Section 2.** Subsections 2.1–2.4 stand under their numbers: this log and the archives of `docs/plan/` cite them. What was known and what was chosen from is the entry that decided each — what it rejected and why —, and the external facts in it are records of [sources.md](sources.md). A new item is the next free subsection; once decided, it names its entry, and the decision moves to section 3.
+- **Section 3.7** is the table "what to build": the part, its section, the epic and what it waits for.
+- **The card.** Sections 1 and 3 of [architecture.md](architecture.md) repeat or unfold what architecture 3.10 spec says about `modules`, the port of standalone and the authors' samples in the eval set included; a change of them that changes the card goes to `spec` (RULES.md, Across repositories).
+- **The epics** after it are the first content (E2), the rest of the port (E3) and the eval sets (E4), in this order (R76 spec): [plan/E2.md](plan/E2.md), [plan/E3.md](plan/E3.md), [plan/E4.md](plan/E4.md).
 
 — *Why:*
-- **T04 at v0.6.5** is the author's answer. The outcome checks the decisions against the card of the tag the repository stands on, and what v0.6.6 has already corrected does not go «в реестр spec» as a row a second time. A new tag is taken by a task of its own (RULES.md, Across repositories).
-- **"How it was decided" — in section 3**: the goal of T04 is that section 2 is empty or names what is deferred. The subsections' numbers are needed by the log and the tasks, and the text of "What is known" and "Options" by the links of section 1 and the sources of section 4: the external facts in it stand with their sources.
-- **Three epics**: E2 is everything that the first application waits for (R76 spec). The rest of the port goes after the first batch (row 3.7). The eval sets wait for others' epics and for stage 2, and until them there are no samples in `eval/` ([architecture.md](architecture.md), section 3.4).
-- **The gate of `sim` without an epic**: it is one change of CI when the first tag of `sim` comes out, and what it includes T03 of `sim` will decide.
+- The goal of the detailing is a section 2 that is empty or names what is deferred; the subsections' numbers are needed by the log and the archives.
+- What was known and the options, kept word for word in the architecture, were a second copy of what each entry says it rejected and why, which every change drags after it; the external facts in them have their records in [sources.md](sources.md) (R160 spec).
+- The first content is everything the first application waits for (R76 spec); the rest of the port goes after the first batch, and the eval sets wait for the eval protocol, the volunteer's form and stage 2.
 
 — *Rejected:*
-- a new T09 — the move to v0.6.6 — before T04, as T08 before T07, done at once or only entered: so the executor recommended, and the author chose the outcome now, at the tag the repository stands on;
-- subsections of section 2 without "What is known" and "Options", as in `module-kit`: the link of section 1 to the MIT notice and the sources of section 4 would lead to a text that is not there, and the bar does not accept an external fact without the text that holds it (RULES.md, The bar);
-- deleting subsections 2.1–2.3: the log's links would break, and an entry of the log is not rewritten;
+- the move to `spec` v0.6.6 before T04: the author chose the outcome at the tag the repository stood on, and what v0.6.6 had corrected went «в реестр spec» no second time;
+- what was known and the options of each subsection, word for word, at the end of sections 3.3–3.5: a second copy of the entries;
+- deleting subsections 2.1–2.4: the links of the log and the archives would break;
 - one epic for the first content and the port: R76 spec puts the first batch before the rest of the port;
-- the eval sets inside E2: there is neither the protocol, nor the form, nor the runner yet.
+- the eval sets inside the first content: neither the protocol, nor the form, nor the runner was there.
 
-— *Consequence:*
-- [architecture.md](architecture.md): the status, sections 1, 2, 3, 3.3–3.5 — "How it was decided", 3.7 and 4;
-- RUN.md: T04 is done; table 2 — E2, E3 and E4; table 3 — В15 «в реестр spec», and В12 knows the answer of v0.6.6; table 4 — Д4 and Д5;
-- epic E1 is finished. Its archive and the tasks of E2 are the author's step, when the author chooses the epic from table 2 (RUN.md, «Как устроен план: эпики»).
-
-— RUN.md, T04; [architecture.md](architecture.md), sections 2, 3, 3.3–3.5, 3.7 and 4; R03–R07.
+— [architecture.md](architecture.md), sections 2, 3 and 3.7; [docs/plan/E1.md](plan/E1.md), T04; R03–R07, R09.
 
 ## The tag `spec` v0.9.3
 
