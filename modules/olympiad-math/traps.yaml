@@ -1,8 +1,7 @@
-# The traps of this module's tasks: the 21 traps of the format's example of this module at spec
-# v0.15.0, each with its description, its skills and its advice, in its order (R13; R23): the 20
-# traps of mathtrail-standalone, each ID the trap's with _ made -, and twelve-hours-off, which
-# modules added for the 12-hour slip at the kind time and the example took (amendment T50 to R23;
-# R30). standalone's content in this module carries the MIT notice of NOTICE.
+# The traps of this module's tasks: those of the format's example of this module, word for word and
+# in its order (R30): the 20 traps of mathtrail-standalone, each ID the trap's with _ made -, and
+# twelve-hours-off, the 12-hour slip on a time on a clock (R20). standalone's content in this module
+# carries the MIT notice of NOTICE.
 traps:
   off-by-one:
     description: Off by one when counting gaps, floors or saw cuts.

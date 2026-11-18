@@ -1,4 +1,4 @@
-# A template of parity-alternation (T36; R22): the solver of mathtrail-standalone
+# A template of parity-alternation (R22): the solver of mathtrail-standalone
 # content/solvers/parity.alternation/fewest-moves.star at 42b4408, made a solver of the template.
 # It came from reference task par-34-d4-2, whose numbers are one of its instances.
 # The numbers of reference task par-34-d4-2: coins 5, per_move 3.
@@ -7,7 +7,7 @@
 # odd number of coins turned an odd number at a time, and not a whole number of times over, which is
 # the parity problem of the reference task and takes 3 moves in every instance; the trap values
 # stay apart from the key. standalone's sandbox gives the solver combinations, which the dialect of the format
-# has not (format/README.md, section 24), so a mask goes through the sets of coins instead.
+# has not, so a mask goes through the sets of coins instead.
 # The solver carries this notice:
 # MIT License
 #

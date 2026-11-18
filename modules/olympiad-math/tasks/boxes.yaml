@@ -1,10 +1,10 @@
-# A template of pigeonhole-basic (T35; R22): the solver of mathtrail-standalone
+# A template of pigeonhole-basic (R22): the solver of mathtrail-standalone
 # content/solvers/pigeonhole.basic/boxes.star at 42b4408, made a solver of the template. It came
 # from reference task pig-12-d3-3, whose numbers are one of its instances.
 # The numbers of reference task pig-12-d3-3: items 9, boxes 4.
 # Its capitals ITEMS and BOXES are the numbers that the statement shows, kept small, as the
 # template asks: the search tries ITEMS + 1 to the power BOXES ways. standalone's sandbox gives it
-# product, which the dialect of the format has not (format/README.md, section 24), so an odometer
+# product, which the dialect of the format has not, so an odometer
 # goes through the ways instead. The trap values are derived numbers: one less than the fullest
 # bench, the two numbers of the question, and the children less the benches, the mistakes of the
 # reference task. The constraint keeps at least two on each bench of the most even way, so that the

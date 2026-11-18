@@ -1,7 +1,6 @@
-# A lesson of E3 (T40; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
-# games-strategy on the band of grades 5–6. Its texts are those of the page winning-strategy of
-# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
-# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+# The texts of this lesson are those of the page winning-strategy of mathtrail-standalone's site at
+# 42b4408, put to the learner (R14), and its worked example is the page's example of this level.
+# standalone's content in this module carries the MIT notice of NOTICE.
 id: games-strategy-grades-5-6
 title: "Games with a winning strategy: olympiad level"
 skills: [games-strategy]

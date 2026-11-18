@@ -1,8 +1,8 @@
-# A template of percent-basic (T37; R22): the solver of mathtrail-standalone
+# A template of percent-basic (R22): the solver of mathtrail-standalone
 # content/solvers/percent.basic/counts.star at 42b4408, made a solver of the template. It came from
 # reference task pct-56-d4-1, whose numbers are one of its instances.
 # The numbers of reference task pct-56-d4-1: eaten 6.
-# Its leading question is the hint of pct-56-d4-1, as it stands (amendment T51 to R22).
+# Its leading question is the hint of pct-56-d4-1, as it stands (R22).
 # The red apples eaten are the number that the statement shows and the template varies: 4, 6 or 8,
 # so that a quarter and a tenth stay whole; the 25% and the 10% stay those of the reference task, as
 # in standalone's fits. The trap values are derived numbers, its mistakes; the one that takes the

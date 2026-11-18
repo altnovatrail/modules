@@ -1,9 +1,7 @@
-# The check board's task album of tutor (R33), from its eval/free-bank.json at v0.1.35, as
-# internal/task.Sheet builds it (R68 tutor): the statement, a handwriting sheet of the default
-# grid, one answer slot anywhere with the number of the bank's key "154", the solution a
-# paragraph to a line, the bank's traps with no trap values, and its leak phrases, with the key in
-# words after them.
-# Its leak phrase in English, "the album costs 42", is left out: the module is in Russian.
+# The check board's task album of tutor's eval/free-bank.json, as internal/task.Sheet builds it
+# (R68 tutor). Its leak phrases end with the key in words, since the leak check reads no number in
+# words (R33). Its leak phrase in English, "the album costs 42", is left out: the module is in
+# Russian.
 id: album
 statement:
   - text: "Тетрадь стоит 14 рублей, а альбом — в 3 раза дороже. Сколько стоят вместе 2 альбома и 5 тетрадей?"

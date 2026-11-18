@@ -1,9 +1,7 @@
-# The check board's task posts of tutor (R33), from its eval/bank.json at v0.1.35, as
-# internal/task.Sheet builds it (R68 tutor): the statement, a handwriting sheet of the default
-# grid, one answer slot anywhere with the number of the bank's key "5", the solution a
-# paragraph to a line, the bank's traps with no trap values, and its leak phrases, with the key in
-# words after them and the key with its noun, which the statement frees.
-# Its leak phrase in English, "one more post than gaps", is left out: the module is in Russian.
+# The check board's task posts of tutor's eval/bank.json, as internal/task.Sheet builds it
+# (R68 tutor). Its leak phrases end with the key in words and the key with its noun, which the
+# statement frees, since the leak check reads no number in words (R33). Its leak phrase in English,
+# "one more post than gaps", is left out: the module is in Russian.
 id: posts
 statement:
   - text: "Вдоль дорожки длиной 20 м через каждые 5 м стоят столбы, первый — в начале, последний — в конце. Сколько всего столбов?"

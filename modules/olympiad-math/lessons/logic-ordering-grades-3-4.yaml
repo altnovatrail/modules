@@ -1,7 +1,6 @@
-# A lesson of E3 (T38; R14; docs/architecture.md, sections 3.5 and 3.6 of modules): the skill
-# logic-ordering on the band of grades 3–4. Its texts are those of the page ordering of
-# mathtrail-standalone's site at 42b4408, put to the learner, and its worked example is the page's
-# example of this level. standalone's content in this module carries the MIT notice of NOTICE.
+# The texts of this lesson are those of the page ordering of mathtrail-standalone's site at 42b4408,
+# put to the learner (R14), and its worked example is the page's example of this level. standalone's
+# content in this module carries the MIT notice of NOTICE.
 id: logic-ordering-grades-3-4
 title: "Ordering: going further"
 skills: [logic-ordering]

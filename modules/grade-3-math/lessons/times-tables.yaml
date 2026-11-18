@@ -2,7 +2,7 @@
 # a workbook and the three pages of the skill, in the order of their difficulty. Its texts name no
 # digit, since the keys of its pages are small numbers, and lesson.no-leaks searches every text of
 # the lesson for them; the lines of the example and their values hold numbers, which the leak check
-# does not search, and none of its lines is a line of a page of the lesson (T55).
+# does not search, and none of its lines is a line of a page of the lesson (R15).
 id: times-tables
 title: Times tables
 skills: [times-tables]

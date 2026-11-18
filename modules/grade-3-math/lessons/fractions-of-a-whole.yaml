@@ -2,7 +2,7 @@
 # a workbook and the three pages of the skill, in the order of their difficulty. Its texts name no
 # digit and no fraction, since the keys of its pages are small numbers and fractions; the lines of
 # the example and their values hold them, which the leak check does not search, and none of its
-# lines is a line of a page of the lesson (T55).
+# lines is a line of a page of the lesson (R15).
 id: fractions-of-a-whole
 title: Fractions of a whole
 skills: [fractions-of-a-whole]

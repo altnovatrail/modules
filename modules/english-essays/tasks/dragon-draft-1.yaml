@@ -1,7 +1,7 @@
 # A task of the module of short essays (R16): the statement holds a short draft that repeats its
 # words, and the learner writes it again on the sheet, clearer. The rubric judges the new text as
-# one work. The reminder to write no names is `app`'s, above "Check", not the statement's (П-20;
-# R40).
+# one work. The reminder to write no names is `app`'s, above "Check", not the statement's
+# (R127 spec; R40).
 id: dragon-draft-1
 statement:
   - text: Here is the draft of a short essay. Write it again on the sheet, so that it is clearer and repeats fewer words.
