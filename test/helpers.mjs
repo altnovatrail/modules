@@ -159,9 +159,9 @@ export function mustRun(command, args, options = {}) {
 // says the tag STUB_VERSION names, the pinned one unless given. check, build and diff exit with the
 // status that STUB_CHECK_STATUS, STUB_BUILD_STATUS and STUB_DIFF_STATUS name for the module's folder
 // name — the last argument's for diff —, 0 otherwise; index writes nothing and exits with
-// STUB_INDEX_STATUS, 2 unless given; build
-// writes an inventory.json that names novatrail/<folder name>, as a package of that module would,
-// and no ID for a folder name STUB_NO_ID lists.
+// STUB_INDEX_STATUS, 2 unless given; build writes an inventory.json that names
+// novatrail/<folder name>, as a package of that module would, and no ID for a folder name
+// STUB_NO_ID lists.
 export function stubModuleKit(t) {
   const folder = temporaryFolder(t);
   const bin = join(folder, "bin");

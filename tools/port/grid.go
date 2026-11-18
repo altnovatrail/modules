@@ -77,7 +77,6 @@ const (
 	gridFrame = 12
 )
 
-// namesWide is how wide the column of the rows' names is.
 func (g *gridPicture) namesWide() float64 {
 	wide := 0.0
 	for _, name := range g.Rows {

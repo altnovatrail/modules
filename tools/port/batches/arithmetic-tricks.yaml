@@ -1,7 +1,7 @@
-# The tasks of arithmetic-tricks of standalone at 42b4408: all 67 of them (E3; T25). The units are
-# the word a question counts, in the singular and the plural; a task that asks for a number by itself
-# has none. The technique standalone's site links to the topic, backwards, goes in the overlay of each
-# task that is undone step by step, and the others have none.
+# The tasks of arithmetic-tricks of standalone at 42b4408: all 67 of them. The units are the word a
+# question counts, in the singular and the plural; a task that asks for a number by itself has none.
+# The technique standalone's site links to the topic, backwards, goes in the overlay of each task
+# that is undone step by step, and the others have none.
 standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
 canvas:
   kind: handwriting_sheet

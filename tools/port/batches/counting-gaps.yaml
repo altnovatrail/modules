@@ -1,7 +1,7 @@
 # The tasks of counting-gaps of standalone at 42b4408 that the first batch did not carry: all 60 of
-# them (E3; T22). The units are the word each question counts, in the singular and the plural, and
-# for a measure its abbreviation too; a task whose answer is no number, or that counts no word, has
-# none. The techniques are those of the first batch for this skill.
+# them. The units are the word each question counts, in the singular and the plural, and for a
+# measure its abbreviation too; a task whose answer is no number, or that counts no word, has none.
+# The techniques are those of the first batch for this skill.
 standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
 canvas:
   kind: handwriting_sheet

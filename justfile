@@ -1,13 +1,10 @@
-# The recipes of modules' CI (R03, R10, R11). They run from the repository's root, in the toolchain
-# stage of .devcontainer/Dockerfile, where module-kit's CLI is the binary that stage pins, at an
-# exact tag and sum: ci.yml runs them there by spec's tools/toolchain/toolchain.sh, and a person runs
-# them the same way in the devcontainer. Every recipe is bash, and its tests are in test/, run by
-# `just test`, with two tests of content among them: test/templates.test.mjs builds olympiad-math
-# and checks each template against the task it came from (R22), and test/lesson-pictures.test.mjs
-# checks the size of each picture of a lesson against its file (amendment T41 to R12).
+# The recipes of modules' CI (R03; R10; R11). They run from the repository's root in the toolchain
+# stage of .devcontainer/Dockerfile, by spec's tools/toolchain/toolchain.sh in ci.yml and the same
+# way in the devcontainer. Every recipe is bash; its tests are in test/, run by `just test`, and two
+# of them test content: templates.test.mjs each template against its task (R22), and
+# lesson-pictures.test.mjs the size of each lesson picture against its file (R12).
 #
-# The calls of module-kit follow the forms that module-kit's docs/architecture.md gives at v0.3.0
-# (R102 spec) — check, build and index in section 3.6, diff in section 3.5:
+# The calls of module-kit follow the forms of its CLI:
 #
 #   module-kit check <module>
 #   module-kit build <module> <folder>
@@ -22,16 +19,15 @@
 # finds by the digest of its inventory.json and checks by the chain of digests. Any other call is a
 # usage error with the status 2. Every command exits with 0 when it accepts, 1 when the format
 # refuses its input, with the ID of each rule broken, and 2 when it could not do its work.
-# test/modules-check.test.mjs and test/published.test.mjs hold the calls of check, build and diff to
-# those forms, and test/release-files.test.mjs the call of index.
+# test/modules-check.test.mjs and test/published.test.mjs hold check, build and diff to these
+# forms, and test/release-files.test.mjs index.
 
-# The published versions are those of the index of the newest release of modules, whose signature
-# release-verify checks, and the package of each version of every module in modules/, withdrawn
-# ones too, comes from the release its entry names (R03; R11). Before the first release there is no
-# index, and every version is a first one: _published says so by a file of its own, and nothing
-# skips the comparison unsaid. With no module there is nothing to compare, and the network is not
-# asked. Any failure to read the published versions gives the status 2: the modules were not
-# compared, not refused.
+# The published versions are the index of the newest release of modules, after release-verify, and
+# the package of each version of every module, withdrawn ones too, from the release its entry names
+# (R03; R11). Before the first release every version is a first one, which _published says by a
+# file of its own, so that nothing skips the comparison unsaid. With no module the network is not
+# asked. A failure to read the published versions gives 2: the modules were not compared, not
+# refused.
 # Check the tree of modules/ and every module in it with module-kit, against its published versions.
 modules-check:
     #!/usr/bin/env bash
@@ -50,12 +46,10 @@ modules-check:
     fi
     {{quote(just_executable())}} _modules-check "${published}/published"
 
-# What modules-check compares with, written into a new folder: either module-index.json of the newest
-# release of modules, accepted by release-verify, and packages/sha256-<hex>/ for the package of each
-# version its entries name for the modules of modules/; or the file first, when modules has no
-# release yet. The newest release and its index are _newest-release's to find. Each archive comes
-# from the public address the entry gives (architecture 3.3), and _unpack takes only the three files
-# of the package out of it.
+# What modules-check compares with, written into a new folder: module-index.json of the newest
+# release, accepted by release-verify, and packages/sha256-<hex>/ for each version its entries name
+# for the modules of modules/; or the file first when modules has no release yet. Each archive comes
+# from the entry's public address, and _unpack takes only the package's three files out of it.
 [private]
 _published dir:
     #!/usr/bin/env bash
@@ -94,15 +88,13 @@ _published dir:
     done
     rm -rf "${dir}/archives"
 
-# The tag of the newest release of modules, printed, with its module-index.json written into the
-# file index, which must not be there yet; nothing printed and no file when modules has no release
-# yet. The releases are the tags vX.Y.Z that git ls-remote lists, read with no token and none of the
-# caller's git settings; tags v* only a release sets, and a ruleset keeps them (R31 spec; R11). The
-# newest of them whose module-index.json is there is the newest release: a tag whose release did not
-# come out — its index answers 404 — is named on stderr and passed over, since such a tag can be
-# neither moved nor deleted, and its versions were never published. Any other failure to read a
-# file gives the status 2, rather than pass for no release. The index is not verified here: whoever
-# reads more of it than that it is there runs release-verify on it, as _published does.
+# The tag of the newest release of modules, printed, its module-index.json written into the new
+# file index; nothing printed and no file when there is no release yet. The releases are the tags
+# vX.Y.Z of git ls-remote, read with no token and none of the caller's git settings: only a release
+# sets a tag v*, and a ruleset keeps them (R11). A tag whose index answers 404 is a release that did
+# not come out and can be neither moved nor deleted, so it is named on stderr and passed over. Any
+# other failure to read gives 2 rather than pass for no release. The index is not verified here:
+# whoever reads more of it than that it is there runs release-verify on it.
 [private]
 _newest-release index:
     #!/usr/bin/env bash
@@ -198,10 +190,10 @@ _fetch url out:
 
 # The package of a release's archive as diff reads it, in a new folder: inventory.json, server.json
 # and device.json, each once and a regular file, with or without ./ before its name, and nothing
-# else — no device/, which diff does not read (architecture 3.5 module-kit). An archive that holds a
-# link, a special file, an absolute path or a path through .. is refused whole, before anything
-# comes out of it. The digests of the three files are diff's to check: it finds a package by the
-# digest of its inventory.json, the one its entry names, and refuses a broken chain.
+# else — not device/, which diff does not read. An archive that holds a link, a special file, an
+# absolute path or a path through .. is refused whole, before anything comes out of it. The digests
+# are diff's to check: it finds a package by the digest of its inventory.json and refuses a broken
+# chain.
 [private]
 _unpack archive dir:
     #!/usr/bin/env bash
@@ -270,18 +262,15 @@ _unpack archive dir:
     done
 
 # modules/ holds module folders alone: no other file, nothing named with a dot, no link (R03). Each
-# folder is checked by module-kit check and built into a temporary folder by module-kit build, the
-# ID that its package's inventory.json names (format/README.md in spec, section 25) is
-# novatrail/<folder>, and module-kit diff compares that package with every published version that
-# the folder published, a folder _published wrote, names: --index and the packages of the module's
-# entries, or --first when it holds the file first, and exactly one of the two. Every module is
-# checked, not only the changed ones, and a refusal of one does not stop the rest: the recipe exits
-# at the end with the highest status of what failed, 1 for the tree, a refusal and a breach of R03,
-# and 2 when module-kit could not do its work, so that diff's status is the job's (R11). Without
-# modules/ there is nothing to check yet, and the recipe says so; git holds no empty folder, so that
-# is the tree with no module. Before the first module, the module-kit on the PATH must be the one the
-# Dockerfile pins, so that a container not rebuilt since the tag was raised does not check with
-# another CLI than CI's.
+# folder is checked and built, its package's ID must be novatrail/<folder>, and module-kit diff
+# compares the package with the published versions in the folder _published wrote: --index and the
+# packages of the module's entries, or --first, exactly one of the two. Every module is checked, not
+# only the changed ones, and a refusal of one does not stop the rest; the status is the highest of
+# what failed — 1 for the tree, a refusal or a breach of R03, 2 when module-kit could not do its
+# work — so that diff's status is the job's (R11). git holds no empty folder, so no modules/ is the
+# tree with no module. The module-kit on the PATH must be the one MODULE_KIT_VERSION of the
+# Dockerfile pins: a container not rebuilt after a raise of it would check with another CLI than
+# CI's.
 [private]
 _modules-check published:
     #!/usr/bin/env bash
@@ -377,11 +366,9 @@ _modules-check published:
     done
     exit "$worst"
 
-# What the gate of sim reads, written into a new folder for the job "Gate" of ci.yml (R37): the
-# published versions as _published writes them, in published/, and then what _gate-args writes —
-# the package of every module and the arguments of sim's gate. With no module there is nothing for
-# the gate, the network is not asked, and args is empty. A failure to read the published versions
-# gives the status 2, and no args.
+# What the gate of sim reads, for the job "Gate" of ci.yml (R37): the published versions as
+# _published writes them, in published/, and what _gate-args writes. With no module the network is
+# not asked and args is empty. A failure to read the published versions gives 2 and no args.
 # Write what the gate of sim reads, the published versions and every module's package, into a new folder.
 gate-inputs dir:
     #!/usr/bin/env bash
@@ -411,21 +398,19 @@ gate-inputs dir:
     fi
     {{quote(just_executable())}} _gate-args "$dir"
 
-# The package module-kit build makes of every module of modules/, in <dir>/packages/<folder>/, and
-# the file <dir>/args, one argument a line, of `just gate modules` at the tag of sim that ci.yml
-# pins, by the call form of its README:
+# The package of every module of modules/, in <dir>/packages/<folder>/, and the file <dir>/args,
+# one argument a line, of `just gate modules` of sim at SIM_TAG of ci.yml, in the form of sim's
+# README:
 #
 #   just gate modules (-index <module-index.json> | -first) [-published <folder>]... [-all] <package folder>...
 #
-# against the published versions in <dir>/published/, as _published writes them: -index and a
-# -published for each package it unpacked, or -first when it holds the file first; then every
-# package, not only the changed ones, since a cell on two modules runs on both. -all is the job's to
-# put first, when the pull request moves the tag of sim. The paths are dir and what lies under it,
-# as given, so that they hold from the folder the recipe was called in, where the job calls sim's
-# gate too. What sim reads of each package and whether it changed is sim's to say: the recipe
-# passes every module and decides nothing. A folder, a link or a name with a dot in modules/ is
-# modules-check's to refuse, and is left out here, as _published leaves it. args is written last,
-# whole or not at all: a package that module-kit cannot build gives the status 2.
+# against <dir>/published/ as _published writes it: -index and a -published for each package it
+# unpacked, or -first. Every package goes in, not only the changed ones, since a cell on two modules
+# runs on both; whether one changed is sim's to say. -all is the job's to put first, when the pull
+# request moves the pin of sim. The paths are dir and what lies under it, as given, so that they
+# hold from the folder the job calls sim's gate in. A folder, a link or a name with a dot in modules/ is
+# modules-check's to refuse, and is left out here. args is written last, whole or not at all: a
+# package module-kit cannot build gives 2.
 [private]
 _gate-args dir:
     #!/usr/bin/env bash
@@ -460,31 +445,25 @@ _gate-args dir:
     mv "${dir}/args.part" "${dir}/args"
     echo "_gate-args: ${#args[@]} arguments of the gate in ${dir}/args"
 
-# A module's eval set is its folder eval/, which its package does not carry and which modules
-# publishes with the repository, for good (R04; R62 spec). Its layout is flat: each sample is the
-# file eval/<id>.json, whose name is the sample's ID — the field id of its one JSON object, 1 to 64
-# lowercase Latin letters, digits and hyphens (contracts/README.md in spec, section 11) —, and eval/
-# holds nothing else: no folder, no link, no other file, and nothing named with a dot at any depth,
-# which the eval set would leave out and the repository would still publish unchecked (amendments
-# 2026-11-06 and 2026-11-09 to R04). jq reads the ID alone, and holds it to the name itself, so that
-# no byte of it is lost on the way. The rules of the sample file, and those of an eval set that need
-# neither the module's package nor a key, are spec's: sample-check --eval-set novatrail/<folder> on
-# the module's eval set as section 13 there has it — every regular file under eval/ whose name
-# ends in .json, at any depth, but under a name with a dot —, with no link, which the layout
-# refuses and which would stop sample-check. A module with no such file is not checked, since a
-# check of no file passes none (R93 spec; amendment 2026-11-09 to R25). sample-check gets all of a
-# module's files in one call, in their order: since T116 spec it holds whole only the file it reads,
-# so that one call checks hundreds of large samples with no batches (contracts/README.md in spec,
-# section 11), and it holds the one rule across files, that no two samples share an ID, itself, as
-# the layout does too (amendment R32 to R25). Only the folders of
-# modules/ are read: a file, a link or a name with a dot there is modules-check's to refuse (R03).
-# Every module is checked, and a breach in one does not stop the rest; the status is the highest
-# of what failed: 1 for a breach of the layout, a sample that sample-check refuses and modules that
-# is no folder, and 2 when jq, spec's tools or sample-check could not do their work. A folder whose
-# name gives no module ID stops sample-check with 2, and modules-check refuses it in the same job.
-# It needs no key and writes nothing in the tree; before the first eval set, spec's _tools installs
-# spec/tools from its lock file, as docs-check-repo does — the only write, and the only use of the
-# network, which npm's registry gets —, so a pull request from a fork runs it too.
+# A module's eval set is its folder eval/, which its package does not carry and the repository
+# publishes for good (R04; R62 spec). Its layout is flat: each sample is eval/<id>.json, named by
+# the field id of its one JSON object, 1 to 64 lowercase Latin letters, digits and hyphens, and eval/
+# holds nothing else — no folder, no link, no other file and nothing named with a dot at any depth,
+# which the eval set would leave out and the repository would still publish unchecked (R04). jq
+# holds the ID to the name itself, so that no byte of it is lost on the way. The rules of the sample
+# file, and those of an eval set that need neither the package nor a key, are spec's: sample-check
+# --eval-set novatrail/<folder> on every regular file under eval/ whose name ends in .json, but
+# under a name with a dot, as the layout of an eval set of spec's contracts has it. A module with no
+# such file is not checked, since a check of no file passes none (R93 spec; R25). sample-check takes
+# all of a module's files in one call: it holds whole only the file it reads, and itself refuses two
+# samples that share an ID (R25). Only the folders of modules/ are read: a file, a link or a name
+# with a dot there is modules-check's to refuse (R03). Every module is checked, and a breach in one
+# does not stop the rest; the status is the highest of what failed: 1 for a breach of the layout, a
+# sample sample-check refuses and a modules that is no folder, and 2 when jq, spec's tools or
+# sample-check could not do their work. A folder whose name gives no module ID stops sample-check
+# with 2, and modules-check refuses it in the same job. No key is needed, and nothing is written but
+# spec/tools, which spec's _tools installs from its lock file by npm's registry, the only network
+# use: a pull request from a fork runs it too.
 # Check the layout of each module's eval/, and each module's eval set with spec's sample-check.
 eval-check:
     #!/usr/bin/env bash
@@ -603,10 +582,9 @@ eval-check:
 # tests of the recipes put a stand-in elsewhere by CANVAS_LIB.
 canvas_lib := env("CANVAS_LIB", "/usr/local/lib/canvas")
 
-# A synthetic sample of a module's eval set is one of a task of that module, made on the package
-# of the commit it lies in (R110 spec; R29). The samples name the tag of the newest release of
-# modules, which _synthetic takes from _newest-release once nothing local stands in the way. It is a
-# step a person runs in the devcontainer, which writes into the module's eval/ and nothing else.
+# A synthetic sample is one of a task of the module, made on the package of the commit it lies in,
+# and names the tag of the newest release of modules (R110 spec; R29). A person runs it in the
+# devcontainer; it writes into the module's eval/ and nothing else.
 # Write synthetic samples of a module's eval set, <task>:<seed> each, with canvas's generator.
 [positional-arguments]
 synthetic module *calls:
@@ -621,21 +599,20 @@ synthetic module *calls:
     {{quote(just_executable())}} _synthetic "$module" "" "$@"
 
 # The synthetic samples <task>:<seed> of modules/<module>/, written into its eval/ by canvas's
-# generator, on the package that module-kit build makes of the module into a temporary folder, for
-# the release tag, or, when the tag is empty, the newest release's, which _newest-release finds
-# after every check that needs no network (R110 spec; R29). The generator is the file of the release of canvas that the
-# Dockerfile pins, CANVAS_VERSION, held to CANVAS_SYNTHETIC_SHA256, as the module-kit on the PATH is
-# held to MODULE_KIT_VERSION, so that a container not rebuilt since a tag was raised writes no
-# sample CI would not make. The calls go to the generator as they are, in its form (R68 canvas):
+# generator on the package module-kit build makes of the module, for the release tag, or when it is
+# empty the newest release's, asked for only after every check that needs no network (R110 spec;
+# R29). The generator and module-kit must be the ones the Dockerfile pins, so that a container not
+# rebuilt after a raise writes no sample CI would not make. The calls go to the generator as they
+# are, in its form (R68 canvas):
 #
 #   node synthetic-module_<tag>.mjs --module <package> <tag> <folder> <task>:<seed>...
 #
-# It checks every call before it writes any file, and writes nothing when one fails; it never
-# writes over a person's sample. Its lines, a sample's ID, task and what it shows, and its reasons
-# for each call refused are the recipe's, and so is its status: 0 when it wrote them all, 1 when it
-# refused a call — a template, a task it does not draw, a seed named twice — and 2 when the call was
-# out of form. The recipe's own status is 1 when the package's ID is not novatrail/<module> (R03),
-# module-kit's when it refuses the module, and 2 when it cannot do its work.
+# It checks every call before it writes any file, writes nothing when one fails, and never writes
+# over a person's sample; its lines, its reasons and its status are the recipe's: 0 when it wrote
+# them all, 1 when it refused a call — a template, a task it does not draw, a seed named twice —
+# and 2 when a call was out of form. The recipe's own status is 1 when the package's ID is not
+# novatrail/<module> (R03), module-kit's when it refuses the module, and 2 when it cannot do its
+# work.
 [private]
 [positional-arguments]
 _synthetic module tag *calls:
@@ -688,9 +665,9 @@ _synthetic module tag *calls:
     fi
     node "$generator" --module "${package}/package" "$tag" "${path}/eval" "$@"
 
-# The module-kit on the PATH is the one .devcontainer/Dockerfile pins, so that a container not
-# rebuilt since the tag was raised neither writes nor checks a sample with another CLI than CI's;
-# the status is 2 otherwise.
+# Fails with 2 unless the module-kit on the PATH is the one MODULE_KIT_VERSION of the Dockerfile
+# pins: a container not rebuilt after a raise would write or check a sample with another CLI than
+# CI's.
 [private]
 _pinned-module-kit:
     #!/usr/bin/env bash
@@ -707,8 +684,7 @@ _pinned-module-kit:
 
 # The path of canvas's generator, printed once it is the file the Dockerfile pins: the stage's
 # synthetic-module_<CANVAS_VERSION>.mjs, a regular file whose sum is CANVAS_SYNTHETIC_SHA256 (R29).
-# The status is 2 otherwise: a container not rebuilt since the tag was raised would draw samples
-# CI does not.
+# The status is 2 otherwise: a container not rebuilt after a raise would draw samples CI does not.
 [private]
 _generator:
     #!/usr/bin/env bash
@@ -729,14 +705,12 @@ _generator:
 
 # Every sample of a module's eval set is one of the package of the commit it lies in: a pull request
 # that changes the open view of a task re-makes its synthetic samples and removes the samples of
-# people in the same pull request (amendment 2026-11-06 to R04; contracts/README.md in spec, section
-# 13; amendment T59 to R25). The eval set is the files eval-check gives sample-check, and of each
-# jq reads its origin, the source and ID of its task, its seed and the digest of its task's open
-# view, and nothing else: a person's sample is never printed. A module with no sample is not built;
-# the others are, by the pinned module-kit, and their samples are held to the package by
-# _match-synthetic and _match-people. A file outside the layout eval/<id>.json, of which those
-# fields cannot be read, or that names another module, is refused here too, as eval-check refuses
-# it, so that no sample passes unchecked. Every module is checked, a refusal in one does not stop
+# people in the same pull request (R04; R25). Of each file eval-check gives sample-check, jq reads
+# the origin, the task's source and ID, the seed and the digest of the open view, and nothing else:
+# a person's sample is never printed. A module with no sample is not built; the others are, by the
+# pinned module-kit, and their samples go to _match-synthetic and _match-people. A file outside the
+# layout eval/<id>.json, whose fields cannot be read or that names another module, is refused here
+# too, so that no sample passes unchecked. Every module is checked, a refusal in one does not stop
 # the rest, and the status is the highest of what failed: 1 for a sample that is not one of the
 # package, 2 for what could not do its work. No network and no key: a pull request from a fork runs
 # it too. The rows between the recipes are a line a sample, its fields split by U+001F, which no
@@ -826,9 +800,9 @@ eval-match:
                     ;;
                 person)
                     # A Claude Code session may read eval/synthetic-*.json alone (.claude/settings.json),
-                    # so a person's sample never takes that name (amendment T61 to R04).
+                    # so a person's sample never takes that name (R04).
                     if [[ "${file##*/}" == synthetic-* ]]; then
-                        breach "${file}: the ID of a person's sample begins with synthetic-, which only a synthetic sample's does, and such a file a Claude Code session may read (amendment T61 to R04)"
+                        breach "${file}: the ID of a person's sample begins with synthetic-, which only a synthetic sample's does, and such a file a Claude Code session may read (R04)"
                         continue
                     fi
                     printf '%s\n' "${file}${us}${task}${us}${seed}${us}${digest}" >> "${rows}/people"
@@ -875,18 +849,16 @@ eval-match:
     fi
     exit "$worst"
 
-# The synthetic samples of modules/<module>/ in rows — the file, the task, the seed and the tag each
-# names —, drawn again by canvas's generator on the package, with the tag of each file, not the
-# newest: the tag says only what a sample was made on (contracts/README.md in spec, section 13).
-# Each is then compared with its file in all but task.modules.version and
-# task.modules.package_digest, which that section bars from the comparison, so that a change of
-# another task of the module, which changes the package's version and digest, re-makes none of
-# them; a change of the task's open view, of its picture or of the generator does. The generator is
-# called on 50 samples at a time, of one tag, into a new folder: it holds every sample of a call in
-# memory, and writes none when one call fails. A batch it refuses is then drawn again a sample at a
-# time, so that each sample is compared or refused with the generator's own reason, which it prints
-# on stderr. The status is 1 when a sample is not drawn again the same or the generator refuses it,
-# and 2 when it cannot do its work.
+# The synthetic samples of modules/<module>/ in rows — the file, task, seed and tag each names —,
+# drawn again by canvas's generator on the package with the tag of each file, not the newest: the
+# tag says only what a sample was made on. Each is compared with its file in all but
+# task.modules.version and task.modules.package_digest, which spec's contracts keep out of the
+# comparison, so that a change of another task of the module re-makes none of them; a change of the
+# task's open view, its picture or the generator does. The generator is called on 50 samples of one
+# tag at a time, into a new folder: it holds every sample of a call in memory and writes none when
+# one fails, so a batch it refuses is drawn again a sample at a time, each compared or refused with
+# the generator's own reason on stderr. The status is 1 when a sample is not drawn again the same or
+# the generator refuses it, and 2 when the recipe cannot do its work.
 [private]
 _match-synthetic module package rows:
     #!/usr/bin/env bash
@@ -960,13 +932,12 @@ _match-synthetic module package rows:
 
 # The samples of people of a module in rows — the file, the task, the seed of its instance when the
 # task is a template, and the digest of the open view each names —, held to the open views of the
-# package. module-kit open, over the package and an index of it alone that module-kit index builds,
-# with the seeds of the samples — 0 when none has one, since open asks for a seed —, gives the
-# digest of each task's open view, and of an instance of a template by its seed, as the runner will
-# read the task (architecture 3.6 module-kit; R93 spec). A sample whose task is not in the package,
-# or not with that seed, or whose open view has another digest, is refused with 1: it was made on
-# another open view, and goes (amendment 2026-11-06 to R04). Nothing of a sample but its file, task
-# and seed is printed. The status is 2 when module-kit cannot open the package.
+# package. module-kit open, over the package and an index of it alone, gives the digest of each
+# task's open view and of each instance of a template by its seed, as the runner will read the task
+# (R93 spec); open asks for a seed, so 0 stands in when no sample has one. A sample whose task or
+# seed is not in the package, or whose open view has another digest, was made on another open view
+# and is refused with 1 (R04). Nothing of a sample but its file, task and seed is printed. The
+# status is 2 when module-kit cannot open the package.
 [private]
 _match-people module package rows:
     #!/usr/bin/env bash
@@ -1005,10 +976,10 @@ _match-people module package rows:
         if [ -n "$seed" ]; then instance="${task} with the seed ${seed}"; fi
         open=${views["${task}${us}${seed}"]:-}
         if [ -z "$open" ]; then
-            echo "${file}: the package of this commit has no open view of ${instance}; remove the sample (amendment 2026-11-06 to R04)" >&2
+            echo "${file}: the package of this commit has no open view of ${instance}; remove the sample (R04)" >&2
             worst=1
         elif [ "$open" != "$digest" ]; then
-            echo "${file}: the open view of ${instance} is not the one the sample was made on; remove the sample (amendment 2026-11-06 to R04)" >&2
+            echo "${file}: the open view of ${instance} is not the one the sample was made on; remove the sample (R04)" >&2
             worst=1
         else
             held=$((held + 1))
@@ -1019,22 +990,19 @@ _match-people module package rows:
 
 # What .github's shared release.yml runs to build a release's files, in the stage toolchain-core of
 # the commit it releases (R38), on that commit's tree from git archive: no git, no submodule —
-# spec/ is an empty folder —, no token and no network (architecture 3.3 .github; R03; R17). version is the
-# release's tag, vX.Y.Z; previous the path of module-index.json of the newest release, which the
-# shared release downloaded and release-verify accepted before the build, read-only, or an empty
-# string for the first release, which the recipe tells module-kit index by --first; and no
-# withdrawals.yaml is told by --no-withdrawals: nothing is left unsaid (R63 spec). A relative
-# previous is from where the recipe is called. Every module is checked by _modules-check — the
-# tree, the pinned CLI, check and its ID — and built — the recipe cannot tell which changed, with
-# no git —, and index keeps each entry of the
-# previous index as it was: a package of a version it names keeps its release, and another digest
-# for it is refused by module-index.one-package. So an archive goes out only for a package whose
-# entry names this release: sha256-<hex>.tar.gz, named by its package_digest, which is the sha256 of
-# the bytes of its inventory.json, the package's files at the archive's root, with no top folder, no
-# ./ and nothing else. The archive is the same bytes on every runner: names sorted, no owner, the
-# same mode and time for every entry, and no name or time in the gzip header. dist/ is made afresh
-# and holds module-index.json, LICENSE, the root's Apache-2.0, and the archives; a failed run leaves
-# no dist/. The release then signs each file.
+# spec/ is an empty folder —, no token and no network (R03; R17). version is the release's tag,
+# vX.Y.Z; previous the read-only path of module-index.json of the newest release, which
+# release-verify accepted before the build, relative to where the recipe is called, or "" for the
+# first release, told to module-kit index by --first; no withdrawals.yaml is told by
+# --no-withdrawals, so nothing is left unsaid (R63 spec). Every module is checked by _modules-check
+# and built, since with no git the recipe cannot tell which changed. index keeps each entry of the
+# previous index as it was and refuses another digest for a version it names
+# (module-index.one-package), so an archive goes out only for a package whose entry names this
+# release: sha256-<hex>.tar.gz, by its package_digest, the sha256 of its inventory.json, with the
+# package's files at the archive's root, no top folder, no ./ and nothing else. The archive is the
+# same bytes on every runner: names sorted, no owner, one mode and time for every entry, and no name
+# or time in the gzip header. dist/ is made afresh and holds module-index.json, LICENSE and the
+# archives, which the release then signs; a failed run leaves no dist/.
 # Build a release's files into dist/, for a version such as v0.1.0 and the previous index or "".
 release-files version previous:
     #!/usr/bin/env bash
@@ -1125,11 +1093,10 @@ release-files version previous:
     mv "${work}/dist" dist
     echo "release-files: the files of ${version} are in dist/"
 
-# The binary of module-kit that the stage toolchain-core installs is held by its sums in
-# .devcontainer/Dockerfile. Here the release's SHA256SUMS and its bundle are read from the release's
-# public address, with no token, the signature is checked by spec's release-verify (R77 spec), and
-# the sums of both linux binaries are held to the Dockerfile's: the chain of digests then runs from a
-# verified file to the binary. CI runs it on every pull request and push to main (R10).
+# The release's SHA256SUMS and its bundle come from its public address with no token, spec's
+# release-verify checks the signature (R77 spec), and the sums of both linux binaries are held to
+# the Dockerfile's, so the chain of digests runs from a verified file to the binary the stage
+# toolchain-core installs (R10).
 # Verify the signature of the module-kit release that the Dockerfile pins, and its sums.
 module-kit-verify:
     #!/usr/bin/env bash
@@ -1182,11 +1149,9 @@ _module-kit-sums sums dockerfile:
     done
     exit "$failed"
 
-# The generator of canvas that the toolchain stage installs is held by its sum in
-# .devcontainer/Dockerfile, as module-kit's binary is (R29). Here the release's SHA256SUMS and its
-# bundle are read from the release's public address, with no token, the signature is checked by
-# spec's release-verify (R77 spec), and the sum of synthetic-module_<tag>.mjs is held to the
-# Dockerfile's. CI runs it on every pull request and push to main.
+# As module-kit-verify does for module-kit's binary: the release's SHA256SUMS and bundle from its
+# public address with no token, the signature by spec's release-verify (R77 spec), and the sum of
+# synthetic-module_<tag>.mjs held to the Dockerfile's (R29).
 # Verify the signature of the canvas release whose generator the Dockerfile pins, and its sum.
 canvas-verify:
     #!/usr/bin/env bash
@@ -1257,13 +1222,12 @@ _dockerfile-arg dockerfile name:
 test:
     JUST={{quote(just_executable())}} node --test 'test/*.test.mjs'
 
-# The Go code of this repository is tools/port, the port of standalone's tasks (R12), one module
-# with its go.mod at the root; spec/ is a module of its own, which ./... does not reach. The ci-
-# recipes are what .github's shared go.yml runs, one job each, with no spec submodule: "Go / lint",
-# "Go / test", "Go / vuln" and "Go / licenses" (R16 .github; R48 spec) — lint, vuln and licenses in
-# the stage toolchain-core, test in toolchain (R47 .github; R38). The
-# tools only these checks need run straight from their modules at exact versions, as spec's and
-# module-kit's justfiles run them; Dependabot does not see them, so they are raised by hand.
+# The Go code is tools/port, the port of standalone's tasks (R12), one module with its go.mod at the
+# root; spec/ is a module of its own, which ./... does not reach. The ci- recipes are what .github's
+# shared go.yml runs, one job each, with no spec submodule (R16 .github; R48 spec): lint, vuln and
+# licenses in the stage toolchain-core, test in toolchain (R47 .github; R38). The tools only these
+# checks need run straight from their modules at exact versions; Dependabot does not see them, so
+# they are raised by hand.
 GOVULNCHECK := "golang.org/x/vuln/cmd/govulncheck@v1.9.0"
 GO_LICENSES := "github.com/google/go-licenses/v2@v2.0.1"
 
@@ -1305,14 +1269,13 @@ ci-licenses:
     fi
     go run {{GO_LICENSES}} check ./... --allowed_licenses="$allowed"
 
-# The tasks of a batch of tools/port/batches/ come from standalone at the commit the batch names: a
-# clone of it in a temporary folder, never in this repository (RULES.md, Citations), read with no
-# token and none of the caller's git settings. Standalone's bench proves the answer of each task
-# first, and the port writes nothing unless each passes (R05; R12). It is a step of the batch's
-# task, run by a person in the devcontainer, not of CI: the bench fetches standalone's Go modules.
-# After the module come the options: --batch <file> in place of the first batch, whose overlays are
-# then tools/port/overlay/<the batch's name>/ (T22), --overlay <folder> in place of those, and --check
-# to compare the module with what the port writes.
+# The tasks of a batch of tools/port/batches/ come from standalone at the commit the batch names,
+# cloned into a temporary folder, never into this repository, with no token and none of the
+# caller's git settings. Standalone's bench proves each task's answer first, and the port writes
+# nothing unless each passes (R12). A person runs it in the devcontainer, not CI: the bench fetches
+# standalone's Go modules. After the module come the options: --batch <file> in place of the first
+# batch, whose overlays are then tools/port/overlay/<the batch's name>/, --overlay <folder> in place
+# of those, and --check to compare the module with what the port writes.
 # Write the tasks of a batch of standalone into a module, or with --check compare them.
 [positional-arguments]
 port module *options:
@@ -1347,7 +1310,7 @@ port module *options:
 
 # The pictures of the lessons of a module are tools/port/pictures/<the module's folder>/<name>.json,
 # in the schema of standalone's pictures, which the port draws into media/lessons/<name>.png of the
-# module, with no clone, as it draws a task's picture (amendment T41 to R12). CI runs it with
+# module, with no clone, as it draws a task's picture (R12). CI runs it with
 # --check, which writes nothing and names every picture that differs from what the port draws.
 # Draw the pictures of the lessons into a module, or with --check compare them.
 [positional-arguments]
@@ -1358,17 +1321,16 @@ lesson-pictures module *options:
 # placeholders has a source, tools/port/template-pictures/<the module's folder>/<the path without
 # its placeholders>.json, in the schema of standalone's pictures with placeholders among its
 # strings, and the port draws it for every instance into media/pictures/ of the module, as the
-# format asks (amendment T52 to R12). CI runs it with --check.
+# format asks (R12). CI runs it with --check.
 # Draw the pictures of the instances of a module's templates, or with --check compare them.
 [positional-arguments]
 template-pictures module *options:
     go run ./tools/port --template-pictures "tools/port/template-pictures/$(basename "$1")" --module "$@"
 
-# A survey runs the port over every task of standalone that no batch of tools/port/batches/ names
-# yet, at a commit, 42b4408 unless another is given, before E3's batches are written (R20): the
-# clone as port makes it, then _port-survey with standalone's bench. The module is a folder that is
-# not there yet, which the survey makes and which never enters the repository. It is a step of E3's
-# tasks, run by a person in the devcontainer, not of CI.
+# A survey runs the port, with standalone's bench, over every task of standalone that no batch of
+# tools/port/batches/ names, at a commit, by default the parameter's (R20). The module is a new
+# folder that the survey makes and that never enters the repository. A person runs it in the
+# devcontainer, not CI.
 # Survey the tasks of standalone that no batch names, into a new module of the format's examples.
 [positional-arguments]
 port-survey module commit="42b4408225e4163d8efbdfb93c299f3fc4b70afa":
@@ -1382,17 +1344,15 @@ port-survey module commit="42b4408225e4163d8efbdfb93c299f3fc4b70afa":
     {{quote(just_executable())}} _port-survey "$clone" "$2" "$1" --prove
 
 # The module of a survey is the format's examples of olympiad-math — manifest, skill graph,
-# techniques and solving steps — with the traps of modules/olympiad-math, whose IDs the port writes,
-# one of them its own until the example has it (amendment T50 to R23), the root's LICENSE, as in
-# test/port.test.mjs, and the tasks the port writes into it. The example's graph has the 17 topics
-# of standalone at c6cbeb2, so the survey adds the two topics of 42b4408 where the clone has them
-# and the graph does not, with no prerequisites, as their builds_on is empty, and the topics' names
-# for titles (docs/architecture.md, section 3.5; R21). They go at the graph's end, under skills:,
-# which must be its last key. module-kit check then reads it: a breach of task.no-leaks is what E3's
-# overlays are to mend, and the recipe counts them; any other breach, and any warning, fails it.
-# The exit status is the port's — 1 when it refused a task, 2 when it could not run — or 1 when the
-# check found more than task.no-leaks. The port is built first, rather than run by go run, which
-# makes every status other than 0 into 1.
+# techniques and solving steps — with the traps of modules/olympiad-math, whose IDs the port writes
+# (R23), the root's LICENSE, and the tasks the port writes into it. The example's graph lacks two
+# topics of standalone, which the survey adds where the clone has them and the graph does not, at
+# the graph's end, under skills:, which must be its last key, with no prerequisites, as their
+# builds_on is empty, and the topics' names for titles (R21). module-kit check then reads it: a
+# breach of task.no-leaks is what the overlays are to mend, and the recipe counts them; any other
+# breach, and any warning, fails it. The status is the port's — 1 when it refused a task, 2 when it
+# could not run — or 1 when the check found more than task.no-leaks. The port is built first, since
+# go run makes every status other than 0 into 1.
 # Survey a clone of standalone into a new module, and check the module.
 [private]
 [positional-arguments]

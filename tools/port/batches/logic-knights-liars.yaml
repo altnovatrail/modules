@@ -1,6 +1,6 @@
-# The tasks of logic-knights-liars of standalone at 42b4408: all 40 of them (E3; T30). A task whose
-# answer counts knights has the units knight and knights; any other has none. standalone's site links
-# the topic to the technique opposite, which goes in the overlay of each task solved by supposing the
+# The tasks of logic-knights-liars of standalone at 42b4408: all 40 of them. A task whose answer
+# counts knights has the units knight and knights; any other has none. standalone's site links the
+# topic to the technique opposite, which goes in the overlay of each task solved by supposing the
 # opposite; the tasks where knights and liars take turns have pattern, and the football one parity.
 standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
 canvas:

@@ -1,10 +1,9 @@
-// Command port carries tasks of mathtrail-standalone into a module of the format 0.4 (R05, R07,
-// R12): each task of a batch becomes the file tasks/<id>.yaml of the module, by the table "What
-// becomes what" of docs/architecture.md, section 3.5, and a picture of the kind row a PNG in
-// media/. What a person writes — the givens, the unknown, the simpler case, the alt of a picture,
-// explanations written anew — comes from an overlay file beside this code, so that a run writes the
-// same bytes again and loses nothing. The key and the trap values are held to the solver of each
-// task by standalone's own bench, run in a clone of standalone: no solver goes into the module.
+// Command port carries tasks of mathtrail-standalone into a module of the format (R05; R12): each
+// task of a batch becomes the file tasks/<id>.yaml of the module, and its pictures PNG files in
+// media/. What a person writes comes from an overlay file beside this code, so that a run writes
+// the same bytes again and loses nothing. The key and the trap values are held to the solver of
+// each task by standalone's own bench, run in a clone of standalone: no solver goes into the
+// module.
 package main
 
 import (
@@ -39,12 +38,10 @@ type Example struct {
 	SolutionTotal   string                `json:"solution_total,omitempty"`
 	SolutionPicture json.RawMessage       `json:"solution_picture,omitempty"`
 	Distractors     map[string]Distractor `json:"distractors"`
-	// Hint is a question or a step that breaks the task down: the task's leading question, which a
-	// hint asked for gives before the first wrong answer (format/README.md, section 14; amendment
-	// T51 to R12).
+	// Hint is a question or a step that breaks the task down: the task's leading question (R12).
 	Hint string `json:"hint,omitempty"`
-	// Idea is the place of the task's idea in its topic's list of ideas, at 42b4408 on a task solved
-	// from the picture. It is not carried: the ideas are not (docs/architecture.md, section 3.5).
+	// Idea is the place of the task's idea in its topic's list of ideas. It is not carried: the
+	// ideas are not (R20).
 	Idea int `json:"idea,omitempty"`
 	// fromPicture says that the task's solver reads its picture, solve(options, picture): its facts
 	// stand on the picture alone. It is read from content/examples/solvers/<id>.star.
@@ -71,9 +68,8 @@ func solvedFromPicture(clone, id string) (bool, error) {
 
 // Topic is a topic of standalone, as content/catalogs/topics.json holds it at the commit the batch
 // names. The port reads it to hold each task to its topic, and carries none of it: the skill graph
-// is the format's example, and a topic solved from the picture tells standalone in which chat its
-// tasks may be given, while the module's every app shows the picture (docs/architecture.md, section
-// 3.5).
+// is the format's example (R05), and a topic solved from the picture tells standalone in which chat
+// its tasks may be given, while the module's every app shows the picture.
 type Topic struct {
 	ID                string   `json:"id"`
 	Name              string   `json:"name"`
@@ -85,8 +81,8 @@ type Topic struct {
 	SolvedFromPicture bool     `json:"solved_from_picture,omitempty"`
 }
 
-// readTopics reads content/catalogs/topics.json of a clone of standalone, strictly, and gives its
-// topics by ID.
+// readTopics reads content/catalogs/topics.json of a clone of standalone, strictly: an unknown
+// field, a topic with no ID or one twice is an error.
 func readTopics(clone string) (map[string]Topic, error) {
 	file := filepath.Join(clone, "content", "catalogs", "topics.json")
 	data, err := os.ReadFile(file)
@@ -137,8 +133,8 @@ var (
 	gradeLevel = regexp.MustCompile(`^[1-6]-[1-6]$`)
 )
 
-// readExamples reads every file content/examples/*.json of a clone of standalone, strictly, and
-// gives its tasks by ID.
+// readExamples reads every file content/examples/*.json of a clone of standalone, strictly: an
+// unknown field, a task that is not valid or one twice is an error.
 func readExamples(clone string) (map[string]Example, error) {
 	files, err := filepath.Glob(filepath.Join(clone, "content", "examples", "*.json"))
 	if err != nil {
@@ -222,8 +218,7 @@ func (e Example) valid() error {
 
 // atCommit holds a clone of standalone to the commit a batch names: its HEAD is that commit, and
 // git sees no change in its working tree, so that the tasks, their headers and the bench all come
-// from it. git runs with none of the caller's settings, as the command named, as the go command
-// of the bench is.
+// from it. git runs as the command named, with none of the caller's settings (R12).
 func atCommit(gitCommand, clone, commit string) error {
 	git := func(args ...string) (string, error) {
 		command := exec.Command(gitCommand, append([]string{"-C", clone}, args...)...)

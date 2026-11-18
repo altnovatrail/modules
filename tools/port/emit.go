@@ -7,24 +7,22 @@ import (
 	"strings"
 )
 
-// The YAML that the port writes keeps to the rules of the format (format/README.md, section 4) by
-// writing little: block mappings with plain keys, which are all snake_case words; block sequences
-// of mappings; flow sequences of strings; integers; and every string in double quotes, as JSON
-// writes it. JSON's escapes are YAML's, and Go never writes \/, which the format refuses. The order
-// of keys is the order the port gives them, so a run writes the same bytes again.
+// The YAML that the port writes keeps to the format's restrictions of YAML by writing little: block
+// mappings with plain keys, which are all snake_case words; block sequences of mappings; flow
+// sequences of strings; integers; and every string in double quotes, as JSON writes it. JSON's
+// escapes are YAML's, and Go never writes \/, which the format refuses. Keys keep the order the
+// port gives them, so a run writes the same bytes again (R12).
 
 type (
-	// mapping is a block mapping, its keys in order.
 	mapping []pair
 	pair    struct {
 		key   string
 		value any
 	}
-	// sequence is a sequence: of strings, written in flow, or of mappings, written in block.
+	// sequence holds strings, written in flow, or mappings, written in block.
 	sequence []any
 )
 
-// emit writes a document: the comment, a line each, then the mapping.
 func emit(comment []string, root mapping) []byte {
 	var out strings.Builder
 	for _, line := range comment {
@@ -73,7 +71,6 @@ func writePair(out *strings.Builder, p pair, indent int) {
 	}
 }
 
-// flow tells a sequence of scalars, written on one line, from one of mappings.
 func flow(s sequence) bool {
 	for _, item := range s {
 		if _, isMapping := item.(mapping); isMapping {
@@ -83,7 +80,6 @@ func flow(s sequence) bool {
 	return true
 }
 
-// scalar writes a string in double quotes as JSON does, and an integer as it is.
 func scalar(value any) string {
 	switch v := value.(type) {
 	case string:

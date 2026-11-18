@@ -103,7 +103,6 @@ func awayFrom(direction, other float64) float64 {
 	return 90
 }
 
-// handLabel writes a hand's label beside it, on a side.
 func handLabel(cv canvas, text string, direction, length, side float64) {
 	x, y := onFace(direction, length*0.62)
 	ax, ay := onFace(direction+side, handAside)

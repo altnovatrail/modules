@@ -1,8 +1,8 @@
-# The tasks of geometry-grid, counting-figures and geometry-cubes-paper of standalone at 42b4408: all
-# 49 of them (E3; T34). The units are the word a question counts, in the singular and the plural,
-# and a measure with its abbreviation; a task whose answer is no number, or a number by itself, has
-# none. standalone's site links no technique to the three topics by its ID, and the page of each says
-# its method in words: counting figures size by size, which is systematic, and folding, rolling or
+# The tasks of geometry-grid, counting-figures and geometry-cubes-paper of standalone at 42b4408:
+# all 49 of them. The units are the word a question counts, in the singular and the plural, and a
+# measure with its abbreviation; a task whose answer is no number, or a number by itself, has none.
+# standalone's site links no technique to the three topics by its ID, and the page of each says its
+# method in words: counting figures size by size, which is systematic, and folding, rolling or
 # drawing on squared paper, which is draw.
 standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
 canvas:

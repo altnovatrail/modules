@@ -30,9 +30,8 @@ jobs:
     name: Documents
     uses: altnovatrail/.github/.github/workflows/documents.yml@f1c7e9e6f8245fdbdbc23c4091f3c26350e3a44e # v0.1.33
 
-  # The Go code of tools/port, the port of standalone's tasks (R12), by the recipes ci-lint, ci-test,
-  # ci-vuln and ci-licenses of the justfile: "Go / lint", "Go / test", "Go / vuln" and "Go /
-  # licenses". Its coverage goes to Codecov by OIDC, with no secret, so the job gives the shared
+  # The Go code of tools/port (R12), by the justfile's recipes ci-lint, ci-test, ci-vuln and
+  # ci-licenses. Its coverage goes to Codecov by OIDC, with no secret, so the job gives the shared
   # workflow id-token: write, which only its coverage job asks for (R48 spec).
   go:
     name: Go
@@ -41,26 +40,22 @@ jobs:
       id-token: write
     uses: altnovatrail/.github/.github/workflows/go.yml@f1c7e9e6f8245fdbdbc23c4091f3c26350e3a44e # v0.1.33
 
-  # The repository's own jobs run in a stage of .devcontainer/Dockerfile, as the shared checks do,
-  # by spec's toolchain.sh from the submodule at the tag it pins: the stage, and the recipes of the
-  # justfile in it (R10). The two signatures and "Gate" run in toolchain-core, by TOOLCHAIN_STAGE,
-  # since what they run — release-verify, module-kit — is in the core; "Modules" runs in toolchain,
-  # which adds canvas's generator that eval-match draws with (R38). What to run each job decides
-  # itself, with no paths filter on the workflow: a required check of a skipped workflow stays
-  # "Pending" (R03).
+  # The repository's own jobs run in a stage of .devcontainer/Dockerfile, by spec's toolchain.sh
+  # from the submodule (R10). The two signatures and "Gate" run in toolchain-core, by
+  # TOOLCHAIN_STAGE, since release-verify and module-kit are in the core; "Modules" runs in
+  # toolchain, which adds canvas's generator that eval-match draws with (R38). Each job decides what
+  # to run itself, with no paths filter on the workflow: a required check of a skipped workflow
+  # stays "Pending" (R03).
   #
-  # Each job takes the image from the cache of GitHub Actions, as spec's own CI and .github's
-  # documents.yml do (R31 spec; R35): a file of docker save by the sha256 of the Dockerfile, which
-  # pins everything it fetches, so that on a hit the Dockerfile does not run and an outage of
-  # nodejs.org, GitHub or the Ubuntu snapshot fails no check. The path and the key of each stage are
-  # documents.yml's, novatrail-<stage>.tar under <stage>-…, so that the own jobs, "Documents" and the
-  # jobs of "Go" share one entry a stage, as .github's go.yml names its files and image as
-  # toolchain.sh does from v0.1.31 (R42 .github, R47 .github). toolchain.sh loads the file, or
-  # builds the stage and writes it; only a push to main saves the file, on a miss, since an entry
-  # never changes: an entry of a pull request is read by that pull request's re-runs alone, so a
-  # run that saves nothing hands the script no file to write, and on a miss each job builds the
-  # stage for itself. A broken entry stays until it is deleted (gh cache delete): toolchain.sh
-  # warns of it and builds. The release takes no cache (R31 spec).
+  # Each job takes the image from the cache of GitHub Actions (R31 spec; R35): a file of docker save
+  # by the sha256 of the Dockerfile, which pins everything it fetches, so that on a hit an outage of
+  # nodejs.org, GitHub or the Ubuntu snapshot fails no check. The path and key of each stage,
+  # novatrail-<stage>.tar under <stage>-…, are those of .github's workflows, so that the own jobs,
+  # "Documents" and the jobs of "Go" share one entry a stage (R42 .github, R47 .github). Only a push
+  # to main saves the file, on a miss: an entry never changes, and one of a pull request is read by
+  # its own re-runs alone, so a run that saves nothing hands toolchain.sh no file to write. A broken
+  # entry stays until it is deleted (gh cache delete): toolchain.sh warns of it and builds. The
+  # release takes no cache (R31 spec).
 
   # The signature of the module-kit release whose binary the stage installs, by spec's
   # release-verify, and the Dockerfile's sums against that release's SHA256SUMS (R77 spec), on
@@ -149,26 +144,24 @@ jobs:
       - name: canvas-verify
         run: sh spec/tools/toolchain/toolchain.sh run just canvas-verify
 
-  # The tree of modules/ and every module in it, by module-kit check and build, and each against its
-  # published versions by module-kit diff — the index of the newest release of modules, checked by
-  # release-verify, or --first before the first release (R11) —, once the signatures of
-  # module-kit's binary and of canvas's generator have passed; the tests of the recipes first. diff's status is the job's. Then the layout of each
-  # module's eval/, and each module's eval set by spec's sample-check --eval-set (R04, R25): no key,
-  # and the network only for the tools of sample-check from their lock file, so a pull request from
-  # a fork runs it too, and it runs even when a step before it failed, so that a refused sample
-  # shows on the first run. Then eval-match holds each sample to the package of the commit: a
-  # synthetic one drawn again by canvas's generator, a person's by the digest of its task's open
-  # view (amendment T59 to R25), with no network and no key, and as eval-check runs.
+  # The tree of modules/ and every module, by module-kit check and build, and each against its
+  # published versions by module-kit diff — the index of the newest release, checked by
+  # release-verify, or --first before the first release (R11); diff's status is the job's. The tests
+  # of the recipes run first. Then the layout of each module's eval/ and its eval set by spec's
+  # sample-check --eval-set (R04; R25): no key, and the network only for sample-check's tools from
+  # their lock file, so a pull request from a fork runs it too; it runs even when a step before it
+  # failed, so that a refused sample shows on the first run. Then eval-match, as eval-check runs,
+  # holds each sample to the package of the commit — a synthetic one drawn again by canvas's
+  # generator, a person's by the digest of its task's open view (R25) —, with no network and no key.
   #
-  # Each step is a container of its own, whose home toolchain.sh throws away, so the steps share
-  # one cache of Go, a folder of the checkout that toolchain.sh mounts at /work, which git ignores:
-  # the port is compiled once, by the tests, and the pictures' steps reuse it (R36). Across runs the
-  # folder lives in the cache of GitHub Actions by the rules of the caches of .github's go.yml of
-  # v0.1.31 (R36; R41 .github): the key is the runner's OS and architecture, the Dockerfile, which pins the
-  # Go, and go.sum, which pins the modules, with no restore key; what the cache gave passes go mod
-  # verify before any step builds from it, or is deleted with a warning; only a push to main saves.
-  # go.yml of v0.1.33 restores by the prefix without go.sum, and this job does not, until T83 moves
-  # it onto .github's action toolchain (R41).
+  # Each step is a container of its own whose home toolchain.sh throws away, so the steps share one
+  # cache of Go, a folder of the checkout that toolchain.sh mounts at /work and git ignores: the port
+  # is compiled once, by the tests, and the pictures' steps reuse it (R36). Across runs the folder
+  # lives in the cache of GitHub Actions by the rules of .github's go.yml (R36; R41 .github): the key
+  # is the runner's OS and architecture, the Dockerfile, which pins Go, and go.sum, which pins the
+  # modules, with no restore key; what the cache gave passes go mod verify before any step builds
+  # from it, or is deleted with a warning; only a push to main saves. go.yml restores by the prefix
+  # without go.sum, and this job does not (R41).
   modules:
     name: Modules
     needs: [module-kit, canvas]
@@ -209,23 +202,21 @@ jobs:
       - name: Free the file of the toolchain image
         if: ${{ !cancelled() }}
         run: rm -f -- "$RUNNER_TEMP/novatrail-toolchain.tar"
-      # The cache of Go from the cache of GitHub Actions, by the key above, into the folder the
-      # steps share. It comes after the checkout, so nothing cleans the folder once it is there, and
-      # the modules go writes read-only need no -modcacherw.
+      # After the checkout, so nothing cleans the folder once it is restored, and the modules go
+      # writes read-only need no -modcacherw.
       - id: go-cache
         name: Go caches from the cache
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .cache/go
           key: go-${{ runner.os }}-${{ runner.arch }}-modules-${{ hashFiles('.devcontainer/Dockerfile') }}-${{ hashFiles('go.sum') }}
-      # What the cache gave is checked first by go mod verify in the root module, the one module the
-      # steps build — .devcontainer/gopls/ is gopls's lock file, which the stage builds —: each
-      # module of its build is hashed again against the hash it was downloaded with, which go
-      # checks against go.sum whenever it takes it. A check that fails or cannot run costs the run
-      # its cache and not its verdict: it is deleted with a warning, and the steps download and
-      # build as with none. A verified cache has its builds touched: go deletes a build it has not
-      # used for five days, by its time, at the end of a command, and an entry keeps the times of
-      # its save, so the first step would delete what the next ones need (R41 .github).
+      # go mod verify in the root module, the one module the steps build (.devcontainer/gopls/ is
+      # gopls's lock file, which the stage builds), hashes each module of its build again against
+      # the hash go checked against go.sum when it was downloaded. A check that fails or cannot run
+      # costs the run its cache, not its verdict. A verified cache has its builds touched: go
+      # deletes a build unused for five days, by its time, at the end of a command, and an entry
+      # keeps the times of its save, so the first step would delete what the next ones need
+      # (R41 .github).
       - name: Go caches
         env:
           RESTORED: ${{ steps.go-cache.outputs.cache-matched-key }}
@@ -260,10 +251,9 @@ jobs:
       - name: The pictures of the instances of the templates
         if: ${{ !cancelled() && steps.toolchain.outcome == 'success' }}
         run: sh spec/tools/toolchain/toolchain.sh run env "$GO_CACHE" "$GO_MODULES" just template-pictures modules/olympiad-math --check
-      # A push to main saves the cache, once every step has passed, under a key no entry holds yet:
-      # an entry is never replaced, and one a pull request saved would be read by its own re-runs
-      # alone, so a pull request only reads main's (R41 .github). A save that fails costs the next
-      # run its speed, not this one its verdict. The release takes no cache.
+      # A push to main saves, once every step has passed, under a key no entry holds yet: an entry
+      # is never replaced, and one a pull request saved would be read by its own re-runs alone
+      # (R41 .github). A save that fails costs the next run its speed, not this one its verdict.
       - name: Go caches into the cache
         if: ${{ steps.go-cache.outputs.cache-hit != 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
@@ -271,20 +261,19 @@ jobs:
           path: .cache/go
           key: ${{ steps.go-cache.outputs.cache-primary-key }}
 
-  # The gate of sim (R37; R103 spec; architecture 3.2): sim at the tag and the SHA of its commit
-  # below, as its README has a caller of the gate of modules take it, from git. The inputs come from
-  # just gate-inputs in this repository's stage toolchain-core — the published versions, checked by
-  # release-verify, and the package of every module —, and the gate runs from the root of sim's
-  # checkout, in the toolchain stage of sim's own devcontainer at that commit. sim says what of each
-  # package changed and runs only that, or nothing; it holds invariants and absolute thresholds, so
-  # its exit is the job's. A pull request that moves SIM_COMMIT runs every package, -all; so does a
-  # run whose base cannot be read, rather than run too little.
+  # The gate of sim (R37; R103 spec): sim at SIM_TAG and its commit SIM_COMMIT, from git, as sim's
+  # README has a caller of the gate of modules take it. just gate-inputs writes the inputs in this
+  # repository's stage toolchain-core — the published versions, checked by release-verify, and the
+  # package of every module —, and the gate runs from the root of sim's checkout in the toolchain
+  # stage of sim's own devcontainer at that commit. sim runs only what of each package changed, or
+  # nothing; it holds invariants and absolute thresholds, so its exit is the job's. A pull request
+  # that moves SIM_COMMIT runs every package, -all; so does a run whose base cannot be read, rather
+  # than run too little.
   #
-  # sim's image is in the cache of GitHub Actions by the sha256 of sim's Dockerfile, under its own
-  # key, as the image of this repository's stage is, and only a push to main saves it; the caches
-  # of Go of the gate, by sim's go.sum and Dockerfile, as sim's gate.yml keeps them: a pull request
-  # only reads them, a push to main saves them. Both checkouts lie under .cache/ of this one, which
-  # git ignores, so that the container of either stage sees them at /work.
+  # sim's image is cached by the sha256 of sim's Dockerfile under its own key, and the gate's caches
+  # of Go by sim's go.sum and Dockerfile, as sim's gate.yml keeps them: only a push to main saves
+  # either. Both checkouts lie under .cache/ of this one, which git ignores, so that the container
+  # of either stage sees them at /work.
   gate:
     name: Gate
     needs: [module-kit]

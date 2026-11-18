@@ -19,7 +19,6 @@ type tilesPicture struct {
 	Tiles  [][]string `json:"tiles"`
 }
 
-// tileText is what a triangle of a tile holds: a number of at most 2 digits, ?, or nothing.
 var tileText = regexp.MustCompile(`^(|\?|[0-9]{1,2})$`)
 
 func (t *tilesPicture) valid() error {
@@ -113,8 +112,7 @@ func (p placedTile) corner(sides, k int) (float64, float64) {
 	return p.x + math.Cos(angle), p.y + math.Sin(angle)
 }
 
-// The geometry of tiles, in CSS px: the largest a tile's radius is drawn, and the widest and
-// tallest the tiles may be.
+// The geometry of tiles, in CSS px: the largest a tile's radius is drawn, and the bounds of all.
 const (
 	tileRadius = 44
 	tilesWide  = 520

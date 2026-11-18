@@ -9,7 +9,7 @@ import (
 // cells across and height down, 1 to 8 each, a cell [x, y] from [0, 0] at the top left; cells
 // filled, lines from corner to corner — walls, sides, matches, sticks — dashed lines — a fold, a
 // cut, an axis — points at corners, each with a label or none, and labels in cells. Its facts may
-// stand on the picture alone (docs/architecture.md, section 3.5).
+// stand on the picture alone (R21).
 type latticePicture struct {
 	Kind   string         `json:"kind"`
 	Width  *int           `json:"width"`
@@ -26,7 +26,6 @@ type latticeLabel struct {
 	Label *string `json:"label,omitempty"`
 }
 
-// isShortLabel tells a label of a lattice, at most 2 characters long, from any other text.
 func isShortLabel(text string) bool { return isLabel(text) && len([]rune(text)) <= 2 }
 
 func (l *latticePicture) valid() error {
@@ -136,7 +135,7 @@ var quarters = [4][2]int{{0, -1}, {-1, -1}, {0, 0}, {-1, 0}}
 
 // pointLabels gives each labelled point a cell of its own among the four round its corner, one no
 // mark holds, cells of the paper first, moving a label already seated where one beside it has none
-// left: standalone's own way of setting them. It is nil when some label has no cell, and empty when
+// left, as standalone seats them. It is nil when some label has no cell, and empty, not nil, when
 // no point has a label.
 func (l *latticePicture) pointLabels() [][2]int {
 	marked := map[[2]int]bool{}

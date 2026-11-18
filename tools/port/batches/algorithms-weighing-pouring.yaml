@@ -1,8 +1,8 @@
-# The tasks of algorithms-weighing-pouring of standalone at 42b4408: all 40 of them (E3; T31). The
-# units are the word a question counts, in the singular and the plural, and a measure with its
-# abbreviation; a task whose answer is no number has none. standalone's site links the topic to the
-# technique backwards, which goes in the overlay of each task that counts steps to reach an amount,
-# by pouring or by splitting, where working back from the amount wanted helps.
+# The tasks of algorithms-weighing-pouring of standalone at 42b4408: all 40 of them. The units are
+# the word a question counts, in the singular and the plural, and a measure with its abbreviation; a
+# task whose answer is no number has none. standalone's site links the topic to the technique
+# backwards, which goes in the overlay of each task that counts steps to reach an amount, by pouring
+# or by splitting, where working back from the amount wanted helps.
 standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
 canvas:
   kind: handwriting_sheet

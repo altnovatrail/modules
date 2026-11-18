@@ -10,19 +10,16 @@ import (
 	"strings"
 )
 
-// bench is the test of standalone that runs the solver of each reference task the way a submitted
-// solver is run — its sandbox, its dialect and helpers, two runs under rotated letters — and holds
-// it to the task's correct answer: a subtest each, named by the task's ID (content/solver_test.go
-// of standalone). The runs must agree on exactly one letter, so the solver proves the key and that
-// no other option, none of the trap values, is right (R05; R12). The one trap value that is no
-// option of standalone, the time a clock face shows for a key of the afternoon, evening or first
-// hour after midnight, no solver sees: it is twelve hours off the key, so never right (amendment
-// T50 to R20).
+// bench is the test of standalone, content/solver_test.go, that runs the solver of each reference
+// task as a submitted solver is run — its sandbox and dialect, two runs under rotated letters — in a
+// subtest named by the task's ID. The runs must agree on exactly one letter, so the solver proves
+// the key and that no trap value is right (R05; R12). The one trap value that is no option of
+// standalone, a time twelve hours off the key as a clock face shows it, no solver sees: it is never
+// right (R20).
 const bench = "TestEveryReferenceTaskProvesItsOwnAnswer"
 
-// prove runs the bench of a clone of standalone on the tasks given, with the go command named, and
-// fails unless each of them passed. The clone is standalone's own module: go fetches its modules,
-// none of which enters this repository or its build.
+// prove fails unless the bench of the clone passed for each task given. go fetches the clone's own
+// modules, none of which enters this repository or its build.
 func prove(goCommand, clone string, ids []string) error {
 	quoted := make([]string, len(ids))
 	for i, id := range ids {
@@ -34,9 +31,8 @@ func prove(goCommand, clone string, ids []string) error {
 	command.Stderr = &stderr
 	out, runErr := command.Output()
 
-	// What go says goes with a refusal: the output of a subtest that failed, and the output of the
-	// build, which go test -json writes as events of their own, so that a bench that does not
-	// compile says why.
+	// A refusal carries the output of a subtest that failed and of the build, which go test -json
+	// writes as events of their own, so that a bench that does not compile says why.
 	passed, failed := map[string]bool{}, map[string]bool{}
 	said := map[string][]string{}
 	var build []string

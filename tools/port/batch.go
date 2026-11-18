@@ -14,24 +14,23 @@ import (
 	"go.yaml.in/yaml/v4"
 )
 
-// Batch is a batch of tasks to carry, a file of tools/port/batches/: the commit of standalone the
-// tasks come from, the canvas of every task, what each skill gives its tasks, and the tasks by ID
-// with what each needs that standalone does not say (R07; docs/architecture.md, section 3.6).
+// Batch is a file of tools/port/batches/: the commit of standalone the tasks come from, the canvas
+// of every task, what each skill gives its tasks, and what each task needs that standalone does not
+// say (R12).
 type Batch struct {
 	Standalone string                   `yaml:"standalone"`
 	Canvas     Canvas                   `yaml:"canvas"`
 	Skills     map[string]SkillDefaults `yaml:"skills"`
 	Tasks      map[string]BatchTask     `yaml:"tasks"`
-	// overlays is the folder of the batch's overlays, as the command was given it, which the header of
-	// every task it writes names.
+	// overlays is the folder of the overlays as the command was given it, which every task's header
+	// names.
 	overlays string
-	// survey marks the batch that a survey makes, of every task no batch names: it is never read
-	// from a file, its pictures get surveyAlt, and an explanation or a leading question that names the
-	// key of a choice is counted, not refused.
+	// survey marks the batch a survey makes, never read from a file: its pictures get surveyAlt, and
+	// a text that names the key of a choice is counted, not refused (R20).
 	survey bool
 }
 
-// Canvas is the canvas of a task (format/README.md, section 14).
+// Canvas is the canvas of a task, as the format has it.
 type Canvas struct {
 	Kind string `yaml:"kind"`
 	Grid string `yaml:"grid,omitempty"`
@@ -44,22 +43,21 @@ type SkillDefaults struct {
 	Supporting []string `yaml:"supporting,omitempty"`
 }
 
-// BatchTask is what a task of a batch needs beside standalone: the units of its answer, the word
-// its question counts in the singular and the plural and, for a measure, its abbreviation
-// (format/README.md, section 15); and whether its choice is tapped though its key is a word of the
-// question, because its wrong options are reasons a learner would not write by hand (R20).
+// BatchTask is what a task needs beside standalone: the units of its answer — the word its question
+// counts in the singular and the plural and, for a measure, its abbreviation — and whether its
+// choice is tapped though its key is a word of the question, its wrong options being reasons a
+// learner would not write by hand (R20).
 type BatchTask struct {
 	Units  []string `yaml:"units,omitempty"`
 	Tapped bool     `yaml:"tapped,omitempty"`
 }
 
-// Overlay is what a person writes for a task, tools/port/overlay/<batch>/<id>.yaml: none of it comes from
-// standalone, and the port puts it into the task as it is (R12).
+// Overlay is what a person writes for a task, tools/port/overlay/<batch>/<id>.yaml, which the port
+// puts into the task as it is (R12).
 type Overlay struct {
 	Givens  []string `yaml:"givens,omitempty"`
 	Unknown string   `yaml:"unknown,omitempty"`
-	// LeadingQuestion, when given, stands in place of the hint of standalone, as the task's leading
-	// question: written anew where the hint names the key (amendment T51 to R12).
+	// LeadingQuestion stands in place of standalone's hint where the hint names the key (R12).
 	LeadingQuestion string `yaml:"leading_question,omitempty"`
 	SimplerCase     string `yaml:"simpler_case,omitempty"`
 	// Techniques, when given, stand in place of those of the task's skill.
@@ -67,22 +65,20 @@ type Overlay struct {
 	// Traps are added to those of the wrong options that become no trap value.
 	Traps       []string `yaml:"traps,omitempty"`
 	LeakPhrases []string `yaml:"leak_phrases,omitempty"`
-	// PictureAlt and SolutionPictureAlt are the alt of the pictures of the statement and of the
-	// solution: what the picture shows, in words, with no answer in them.
+	// PictureAlt and SolutionPictureAlt say what the pictures show, with no answer in them.
 	PictureAlt         string `yaml:"picture_alt,omitempty"`
 	SolutionPictureAlt string `yaml:"solution_picture_alt,omitempty"`
-	// AnswerForm is a paragraph of the statement after the question and its picture, which says what
-	// form the answer takes, such as "Write the time as hours and minutes, like 9:15.", as a statement
-	// SHOULD say (format/README.md, section 15).
+	// AnswerForm is a paragraph after the question and its picture that says what form the answer
+	// takes, such as "Write the time as hours and minutes, like 9:15.", as the format would have a
+	// statement say.
 	AnswerForm string `yaml:"answer_form,omitempty"`
-	// TrapTexts are explanations written anew, by the trap value they explain, as the module
-	// writes it: "5", not "5 m".
+	// TrapTexts are keyed by the trap value as the module writes it: "5", not "5 m".
 	TrapTexts map[string]string `yaml:"trap_texts,omitempty"`
 }
 
 var commit = regexp.MustCompile(`^[0-9a-f]{40}$`)
 
-// readBatch reads a batch file strictly: a field it does not know is an error.
+// readBatch refuses a field it does not know.
 func readBatch(file string) (Batch, error) {
 	var batch Batch
 	if err := readYAML(file, &batch); err != nil {
@@ -110,10 +106,9 @@ func readBatch(file string) (Batch, error) {
 	return batch, nil
 }
 
-// readOverlays reads the overlay of every task of a batch that has one, from the batch's own
-// folder, tools/port/overlay/<batch>/ (T22). The folder must be there: a mistyped path would drop
-// every overlay unsaid. An overlay of a task the batch does not name is an error too, since it would
-// be left out, and so is a folder in it.
+// readOverlays reads the overlays of a batch from its own folder. The folder must be there, or a
+// mistyped path would drop every overlay unsaid; an overlay of a task the batch does not name would
+// be left out unsaid, so it is an error, and so is a folder in it (R12).
 func readOverlays(dir string, batch Batch) (map[string]Overlay, error) {
 	overlays := map[string]Overlay{}
 	entries, err := os.ReadDir(dir)
@@ -138,7 +133,7 @@ func readOverlays(dir string, batch Batch) (map[string]Overlay, error) {
 	return overlays, nil
 }
 
-// readYAML decodes one YAML document of a file into value, refusing fields it does not know.
+// readYAML decodes the one YAML document of a file, refusing fields it does not know.
 func readYAML(file string, value any) error {
 	data, err := os.ReadFile(file)
 	if err != nil {

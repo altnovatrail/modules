@@ -19,20 +19,17 @@ import (
 	"golang.org/x/image/vector"
 )
 
-// A picture of standalone is a description that its card draws (content/pictures/ of standalone).
-// The format takes a picture as a file (R51 spec), so the port draws it: a PNG on an opaque white
-// background, as the format asks of every picture of a module (format/README.md, section 14; the
-// second amendment of 2026-11-01 to R51 spec), with only the chunks IHDR, IDAT and IEND, and the
-// same bytes on every run, since a picture's bytes are in the digest of the module's package.
+// A picture of standalone is a description that its card draws, and the format takes a picture as
+// a file, so the port draws it: a PNG on an opaque white background, as the format asks of every
+// picture, with only the chunks IHDR, IDAT and IEND, and the same bytes on every run, since a
+// picture's bytes are in the digest of the module's package (R12; R51 spec).
 //
-// Each kind is read strictly, by the $defs of its kind in content/schemas/task.json of standalone
-// at 42b4408, and held to what standalone's service checks and the schema cannot say
-// (internal/domain/picture/ of standalone): a field the port does not know stops it. It is drawn in
-// CSS px, twice as many pixels each way, with labels in Go Regular. The kinds not drawn yet are
-// those of T21 (E3).
+// Each kind is read strictly, by its $defs in standalone's content/schemas/task.json, and held to
+// what standalone's service checks and the schema cannot say (internal/domain/picture/ of
+// standalone): a field the port does not know stops it.
 
-// drawing is a picture of one kind, read: what the service checks, the size it is drawn at in CSS
-// px, how it is drawn there, and the texts it writes (labels.go).
+// drawing is a picture of one kind, read: what the service checks, its size in CSS px, how it is
+// drawn, and the texts it writes.
 type drawing interface {
 	valid() error
 	size() (width, height int)
@@ -40,7 +37,7 @@ type drawing interface {
 	labels() []string
 }
 
-// kinds are the kinds the port draws, each a new empty description to read one into.
+// kinds give a new empty description of each kind the port draws, to read one into.
 var kinds = map[string]func() drawing{
 	"row":         func() drawing { return &rowPicture{} },
 	"clock":       func() drawing { return &clockPicture{} },
@@ -68,15 +65,13 @@ var (
 	timeOfDay = regexp.MustCompile(`^([01]?[0-9]|2[0-3]):[0-5][0-9]$`)
 )
 
-// isLabel tells a label of a picture, at most 5 characters long, from any other text.
 func isLabel(text string) bool {
 	return label.MatchString(text) && len([]rune(text)) <= 5
 }
 
-// pictureOf draws a picture of standalone and gives the part of the statement or the solution that
-// shows it: its path from media/, its alt and its size in CSS px. The alt is the overlay's: what
-// the picture shows, in words, which a person writes, so that no answer is in it. A picture without
-// one is refused, since alt is empty only for a picture that only decorates.
+// pictureOf draws a picture and gives the part of the statement or the solution that shows it. The
+// alt is the overlay's, written by a person so that no answer is in it; a picture without one is
+// refused, since the format leaves alt empty only for a decoration.
 func pictureOf(id string, raw json.RawMessage, alt, suffix string) (mapping, []byte, error) {
 	if alt == "" {
 		return nil, nil, fmt.Errorf("%s: its picture has no alt in its overlay", id)
@@ -107,9 +102,9 @@ var keyedByData = map[string]string{"grid": "marks", "calendar": "marks"}
 
 // exactKeys refuses what encoding/json lets through: a member named in other letters than the
 // schema's, such as TIME for time, which it matches without regard to case, and a member named
-// twice in one object, whose last value it takes. Every name of the schema is lowercase, so a
-// lowercase name matches only itself. The member of the picture that keyed names, a map keyed by
-// data, has its keys held only to being named once.
+// twice, whose last value it takes. Every name of the schema is lowercase, as key holds, so a
+// lowercase name matches only itself. The member that keyed names, a map keyed by data, has its
+// keys held only to being named once.
 func exactKeys(raw json.RawMessage, keyed string) error {
 	decoder := json.NewDecoder(bytes.NewReader(raw))
 	depth := 0
@@ -154,8 +149,7 @@ func exactKeys(raw json.RawMessage, keyed string) error {
 	return walk(false)
 }
 
-// readPicture reads a picture of standalone strictly, by its kind, and holds it to the checks of
-// standalone's service: a kind the port does not draw is notDrawn.
+// readPicture reads a picture strictly, by its kind: a kind the port does not draw is notDrawn.
 func readPicture(id string, raw json.RawMessage) (drawing, error) {
 	var kind struct {
 		Kind string `json:"kind"`
@@ -187,15 +181,13 @@ func pathOfPicture(part mapping) string {
 	return "media/" + part[0].value.(string)
 }
 
-// render draws a picture on a white opaque image of its size and gives the PNG and the size in CSS
-// px.
+// render gives the PNG of a picture and its size in CSS px.
 func render(picture drawing) ([]byte, int, int, error) {
 	width, height := picture.size()
 	data, err := encodePNG(paintImage(picture))
 	return data, width, height, err
 }
 
-// paintImage draws a picture on a white opaque image of its size.
 func paintImage(picture drawing) *image.RGBA {
 	width, height := picture.size()
 	img := whiteImage(width, height)
@@ -210,7 +202,6 @@ func whiteImage(width, height int) *image.RGBA {
 	return img
 }
 
-// encodePNG is an image as the port writes every picture, at the best compression.
 func encodePNG(img image.Image) ([]byte, error) {
 	var out bytes.Buffer
 	encoder := png.Encoder{CompressionLevel: png.BestCompression}
@@ -220,7 +211,8 @@ func encodePNG(img image.Image) ([]byte, error) {
 	return out.Bytes(), nil
 }
 
-// notDrawn is a picture of a kind the port does not draw yet, which a survey counts by kind.
+// notDrawn is the error of a picture of a kind the port does not draw, which a survey counts by
+// kind.
 type notDrawn struct{ id, kind string }
 
 func (e notDrawn) Error() string {
@@ -248,9 +240,9 @@ var (
 	rule = color.RGBA{0xa8, 0xaf, 0xb8, 0xff}
 )
 
-// goRegular is the font of the labels, Go Regular, BSD-3-Clause, parsed once; faces holds a face
-// of it at each size, in CSS px. A face is not safe for concurrent use (golang.org/x/image/font),
-// and template-pictures draws on several goroutines, so facesMu is held for each use of one.
+// goRegular is the font of the labels, BSD-3-Clause; faces holds a face of it at each size, in CSS
+// px. A face is not safe for concurrent use, and template-pictures draws on several goroutines, so
+// facesMu is held for each use of one (R36).
 var (
 	goRegular = sync.OnceValue(func() *opentype.Font {
 		parsed, err := opentype.Parse(goregular.TTF)
@@ -298,7 +290,6 @@ type canvas struct {
 	raster *vector.Rasterizer
 }
 
-// size is the size of the picture the canvas draws, in CSS px.
 func (c canvas) size() (float64, float64) {
 	b := c.img.Bounds()
 	return float64(b.Dx() / scale), float64(b.Dy() / scale)
@@ -327,7 +318,7 @@ func circle(path *vector.Rasterizer, cx, cy, r float64, sides int, turn float64)
 	path.ClosePath()
 }
 
-// ring draws a circle's outline of a width, centred on its radius.
+// ring draws a circle's outline centred on its radius.
 func (c canvas) ring(cx, cy, r, width float64) {
 	c.disc(cx, cy, r+width/2)
 	c.discColor(cx, cy, r-width/2, white)
@@ -343,7 +334,7 @@ func (c canvas) rect(x0, y0, x1, y1 float64, col color.RGBA) {
 	path.Draw(c.img, c.img.Bounds(), image.NewUniform(col), image.Point{})
 }
 
-// frame draws a rectangle's outline of a width, inside its edges.
+// frame draws a rectangle's outline inside its edges.
 func (c canvas) frame(x0, y0, x1, y1, width float64) {
 	c.rect(x0, y0, x1, y0+width, ink)
 	c.rect(x0, y1-width, x1, y1, ink)
@@ -351,7 +342,7 @@ func (c canvas) frame(x0, y0, x1, y1, width float64) {
 	c.rect(x1-width, y0, x1, y1, ink)
 }
 
-// line draws a straight line of a width from one point to another, with round ends.
+// line draws a line with round ends.
 func (c canvas) line(x0, y0, x1, y1, width float64) {
 	length := math.Hypot(x1-x0, y1-y0)
 	if length > 0 {
@@ -375,10 +366,9 @@ func (c canvas) rasterizer() *vector.Rasterizer {
 	return c.raster
 }
 
-// text draws a label centred on (cx, cy), at the size of the labels.
 func (c canvas) text(s string, cx, cy float64) { c.textAt(s, cx, cy, fontSize) }
 
-// textAt draws a text centred on (cx, cy), at a size in CSS px.
+// textAt draws a text centred on (cx, cy).
 func (c canvas) textAt(s string, cx, cy, size float64) {
 	withFace(size, func(face font.Face) {
 		metrics := face.Metrics()
@@ -398,14 +388,13 @@ func (c canvas) plate(s string, cx, cy float64) {
 	c.plateOf(s, cx, cy, measure(s, fontSize)/2+3, 9)
 }
 
-// plateOf draws a text centred on (cx, cy) on a white plate of a half width and a half height.
 func (c canvas) plateOf(s string, cx, cy, halfWide, halfTall float64) {
 	c.rect(cx-halfWide, cy-halfTall, cx+halfWide, cy+halfTall, white)
 	c.text(s, cx, cy)
 }
 
-// span draws the span of a whole length, from left to right at y: a line with a tick at each end,
-// and its label on a plate in the middle, of the half width given.
+// span draws the span of a whole length at y: a line with a tick at each end, and its label on a
+// plate in the middle.
 func (c canvas) span(left, right, y float64, s string, halfWide, halfTall float64) {
 	c.rect(left, y-stroke/2, right, y+stroke/2, ink)
 	c.rect(left-stroke/2, y-6, left+stroke/2, y+6, ink)
@@ -413,8 +402,8 @@ func (c canvas) span(left, right, y float64, s string, halfWide, halfTall float6
 	c.plateOf(s, (left+right)/2, y, halfWide, halfTall)
 }
 
-// outline draws a circle's outline of a width, centred on its radius, and leaves the inside as it
-// is: the outer edge one way round and the inner the other, in one path.
+// outline draws a circle's outline centred on its radius and leaves the inside as it is: the outer
+// edge one way round and the inner the other, in one path.
 func (c canvas) outline(cx, cy, r, width float64) {
 	path := c.rasterizer()
 	circle(path, cx, cy, r+width/2, 96, 1)
@@ -422,7 +411,6 @@ func (c canvas) outline(cx, cy, r, width float64) {
 	path.Draw(c.img, c.img.Bounds(), image.NewUniform(ink), image.Point{})
 }
 
-// polygon draws the outline of a closed polygon through its corners, of a width.
 func (c canvas) polygon(corners [][2]float64, width float64) {
 	for i, from := range corners {
 		to := corners[(i+1)%len(corners)]
@@ -430,7 +418,7 @@ func (c canvas) polygon(corners [][2]float64, width float64) {
 	}
 }
 
-// dashed draws a dashed line of a width from one point to another: dashes of 6 CSS px, 4 apart.
+// dashed draws dashes of 6 CSS px, 4 apart.
 func (c canvas) dashed(x0, y0, x1, y1, width float64) {
 	length := math.Hypot(x1-x0, y1-y0)
 	for from := 0.0; from < length; from += 10 {

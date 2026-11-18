@@ -1,7 +1,6 @@
-# The tasks of time-clocks of standalone at 42b4408: all 65 of them (E3; T28). The units are the
-# word a question counts, in the singular and the plural, and o'clock after an hour; a task whose
-# answer is no number, or a number by itself, has none. standalone's site links no technique to the
-# topic.
+# The tasks of time-clocks of standalone at 42b4408: all 65 of them. The units are the word a
+# question counts, in the singular and the plural, and o'clock after an hour; a task whose answer is
+# no number, or a number by itself, has none. standalone's site links no technique to the topic.
 standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
 canvas:
   kind: handwriting_sheet

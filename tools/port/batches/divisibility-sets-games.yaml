@@ -1,8 +1,8 @@
 # The tasks of number-divisibility, logic-sets and games-strategy of standalone at 42b4408: all 45
-# of them (E3; T33). The units are the word a question counts, in the singular and the plural; a task
-# whose answer is no number, or a number by itself, has none. standalone's site links the techniques
-# backwards and mirror to games-strategy, which go in the overlay of each game they help, and none to
-# the other two topics. A task of number-divisibility has the anchor skill
+# of them. The units are the word a question counts, in the singular and the plural; a task whose
+# answer is no number, or a number by itself, has none. standalone's site links the techniques
+# backwards and mirror to games-strategy, which go in the overlay of each game they help, and none
+# to the other two topics. A task of number-divisibility has the anchor skill
 # core.division-with-remainder as its support.
 standalone: 42b4408225e4163d8efbdfb93c299f3fc4b70afa
 canvas:

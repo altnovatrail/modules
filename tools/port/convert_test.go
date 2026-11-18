@@ -18,8 +18,7 @@ func convertOne(t *testing.T, ex Example, task BatchTask, overlay Overlay) (stri
 
 var metres = BatchTask{Units: []string{"metre", "metres", "m"}}
 
-// The whole file of a task with a whole-number answer: the table of docs/architecture.md, section
-// 3.5, line by line.
+// The whole file of a task with a whole-number answer, line by line (R12).
 func TestConvertWholeNumber(t *testing.T) {
 	ex := example("lamps-1")
 	ex.SolutionTotal = "2 × 7 = 14"
@@ -88,7 +87,7 @@ difficulty: 2
 // The hint of standalone is the task's leading question, which the overlay's leading_question
 // writes anew; an overlay may not give one to a task with no hint. The key of a choice, which the
 // leak check of the format does not search, the port searches there itself, and a survey writes
-// the question and says so (amendment T51 to R12).
+// the question and says so (R12).
 func TestConvertLeadingQuestion(t *testing.T) {
 	ex := example("lamps-5")
 	got, _ := convertOne(t, ex, metres, Overlay{})
@@ -198,8 +197,8 @@ func TestConvertNonNumericWrongOption(t *testing.T) {
 	}
 }
 
-// A check of a number takes a simple fraction too, and a unit with a space before it or none
-// (format/README.md, section 15).
+// A check of a number takes a simple fraction too, and a unit with a space before it or none, as
+// the format's number notation has it.
 func TestConvertNumberNotations(t *testing.T) {
 	ex := example("lamps-7")
 	ex.Options = map[string]string{"A": "7m", "B": "15/2", "C": "14", "D": "10.5 m", "E": "-16"}
