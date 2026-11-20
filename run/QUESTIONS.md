@@ -8,7 +8,8 @@ Table 3 of [RUN.md](../RUN.md): the author's open questions that tasks leave (R1
 
 ## Table 3. Questions to the author
 
-Numbers are not reused: next — В41.
+Numbers are not reused: next — В42.
 
 | ID | Question | From | Options | Recommendation |
 |---|---|---|---|---|
+| В41 | «В реестр spec» The deny of `.claude/settings.json` here — no session reads a file of `modules/*/eval/` but `synthetic-*.json` (the T61 amendment to R04) — is relative to the project, and every NovaTrail container now mounts `/workspaces/.epics` (R166 spec): a clone `.epics/<epic>/modules` is read by its absolute path from this container, and from spec's orchestrator container, where the task across repositories runs, with no deny at all. Where does the deny for those clones live? | T90 (review) | (a) the template's `.claude/settings.json` of `spec/repo-template/files/` and spec's own deny `Read(//workspaces/.epics/*/modules/modules/*/eval/*)` with the exception `Read(!//workspaces/.epics/*/modules/modules/*/eval/synthetic-*.json)`, and every repository takes it with its next tag; (b) `xrepo` clones `modules` sparse, without `modules/*/eval/` but `synthetic-*.json`; (c) nothing: the files are public in the repository, and the rule holds by the sessions' word alone | (a): one rule in every container, as the deny here is, and no clone of `modules` a task needs loses its files; (b) breaks `just eval-check` in the clone |
