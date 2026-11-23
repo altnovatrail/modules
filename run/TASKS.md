@@ -30,18 +30,6 @@ Open tasks outside the current epic, each as its body, in Russian.
 - **Как проверить:** `just -f spec/justfile docs-check-repo`; `grep -n 'stands on .spec. v' docs/decisions.md` — пусто; `/code-review high`, один круг.
 - **Разделы:** R160 spec; RULES.md spec — The bar, Across repositories; R10, R29, R31, R34, R38, R39, R41; Д10, Д11.
 
-#### T94. Ссылки по R171 spec — архитектура, разделы 1–3.3, и `docs/README.md`
-
-- **Цель:** разделы 1–3.3 `docs/architecture.md` и `docs/README.md` — по R171 spec: ссылка стоит, только если читатель пойдёт по ней, чтобы действовать; ни номера задачи, ни поправки, не больше двух ссылок в одной скобке.
-- **Почему:** R171 spec; вторая часть T93, разбитой по правилу 11 RUN.md (строка 7.40 COORDINATION.md spec); раздел 3.4 и дальше — T95.
-- **Сделать:**
-  1. Механические места — `docs-check-repo` с `"citations": true` во временной копии `docs-budgets.json`, строки этих разделов; остальное — `grep -nE` по шаблону `measurements 1.18 spec`.
-  2. Каждая ссылка — по шагу 4 T93: внешний факт, который можно оспорить, — одна запись `sources`/`measurements`; решённый выбор, который выглядит изменяемым, — один номер решения, один раз в тексте; открытая работа — строка «Д…» или «В…»; остальное — убрать; цепочку — свести к одному месту, где утверждение решено. Номер задачи — заменить файлом или решением.
-  3. Смысл не менять; настоящее сомнение — строка `run/QUESTIONS.md` и статус `waiting`.
-- **Как проверить:** `just -f spec/justfile docs-check-repo` — зелёный; с `"citations": true` во временной копии — ни одной находки в этих разделах; в отчёте — ссылок было и стало по видам, командой `measurements 1.18 spec`; `/code-review high`, один круг.
-- **Разделы:** R171 spec; RULES.md spec — The bar, Citations; architecture 1–3.3.
-- **Зависит от:** T93.
-
 #### T95. Ссылки по R171 spec — архитектура, разделы 3.4–4
 
 - **Цель:** разделы 3.4–4 `docs/architecture.md` — по R171 spec, как T94 — разделы 1–3.3.
