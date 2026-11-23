@@ -1,5 +1,5 @@
-# CodeQL over the repository's workflows and its languages (R09 .github), pinned to a release of
-# .github. The job gives the shared workflow what it needs to upload its results.
+# CodeQL over the repository's workflows and its languages, pinned to a release of .github. The
+# job gives the shared workflow what it needs to upload its results.
 name: CodeQL
 
 on:
@@ -22,6 +22,6 @@ jobs:
       security-events: write
     uses: altnovatrail/.github/.github/workflows/codeql.yml@f1c7e9e6f8245fdbdbc23c4091f3c26350e3a44e # v0.1.33
     # The tests of the recipes, test/*.mjs, are JavaScript, and the recipes themselves bash, which
-    # CodeQL does not read (R10); the port of standalone's tasks, tools/port, is Go (R12).
+    # CodeQL does not read; the port of standalone's tasks, tools/port, is Go.
     with:
       languages: javascript-typescript go

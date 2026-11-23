@@ -1,4 +1,4 @@
-// The test of the module's templates against the tasks they came from (R22): module-kit builds the
+// The test of the module's templates against the tasks they came from: module-kit builds the
 // module, as the release does, and for each template the instance with the numbers of its reference
 // task, which a line of its header gives, has that task's key, its band, its difficulty and its
 // leading question. So the solver of a template still proves the answer of the task that
@@ -56,14 +56,14 @@ test("the instance of each template with its reference task's numbers has that t
       assert.equal(server.tasks[id][field], server.tasks[reference][field], `${id}: its ${field} and that of ${reference}`);
     }
     // A template whose reference task has a leading question has it too, with placeholders for
-    // the reference task's numbers (R22).
+    // the reference task's numbers.
     const question = server.tasks[id].leading_question && fillIn(server.tasks[id].leading_question, instance);
     assert.equal(question, server.tasks[reference].leading_question, `${id}: the leading question of the instance of ${reference}`);
   }
 });
 
-// The picture of every instance of a template is in the module, and no other picture of its path
-// (R22): the instances are module-kit's, which the port counted on its own when it drew them, so
+// The picture of every instance of a template is in the module, and no other picture of its
+// path: the instances are module-kit's, which the port counted on its own when it drew them, so
 // the two counts must agree.
 test("each template's picture path has a file for every instance and for nothing else", (t) => {
   const out = join(temporaryFolder(t), "package");

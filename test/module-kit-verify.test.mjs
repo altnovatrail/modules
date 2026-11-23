@@ -1,6 +1,6 @@
-// The tests of the sums that module-kit-verify holds to the Dockerfile (R10): made-up SHA256SUMS and
+// The tests of the sums that module-kit-verify holds to the Dockerfile: made-up SHA256SUMS and
 // Dockerfiles, no network. The signature itself is not tried here: release-verify is spec's recipe,
-// with tests of its own on files of real releases (R77 spec), and the job "module-kit signature" of
+// with tests of its own on files of real releases, and the job "module-kit signature" of
 // ci.yml runs it on the real release, on every pull request and push to main.
 
 import assert from "node:assert/strict";

@@ -1,9 +1,9 @@
-// The tests of eval-match (R25): each sample of a module's eval set held to the package of the
+// The tests of eval-match: each sample of a module's eval set held to the package of the
 // commit. The real module-kit and the real generator of the toolchain stage — or the one CANVAS_LIB
 // names, where the container's is not the Dockerfile's — on copies of grade-3-math and of
 // the format's example with a template; a stand-in for the generator where a test holds the calls
 // and what is compared. The samples of people here are made up from synthetic ones, by their
-// fields alone: no sample of a person is ever read (П-12).
+// fields alone: no sample of a person is ever read.
 
 import assert from "node:assert/strict";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";

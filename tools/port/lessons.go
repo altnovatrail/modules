@@ -12,9 +12,9 @@ import (
 )
 
 // The pictures of the lessons: a folder of pictures in the schema of standalone's tasks, one
-// <name>.json each, which the port draws into media/lessons/<name>.png of the module (R12). They
+// <name>.json each, which the port draws into media/lessons/<name>.png of the module. They
 // come from no clone: a lesson is written by hand, and its pictures with it, from the data of the
-// drawings of standalone's site (R14).
+// drawings of standalone's site.
 const lessonFolder = "media/lessons"
 
 // pictureName is the name of a picture of a lesson: lowercase letters and digits in words joined by

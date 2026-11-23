@@ -1,14 +1,14 @@
-# NovaTrail's shared release (R18 .github), pinned to a release of .github by SHA with its version
-# beside it. RELEASE_LINE is the line the releases are numbered in; paths, what they are built from:
-# the module folders without their eval sets, withdrawals.yaml, the justfile that holds release-files,
+# NovaTrail's shared release, pinned to a release of .github by SHA with its version beside it.
+# RELEASE_LINE is the line the releases are numbered in; paths, what they are built from: the
+# module folders without their eval sets, withdrawals.yaml, the justfile that holds release-files,
 # the root's LICENSE and this file, so that a change of RELEASE_LINE gives a release.
 # .devcontainer/Dockerfile is not in it: a package and the index hang on a module's files and its
-# format version alone, not on the version of module-kit (R03). The glob magic keeps * from matching
-# /, so that the media/eval/ of a module stays in. With previous-file the release builds on the index
-# of the newest release, which the shared release downloads and checks before release-files gets it
-# (R63 spec). A pull request from a branch of this repository tries the release, publishing nothing:
-# it builds the files from git archive in the stage toolchain-core, which holds module-kit (R38),
-# signs them and checks them (R17).
+# format version alone, not on the version of module-kit. The glob magic keeps * from matching /,
+# so that the media/eval/ of a module stays in. With previous-file the release builds on the index
+# of the newest release, which the shared release downloads and checks before release-files gets
+# it. A pull request from a branch of this repository tries the release, publishing nothing: it
+# builds the files from git archive in the stage toolchain-core, which holds module-kit, signs them
+# and checks them.
 
 name: Release
 

@@ -1,4 +1,4 @@
-// The tests of what the job "Gate" gives sim's gate (R37), without the network and without sim:
+// The tests of what the job "Gate" gives sim's gate, without the network and without sim:
 // gate-inputs with no module and before the first release, on stand-ins of git and curl, and
 // _gate-args against a release made here by the real module-kit, as test/published.test.mjs makes
 // one. The arguments are held to the call form of sim's README at SIM_TAG of ci.yml; that sim

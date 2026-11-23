@@ -24,7 +24,7 @@ import (
 	"go.yaml.in/yaml/v4"
 )
 
-// The pictures of the instances of templates (R12): a template's picture path holds placeholders,
+// The pictures of the instances of templates: a template's picture path holds placeholders,
 // and the module ships a file for every instance, which task.known-pictures holds. Each such path
 // has a source in a folder of its own, in the schema of standalone's pictures with placeholders
 // among its strings, which the port fills in for each instance and draws as it draws a task's
@@ -77,7 +77,7 @@ type picturePart struct {
 // the order of the format: the combinations of the parameters as an odometer over the names in
 // order, the first slowest and each through its domain upwards, and those for which the constraint
 // holds. The expressions are evaluated by go.starlark.net at the version of the format's dialect,
-// as module-kit does, so that no second dialect can diverge from the format (R12). The results of the solver are not among the numbers: the port does not call solve.
+// as module-kit does, so that no second dialect can diverge from the format. The results of the solver are not among the numbers: the port does not call solve.
 func instancesOf(task templateTask) ([]map[string]int64, error) {
 	t := task.Template
 	names := slices.Sorted(maps.Keys(t.Parameters))
@@ -215,7 +215,7 @@ func pathPattern(path string) *regexp.Regexp {
 
 // variant is a source with a picture for some instances: when names the numbers they have, and a
 // variant with no when is for every instance. A variant of solver has no picture of its own: it is
-// what that function of the template's solver gives on the instance's numbers (R12).
+// what that function of the template's solver gives on the instance's numbers.
 type variant struct {
 	When    map[string]int64 `json:"when"`
 	Picture json.RawMessage  `json:"picture"`
@@ -440,7 +440,7 @@ func fillTree(tree any, numbers map[string]int64) (any, error) {
 // drawTemplatePictures draws the picture of every instance of every template of the module whose
 // picture path holds placeholders, from the sources of the folder, by the path of each file in the
 // module; and gives the pattern of the names of each such picture, to find the stale ones. A source
-// no template names is an error (R12).
+// no template names is an error.
 func drawTemplatePictures(folder, module string) (map[string][]byte, []*regexp.Regexp, int, error) {
 	tasks, err := filepath.Glob(filepath.Join(module, "tasks", "*.yaml"))
 	if err != nil {
@@ -587,7 +587,7 @@ func paintPadded(picture drawing, width, height int) ([]byte, error) {
 // staleTemplatePictures names the files of the module's media/pictures/ that are named as a
 // picture of a template's instance and that the port does not draw now. A file of that name that
 // is the picture of a task, tasks/<its name>.yaml with no template, is an error, not a stale file:
-// the pictures of the tasks are the port's of the batches (R12).
+// the pictures of the tasks are the port's of the batches.
 func staleTemplatePictures(module string, files map[string][]byte, patterns []*regexp.Regexp) ([]string, error) {
 	entries, err := os.ReadDir(filepath.Join(module, templatePictureFolder))
 	if errors.Is(err, fs.ErrNotExist) {

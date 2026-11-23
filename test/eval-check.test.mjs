@@ -1,4 +1,4 @@
-// The tests of the recipe eval-check (R04; R25): the flat layout of each module's eval/, eval/<id>.json
+// The tests of the recipe eval-check: the flat layout of each module's eval/, eval/<id>.json
 // with the name the sample's ID and nothing named with a dot, and each module's eval set held by spec's
 // sample-check --eval-set — the real one, from the spec/ of this repository at its tag, and a stand-in
 // where a test holds the form of the call or a status sample-check gives. The recipe calls no

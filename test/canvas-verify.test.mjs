@@ -1,6 +1,6 @@
-// The tests of the sum that canvas-verify holds to the Dockerfile (R29): made-up SHA256SUMS and
+// The tests of the sum that canvas-verify holds to the Dockerfile: made-up SHA256SUMS and
 // Dockerfiles, no network. The signature itself is not tried here: release-verify is spec's recipe,
-// with tests of its own on files of real releases (R77 spec), and the job "canvas signature" of
+// with tests of its own on files of real releases, and the job "canvas signature" of
 // ci.yml runs it on the real release, on every pull request and push to main.
 
 import assert from "node:assert/strict";

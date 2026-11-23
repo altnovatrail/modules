@@ -11,7 +11,7 @@ import (
 // mappings with plain keys, which are all snake_case words; block sequences of mappings; flow
 // sequences of strings; integers; and every string in double quotes, as JSON writes it. JSON's
 // escapes are YAML's, and Go never writes \/, which the format refuses. Keys keep the order the
-// port gives them, so a run writes the same bytes again (R12).
+// port gives them, so a run writes the same bytes again.
 
 type (
 	mapping []pair

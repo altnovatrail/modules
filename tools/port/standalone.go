@@ -1,4 +1,4 @@
-// Command port carries tasks of mathtrail-standalone into a module of the format (R05; R12): each
+// Command port carries tasks of mathtrail-standalone into a module of the format: each
 // task of a batch becomes the file tasks/<id>.yaml of the module, and its pictures PNG files in
 // media/. What a person writes comes from an overlay file beside this code, so that a run writes
 // the same bytes again and loses nothing. The key and the trap values are held to the solver of
@@ -38,10 +38,10 @@ type Example struct {
 	SolutionTotal   string                `json:"solution_total,omitempty"`
 	SolutionPicture json.RawMessage       `json:"solution_picture,omitempty"`
 	Distractors     map[string]Distractor `json:"distractors"`
-	// Hint is a question or a step that breaks the task down: the task's leading question (R12).
+	// Hint is a question or a step that breaks the task down: the task's leading question.
 	Hint string `json:"hint,omitempty"`
 	// Idea is the place of the task's idea in its topic's list of ideas. It is not carried: the
-	// ideas are not (R20).
+	// ideas are not.
 	Idea int `json:"idea,omitempty"`
 	// fromPicture says that the task's solver reads its picture, solve(options, picture): its facts
 	// stand on the picture alone. It is read from content/examples/solvers/<id>.star.
@@ -68,7 +68,7 @@ func solvedFromPicture(clone, id string) (bool, error) {
 
 // Topic is a topic of standalone, as content/catalogs/topics.json holds it at the commit the batch
 // names. The port reads it to hold each task to its topic, and carries none of it: the skill graph
-// is the format's example (R05), and a topic solved from the picture tells standalone in which chat
+// is the format's example, and a topic solved from the picture tells standalone in which chat
 // its tasks may be given, while the module's every app shows the picture.
 type Topic struct {
 	ID                string   `json:"id"`
@@ -218,7 +218,7 @@ func (e Example) valid() error {
 
 // atCommit holds a clone of standalone to the commit a batch names: its HEAD is that commit, and
 // git sees no change in its working tree, so that the tasks, their headers and the bench all come
-// from it. git runs as the command named, with none of the caller's settings (R12).
+// from it. git runs as the command named, with none of the caller's settings.
 func atCommit(gitCommand, clone, commit string) error {
 	git := func(args ...string) (string, error) {
 		command := exec.Command(gitCommand, append([]string{"-C", clone}, args...)...)

@@ -22,7 +22,7 @@ import (
 // A picture of standalone is a description that its card draws, and the format takes a picture as
 // a file, so the port draws it: a PNG on an opaque white background, as the format asks of every
 // picture, with only the chunks IHDR, IDAT and IEND, and the same bytes on every run, since a
-// picture's bytes are in the digest of the module's package (R12; R51 spec).
+// picture's bytes are in the digest of the module's package.
 //
 // Each kind is read strictly, by its $defs in standalone's content/schemas/task.json, and held to
 // what standalone's service checks and the schema cannot say (internal/domain/picture/ of
@@ -242,7 +242,7 @@ var (
 
 // goRegular is the font of the labels, BSD-3-Clause; faces holds a face of it at each size, in CSS
 // px. A face is not safe for concurrent use, and template-pictures draws on several goroutines, so
-// facesMu is held for each use of one (R36).
+// facesMu is held for each use of one.
 var (
 	goRegular = sync.OnceValue(func() *opentype.Font {
 		parsed, err := opentype.Parse(goregular.TTF)

@@ -1,4 +1,4 @@
-// The tests of the recipe of synthetic samples (R29): _synthetic in made-up repositories, with a
+// The tests of the recipe of synthetic samples: _synthetic in made-up repositories, with a
 // stand-in for canvas's generator whose sum the made-up Dockerfile pins, and module-kit's stand-in
 // where a test holds the form of the calls or a status; then the real generator of the toolchain
 // stage and the real module-kit on a copy of grade-3-math, whose sample spec's sample-check holds

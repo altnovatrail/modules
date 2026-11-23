@@ -1,10 +1,10 @@
-// The tests of release-files (R03, R17), the recipe that .github's shared release.yml runs to build
+// The tests of release-files, the recipe that .github's shared release.yml runs to build
 // a release's files, on made-up repositories with the format's modules and the real module-kit: the
 // first release, a second one that keeps a version, a new version, a withdrawal, an edit without a
 // new version, the archive's layout and bytes, and what the recipe refuses. Each archive goes back
-// through _unpack and module-kit diff, as modules-check reads a published version (R11). Neither the
+// through _unpack and module-kit diff, as modules-check reads a published version. Neither the
 // signature nor the shared release itself is tried here: the release signs the files, and its trial
-// on each pull request builds them from git archive in the stage toolchain-core (R17; R38).
+// on each pull request builds them from git archive in the stage toolchain-core.
 
 import assert from "node:assert/strict";
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, utimesSync, writeFileSync } from "node:fs";

@@ -15,7 +15,7 @@ import (
 
 // The exit statuses: 0 when the port wrote the tasks or found them as it would write them, 1 when
 // --check found a file other than the port would write, or a survey refused a task, and 2 when it
-// could not do its work (R12).
+// could not do its work.
 const (
 	statusDone      = 0
 	statusDiffers   = 1
@@ -210,7 +210,7 @@ func owned(id string) []string {
 }
 
 // stale names the files of the module that the port may write for a task of the batch and does
-// not write now, such as a picture the task does not have. The files of other batches' tasks are left alone (R12).
+// not write now, such as a picture the task does not have. The files of other batches' tasks are left alone.
 func stale(module string, converted []Converted) ([]string, error) {
 	var old []string
 	for _, c := range converted {
