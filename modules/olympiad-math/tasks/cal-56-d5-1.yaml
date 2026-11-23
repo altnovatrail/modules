@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-calendar/cal-56-d5-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-calendar/cal-56-d5-1.yaml, and the port writes this file again.
 id: "cal-56-d5-1"
 statement:
   - text: "In Europe the date 3/5 means 3 May, with the day first, but in the USA it means 5 March, with the month first. Ann writes every date from 1 January to 30 June the European way. For how many of these dates would a reader from the USA get a different real date?"

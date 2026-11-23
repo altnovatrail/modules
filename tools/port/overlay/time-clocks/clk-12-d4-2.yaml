@@ -1,4 +1,4 @@
-# What a person adds to clk-12-d4-2 of standalone; the port writes the task from it (R12).
+# What a person adds to clk-12-d4-2 of standalone; the port writes the task from it.
 givens:
   - "The film starts at 6:40."
   - "It lasts 1 hour 30 minutes."

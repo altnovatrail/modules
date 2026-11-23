@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.sets.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/sets-56-d4-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/sets-56-d4-3.yaml, and the port writes this file again.
 id: "sets-56-d4-3"
 statement:
   - text: "A year has 50 pupils. 32 of them read comics (C) and 25 read magazines (M). Twice as many pupils read both as read neither. How many pupils read neither?"

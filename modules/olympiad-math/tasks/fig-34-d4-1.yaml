@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.figures.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/grid-figures-cubes/fig-34-d4-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/grid-figures-cubes/fig-34-d4-1.yaml, and the port writes this file again.
 id: "fig-34-d4-1"
 statement:
   - text: "Each line in the picture is a match. How many squares of any size do the matches make?"

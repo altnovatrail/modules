@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-34-d3-5.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-34-d3-5.yaml, and the port writes this file again.
 id: "par-34-d3-5"
 statement:
   - text: "9 lamps in a row are numbered 1 to 9, and all of them are off. Anna switches every lamp whose number is even. Then Ben switches every lamp whose number can be divided by 3. How many lamps are on now?"

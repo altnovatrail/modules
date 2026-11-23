@@ -1,4 +1,4 @@
-# What a person adds to clk-34-d3-3 of standalone; the port writes the task from it (R12).
+# What a person adds to clk-34-d3-3 of standalone; the port writes the task from it.
 givens:
   - "The film is 1 hour 50 minutes long."
   - "It must end by 21:30."

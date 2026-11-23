@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-12-d5-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-12-d5-2.yaml, and the port writes this file again.
 id: "par-12-d5-2"
 statement:
   - text: "3 glasses stand upside down. In one move you turn over exactly 2 of them. What is the smallest number of moves needed to make all three glasses stand the right way up?"

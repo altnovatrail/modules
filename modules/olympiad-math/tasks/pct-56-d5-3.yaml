@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/percent.basic.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/fractions-percent-ratio/pct-56-d5-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/fractions-percent-ratio/pct-56-d5-3.yaml, and the port writes this file again.
 id: "pct-56-d5-3"
 statement:
   - text: "One coin buys a loaf of bread and a bottle of milk. After prices rise by 25%, the same coin buys only half a loaf and a bottle of milk. What part of the coin will the milk alone cost after prices rise by another 20%?"

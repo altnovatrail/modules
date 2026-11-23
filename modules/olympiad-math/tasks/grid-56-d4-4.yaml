@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/grid-figures-cubes/grid-56-d4-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/grid-figures-cubes/grid-56-d4-4.yaml, and the port writes this file again.
 id: "grid-56-d4-4"
 statement:
   - text: "The grid is a fenced field of grass, and the shaded squares are a shed. A goat is tied by a leash to a peg in the square with the number. Each step takes the goat across one side into the next square, but never into the shed. The leash bends round the shed's corners, so a square is in reach when the goat can get there in at most as many steps as the number. How many squares are in reach, counting the peg's own square?"

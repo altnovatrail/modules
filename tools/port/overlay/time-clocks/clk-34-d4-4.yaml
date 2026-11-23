@@ -1,4 +1,4 @@
-# What a person adds to clk-34-d4-4 of standalone; the port writes the task from it (R12).
+# What a person adds to clk-34-d4-4 of standalone; the port writes the task from it.
 givens:
   - "Petya's watch is 10 minutes slow, but he thinks it is 10 minutes fast."
   - "He wants to arrive at school at 9:00, and the walk takes 20 minutes."

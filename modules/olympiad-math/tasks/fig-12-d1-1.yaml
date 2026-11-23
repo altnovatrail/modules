@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.figures.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/grid-figures-cubes/fig-12-d1-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/grid-figures-cubes/fig-12-d1-1.yaml, and the port writes this file again.
 id: "fig-12-d1-1"
 statement:
   - text: "How many squares are in the picture? Count the small ones and the big one."

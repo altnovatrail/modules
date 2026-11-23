@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/grid-figures-cubes/grid-56-d3-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/grid-figures-cubes/grid-56-d3-3.yaml, and the port writes this file again.
 id: "grid-56-d3-3"
 statement:
   - text: "A square cake is cut into 3 by 3 equal square pieces with sides of 2 cm. Rows are A to C from the top, columns 1 to 3 from the left. Oleg eats one corner piece. What is the perimeter of the cake that is left, in centimetres?"

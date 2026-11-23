@@ -30,18 +30,6 @@ Open tasks outside the current epic, each as its body, in Russian.
 - **Как проверить:** `just -f spec/justfile docs-check-repo`; `grep -n 'stands on .spec. v' docs/decisions.md` — пусто; `/code-review high`, один круг.
 - **Разделы:** R160 spec; RULES.md spec — The bar, Across repositories; R10, R29, R31, R34, R38, R39, R41; Д10, Д11.
 
-#### T97. Ссылки по R171 spec — комментарии YAML модулей и заголовки порта
-
-- **Цель:** комментарии YAML `modules/` вне `eval/` и `tools/port/overlay/`, `tools/port/pictures/`, `tools/port/template-pictures/` стоят сами, по R171 spec: причина словами, номер решения — только где важны отвергнутые варианты; заголовок, который порт пишет в каждый файл задачи («…the port writes this file again (R12)»), — тоже, в коде порта, его тесте и во всех файлах, что он написал.
-- **Почему:** R171 spec; пятая часть T93, разбитой по правилу 11 RUN.md: T93 сделала комментарии кода, а YAML модулей — путь релиза (R17), около 900 ссылок в 876 файлах, почти все — заголовки порта с `(R12)`.
-- **Сделать:**
-  1. Строку заголовка — в `tools/port/convert.go` и `tools/port/convert_test.go`, и той же заменой — в файлах задач `modules/` и в оверлеях; `just port <module> --check` там, где есть клон standalone, или сравнение заменой.
-  2. Остальные комментарии — по шагу 5 T93; комментарии пяти задач эссе о напоминании перед «Check» — Д13, если строка ещё открыта: причину — словами по R127 spec, строку закрыть.
-  3. Пакеты не меняются: `module-kit` отбрасывает комментарии, `modules-check` — без новой версии; мерж выпускает релиз с прежним индексом — назвать его в PR и отчёте.
-- **Как проверить:** правило `modules`: `just modules-check`, `just test`, проверки картинок; правило `port`: `just ci-lint`, `just ci-test`; `just -f spec/justfile docs-check-repo`; `/code-review high`, один круг.
-- **Разделы:** R171 spec; R12, R17; Д13.
-- **Зависит от:** T93.
-
 #### T98. Ссылки по R171 spec — журнал, R01–R04
 
 - **Цель:** записи R01–R04 `docs/decisions.md` — разделы `##` «The tag of `spec`», «The layout of the repository and the releases», «Samples in the eval set» — по R171 spec: ни одной датированной поправки, ссылка — только там, где читатель пойдёт по ней, чтобы действовать.

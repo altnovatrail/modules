@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/algorithms-weighing-pouring/wp-34-d2-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d2-3.yaml, and the port writes this file again.
 id: "wp-34-d2-3"
 statement:
   - text: "Nina has a balance and three weights: 1 kg, 3 kg and 9 kg. She may put the weights only on the pan opposite the load. Which of these loads can she weigh in one weighing?"

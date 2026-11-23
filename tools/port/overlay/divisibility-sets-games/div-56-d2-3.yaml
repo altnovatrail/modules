@@ -1,4 +1,4 @@
-# What a person adds to div-56-d2-3 of standalone; the port writes the task from it (R12).
+# What a person adds to div-56-d2-3 of standalone; the port writes the task from it.
 givens:
   - "The loop has 20 stations, numbered 1 to 20, and after 20 comes 1 again."
   - "The train starts at station 1 and moves on to the next station 47 times."

@@ -1,6 +1,6 @@
-# A task of the module of short essays on an invented topic (R16): the learner writes first
-# sentences, not a whole essay, and the sheet gets feedback by the rubric as one work. The
-# reminder to write no names is `app`'s, above "Check", not the statement's (R127 spec; R40).
+# A task of the module of short essays on an invented topic: the learner writes first sentences, not
+# a whole essay, and the sheet gets feedback by the rubric as one work. The statement holds no
+# reminder to write no names: the platform puts none before Check of an essay.
 id: talking-umbrella-1
 statement:
   - text: In a small shop there is an umbrella that can talk, but only when it rains. Write three different first sentences for an essay about it. Then put a ring round the one you would keep.

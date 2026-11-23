@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-56-d3-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-56-d3-3.yaml, and the port writes this file again.
 id: "par-56-d3-3"
 statement:
   - text: "A robot walks on a board of 3 by 3 squares. Each step takes it to a square that shares a side with the one it is on. It comes back to the square it started from and visits no other square twice. How many squares can such a route visit?"

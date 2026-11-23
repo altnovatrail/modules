@@ -1,13 +1,13 @@
-# A template of logic-sets (R22): the solver of mathtrail-standalone
+# A template of logic-sets: the solver of mathtrail-standalone
 # content/solvers/logic.sets/two-groups.star at 42b4408, made a solver of the template. It came from
 # reference task sets-56-d3-1, whose numbers are one of its instances.
 # The numbers of reference task sets-56-d3-1: total 20, dog 12, cat 10.
-# Its leading question is the hint of sets-56-d3-1, as it stands (R22).
+# Its leading question is the hint of sets-56-d3-1, as it stands.
 # Its capitals TOTAL, FIRST and SECOND are the numbers that the statement shows: a group of 20 to 30
 # children, more with a dog than with a cat, that must overlap in 2 to 4 children; fits says nothing
 # more, as in the reference task. The picture of the reference task is the picture of each instance,
 # with its numbers, which the port draws for every instance from
-# tools/port/template-pictures/olympiad-math/ (R22). The trap values are derived numbers, its
+# tools/port/template-pictures/olympiad-math/. The trap values are derived numbers, its
 # mistakes, and 0.
 # The solver carries this notice:
 # MIT License

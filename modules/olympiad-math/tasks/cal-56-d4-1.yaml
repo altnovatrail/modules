@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-calendar/cal-56-d4-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-calendar/cal-56-d4-1.yaml, and the port writes this file again.
 id: "cal-56-d4-1"
 statement:
   - text: "A family has a mother, a father and two children. Now their four ages add up to 73 years. Five years ago their ages added up to 54 years. How old is the younger child now?"

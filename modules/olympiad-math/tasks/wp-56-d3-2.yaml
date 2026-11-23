@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/algorithms-weighing-pouring/wp-56-d3-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d3-2.yaml, and the port writes this file again.
 id: "wp-56-d3-2"
 statement:
   - text: "Two of four coins are fake. The fakes are lighter than the real coins, which all weigh the same. How many weighings on a balance without weights are needed, at the least, to be sure which two coins are fake?"

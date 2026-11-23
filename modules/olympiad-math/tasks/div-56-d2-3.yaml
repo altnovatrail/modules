@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/number.divisibility.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/div-56-d2-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/div-56-d2-3.yaml, and the port writes this file again.
 id: "div-56-d2-3"
 statement:
   - text: "A loop railway has 20 stations, numbered 1 to 20 in the order the train goes, and after station 20 comes station 1 again. The train starts at station 1, marked S, and moves on to the next station 47 times. At which station is it now?"

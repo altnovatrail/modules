@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-clocks/clk-12-d2-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-clocks/clk-12-d2-2.yaml, and the port writes this file again.
 id: "clk-12-d2-2"
 statement:
   - text: "Tim went to bed at 9 o'clock in the evening and got up at 7 o'clock in the morning. How many hours did he sleep?"

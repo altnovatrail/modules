@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-56-d4-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-56-d4-2.yaml, and the port writes this file again.
 id: "par-56-d4-2"
 statement:
   - text: "Eight lamps stand in a row, and all of them are off. In one move you switch three lamps that stand next to each other: those that were off go on, and those that were on go off. What is the smallest number of moves after which all eight lamps are on?"

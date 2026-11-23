@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-clocks/clk-12-d2-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-clocks/clk-12-d2-4.yaml, and the port writes this file again.
 id: "clk-12-d2-4"
 statement:
   - text: "A clock strikes once at 1 o'clock, twice at 2 o'clock, 3 times at 3 o'clock, and so on. How many times does it strike at 1, 2, 3 and 4 o'clock altogether?"

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-calendar/cal-34-d4-5.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-calendar/cal-34-d4-5.yaml, and the port writes this file again.
 id: "cal-34-d4-5"
 statement:
   - text: "School holidays start on Saturday, 26 October, and last 9 days, counting the first day. October has 31 days. On which day do the holidays end?"

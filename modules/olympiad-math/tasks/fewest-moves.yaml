@@ -1,4 +1,4 @@
-# A template of parity-alternation (R22): the solver of mathtrail-standalone
+# A template of parity-alternation: the solver of mathtrail-standalone
 # content/solvers/parity.alternation/fewest-moves.star at 42b4408, made a solver of the template. It
 # came from reference task par-34-d4-2, whose numbers are one of its instances.
 # The numbers of reference task par-34-d4-2: coins 5, per_move 3.

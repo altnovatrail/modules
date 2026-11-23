@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/grid-figures-cubes/grid-56-d2-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/grid-figures-cubes/grid-56-d2-3.yaml, and the port writes this file again.
 id: "grid-56-d2-3"
 statement:
   - text: "A garden is a 4 by 4 grid of square beds, with rows A to D and columns 1 to 4. Roses grow in beds B2, B3, C2 and C3. How many other beds share a whole side with a rose bed?"

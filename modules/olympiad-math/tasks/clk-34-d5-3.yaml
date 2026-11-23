@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-clocks/clk-34-d5-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-clocks/clk-34-d5-3.yaml, and the port writes this file again.
 id: "clk-34-d5-3"
 statement:
   - text: "The train Swift leaves at 7:50 and arrives at 10:35. The train Pony takes 25 minutes longer for its trip and leaves at 8:20. At what time does Pony arrive?"

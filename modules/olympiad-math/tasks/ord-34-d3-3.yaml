@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-ordering/ord-34-d3-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-ordering/ord-34-d3-3.yaml, and the port writes this file again.
 id: "ord-34-d3-3"
 statement:
   - text: "In a contest, Team Red finished 2 places ahead of Team Blue. Team Green finished 3 places behind Team Blue. Team Green finished 6th. In which place did Team Red finish?"

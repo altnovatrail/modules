@@ -1,6 +1,6 @@
-# A task of the module of short essays on an invented topic (R16): a short essay in parts, one
-# paragraph for each part of a day, which gets feedback by the rubric as one work. The reminder
-# to write no names is `app`'s, above "Check", not the statement's (R127 spec; R40).
+# A task of the module of short essays on an invented topic: a short essay in parts, one paragraph
+# for each part of a day, which gets feedback by the rubric as one work. The statement holds no
+# reminder to write no names: the platform puts none before Check of an essay.
 id: weather-shop-1
 statement:
   - text: "Imagine a shop that sells the weather: a jar of sunshine, a box of fog, a bag of wind. Write a short essay about one day in that shop. Give the morning, the middle of the day and the evening a paragraph each."

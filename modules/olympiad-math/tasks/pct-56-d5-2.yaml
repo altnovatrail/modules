@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/percent.basic.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/fractions-percent-ratio/pct-56-d5-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/fractions-percent-ratio/pct-56-d5-2.yaml, and the port writes this file again.
 id: "pct-56-d5-2"
 statement:
   - text: "All the members of a school's chess club like puzzles. Of the pupils who are not in the club, only 25% like puzzles. Of all the pupils in the school, 40% like puzzles. What percentage of the pupils are in the chess club?"

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/algorithms-weighing-pouring/wp-56-d3-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d3-1.yaml, and the port writes this file again.
 id: "wp-56-d3-1"
 statement:
   - text: "A cook has a 4-litre pot and a 7-litre pot, both empty, and a tap. Each step fills a pot from the tap or pours water from one pot into the other until that pot is empty or the other is full. No water may ever go down the sink. What is the smallest number of steps after which a pot holds exactly 6 litres?"

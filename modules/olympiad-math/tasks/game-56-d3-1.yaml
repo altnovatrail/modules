@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/games.strategy.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/game-56-d3-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/game-56-d3-1.yaml, and the port writes this file again.
 id: "game-56-d3-1"
 statement:
   - text: "Mia and Tom play with a stack of cards. They take turns to remove 1 or 3 cards, and Mia goes first. Whoever removes the last card wins, and both play as well as they can. The stack may start with 10, 11, 12, 13 or 14 cards. For how many of these starts can Mia be sure to win?"

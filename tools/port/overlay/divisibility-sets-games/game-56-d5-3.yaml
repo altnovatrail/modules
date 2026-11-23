@@ -1,4 +1,4 @@
-# What a person adds to game-56-d5-3 of standalone; the port writes the task from it (R12).
+# What a person adds to game-56-d5-3 of standalone; the port writes the task from it.
 givens:
   - "Jack puts two dice on the table with any faces on top."
   - "Jill may turn either die, both or neither upside down; top and bottom add up to 7."

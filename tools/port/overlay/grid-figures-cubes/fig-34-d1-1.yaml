@@ -1,4 +1,4 @@
-# What a person adds to fig-34-d1-1 of standalone; the port writes the task from it (R12).
+# What a person adds to fig-34-d1-1 of standalone; the port writes the task from it.
 givens:
   - "The filled cells make a figure."
 unknown: "How many squares of any size are made only of filled cells."

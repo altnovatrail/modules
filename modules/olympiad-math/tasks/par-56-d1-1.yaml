@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-56-d1-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-56-d1-1.yaml, and the port writes this file again.
 id: "par-56-d1-1"
 statement:
   - text: "Nine children each have two balloons, a red one and a yellow one. They swap balloons with each other so that as many children as possible end up holding two balloons of the same colour. At most how many children can do so?"

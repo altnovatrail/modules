@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.sets.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/sets-56-d4-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/sets-56-d4-2.yaml, and the port writes this file again.
 id: "sets-56-d4-2"
 statement:
   - text: "A team has 10 pupils. 7 of them can swim, 8 can skate and 9 can ride a bike. At least how many pupils on the team must be able to do all three?"

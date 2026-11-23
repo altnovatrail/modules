@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/counting-gaps/gaps-12-d2-6.yaml, and the port writes this file again (R12).
+# tools/port/overlay/counting-gaps/gaps-12-d2-6.yaml, and the port writes this file again.
 id: "gaps-12-d2-6"
 statement:
   - text: "Frog F jumps up the stairs in the picture. Each jump is as long as the one drawn. How many jumps take it from the floor to the top step?"

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/counting-gaps/gaps-56-d5-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/counting-gaps/gaps-56-d5-2.yaml, and the port writes this file again.
 id: "gaps-56-d5-2"
 statement:
   - text: "Two TV channels start showing the same film at the same moment. The first channel cuts the whole film into parts of exactly 30 minutes each, with a 6-minute advert between every two parts. The second cuts it into parts of exactly 15 minutes each, with a 3-minute advert between every two parts. Which channel ends the film first, and how much sooner?"

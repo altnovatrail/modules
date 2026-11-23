@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-calendar/cal-56-d2-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-calendar/cal-56-d2-1.yaml, and the port writes this file again.
 id: "cal-56-d2-1"
 statement:
   - text: "1 March 2027 is a Monday. The year 2028 is a leap year, with 29 days in February. What day of the week is 1 March 2028?"

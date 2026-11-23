@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/pigeonhole-basic/pig-34-d4-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/pigeonhole-basic/pig-34-d4-3.yaml, and the port writes this file again.
 id: "pig-34-d4-3"
 statement:
   - text: "A drawer has 4 red left gloves, 4 red right gloves, 4 blue left gloves and 4 blue right gloves. In the dark, how many gloves must you take to be sure of a left and a right glove of the same colour?"

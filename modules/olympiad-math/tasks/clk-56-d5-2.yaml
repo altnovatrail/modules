@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-clocks/clk-56-d5-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-clocks/clk-56-d5-2.yaml, and the port writes this file again.
 id: "clk-56-d5-2"
 statement:
   - text: "At 10:40 a motor boat sets off up a river, and at that moment a ball falls from it into the water and floats away with the current. At 11:05 the boat turns round and goes back down the river. Through the water, it always goes at the same speed. At what time does it reach the ball?"

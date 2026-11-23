@@ -1,4 +1,4 @@
-# What a person adds to clk-56-d5-3 of standalone; the port writes the task from it (R12).
+# What a person adds to clk-56-d5-3 of standalone; the port writes the task from it.
 givens:
   - "Ann, Ben and Cal start at 13:00, each packing 1 box every 3 minutes."
   - "Zoe joins later and packs 1 box every 2 minutes."

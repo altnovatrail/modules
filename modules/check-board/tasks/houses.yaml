@@ -1,5 +1,5 @@
-# The check board's task houses of tutor's eval/free-bank.json, as internal/task.Sheet builds it
-# (R68 tutor). Its leak phrase in English, "counted twice", is left out: the module is in Russian.
+# The check board's task houses of tutor's eval/free-bank.json, as internal/task.Sheet builds it.
+# Its leak phrase in English, "counted twice", is left out: the module is in Russian.
 id: houses
 statement:
   - text: "В ряд стоят домики. Домик с флажком — четвёртый слева и шестой справа. Сколько домиков в ряду?"

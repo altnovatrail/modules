@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/algorithms-weighing-pouring/wp-34-d4-5.yaml, and the port writes this file again (R12).
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d4-5.yaml, and the port writes this file again.
 id: "wp-34-d4-5"
 statement:
   - text: "There are 10 bags of coins, numbered 1 to 10. In nine bags every coin weighs 10 g; in one bag every coin weighs 11 g. Vera takes 1 coin from bag 1, 2 coins from bag 2, and so on, up to 10 coins from bag 10, and puts all of them on a scale that shows the weight. The scale shows 553 g. Which bag has the heavy coins?"

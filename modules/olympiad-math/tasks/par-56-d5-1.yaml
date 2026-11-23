@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-56-d5-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-56-d5-1.yaml, and the port writes this file again.
 id: "par-56-d5-1"
 statement:
   - text: "Mia writes the digits 1 to 7 in a row, each once. Then she counts the digits standing between 1 and 2, between 2 and 3, and so on up to between 6 and 7. At most how many of these six counts can be odd?"

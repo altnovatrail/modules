@@ -1,4 +1,4 @@
-# A template of combinatorics-enumeration (R22): the solver of mathtrail-standalone
+# A template of combinatorics-enumeration: the solver of mathtrail-standalone
 # content/solvers/combinatorics.enumeration/digits.star at 42b4408, made a solver of the template.
 # It came from reference task enum-34-d5-1, whose numbers are one of its instances.
 # The numbers of reference task enum-34-d5-1: digit_sum 5.

@@ -1,14 +1,14 @@
-# A template of ratio-sharing (R22): the solver of mathtrail-standalone
+# A template of ratio-sharing: the solver of mathtrail-standalone
 # content/solvers/ratio.sharing/for-every.star at 42b4408, made a solver of the template. It came
 # from reference task ratio-56-d4-1, whose numbers are one of its instances.
 # The numbers of reference task ratio-56-d4-1: daisies 30.
-# Its leading question is the hint of ratio-56-d4-1, as it stands (R22).
+# Its leading question is the hint of ratio-56-d4-1, as it stands.
 # Its capital START, the daisies, is the number that the statement shows, a multiple of 15 from 15
 # to 60, so that every link, 4 tulips for every 5 daisies and 2 roses for every 3 tulips, gives a
 # whole number. standalone's sandbox gives it sum, which the dialect of the format has not, so a
 # loop adds the chain. The picture of the reference task is the picture of each instance, with its
-# daisies, which the port draws for every instance from tools/port/template-pictures/olympiad-math/
-# (R22). The trap values are derived numbers.
+# daisies, which the port draws for every instance from tools/port/template-pictures/olympiad-math/.
+# The trap values are derived numbers.
 # The solver carries this notice:
 # MIT License
 #

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/ratio.sharing.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/fractions-percent-ratio/ratio-56-d3-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/fractions-percent-ratio/ratio-56-d3-1.yaml, and the port writes this file again.
 id: "ratio-56-d3-1"
 statement:
   - text: "Three baskets, A, B and C, hold 90 walnuts in the ratio 3 : 5 : 7. How many more walnuts are in basket C than in basket A?"

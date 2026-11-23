@@ -1,4 +1,4 @@
-# What a person adds to tri-12-d4-2 of standalone; the port writes the task from it (R12).
+# What a person adds to tri-12-d4-2 of standalone; the port writes the task from it.
 givens:
   - "The numbers go up from 1 to 10 and back down to 1, and all are added."
 unknown: "The sum."

@@ -1,5 +1,5 @@
-# The skill graph of the module of tutor's check board (R33): a skill for each kind of task of
-# tutor's banks, as internal/task.Sheet names a task's skill by its kind (R68 tutor), and one that
+# The skill graph of the module of tutor's check board: a skill for each kind of task of
+# tutor's banks, as internal/task.Sheet names a task's skill by its kind, and one that
 # is practised and not assessed, a supporting skill of every task: with it among the lesson's
 # skills, the engine adds no segment to the lesson and skips none. No skill needs another, and none
 # teaches an anchor skill.

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.sets.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/sets-56-d2-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/sets-56-d2-1.yaml, and the port writes this file again.
 id: "sets-56-d2-1"
 statement:
   - text: "A class has 25 pupils. 15 of them are in the football club (F), 12 are in the chess club (C), and 5 are in both clubs. How many pupils are in neither club?"

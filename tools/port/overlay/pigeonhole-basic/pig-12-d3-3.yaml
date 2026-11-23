@@ -1,4 +1,4 @@
-# What a person adds to pig-12-d3-3 of standalone; the port writes the task from it (R12).
+# What a person adds to pig-12-d3-3 of standalone; the port writes the task from it.
 givens:
   - "9 children sit on 4 benches."
 unknown: "At least how many children sit on the bench with the most children."

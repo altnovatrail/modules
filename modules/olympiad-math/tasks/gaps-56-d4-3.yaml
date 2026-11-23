@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/counting-gaps/gaps-56-d4-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/counting-gaps/gaps-56-d4-3.yaml, and the port writes this file again.
 id: "gaps-56-d4-3"
 statement:
   - text: "30 lamps stand round the edge of a rectangular ice rink, with a lamp in each corner. Each short side has 6 lamps, counting its corners. How many lamps does each long side have, counting its corners?"

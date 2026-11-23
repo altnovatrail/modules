@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/percent.basic.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/fractions-percent-ratio/pct-56-d4-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/fractions-percent-ratio/pct-56-d4-3.yaml, and the port writes this file again.
 id: "pct-56-d4-3"
 statement:
   - text: "A bus carries fewer than 40 passengers, and exactly 35% of the passengers are children. How many adults are on the bus?"

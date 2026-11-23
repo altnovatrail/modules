@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-knights-liars/kl-34-d4-5.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-knights-liars/kl-34-d4-5.yaml, and the port writes this file again.
 id: "kl-34-d4-5"
 statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. Six islanders sit at a round table. Each of them says: 'My neighbour on the right is a knight, and my neighbour on the left is a liar.' How many knights are at the table?"

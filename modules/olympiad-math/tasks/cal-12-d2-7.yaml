@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-calendar/cal-12-d2-7.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-calendar/cal-12-d2-7.yaml, and the port writes this file again.
 id: "cal-12-d2-7"
 statement:
   - text: "Tim goes to school from Monday to Friday. Saturday and Sunday are his days off. How many days off does he have in 3 weeks?"

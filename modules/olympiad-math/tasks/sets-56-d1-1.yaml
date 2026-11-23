@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.sets.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/sets-56-d1-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/sets-56-d1-1.yaml, and the port writes this file again.
 id: "sets-56-d1-1"
 statement:
   - text: "In a yard there are cats and other animals, and some of the animals are called Vaska. Who are more: the cats, leaving out the cats that are not called Vaska, or the animals called Vaska, leaving out those that are not cats?"

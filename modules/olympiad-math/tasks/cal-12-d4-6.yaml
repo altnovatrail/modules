@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-calendar/cal-12-d4-6.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-calendar/cal-12-d4-6.yaml, and the port writes this file again.
 id: "cal-12-d4-6"
 statement:
   - text: "Omar goes to school from Sunday to Thursday. In some year, 1 April is a Sunday, and April has 30 days. How many school days are there in that April?"

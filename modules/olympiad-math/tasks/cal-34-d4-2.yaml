@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-calendar/cal-34-d4-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-calendar/cal-34-d4-2.yaml, and the port writes this file again.
 id: "cal-34-d4-2"
 statement:
   - text: "Three brothers are 5, 8 and 11 years old. In how many years will their ages add up to 60?"

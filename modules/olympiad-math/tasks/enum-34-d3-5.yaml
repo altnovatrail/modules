@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/combinatorics-enumeration/enum-34-d3-5.yaml, and the port writes this file again (R12).
+# tools/port/overlay/combinatorics-enumeration/enum-34-d3-5.yaml, and the port writes this file again.
 id: "enum-34-d3-5"
 statement:
   - text: "A group has 3 boys and 4 girls. The teacher chooses 2 children from the group. In how many ways can she choose them so that they are not both girls?"

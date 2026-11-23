@@ -1,4 +1,4 @@
-# What a person adds to par-34-d3-4 of standalone; the port writes the task from it (R12).
+# What a person adds to par-34-d3-4 of standalone; the port writes the task from it.
 givens:
   - "The grasshopper starts at 0."
   - "It makes 9 jumps, each 1 step to the left or to the right."

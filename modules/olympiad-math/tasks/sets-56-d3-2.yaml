@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.sets.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/sets-56-d3-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/sets-56-d3-2.yaml, and the port writes this file again.
 id: "sets-56-d3-2"
 statement:
   - text: "There are 30 pupils in a class. 18 of them like maths (M) and 21 like art (A). At most how many pupils could like neither subject?"

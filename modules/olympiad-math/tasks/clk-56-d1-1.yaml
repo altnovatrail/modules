@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-clocks/clk-56-d1-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-clocks/clk-56-d1-1.yaml, and the port writes this file again.
 id: "clk-56-d1-1"
 statement:
   - text: "A baker wants fresh bread when the shop opens at 7:00. Mixing the dough takes 20 minutes, letting it rise takes 2 hours, baking takes 40 minutes and cooling takes 15 minutes. The oven needs 30 minutes to heat up, and it can heat while the dough rises. What is the latest time the baker can start?"

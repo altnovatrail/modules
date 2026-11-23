@@ -1,4 +1,4 @@
-# What a person adds to cube-34-d5-1 of standalone; the port writes the task from it (R12).
+# What a person adds to cube-34-d5-1 of standalone; the port writes the task from it.
 givens:
   - "The die starts on the first cell of the path with that cell's number on top."
   - "It rolls over its edge from cell to cell, without turning, to cell E."

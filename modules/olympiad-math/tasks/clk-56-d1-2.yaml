@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-clocks/clk-56-d1-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-clocks/clk-56-d1-2.yaml, and the port writes this file again.
 id: "clk-56-d1-2"
 statement:
   - text: "A cuckoo clock calls once at every half hour, and at every full hour it calls as many times as the hour on its face. Its hands show 4:20. Tim turns the minute hand forward 3 whole turns, and the hour hand moves along with it. How many times does the cuckoo call?"

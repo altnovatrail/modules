@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/algorithms-weighing-pouring/wp-56-d2-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d2-1.yaml, and the port writes this file again.
 id: "wp-56-d2-1"
 statement:
   - text: "A gardener has three empty buckets that hold 3, 5 and 8 litres, and a tap. In one step she fills a bucket from the tap or pours from one bucket into another. A pouring stops when one bucket is empty or the other is full. What is the smallest number of steps after which the 8-litre bucket holds exactly 2 litres?"

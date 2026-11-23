@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/fractions.parts.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/fractions-percent-ratio/frac-56-d1-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/fractions-percent-ratio/frac-56-d1-2.yaml, and the port writes this file again.
 id: "frac-56-d1-2"
 statement:
   - text: "A jug holds two and a half litres of juice. Each glass holds a quarter of a litre. How many glasses can be filled from the full jug?"

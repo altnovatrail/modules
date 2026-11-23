@@ -1,4 +1,4 @@
-# What a person adds to cube-56-d3-1 of standalone; the port writes the task from it (R12).
+# What a person adds to cube-56-d3-1 of standalone; the port writes the task from it.
 givens:
   - "The seven filled cells are one cell too many for a cube."
 unknown: "How many of the cells could be cut away so that the other six fold into a cube."

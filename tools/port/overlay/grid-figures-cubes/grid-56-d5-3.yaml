@@ -1,4 +1,4 @@
-# What a person adds to grid-56-d5-3 of standalone; the port writes the task from it (R12).
+# What a person adds to grid-56-d5-3 of standalone; the port writes the task from it.
 givens:
   - "A tile is 4 square cells joined along whole sides."
   - "Shapes are the same when one can be turned or flipped onto the other."

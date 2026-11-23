@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/algorithms-weighing-pouring/wp-56-d1-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d1-1.yaml, and the port writes this file again.
 id: "wp-56-d1-1"
 statement:
   - text: "A bag holds 10 coins, and one of them is a fake that weighs more than a real coin. All the real coins weigh the same. What is the smallest number of weighings on a balance with no weights that always finds the fake?"

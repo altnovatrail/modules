@@ -1,4 +1,4 @@
-# What a person adds to enum-56-d3-3 of standalone; the port writes the task from it (R12).
+# What a person adds to enum-56-d3-3 of standalone; the port writes the task from it.
 givens:
   - "The board is 4 by 4 squares, rows A to D from the top and columns 1 to 4 from the left."
   - "The robot goes from A1 to D4, one square right or down at a time."

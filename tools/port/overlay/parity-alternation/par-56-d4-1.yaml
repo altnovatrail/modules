@@ -1,4 +1,4 @@
-# What a person adds to par-56-d4-1 of standalone; the port writes the task from it (R12).
+# What a person adds to par-56-d4-1 of standalone; the port writes the task from it.
 givens:
   - "Frog P is at 0, frog Q at 1 and frog R at 2."
   - "In a move one frog jumps over another and lands as far on the other side."

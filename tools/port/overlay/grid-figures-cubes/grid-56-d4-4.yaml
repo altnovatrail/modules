@@ -1,4 +1,4 @@
-# What a person adds to grid-56-d4-4 of standalone; the port writes the task from it (R12).
+# What a person adds to grid-56-d4-4 of standalone; the port writes the task from it.
 givens:
   - "The grid is a field, and the shaded squares are a shed."
   - "A step goes across one side into the next square, never into the shed."

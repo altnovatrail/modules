@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-12-d3-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-12-d3-3.yaml, and the port writes this file again.
 id: "par-12-d3-3"
 statement:
   - text: "20 lockers are numbered from 1 to 20, and all of them are closed. Anna opens every locker with an even number. How many lockers stay closed?"

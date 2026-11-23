@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-knights-liars/kl-56-d5-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-knights-liars/kl-56-d5-1.yaml, and the port writes this file again.
 id: "kl-56-d5-1"
 statement:
   - text: "On an island, knights always tell the truth and liars always lie. Every islander is a knight or a liar. 24 islanders sit on 24 chairs, some blue and some red. Each of them says: 'I sit on a blue chair.' Then they all change seats, and now 8 of them say 'I sit on a red chair', while the other 16 say 'I sit on a blue chair.' How many knights sit on red chairs now?"

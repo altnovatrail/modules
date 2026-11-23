@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-calendar/cal-56-d4-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-calendar/cal-56-d4-3.yaml, and the port writes this file again.
 id: "cal-56-d4-3"
 statement:
   - text: "Anya was born on Monday, 4 March 2024. On which day of the week is her 10th birthday, 4 March 2034?"

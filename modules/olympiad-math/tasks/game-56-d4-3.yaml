@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/games.strategy.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/game-56-d4-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/game-56-d4-3.yaml, and the port writes this file again.
 id: "game-56-d4-3"
 statement:
   - text: "The number 12 is written on a board. Ivy and Paul take turns, and Ivy goes first. On each turn a player picks a divisor of the number on the board that is smaller than that number, and takes it away from the number. The number 1 counts as a divisor. A player who cannot move loses. Paul plays as well as he can. How many of Ivy's possible first moves let her be sure to win?"

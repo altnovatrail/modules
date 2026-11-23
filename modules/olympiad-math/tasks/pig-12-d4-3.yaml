@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/pigeonhole-basic/pig-12-d4-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/pigeonhole-basic/pig-12-d4-3.yaml, and the port writes this file again.
 id: "pig-12-d4-3"
 statement:
   - text: "A bag has 6 red and 6 blue marbles. Without looking, how many marbles must you take to be sure to have 2 marbles of each colour?"

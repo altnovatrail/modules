@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/algorithms-weighing-pouring/wp-56-d5-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d5-3.yaml, and the port writes this file again.
 id: "wp-56-d5-3"
 statement:
   - text: "Eight weights of 10, 20, 30, 40, 50, 60, 70 and 80 g lie on the two pans of a balance, and one pan is heavier. Seven children take the weights away one at a time. Every time a child takes a weight, the other pan becomes the heavier one. Which weight can be left on the balance at the end?"
