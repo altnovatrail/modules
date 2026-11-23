@@ -30,15 +30,6 @@ Open tasks outside the current epic, each as its body, in Russian.
 - **Как проверить:** `just -f spec/justfile docs-check-repo`; `grep -n 'stands on .spec. v' docs/decisions.md` — пусто; `/code-review high`, один круг.
 - **Разделы:** R160 spec; RULES.md spec — The bar, Across repositories; R10, R29, R31, R34, R38, R39, R41; Д10, Д11.
 
-#### T95. Ссылки по R171 spec — архитектура, разделы 3.4–4
-
-- **Цель:** разделы 3.4–4 `docs/architecture.md` — по R171 spec, как T94 — разделы 1–3.3.
-- **Почему:** R171 spec; третья часть T93, разбитой по правилу 11 RUN.md; разделы 3.4–3.6 — около 56 КБ, больше всего ссылок архитектуры.
-- **Сделать:** шаги 1–3 T94 — на разделах 3.4–4; пределы `docs-budgets.json` для `architecture 3.4` и `architecture 3.5` — снизить до нового размера с запасом R145 spec, если текст стал короче.
-- **Как проверить:** как в T94, на разделах 3.4–4.
-- **Разделы:** R171 spec; RULES.md spec — The bar, Citations; architecture 3.4–4; `docs-budgets.json`.
-- **Зависит от:** T93.
-
 #### T96. Ссылки по R171 spec — `docs/sources.md` и `docs/measurements.md`
 
 - **Цель:** записи источников и замеров — по R171 spec: запись хранит дату и не называет задачу, в заголовке тоже; раздел 1 `docs/sources.md` — по заготовке.
