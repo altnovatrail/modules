@@ -1,4 +1,4 @@
-# What a person adds to par-12-d3-3 of standalone; the port writes the task from it (R12).
+# What a person adds to par-12-d3-3 of standalone; the port writes the task from it.
 givens:
   - "20 lockers are numbered from 1 to 20, all closed."
   - "Anna opens every locker with an even number."

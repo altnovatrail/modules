@@ -1,4 +1,4 @@
-# What a person adds to par-12-d4-2 of standalone; the port writes the task from it (R12).
+# What a person adds to par-12-d4-2 of standalone; the port writes the task from it.
 givens:
   - "Tom writes the numbers from 1 to 15."
 unknown: "How many odd numbers he writes."

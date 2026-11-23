@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-56-d2-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-56-d2-3.yaml, and the port writes this file again.
 id: "par-56-d2-3"
 statement:
   - text: "The sum of 20 whole numbers is odd, and more than half of the numbers are even. How many of the numbers can be even?"

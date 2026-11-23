@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-56-d2-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-56-d2-2.yaml, and the port writes this file again.
 id: "par-56-d2-2"
 statement:
   - text: "A knight stands on a chessboard. In one move it goes two squares in a straight line and then one square to the side. After which of these numbers of moves can it be back on the square it started from?"

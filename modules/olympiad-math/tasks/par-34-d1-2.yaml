@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-34-d1-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-34-d1-2.yaml, and the port writes this file again.
 id: "par-34-d1-2"
 statement:
   - text: "How many odd numbers are there from 1 to 99, including 1 and 99?"

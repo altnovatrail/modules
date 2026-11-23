@@ -1,4 +1,4 @@
-# What a person adds to cube-56-d2-1 of standalone; the port writes the task from it (R12).
+# What a person adds to cube-56-d2-1 of standalone; the port writes the task from it.
 givens:
   - "The die rolls straight along the row from S to the last cell, tipping over one edge for each cell."
   - "In the last cell it shows the number drawn there on top."

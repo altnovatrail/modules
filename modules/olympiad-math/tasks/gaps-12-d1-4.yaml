@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/counting-gaps/gaps-12-d1-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/counting-gaps/gaps-12-d1-4.yaml, and the port writes this file again.
 id: "gaps-12-d1-4"
 statement:
   - text: "Tom reads his book from page 3 to page 7, including both of these pages. How many pages does he read?"

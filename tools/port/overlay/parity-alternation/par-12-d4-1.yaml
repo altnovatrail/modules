@@ -1,4 +1,4 @@
-# What a person adds to par-12-d4-1 of standalone; the port writes the task from it (R12).
+# What a person adds to par-12-d4-1 of standalone; the port writes the task from it.
 givens:
   - "The beads go red, red, blue, red, red, blue, and so on."
 unknown: "The colour of the 20th bead."

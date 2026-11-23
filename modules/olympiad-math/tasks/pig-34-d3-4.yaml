@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/pigeonhole-basic/pig-34-d3-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/pigeonhole-basic/pig-34-d3-4.yaml, and the port writes this file again.
 id: "pig-34-d3-4"
 statement:
   - text: "35 pupils each read between 0 and 9 books during the summer. At least how many pupils read the same number of books?"

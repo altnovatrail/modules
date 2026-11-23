@@ -1,7 +1,7 @@
-# An essay on the learner's own life (R16), which the module gives to adults alone, since a topic
-# under 18 is made-up or general (R127 spec): the format's example of this task, with its third
-# criterion asking for a person or a place of that day rather than for one by name. The reminder to
-# write no names is `app`'s, above "Check", not the statement's (R127 spec; R40).
+# An essay on the learner's own life, which the module gives to adults alone, since a topic under 18
+# is made-up or general: the format's example of this task, with its third criterion asking for a
+# person or a place of that day rather than for one by name. The statement holds no reminder to
+# write no names: the platform puts none before Check of an essay.
 id: a-day-you-remember-1
 statement:
   - text: Write a short essay about a day of your life that you remember well.

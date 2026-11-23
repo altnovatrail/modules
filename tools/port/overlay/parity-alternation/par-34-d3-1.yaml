@@ -1,4 +1,4 @@
-# What a person adds to par-34-d3-1 of standalone; the port writes the task from it (R12).
+# What a person adds to par-34-d3-1 of standalone; the port writes the task from it.
 givens:
   - "Petya added up five odd numbers."
 unknown: "Which of the numbers his answer can be."

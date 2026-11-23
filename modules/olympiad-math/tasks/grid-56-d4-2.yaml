@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/grid-figures-cubes/grid-56-d4-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/grid-figures-cubes/grid-56-d4-2.yaml, and the port writes this file again.
 id: "grid-56-d4-2"
 statement:
   - text: "A square pond fills the middle of a 3 by 3 grid, and the other 8 squares are paving slabs. Rows are A to C from the top, columns 1 to 3 from the left. Two gardeners share the slabs, 4 each, and each gardener's slabs have to stay joined by whole sides. Splits count as different when the groups of slabs are different. How many splits are possible?"

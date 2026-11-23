@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-clocks/clk-56-d2-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-clocks/clk-56-d2-1.yaml, and the port writes this file again.
 id: "clk-56-d2-1"
 statement:
   - text: "A night guard's shift starts at 22:40 and ends at 7:10. During the shift he takes two breaks of 25 minutes each. How long does he work?"

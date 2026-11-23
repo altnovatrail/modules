@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-ordering/ord-12-d3-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-ordering/ord-12-d3-1.yaml, and the port writes this file again.
 id: "ord-12-d3-1"
 statement:
   - text: "Five friends stand in a line. Ann is first. Kim stands right behind Ann. Ben stands right behind Kim. Dan is last. In which place is Eva?"

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/counting-gaps/gaps-56-d2-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/counting-gaps/gaps-56-d2-2.yaml, and the port writes this file again.
 id: "gaps-56-d2-2"
 statement:
   - text: "An orchard is a rectangle 20 metres wide and 30 metres long. Apple trees grow in straight rows 5 metres apart, and in every row the trees are 5 metres apart. There are trees along all four edges, one in each corner. How many trees are there?"

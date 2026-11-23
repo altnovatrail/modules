@@ -1,4 +1,4 @@
-# What a person adds to clk-12-d2-4 of standalone; the port writes the task from it (R12).
+# What a person adds to clk-12-d2-4 of standalone; the port writes the task from it.
 givens:
   - "The clock strikes once at 1 o'clock, twice at 2 o'clock, 3 times at 3 o'clock, and so on."
 unknown: "How many times it strikes at 1, 2, 3 and 4 o'clock altogether."

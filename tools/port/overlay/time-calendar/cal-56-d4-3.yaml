@@ -1,4 +1,4 @@
-# What a person adds to cal-56-d4-3 of standalone; the port writes the task from it (R12).
+# What a person adds to cal-56-d4-3 of standalone; the port writes the task from it.
 givens:
   - "Anya was born on Monday, 4 March 2024."
 unknown: "The day of the week of 4 March 2034."

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/arithmetic-tricks/tri-56-d3-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/arithmetic-tricks/tri-56-d3-3.yaml, and the port writes this file again.
 id: "tri-56-d3-3"
 statement:
   - text: "XY is a two-digit number with tens digit X and units digit Y, and YX is the number with its two digits swapped. XY + YX = 99 and XY − YX = 45. What is the number XY?"

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-34-d3-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-34-d3-1.yaml, and the port writes this file again.
 id: "par-34-d3-1"
 statement:
   - text: "Petya added up five odd numbers. Which of these can his answer be?"

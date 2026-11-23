@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/counting-gaps/gaps-34-d3-5.yaml, and the port writes this file again (R12).
+# tools/port/overlay/counting-gaps/gaps-34-d3-5.yaml, and the port writes this file again.
 id: "gaps-34-d3-5"
 statement:
   - text: "A path is made of 21 square slabs in a row. A boy stands on the first slab and jumps along the path, always skipping one slab: he lands on slabs 3, 5, 7 and so on. How many jumps does he need to reach the last slab?"

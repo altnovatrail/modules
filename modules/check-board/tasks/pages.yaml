@@ -1,5 +1,5 @@
-# The check board's task pages of tutor's eval/free-bank.json, as internal/task.Sheet builds it
-# (R68 tutor). Its leak phrase in English, "66 two-digit pages", is left out: the module is in
+# The check board's task pages of tutor's eval/free-bank.json, as internal/task.Sheet builds it.
+# Its leak phrase in English, "66 two-digit pages", is left out: the module is in
 # Russian.
 id: pages
 statement:

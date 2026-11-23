@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/algorithms-weighing-pouring/wp-56-d5-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d5-2.yaml, and the port writes this file again.
 id: "wp-56-d5-2"
 statement:
   - text: "Six balls that look alike lie at the corners A to F of a hexagon, in this order round it. The ball at A weighs 1 g, at B 5 g, at C 2 g, at D 6 g, at E 3 g and at F 4 g. A joker has swapped the balls at two opposite corners: A and D, B and E, or C and F. Which one weighing on a balance without weights is sure to show which two were swapped?"

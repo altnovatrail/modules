@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/grid-figures-cubes/cube-56-d1-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/grid-figures-cubes/cube-56-d1-1.yaml, and the port writes this file again.
 id: "cube-56-d1-1"
 statement:
   - text: "Lena cuts out the net in the picture and folds it into a paper cube. Each square has a number on it. What is the largest sum of the numbers on two opposite faces of the cube?"

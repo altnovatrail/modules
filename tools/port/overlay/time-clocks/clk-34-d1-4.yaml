@@ -1,4 +1,4 @@
-# What a person adds to clk-34-d1-4 of standalone; the port writes the task from it (R12).
+# What a person adds to clk-34-d1-4 of standalone; the port writes the task from it.
 givens:
   - "Masha went to sleep at 21:30."
   - "She woke up at 7:00 the next morning."

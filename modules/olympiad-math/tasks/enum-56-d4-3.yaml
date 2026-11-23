@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/combinatorics-enumeration/enum-56-d4-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/combinatorics-enumeration/enum-56-d4-3.yaml, and the port writes this file again.
 id: "enum-56-d4-3"
 statement:
   - text: "A teacher picks 3 of 6 pupils for a quiz team: Ella, Finn, Gia, Hugo, Ivy and Jack. Gia must be in the team, and Ella and Finn refuse to be in it together. How many different teams can the teacher pick?"

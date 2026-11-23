@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/grid-figures-cubes/cube-34-d5-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/grid-figures-cubes/cube-34-d5-1.yaml, and the port writes this file again.
 id: "cube-34-d5-1"
 statement:
   - text: "A die stands on the first cell of the path in the picture, with the number in that cell on top. It rolls over its edge from cell to cell along the path, without turning, to cell E. Opposite faces of a die add up to 7. Which number is on top when it reaches E?"

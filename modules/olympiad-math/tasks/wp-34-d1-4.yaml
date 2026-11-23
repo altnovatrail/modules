@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/algorithms-weighing-pouring/wp-34-d1-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d1-4.yaml, and the port writes this file again.
 id: "wp-34-d1-4"
 statement:
   - text: "A bucket holds 10 litres of water. Masha pours water from it into an empty 7-litre jug until the jug is full. How many litres are left in the bucket?"

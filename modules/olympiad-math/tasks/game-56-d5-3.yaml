@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/games.strategy.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/game-56-d5-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/game-56-d5-3.yaml, and the port writes this file again.
 id: "game-56-d5-3"
 statement:
   - text: "Jack puts two dice on the table, each with any face he likes on top. Then Jill may turn either die, both or neither upside down. On a die, the top and bottom faces always add up to 7. Jill wins if the two top faces then add up to a number that divides by 4. Who wins if both play as well as they can?"

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-calendar/cal-34-d5-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-calendar/cal-34-d5-4.yaml, and the port writes this file again.
 id: "cal-34-d5-4"
 statement:
   - text: "Four children were born exactly one year apart. Their ages now add up to 42. How old is the oldest child?"

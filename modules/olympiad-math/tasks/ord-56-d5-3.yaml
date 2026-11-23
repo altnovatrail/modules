@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-ordering/ord-56-d5-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-ordering/ord-56-d5-3.yaml, and the port writes this file again.
 id: "ord-56-d5-3"
 statement:
   - text: "Six children compared their heights in pairs and wrote down what they found. Ann is taller than Dan. Dan is taller than Ben and taller than Eve. Kim is shorter than Ben and shorter than Eve. Fay is shorter than Kim. Which two children cannot be put in order of height from these results?"

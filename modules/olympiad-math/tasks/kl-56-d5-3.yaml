@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-knights-liars/kl-56-d5-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-knights-liars/kl-56-d5-3.yaml, and the port writes this file again.
 id: "kl-56-d5-3"
 statement:
   - text: "In a football match, a team of 6 truth-tellers, who always tell the truth, played a team of 6 liars, who always lie. The truth-tellers won 12 to 9. Afterwards every player was asked: 'How many goals did you score?' Some said 'one', some 'three' and some 'seven', and Misha alone said 'four'. Is Misha a liar?"

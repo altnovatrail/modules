@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-56-d3-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-56-d3-4.yaml, and the port writes this file again.
 id: "par-56-d3-4"
 statement:
   - text: "The picture shows a crown of ten tiles that are all alike: each has the same five numbers in the same order round it. Where two tiles touch, the numbers next to the shared side are equal. Which number is in the triangle marked ?"

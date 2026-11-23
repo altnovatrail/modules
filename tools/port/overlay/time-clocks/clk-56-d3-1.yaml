@@ -1,4 +1,4 @@
-# What a person adds to clk-56-d3-1 of standalone; the port writes the task from it (R12).
+# What a person adds to clk-56-d3-1 of standalone; the port writes the task from it.
 givens:
   - "Train A leaves at 22:35 and arrives at 6:10."
   - "Train B leaves at 23:50 and arrives at 7:05."

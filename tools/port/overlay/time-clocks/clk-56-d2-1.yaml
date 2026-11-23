@@ -1,4 +1,4 @@
-# What a person adds to clk-56-d2-1 of standalone; the port writes the task from it (R12).
+# What a person adds to clk-56-d2-1 of standalone; the port writes the task from it.
 givens:
   - "The shift starts at 22:40 and ends at 7:10."
   - "He takes two breaks of 25 minutes each."

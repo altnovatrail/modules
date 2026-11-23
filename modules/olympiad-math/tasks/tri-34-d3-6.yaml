@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/arithmetic-tricks/tri-34-d3-6.yaml, and the port writes this file again (R12).
+# tools/port/overlay/arithmetic-tricks/tri-34-d3-6.yaml, and the port writes this file again.
 id: "tri-34-d3-6"
 statement:
   - text: "In the picture, each shape stands for a number, the same number every time. The number beside a row is the sum of its shapes. What number is the question mark?"

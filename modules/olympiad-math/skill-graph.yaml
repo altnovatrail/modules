@@ -1,4 +1,4 @@
-# The skill graph of olympiad mathematics (R05): the topics of mathtrail-standalone that the
+# The skill graph of olympiad mathematics: the topics of mathtrail-standalone that the
 # module's tasks train and their links, builds_on, each entry verbatim as the format's example of
 # this module has it, but counting-figures and geometry-cubes-paper, which the example lacks: they
 # come from standalone's content/catalogs/topics.json at 42b4408, with its name and description.

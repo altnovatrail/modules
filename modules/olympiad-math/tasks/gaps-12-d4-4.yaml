@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/counting-gaps/gaps-12-d4-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/counting-gaps/gaps-12-d4-4.yaml, and the port writes this file again.
 id: "gaps-12-d4-4"
 statement:
   - text: "Bushes are planted along the sides of a square flowerbed. There is a bush in every corner, and each side has exactly 3 bushes, counting the two corner bushes of that side. How many bushes are there?"

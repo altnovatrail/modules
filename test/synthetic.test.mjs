@@ -118,7 +118,7 @@ test("a package whose ID is not novatrail/<module> is refused, and one that name
   // The real module-kit of the toolchain stage builds it, so that the ID is the module's own.
   const result = synthetic(named.repo, ["other", "v0.2.1", "a-task:1"], { ...named.env, PATH: process.env.PATH });
   assert.equal(result.status, 1, result.stderr);
-  assert.match(result.stderr, /the module's ID is novatrail\/maths, and the module in modules\/other\/ is novatrail\/other \(R03\)/);
+  assert.match(result.stderr, /the module's ID is novatrail\/maths, and the module in modules\/other\/ is novatrail\/other/);
   assert.deepEqual(named.calls(), []);
 
   const unnamed = withGenerator(t);
@@ -137,10 +137,10 @@ test("no sample to write, no module folder, an eval/ that is no folder, or no ta
   writeFileSync(join(repo, "modules", "flat", "eval"), "");
   for (const [args, message] of [
     [["maths", "v0.2.1"], /name the samples to write/],
-    [["", "v0.2.1", "a-task:1"], /modules\/ is no folder of a module in modules\/ \(R03\)/],
+    [["", "v0.2.1", "a-task:1"], /modules\/ is no folder of a module in modules\//],
     [["linked", "v0.2.1", "a-task:1"], /modules\/linked\/eval is a link or no folder/],
     [["flat", "v0.2.1", "a-task:1"], /modules\/flat\/eval is a link or no folder/],
-    [["absent", "v0.2.1", "a-task:1"], /modules\/absent is no folder of a module in modules\/ \(R03\)/],
+    [["absent", "v0.2.1", "a-task:1"], /modules\/absent is no folder of a module in modules\//],
     [["file", "v0.2.1", "a-task:1"], /modules\/file is no folder of a module/],
     [["../modules/maths", "v0.2.1", "a-task:1"], /is no folder of a module/],
     [["maths", "0.2.1", "a-task:1"], /0\.2\.1 is no tag vX\.Y\.Z of a release of modules/],

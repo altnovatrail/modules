@@ -1,4 +1,4 @@
-# What a person adds to clk-34-d5-3 of standalone; the port writes the task from it (R12).
+# What a person adds to clk-34-d5-3 of standalone; the port writes the task from it.
 givens:
   - "Swift leaves at 7:50 and arrives at 10:35."
   - "Pony takes 25 minutes longer for its trip."

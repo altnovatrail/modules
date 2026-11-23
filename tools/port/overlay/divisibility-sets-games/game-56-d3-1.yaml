@@ -1,4 +1,4 @@
-# What a person adds to game-56-d3-1 of standalone; the port writes the task from it (R12).
+# What a person adds to game-56-d3-1 of standalone; the port writes the task from it.
 givens:
   - "A turn removes 1 or 3 cards, Mia first, and removing the last card wins."
   - "Both play as well as they can."

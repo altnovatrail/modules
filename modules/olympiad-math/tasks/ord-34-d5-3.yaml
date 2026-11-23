@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-ordering/ord-34-d5-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-ordering/ord-34-d5-3.yaml, and the port writes this file again.
 id: "ord-34-d5-3"
 statement:
   - text: "Four children, Lev, Mira, Nika and Oleg, all have different heights. Lev is taller than exactly two of the others. Mira is shorter than Lev. Nika is shorter than Mira. Who is the tallest?"

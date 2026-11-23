@@ -44,7 +44,7 @@ jobs:
   # from the submodule. The two signatures and "Gate" run in toolchain-core, by TOOLCHAIN_STAGE,
   # since release-verify and module-kit are in the core; "Modules" runs in toolchain, which adds
   # canvas's generator that eval-match draws with. Each job decides what to run itself, with no
-  # paths filter on the workflow: a required check of a skipped workflow stays "Pending" (R03).
+  # paths filter on the workflow: a required check of a skipped workflow stays "Pending".
   #
   # Each job takes the image from the cache of GitHub Actions: a file of docker save by the sha256
   # of the Dockerfile, which pins everything it fetches, so that on a hit an outage of nodejs.org,
@@ -54,7 +54,7 @@ jobs:
   # a miss: an entry never changes, and one of a pull request is read by its own re-runs alone, so a
   # run that saves nothing hands toolchain.sh no file to write. A broken entry stays until it is
   # deleted (gh cache delete): toolchain.sh warns of it and builds. The release takes no cache: what
-  # it signs is built from the Dockerfile alone (R31 spec).
+  # it signs is built from the Dockerfile alone.
 
   # The signature of the module-kit release whose binary the stage installs, by spec's
   # release-verify, and the Dockerfile's sums against that release's SHA256SUMS, on every run.

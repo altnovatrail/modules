@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.figures.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/grid-figures-cubes/fig-12-d5-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/grid-figures-cubes/fig-12-d5-1.yaml, and the port writes this file again.
 id: "fig-12-d5-1"
 statement:
   - text: "Lines go from the top of the big triangle to its base. How many triangles are there, small and big?"

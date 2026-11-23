@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/arithmetic-tricks/tri-56-d2-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/arithmetic-tricks/tri-56-d2-2.yaml, and the port writes this file again.
 id: "tri-56-d2-2"
 statement:
   - text: "Tom thought of a number. He multiplied it by 3, added 7, divided the result by 2 and took 4 away. He got 10. What number did Tom think of?"

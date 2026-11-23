@@ -1,6 +1,6 @@
-# The check board's task posts of tutor's eval/bank.json, as internal/task.Sheet builds it
-# (R68 tutor). Its leak phrases end with the key with its noun too, since the statement frees the
-# key (R33). Its leak phrase in English, "one more post than gaps", is left out: the module is in
+# The check board's task posts of tutor's eval/bank.json, as internal/task.Sheet builds it.
+# Its leak phrases end with the key with its noun too, since the statement frees the
+# key. Its leak phrase in English, "one more post than gaps", is left out: the module is in
 # Russian.
 id: posts
 statement:

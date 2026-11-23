@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-56-d5-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-56-d5-3.yaml, and the port writes this file again.
 id: "par-56-d5-3"
 statement:
   - text: "Ann, Ben and Cat play table tennis. Two of them play each game while the third rests, and after each game the winner plays the next game against the one who rested. In the end Ann has played 15 games and Ben 21. At least how many games has Cat played?"

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/grid-figures-cubes/grid-56-d4-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/grid-figures-cubes/grid-56-d4-3.yaml, and the port writes this file again.
 id: "grid-56-d4-3"
 statement:
   - text: "Pasha lays 4 square tiles with sides of 1 cm on a table to make one shape, each tile touching another along a whole side. What is the largest perimeter the shape can have, in centimetres?"

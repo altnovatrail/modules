@@ -1,4 +1,4 @@
-# What a person adds to tri-56-d1-2 of standalone; the port writes the task from it (R12).
+# What a person adds to tri-56-d1-2 of standalone; the port writes the task from it.
 givens:
   - "The first shooter scores 40 and the second 70."
   - "Each later shooter scores the average of all the scores before theirs."

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/geometry.grid.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/grid-figures-cubes/grid-56-d2-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/grid-figures-cubes/grid-56-d2-4.yaml, and the port writes this file again.
 id: "grid-56-d2-4"
 statement:
   - text: "The filled cells in the picture are a sheet of paper, and the lines drawn on it are cuts. Into how many pieces do the cuts split the sheet?"

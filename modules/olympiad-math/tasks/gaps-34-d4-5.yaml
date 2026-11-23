@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/counting-gaps/gaps-34-d4-5.yaml, and the port writes this file again (R12).
+# tools/port/overlay/counting-gaps/gaps-34-d4-5.yaml, and the port writes this file again.
 id: "gaps-34-d4-5"
 statement:
   - text: "11 lamps stand in a row along a road, 30 metres apart. A new lamp is put exactly in the middle between every two neighbouring lamps. How many lamps are there now?"

@@ -1,15 +1,15 @@
-# A template of percent-basic (R22): the solver of mathtrail-standalone
+# A template of percent-basic: the solver of mathtrail-standalone
 # content/solvers/percent.basic/changes.star at 42b4408, made a solver of the template. It came from
 # reference task pct-56-d3-1, whose numbers are one of its instances.
 # The numbers of reference task pct-56-d3-1: pct 20, end 60.
-# Its leading question is the hint of pct-56-d3-1, as it stands (R22).
+# Its leading question is the hint of pct-56-d3-1, as it stands.
 # Its capitals CHANGES, one fall of a whole number of per cent, and END are the numbers that the
 # statement shows: a discount of 20 or 25 per cent and a price from 30 to 90 coins. The constraint
 # keeps every price in the story a whole number of coins and the trap values, the mistakes of the
 # reference task, apart from the key. The last line and the picture of the reference task's solution
 # are those of each instance: the port draws the picture for every instance from
 # tools/port/template-pictures/olympiad-math/, a bar of five parts for 20 per cent and of four for
-# 25, and the derived numbers from old_price on are the numbers it shows (R22).
+# 25, and the derived numbers from old_price on are the numbers it shows.
 # The solver carries this notice:
 # MIT License
 #

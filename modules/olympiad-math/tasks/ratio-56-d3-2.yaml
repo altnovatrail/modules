@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/ratio.sharing.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/fractions-percent-ratio/ratio-56-d3-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/fractions-percent-ratio/ratio-56-d3-2.yaml, and the port writes this file again.
 id: "ratio-56-d3-2"
 statement:
   - text: "Two gear wheels turn together: each time a tooth of the big wheel moves past, one tooth of the small wheel moves past too. The big wheel has 21 teeth and the small wheel has 7. How many turns does the small wheel make while the big wheel makes 6 turns?"

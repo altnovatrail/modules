@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-calendar/cal-56-d3-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-calendar/cal-56-d3-2.yaml, and the port writes this file again.
 id: "cal-56-d3-2"
 statement:
   - text: "A year is a leap year when it can be divided by 4. But a year ending in 00 is a leap year only when it can be divided by 400. How many leap years are there from 1896 to 1912, counting both of these years?"

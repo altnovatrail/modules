@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/counting-gaps/gaps-34-d5-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/counting-gaps/gaps-34-d5-3.yaml, and the port writes this file again.
 id: "gaps-34-d5-3"
 statement:
   - text: "A square garden has a fence. Each side is 20 metres long. Posts stand every 4 metres along the fence, with a post in every corner. How many posts are there?"

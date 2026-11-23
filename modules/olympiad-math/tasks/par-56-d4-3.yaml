@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-56-d4-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-56-d4-3.yaml, and the port writes this file again.
 id: "par-56-d4-3"
 statement:
   - text: "On a board of 3 by 3 squares there is a bug on every square. At the same moment every bug crawls to a square that shares a side with its own square. At least how many squares must be empty?"

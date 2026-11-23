@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-34-d4-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-34-d4-4.yaml, and the port writes this file again.
 id: "par-34-d4-4"
 statement:
   - text: "12 children stand in a circle and are numbered 1 to 12 in order. The ball starts with child 1 and is always passed 4 places on: from 1 to 5, from 5 to 9, and so on. How many different children hold the ball before it comes back to child 1, counting child 1?"

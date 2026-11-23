@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/pigeonhole.basic.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/pigeonhole-basic/pig-56-d3-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/pigeonhole-basic/pig-56-d3-1.yaml, and the port writes this file again.
 id: "pig-56-d3-1"
 statement:
   - text: "A purse holds 1 coin of 50 cents, 2 coins of 20 cents and 9 coins of 10 cents. Without looking, how many coins must you take out to be sure of 3 coins of the same value?"

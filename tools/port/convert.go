@@ -190,13 +190,13 @@ func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile
 	comment := []string{
 		fmt.Sprintf("Written by tools/port from mathtrail-standalone at %s, from", batch.Standalone[:7]),
 		topicFile + ", and not to be edited here: what a person adds goes in",
-		fmt.Sprintf("%s/%s.yaml, and the port writes this file again (R12).", overlays, ex.ID),
+		fmt.Sprintf("%s/%s.yaml, and the port writes this file again.", overlays, ex.ID),
 	}
 	files["tasks/"+ex.ID+".yaml"] = emit(comment, root)
 	return Converted{ID: ex.ID, Files: files, Answer: given.kind, Notes: notes, KeyNamed: given.keyNamed, FromPicture: ex.fromPicture}, nil
 }
 
-// altOf holds the alt of a task's picture to its rule (R21). The alt of a task solved from the
+// altOf holds the alt of a task's picture to its rule. The alt of a task solved from the
 // picture names every text the picture writes, since its facts stand on the picture alone and a
 // learner who cannot see it reads the alt; what the picture draws only proofreading holds. No alt
 // names the key unless the question does: the leak check takes a key in the alt for one the task
@@ -253,7 +253,7 @@ type answer struct {
 	keyNamed int
 }
 
-// answerOf is the answer slot of a task, by the kind of its right option (R20):
+// answerOf is the answer slot of a task, by the kind of its right option:
 //   - a question that points at its options keeps them, and the learner taps one;
 //   - an answer in the notation of the checks of numbers is written by hand anywhere on the sheet,
 //     a simple fraction checked as a fraction, any other as a number with the batch's units;
@@ -359,7 +359,7 @@ const (
 // other a trap value. Tapped, the options are the answer slot's; a word written by hand has them in
 // the check, which the learner does not see; a time has none. It refuses two options alike as the
 // check compares them. The leak check of the format searches neither the key of a tapped choice
-// nor one that the statement holds (R20), so the port searches it in the texts the learner
+// nor one that the statement holds, so the port searches it in the texts the learner
 // sees before solving and refuses it there: in an explanation, to be rewritten in the overlay, in
 // the leading question, in the simpler case, and in the givens and unknown but where they restate
 // a question that names it. A survey, lenient, has no overlay, and writes such a text and counts
@@ -417,7 +417,7 @@ func chosen(ex Example, overlay Overlay, lenient bool, how writing) (answer, err
 		}
 		if namesKey(text) {
 			if !lenient {
-				return answer{}, fmt.Errorf("%s: the explanation of its option %s names its key %q: rewrite it in the trap_texts of its overlay (R05)", ex.ID, letter, key)
+				return answer{}, fmt.Errorf("%s: the explanation of its option %s names its key %q: rewrite it in the trap_texts of its overlay", ex.ID, letter, key)
 			}
 			keyNamed++
 			notes = append(notes, fmt.Sprintf("the explanation of its option %s names its key %q", letter, key))
@@ -431,7 +431,7 @@ func chosen(ex Example, overlay Overlay, lenient bool, how writing) (answer, err
 	// like the simpler case, it never names the key.
 	if leading := leadingOf(ex, overlay); namesKey(leading) {
 		if !lenient {
-			return answer{}, fmt.Errorf("%s: its leading question names its key %q: rewrite it in the leading_question of its overlay (R12)", ex.ID, key)
+			return answer{}, fmt.Errorf("%s: its leading question names its key %q: rewrite it in the leading_question of its overlay", ex.ID, key)
 		}
 		keyNamed++
 		notes = append(notes, fmt.Sprintf("its leading question names its key %q", key))

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/algorithms-weighing-pouring/wp-34-d4-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/algorithms-weighing-pouring/wp-34-d4-4.yaml, and the port writes this file again.
 id: "wp-34-d4-4"
 statement:
   - text: "There are 3 coins. One of them is fake: it is either heavier or lighter than a real coin, but nobody knows which. The two real coins weigh the same. What is the smallest number of weighings on a balance without weights that is sure to find the fake coin and tell whether it is heavier or lighter?"

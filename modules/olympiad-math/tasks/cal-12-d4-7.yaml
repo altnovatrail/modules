@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.calendar.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-calendar/cal-12-d4-7.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-calendar/cal-12-d4-7.yaml, and the port writes this file again.
 id: "cal-12-d4-7"
 statement:
   - text: "A family spends 3 nights in a hotel and the next 2 nights at grandma's. The day they leave home and the day they come back both count. How many days does the trip take?"

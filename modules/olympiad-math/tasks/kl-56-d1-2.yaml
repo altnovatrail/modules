@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.knights_liars.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-knights-liars/kl-56-d1-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-knights-liars/kl-56-d1-2.yaml, and the port writes this file again.
 id: "kl-56-d1-2"
 statement:
   - text: "Ilya always tells the truth. One day he was asked the same question twice and gave two different answers. Which of these questions could it have been?"

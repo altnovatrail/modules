@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/ratio.sharing.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/fractions-percent-ratio/ratio-56-d4-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/fractions-percent-ratio/ratio-56-d4-3.yaml, and the port writes this file again.
 id: "ratio-56-d4-3"
 statement:
   - text: "Bag A has 1 red bead for every 2 blue beads. Bag B holds twice as many beads as bag A, with 3 red beads for every 1 blue bead. All the beads are tipped into one box. What is the ratio of red beads to blue beads in the box?"

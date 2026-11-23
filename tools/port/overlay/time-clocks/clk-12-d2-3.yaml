@@ -1,4 +1,4 @@
-# What a person adds to clk-12-d2-3 of standalone; the port writes the task from it (R12).
+# What a person adds to clk-12-d2-3 of standalone; the port writes the task from it.
 givens:
   - "The clock shows 5:45."
 unknown: "The time in 15 minutes."

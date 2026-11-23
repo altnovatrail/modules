@@ -1,5 +1,5 @@
-# The manifest of the official module of school mathematics for grade 3, on a workbook (R41 spec;
-# R15): the format's example of this module, but for its ID, which modules names (R03). Its skills
+# The manifest of the official module of school mathematics for grade 3, on a workbook: the
+# format's example of this module, but for its ID, which modules names. Its skills
 # teach anchor skills of the shared taxonomy and need none, so it has no dependencies.
 module_format_version: "0.4"
 id: novatrail/grade-3-math

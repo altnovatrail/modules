@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/counting-gaps/gaps-12-d4-5.yaml, and the port writes this file again (R12).
+# tools/port/overlay/counting-gaps/gaps-12-d4-5.yaml, and the port writes this file again.
 id: "gaps-12-d4-5"
 statement:
   - text: "12 fence posts stand in a row, 1 metre apart. A cat walks from the 3rd post to the 10th post. How many metres does it walk?"

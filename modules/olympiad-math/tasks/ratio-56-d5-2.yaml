@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/ratio.sharing.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/fractions-percent-ratio/ratio-56-d5-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/fractions-percent-ratio/ratio-56-d5-2.yaml, and the port writes this file again.
 id: "ratio-56-d5-2"
 statement:
   - text: "A jar holds peaches in juice, and all the peaches are under the juice. Kim eats a quarter of the peaches, and the level in the jar falls by a fifth. By what part of the new level will it fall if Kim then eats half of the peaches that are left?"

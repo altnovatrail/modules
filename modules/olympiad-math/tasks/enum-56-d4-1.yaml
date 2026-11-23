@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/combinatorics-enumeration/enum-56-d4-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/combinatorics-enumeration/enum-56-d4-1.yaml, and the port writes this file again.
 id: "enum-56-d4-1"
 statement:
   - text: "Tom writes three-digit numbers using only the digits 0, 1, 2, 3 and 4. In each number the three digits are all different. How many of the numbers he can write are even?"

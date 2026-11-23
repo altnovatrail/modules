@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/algorithms-weighing-pouring/wp-56-d4-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d4-1.yaml, and the port writes this file again.
 id: "wp-56-d4-1"
 statement:
   - text: "Four stones look alike, but each has a different weight. A balance compares two stones at a time. What is the smallest number of weighings that is sure to put all four stones in order from the lightest to the heaviest?"

@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-ordering/ord-34-d5-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-ordering/ord-34-d5-4.yaml, and the port writes this file again.
 id: "ord-34-d5-4"
 statement:
   - text: "Six runners finished a race without ties. Kolya finished ahead of exactly 4 runners. Dima finished behind exactly 3 runners. How many runners finished between Kolya and Dima?"

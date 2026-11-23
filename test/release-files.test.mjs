@@ -232,7 +232,7 @@ test("a tree with no module, or with anything but module folders in modules/, is
   writeFileSync(join(repo, "modules", "README.md"), "a file\n");
   const file = run(repo, "release-files", ["v0.1.0", ""]);
   assert.equal(file.status, 1);
-  assert.match(file.stderr, /^modules\/README\.md: not a folder; modules\/ holds the folders of the modules alone \(R03\)$/m);
+  assert.match(file.stderr, /^modules\/README\.md: not a folder; modules\/ holds the folders of the modules alone$/m);
 });
 
 test("a module that check refuses, or whose ID is not novatrail/<folder>, is not released", (t) => {
@@ -254,7 +254,7 @@ test("a module-kit other than the one the Dockerfile pins builds nothing", (t) =
   assert.deepEqual(stub.calls(), []);
 });
 
-test("index is called in the form of architecture 3.6 module-kit, and its refusal is the recipe's", (t) => {
+test("index is called in the form module-kit documents, and its refusal is the recipe's", (t) => {
   const { repo } = releasable(t, ["smallest"]);
   const stub = stubModuleKit(t);
   const previous = join(temporaryFolder(t), "module-index.json");

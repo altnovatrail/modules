@@ -1,4 +1,4 @@
-# What a person adds to grid-56-d3-4 of standalone; the port writes the task from it (R12).
+# What a person adds to grid-56-d3-4 of standalone; the port writes the task from it.
 givens:
   - "The filled cells make a shape, and the cells marked 1 make a piece."
   - "Pieces like it, turned but never turned over, must cover the shape with no gaps or overlaps."

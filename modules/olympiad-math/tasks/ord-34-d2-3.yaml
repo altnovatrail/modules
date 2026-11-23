@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-ordering/ord-34-d2-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-ordering/ord-34-d2-3.yaml, and the port writes this file again.
 id: "ord-34-d2-3"
 statement:
   - text: "The red box is heavier than the blue box. The green box is lighter than the blue box. The white box is heavier than the red box. How many boxes are lighter than the red box?"

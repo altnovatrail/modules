@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/number.divisibility.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/div-56-d4-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/div-56-d4-2.yaml, and the port writes this file again.
 id: "div-56-d4-2"
 statement:
   - text: "In a darts game, each dart scores either 3 points or 8 points, and a player can throw as many darts as she likes. What is the largest total that cannot be scored?"

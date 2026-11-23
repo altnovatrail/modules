@@ -1,4 +1,4 @@
-# What a person adds to div-56-d3-1 of standalone; the port writes the task from it (R12).
+# What a person adds to div-56-d3-1 of standalone; the port writes the task from it.
 givens:
   - "Each row has 18 seats, numbered row by row."
   - "Row 1 has seats 1 to 18, row 2 seats 19 to 36, and so on."

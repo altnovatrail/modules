@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/algorithms.weighing_pouring.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/algorithms-weighing-pouring/wp-56-d2-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/algorithms-weighing-pouring/wp-56-d2-3.yaml, and the port writes this file again.
 id: "wp-56-d2-3"
 statement:
   - text: "A toy balance has room for at most two marbles on each pan. One of 12 marbles is a fake that is lighter than the others, which all weigh the same. What is the smallest number of weighings that is sure to find the fake marble?"

@@ -1,4 +1,4 @@
-# What a person adds to fig-34-d2-1 of standalone; the port writes the task from it (R12).
+# What a person adds to fig-34-d2-1 of standalone; the port writes the task from it.
 givens:
   - "Cell X is in the picture."
   - "Squares of filled cells, small or big, are counted."

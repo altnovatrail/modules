@@ -1,15 +1,15 @@
-# A template of counting-figures (R22): the solver of mathtrail-standalone
+# A template of counting-figures: the solver of mathtrail-standalone
 # content/solvers/counting.figures/squares-on-lines.star at 42b4408, made a solver of the template.
 # It came from reference task fig-56-d1-1, whose numbers are one of its instances.
 # The numbers of reference task fig-56-d1-1: width 4.
-# Its leading question is the hint of fig-56-d1-1, as it stands (R22).
+# Its leading question is the hint of fig-56-d1-1, as it stands.
 # standalone's solver reads the lines of the picture, and the reference task's picture is a
 # rectangle of 4 by 3 cells with all its lines: its width is the number that the picture shows and
 # the template varies, from 3 to 7 cells, and its height stays 3, so that the solution counts three
 # sizes of square on every instance. figure builds the picture from the width, and solve counts on
 # it with standalone's code, so the picture that the port draws for each instance, from the source
-# {"solver": "figure"} of tools/port/template-pictures/olympiad-math/, is what the solver counts
-# (R22). The trap values are derived numbers, the mistakes of the reference task.
+# {"solver": "figure"} of tools/port/template-pictures/olympiad-math/, is what the solver counts.
+# The trap values are derived numbers, the mistakes of the reference task.
 # The solver carries this notice:
 # MIT License
 #

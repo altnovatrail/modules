@@ -576,7 +576,7 @@ func drawInstances(id string, part picturePart, variants []variant, instances []
 
 // paintPadded is a drawing painted in the middle of a white image of a size in CSS px, as a PNG.
 // drawInstances calls it on a pool of goroutines, one per core: nearly all the time of
-// template-pictures is painting and compressing, and each instance is its own (R36).
+// template-pictures is painting and compressing, and each instance is its own.
 func paintPadded(picture drawing, width, height int) ([]byte, error) {
 	img := paintImage(picture)
 	padded := whiteImage(width, height)

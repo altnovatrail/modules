@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/combinatorics.enumeration.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/combinatorics-enumeration/enum-34-d1-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/combinatorics-enumeration/enum-34-d1-2.yaml, and the port writes this file again.
 id: "enum-34-d1-2"
 statement:
   - text: "Oleg has 4 shirts and 3 pairs of trousers. How many different outfits of one shirt and one pair of trousers can he make?"

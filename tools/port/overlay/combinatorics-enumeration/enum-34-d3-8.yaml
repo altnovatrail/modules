@@ -1,4 +1,4 @@
-# What a person adds to enum-34-d3-8 of standalone; the port writes the task from it (R12).
+# What a person adds to enum-34-d3-8 of standalone; the port writes the task from it.
 givens:
   - "The lines of the maze are walls."
   - "A move goes to the cell next to it, never through a wall."

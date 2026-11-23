@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/ratio.sharing.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/fractions-percent-ratio/ratio-56-d5-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/fractions-percent-ratio/ratio-56-d5-1.yaml, and the port writes this file again.
 id: "ratio-56-d5-1"
 statement:
   - text: "The grass in a meadow grows at the same rate every day. 24 cows would eat all of it in 10 days, and 14 cows in 20 days. How many cows would eat all of it in 40 days?"

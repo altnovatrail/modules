@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/number.divisibility.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/div-56-d1-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/div-56-d1-1.yaml, and the port writes this file again.
 id: "div-56-d1-1"
 statement:
   - text: "Kim divides a number by 7 and gets 5 with 3 left over. Then she divides four times that number by four times 7. What does she get this time?"

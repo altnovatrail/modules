@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/counting-gaps/gaps-56-d5-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/counting-gaps/gaps-56-d5-3.yaml, and the port writes this file again.
 id: "gaps-56-d5-3"
 statement:
   - text: "Nine people stand in a queue in the rain, each under an open umbrella, so close that the umbrellas of neighbours touch. Take each person as a point and each umbrella as a circle of radius 40 cm round them. When the rain stops, they close their umbrellas and stand 60 cm apart. A queue's length runs from its very front to its very back. By how many metres is the queue now shorter?"

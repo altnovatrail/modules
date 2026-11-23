@@ -1,5 +1,4 @@
-# The check board's task chain-2 of tutor's eval/bank.json, as internal/task.Sheet builds it
-# (R68 tutor).
+# The check board's task chain-2 of tutor's eval/bank.json, as internal/task.Sheet builds it.
 id: chain-2
 statement:
   - text: "Вычисли (47 + 19) : 6."

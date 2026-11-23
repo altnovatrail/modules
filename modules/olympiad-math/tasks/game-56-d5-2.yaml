@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/games.strategy.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/game-56-d5-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/game-56-d5-2.yaml, and the port writes this file again.
 id: "game-56-d5-2"
 statement:
   - text: "Two dragons sit on the corner squares A1 and D4 of a 4 by 4 board, with rows A to D and columns 1 to 4. They move in turn, the dragon on A1 first. A move takes a dragon one square up, down, left or right, and a dragon must move when it is its turn. A dragon that moves onto the other one's square wins. Which dragon wins if both play as well as they can?"

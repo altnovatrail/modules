@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/geometry.cubes_paper.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/grid-figures-cubes/cube-12-d5-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/grid-figures-cubes/cube-12-d5-1.yaml, and the port writes this file again.
 id: "cube-12-d5-1"
 statement:
   - text: "Fold the sheet along line 1, then along line 2. Each fold lays the left part over the right, or the top part over the bottom. A hole is then punched at cell O. How many holes are in the open sheet?"

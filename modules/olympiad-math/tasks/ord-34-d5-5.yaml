@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-ordering/ord-34-d5-5.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-ordering/ord-34-d5-5.yaml, and the port writes this file again.
 id: "ord-34-d5-5"
 statement:
   - text: "Five houses in a row are painted red, blue, green, white and yellow. The green house is second from the left. The white house is at the right end and is not next to the red one. The yellow house is next to the green one. The red house is next to the blue one. What colour is the house in the middle?"

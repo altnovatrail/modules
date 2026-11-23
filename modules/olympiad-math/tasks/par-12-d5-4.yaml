@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-12-d5-4.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-12-d5-4.yaml, and the port writes this file again.
 id: "par-12-d5-4"
 statement:
   - text: "Six children, Ann, Ben, Kim, Dan, Eva and Fay, stand in a circle in this order. Going round the circle and starting with Ben, every second child steps out: first Ben, then Dan, and so on, until one child is left. Who is left?"

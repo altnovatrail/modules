@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/parity.alternation.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/parity-alternation/par-34-d2-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/parity-alternation/par-34-d2-1.yaml, and the port writes this file again.
 id: "par-34-d2-1"
 statement:
   - text: "A pen costs an odd number of cents. Masha buys 7 such pens. Which of these amounts can she pay?"

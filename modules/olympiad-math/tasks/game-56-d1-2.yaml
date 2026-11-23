@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/games.strategy.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/game-56-d1-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/game-56-d1-2.yaml, and the port writes this file again.
 id: "game-56-d1-2"
 statement:
   - text: "Ann cuts a strip of 12 squares into two pieces along a line between squares. Then Ben takes the piece he likes better, and Ann gets the other one. What is the largest number of squares Ann can be sure to get?"

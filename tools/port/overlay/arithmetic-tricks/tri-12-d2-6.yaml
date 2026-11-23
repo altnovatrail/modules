@@ -1,4 +1,4 @@
-# What a person adds to tri-12-d2-6 of standalone; the port writes the task from it (R12).
+# What a person adds to tri-12-d2-6 of standalone; the port writes the task from it.
 givens:
   - "Each shape stands for a number, the same number every time."
   - "The number beside a row is the sum of its shapes."

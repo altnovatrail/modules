@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/number.divisibility.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/div-56-d2-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/div-56-d2-1.yaml, and the port writes this file again.
 id: "div-56-d2-1"
 statement:
   - text: "Kim reads a book from page 40 to page 100, and both of those pages count. Every page whose number can be divided by 4 with nothing left over has a picture. How many pages with pictures does Kim read?"

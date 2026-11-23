@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-ordering/ord-56-d2-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-ordering/ord-56-d2-2.yaml, and the port writes this file again.
 id: "ord-56-d2-2"
 statement:
   - text: "Seven children stand in a queue. Nina is fourth from the front. There are exactly two children between Nina and Owen. Pablo stands right in front of Owen. In which place from the front does Pablo stand?"

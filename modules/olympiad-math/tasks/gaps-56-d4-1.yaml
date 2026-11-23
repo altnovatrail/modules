@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/counting-gaps/gaps-56-d4-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/counting-gaps/gaps-56-d4-1.yaml, and the port writes this file again.
 id: "gaps-56-d4-1"
 statement:
   - text: "A circular path is 360 metres round. Lamps stand along it every 15 metres. They are replaced by new lamps every 40 metres, and the first new lamp stands where an old one stood. Where a new lamp stands at the place of an old one, it uses the old lamp's hole; everywhere else a new hole is dug. How many new holes are dug?"

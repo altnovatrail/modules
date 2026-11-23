@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.ordering.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/logic-ordering/ord-56-d4-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/logic-ordering/ord-56-d4-2.yaml, and the port writes this file again.
 id: "ord-56-d4-2"
 statement:
   - text: "Tess, Ugo, Vera and Walt took the first four places in a quiz. Afterwards three of them spoke. Tess said: 'I was first, and Ugo was second.' Ugo said: 'I was first, and Tess was third.' Vera said: 'I was second, and Walt was first.' Walt said nothing. Each of the three said one true thing and one false thing. Who won the quiz?"

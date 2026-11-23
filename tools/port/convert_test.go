@@ -32,7 +32,7 @@ func TestConvertWholeNumber(t *testing.T) {
 	got, c := convertOne(t, ex, metres, overlay)
 	want := `# Written by tools/port from mathtrail-standalone at 89986bc, from
 # content/examples/counting.gaps.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/lamps-1.yaml, and the port writes this file again (R12).
+# tools/port/overlay/lamps-1.yaml, and the port writes this file again.
 id: "lamps-1"
 statement:
   - text: "A path has 8 lamps in a row, 2 metres apart. How far is it from the first lamp to the last?"

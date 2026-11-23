@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/logic.sets.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/sets-56-d2-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/sets-56-d2-2.yaml, and the port writes this file again.
 id: "sets-56-d2-2"
 statement:
   - text: "Every child in a group likes apples, pears or both. 18 of the children like apples (A), 14 like pears (P), and 7 like both fruits. How many children are in the group?"

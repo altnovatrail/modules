@@ -1,4 +1,4 @@
-# What a person adds to enum-12-d1-3 of standalone; the port writes the task from it (R12).
+# What a person adds to enum-12-d1-3 of standalone; the port writes the task from it.
 givens:
   - "The digits are 1 and 2."
   - "A digit may be used twice, as in 11."

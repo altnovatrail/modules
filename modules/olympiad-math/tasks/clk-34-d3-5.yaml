@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/time.clocks.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/time-clocks/clk-34-d3-5.yaml, and the port writes this file again (R12).
+# tools/port/overlay/time-clocks/clk-34-d3-5.yaml, and the port writes this file again.
 id: "clk-34-d3-5"
 statement:
   - text: "From 9:15 to 11:45 a school has 3 lessons of the same length, with a 15-minute break between every two lessons. How many minutes long is one lesson?"

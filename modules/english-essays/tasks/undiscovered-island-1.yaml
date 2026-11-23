@@ -1,6 +1,6 @@
-# A task of the module of short essays on an invented topic (R16), the format's example of this
-# task: the whole sheet is the answer, read and given feedback as one work. The reminder to write
-# no names is `app`'s, above "Check", not the statement's (R127 spec; R40).
+# A task of the module of short essays on an invented topic, the format's example of this task: the
+# whole sheet is the answer, read and given feedback as one work. The statement holds no reminder to
+# write no names: the platform puts none before Check of an essay.
 id: undiscovered-island-1
 statement:
   - text: Imagine an island that nobody has found yet. Write a short essay about your first morning there.

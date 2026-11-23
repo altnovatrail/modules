@@ -1,4 +1,4 @@
-# What a person adds to clk-56-d2-3 of standalone; the port writes the task from it (R12).
+# What a person adds to clk-56-d2-3 of standalone; the port writes the task from it.
 givens:
   - "The plane takes off at 10:00 local time and flies for 3 hours."
   - "Where it lands, the clocks show 4 hours less."

@@ -1,4 +1,4 @@
-# What a person adds to grid-56-d2-1 of standalone; the port writes the task from it (R12).
+# What a person adds to grid-56-d2-1 of standalone; the port writes the task from it.
 givens:
   - "Tiles of 1 cm cover cells A1, B1, C1 and C2 of a 3 by 3 grid."
 unknown: "The perimeter of the shape in centimetres."

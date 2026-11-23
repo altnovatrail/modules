@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/number.divisibility.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/divisibility-sets-games/div-56-d4-3.yaml, and the port writes this file again (R12).
+# tools/port/overlay/divisibility-sets-games/div-56-d4-3.yaml, and the port writes this file again.
 id: "div-56-d4-3"
 statement:
   - text: "A number leaves a remainder of 22 when it is divided by 24. What remainder does the same number leave when it is divided by 3?"

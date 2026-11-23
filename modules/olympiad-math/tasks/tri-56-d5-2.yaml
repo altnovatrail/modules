@@ -1,6 +1,6 @@
 # Written by tools/port from mathtrail-standalone at 42b4408, from
 # content/examples/arithmetic.tricks.json, and not to be edited here: what a person adds goes in
-# tools/port/overlay/arithmetic-tricks/tri-56-d5-2.yaml, and the port writes this file again (R12).
+# tools/port/overlay/arithmetic-tricks/tri-56-d5-2.yaml, and the port writes this file again.
 id: "tri-56-d5-2"
 statement:
   - text: "The number 96 is written as a sum of two or more whole numbers, and the same numbers multiplied together also make 96. What is the fewest numbers such a sum can have?"
