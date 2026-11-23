@@ -20,7 +20,7 @@ The recipe is spec's: `just -f spec/justfile tokens-report --since … --until �
 
 ## 2. The corridor of `engine` on `grade-3-math`, 2026-11-11
 
-Whether more pages of `grade-3-math` would raise the share of the items in the corridor of `engine`, as Д170 spec asked of the next version of the module (Д8, closed by section 5).
+Whether more pages of `grade-3-math` would raise the share of the items in the corridor of `engine`, as Д170 spec asked of the next version of the module (Д8, closed by measurements 5).
 
 - **How.** The gate of `sim` v0.1.8, commit d957fc7, built from a checkout of its tag in a temporary folder, `just gate modules -first <package folder>`, on trial copies of the module in that folder, where the new pages were copies of the pages of difficulty 1, 3 and 5 with another difficulty: from a page the simulator reads its difficulty, its skills and its boxes. No page was written into `modules/`.
 - **What.** The share of the items in the corridor, `E1.corridor`, on the populations `G0` and `G2-half`.
@@ -34,8 +34,8 @@ Whether more pages of `grade-3-math` would raise the share of the items in the c
   | with a second d1 | 0.224 | 0.161 |
   | two pages for each difficulty from 1 to 5, 32 pages | 0.197 | 0.202 |
 
-- **What it showed.** Easy pages help `G0` and hinder `G2-half`, and the full ladder gives what the module gives now: the corridor is held not by the pool but by the model's estimate, the lag `M3.lag` of `engine`. So no pages are written, and spec took its request back (Д170 spec).
-- **What it did not measure.** `olympiad-math` was not in it: `sim` v0.1.8 did not translate the check kind `time` (Д5, closed), so `M4` and the cell `A-linked` were not read. The same measurement with both maths, on `sim` v0.1.9 or newer, was done on 2026-11-16, section 5, and Д8 is closed.
+- **What it showed.** Easy pages help `G0` and hinder `G2-half`, and the full ladder gives what the module gives now: the corridor is held not by the pool but by the model's estimate, the lag `M3.lag` of `engine`. The author chose to write no pages, and spec took its request back (Д170 spec).
+- **What it did not measure.** `olympiad-math` was not in it: `sim` v0.1.8 did not translate the check kind `time` (Д5, closed), so `M4` and the cell `A-linked` were not read. The same measurement with both maths, on `sim` v0.1.9 or newer, was done on 2026-11-16, measurements 5, and Д8 is closed.
 
 ## 3. One call of `sample-check` on a large eval set, 2026-11-14
 
@@ -76,7 +76,7 @@ What drawing in parallel — the pictures in the tests, and `template-pictures` 
 
 ## 5. The corridor of `engine` on `grade-3-math`, with both maths, 2026-11-16
 
-The measurement of section 2 again, on a tag of `sim` that translates the check kind `time`, so that `olympiad-math` runs beside `grade-3-math`, with `M4` and the cell `A-linked` (Д8, closed by it).
+The measurement of measurements 2 again, on a tag of `sim` that translates the check kind `time`, so that `olympiad-math` runs beside `grade-3-math`, with `M4` and the cell `A-linked` (Д8, closed by it).
 
 - **How.** The gate of `sim` v0.1.23, commit 61ed988, on `learner-model` v0.1.8 and `engine` v0.1.6, the commits of its `gate.json`. It was built from a checkout of that tag and SHA in a temporary folder, as the README of `sim` has the CI of `modules` take it, and no file of a release entered; it ran as `just gate modules -first <olympiad-math> <grade-3-math>`, 250 learners a cell. It ran on the package of `olympiad-math` 0.3.0 that `module-kit build` makes of `main` at 98429a0 and on trial copies of `grade-3-math` 0.3.0 in that folder, without `eval/`. A new page is a copy of the module's page of difficulty 1 (for d1 and d2), 3 (for d3 and d4) or 5 (for d5) of the same skill, with another ID and difficulty. No page was written into `modules/`. A run took 8 to 9 minutes on the 20 cores of the devcontainer.
 - **What.** The share of the items in the corridor, `E1.corridor`, on `G0` and `G2-half`; the share of items too hard, `E1.hard`, and false "mastered", `M4.false.all`, on `G0`; the cells of `olympiad-math` and `A-linked`. The thresholds are those `sim` sets for the gate of `modules`: `E1.corridor` at least 0.184, `E1.hard` at most 0.4954, `M4` at most 0.20. In `gate.json` of this tag the module as it is has `E1.corridor` 0.194 ± 0.019 on `G0` and 0.194 ± 0.009 on `G2-half`.
@@ -91,8 +91,8 @@ The measurement of section 2 again, on a tag of `sim` that translates the check 
   | two pages for each difficulty from 1 to 5, 40 | 0.193 | 0.211 | 0.4957 | 0.029 | red: too hard, by 0.00035 |
 
   In every run the cells of `olympiad-math` and of `A-linked` were the same to the bit. `olympiad-math` had a corridor of 0.257 on `G0` and 0.265 on `G2-half`, and `M4` 0.023 on `G0`. On `A-linked` the gate of `modules` reads only its invariants, `E2.stuck` and `E2.nothing`, both 0 in every run.
-- **What it showed.** The finding of section 2 holds with both maths. Easy pages help `G0` and hinder `G2-half`. A partial ladder lowers the corridor of the main population below the gate's threshold. The full ladder, more than three times the pages, leaves `G0` where it was and raises `G2-half` by 1.7 points, to 0.211: about two half-widths of `gate.json`. The corridor is held by the model's estimate, not by the pool, and the set of 12 pages stays. A new page of `grade-3-math` is also a matter for the gate: every set of pages but the module's own made the gate of `modules` red here (Д5).
-- **What it did not measure.** `olympiad-math` with other pages, and `E1` on `A-linked`, which the gate does not read. The full ladder of section 2 had 32 pages and this one 40: section 2 does not say how its pages were spread, so the two ladders are compared each with its own "now", not with each other.
+- **What it showed.** The finding of measurements 2 holds with both maths. Easy pages help `G0` and hinder `G2-half`. A partial ladder lowers the corridor of the main population below the gate's threshold. The full ladder, more than three times the pages, leaves `G0` where it was and raises `G2-half` by 1.7 points, to 0.211: about two half-widths of `gate.json`. The corridor is held by the model's estimate, not by the pool, and the set of 12 pages stays. A new page of `grade-3-math` is also a matter for the gate: every set of pages but the module's own made the gate of `modules` red here (Д5).
+- **What it did not measure.** `olympiad-math` with other pages, and `E1` on `A-linked`, which the gate does not read. The full ladder of measurements 2 had 32 pages and this one 40: measurements 2 does not say how its pages were spread, so the two ladders are compared each with its own "now", not with each other.
 
 ## 6. The CI of `modules` before and after the cache of Go across runs, 2026-11-16
 
