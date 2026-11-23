@@ -8,7 +8,7 @@ import (
 )
 
 // The answers that are not numbers: a time on a clock is written by hand and checked as a time,
-// one word that the question holds is a choice by hand, and any other is a choice tapped (R20).
+// one word that the question holds is a choice by hand, and any other is a choice tapped.
 
 // clockExample is a task whose answer is a time on a clock.
 func clockExample(id string) Example {
@@ -73,8 +73,7 @@ func TestConvertTimeByHand(t *testing.T) {
 }
 
 // A time of the afternoon, evening or first hour has one trap value more, as a clock face shows it,
-// unless an option is that time as the kind time compares them; a key with a leading zero loses it
-// (R20).
+// unless an option is that time as the kind time compares them; a key with a leading zero loses it.
 func TestConvertTimeTwelveHours(t *testing.T) {
 	ex := clockExample("clock-4")
 	ex.Options = map[string]string{"A": "19:40", "B": "19:20", "C": "19:80", "D": "20:40", "E": "23:20"}
@@ -128,7 +127,7 @@ func TestConvertTimeOptions(t *testing.T) {
 }
 
 // A word written by hand takes notation word, right after the kind: a word none of the options is
-// a wrong answer, not one left unread (R20).
+// a wrong answer, not one left unread.
 func TestConvertWordByHand(t *testing.T) {
 	got, c := convertOne(t, wordExample("race-1"), BatchTask{}, Overlay{})
 	want := `      - binding: "anywhere"
@@ -207,7 +206,7 @@ func TestConvertPercent(t *testing.T) {
 }
 
 // An explanation that names the key of a choice is rewritten in the overlay, or the port refuses
-// the task; a survey writes it, and counts it (R05; R20).
+// the task; a survey writes it, and counts it.
 func TestConvertKeyNamed(t *testing.T) {
 	for name, ex := range map[string]Example{"by hand": wordExample("race-3"), "tapped": wordExample("race-3")} {
 		if name == "tapped" {
@@ -294,7 +293,7 @@ func TestConvertSurveyPictures(t *testing.T) {
 }
 
 // Yes and no stay tapped, a question that points at its options is a choice before its answer is
-// read as a number, and an answer like a number that is none is named (R20).
+// read as a number, and an answer like a number that is none is named.
 func TestConvertTappedAfterReview(t *testing.T) {
 	ex := wordExample("race-7")
 	ex.Question = "Is Ben the slowest? Answer yes or no."
@@ -321,7 +320,7 @@ func TestConvertTappedAfterReview(t *testing.T) {
 // The texts of the overlay that the learner sees before solving do not name the key of a choice,
 // but for givens and an unknown that restate a question naming it beside another option, nor
 // answer_form the key of any answer: the format's leak check does not search a key that the
-// statement shows (R12).
+// statement shows.
 func TestConvertOverlayNamesTheKey(t *testing.T) {
 	for name, overlay := range map[string]Overlay{
 		"givens":       {Givens: []string{"Ben runs slowest."}},

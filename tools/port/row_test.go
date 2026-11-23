@@ -31,7 +31,7 @@ func chunks(t *testing.T, data []byte) []string {
 // drawsAsEveryKind holds each picture to what every kind draws: an opaque, inked PNG of the size
 // its part names, twice as many pixels each way, with the chunks IHDR, IDAT and IEND alone, and the
 // same bytes again. The pictures are parallel subtests, so that the race detector sees them drawn
-// at once, as the pool of template-pictures draws them (R36).
+// at once, as the pool of template-pictures draws them.
 func drawsAsEveryKind(t *testing.T, raws ...string) {
 	t.Helper()
 	for i, raw := range raws {

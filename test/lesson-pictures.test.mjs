@@ -1,4 +1,4 @@
-// The size of each picture of a lesson against its file (R12): the port draws a
+// The size of each picture of a lesson against its file: the port draws a
 // picture of media/lessons/ at a scale of 2, as it draws a task's, so a part of a lesson that shows
 // it says half the size of its PNG in CSS px. The port writes the size of a task's picture itself;
 // a lesson is written by hand, and this test keeps its sizes true when a picture is drawn again.

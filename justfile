@@ -1,8 +1,8 @@
-# The recipes of modules' CI (R03; R10; R11). They run from the repository's root in the toolchain
+# The recipes of modules' CI. They run from the repository's root in the toolchain
 # stage of .devcontainer/Dockerfile, by spec's tools/toolchain/toolchain.sh in ci.yml and the same
 # way in the devcontainer. Every recipe is bash; its tests are in test/, run by `just test`, and two
-# of them test content: templates.test.mjs each template against its task (R22), and
-# lesson-pictures.test.mjs the size of each lesson picture against its file (R12).
+# of them test content: templates.test.mjs each template against its task, and
+# lesson-pictures.test.mjs the size of each lesson picture against its file.
 #
 # The calls of module-kit follow the forms of its CLI:
 #
@@ -23,9 +23,9 @@
 # forms, and test/release-files.test.mjs index.
 
 # The published versions are the index of the newest release of modules, after release-verify, and
-# the package of each version of every module, withdrawn ones too, from the release its entry names
-# (R03; R11). Before the first release every version is a first one, which _published says by a
-# file of its own, so that nothing skips the comparison unsaid. With no module the network is not
+# the package of each version of every module, withdrawn ones too, from the release its entry names.
+# Before the first release every version is a first one, which _published says by a file of its
+# own, so that nothing skips the comparison unsaid. With no module the network is not
 # asked. A failure to read the published versions gives 2: the modules were not compared, not
 # refused.
 # Check the tree of modules/ and every module in it with module-kit, against its published versions.
@@ -91,7 +91,7 @@ _published dir:
 # The tag of the newest release of modules, printed, its module-index.json written into the new
 # file index; nothing printed and no file when there is no release yet. The releases are the tags
 # vX.Y.Z of git ls-remote, read with no token and none of the caller's git settings: only a release
-# sets a tag v*, and a ruleset keeps them (R11). A tag whose index answers 404 is a release that did
+# sets a tag v*, and a ruleset keeps them. A tag whose index answers 404 is a release that did
 # not come out and can be neither moved nor deleted, so it is named on stderr and passed over. Any
 # other failure to read gives 2 rather than pass for no release. The index is not verified here:
 # whoever reads more of it than that it is there runs release-verify on it.
@@ -261,16 +261,16 @@ _unpack archive dir:
         fi
     done
 
-# modules/ holds module folders alone: no other file, nothing named with a dot, no link (R03). Each
+# modules/ holds module folders alone: no other file, nothing named with a dot, no link. Each
 # folder is checked and built, its package's ID must be novatrail/<folder>, and module-kit diff
 # compares the package with the published versions in the folder _published wrote: --index and the
 # packages of the module's entries, or --first, exactly one of the two. Every module is checked, not
 # only the changed ones, and a refusal of one does not stop the rest; the status is the highest of
-# what failed — 1 for the tree, a refusal or a breach of R03, 2 when module-kit could not do its
-# work — so that diff's status is the job's (R11). git holds no empty folder, so no modules/ is the
-# tree with no module. The module-kit on the PATH must be the one MODULE_KIT_VERSION of the
-# Dockerfile pins: a container not rebuilt after a raise of it would check with another CLI than
-# CI's.
+# what failed — 1 for the tree, a refusal or an ID other than novatrail/<folder>, 2 when
+# module-kit could not do its work — so that diff's status is the job's. git holds no empty
+# folder, so no modules/ is the tree with no module. The module-kit on the PATH must be the one
+# MODULE_KIT_VERSION of the Dockerfile pins: a container not rebuilt after a raise of it would
+# check with another CLI than CI's.
 [private]
 _modules-check published:
     #!/usr/bin/env bash
@@ -366,7 +366,7 @@ _modules-check published:
     done
     exit "$worst"
 
-# What the gate of sim reads, for the job "Gate" of ci.yml (R37): the published versions as
+# What the gate of sim reads, for the job "Gate" of ci.yml: the published versions as
 # _published writes them, in published/, and what _gate-args writes. With no module the network is
 # not asked and args is empty. A failure to read the published versions gives 2 and no args.
 # Write what the gate of sim reads, the published versions and every module's package, into a new folder.
@@ -446,18 +446,18 @@ _gate-args dir:
     echo "_gate-args: ${#args[@]} arguments of the gate in ${dir}/args"
 
 # A module's eval set is its folder eval/, which its package does not carry and the repository
-# publishes for good (R04; R62 spec). Its layout is flat: each sample is eval/<id>.json, named by
+# publishes for good. Its layout is flat: each sample is eval/<id>.json, named by
 # the field id of its one JSON object, 1 to 64 lowercase Latin letters, digits and hyphens, and eval/
 # holds nothing else — no folder, no link, no other file and nothing named with a dot at any depth,
-# which the eval set would leave out and the repository would still publish unchecked (R04). jq
+# which the eval set would leave out and the repository would still publish unchecked. jq
 # holds the ID to the name itself, so that no byte of it is lost on the way. The rules of the sample
 # file, and those of an eval set that need neither the package nor a key, are spec's: sample-check
 # --eval-set novatrail/<folder> on every regular file under eval/ whose name ends in .json, but
 # under a name with a dot, as the layout of an eval set of spec's contracts has it. A module with no
-# such file is not checked, since a check of no file passes none (R93 spec; R25). sample-check takes
+# such file is not checked, since a check of no file passes none. sample-check takes
 # all of a module's files in one call: it holds whole only the file it reads, and itself refuses two
-# samples that share an ID (R25). Only the folders of modules/ are read: a file, a link or a name
-# with a dot there is modules-check's to refuse (R03). Every module is checked, and a breach in one
+# samples that share an ID. Only the folders of modules/ are read: a file, a link or a name
+# with a dot there is modules-check's to refuse. Every module is checked, and a breach in one
 # does not stop the rest; the status is the highest of what failed: 1 for a breach of the layout, a
 # sample sample-check refuses and a modules that is no folder, and 2 when jq, spec's tools or
 # sample-check could not do their work. A folder whose name gives no module ID stops sample-check
@@ -583,7 +583,7 @@ eval-check:
 canvas_lib := env("CANVAS_LIB", "/usr/local/lib/canvas")
 
 # A synthetic sample is one of a task of the module, made on the package of the commit it lies in,
-# and names the tag of the newest release of modules (R110 spec; R29). A person runs it in the
+# and names the tag of the newest release of modules. A person runs it in the
 # devcontainer; it writes into the module's eval/ and nothing else.
 # Write synthetic samples of a module's eval set, <task>:<seed> each, with canvas's generator.
 [positional-arguments]
@@ -600,10 +600,10 @@ synthetic module *calls:
 
 # The synthetic samples <task>:<seed> of modules/<module>/, written into its eval/ by canvas's
 # generator on the package module-kit build makes of the module, for the release tag, or when it is
-# empty the newest release's, asked for only after every check that needs no network (R110 spec;
-# R29). The generator and module-kit must be the ones the Dockerfile pins, so that a container not
+# empty the newest release's, asked for only after every check that needs no network.
+# The generator and module-kit must be the ones the Dockerfile pins, so that a container not
 # rebuilt after a raise writes no sample CI would not make. The calls go to the generator as they
-# are, in its form (R68 canvas):
+# are, in its form:
 #
 #   node synthetic-module_<tag>.mjs --module <package> <tag> <folder> <task>:<seed>...
 #
@@ -611,7 +611,7 @@ synthetic module *calls:
 # over a person's sample; its lines, its reasons and its status are the recipe's: 0 when it wrote
 # them all, 1 when it refused a call — a template, a task it does not draw, a seed named twice —
 # and 2 when a call was out of form. The recipe's own status is 1 when the package's ID is not
-# novatrail/<module> (R03), module-kit's when it refuses the module, and 2 when it cannot do its
+# novatrail/<module>, module-kit's when it refuses the module, and 2 when it cannot do its
 # work.
 [private]
 [positional-arguments]
@@ -683,7 +683,7 @@ _pinned-module-kit:
     fi
 
 # The path of canvas's generator, printed once it is the file the Dockerfile pins: the stage's
-# synthetic-module_<CANVAS_VERSION>.mjs, a regular file whose sum is CANVAS_SYNTHETIC_SHA256 (R29).
+# synthetic-module_<CANVAS_VERSION>.mjs, a regular file whose sum is CANVAS_SYNTHETIC_SHA256.
 # The status is 2 otherwise: a container not rebuilt after a raise would draw samples CI does not.
 [private]
 _generator:
@@ -705,7 +705,7 @@ _generator:
 
 # Every sample of a module's eval set is one of the package of the commit it lies in: a pull request
 # that changes the open view of a task re-makes its synthetic samples and removes the samples of
-# people in the same pull request (R04; R25). Of each file eval-check gives sample-check, jq reads
+# people in the same pull request. Of each file eval-check gives sample-check, jq reads
 # the origin, the task's source and ID, the seed and the digest of the open view, and nothing else:
 # a person's sample is never printed. A module with no sample is not built; the others are, by the
 # pinned module-kit, and their samples go to _match-synthetic and _match-people. A file outside the
@@ -933,10 +933,10 @@ _match-synthetic module package rows:
 # The samples of people of a module in rows — the file, the task, the seed of its instance when the
 # task is a template, and the digest of the open view each names —, held to the open views of the
 # package. module-kit open, over the package and an index of it alone, gives the digest of each
-# task's open view and of each instance of a template by its seed, as the runner will read the task
-# (R93 spec); open asks for a seed, so 0 stands in when no sample has one. A sample whose task or
+# task's open view and of each instance of a template by its seed, as the runner will read the task;
+# open asks for a seed, so 0 stands in when no sample has one. A sample whose task or
 # seed is not in the package, or whose open view has another digest, was made on another open view
-# and is refused with 1 (R04). Nothing of a sample but its file, task and seed is printed. The
+# and is refused with 1. Nothing of a sample but its file, task and seed is printed. The
 # status is 2 when module-kit cannot open the package.
 [private]
 _match-people module package rows:
@@ -989,12 +989,12 @@ _match-people module package rows:
     exit "$worst"
 
 # What .github's shared release.yml runs to build a release's files, in the stage toolchain-core of
-# the commit it releases (R38), on that commit's tree from git archive: no git, no submodule —
-# spec/ is an empty folder —, no token and no network (R03; R17). version is the release's tag,
+# the commit it releases, on that commit's tree from git archive: no git, no submodule —
+# spec/ is an empty folder —, no token and no network. version is the release's tag,
 # vX.Y.Z; previous the read-only path of module-index.json of the newest release, which
 # release-verify accepted before the build, relative to where the recipe is called, or "" for the
 # first release, told to module-kit index by --first; no withdrawals.yaml is told by
-# --no-withdrawals, so nothing is left unsaid (R63 spec). Every module is checked by _modules-check
+# --no-withdrawals, so nothing is left unsaid. Every module is checked by _modules-check
 # and built, since with no git the recipe cannot tell which changed. index keeps each entry of the
 # previous index as it was and refuses another digest for a version it names
 # (module-index.one-package), so an archive goes out only for a package whose entry names this
@@ -1094,9 +1094,9 @@ release-files version previous:
     echo "release-files: the files of ${version} are in dist/"
 
 # The release's SHA256SUMS and its bundle come from its public address with no token, spec's
-# release-verify checks the signature (R77 spec), and the sums of both linux binaries are held to
+# release-verify checks the signature, and the sums of both linux binaries are held to
 # the Dockerfile's, so the chain of digests runs from a verified file to the binary the stage
-# toolchain-core installs (R10).
+# toolchain-core installs.
 # Verify the signature of the module-kit release that the Dockerfile pins, and its sums.
 module-kit-verify:
     #!/usr/bin/env bash
@@ -1150,8 +1150,8 @@ _module-kit-sums sums dockerfile:
     exit "$failed"
 
 # As module-kit-verify does for module-kit's binary: the release's SHA256SUMS and bundle from its
-# public address with no token, the signature by spec's release-verify (R77 spec), and the sum of
-# synthetic-module_<tag>.mjs held to the Dockerfile's (R29).
+# public address with no token, the signature by spec's release-verify, and the sum of
+# synthetic-module_<tag>.mjs held to the Dockerfile's.
 # Verify the signature of the canvas release whose generator the Dockerfile pins, and its sum.
 canvas-verify:
     #!/usr/bin/env bash
@@ -1222,10 +1222,10 @@ _dockerfile-arg dockerfile name:
 test:
     JUST={{quote(just_executable())}} node --test 'test/*.test.mjs'
 
-# The Go code is tools/port, the port of standalone's tasks (R12), one module with its go.mod at the
+# The Go code is tools/port, the port of standalone's tasks, one module with its go.mod at the
 # root; spec/ is a module of its own, which ./... does not reach. The ci- recipes are what .github's
-# shared go.yml runs, one job each, with no spec submodule (R16 .github; R48 spec): lint, vuln and
-# licenses in the stage toolchain-core, test in toolchain (R47 .github; R38). The tools only these
+# shared go.yml runs, one job each, with no spec submodule: lint, vuln and licenses in
+# the stage toolchain-core, test in toolchain. The tools only these
 # checks need run straight from their modules at exact versions; Dependabot does not see them, so
 # they are raised by hand.
 GOVULNCHECK := "golang.org/x/vuln/cmd/govulncheck@v1.9.0"
@@ -1244,7 +1244,7 @@ ci-lint:
     go vet ./...
 
 # The profile goes into coverage/go.out, which the job coverage of go.yml sends to Codecov, and
-# codecov/patch holds the changed lines to 90 % (.github/codecov.yml; R48 spec).
+# codecov/patch holds the changed lines to 90 % (.github/codecov.yml).
 # Run the Go tests, with the race detector, and write their coverage.
 ci-test:
     #!/usr/bin/env bash
@@ -1257,7 +1257,7 @@ ci-vuln:
     go run {{GOVULNCHECK}} ./...
 
 # The list is ALLOWED_LICENSES, SPDX identifiers separated by commas, which go.yml sets; without it,
-# the recipe takes spec's list, as `just -f spec/justfile licenses-allowed` prints it (R12 spec).
+# the recipe takes spec's list, as `just -f spec/justfile licenses-allowed` prints it.
 # Fail if a package the module is built from carries a license outside that list.
 ci-licenses:
     #!/usr/bin/env bash
@@ -1272,7 +1272,7 @@ ci-licenses:
 # The tasks of a batch of tools/port/batches/ come from standalone at the commit the batch names,
 # cloned into a temporary folder, never into this repository, with no token and none of the
 # caller's git settings. Standalone's bench proves each task's answer first, and the port writes
-# nothing unless each passes (R12). A person runs it in the devcontainer, not CI: the bench fetches
+# nothing unless each passes. A person runs it in the devcontainer, not CI: the bench fetches
 # standalone's Go modules. After the module come the options: --batch <file> in place of the first
 # batch, whose overlays are then tools/port/overlay/<the batch's name>/, --overlay <folder> in place
 # of those, and --check to compare the module with what the port writes.
@@ -1310,7 +1310,7 @@ port module *options:
 
 # The pictures of the lessons of a module are tools/port/pictures/<the module's folder>/<name>.json,
 # in the schema of standalone's pictures, which the port draws into media/lessons/<name>.png of the
-# module, with no clone, as it draws a task's picture (R12). CI runs it with
+# module, with no clone, as it draws a task's picture. CI runs it with
 # --check, which writes nothing and names every picture that differs from what the port draws.
 # Draw the pictures of the lessons into a module, or with --check compare them.
 [positional-arguments]
@@ -1321,14 +1321,14 @@ lesson-pictures module *options:
 # placeholders has a source, tools/port/template-pictures/<the module's folder>/<the path without
 # its placeholders>.json, in the schema of standalone's pictures with placeholders among its
 # strings, and the port draws it for every instance into media/pictures/ of the module, as the
-# format asks (R12). CI runs it with --check.
+# format asks. CI runs it with --check.
 # Draw the pictures of the instances of a module's templates, or with --check compare them.
 [positional-arguments]
 template-pictures module *options:
     go run ./tools/port --template-pictures "tools/port/template-pictures/$(basename "$1")" --module "$@"
 
 # A survey runs the port, with standalone's bench, over every task of standalone that no batch of
-# tools/port/batches/ names, at a commit, by default the parameter's (R20). The module is a new
+# tools/port/batches/ names, at a commit, by default the parameter's. The module is a new
 # folder that the survey makes and that never enters the repository. A person runs it in the
 # devcontainer, not CI.
 # Survey the tasks of standalone that no batch names, into a new module of the format's examples.
@@ -1344,11 +1344,11 @@ port-survey module commit="42b4408225e4163d8efbdfb93c299f3fc4b70afa":
     {{quote(just_executable())}} _port-survey "$clone" "$2" "$1" --prove
 
 # The module of a survey is the format's examples of olympiad-math — manifest, skill graph,
-# techniques and solving steps — with the traps of modules/olympiad-math, whose IDs the port writes
-# (R23), the root's LICENSE, and the tasks the port writes into it. The example's graph lacks two
+# techniques and solving steps — with the traps of modules/olympiad-math, whose IDs the port
+# writes, the root's LICENSE, and the tasks the port writes into it. The example's graph lacks two
 # topics of standalone, which the survey adds where the clone has them and the graph does not, at
 # the graph's end, under skills:, which must be its last key, with no prerequisites, as their
-# builds_on is empty, and the topics' names for titles (R21). module-kit check then reads it: a
+# builds_on is empty, and the topics' names for titles. module-kit check then reads it: a
 # breach of task.no-leaks is what the overlays are to mend, and the recipe counts them; any other
 # breach, and any warning, fails it. The status is the port's — 1 when it refused a task, 2 when it
 # could not run — or 1 when the check found more than task.no-leaks. The port is built first, since

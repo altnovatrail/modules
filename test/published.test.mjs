@@ -1,9 +1,9 @@
-// The tests of what modules-check compares with (R03; R11), without the network: _release-tags on
+// The tests of what modules-check compares with, without the network: _release-tags on
 // the lines of git ls-remote, _entries on indexes, _unpack on archives made here, and _modules-check
 // against releases made here by the real module-kit — the same version with the same digest, the
 // same version with another, a new version, no package of a version the index names, a module the
 // index does not name. The signature is not tried: release-verify is spec's recipe, with tests of
-// its own on files of real releases (R77 spec), and _published runs it on the real index in CI.
+// its own on files of real releases, and _published runs it on the real index in CI.
 // _newest-release is tried on stand-ins of git and curl; the real git ls-remote and download only
 // CI's own runs take.
 

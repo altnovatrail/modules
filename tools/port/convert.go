@@ -14,14 +14,14 @@ var (
 	// a unit, which must be one of the task's units.
 	notation = regexp.MustCompile(`^(-?(?:0|[1-9][0-9]*)(?:\.[0-9]+|/[1-9][0-9]*)?) ?([^0-9\s./-].*)?$`)
 	// pointsAtOptions is a question that is not asked without its options, "Which of these
-	// numbers…": it keeps them, and the learner taps one (R20).
+	// numbers…": it keeps them, and the learner taps one.
 	pointsAtOptions = regexp.MustCompile(`(?i)\bwhich of these\b`)
 	// clockTime and oneWord are the answers that are not numbers and are written by hand; one word
-	// only when the question holds it (R20).
+	// only when the question holds it.
 	clockTime = regexp.MustCompile(`^([01]?[0-9]|2[0-3]):[0-5][0-9]$`)
 	oneWord   = regexp.MustCompile(`^\p{L}+$`)
 	// yesOrNo is tapped, though it is one word, and the question may hold it: written by hand, a
-	// learner's "yes, always" would be no option at all (R20).
+	// learner's "yes, always" would be no option at all.
 	yesOrNo = regexp.MustCompile(`(?i)^(yes|no)$`)
 	// leadingDigit is an answer that looks like a number: as a choice tapped, the report names it,
 	// since the batch may have forgotten its units.
@@ -42,7 +42,7 @@ const (
 )
 
 // twelveHoursText is the text of the trap value of twelveHoursOff: it names no number, as it is the
-// same in every task (R20).
+// same in every task.
 const twelveHoursText = "That is the time on a clock face, which starts its hours again at noon. Count the hours of the afternoon on from noon."
 
 // Converted is a task of the module as the port writes it: the file tasks/<id>.yaml and the
@@ -57,7 +57,7 @@ type Converted struct {
 	// KeyNamed counts the explanations and the leading question that name the key of a choice or a
 	// time, which only a survey writes.
 	KeyNamed int
-	// FromPicture says that the task's solver reads its picture (R21).
+	// FromPicture says that the task's solver reads its picture.
 	FromPicture bool
 }
 
@@ -65,7 +65,7 @@ type Converted struct {
 // survey is a folder of its own, which no batch writes and the repository never holds.
 const surveyAlt = "Survey: a picture of standalone, with no alt written."
 
-// convert carries one task of standalone into a task of the module (R05; R12). It refuses a skill
+// convert carries one task of standalone into a task of the module. It refuses a skill
 // the batch does not know, an overlay field that has nothing to stand for, and a key that the
 // answer form, the alt or a text the learner sees before solving gives away.
 func convert(ex Example, batch Batch, task BatchTask, overlay Overlay, topicFile string) (Converted, error) {
@@ -238,7 +238,7 @@ func altOf(ex Example, overlay Overlay, key string, survey bool) (string, error)
 }
 
 // capitals is a label of Latin capitals, which the alt names as it is written: A, never a. An
-// article that opens a sentence, A, still passes for the label, and proofreading holds that (R21).
+// article that opens a sentence, A, still passes for the label, and proofreading holds that.
 var capitals = regexp.MustCompile(`^[A-Z]+$`)
 
 // answer is the answer slot of a task, as answerOf gives it. traps are those of the wrong options
@@ -253,7 +253,7 @@ type answer struct {
 	keyNamed int
 }
 
-// answerOf is the answer slot of a task, by the kind of its right option (R05; R20):
+// answerOf is the answer slot of a task, by the kind of its right option (R20):
 //   - a question that points at its options keeps them, and the learner taps one;
 //   - an answer in the notation of the checks of numbers is written by hand anywhere on the sheet,
 //     a simple fraction checked as a fraction, any other as a number with the batch's units;
@@ -273,7 +273,7 @@ func answerOf(ex Example, task BatchTask, overlay Overlay, lenient bool) (answer
 	case pointsAtOptions.MatchString(ex.Question):
 		return chosen(ex, overlay, lenient, tapping)
 	case clockTime.MatchString(right):
-		// A time reads as a number with words after it, 7 and :30, so it goes before valueOf (R20).
+		// A time reads as a number with words after it, 7 and :30, so it goes before valueOf.
 		return chosen(ex, overlay, lenient, timeByHand)
 	}
 	kind, key, err := valueOf(right, task.Units)
@@ -342,16 +342,16 @@ func answerOf(ex Example, task BatchTask, overlay Overlay, lenient bool) (answer
 	return answer{slot: mapping{{"binding", "anywhere"}, {"check", check}}, key: key, traps: traps, notes: dropped, kind: kind}, nil
 }
 
-// writing is how an answer that is no number is given (R20).
+// writing is how an answer that is no number is given.
 type writing int
 
 const (
 	tapping writing = iota
 	// timeByHand is a time on a clock, checked as a time with no options, so that a time none of
-	// the options is a wrong answer (R20).
+	// the options is a wrong answer.
 	timeByHand
 	// wordByHand is one word, with notation word, so that a word none of the options is a wrong
-	// answer (R20).
+	// answer.
 	wordByHand
 )
 
@@ -359,7 +359,7 @@ const (
 // other a trap value. Tapped, the options are the answer slot's; a word written by hand has them in
 // the check, which the learner does not see; a time has none. It refuses two options alike as the
 // check compares them. The leak check of the format searches neither the key of a tapped choice
-// nor one that the statement holds (R05; R20), so the port searches it in the texts the learner
+// nor one that the statement holds (R20), so the port searches it in the texts the learner
 // sees before solving and refuses it there: in an explanation, to be rewritten in the overlay, in
 // the leading question, in the simpler case, and in the givens and unknown but where they restate
 // a question that names it. A survey, lenient, has no overlay, and writes such a text and counts
@@ -428,7 +428,7 @@ func chosen(ex Example, overlay Overlay, lenient bool, how writing) (answer, err
 		return answer{}, err
 	}
 	// The leading question comes before the first wrong answer and hints more than a technique, so,
-	// like the simpler case, it never names the key (R12).
+	// like the simpler case, it never names the key.
 	if leading := leadingOf(ex, overlay); namesKey(leading) {
 		if !lenient {
 			return answer{}, fmt.Errorf("%s: its leading question names its key %q: rewrite it in the leading_question of its overlay (R12)", ex.ID, key)
@@ -450,7 +450,7 @@ func chosen(ex Example, overlay Overlay, lenient bool, how writing) (answer, err
 	switch how {
 	case timeByHand:
 		// The kind time counts hours to 24 and leaves the slip of a clock face to a trap value, unless
-		// an option is that time already (R111 spec).
+		// an option is that time already.
 		if twelve := twelveHoursOff(key); twelve != "" && seen[twelve] == "" {
 			values = append(values, mapping{{"value", twelve}, {"trap", "twelve-hours-off"}, {"text", twelveHoursText}})
 		}
@@ -499,7 +499,7 @@ func namesAnother(text string, ex Example) bool {
 
 // notCarried is the rule of a wrong option that is no value of its check: it cannot be a trap
 // value, so its trap goes to the task's traps, for AI to suggest, and its text is left out, which
-// the note says (R05).
+// the note says.
 func notCarried(traps []string, letter, option, kind, trap string) ([]string, string) {
 	if !slices.Contains(traps, trap) {
 		traps = append(traps, trap)
@@ -508,7 +508,7 @@ func notCarried(traps []string, letter, option, kind, trap string) ([]string, st
 }
 
 // leadingOf is the leading question of a task: the hint of standalone, or the overlay's question
-// written in its place (R12).
+// written in its place.
 func leadingOf(ex Example, overlay Overlay) string {
 	if overlay.LeadingQuestion != "" {
 		return overlay.LeadingQuestion
@@ -536,7 +536,7 @@ func unusedTexts(id string, overlay Overlay, used map[string]bool) error {
 // the value as it is written, without its unit; or no kind for any other option, such as 07, a
 // word or a time. A number with words after it is a number only when the batch gives the task
 // units: then words that are none of them are an error, since as a key their unit would be lost,
-// and without units the option is no number, such as 3 and 6 or 19 May (R20).
+// and without units the option is no number, such as 3 and 6 or 19 May.
 func valueOf(option string, units []string) (kind, value string, err error) {
 	m := notation.FindStringSubmatch(option)
 	if m == nil {
@@ -563,8 +563,7 @@ func same(a, b string) bool {
 	return x.Cmp(y) == 0
 }
 
-// idOf is a topic or a trap of standalone as an ID of the format, counting.gaps → counting-gaps
-// (R05).
+// idOf is a topic or a trap of standalone as an ID of the format, counting.gaps → counting-gaps.
 func idOf(name string) string {
 	return strings.NewReplacer(".", "-", "_", "-").Replace(name)
 }

@@ -1,4 +1,4 @@
-// The test of the port's output against the format (R12; R20): tools/port, run by go, writes tasks
+// The test of the port's output against the format: tools/port, run by go, writes tasks
 // of a made-up standalone — with a picture of a row, and with answers that are a time, checked as
 // a time, and a word, a choice written by hand — into a module made of the format's examples of
 // olympiad-math with the module's traps, and module-kit check accepts it, with no warning about the

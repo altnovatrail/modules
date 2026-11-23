@@ -14,13 +14,13 @@ import (
 // options must differ in the normal form of a choice (task.choice-options), and the key is searched
 // for, as a phrase, in the explanations of the trap values. The leak check of the format searches
 // neither the key of a tapped choice nor a key that the statement shows, so for a choice the
-// port's search is the only one (R05; R20).
+// port's search is the only one.
 
 // choiceForm is a text in the normal form of a choice of the format.
 func choiceForm(text string) string { return normalized(text, true) }
 
 // wordForm is a text as a choice with notation word normalizes it: the form of a choice without
-// the ".", "!", "?" and spaces at its end, so that "Kim." is "kim" and "?" is blank (R20).
+// the ".", "!", "?" and spaces at its end, so that "Kim." is "kim" and "?" is blank.
 func wordForm(text string) string { return strings.TrimRight(choiceForm(text), ".!? ") }
 
 // timeValue is a value in the notation of a time read. It admits minutes of three digits, so that

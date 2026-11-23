@@ -1,5 +1,5 @@
 // The lock file of gopls in .devcontainer/gopls/ and GOPLS_VERSION of the Dockerfile are those of
-// the go kind of spec's repo-template at the tag the submodule pins (R34). CI never builds the
+// the go kind of spec's repo-template at the tag the submodule pins. CI never builds the
 // devcontainer stage, so nothing else would see them drift apart before a Rebuild Container.
 
 import assert from "node:assert/strict";

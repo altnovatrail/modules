@@ -293,7 +293,7 @@ func solverTemplate(width, height int, solver string) string {
 }
 
 // A source of solver is the picture that a function of the template's solver builds from the
-// instance's numbers, run under the dialect of the format (R12).
+// instance's numbers, run under the dialect of the format.
 func TestTemplatePicturesSolver(t *testing.T) {
 	width, height := pairsSize(t)
 	task := readTemplate(t, solverTemplate(width, height, pairsFigure))

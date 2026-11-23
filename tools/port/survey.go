@@ -14,7 +14,7 @@ import (
 
 // A survey runs the port over every task of standalone that no batch names: which tasks it writes,
 // by the kind of their answer, which wait for a picture of a kind it does not draw, and which it
-// refuses (R20). It reads no overlays, so it writes into a module of its own, which the recipe
+// refuses. It reads no overlays, so it writes into a module of its own, which the recipe
 // port-survey makes of the format's examples and which never enters the repository: its pictures
 // have surveyAlt, an explanation that names the key of a choice is counted rather than refused, and
 // a number with words after it, which no batch gives units for, is a choice tapped.

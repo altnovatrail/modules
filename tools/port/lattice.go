@@ -9,7 +9,7 @@ import (
 // cells across and height down, 1 to 8 each, a cell [x, y] from [0, 0] at the top left; cells
 // filled, lines from corner to corner — walls, sides, matches, sticks — dashed lines — a fold, a
 // cut, an axis — points at corners, each with a label or none, and labels in cells. Its facts may
-// stand on the picture alone (R21).
+// stand on the picture alone.
 type latticePicture struct {
 	Kind   string         `json:"kind"`
 	Width  *int           `json:"width"`

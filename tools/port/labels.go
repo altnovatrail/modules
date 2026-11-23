@@ -8,7 +8,7 @@ import (
 )
 
 // The texts a picture writes, as a description gives them, are what the alt of a task solved from
-// the picture names, so that a learner who cannot see the picture reads its facts (R21). The
+// the picture names, so that a learner who cannot see the picture reads its facts. The
 // numbers a picture numbers itself — a clock's 1 to 12, a line's ticks, a calendar's days, a ring's
 // places — are left out, and so are ? and the empty text, which say nothing.
 

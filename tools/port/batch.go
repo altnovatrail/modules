@@ -16,7 +16,7 @@ import (
 
 // Batch is a file of tools/port/batches/: the commit of standalone the tasks come from, the canvas
 // of every task, what each skill gives its tasks, and what each task needs that standalone does not
-// say (R12).
+// say.
 type Batch struct {
 	Standalone string                   `yaml:"standalone"`
 	Canvas     Canvas                   `yaml:"canvas"`
@@ -26,7 +26,7 @@ type Batch struct {
 	// names.
 	overlays string
 	// survey marks the batch a survey makes, never read from a file: its pictures get surveyAlt, and
-	// a text that names the key of a choice is counted, not refused (R20).
+	// a text that names the key of a choice is counted, not refused.
 	survey bool
 }
 
@@ -46,18 +46,18 @@ type SkillDefaults struct {
 // BatchTask is what a task needs beside standalone: the units of its answer — the word its question
 // counts in the singular and the plural and, for a measure, its abbreviation — and whether its
 // choice is tapped though its key is a word of the question, its wrong options being reasons a
-// learner would not write by hand (R20).
+// learner would not write by hand.
 type BatchTask struct {
 	Units  []string `yaml:"units,omitempty"`
 	Tapped bool     `yaml:"tapped,omitempty"`
 }
 
 // Overlay is what a person writes for a task, tools/port/overlay/<batch>/<id>.yaml, which the port
-// puts into the task as it is (R12).
+// puts into the task as it is.
 type Overlay struct {
 	Givens  []string `yaml:"givens,omitempty"`
 	Unknown string   `yaml:"unknown,omitempty"`
-	// LeadingQuestion stands in place of standalone's hint where the hint names the key (R12).
+	// LeadingQuestion stands in place of standalone's hint where the hint names the key.
 	LeadingQuestion string `yaml:"leading_question,omitempty"`
 	SimplerCase     string `yaml:"simpler_case,omitempty"`
 	// Techniques, when given, stand in place of those of the task's skill.
@@ -108,7 +108,7 @@ func readBatch(file string) (Batch, error) {
 
 // readOverlays reads the overlays of a batch from its own folder. The folder must be there, or a
 // mistyped path would drop every overlay unsaid; an overlay of a task the batch does not name would
-// be left out unsaid, so it is an error, and so is a folder in it (R12).
+// be left out unsaid, so it is an error, and so is a folder in it.
 func readOverlays(dir string, batch Batch) (map[string]Overlay, error) {
 	overlays := map[string]Overlay{}
 	entries, err := os.ReadDir(dir)

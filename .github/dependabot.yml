@@ -14,7 +14,7 @@ updates:
       shared-workflows:
         patterns: ["altnovatrail/.github/*"]
 
-  # The Go modules tools/port is built from (R12).
+  # The Go modules tools/port is built from.
   - package-ecosystem: gomod
     directory: /
     schedule:

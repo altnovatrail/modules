@@ -13,9 +13,9 @@ import (
 // bench is the test of standalone, content/solver_test.go, that runs the solver of each reference
 // task as a submitted solver is run — its sandbox and dialect, two runs under rotated letters — in a
 // subtest named by the task's ID. The runs must agree on exactly one letter, so the solver proves
-// the key and that no trap value is right (R05; R12). The one trap value that is no option of
+// the key and that no trap value is right. The one trap value that is no option of
 // standalone, a time twelve hours off the key as a clock face shows it, no solver sees: it is never
-// right (R20).
+// right.
 const bench = "TestEveryReferenceTaskProvesItsOwnAnswer"
 
 // prove fails unless the bench of the clone passed for each task given. go fetches the clone's own
