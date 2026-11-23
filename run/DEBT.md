@@ -1,13 +1,13 @@
 # DEBT.md — technical debt of `modules`
 
-Table 4 of [RUN.md](../RUN.md): what was put off on purpose, its risk, when to return (R153 spec, R154 spec).
+Table 4 of [RUN.md](../RUN.md): what was put off on purpose, its risk, when to return.
 
 - Never read whole: take the rows the task and its sections name — `grep -n '^| Д9 ' run/DEBT.md` — and those `grep -n` finds by the paths and parts it changes (RUN.md rule 2).
 - A row is what a task leaves open (RUN.md rule 9) and holds only what is open: drop a closed part, delete the row once closed. A closed row's text is in the archive of the epic it closed in.
 
 ## Table 4. Technical debt
 
-Numbers are not reused: next — Д15.
+Numbers are not reused: next — Д16.
 
 | ID | Debt | From | Risk while open | When to return |
 |---|---|---|---|---|
@@ -16,3 +16,4 @@ Numbers are not reused: next — Д15.
 | Д12 | Links to the gate of `sim` name its README — R37, architecture 3.2, the comment of `test/gate-inputs.test.mjs` —, which `sim` moved to its `docs/README.md` (R21 spec); row 3.14 of COORDINATION.md spec | T90 | small: the link leads to a README without the call form | the next task that touches the gate, or the move to a new tag of `sim` |
 | Д13 | R127 spec at v0.19.11 puts no reminder to write no names before "Check" of work that goes to AI whole, and names the essays module as keeping none in its statements; R40, its amendment to R16 and the comments of the five essay tasks in `modules/english-essays/tasks/` still give as the reason that `app` shows the reminder above "Check". The module's text is what R127 spec wants: only the reason is stale | T92 | small: a session that reads R40 or a task's comment takes a reminder above "Check" for granted, as a ground to keep the statements as they are | R16 — T101, R40 — T103, the log parts of row 7.40 of COORDINATION.md spec; the comments — T97, a path of the release, or the next change of `english-essays` before it |
 | Д14 | The deny of `.claude/settings.json` that keeps sessions off a person's sample covers this checkout alone, not a clone `/workspaces/.epics/<epic>/modules` (R166 spec): `spec` took the author's answer to В41, option (a), as its T248 — the template's `.claude/settings.json` and spec's own deny for those clones —, which the template at v0.19.11 does not carry yet | T93 (review) | a session of a task across repositories can read a person's sample in a clone by its absolute path; the files are public in the repository, and no session reads them by the rules alone | the move to the tag of `spec` whose template carries T248's deny: take the template's `.claude/settings.json` |
+| Д15 | `spec` v0.19.12 makes the rule of citations strict (`spec/RULES.md`, Citations): outside the plan and `docs/plan/` no decision's number and no section, only a record of `sources`/`measurements`; a log entry cites no other entry. With `"citations": true` `docs-check-repo` finds 4 659 places: `docs/decisions.md` 2 182, `docs/architecture.md` 551, `docs/sources.md` 137, `docs/measurements.md` 68, `.claude/rules/` 29, comments of `modules/`, `tools/port/`, `test/`, `.github/` and the justfile the rest. The bodies of T94–T103 give the rule of v0.19.11 — one decision's number where rejected options matter —, the strict rule governs where they differ; T93's scope — `.claude/rules/`, code comments — has the same to redo. CLAUDE.md, RUN.md, `run/`, both README files and `.devcontainer/` are clean | T104 | none while the key is off; a session that follows a body of T94–T103 literally leaves numbers the strict check refuses | the batch's tasks after T104; the last sets `"citations": true` and closes the row |
