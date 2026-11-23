@@ -16,8 +16,8 @@ const EXAMPLES = join(ROOT, "spec", "contracts", "examples", "eval", "v1");
 const SAMPLE = join(EXAMPLES, "sheet-eval-set.json");
 const SAMPLE_ID = "synthetic-1104";
 
-const NOT_NAMED = /: not eval\/<id>\.json, whose <id> is 1 to 64 lowercase Latin letters, digits and hyphens \(R04\)$/;
-const DOT = "named with a dot; eval/ holds the files eval/<id>.json alone, and nothing named with a dot (R04)";
+const NOT_NAMED = /: not eval\/<id>\.json, whose <id> is 1 to 64 lowercase Latin letters, digits and hyphens$/;
+const DOT = "named with a dot; eval/ holds the files eval/<id>.json alone, and nothing named with a dot";
 const LAID_OUT = /^eval-check: every eval\/ is laid out as eval\/<id>\.json, and no module holds a sample$/m;
 const HELD = /^eval-check: every eval\/ is laid out as eval\/<id>\.json, and sample-check holds the eval set of every module that has one$/m;
 
@@ -101,7 +101,7 @@ test("modules that is a file or a link is refused, as modules-check refuses it",
     make(repo);
     const result = evalCheck(repo);
     assert.equal(result.status, 1);
-    assert.match(result.stderr, /^modules: not a folder; it holds the folders of the modules \(R03\)$/m);
+    assert.match(result.stderr, /^modules: not a folder; it holds the folders of the modules$/m);
   }
 });
 
@@ -137,7 +137,7 @@ test("sample-check refuses what is no sample of the module's eval set, and so do
   assert.match(of("synthetic-1103.json"), /is of the purpose PURPOSE_EVAL_SET, not "PURPOSE_MEASUREMENT"/);
   assert.match(breaches.join("\n"), /no two samples of an eval set share an ID/);
   // twice-2.json is named not by its ID: the layout says so too.
-  assert.deepEqual(refusals(result), ['modules/maths/eval/twice-2.json: its sample\'s ID is "twice", and a sample lies in eval/<its ID>.json (R04)']);
+  assert.deepEqual(refusals(result), ['modules/maths/eval/twice-2.json: its sample\'s ID is "twice", and a sample lies in eval/<its ID>.json']);
 });
 
 test("nothing in eval/ is named with a dot, at any depth: the repository publishes it all the same", (t) => {
@@ -167,7 +167,7 @@ test("a name with a dot below a folder of eval/ is refused too, and kept from sa
   assert.equal(result.status, 1);
   assert.deepEqual(refusals(result).sort(), [
     `modules/maths/eval/tasks/.x.json: ${DOT}`,
-    "modules/maths/eval/tasks: a folder, a link or a special file; eval/ holds the files eval/<id>.json alone (R04)",
+    "modules/maths/eval/tasks: a folder, a link or a special file; eval/ holds the files eval/<id>.json alone",
   ]);
   assert.deepEqual(calls(), [["--eval-set", "novatrail/maths", "modules/maths/eval/tasks/y.json"]]);
 });
@@ -191,9 +191,9 @@ test("a folder, another file, a link and a special file in eval/ are refused", (
   mustRun("mkfifo", [join(folder, "pipe")]);
   const result = evalCheck(repo);
   assert.equal(result.status, 1);
-  const other = "a folder, a link or a special file; eval/ holds the files eval/<id>.json alone (R04)";
+  const other = "a folder, a link or a special file; eval/ holds the files eval/<id>.json alone";
   assert.deepEqual(refusals(result).sort(), [
-    "modules/maths/eval/README.md: not eval/<id>.json, whose <id> is 1 to 64 lowercase Latin letters, digits and hyphens (R04)",
+    "modules/maths/eval/README.md: not eval/<id>.json, whose <id> is 1 to 64 lowercase Latin letters, digits and hyphens",
     `modules/maths/eval/alias: ${other}`,
     `modules/maths/eval/folder.json: ${other}`,
     `modules/maths/eval/pipe: ${other}`,
@@ -208,7 +208,7 @@ test("a link named <id>.json is refused by the layout and never given to sample-
   symlinkSync("../real.json", join(repo, "modules", "maths", "eval", `${SAMPLE_ID}.json`));
   const result = evalCheck(repo);
   assert.equal(result.status, 1);
-  assert.deepEqual(refusals(result), [`modules/maths/eval/${SAMPLE_ID}.json: a folder, a link or a special file; eval/ holds the files eval/<id>.json alone (R04)`]);
+  assert.deepEqual(refusals(result), [`modules/maths/eval/${SAMPLE_ID}.json: a folder, a link or a special file; eval/ holds the files eval/<id>.json alone`]);
   assert.deepEqual(checked(result).verdicts, []);
 });
 
@@ -217,7 +217,7 @@ test("a sample in a folder of eval/ breaks the layout, and sample-check holds it
   put(repo, "maths", `tasks/${SAMPLE_ID}.json`, ofModule(example("sheet-eval-set")));
   const result = evalCheck(repo);
   assert.equal(result.status, 1);
-  assert.deepEqual(refusals(result), ["modules/maths/eval/tasks: a folder, a link or a special file; eval/ holds the files eval/<id>.json alone (R04)"]);
+  assert.deepEqual(refusals(result), ["modules/maths/eval/tasks: a folder, a link or a special file; eval/ holds the files eval/<id>.json alone"]);
   assert.deepEqual(checked(result).verdicts, ["sample-check: ok — 1 sample of the eval set of novatrail/maths"]);
 });
 
@@ -234,7 +234,7 @@ test("eval that is a file or a link is refused", (t) => {
     const result = evalCheck(repo);
     assert.equal(result.status, 1);
     assert.deepEqual(refusals(result), [
-      "modules/maths/eval: not a folder; eval/ is the folder of the module's eval set (R04)",
+      "modules/maths/eval: not a folder; eval/ is the folder of the module's eval set",
     ]);
   }
 });
@@ -245,7 +245,7 @@ test("a sample whose name is not its ID breaks the layout, though sample-check h
   const result = evalCheck(repo);
   assert.equal(result.status, 1);
   assert.deepEqual(refusals(result), [
-    `modules/maths/eval/other-id.json: its sample's ID is "${SAMPLE_ID}", and a sample lies in eval/<its ID>.json (R04)`,
+    `modules/maths/eval/other-id.json: its sample's ID is "${SAMPLE_ID}", and a sample lies in eval/<its ID>.json`,
   ]);
   assert.deepEqual(checked(result).verdicts, ["sample-check: ok — 1 sample of the eval set of novatrail/maths"]);
 });
@@ -259,7 +259,7 @@ test("an ID that is the name but for a newline or a NUL at its end is another ID
     put(repo, "maths", "x.json", JSON.stringify({ id }));
     const result = evalCheck(repo);
     assert.equal(result.status, 1);
-    assert.deepEqual(refusals(result), [`modules/maths/eval/x.json: its sample's ID is ${shown}, and a sample lies in eval/<its ID>.json (R04)`]);
+    assert.deepEqual(refusals(result), [`modules/maths/eval/x.json: its sample's ID is ${shown}, and a sample lies in eval/<its ID>.json`]);
   }
 });
 
@@ -286,7 +286,7 @@ test("a file with no one JSON object holding a string id breaks the layout, and 
     const result = evalCheck(repo);
     assert.equal(result.status, 1, content);
     assert.deepEqual(refusals(result), [
-      "modules/maths/eval/x.json: holds no one JSON object with a string id, so its name cannot be held to its sample's ID (R04)",
+      "modules/maths/eval/x.json: holds no one JSON object with a string id, so its name cannot be held to its sample's ID",
     ]);
     assert.notEqual(checked(result).breaches.length, 0, content + result.stdout);
   }

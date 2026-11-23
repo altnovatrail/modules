@@ -112,7 +112,7 @@ test("a module that module-kit check refuses is refused, by the ID of the rule i
   assert.match(result.stdout, /^modules\/no-license: module\.license: /m);
 });
 
-test("module-kit is called in the forms of its architecture 3.5 and 3.6: check, build into a new folder, diff", (t) => {
+test("module-kit is called in the forms module-kit documents: check, build into a new folder, diff", (t) => {
   const repo = repository(t);
   const stub = stubModuleKit(t);
   addModule(repo, join(EXAMPLES, "smallest"), "a");

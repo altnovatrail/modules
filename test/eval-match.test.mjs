@@ -73,7 +73,7 @@ test("a change of a task's open view refuses its samples, and only theirs: the p
   assert.equal(result.status, 1, result.stdout + result.stderr);
   assert.deepEqual(refusals(result), [
     "modules/grade-3-math/eval/synthetic-2.json: is not what canvas's generator draws of comparing-fractions-d1:2 on this commit's package, with the tag v0.2.1; re-make it: just synthetic grade-3-math comparing-fractions-d1:2",
-    "modules/grade-3-math/eval/person-a.json: the open view of comparing-fractions-d1 is not the one the sample was made on; remove the sample (R04)",
+    "modules/grade-3-math/eval/person-a.json: the open view of comparing-fractions-d1 is not the one the sample was made on; remove the sample",
   ]);
   assert.match(result.stdout, /^_match-synthetic: 1 synthetic samples/m, "the sample of the other task is drawn the same");
   assert.match(result.stdout, /^_match-people: 1 samples of people/m);
@@ -88,7 +88,7 @@ test("a synthetic sample is drawn again with the tag it names, and a sample of a
   assert.equal(result.status, 1, result.stdout + result.stderr);
   const lines = refusals(result);
   assert.equal(lines.length, 1, result.stderr);
-  assert.equal(lines[0], "modules/grade-3-math/eval/person-a.json: the package of this commit has no open view of no-such-task; remove the sample (R04)");
+  assert.equal(lines[0], "modules/grade-3-math/eval/person-a.json: the package of this commit has no open view of no-such-task; remove the sample");
   assert.match(result.stdout, /^_match-synthetic: 2 synthetic samples/m, "synthetic-1 with the tag v0.1.0 is drawn again with v0.1.0");
 });
 
@@ -116,8 +116,8 @@ test("a person's sample of a template is held to the instance of its seed", (t) 
   const result = evalMatch(repo);
   assert.equal(result.status, 1, result.stdout + result.stderr);
   assert.deepEqual(refusals(result), [
-    "modules/maths/eval/person-b.json: the open view of missing-factor with the seed 4 is not the one the sample was made on; remove the sample (R04)",
-    "modules/maths/eval/person-c.json: the package of this commit has no open view of missing-factor; remove the sample (R04)",
+    "modules/maths/eval/person-b.json: the open view of missing-factor with the seed 4 is not the one the sample was made on; remove the sample",
+    "modules/maths/eval/person-c.json: the package of this commit has no open view of missing-factor; remove the sample",
   ]);
   assert.match(result.stdout, /^_match-people: 3 samples of people of novatrail\/maths/m);
 });
@@ -145,7 +145,7 @@ test("a file whose sample cannot be held to the package is refused, and nothing 
     "modules/maths/eval/nobody.json: neither a person's sample nor a synthetic one, so it cannot be held to the package",
     "modules/maths/eval/other.json: a sample of the eval set of novatrail/maths is of a task of that module",
     "modules/maths/eval/seedless.json: a synthetic sample with no seed, or no tag vX.Y.Z of modules, cannot be drawn again",
-    "modules/maths/eval/synthetic-9.json: the ID of a person's sample begins with synthetic-, which only a synthetic sample's does, and such a file a Claude Code session may read (R04)",
+    "modules/maths/eval/synthetic-9.json: the ID of a person's sample begins with synthetic-, which only a synthetic sample's does, and such a file a Claude Code session may read",
     "modules/maths/eval/two.json: holds no sample whose task and origin can be read, so it cannot be held to the package",
     "modules/maths/eval/untagged.json: a synthetic sample with no seed, or no tag vX.Y.Z of modules, cannot be drawn again",
   ]);

@@ -42,7 +42,7 @@ func timeForm(text string) string {
 
 // twelveHoursOff is a time as a clock face shows it where that is not the time itself, 9:10 for
 // 21:10 and 12:15 for 0:15: the slip that the kind time, which counts hours to 24, leaves to a trap
-// value (R111 spec). It is blank from 1:00 to 12:59, which a clock face shows as it is.
+// value. It is blank from 1:00 to 12:59, which a clock face shows as it is.
 func twelveHoursOff(key string) string {
 	var hours, minutes int
 	if _, err := fmt.Sscanf(key, "%d:%d", &hours, &minutes); err != nil || hours > 23 {

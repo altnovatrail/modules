@@ -12,7 +12,7 @@ import (
 )
 
 // The tests make up their own standalone, with texts of their own, so that they read nothing of a
-// clone, and nothing of spec, which the shared go.yml does not check out (R12).
+// clone, and nothing of spec, which the shared go.yml does not check out.
 
 const testCommit = "89986bc01a12ff3188cf08194677bfae0464568a"
 

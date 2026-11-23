@@ -321,7 +321,7 @@ test("with no release yet, --first: the first version, with nothing to compare i
   assert.match(result.stdout, /novatrail\/smallest 0\.1\.0: the first version, with nothing to compare it with/);
 });
 
-test("diff gets --index and the module's packages alone, in the form of architecture 3.5 module-kit", (t) => {
+test("diff gets --index and the module's packages alone, in the form module-kit documents", (t) => {
   const repo = repository(t);
   addModule(repo, join(EXAMPLES, "smallest"), "smallest");
   const other = repository(t);

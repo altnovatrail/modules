@@ -293,7 +293,7 @@ _modules-check published:
         exit 0
     fi
     if [ -L modules ] || [ ! -d modules ]; then
-        echo "modules: not a folder; it holds the folders of the modules (R03)" >&2
+        echo "modules: not a folder; it holds the folders of the modules" >&2
         exit 1
     fi
     packages=$(mktemp -d)
@@ -320,12 +320,12 @@ _modules-check published:
     for path in "${entries[@]}"; do
         name=${path#modules/}
         if [[ "$name" == .* ]]; then
-            echo "${path}: modules/ holds the folders of the modules alone, and nothing named with a dot (R03)" >&2
+            echo "${path}: modules/ holds the folders of the modules alone, and nothing named with a dot" >&2
             fail 1
             continue
         fi
         if [ -L "$path" ] || [ ! -d "$path" ]; then
-            echo "${path}: not a folder; modules/ holds the folders of the modules alone (R03)" >&2
+            echo "${path}: not a folder; modules/ holds the folders of the modules alone" >&2
             fail 1
             continue
         fi
@@ -346,7 +346,7 @@ _modules-check published:
             continue
         fi
         if [ "$id" != "novatrail/${name}" ]; then
-            echo "${path}: the module's ID is ${id}, and the module in modules/${name}/ is novatrail/${name} (R03)" >&2
+            echo "${path}: the module's ID is ${id}, and the module in modules/${name}/ is novatrail/${name}" >&2
             fail 1
             continue
         fi
@@ -475,7 +475,7 @@ eval-check:
         exit 0
     fi
     if [ -L modules ] || [ ! -d modules ]; then
-        echo "modules: not a folder; it holds the folders of the modules (R03)" >&2
+        echo "modules: not a folder; it holds the folders of the modules" >&2
         exit 1
     fi
     entries=(modules/*)
@@ -504,11 +504,11 @@ eval-check:
             continue
         fi
         if [ -L "$eval" ] || [ ! -d "$eval" ]; then
-            breach "${eval}: not a folder; eval/ is the folder of the module's eval set (R04)"
+            breach "${eval}: not a folder; eval/ is the folder of the module's eval set"
             continue
         fi
         while IFS= read -r -d '' file; do
-            breach "${file}: named with a dot; eval/ holds the files eval/<id>.json alone, and nothing named with a dot (R04)"
+            breach "${file}: named with a dot; eval/ holds the files eval/<id>.json alone, and nothing named with a dot"
         done < <(find "$eval" -mindepth 1 -name '.*' -print0 | sort -z)
         for file in "$eval"/*; do
             name=${file##*/}
@@ -516,11 +516,11 @@ eval-check:
                 continue
             fi
             if [ -L "$file" ] || [ ! -f "$file" ]; then
-                breach "${file}: a folder, a link or a special file; eval/ holds the files eval/<id>.json alone (R04)"
+                breach "${file}: a folder, a link or a special file; eval/ holds the files eval/<id>.json alone"
                 continue
             fi
             if ! [[ "$name" =~ ^[a-z0-9-]{1,64}\.json$ ]]; then
-                breach "${file}: not eval/<id>.json, whose <id> is 1 to 64 lowercase Latin letters, digits and hyphens (R04)"
+                breach "${file}: not eval/<id>.json, whose <id> is 1 to 64 lowercase Latin letters, digits and hyphens"
                 continue
             fi
             if [ -z "$jq_runs" ]; then
@@ -538,9 +538,9 @@ eval-check:
             # The ID comes out as JSON, quotes and escapes and all, and is compared in jq, so that a
             # newline or a NUL at its end, which the shell would drop, still makes it another ID.
             if ! id=$(jq -e -r -s 'if length == 1 and (.[0] | type) == "object" and (.[0].id | type) == "string" then .[0].id | @json else empty end' "$file" 2> /dev/null); then
-                breach "${file}: holds no one JSON object with a string id, so its name cannot be held to its sample's ID (R04)"
+                breach "${file}: holds no one JSON object with a string id, so its name cannot be held to its sample's ID"
             elif ! jq -e -s --arg name "${name%.json}" '.[0].id == $name' "$file" > /dev/null 2>&1; then
-                breach "${file}: its sample's ID is ${id}, and a sample lies in eval/<its ID>.json (R04)"
+                breach "${file}: its sample's ID is ${id}, and a sample lies in eval/<its ID>.json"
             fi
         done
         files=()
@@ -626,13 +626,13 @@ _synthetic module tag *calls:
     fi
     path="modules/${module}"
     if [ -z "$module" ] || [[ "$module" == */* || "$module" == .* ]] || [ -L "$path" ] || [ ! -d "$path" ]; then
-        echo "_synthetic: ${path} is no folder of a module in modules/ (R03)" >&2
+        echo "_synthetic: ${path} is no folder of a module in modules/" >&2
         exit 2
     fi
     # The generator writes into eval/ and makes it when it is not there; a link or a file there would
     # take the samples elsewhere, which eval-check would refuse only once they were written.
     if [ -L "${path}/eval" ] || { [ -e "${path}/eval" ] && [ ! -d "${path}/eval" ]; }; then
-        echo "_synthetic: ${path}/eval is a link or no folder; eval/ is the folder of the module's eval set (R04)" >&2
+        echo "_synthetic: ${path}/eval is a link or no folder; eval/ is the folder of the module's eval set" >&2
         exit 2
     fi
     if [ -n "$tag" ] && ! [[ "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
@@ -660,7 +660,7 @@ _synthetic module tag *calls:
         exit 2
     fi
     if [ "$id" != "novatrail/${module}" ]; then
-        echo "_synthetic: the module's ID is ${id}, and the module in modules/${module}/ is novatrail/${module} (R03)" >&2
+        echo "_synthetic: the module's ID is ${id}, and the module in modules/${module}/ is novatrail/${module}" >&2
         exit 1
     fi
     node "$generator" --module "${package}/package" "$tag" "${path}/eval" "$@"
@@ -800,9 +800,9 @@ eval-match:
                     ;;
                 person)
                     # A Claude Code session may read eval/synthetic-*.json alone (.claude/settings.json),
-                    # so a person's sample never takes that name (R04).
+                    # so a person's sample never takes that name.
                     if [[ "${file##*/}" == synthetic-* ]]; then
-                        breach "${file}: the ID of a person's sample begins with synthetic-, which only a synthetic sample's does, and such a file a Claude Code session may read (R04)"
+                        breach "${file}: the ID of a person's sample begins with synthetic-, which only a synthetic sample's does, and such a file a Claude Code session may read"
                         continue
                     fi
                     printf '%s\n' "${file}${us}${task}${us}${seed}${us}${digest}" >> "${rows}/people"
@@ -976,10 +976,10 @@ _match-people module package rows:
         if [ -n "$seed" ]; then instance="${task} with the seed ${seed}"; fi
         open=${views["${task}${us}${seed}"]:-}
         if [ -z "$open" ]; then
-            echo "${file}: the package of this commit has no open view of ${instance}; remove the sample (R04)" >&2
+            echo "${file}: the package of this commit has no open view of ${instance}; remove the sample" >&2
             worst=1
         elif [ "$open" != "$digest" ]; then
-            echo "${file}: the open view of ${instance} is not the one the sample was made on; remove the sample (R04)" >&2
+            echo "${file}: the open view of ${instance} is not the one the sample was made on; remove the sample" >&2
             worst=1
         else
             held=$((held + 1))
@@ -1079,7 +1079,7 @@ release-files version previous:
             found+=("${member##*/}")
         done
         if [ "${found[*]}" != "device device.json inventory.json server.json" ] || [ -L "${package}/device" ] || [ ! -d "${package}/device" ]; then
-            echo "release-files: ${id} ${module}: the package holds ${found[*]}, not inventory.json, server.json, device.json and the folder device/ alone (architecture 3.3)" >&2
+            echo "release-files: ${id} ${module}: the package holds ${found[*]}, not inventory.json, server.json, device.json and the folder device/ alone" >&2
             exit 2
         fi
         archive="${work}/dist/${digest/:/-}.tar.gz"

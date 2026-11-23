@@ -1,18 +1,17 @@
 # Codecov reads the report ci-test writes — a Go profile in coverage/go.out or lcov in
 # coverage/lcov.info — that the coverage job of .github's shared go.yml or typescript.yml
 # uploads; it cuts a Go profile's import paths down to paths in the repository by a rule of its
-# own (R48 spec; R16, R19 .github).
+# own.
 
 coverage:
   status:
     # A merge waits for this check, which the ruleset of main requires: a pull request that
-    # changes no line of the report, the documents alone, passes as "Coverage not affected"
-    # (R48 spec; R30 spec).
+    # changes no line of the report, the documents alone, passes as "Coverage not affected".
     patch:
       default:
         target: 90%
     # Informational only, should Codecov ever set a project status on a public repository: the
-    # badge shows the coverage of the whole (R48 spec).
+    # badge shows the coverage of the whole.
     project:
       default:
         informational: true
