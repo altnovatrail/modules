@@ -231,7 +231,7 @@ modules/                     the repository root
   - If the newest version of a module is withdrawn, it is fixed by a version above it by semver, and which part to raise the rules of semver decide. A change of a published task's key is major (concepts 3 spec), so the fix of a version withdrawn by `wrong_key` is the next major. A fix that is ready goes in the same pull request as the withdrawal and comes out in the same release: otherwise, until it comes, the current version would be the version below the withdrawn one, and if a new major is withdrawn, the previous major, and there would be nothing to carry the withdrawn version's evidence about its skills over with. The withdrawal does not wait for the fix (the second 2026-11-02 amendment to R63 spec; the 2026-11-02 amendment to R03).
   - A version older than the newest cannot be fixed: one line of versions lives in a module's folder, and a new version is above all the published ones (section 3.2).
 - **Who takes the release.**
-  - CI of `canvas` — from stage 2, at an exact tag `vX.Y.Z` of a release of `modules`: the number of the repository itself, not a module's version. By the tag it reads the index, and it takes the packages from the releases that the index's entries name. The index of the newest release it reads only for the marks of withdrawal (the 2026-10-28 amendment to R25 spec).
+  - CI of `canvas` — from stage 2, at an exact tag `vX.Y.Z` of a release of `modules`: the number of the repository itself, not a module's version. By the tag it reads the index, and it takes the packages from the releases that the index's entries name. The index of the newest release it reads only for the marks of withdrawal (R25 spec).
   - `api` — from stage 2: a pull request pins the release and its index (section 1), and the build of the image takes the packages by the entries.
   - `sim`, which reads packages from releases of `modules` (architecture 3.9 spec), finds them by the same layout: a package's address is derived from the index's entry.
 - **Old releases** are not deleted or rewritten: releases are immutable, and a verdict is repeated on old packages (architecture 3.10 spec). Each release but the first needs the previous one's index, which the shared release gives it.
@@ -591,7 +591,7 @@ The set `novatrail/english-essays` is a small module of writing on a handwriting
 
   - A choice task has `solution`, `leak_phrases` with the key, and a trap value on each wrong option. The trap value has a text everywhere but `announcing-the-topic` in `best-first-sentence-1`, the option written word for word as in the example: after it the learner reads the trap advice.
   - An essay has `binding: sheet` and a rubric of three criteria on structure and content, without capital letters, spelling and punctuation (R71 spec).
-  - No statement holds the reminder "Do not write your name or the real name of anyone you know.": `app` shows it above "Check" of every handwriting sheet whose work goes to AI whole (the 2026-11-17 amendment to R127 spec; R40).
+  - No statement holds the reminder "Do not write your name or the real name of anyone you know.": no reminder stands before "Check" of work that goes to AI whole either, and `app` reminds the learner on the camera of a task from paper and in the adult's Help (R127 spec).
   - The topics for those under 18 are made up and general, without family, friends, home and school; a topic about the learner's life is only in the task for adults (П-20; privacy 3.2 spec).
   - There are no pictures.
 - **Lessons** — six, `lessons/<id>.yaml`:
