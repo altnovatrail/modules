@@ -77,7 +77,8 @@ type picturePart struct {
 // the order of the format: the combinations of the parameters as an odometer over the names in
 // order, the first slowest and each through its domain upwards, and those for which the constraint
 // holds. The expressions are evaluated by go.starlark.net at the version of the format's dialect,
-// as module-kit does, so that no second dialect can diverge from the format. The results of the solver are not among the numbers: the port does not call solve.
+// as module-kit does, so that no second dialect can diverge from the format. The results of the
+// solver are not among the numbers: the port does not call solve.
 func instancesOf(task templateTask) ([]map[string]int64, error) {
 	t := task.Template
 	names := slices.Sorted(maps.Keys(t.Parameters))

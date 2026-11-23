@@ -210,7 +210,8 @@ func owned(id string) []string {
 }
 
 // stale names the files of the module that the port may write for a task of the batch and does
-// not write now, such as a picture the task does not have. The files of other batches' tasks are left alone.
+// not write now, such as a picture the task does not have. The files of other batches' tasks are
+// left alone.
 func stale(module string, converted []Converted) ([]string, error) {
 	var old []string
 	for _, c := range converted {
