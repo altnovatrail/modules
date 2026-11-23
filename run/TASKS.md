@@ -30,18 +30,6 @@ Open tasks outside the current epic, each as its body, in Russian.
 - **Как проверить:** `just -f spec/justfile docs-check-repo`; `grep -n 'stands on .spec. v' docs/decisions.md` — пусто; `/code-review high`, один круг.
 - **Разделы:** R160 spec; RULES.md spec — The bar, Across repositories; R10, R29, R31, R34, R38, R39, R41; Д10, Д11.
 
-#### T96. Ссылки по R171 spec — `docs/sources.md` и `docs/measurements.md`
-
-- **Цель:** записи источников и замеров — по R171 spec: запись хранит дату и не называет задачу, в заголовке тоже; раздел 1 `docs/sources.md` — по заготовке.
-- **Почему:** R171 spec — `docs/sources.md` и `docs/measurements.md` внутри правила; четвёртая часть T93, разбитой по правилу 11 RUN.md.
-- **Сделать:**
-  1. Раздел 1 `docs/sources.md` — по `spec/repo-template/files/docs/sources.md` тега, со своими отличиями.
-  2. Заголовки замеров вида «before and after T74» — по тому, что меряли, с датой; номера задач в тексте записей — заменить файлом, решением или pull request'ом; заголовки, на которые ссылаются другие документы, — проверить `docs-check-repo`.
-  3. Остальные ссылки — по шагу 4 T93; цитаты источников — дословно, не трогать.
-- **Как проверить:** `just -f spec/justfile docs-check-repo` — зелёный; с `"citations": true` во временной копии — ни одной находки в этих файлах; ссылок было и стало по видам, командой `measurements 1.18 spec`; `/code-review high`, один круг.
-- **Разделы:** R171 spec, R143 spec; `spec/repo-template/files/docs/sources.md`; sources 1.
-- **Зависит от:** T93.
-
 #### T97. Ссылки по R171 spec — комментарии YAML модулей и заголовки порта
 
 - **Цель:** комментарии YAML `modules/` вне `eval/` и `tools/port/overlay/`, `tools/port/pictures/`, `tools/port/template-pictures/` стоят сами, по R171 spec: причина словами, номер решения — только где важны отвергнутые варианты; заголовок, который порт пишет в каждый файл задачи («…the port writes this file again (R12)»), — тоже, в коде порта, его тесте и во всех файлах, что он написал.
