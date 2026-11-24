@@ -16,7 +16,7 @@ Open tasks outside the current epic, each as its body, in Russian.
   2. Шаги рецептов: `toolchain.sh` монтирует `RUNNER_TEMP` только на чтение, а кеши Go действия лежат в `${{ runner.temp }}/go-cache` — каждый шаг запускает `docker run` с этой папкой на `/go-cache` и `GOMODCACHE`, `GOCACHE`, как в комментарии `action.yml`, или другой способ, который сессия выберет и запишет; `.cache/go/` уходит.
   3. R36 и R41 — переписать на месте, каждую целиком (R160 spec), по строгому правилу ссылок `spec/RULES.md` — поправок в них уже нет; правило `ci`, `docs/architecture.md`, раздел 3.2; запись источника о действии, если её не хватает.
 - **Как проверить:** проверки pull request зелёные, «Modules» — с действием; правило `ci`: `just test`; `just -f spec/justfile docs-check-repo`; `/code-review high`, один круг.
-- **Разделы:** R36, R41; R49 `.github`, поправка T75 к R41 `.github`; sources 4.23.
+- **Разделы:** R36, R41; R49 `.github`, поправка T75 к R41 `.github`; действие `toolchain` `.github` v0.1.33, `.github/actions/toolchain/action.yml`.
 
 #### T91. Журнал без переходов на тег (R160 spec)
 

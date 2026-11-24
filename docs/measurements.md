@@ -1,6 +1,6 @@
 # modules — measurements
 
-> The results of measurements: what was measured, how, on what, and the numbers. The documents that describe how things are built cite them — `measurements 2` — and hold only what was decided from them. The external facts are in [sources.md](sources.md).
+> The results of measurements: what was measured, how, on what, and the numbers. The documents that describe how things are built cite them — `measurements 2` — and hold only what was decided from them. The facts no run checks are in [sources.md](sources.md).
 
 ## 1. The tokens of the Claude Code sessions
 
