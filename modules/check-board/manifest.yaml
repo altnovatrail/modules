@@ -6,8 +6,8 @@
 # reads no number in words.
 module_format_version: "0.4"
 id: novatrail/check-board
-version: "0.1.0"
-title: Задачи на листе
+version: "0.1.1"
+title: Ознакомительный блок
 subject: mathematics
 audience:
   age_categories: [adult]
