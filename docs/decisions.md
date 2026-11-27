@@ -194,11 +194,17 @@
 - **A module's eval set** is each file under its `eval/` whose name ends in `.json`, and each is a sample of a task of its own module. The layout inside `eval/` the protocol left to `modules`.
 - **The layout is flat:** a sample is a file `eval/<id>.json`, where `<id>` is the sample's field `id`, and in `eval/` there are neither folders, nor other files, nor anything starting with `.`, at any depth: neither a file nor a folder. The organizer does not choose the name: the name is the sample's ID. CI checks the layout, and that the file's name is the ID of its sample, by a recipe of its own, `just eval-check`: this is a rule of the layout of `modules`, not a rule of the sample's validity, which `sample-check` holds. So two samples of a set do not share an ID either: one folder has no two files with one name.
 - **A sample and an edit of the task.** The eval runner takes the task from the package that `module-kit` built on the pull request's commit, and rejects a sample whose digest of the task's open view did not match — then the run does not pass. So a pull request that changes a task's open view remakes or removes its samples in the same pull request. A volunteer's sample the organizer does not remake: clause (c) of the DCO holds while the file is byte for byte the one the volunteer certified. The organizer removes the sample or asks the volunteer to write it anew.
-- **The ban on reading.** `.claude/settings.json` forbids a session of Claude Code in this repository to read `modules/*/eval/*`, except `synthetic-*.json`:
+- **The ban on reading.** `.claude/settings.json` forbids a session of Claude Code in this repository to read `modules/*/eval/*`, except `synthetic-*.json`, and any file of `eval/` in an epic's clone of `modules`, which every NovaTrail container reads by its absolute path under `/workspaces/.epics`:
 
   ```json
-  "deny": ["Read(modules/*/eval/*)", "Read(!modules/*/eval/synthetic-*.json)"]
+  "deny": [
+    "Read(modules/*/eval/*)",
+    "Read(!modules/*/eval/synthetic-*.json)",
+    "Read(//workspaces/.epics/*/modules/modules/*/eval/*)"
+  ]
   ```
+
+  - The last rule is spec's template's: a `!` carves out of the relative rules before it alone, and is read relative to the current folder even before `//` ([Configure permissions](https://code.claude.com/docs/en/permissions.md), read 2026-11-27), so in a clone in `.epics` the synthetic samples are closed too.
 
   - Claude Code's path rules follow the gitignore syntax. A rule with `!` is a negation, and it cuts paths out of the `deny` rules of the same file before it; the order of the rules is deny, ask, allow, and allow makes no exception from deny (the documentation of Claude Code, [Configure permissions](https://code.claude.com/docs/en/permissions.md), read 2026-11-11). A negation does not reach files inside a folder that a rule before it forbids whole, so a folder in `eval/` is closed entirely — the layout rejects it anyway.
   - The ban holds for the tools for reading files and for the Bash commands that name the file — "`cat`, `head`, `tail`, `sed`, and `tee`" — and for redirections. But not for a program that opens files by itself, "like a Python or Node script", and not for `grep -r` without a file's name (ibid.). So a person's sample lies in the working copy only while the author adds it, and the session looks only at CI's output.

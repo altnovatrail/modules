@@ -22,7 +22,8 @@
   "permissions": {
     "deny": [
       "Read(modules/*/eval/*)",
-      "Read(!modules/*/eval/synthetic-*.json)"
+      "Read(!modules/*/eval/synthetic-*.json)",
+      "Read(//workspaces/.epics/*/modules/modules/*/eval/*)"
     ]
   }
 }
