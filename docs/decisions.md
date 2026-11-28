@@ -95,11 +95,11 @@
 
 ## The layout of the repository and the releases
 
-**R03. The modules' folders lie in `modules/<name>/`, where `<name>` is the second half of the module ID `novatrail/<name>`: `olympiad-math`, `grade-3-math`, `english-essays` and `check-board`. CI checks all the modules on every pull request and compares each with its published versions — by the index of the newest release and their packages. A release builds the packages of all the modules, and carries the cumulative index and only the versions that it publishes itself — as an archive `sha256-<hex>.tar.gz` per package. The withdrawals lie in `withdrawals.yaml` at the root.**
+**R03. The modules' folders lie in `modules/<name>/`, where `<name>` is the second half of the module ID `novatrail/<name>`: `olympiad-math`, `english-essays` and `check-board`. CI checks all the modules on every pull request and compares each with its published versions — by the index of the newest release and their packages. A release builds the packages of all the modules, and carries the cumulative index and only the versions that it publishes itself — as an archive `sha256-<hex>.tar.gz` per package. The withdrawals lie in `withdrawals.yaml` at the root.**
 - **The repository's tree:**
   - the module's folder is `modules/<name>/`, and `<name>` is the second half of its ID: the module `novatrail/olympiad-math` lies in `modules/olympiad-math/`. Inside is the module layout by the [format text](../spec/format/README.md), which left to `modules` where the folder lies and what it is called;
   - in `modules/` — only the modules' folders: neither other files nor files and folders starting with `.`. Each module in `modules/` on `main` comes out in a release — as its package, and the eval set does not go into the package. A module's draft lives in a branch;
-  - the names: `olympiad-math` — olympiad maths 1–6, `grade-3-math` — school maths for grade 3 on a workbook, `english-essays` — short essays in English. The IDs of these modules are `novatrail/olympiad-math`, `novatrail/grade-3-math` and `novatrail/english-essays`: kebab-case starting with a letter, as the form `module_id` requires. The name names the subject and the audience, not the explanation language: the explanation languages of the slice are О-2, and it is open. A module in another explanation language is another module, by the format, and its name will get a suffix with a BCP 47 tag, for example `olympiad-math-en`;
+  - the names: `olympiad-math` — olympiad maths 1–6, `english-essays` — short essays in English. The IDs of these modules are `novatrail/olympiad-math` and `novatrail/english-essays`: kebab-case starting with a letter, as the form `module_id` requires. The name names the subject and the audience, not the explanation language: the explanation languages of the slice are О-2, and it is open. A module in another explanation language is another module, by the format, and its name will get a suffix with a BCP 47 tag, for example `olympiad-math-en`;
   - `check-board` — the module `novatrail/check-board` of the check board of `tutor`. Its name names the board whose tasks it holds, not a subject and an audience: the rule of the names is for the modules of the slice, and this module stands beside them, not among them. It is in Russian and has no twin in another explanation language, so its name has no suffix of a language. CI and the release take the folder as they take every folder of `modules/`;
   - at the root — the list of withdrawals `withdrawals.yaml`, from the first withdrawal on (below), the README and the `LICENSE` of the repository. The folder of each module has its own `LICENSE` too;
   - `.gitattributes` is `modules/** -text`: git converts the line endings of no file of the modules, neither at a commit nor at a checkout ([gitattributes of git 2.56.1](https://github.com/git/git/blob/v2.56.1/Documentation/gitattributes.adoc)). The package carries `LICENSE`, `NOTICE` and the media files byte for byte, and a conversion to CR LF would change the package digest. `spec` protects `format/` the same way — `format/** -text`.
@@ -150,8 +150,8 @@
 — *Rejected:*
 - the modules' folders at the root, `<name>/`: the root would mix the modules with the service folders, and the rule "a folder is a module" would need exceptions;
 - `modules/novatrail/<name>/`: an extra level for the sake of publishers that will not be here (О-9);
-- the names `school-math-3` and `short-essays`: the second does not say that the essays are in English;
-- the names `school-math-grade-3` and `essays-in-english`: each full ID is longer without new clarity;
+- the name `short-essays`: it does not say that the essays are in English;
+- the name `essays-in-english`: the full ID is longer without new clarity;
 - names with the explanation language, `olympiad-math-ru`: they would decide О-2 before it is itself decided;
 - an archive by ID and version, `novatrail+olympiad-math+1.2.0.tar.gz`: the name is held by a replacement rule, not by the content;
 - the packages of all the current versions in each release: copies that no entry names;
@@ -669,57 +669,20 @@
 
 — *Consequence:* `modules/olympiad-math/lessons/`, the lessons' pictures and `NOTICE`; `tools/port/` — the drawing of the lessons' pictures; [architecture.md](architecture.md) — the repository's tree, the port of standalone, the first batch with the rule of choice and the table of the lessons, and what to build; README.md — the status.
 
-## School maths for grade 3
+## No module of school maths for grade 3
 
-**R15. The set of school maths for grade 3 is the module `novatrail/grade-3-math` in `modules/grade-3-math/`, on a workbook. It has four skills of the graph of the format example — `times-tables`, `division-with-remainder`, `fractions-of-a-whole` and `comparing-fractions` —, 12 pages, three per skill, of difficulties 1, 3 and 5, and a lesson per skill with a worked example on a workbook. The explanation language is English, the audience `under_13`. The texts are its own, and there is no `NOTICE`.** The make-up is in [architecture.md](architecture.md), the set of school maths for grade 3.
-- **Skills.** Four skills of the graph of the example `school-math-grade-3`, word for word and closed under prerequisites. They teach all three anchor skills that the slice names: `core.multiplication-table`, `core.division-with-remainder` and `core.fractions-of-a-whole`. The tiers are 1, 2, 2 and 3, without names, as in the example. There are no prerequisites that are anchor skills, so there is no `dependencies` either.
-- **Check kinds** — all that the format gives a workbook, but `predicate`:
-  - `number` with a box anywhere in the line;
-  - two answer slots in one line — the quotient and the remainder;
-  - `fraction` with `form: any` and with `form: reduced`;
-  - `choice` by hand — the signs `<`, `>` and `=`.
+**R15. `modules` holds no module of school maths for grade 3: `novatrail/grade-3-math`, a module on a workbook, has left `modules/` whole, with its eval set. The first slice is olympiad maths 1–6 and short essays in English, with the module of the check board beside them. Its published versions stay in the releases that carry them and in the cumulative index, and none is withdrawn.**
+- **What left with it:** its folder, `modules/grade-3-math/`, and the copies of it that two tests made: the test of `just synthetic` with the generator of the stage and the tests of `just eval-match` with it now draw their samples of `check-board`, `chain-1` and `equation-1` on a sheet, with the tag of the release that first carried that module.
+- **What stays:** the entries of its versions in `module-index.json` and their archives in the releases: entries do not leave the index, and the releases are immutable. The next release carries the index without a new entry of it.
 
-  The page's statement names the form of the answer and the signs that the box takes: the options of the check are closed.
-- **Pages.** 12 files `tasks/<skill>-d<difficulty>.yaml`, 6–10 lines each, in one band `grade-3`. Each page fits the layout of `canvas`: from 3 to 7 rows ([the layout of `canvas` v0.1.2](https://github.com/altnovatrail/canvas/blob/v0.1.2/src/core/page.ts)).
-  - Story lines are long items with `units`. They have `simpler_case` on smaller numbers: none of these numbers, nor what comes out of them, is the key of its line, and what is written there is not a key of the page. The fractions in `simpler_case` and in the stories name the page's keys neither in digits nor in words: the search for numbers does not read words.
-  - Trap values are at typical wrong answers, and their texts are without numbers. In a division line with two answer slots the trap "the quotient one too small" is named only by the quotient's answer slot: the remainder that comes out of the same error is the same error, and it is not counted twice.
-  - A line does not repeat a fact that already stands in the text of this page or in the solution of an earlier page of the same lesson: otherwise the answer is seen before it is solved, which the format forbids. So the facts of the stories and of the counting at d5 are other than at d1 and d3.
-- **Catalogs.** Traps — 11:
-  - word for word from the example — three: `times-table-slip`, `remainder-too-big` and `not-in-lowest-terms`;
-  - `wrong-operation` from the example, but with other words. Lines without a story catch it too, "3 × 4 = [ ]", while the example's description and advice spoke of a story — "where the story multiplies", "Draw the bags and the apples";
-  - `reversed-comparison` from the example, but with the skill `comparing-fractions`: the example's skill `numbers-to-1000` is not in the set, and the entry word for word would break `traps.known-skills`;
-  - its own — six, each for an error that the example does not have: `took-away` (subtracted where one multiplies or divides), `remainder-left-out`, `remainder-not-added`, `top-and-bottom-swapped`, `one-part-only` and `greater-bottom-greater-fraction`.
-
-  A trap value names only the trap whose error it shows: at the answer slot "the greater of two fractions" a wrong fraction has no trap, since no sign is written there. Techniques — three from the example and its own `draw-the-parts`; solving steps — the example's two steps.
-- **Lessons** — `lessons/<skill>.yaml`: an explanation, a worked example on a workbook, then the skill's three pages by increasing difficulty. The texts of the lessons, traps and techniques have no digits: the pages' keys are small numbers, and the leak check searches for them in all these texts. There are no signs of comparison there either, though the check does not search for them — below. That the rule works is checked: a copy of the module with "47 shared by 6" in the lesson `division-with-remainder` was rejected — `lesson.no-leaks`, the key 6 of the page `division-with-remainder-d3`.
-- **The worked example**, like the format example `remainders-on-a-workbook.yaml`: lines with boxes, their values and the demo `demo`, which fills each box once. The lines and the values of the boxes carry numbers that the leak check does not look for, so no line of the example coincides with a line of a page of the lesson, and no fact of the example stands in any page of the lesson: the example solves no task of the module. The lines are `[7] × 3 = 21`, `18 ÷ 2 = [9]` and `8 × [5] = 40`; `26 ÷ 3 = [8] r [2]` and `34 ÷ 6 = [5] r [4]`; `1/3 of 15 = [5]` and `3/4 of 12 = [9]`; `2/9 [<] 5/9` and `1/4 [>] 1/9`. The statement and the texts of the demo are without digits, like all the texts of the lessons, and for the comparison of fractions also without signs of comparison; the numbers in them are in words. `lesson.example-fills`, `lesson.workbook-page` and `lesson.no-leaks` pass, and on a copy of the module each of the three rules fires: an unfilled box, a value wider than its box and a line equal to a line of a page.
-- **The check does not search for a sign in a lesson.** The format does not search for a key of `choice` that stands in a text seen together with the item. The statement of a comparison page names all three signs, so a copy of a lesson with the sign `<` passes the check. This is intended: a sign that the learner sees in the statement does not give the answer away.
-- **Language** — English, as in the format example and the two other modules of the slice. О-2 keeps the decimal comma and the languages of the modules after the slice.
-- **Audience** — `under_13`, grade 3, as the slice and the example have it.
-- **Version** — `0.1.0` first, by the format's rules of versions while it is v0. The worked example stands as the second segment, so the lesson's pages shift, and `module-kit diff` calls this a major edit (`module-version.step`): it raised the module to `0.3.0`. The version in force is the manifest's `version`.
-
-— *Why:*
-- **Four skills**: the smallest graph that teaches all three anchor skills of the slice and gives all the check kinds of a workbook. A skill without tasks gives the engine nothing, and seven skills would almost double the text to proofread.
-- **Three pages per skill**: within a skill the engine has something to choose from, as in the first batch of olympiad maths.
-- **Lessons**: without them `lesson.no-leaks` is not checked on a workbook, and the slice's criterion that a learner goes through the lessons to the end would wait.
-- **The worked example before the pages**: it shows the method before the learner solves the pages.
-- **Without `predicate` and templates**: whether `predicate` stays in format v1 is not decided yet, and templates on a workbook are already checked by the format example `division-with-remainder`. The module would take them for the format's sake, not for the learner's.
-- **English**: the same module in Russian is another module, and «47 : 6 = [ ] (ост. [ ])» is already a long item by the format's guideline.
-- **Only `under_13`**: the module is not part of the first application. Adding a category later is a minor version, and removing one a major.
+— *Why:* the platform no longer shows the module on Home and drops the page of a workbook and the old task screen: every task of a module is solved on the sheet of a task from paper. A module whose every task is a workbook page has no canvas left in the platform to be solved on.
 
 — *Rejected:*
-- the whole graph of the example, 7 skills; 3 skills without `comparing-fractions`;
-- two pages per skill; a set without lessons;
-- a worked example on a handwriting sheet: an example on a sheet in a workbook module would show the learner another canvas;
-- the worked example at the end of the lesson, after the pages: the edit would have stayed minor, but the example would show the method when the pages are already solved;
-- `predicate` and templates;
-- pictures of fractions: one more kind of drawing would be needed, and fractions in words check the same;
-- Russian;
-- `adult` in the audience;
-- `reversed-comparison` word for word, with `numbers-to-1000`; `wrong-operation` word for word, on lines without a story;
-- a trap on both answer slots of a division line for one error.
+- keeping the module: CI would check, build and gate content that no learner can open;
+- writing it anew on a sheet: another module, with its pages, lessons and worked examples written again, which the first slice does not need — maths has olympiad maths, and the second subject is writing;
+- withdrawing its published versions: a withdrawal names a wrong key, a leak of an answer or unsuitable content, and these versions have none of them; a version not shown needs no mark.
 
-— *Consequence:* `modules/grade-3-math/`; [architecture.md](architecture.md) — the purpose and boundaries, the repository's tree, the checks of CI, what to build, the set of school maths for grade 3 and the sources; README.md — the status.
+— *Consequence:* `modules/grade-3-math/`; `test/synthetic.test.mjs` and `test/eval-match.test.mjs`; [architecture.md](architecture.md) — the purpose and boundaries and the repository's tree; CLAUDE.md; README.md.
 
 ## Short essays
 
@@ -739,7 +702,7 @@
 
 — *Why:*
 - **All six skills**: the example's graph is small and already gives all three kinds of `assessability` and a fork. Without `improving-an-essay` the last tier would be left with one skill: there would be no two lessons with a rubric after one and the same lesson, between which the engine's rule chooses, and the set would lose its only skill of correcting one's own text.
-- **An essay per skill with a rubric**: such skills have the author's order, and a second essay gives the engine nothing, while there would be half as much again to proofread. Three choice tasks are for the skill with a verdict: outside the lessons, when the engine gives a task for practice, it has something to choose from, as in the two other modules. In the lesson `first-sentences` they go in a row, in the author's order: the lesson has a skill with a rubric too, and the engine neither adds segments nor skips them.
+- **An essay per skill with a rubric**: such skills have the author's order, and a second essay gives the engine nothing, while there would be half as much again to proofread. Three choice tasks are for the skill with a verdict: outside the lessons, when the engine gives a task for practice, it has something to choose from, as in olympiad maths. In the lesson `first-sentences` they go in a row, in the author's order: the lesson has a skill with a rubric too, and the engine neither adds segments nor skips them.
 - **One task for adults**: so the `age_categories` of a task and of a lesson are checked by a module of the slice, not only by the example; for an adult, any topics.
 - **No reminder in the statements**: the platform keeps the reminder where names come that the learner did not write, and a reminder of its own in the module would stand where the platform puts none.
 - **The worked example**: it tries the format's `worked_example` on a second subject, writing, on the sheet that is this module's canvas.
@@ -1137,7 +1100,7 @@
 - **CI** (`ci.yml`) — the job "canvas signature", `just canvas-verify`, on every pull request and push to `main`: it reads the Dockerfile and the release, not the file, and takes the image of the core. The job "Modules" waits for it together with "module-kit signature". CI calls not `synthetic` but the generator, in the step "eval-match".
 - **The tests.**
   - `test/synthetic.test.mjs` holds the form of the call: build into an empty folder, the generator after it, the generator's arguments in order. It also checks that the generator's status and reasons pass through unchanged and that the recipe refuses in each of the cases: an old sum, no file, another `module-kit`, a refusal of `module-kit`, another ID, a call not of the form. All of this is on a stub of the generator whose sum the Dockerfile of a made-up repository writes.
-  - One test runs the real generator of the stage and the real `module-kit` on a copy of `grade-3-math`: the sample passes `eval-check`, and a second call with the same seed gives the same file byte for byte.
+  - One test runs the real generator of the stage and the real `module-kit` on a copy of `check-board`: the sample passes `eval-check`, and a second call with the same seed gives the same file byte for byte.
   - `test/published.test.mjs` holds `_newest-release` on stubs of `git` and `curl`: a tag whose index answers 404 is skipped, another failure is status 2, not "there is no release".
   - `test/canvas-verify.test.mjs` holds `_canvas-sum` on a made-up `SHA256SUMS` and Dockerfile, without the network, as `test/module-kit-verify.test.mjs` holds the sums of `module-kit`.
 - **What the generator does with the packages 0.3.0** from `v0.2.1` (a run of 2026-11-10, outside the repository):
@@ -1266,7 +1229,7 @@
 - **The lesson** — one, `board`, «Задачи доски по порядку»: the eleven tasks in the order of `internal/board/tasks.go` of `tutor`, without an explanation.
 - **The eval set** — three synthetic samples by the rule of the other eval sets, one for a pair of a primary skill and the band, the task first by ID: `chain-1:1`, `album:2` and `equation-1:3`. They name `v0.2.6`, the newest release when they were drawn, whose index does not hold the module: of a module's eval set the runner takes the task from the commit's package, and the tag is not compared ([the text of the contracts](../spec/contracts/README.md)).
 - **The name** `check-board` names the board whose tasks the module holds, not the subject and the audience, as the names of the slice's modules do: the module is of no slice, and its ID tells what it is for.
-- **The manifest**: the title «Ознакомительный блок» — the first block a newcomer meets, its name the author's —, `mathematics`, the band «Задачи доски», the authors «Авторы NovaTrail», and the rung templates of the other three modules in Russian, without digits.
+- **The manifest**: the title «Ознакомительный блок» — the first block a newcomer meets, its name the author's —, `mathematics`, the band «Задачи доски», the authors «Авторы NovaTrail», and the rung templates of the modules of the slice in Russian, without digits.
 - **Version** — `0.1.0`, the first version of a module by the format's rules of versions while it is v0.
 
 — *Why:*
@@ -1295,7 +1258,7 @@
 
 — *Consequence:*
 - `module-kit check` passes without violations or warnings, and so does `just modules-check`, `check-board` 0.1.0 as a first version; `just eval-check` and `just eval-match` hold its three samples. On a copy of the module, «на один больше» in the advice of `gaps-for-posts` breaks `task.no-leaks` for `posts`, and a number in the lesson's title breaks `lesson.no-leaks`;
-- the card of `modules` in `spec/docs/architecture.md` names `novatrail/check-board` beside the three modules of the slice;
+- the card of `modules` in `spec/docs/architecture.md` names `novatrail/check-board` beside the modules of the slice;
 - the merge puts out the release `v0.2.7` of `modules` with the one new archive, `check-board` 0.1.0, which the next steps of the plan of `spec` wait for.
 
 — `modules/check-board/`; [architecture.md](architecture.md); README.md; CLAUDE.md, the role.

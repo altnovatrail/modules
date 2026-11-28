@@ -1,7 +1,7 @@
 // The tests of the recipe of synthetic samples: _synthetic in made-up repositories, with a
 // stand-in for canvas's generator whose sum the made-up Dockerfile pins, and module-kit's stand-in
 // where a test holds the form of the calls or a status; then the real generator of the toolchain
-// stage and the real module-kit on a copy of grade-3-math, whose sample spec's sample-check holds
+// stage and the real module-kit on a copy of check-board, whose sample spec's sample-check holds
 // and which a second call writes again byte for byte. The tag is given, or, empty, taken from
 // _newest-release on the stand-ins of git and curl: the network is no part of these tests.
 
@@ -178,23 +178,23 @@ test("synthetic with no sample to write is out of form before it asks the networ
   assert.match(result.stderr, /name the module and the samples to write/);
 });
 
-test("the generator of the stage writes a sample of grade-3-math that sample-check holds, and the same bytes again", (t) => {
+test("the generator of the stage writes a sample of check-board that sample-check holds, and the same bytes again", (t) => {
   const repo = withSpec(repository(t));
   mkdirSync(join(repo, "modules"));
   // The module without its own eval set, whose samples would meet the test's.
-  rmSync(join(addModule(repo, join(ROOT, "modules", "grade-3-math"), "grade-3-math"), "eval"), { recursive: true, force: true });
+  rmSync(join(addModule(repo, join(ROOT, "modules", "check-board"), "check-board"), "eval"), { recursive: true, force: true });
   const env = process.env.CANVAS_LIB ? { CANVAS_LIB: process.env.CANVAS_LIB } : {};
-  const first = synthetic(repo, ["grade-3-math", "v0.2.1", "times-tables-d1:5"], env);
+  const first = synthetic(repo, ["check-board", "v0.2.7", "chain-1:5"], env);
   assert.equal(first.status, 0, first.stderr);
-  assert.match(first.stdout, /^synthetic-5\ttimes-tables-d1\t/m);
-  const file = join(repo, "modules", "grade-3-math", "eval", "synthetic-5.json");
+  assert.match(first.stdout, /^synthetic-5\tchain-1\t/m);
+  const file = join(repo, "modules", "check-board", "eval", "synthetic-5.json");
   const bytes = readFileSync(file);
-  const again = synthetic(repo, ["grade-3-math", "v0.2.1", "times-tables-d1:5"], env);
+  const again = synthetic(repo, ["check-board", "v0.2.7", "chain-1:5"], env);
   assert.equal(again.status, 0, again.stderr);
   assert.ok(readFileSync(file).equals(bytes), "the same task and seed give the same file");
   const sample = JSON.parse(bytes);
-  assert.equal(sample.task.modules.module, "novatrail/grade-3-math");
-  assert.equal(sample.task.modules.tag, "v0.2.1");
+  assert.equal(sample.task.modules.module, "novatrail/check-board");
+  assert.equal(sample.task.modules.tag, "v0.2.7");
   const checked = run(repo, "eval-check");
   assert.equal(checked.status, 0, checked.stdout + checked.stderr);
 });
