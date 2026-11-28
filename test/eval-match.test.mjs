@@ -1,6 +1,6 @@
 // The tests of eval-match: each sample of a module's eval set held to the package of the
 // commit. The real module-kit and the real generator of the toolchain stage — or the one CANVAS_LIB
-// names, where the container's is not the Dockerfile's — on copies of grade-3-math and of
+// names, where the container's is not the Dockerfile's — on copies of check-board and of
 // the format's example with a template; a stand-in for the generator where a test holds the calls
 // and what is compared. The samples of people here are made up from synthetic ones, by their
 // fields alone: no sample of a person is ever read.
@@ -38,58 +38,58 @@ function refusals(result) {
   return result.stderr.split("\n").filter((line) => line.startsWith("modules/"));
 }
 
-// A repository with a copy of grade-3-math and two of its synthetic samples, drawn by the stage's
+// A repository with a copy of check-board and two of its synthetic samples, drawn by the stage's
 // generator on its package.
-function withGrade3(t) {
+function withBoard(t) {
   const repo = withSpec(repository(t));
   mkdirSync(join(repo, "modules"));
   // The module without its own eval set, whose samples would meet the test's.
-  rmSync(join(addModule(repo, join(ROOT, "modules", "grade-3-math"), "grade-3-math"), "eval"), { recursive: true, force: true });
-  const made = run(repo, "_synthetic", ["grade-3-math", "v0.2.1", "times-tables-d1:1", "comparing-fractions-d1:2"], STAGE);
+  rmSync(join(addModule(repo, join(ROOT, "modules", "check-board"), "check-board"), "eval"), { recursive: true, force: true });
+  const made = run(repo, "_synthetic", ["check-board", "v0.2.7", "chain-1:1", "equation-1:2"], STAGE);
   assert.equal(made.status, 0, made.stderr);
-  return { repo, eval: join(repo, "modules", "grade-3-math", "eval") };
+  return { repo, eval: join(repo, "modules", "check-board", "eval") };
 }
 
 test("synthetic samples of the package, and a person's sample of an open view it has, pass", (t) => {
-  const { repo, eval: folder } = withGrade3(t);
+  const { repo, eval: folder } = withBoard(t);
   write(join(folder, "person-a.json"), asPerson(read(join(folder, "synthetic-1.json")), "person-a"));
   const result = evalMatch(repo);
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /^_match-synthetic: 2 synthetic samples of novatrail\/grade-3-math are drawn again the same/m);
-  assert.match(result.stdout, /^_match-people: 1 samples of people of novatrail\/grade-3-math are of open views/m);
+  assert.match(result.stdout, /^_match-synthetic: 2 synthetic samples of novatrail\/check-board are drawn again the same/m);
+  assert.match(result.stdout, /^_match-people: 1 samples of people of novatrail\/check-board are of open views/m);
   assert.match(result.stdout, /^eval-match: every sample of every eval set is one of the package of this commit$/m);
 });
 
 test("a change of a task's open view refuses its samples, and only theirs: the package's digest is not compared", (t) => {
-  const { repo, eval: folder } = withGrade3(t);
+  const { repo, eval: folder } = withBoard(t);
   write(join(folder, "person-a.json"), asPerson(read(join(folder, "synthetic-2.json")), "person-a"));
   write(join(folder, "person-b.json"), asPerson(read(join(folder, "synthetic-1.json")), "person-b"));
-  const task = join(repo, "modules", "grade-3-math", "tasks", "comparing-fractions-d1.yaml");
+  const task = join(repo, "modules", "check-board", "tasks", "equation-1.yaml");
   const text = readFileSync(task, "utf8");
-  const changed = text.replace("Write <, > or = between the two fractions.", "Write <, > or = between the two fractions on each line.");
+  const changed = text.replace("Реши уравнение 3x + 1 = 7.", "Реши уравнение 3x + 1 = 7 и запиши ответ.");
   assert.notEqual(changed, text, "the statement the test changes is there");
   writeFileSync(task, changed);
   const result = evalMatch(repo);
   assert.equal(result.status, 1, result.stdout + result.stderr);
   assert.deepEqual(refusals(result), [
-    "modules/grade-3-math/eval/synthetic-2.json: is not what canvas's generator draws of comparing-fractions-d1:2 on this commit's package, with the tag v0.2.1; re-make it: just synthetic grade-3-math comparing-fractions-d1:2",
-    "modules/grade-3-math/eval/person-a.json: the open view of comparing-fractions-d1 is not the one the sample was made on; remove the sample",
+    "modules/check-board/eval/synthetic-2.json: is not what canvas's generator draws of equation-1:2 on this commit's package, with the tag v0.2.7; re-make it: just synthetic check-board equation-1:2",
+    "modules/check-board/eval/person-a.json: the open view of equation-1 is not the one the sample was made on; remove the sample",
   ]);
   assert.match(result.stdout, /^_match-synthetic: 1 synthetic samples/m, "the sample of the other task is drawn the same");
   assert.match(result.stdout, /^_match-people: 1 samples of people/m);
 });
 
 test("a synthetic sample is drawn again with the tag it names, and a sample of a task the package lacks is refused", (t) => {
-  const { repo, eval: folder } = withGrade3(t);
+  const { repo, eval: folder } = withBoard(t);
   const sample = read(join(folder, "synthetic-1.json"));
-  write(join(folder, "synthetic-1.json"), { ...sample, task: { ...sample.task, modules: { ...sample.task.modules, tag: "v0.1.0" } } });
+  write(join(folder, "synthetic-1.json"), { ...sample, task: { ...sample.task, modules: { ...sample.task.modules, tag: "v0.2.8" } } });
   write(join(folder, "person-a.json"), asPerson(sample, "person-a", { task: "no-such-task" }));
   const result = evalMatch(repo);
   assert.equal(result.status, 1, result.stdout + result.stderr);
   const lines = refusals(result);
   assert.equal(lines.length, 1, result.stderr);
-  assert.equal(lines[0], "modules/grade-3-math/eval/person-a.json: the package of this commit has no open view of no-such-task; remove the sample");
-  assert.match(result.stdout, /^_match-synthetic: 2 synthetic samples/m, "synthetic-1 with the tag v0.1.0 is drawn again with v0.1.0");
+  assert.equal(lines[0], "modules/check-board/eval/person-a.json: the package of this commit has no open view of no-such-task; remove the sample");
+  assert.match(result.stdout, /^_match-synthetic: 2 synthetic samples/m, "synthetic-1 with the tag v0.2.8 is drawn again with v0.2.8");
 });
 
 test("a person's sample of a template is held to the instance of its seed", (t) => {

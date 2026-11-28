@@ -7,8 +7,8 @@
 ## 1. Purpose and boundaries
 
 **Does:**
-- holds the official modules of the first slice: olympiad maths 1–6 from MathTrail, school maths for grade 3 on a workbook and short essays in English for any age. They have two subjects — maths and writing;
-- holds, beside them, a small module of maths in Russian for adults, `novatrail/check-board`: the eleven tasks of the check board of `tutor`, so that the author solves them in the app on the path a learner takes, and so that its eval set checks every new tag of `tutor` once the eval runner of epic E6 is in CI; the module is described below, with the other sets. The goal of the first slice, three modules of two subjects, does not change with it;
+- holds the official modules of the first slice: olympiad maths 1–6 from MathTrail and short essays in English for any age. They have two subjects — maths and writing;
+- holds, beside them, a small module of maths in Russian for adults, `novatrail/check-board`: the eleven tasks of the check board of `tutor`, so that the author solves them in the app on the path a learner takes, and so that its eval set checks every new tag of `tutor` once the eval runner of epic E6 is in CI; the module is described below, with the other sets. The goal of the first slice, two modules of two subjects, does not change with it;
 - holds all the modules in one repository while the format changes: all the modules move to a new format version in one pull request. They may split into a repository per module once the format is v1;
 - holds each module as a folder that the [module format](../spec/format/README.md) defines:
   - at the folder's root — the module manifest `manifest.yaml`, the skill graph `skill-graph.yaml`, the catalogs `traps.yaml` and `techniques.yaml` and the solving steps `solving-steps.yaml`;
@@ -51,8 +51,8 @@
 - already at stage 1 the generator of synthetic samples of `canvas` reads the module package that `module-kit build` built at the commit where the samples go and that the call gives it — the synthetic samples of the eval set; and the samples page of `canvas` opens a sample file, so that it is looked at before the push, as the samples in the eval set below describe;
 - volunteers' samples come from the samples page of `canvas` by a pull request that the eval-set organizer makes; nothing reaches the platform's server on the way. For the first measurement the page has no hosting: its build is downloaded from a release of `canvas` and opened on the device, and while it works it does not go to the network: the tasks and media files are put into it at the build. Child samples are made with the same page, but without a pull request, and do not get into the repository;
 - the license is Apache-2.0, for the content, for the code and for the volunteers' samples in the eval sets. The module manifest names it by the SPDX identifier `Apache-2.0`, and the module's folder carries its text as the file `LICENSE`. The notices that the licenses of the content require — for example MIT for the tasks of standalone, as the port of standalone below says — stand only in the folder's `NOTICE`: the comments of a module's files do not get into the package. `LICENSE` and `NOTICE` are UTF-8, their lines end with LF, and git does not convert their line endings: the package carries them byte for byte, by the module format. Their language is the license's, not the module's: a module of any explanation language holds the English text of Apache-2.0;
-- the order of work is set by `spec`'s cross-repository plan, [COORDINATION.md](../spec/COORDINATION.md). The module of olympiad maths serves the first application, on which the author solves tasks locally in a browser, and its module manifest names `adult` in the audience too, as the first batch below says; the sets of school maths for grade 3 and of essays are small, to try the format;
-- stage 1, together with `module-kit`: the module format v0 is tried at once on three modules of two subjects.
+- the order of work is set by `spec`'s cross-repository plan, [COORDINATION.md](../spec/COORDINATION.md). The module of olympiad maths serves the first application, on which the author solves tasks locally in a browser, and its module manifest names `adult` in the audience too, as the first batch below says; the set of essays is small, to try the format;
+- stage 1, together with `module-kit`: the module format v0 is tried at once on two modules of two subjects.
 
 ## 2. To decide when detailed
 
@@ -70,7 +70,7 @@ Every item is decided, and this section names only what is deliberately deferred
 
 ### 2.2. Volunteers' samples in the eval set
 
-- **The gist:** how a sample that an adult volunteer made on the samples page of `canvas` gets into a module's eval set: who opens the pull request, what is checked before the merge, where the consent to publication is marked. One path for all the modules: handwriting on a sheet, the answer slots of a workbook and essays. The consent itself is `spec`'s.
+- **The gist:** how a sample that an adult volunteer made on the samples page of `canvas` gets into a module's eval set: who opens the pull request, what is checked before the merge, where the consent to publication is marked. One path for all the modules: handwriting on a sheet and essays. The consent itself is `spec`'s.
 - **Decided:** the samples in the eval set, below.
 
 ### 2.3. The port of standalone's tasks
@@ -93,7 +93,6 @@ What the items to decide settled: the parts of the component, its data and how i
 modules/                     the repository root
 ├── modules/                 module folders, and nothing else
 │   ├── olympiad-math/       novatrail/olympiad-math — olympiad maths 1–6
-│   ├── grade-3-math/        novatrail/grade-3-math — school maths for grade 3 on a workbook
 │   ├── english-essays/      novatrail/english-essays — short essays in English
 │   └── check-board/         novatrail/check-board — the tasks of the check board of tutor, in Russian
 ├── withdrawals.yaml         withdrawals, from the first withdrawal on — an input of the index build
@@ -267,7 +266,7 @@ The CONTRIBUTING of `.github` does not accept volunteers' samples ([`CONTRIBUTIN
   1. **The form.** Before the first sample the author signs the volunteer's form of the text set in force (step 1 of the volunteer's path) and puts it where the volunteers' forms lie, with a record of the form (step 5). The form is the same proof of the license and of clause (a) of the DCO as a volunteer's.
   2. **The page.** The author takes the file `samples-page_v<X.Y.Z>.html` from a release of `canvas` in which the purpose «eval-набор» ("eval set") is open, and checks its signature: `just -f spec/justfile release-verify canvas v<X.Y.Z> samples-page_v<X.Y.Z>.html`, with the `SHA256SUMS` and the bundle of the same release beside it. The author opens the page from the file on the computer, in Firefox or Chrome: it does not go to the network. The page offers the tasks of the modules of the release of `modules` that its build names.
   3. **«Начало» ("Start").** The purpose is «eval-набор» ("eval set"). The notice shows the version of the text set — it must be the version of the signed form. Then come the page's two declarations: «мне 18 лет или больше, и по законам места, где я живу, я вправе заключить этот договор» and «форма согласия версии … подписана и принята организатором» ("the consent form of version … is signed and accepted by the organizer").
-  4. **Writing and markup.** The task is chosen after «Начать» ("Begin"): for the eval set only the tasks of the modules, in a group per module, and for a template the instances by the seeds that the build of the page names. «Кто писал» ("Who wrote") is «взрослый своим почерком» ("an adult in their own hand") or «взрослый, подражая детскому» ("an adult imitating a child's"). After writing comes «Разметить» ("Mark up"): on a sheet, the parts of the solution with texts and flags, the first error and the final answer; on an essay, its text as written; on a workbook, each box. Nothing personal is written on the sheet: neither a name, nor a signature, nor a school, nor contacts.
+  4. **Writing and markup.** The task is chosen after «Начать» ("Begin"): for the eval set only the tasks of the modules, in a group per module, and for a template the instances by the seeds that the build of the page names. «Кто писал» ("Who wrote") is «взрослый своим почерком» ("an adult in their own hand") or «взрослый, подражая детскому» ("an adult imitating a child's"). After writing comes «Разметить» ("Mark up"): on a sheet, the parts of the solution with texts and flags, the first error and the final answer; on an essay, its text as written. Nothing personal is written on the sheet: neither a name, nor a signature, nor a school, nor contacts.
   5. **Saving.** The page shows the crops — what the model will see — and asks to confirm that there is nothing personal on the sheet. The file lands in the browser's downloads, which must be a folder not synced with a cloud: the author's, `~/Downloads` on Linux, is not. The link to the organizer that the page names the author does not need: the author adds the file themselves.
   6. **The check — before any branch.** The author opens the file in the page's section «Открыть образец» ("Open a sample") and goes by the table of checks below: in the strokes — with the checkbox «показать стёртое» ("show erased"), which also shows what was erased, which lies in the file too, — in the crops and in the markup in words the author looks for a name, a signature, initials, a school and contacts, and in an essay, real names of people and a topic that is not made up (П-20). A file that did not pass is not edited: the author erases it and writes the sample anew. The rows about the fields, the schema and the PNG are held by CI.
   7. **The name and the record.** The page saves the file as `<id>.json`, for any purpose, and it is put into the module as `modules/<module>/eval/<id>.json`, where `<id>` is the field `id` of the file: `jq -r .id <file>` in the author's terminal shows it. The ID of a person's sample is 12 characters of `a–z` and `2–7`. The ID of a person's sample does not start with `synthetic-`: only synthetic samples are named so, and such a file a session of Claude Code may read — `just eval-match` rejects such a sample. Into the record of the form goes the SHA-256 digest of the file, `sha256sum <file>`.
@@ -518,47 +517,9 @@ The rest of this part describes how the component is built; the table is what of
 |---|---|---|---|
 | volunteers' samples and the eval runner of `tutor` in CI, `report-check` on its reports; the samples of templates, of a choice by hand and of essays, and people's samples of the module of the check board | the samples in the eval set; the module of the check board | E6 | stage 2, with the eval runner of `tutor` in a release — the releases of `tutor` carry no binaries `tutor-eval` yet —, and volunteers |
 
-### 3.8. The set of school maths for grade 3
+### 3.8. No set of school maths for grade 3
 
-The set `novatrail/grade-3-math` is a small module on a workbook, by which `modules` tries the format on a second canvas.
-
-- **The manifest, the graph and the catalogs** are those of the format examples `school-math-grade-3` word for word, but for the ID, `novatrail/grade-3-math`. The audience is `under_13`, grade 3, one band `grade-3`, the explanation language is `en`, without `dependencies`.
-- **Skills** — the example's four skills, closed under prerequisites:
-
-  | Skill | Prerequisite | Tier | Teaches the anchor skill |
-  |---|---|---|---|
-  | `times-tables` | — | 1 | `core.multiplication-table` |
-  | `division-with-remainder` | `times-tables` | 2 | `core.division-with-remainder` |
-  | `fractions-of-a-whole` | `times-tables` | 2 | `core.fractions-of-a-whole` |
-  | `comparing-fractions` | `fractions-of-a-whole` | 3 | — |
-
-  The graph is not a chain, so the module is not sequential.
-- **Traps** — 11:
-  - three from the example word for word;
-  - `wrong-operation` from the example, but with other words: lines without a story catch it too;
-  - `reversed-comparison` from the example, but with the skill `comparing-fractions`: the example's skill `numbers-to-1000` is not in the set (`traps.known-skills`);
-  - six of its own — `took-away`, `remainder-left-out`, `remainder-not-added`, `top-and-bottom-swapped`, `one-part-only` and `greater-bottom-greater-fraction`.
-
-  **Techniques** — three from the example and one of its own, `draw-the-parts`. **Solving steps** — the example's two steps.
-- **Tasks** — 12 pages `tasks/<skill>-d<difficulty>.yaml`, difficulties 1, 3 and 5, 6–10 lines each:
-
-  | Skill | Lines | Check kinds |
-  |---|---|---|
-  | `times-tables` | a box anywhere in the line: a factor, the dividend, the product, the quotient; at d5, stories with `units` | `number` |
-  | `division-with-remainder` | "47 ÷ 6 = [ ] r [ ]" — two answer slots in a line; at d5, stories with two boxes, a remainder that needs room, and a missing dividend | `number` |
-  | `fractions-of-a-whole` | a fraction by equal parts, `form: any`; a fraction of a number; an irreducible fraction, `form: reduced` | `fraction`, `number` |
-  | `comparing-fractions` | a sign between two fractions with the same denominator or the same numerator; at d5, the greater or the smaller of two fractions | `choice` by hand — `<`, `>` and `=` —, `fraction` |
-
-  - The page's statement names the form of the answer: "in lowest terms", "Write <, > or =".
-  - The solution is a paragraph per line. The lines have trap values with texts without numbers, and one error is one trap value: in a division line only the quotient's answer slot carries it.
-  - `simpler_case` only in the stories, on smaller numbers. Neither what is written in it nor what follows from it is the key of its line, and the fractions do not name the page's keys in words either.
-  - A line does not repeat a fact from the text of its page or from the solution of an earlier page of the same lesson.
-  - There are no `givens` and `unknown`: the solving steps do not give them.
-  - Three pages per skill are enough for the corridor of `engine` too: more pages do not lift it (measurements 2 and 5), and every other set of pages measured made the gate of `modules` red (measurements 5).
-  - There are no pictures, `predicate` or templates.
-- **Lessons** — a lesson per skill, `lessons/<skill>.yaml`: an explanation, a worked example on the workbook, then three pages by increasing difficulty. The texts of the lessons, traps and techniques have no digits: the pages' keys are small numbers, and the leak check searches for them in all these texts. There are no signs of comparison there either, though the check does not search for them: the page's statement names all three signs, and a key that stands in a text seen together with the item is not searched for. After the explanation comes a worked example on the workbook: two or three lines with boxes that are not among the lines of the lesson's pages, and a demo that fills each box; the statement and the texts of the demo are without digits.
-- **The page fits.** The rule `task.workbook-page` holds each page to the format's layout `page.yaml`, and each of the 12 pages takes from 3 to 7 rows by [the layout of `canvas` v0.1.2](https://github.com/altnovatrail/canvas/blob/v0.1.2/src/core/page.ts).
-- **`LICENSE`** — the text of Apache-2.0. There is no `NOTICE`: the texts are its own.
+There is no module on a workbook: every task of a module is solved on the sheet of a task from paper, and the first slice is olympiad maths and short essays. The published versions of `novatrail/grade-3-math` stay in the releases that carry them and in the cumulative index, unwithdrawn, and its folder is no longer in `modules/`. The subsection keeps its number, which the plan's archives cite.
 
 ### 3.9. The set of short essays
 
@@ -606,10 +567,10 @@ The set `novatrail/english-essays` is a small module of writing on a handwriting
 
 ### 3.10. The module of the check board
 
-The module `novatrail/check-board` is a small module of maths in Russian for adults: the eleven tasks of the check board of `tutor` — `just board`, `internal/board/tasks.go` of `tutor` —, so that the author solves them in the app again and again, on the path a learner takes: the reading by `tutor`, the verdict of `module-kit`, the hint ladder and the tutor's words. Its eval set checks every new tag of `tutor` once the eval runner of epic E6 is in CI. It stands beside the three modules of the first slice, not among them, and the first slice waits for none of it.
+The module `novatrail/check-board` is a small module of maths in Russian for adults: the eleven tasks of the check board of `tutor` — `just board`, `internal/board/tasks.go` of `tutor` —, so that the author solves them in the app again and again, on the path a learner takes: the reading by `tutor`, the verdict of `module-kit`, the hint ladder and the tutor's words. Its eval set checks every new tag of `tutor` once the eval runner of epic E6 is in CI. It stands beside the two modules of the first slice, not among them, and the first slice waits for none of it.
 
 - **The source** — the banks `eval/bank.json` and `eval/free-bank.json` of `tutor` at the tag that the decision log names for the module. Each task is the task of the format that `internal/task.Sheet` of `tutor` builds of its bank's entry, so its open view — the statement, the canvas and the items — is the JSON of the task in `eval/open-tasks.json` of `tutor`, the same for all eleven. The closed fields that `Sheet` fills with stand-ins — the skill, the band `measurement` and the difficulty 1 — are the module's own, below.
-- **The manifest**: the ID `novatrail/check-board`, the title «Ознакомительный блок», the subject `mathematics`, the audience `adult` alone, without grades, one band `board` «Задачи доски», the explanation language `ru`, without `dependencies`. The rung templates are those of the other three modules, in Russian and without digits: «Какой шаг твоей работы дал этот ответ?» and «Прочитай условие ещё раз, медленно. Есть ли в нём то, чего твоя работа ещё не использует?».
+- **The manifest**: the ID `novatrail/check-board`, the title «Ознакомительный блок», the subject `mathematics`, the audience `adult` alone, without grades, one band `board` «Задачи доски», the explanation language `ru`, without `dependencies`. The rung templates are those of the other two modules, in Russian and without digits: «Какой шаг твоей работы дал этот ответ?» and «Прочитай условие ещё раз, медленно. Есть ли в нём то, чего твоя работа ещё не использует?».
 - **Skills** — four, without prerequisites and without anchor skills:
 
   | Skill | Title | How it is assessed | Tasks |
